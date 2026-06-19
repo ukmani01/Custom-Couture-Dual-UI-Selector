@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Couture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ===== VARIABLES - MODERN CLEAN SYSTEM ===== */
+        :root {
+            --primary: #2563EB;
+            --primary-hover: #1E40AF;
+            --bg-main: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            --transition: all 0.2s ease-in-out;
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9CA3AF;
+        }
+
+        /* ===== NAV ===== */
+        .navbar {
+            background: var(--bg-card);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .brand {
+            color: var(--primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .brand i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+        .nav-link.admin-link {
+            color: var(--primary);
+        }
+        .nav-link.logout-link {
+            color: #EF4444;
+        }
+        .nav-link.for-you {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+        .btn-large {
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+        }
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-secondary:hover {
+            background: var(--bg-main);
+            border-color: #D1D5DB;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            min-height: calc(100vh - 150px);
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+        .hero-title span {
+            color: var(--primary);
+        }
+        .hero-text {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-image-wrapper {
+            position: relative;
+        }
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: 6rem 5%;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: #D1D5DB;
+        }
+        .feature-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.25rem;
+            background: var(--bg-main);
+        }
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ===== AUTH ===== */
+        .auth-container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .auth-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid var(--border);
+        }
+        .auth-card h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+        .auth-sub {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 0.875rem;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background: var(--bg-card);
+        }
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== DASHBOARD ===== */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+        .dashboard-container h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        .dashboard-container h1 span {
+            color: var(--primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 3rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .stat-card.gold {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .stat-card.gold .stat-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+        .stat-card.gold h3,
+        .stat-card.gold p {
+            color: #ffffff;
+        }
+        .stat-icon {
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #DBEAFE;
+            border-radius: 12px;
+            color: var(--primary);
+        }
+        .stat-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+        .stat-card p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-top: 0.1rem;
+        }
+
+        /* ===== ORDERS TABLE ===== */
+        .orders-box {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            margin-top: 1.5rem;
+            overflow-x: auto;
+        }
+        .orders-box h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--bg-main);
+            border-bottom: 1px solid var(--border);
+        }
+        th:first-child { border-top-left-radius: var(--radius-sm); border-bottom-left-radius: var(--radius-sm); }
+        th:last-child { border-top-right-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm); }
+        td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== STATUS BADGES ===== */
+        .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .status .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status.pending { background: #FEF3C7; color: #92400E; }
+        .status.pending .status-dot { background: #F59E0B; }
+        
+        .status.production { background: #DBEAFE; color: #1E40AF; }
+        .status.production .status-dot { background: #3B82F6; }
+        
+        .status.ready { background: #F3F4F6; color: #374151; }
+        .status.ready .status-dot { background: #6B7280; }
+        
+        .status.delivered { background: #D1FAE5; color: #065F46; }
+        .status.delivered .status-dot { background: #10B981; }
+
+        /* ===== RECOMMENDATIONS ===== */
+        .recommendations-section {
+            margin: 3rem 0;
+        }
+        .recommendations-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .recommendations-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scroll-snap-type: x mandatory;
+        }
+        .rec-card {
+            min-width: 260px;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .rec-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            width: 60px;
+            height: 60px;
+            background: var(--bg-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rec-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .rec-card p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .rec-card-large {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .rec-icon-large {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            width: 80px;
+            height: 80px;
+            background: var(--bg-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rec-card-large h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .rec-details {
+            width: 100%;
+            background: var(--bg-main);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+        }
+        .rec-details p {
+            margin: 0.25rem 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+        .rec-details span {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .rec-color-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ===== BUILDER ===== */
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 1rem 0 3rem;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .builder-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+        .builder-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .options-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+        .option-box {
+            background: var(--bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+        .option-box label {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+            font-size: 0.875rem;
+        }
+        .option-box label i {
+            color: var(--primary);
+        }
+        .option-box select,
+        .option-box input[type="text"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            background: var(--bg-main);
+            color: var(--text-main);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+        .option-box select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background: var(--bg-card);
+        }
+        .color-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        input[type="color"] {
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 2px;
+            background: none;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: none; border-radius: 50%; }
+        #bColorHex {
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: var(--bg-main);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+        .color-swatch { display: none; } /* removed redundant swatch */
+
+        /* ===== PREVIEW ===== */
+        .preview-column {
+            position: sticky;
+            top: 100px;
+        }
+        .preview-box {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        .preview-box h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .preview-box h3 i {
+            color: var(--primary);
+        }
+        .outfit-preview {
+            background: var(--bg-main);
+            padding: 3rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: 2px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .outfit-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        #bDesignSummary {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+        .price-section {
+            margin: 1.5rem 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 800;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* ===== PROFILE ===== */
+        .profile-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+        .profile-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .profile-header {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .profile-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+        .profile-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .measurement-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .measurement-grid .form-group label i {
+            color: var(--text-muted);
+            margin-right: 6px;
+        }
+        .profile-note {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #EFF6FF;
+            border-radius: var(--radius-sm);
+            color: #1E3A8A;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ===== FLASH ===== */
+        .flash-message {
+            padding: 1rem 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 600px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .flash-success { background: #ECFDF5; color: #065F46; border-color: #A7F3D0; }
+        .flash-danger { background: #FEF2F2; color: #991B1B; border-color: #FECACA; }
+        .flash-warning { background: #FFFBEB; color: #92400E; border-color: #FDE68A; }
+        .flash-info { background: #EFF6FF; color: #1E40AF; border-color: #BFDBFE; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #111827;
+            color: #9CA3AF;
+            padding: 4rem 5% 2rem;
+            margin-top: auto;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+        }
+        .footer h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .footer a {
+            color: #9CA3AF;
+            text-decoration: none;
+            display: block;
+            margin: 0.75rem 0;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: left;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .footer-social a {
+            display: inline-block;
+            font-size: 1.25rem;
+            margin-right: 1.25rem;
+        }
+        .footer>p {
+            text-align: center;
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            color: #6B7280;
+            font-size: 0.875rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .builder-grid {
+                grid-template-columns: 1fr;
+            }
+            .preview-column {
+                position: static;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 3rem 2rem;
+                text-align: center;
+            }
+            .hero-title { font-size: 2.5rem; }
+            .hero-text { margin: 0 auto 2rem; }
+            .hero-buttons { justify-content: center; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: var(--bg-card);
+                padding: 1.5rem;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-sm);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .options-column { grid-template-columns: 1fr; }
+            .measurement-grid { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        /* admin select in table */
+        .styled-select {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+        .admin-inline-form {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .admin-inline-form input[type="number"] {
+            width: 70px;
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="brand" onclick="navigateTo('home')">
+                <i class="fas fa-layer-group"></i> Custom Couture
+            </button>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                </div>
+        </div>
+    </nav>
+
+    <main id="app">
+        </main>
+
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div>
+                <h3><i class="fas fa-layer-group"></i> Custom Couture</h3>
+                <p style="margin-top:0.5rem">Where dreams become fabric.<br />Est. 2024</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a onclick="navigateTo('home')">Home</a>
+                <a onclick="navigateTo('builder')">Design Studio</a>
+                <a onclick="navigateTo('dashboard')">Dashboard</a>
+                <a onclick="navigateTo('recommendations')">For You</a>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <p>© 2024 Custom Couture. Crafted with diligence for a modern web.</p>
+    </footer>
+
+    <script>
+        // ============================================================
+        //  DATA LAYER – localStorage as "database"
+        // ============================================================
+
+        const DB = {
+            get(key, fallback) {
+                try {
+                    const raw = localStorage.getItem('cc_' + key);
+                    return raw ? JSON.parse(raw) : fallback;
+                } catch { return fallback; }
+            },
+            set(key, value) {
+                localStorage.setItem('cc_' + key, JSON.stringify(value));
+            },
+            // Users
+            getUsers() { return this.get('users', []); },
+            setUsers(u) { this.set('users', u); },
+            // Orders
+            getOrders() { return this.get('orders', []); },
+            setOrders(o) { this.set('orders', o); },
+            // Measurements
+            getMeasurements() { return this.get('measurements', []); },
+            setMeasurements(m) { this.set('measurements', m); },
+            // Inventory
+            getInventory() {
+                return this.get('inventory', [
+                    { id: 1, fabricName: 'Cotton', quantity: 10, availability: true },
+                    { id: 2, fabricName: 'Silk', quantity: 8, availability: true },
+                    { id: 3, fabricName: 'Satin', quantity: 6, availability: true },
+                    { id: 4, fabricName: 'Lace', quantity: 4, availability: true },
+                    { id: 5, fabricName: 'Velvet', quantity: 5, availability: true },
+                ]);
+            },
+            setInventory(i) { this.set('inventory', i); },
+            // Current user session
+            getSession() { return this.get('session', null); },
+            setSession(u) { this.set('session', u); },
+            clearSession() { localStorage.removeItem('cc_session'); },
+            // Helpers
+            nextId(arr) {
+                if (!arr || arr.length === 0) return 1;
+                return Math.max(...arr.map(x => x.id || 0)) + 1;
+            }
+        };
+
+        // ============================================================
+        //  UTILITY FUNCTIONS
+        // ============================================================
+
+        function getCurrentUser() {
+            return DB.getSession();
+        }
+
+        function isAdmin() {
+            const u = getCurrentUser();
+            return u && u.email === 'admin@admin.com';
+        }
+
+        function isLoggedIn() {
+            return !!getCurrentUser();
+        }
+
+        function flash(message, category = 'success') {
+            const container = document.getElementById('app');
+            const div = document.createElement('div');
+            div.className = `flash-message flash-${category}`;
+            const icons = {
+                success: 'check-circle',
+                danger: 'exclamation-circle',
+                warning: 'exclamation-triangle',
+                info: 'info-circle'
+            };
+            div.innerHTML = `<i class="fas fa-${icons[category] || 'info-circle'}"></i> ${message}`;
+            container.prepend(div);
+            setTimeout(() => {
+                div.style.opacity = '0';
+                div.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => div.remove(), 500);
+            }, 5000);
+        }
+
+        function navigateTo(page, data) {
+            renderPage(page, data);
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  PRICE CALCULATOR
+        // ============================================================
+
+        function calculatePrice(fabric, sleeve, embroidery) {
+            const base = 5000;
+            const fabricPrices = { Cotton: 0, Silk: 1500, Satin: 1000, Lace: 2000, Velvet: 1800 };
+            const sleevePrices = { Sleeveless: 0, 'Cap Sleeve': 200, 'Short Sleeve': 300, 'Elbow Length': 400,
+                'Full Sleeve': 500 };
+            const embPrices = { None: 0, Floral: 1500, Beadwork: 2500, Sequin: 2000 };
+            let extras = 0;
+            extras += fabricPrices[fabric] || 0;
+            extras += sleevePrices[sleeve] || 0;
+            extras += embPrices[embroidery] || 0;
+            return base + extras;
+        }
+
+        // ============================================================
+        //  RECOMMENDATION ENGINE
+        // ============================================================
+
+        function getRecommendations(userId) {
+            const orders = DB.getOrders().filter(o => o.userId === userId);
+            const last = orders.length ? orders.sort((a, b) => b.id - a.id)[0] : null;
+
+            const fabricMap = {
+                Cotton: ['Silk', 'Satin'],
+                Silk: ['Satin', 'Lace'],
+                Satin: ['Silk', 'Velvet'],
+                Lace: ['Silk', 'Satin'],
+                Velvet: ['Satin', 'Lace']
+            };
+            const silhouetteMap = {
+                'A-Line': ['Mermaid', 'Sheath'],
+                Mermaid: ['A-Line', 'Ball Gown'],
+                Sheath: ['A-Line', 'Empire'],
+                'Ball Gown': ['Mermaid', 'A-Line'],
+                Empire: ['Sheath', 'A-Line']
+            };
+            const necklines = ['V-Neck', 'Sweetheart', 'Boat Neck'];
+            const sleeves = ['Sleeveless', 'Cap Sleeve', 'Full Sleeve'];
+            const embroideries = ['None', 'Floral', 'Beadwork'];
+            const colors = ['#2563EB', '#e74c3c', '#2c3e50', '#1abc9c', '#9b59b6', '#e67e22'];
+            const icons = ['<i class="fas fa-tshirt"></i>', '<i class="fas fa-female"></i>', '<i class="fas fa-vest"></i>', '<i class="fas fa-tshirt"></i>'];
+
+            function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+            if (last) {
+                const sf = fabricMap[last.fabric] || ['Silk', 'Satin'];
+                const ss = silhouetteMap[last.silhouette] || ['A-Line', 'Mermaid'];
+                const recs = [];
+                for (let i = 0; i < 3; i++) {
+                    recs.push({
+                        name: `Style ${i+1}`,
+                        silhouette: pick(ss),
+                        neckline: pick(necklines),
+                        sleeve: pick(sleeves),
+                        fabric: pick(sf),
+                        color: pick(colors),
+                        embroidery: pick(embroideries),
+                        icon: pick(icons)
+                    });
+                }
+                return recs;
+            }
+
+            // Defaults
+            return [
+                { name: 'Elegant A-Line', silhouette: 'A-Line', neckline: 'V-Neck', sleeve: 'Cap Sleeve',
+                    fabric: 'Silk', color: '#2563EB', embroidery: 'Floral', icon: '<i class="fas fa-tshirt"></i>' },
+                { name: 'Bold Mermaid', silhouette: 'Mermaid', neckline: 'Sweetheart', sleeve: 'Sleeveless',
+                    fabric: 'Lace', color: '#e74c3c', embroidery: 'Beadwork', icon: '<i class="fas fa-female"></i>' },
+                { name: 'Classic Sheath', silhouette: 'Sheath', neckline: 'Boat Neck', sleeve: 'Full Sleeve',
+                    fabric: 'Satin', color: '#2c3e50', embroidery: 'None', icon: '<i class="fas fa-vest"></i>' }
+            ];
+        }
+
+        // ============================================================
+        //  RENDER ENGINE – all pages
+        // ============================================================
+
+        function renderPage(page, data) {
+            const app = document.getElementById('app');
+            const user = getCurrentUser();
+            const isAuth = !!user;
+            const isAdminUser = isAuth && user.email === 'admin@admin.com';
+
+            // Build nav
+            renderNav(isAuth, isAdminUser);
+
+            // Render page
+            let html = '';
+            switch (page) {
+                case 'home':
+                    html = renderHome();
+                    break;
+                case 'login':
+                    html = renderLogin();
+                    break;
+                case 'register':
+                    html = renderRegister();
+                    break;
+                case 'dashboard':
+                    html = renderDashboard(user);
+                    break;
+                case 'builder':
+                    html = renderBuilder(user);
+                    break;
+                case 'profile':
+                    html = renderProfile(user);
+                    break;
+                case 'recommendations':
+                    html = renderRecommendations(user);
+                    break;
+                case 'admin':
+                    html = renderAdmin(user);
+                    break;
+                default:
+                    html = renderHome();
+            }
+            app.innerHTML = html;
+
+            // Post-render hooks
+            if (page === 'builder') initBuilder();
+            if (page === 'profile') initProfile();
+            if (page === 'admin') initAdmin();
+            if (page === 'dashboard') initDashboard();
+            if (page === 'recommendations') initRecommendations();
+        }
+
+        // ============================================================
+        //  NAV RENDER
+        // ============================================================
+
+        function renderNav(isAuth, isAdminUser) {
+            const container = document.getElementById('navLinks');
+            let links = '';
+            if (isAuth) {
+                links += `<a class="nav-link" onclick="navigateTo('home')">Home</a>`;
+                links += `<a class="nav-link" onclick="navigateTo('builder')">Design Studio</a>`;
+                links += `<a class="nav-link" onclick="navigateTo('dashboard')">Dashboard</a>`;
+                links += `<a class="nav-link" onclick="navigateTo('profile')"><i class="fas fa-user"></i> Profile</a>`;
+                links += `<a class="nav-link for-you" onclick="navigateTo('recommendations')"><i class="fas fa-sparkles"></i> For You</a>`;
+                if (isAdminUser) {
+                    links += `<a class="nav-link admin-link" onclick="navigateTo('admin')"><i class="fas fa-shield-alt"></i> Admin</a>`;
+                }
+                links += `<a class="nav-link logout-link" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>`;
+            } else {
+                links += `<a class="nav-link" onclick="navigateTo('home')">Home</a>`;
+                links += `<a class="nav-link" onclick="navigateTo('login')">Login</a>`;
+                links += `<a class="btn-primary btn-small" onclick="navigateTo('register')">Get Started</a>`;
+            }
+            container.innerHTML = links;
+        }
+
+        // ============================================================
+        //  PAGE: HOME
+        // ============================================================
+
+        function renderHome() {
+            return `
+            <section class="hero">
+              <div class="hero-content">
+                <h1 class="hero-title">Design Your <span>Dream Outfit</span></h1>
+                <p class="hero-text">Choose from 20+ design options and create your perfect custom outfit. See your design come to life in real-time!</p>
+                <div class="hero-buttons">
+                  <a class="btn-primary btn-large" onclick="navigateTo('builder')"><i class="fas fa-paint-brush"></i> Start Designing</a>
+                  <a class="btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Learn More</a>
+                </div>
+              </div>
+              <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80" alt="Fashion Design Presentation">
+              </div>
+            </section>
+            <section id="features" class="features">
+              <h2 class="section-title">Why Custom Couture?</h2>
+              <div class="features-grid">
+                <div class="feature-card">
+                  <img class="feature-img" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&q=80" alt="Custom Design">
+                  <h3>Custom Design</h3>
+                  <p>Select from 20+ options - silhouette, neckline, fabric, color and more!</p>
+                </div>
+                <div class="feature-card">
+                  <img class="feature-img" src="https://images.unsplash.com/photo-1541104101886-09e4f509d3da?w=500&q=80" alt="Live Preview">
+                  <h3>Live Preview</h3>
+                  <p>See your outfit change in real-time as you make selections</p>
+                </div>
+                <div class="feature-card">
+                  <img class="feature-img" src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=500&q=80" alt="Easy Ordering">
+                  <h3>Easy Ordering</h3>
+                  <p>Submit your design directly to the boutique with one click</p>
+                </div>
+                <div class="feature-card">
+                  <img class="feature-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" alt="Mobile Friendly">
+                  <h3>Mobile Friendly</h3>
+                  <p>Design on the go from your phone or tablet seamlessly</p>
+                </div>
+                <div class="feature-card">
+                  <img class="feature-img" src="https://images.unsplash.com/photo-1516110833967-0b5716ca1387?w=500&q=80" alt="Smart Recommendations">
+                  <h3>Smart Recommendations</h3>
+                  <p>Get AI-like outfit suggestions based on your personal style</p>
+                </div>
+                <div class="feature-card">
+                  <img class="feature-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" alt="Inventory Management">
+                  <h3>Inventory Management</h3>
+                  <p>Boutique owners can track fabric availability instantly</p>
+                </div>
+              </div>
+            </section>
+          `;
+        }
+
+        // ============================================================
+        //  PAGE: LOGIN
+        // ============================================================
+
+        function renderLogin() {
+            if (isLoggedIn()) {
+                flash('You are already logged in!', 'info');
+                return renderDashboard(getCurrentUser());
+            }
+            return `
+            <div class="auth-container">
+              <div class="auth-card">
+                <h2>Welcome Back</h2>
+                <p class="auth-sub">Login to continue designing</p>
+                <form class="auth-form" onsubmit="handleLogin(event)">
+                  <div class="form-group"><label>Email Address</label><input type="email" id="loginEmail" placeholder="you@example.com" required></div>
+                  <div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter your password" required></div>
+                  <button type="submit" class="btn-primary btn-full">Login</button>
+                </form>
+                <p class="auth-footer">Don't have an account? <a onclick="navigateTo('register')">Sign Up</a></p>
+              </div>
+            </div>
+          `;
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const users = DB.getUsers();
+            const found = users.find(u => u.email === email && u.password === password);
+            if (!found) {
+                flash('Invalid email or password!', 'danger');
+                return;
+            }
+            DB.setSession(found);
+            flash(`Welcome back, ${found.name}!`, 'success');
+            navigateTo('dashboard');
+        }
+
+        // ============================================================
+        //  PAGE: REGISTER
+        // ============================================================
+
+        function renderRegister() {
+            if (isLoggedIn()) {
+                flash('You are already logged in!', 'info');
+                return renderDashboard(getCurrentUser());
+            }
+            return `
+            <div class="auth-container">
+              <div class="auth-card">
+                <h2>Create Account</h2>
+                <p class="auth-sub">Start designing your custom outfits</p>
+                <form class="auth-form" onsubmit="handleRegister(event)">
+                  <div class="form-group"><label>Full Name</label><input type="text" id="regName" placeholder="Your full name" required></div>
+                  <div class="form-group"><label>Email Address</label><input type="email" id="regEmail" placeholder="you@example.com" required></div>
+                  <div class="form-group"><label>Phone Number</label><input type="tel" id="regPhone" placeholder="+91 98765 43210"></div>
+                  <div class="form-group"><label>Password</label><input type="password" id="regPassword" placeholder="Create a password" required></div>
+                  <button type="submit" class="btn-primary btn-full">Create Account</button>
+                </form>
+                <p class="auth-footer">Already have an account? <a onclick="navigateTo('login')">Login</a></p>
+              </div>
+            </div>
+          `;
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value.trim();
+
+            if (!name || !email || !password) {
+                flash('All fields are required!', 'danger');
+                return;
+            }
+            if (password.length < 4) {
+                flash('Password must be at least 4 characters!', 'danger');
+                return;
+            }
+            const users = DB.getUsers();
+            if (users.find(u => u.email === email)) {
+                flash('Email already registered!', 'danger');
+                return;
+            }
+            const newUser = {
+                id: DB.nextId(users),
+                name,
+                email,
+                password,
+                phone: phone || '',
+                createdAt: new Date().toISOString()
+            };
+            users.push(newUser);
+            DB.setUsers(users);
+            flash('Registration successful! Please login.', 'success');
+            navigateTo('login');
+        }
+
+        // ============================================================
+        //  PAGE: DASHBOARD
+        // ============================================================
+
+        function renderDashboard(user) {
+            if (!user) {
+                flash('Please login first!', 'warning');
+                return renderLogin();
+            }
+            const orders = DB.getOrders().filter(o => o.userId === user.id);
+            const pending = orders.filter(o => o.status === 'Pending' || o.status === 'Production').length;
+            const completed = orders.filter(o => o.status === 'Delivered').length;
+            const recs = getRecommendations(user.id);
+
+            let recHtml = '';
+            if (recs && recs.length) {
+                recHtml = `<div class="recommendations-scroll">`;
+                recs.forEach(r => {
+                    recHtml += `
+                <div class="rec-card">
+                  <div class="rec-icon">${r.icon}</div>
+                  <h4>${r.name}</h4>
+                  <p>${r.fabric} • ${r.silhouette}</p>
+                  <button class="btn-secondary btn-small" onclick="navigateTo('builder')">Try This &rarr;</button>
+                </div>
+              `;
+                });
+                recHtml += `</div>`;
+            } else {
+                recHtml = `<p style="color:var(--text-muted);">Create your first order to get personalized recommendations!</p>`;
+            }
+
+            let ordersHtml = '';
+            if (orders.length) {
+                ordersHtml = `<table>
+              <tr><th>Order</th><th>Design</th><th>Price</th><th>Status</th></tr>
+              ${orders.map(o => `
+                <tr>
+                  <td>#CT-${o.id}</td>
+                  <td>${o.fabric} ${o.silhouette}</td>
+                  <td>₹${o.totalPrice}</td>
+                  <td><span class="status ${o.status.toLowerCase()}"><span class="status-dot"></span> ${o.status}</span></td>
+                </tr>
+              `).join('')}
+            </table>`;
+            } else {
+                ordersHtml =
+                    `<p style="text-align:center;color:var(--text-muted);padding:2rem;">No orders yet. <a onclick="navigateTo('builder')" style="color:var(--primary);cursor:pointer;">Create your first design!</a></p>`;
+            }
+
+            return `
+            <div class="dashboard-container">
+              <h1>Welcome back, <span>${user.name}</span></h1>
+              <p style="color:var(--text-muted);margin-bottom:2rem;">Here's your style journey summary.</p>
+              <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-shopping-bag"></i></div><div><h3>${orders.length}</h3><p>Total Orders</p></div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div><h3>${pending}</h3><p>In Production</p></div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div><h3>${completed}</h3><p>Completed</p></div></div>
+                <div class="stat-card gold"><div class="stat-icon"><i class="fas fa-star"></i></div><div><h3>Premium</h3><p>Member</p></div></div>
+              </div>
+              <div class="recommendations-section">
+                <h2><i class="fas fa-sparkles" style="color:var(--primary);"></i> Recommended For You</h2>
+                ${recHtml}
+              </div>
+              <div class="orders-box">
+                <h2>Recent Orders</h2>
+                ${ordersHtml}
+              </div>
+              <button class="btn-primary btn-large" style="display:inline-flex;margin-top:2rem;" onclick="navigateTo('builder')">
+                <i class="fas fa-plus"></i> Create New Design
+              </button>
+            </div>
+          `;
+        }
+
+        function initDashboard() {
+            // Animate counters
+            document.querySelectorAll('.stat-card h3').forEach(counter => {
+                const txt = counter.innerText;
+                if (!isNaN(txt) && txt !== '') {
+                    const target = parseInt(txt);
+                    let current = 0;
+                    const inc = target / 30;
+                    const upd = () => {
+                        current += inc;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(upd);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    upd();
+                }
+            });
+        }
+
+        // ============================================================
+        //  PAGE: BUILDER
+        // ============================================================
+
+        function renderBuilder(user) {
+            if (!user) {
+                flash('Please login to design!', 'warning');
+                return renderLogin();
+            }
+            return `
+            <div class="builder-container">
+              <h1 class="page-title"><i class="fas fa-paint-brush" style="color:var(--primary);"></i> Design Your Outfit</h1>
+              <div class="builder-grid">
+                <div class="options-column">
+                  <div class="option-box">
+                    <label><i class="fas fa-vector-square"></i> Silhouette</label>
+                    <select id="bSilhouette" onchange="updateBuilderPreview()">
+                      <option value="A-Line">A-Line</option>
+                      <option value="Mermaid">Mermaid</option>
+                      <option value="Sheath">Sheath</option>
+                      <option value="Ball Gown">Ball Gown</option>
+                      <option value="Empire">Empire</option>
+                    </select>
+                  </div>
+                  <div class="option-box">
+                    <label><i class="fas fa-circle"></i> Neckline</label>
+                    <select id="bNeckline" onchange="updateBuilderPreview()">
+                      <option value="V-Neck">V-Neck</option>
+                      <option value="Boat Neck">Boat Neck</option>
+                      <option value="Sweetheart">Sweetheart</option>
+                      <option value="Square">Square</option>
+                      <option value="Halter">Halter</option>
+                    </select>
+                  </div>
+                  <div class="option-box">
+                    <label><i class="fas fa-tshirt"></i> Sleeve Style</label>
+                    <select id="bSleeve" onchange="updateBuilderPreview()">
+                      <option value="Sleeveless">Sleeveless</option>
+                      <option value="Cap Sleeve">Cap Sleeve</option>
+                      <option value="Short Sleeve">Short Sleeve</option>
+                      <option value="Elbow Length">Elbow Length</option>
+                      <option value="Full Sleeve">Full Sleeve</option>
+                    </select>
+                  </div>
+                  <div class="option-box">
+                    <label><i class="fas fa-layer-group"></i> Fabric</label>
+                    <select id="bFabric" onchange="updateBuilderPreview()">
+                      <option value="Cotton">Cotton</option>
+                      <option value="Silk">Silk (+₹1,500)</option>
+                      <option value="Satin">Satin (+₹1,000)</option>
+                      <option value="Lace">Lace (+₹2,000)</option>
+                      <option value="Velvet">Velvet (+₹1,800)</option>
+                    </select>
+                  </div>
+                  <div class="option-box">
+                    <label><i class="fas fa-palette"></i> Color</label>
+                    <div class="color-row">
+                      <input type="color" id="bColor" value="#2563EB" onchange="updateBuilderPreview()">
+                      <span id="bColorHex">#2563EB</span>
+                    </div>
+                  </div>
+                  <div class="option-box">
+                    <label><i class="fas fa-star"></i> Embroidery</label>
+                    <select id="bEmbroidery" onchange="updateBuilderPreview()">
+                      <option value="None">None</option>
+                      <option value="Floral">Floral (+₹1,500)</option>
+                      <option value="Beadwork">Beadwork (+₹2,500)</option>
+                      <option value="Sequin">Sequin (+₹2,000)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="preview-column">
+                  <div class="preview-box">
+                    <h3><i class="fas fa-eye"></i> Live Preview</h3>
+                    <div class="outfit-preview" id="bOutfitPreview">
+                      <div class="outfit-icon" id="bOutfitIcon"><i class="fas fa-tshirt"></i></div>
+                      <p id="bDesignSummary">A-Line • V-Neck • Cotton</p>
+                    </div>
+                    <div class="price-section">
+                        <div class="price-row"><span>Base Price</span><span>₹5,000</span></div>
+                        <div class="price-row" id="bExtrasRow"><span>Extras</span><span id="bExtrasPrice">+ ₹0</span></div>
+                        <div class="price-total"><span>Total</span><span id="bTotalPrice">₹5,000</span></div>
+                    </div>
+                    <button class="btn-primary btn-full" onclick="handleSubmitOrder()">
+                      <i class="fas fa-check-circle"></i> Submit Design
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        function initBuilder() {
+            updateBuilderPreview();
+        }
+
+        function updateBuilderPreview() {
+            const silhouette = document.getElementById('bSilhouette').value;
+            const neckline = document.getElementById('bNeckline').value;
+            const sleeve = document.getElementById('bSleeve').value;
+            const fabric = document.getElementById('bFabric').value;
+            const color = document.getElementById('bColor').value;
+            const embroidery = document.getElementById('bEmbroidery').value;
+
+            const icons = { 'A-Line': '<i class="fas fa-tshirt"></i>', Mermaid: '<i class="fas fa-female"></i>', Sheath: '<i class="fas fa-vest"></i>', 'Ball Gown': '<i class="fas fa-child"></i>', Empire: '<i class="fas fa-tshirt"></i>' };
+            document.getElementById('bOutfitIcon').innerHTML = icons[silhouette] || '<i class="fas fa-tshirt"></i>';
+            document.getElementById('bOutfitIcon').style.color = color;
+            document.getElementById('bDesignSummary').innerText = `${silhouette} • ${neckline} • ${fabric}`;
+            document.getElementById('bColorHex').innerText = color;
+            document.getElementById('bOutfitPreview').style.borderColor = color;
+
+            const total = calculatePrice(fabric, sleeve, embroidery);
+            const base = 5000;
+            const extras = total - base;
+            document.getElementById('bExtrasPrice').innerText = `+ ₹${extras}`;
+            document.getElementById('bTotalPrice').innerText = `₹${total}`;
+
+            // Store for submission
+            window._builderData = { silhouette, neckline, sleeve, fabric, color, embroidery, totalPrice: total };
+        }
+
+        function handleSubmitOrder() {
+            const user = getCurrentUser();
+            if (!user) {
+                flash('Please login to submit order!', 'warning');
+                navigateTo('login');
+                return;
+            }
+            const data = window._builderData;
+            if (!data) {
+                flash('Please select design options first!', 'warning');
+                return;
+            }
+
+            // Check inventory
+            const inv = DB.getInventory();
+            const item = inv.find(i => i.fabricName === data.fabric);
+            if (item && item.quantity <= 0) {
+                flash(`Sorry, ${data.fabric} is out of stock!`, 'danger');
+                return;
+            }
+
+            // Create order
+            const orders = DB.getOrders();
+            const newOrder = {
+                id: DB.nextId(orders),
+                userId: user.id,
+                silhouette: data.silhouette,
+                neckline: data.neckline,
+                sleeve: data.sleeve,
+                fabric: data.fabric,
+                color: data.color,
+                embroidery: data.embroidery,
+                totalPrice: data.totalPrice,
+                status: 'Pending',
+                priority: 0,
+                createdAt: new Date().toISOString()
+            };
+            orders.push(newOrder);
+            DB.setOrders(orders);
+
+            // Reduce inventory
+            if (item) {
+                item.quantity -= 1;
+                item.availability = item.quantity > 0;
+                DB.setInventory(DB.getInventory().map(i => i.id === item.id ? item : i));
+            }
+
+            flash(`Order submitted successfully! Total: ₹${data.totalPrice}`, 'success');
+            navigateTo('dashboard');
+        }
+
+        // ============================================================
+        //  PAGE: PROFILE
+        // ============================================================
+
+        function renderProfile(user) {
+            if (!user) {
+                flash('Please login first!', 'warning');
+                return renderLogin();
+            }
+            const measurements = DB.getMeasurements().find(m => m.userId === user.id) || {};
+            return `
+            <div class="profile-container">
+              <h1 class="page-title"><i class="fas fa-user-circle" style="color:var(--primary);"></i> My Profile</h1>
+              <div class="profile-card">
+                <div class="profile-header">
+                  <h2>${user.name}</h2>
+                  <p>${user.email}</p>
+                </div>
+                <form class="measurement-form" onsubmit="handleSaveMeasurements(event)">
+                  <h3 style="margin-bottom:1.5rem;font-size:1.25rem;">Measurements</h3>
+                  <div class="measurement-grid">
+                    <div class="form-group"><label><i class="fas fa-ruler-vertical"></i> Bust (cm)</label><input type="number" step="0.1" id="mBust" value="${measurements.bust || ''}" placeholder="e.g., 90"></div>
+                    <div class="form-group"><label><i class="fas fa-ruler-vertical"></i> Waist (cm)</label><input type="number" step="0.1" id="mWaist" value="${measurements.waist || ''}" placeholder="e.g., 70"></div>
+                    <div class="form-group"><label><i class="fas fa-ruler-vertical"></i> Hips (cm)</label><input type="number" step="0.1" id="mHips" value="${measurements.hips || ''}" placeholder="e.g., 95"></div>
+                    <div class="form-group"><label><i class="fas fa-ruler-combined"></i> Shoulder (cm)</label><input type="number" step="0.1" id="mShoulder" value="${measurements.shoulder || ''}" placeholder="e.g., 40"></div>
+                    <div class="form-group"><label><i class="fas fa-ruler-horizontal"></i> Sleeve Length (cm)</label><input type="number" step="0.1" id="mSleeve" value="${measurements.sleeveLength || ''}" placeholder="e.g., 60"></div>
+                    <div class="form-group"><label><i class="fas fa-ruler"></i> Height (cm)</label><input type="number" step="0.1" id="mHeight" value="${measurements.height || ''}" placeholder="e.g., 165"></div>
+                  </div>
+                  <button type="submit" class="btn-primary btn-large btn-full" style="margin-top:2rem;"><i class="fas fa-save"></i> Save Measurements</button>
+                </form>
+                <div class="profile-note"><i class="fas fa-info-circle"></i> These measurements help us create outfits that fit you perfectly!</div>
+              </div>
+              <div style="text-align:center;margin-top:2rem;">
+                <button class="btn-secondary" onclick="navigateTo('dashboard')">&larr; Back to Dashboard</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function initProfile() {}
+
+        function handleSaveMeasurements(e) {
+            e.preventDefault();
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = {
+                userId: user.id,
+                bust: parseFloat(document.getElementById('mBust').value) || null,
+                waist: parseFloat(document.getElementById('mWaist').value) || null,
+                hips: parseFloat(document.getElementById('mHips').value) || null,
+                shoulder: parseFloat(document.getElementById('mShoulder').value) || null,
+                sleeveLength: parseFloat(document.getElementById('mSleeve').value) || null,
+                height: parseFloat(document.getElementById('mHeight').value) || null,
+            };
+            let measurements = DB.getMeasurements();
+            const idx = measurements.findIndex(m => m.userId === user.id);
+            if (idx >= 0) {
+                measurements[idx] = { ...measurements[idx], ...data };
+            } else {
+                data.id = DB.nextId(measurements);
+                measurements.push(data);
+            }
+            DB.setMeasurements(measurements);
+            flash('Measurements saved successfully!', 'success');
+        }
+
+        // ============================================================
+        //  PAGE: RECOMMENDATIONS
+        // ============================================================
+
+        function renderRecommendations(user) {
+            if (!user) {
+                flash('Please login!', 'warning');
+                return renderLogin();
+            }
+            const recs = getRecommendations(user.id);
+            let html = `
+            <div class="dashboard-container">
+              <h1><i class="fas fa-sparkles" style="color:var(--primary);"></i> Recommended For You</h1>
+              <p style="color:var(--text-muted);margin-bottom:2.5rem;">AI-powered style suggestions based on your taste.</p>
+              <div class="recommendations-grid" id="recGrid">
+          `;
+            if (recs && recs.length) {
+                recs.forEach(r => {
+                    html += `
+                <div class="rec-card-large">
+                  <div class="rec-icon-large">${r.icon}</div>
+                  <h3>${r.name}</h3>
+                  <div class="rec-details">
+                    <p><span>Silhouette:</span> ${r.silhouette}</p>
+                    <p><span>Neckline:</span> ${r.neckline}</p>
+                    <p><span>Sleeve:</span> ${r.sleeve}</p>
+                    <p><span>Fabric:</span> ${r.fabric}</p>
+                    <p><span>Embroidery:</span> ${r.embroidery}</p>
+                    <div class="rec-color-preview" style="background:${r.color};"></div>
+                  </div>
+                  <button class="btn-primary btn-full" onclick="navigateTo('builder')">Try This Design &rarr;</button>
+                </div>
+              `;
+                });
+            } else {
+                html += `<p style="color:var(--text-muted);">Create your first order to get personalized recommendations!</p>`;
+            }
+            html += `</div></div>`;
+            return html;
+        }
+
+        function initRecommendations() {}
+
+        // ============================================================
+        //  PAGE: ADMIN
+        // ============================================================
+
+        function renderAdmin(user) {
+            if (!user) {
+                flash('Please login first!', 'warning');
+                return renderLogin();
+            }
+            if (user.email !== 'admin@admin.com') {
+                flash('Access denied. Admin only!', 'danger');
+                return renderDashboard(user);
+            }
+
+            const orders = DB.getOrders();
+            const users = DB.getUsers();
+            const inventory = DB.getInventory();
+
+            let ordersHtml = '';
+            if (orders.length) {
+                ordersHtml = `<table>
+              <tr><th>Order</th><th>Customer</th><th>Design</th><th>Price</th><th>Status</th><th>Action</th></tr>
+              ${orders.sort((a,b)=>b.id-a.id).map(o => {
+                const u = users.find(x => x.id === o.userId);
+                const name = u ? u.name : 'Unknown';
+                const email = u ? u.email : '';
+                return `
+                  <tr>
+                    <td>#CT-${o.id}</td>
+                    <td>${name}<br><small style="color:var(--text-muted);">${email}</small></td>
+                    <td>${o.fabric} ${o.silhouette}</td>
+                    <td>₹${o.totalPrice}</td>
+                    <td><span class="status ${o.status.toLowerCase()}"><span class="status-dot"></span> ${o.status}</span></td>
+                    <td>
+                      <form class="admin-inline-form" onsubmit="handleUpdateStatus(event, ${o.id})">
+                        <select name="status" class="styled-select">
+                          <option value="Pending" ${o.status==='Pending'?'selected':''}>Pending</option>
+                          <option value="Production" ${o.status==='Production'?'selected':''}>Production</option>
+                          <option value="Ready" ${o.status==='Ready'?'selected':''}>Ready</option>
+                          <option value="Delivered" ${o.status==='Delivered'?'selected':''}>Delivered</option>
+                        </select>
+                        <button type="submit" class="btn-primary btn-small">Update</button>
+                      </form>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </table>`;
+            } else {
+                ordersHtml = `<p style="text-align:center;color:var(--text-muted);padding:2rem;">No orders yet.</p>`;
+            }
+
+            let invHtml = '';
+            if (inventory.length) {
+                invHtml = `<table>
+              <tr><th>Fabric</th><th>Quantity</th><th>Status</th><th>Update</th></tr>
+              ${inventory.map(i => `
+                <tr>
+                  <td>${i.fabricName}</td>
+                  <td>${i.quantity}</td>
+                  <td><span class="status ${i.availability ? 'delivered' : 'pending'}"><span class="status-dot"></span> ${i.availability ? 'Available' : 'Out of Stock'}</span></td>
+                  <td>
+                    <form class="admin-inline-form" onsubmit="handleUpdateInventory(event, ${i.id})">
+                      <input type="number" name="quantity" value="${i.quantity}" min="0">
+                      <button type="submit" class="btn-primary btn-small">Save</button>
+                    </form>
+                  </td>
+                </tr>
+              `).join('')}
+            </table>`;
+            } else {
+                invHtml = `<p style="text-align:center;color:var(--text-muted);padding:2rem;">No inventory items.</p>`;
+            }
+
+            return `
+            <div class="dashboard-container">
+              <h1><i class="fas fa-shield-alt" style="color:var(--primary);"></i> Admin Panel</h1>
+              <p style="color:var(--text-muted);margin-bottom:2.5rem;">Manage orders, track inventory, and control the boutique.</p>
+              <div class="orders-box">
+                <h2>All Orders</h2>
+                ${ordersHtml}
+              </div>
+              <div class="orders-box" style="margin-top:2rem;">
+                <h2>Inventory Management</h2>
+                ${invHtml}
+              </div>
+              <div style="margin-top:2rem;">
+                <button class="btn-secondary" onclick="navigateTo('dashboard')">&larr; Back to Dashboard</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function initAdmin() {}
+
+        function handleUpdateStatus(e, orderId) {
+            e.preventDefault();
+            const form = e.target;
+            const status = form.querySelector('select[name="status"]').value;
+            let orders = DB.getOrders();
+            const idx = orders.findIndex(o => o.id === orderId);
+            if (idx >= 0) {
+                orders[idx].status = status;
+                DB.setOrders(orders);
+                flash(`Order #${orderId} status updated to ${status}!`, 'success');
+                navigateTo('admin');
+            }
+        }
+
+        function handleUpdateInventory(e, itemId) {
+            e.preventDefault();
+            const form = e.target;
+            const qty = parseInt(form.querySelector('input[name="quantity"]').value);
+            if (isNaN(qty) || qty < 0) {
+                flash('Please enter a valid quantity!', 'danger');
+                return;
+            }
+            let inv = DB.getInventory();
+            const idx = inv.findIndex(i => i.id === itemId);
+            if (idx >= 0) {
+                inv[idx].quantity = qty;
+                inv[idx].availability = qty > 0;
+                DB.setInventory(inv);
+                flash('Inventory updated successfully!', 'success');
+                navigateTo('admin');
+            }
+        }
+
+        // ============================================================
+        //  LOGOUT
+        // ============================================================
+
+        function handleLogout() {
+            DB.clearSession();
+            flash('Logged out successfully!', 'info');
+            navigateTo('home');
+        }
+
+        // ============================================================
+        //  MOBILE MENU TOGGLE
+        // ============================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('menuToggle').addEventListener('click', function() {
+                document.getElementById('navLinks').classList.toggle('active');
+            });
+            // Start on home
+            navigateTo('home');
+        });
+
+        // ============================================================
+        //  PREVENT DEFAULT ON FOOTER LINKS (they are used as navigation)
+        // ============================================================
+
+        document.querySelectorAll('.footer a[onclick]').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                const fn = this.getAttribute('onclick');
+                if (fn) eval(fn);
+            });
+        });
+
+        console.log('Custom Couture UI Revamped loaded successfully.');
+    </script>
+
+</body>
+</html>

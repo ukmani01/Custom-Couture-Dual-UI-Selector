@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Couture — Luxury Fashion Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ============================================================
+               DESIGN SYSTEM — Ultra-Luxury Editorial & SaaS Fusion
+               Awwwards-Level Archetype (40% YSL, 20% Apple, 20% Linear, 20% Stripe)
+               ============================================================ */
+
+        :root {
+            --black: #0F172A;
+            --black-light: #1E293B;
+            --black-warm: #090D16;
+            --gold: #C5A880;
+            --gold-light: #E8D5A3;
+            --gold-glow: rgba(197, 168, 128, 0.15);
+            --bg-pure: #FFFFFF;
+            --bg-soft: #F8FAFC;
+            --bg-muted: #F1F5F9;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #94A3B8;
+            --border-pure: #E2E8F0;
+            --border-subtle: #F1F5F9;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        /* ----- RESET & BASE SYSTEM ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-pure);
+            color: var(--text-primary);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ----- TYPOGRAPHY EXTRAVAGANZA ----- */
+        h1, h2, h3, .editorial-title {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--black-warm);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* ----- PREMIUM LAYOUT CONTAINERS ----- */
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        @media (max-width: 1024px) {
+            .container { padding: 0 2rem; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 1.25rem; }
+        }
+
+        /* ----- LUXURY HEADER / NAVIGATION ----- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--black-warm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            font-weight: 300;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            color: var(--text-primary);
+            position: relative;
+            padding: 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* ----- AUTHENTIC BUTTON DESIGN SYSTEM ----- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--black-warm);
+            color: var(--bg-pure);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--black-warm);
+            color: var(--black-warm);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--black-warm);
+            color: var(--bg-pure);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--bg-pure);
+        }
+
+        .btn-gold:hover {
+            background-color: #bfa17a;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.75rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ----- FLASH MESSAGES ----- */
+        #flash-container {
+            position: fixed;
+            top: 110px;
+            right: 4rem;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+        }
+
+        .flash-msg {
+            background: rgba(255, 255, 255, 0.95);
+            border-left: 3px solid var(--gold);
+            padding: 1.25rem 1.75rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ----- PAGE WRAPPER & VIEW MECHANICS ----- */
+        .view-section {
+            display: none;
+            padding-top: 130px;
+            padding-bottom: 6rem;
+            min-height: calc(100vh - 300px);
+        }
+
+        .view-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================================
+               HOME VIEW (SAINT LAURENT & EDITORIAL ARCHETYPE)
+               ============================================================ */
+
+        /* --- HERO SPLIT SECTION --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            min-height: calc(100vh - 130px);
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .hero-content {
+            padding-right: 2rem;
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 5vw, 4.75rem);
+            line-height: 1.05;
+            margin-bottom: 2rem;
+            text-transform: capitalize;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 540px;
+            font-weight: 300;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            height: 100%;
+            min-height: 550px;
+            background-color: var(--bg-soft);
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: var(--transition);
+        }
+
+        .hero-image-wrapper:hover .hero-img {
+            transform: scale(1.03);
+        }
+
+        /* --- LUXURY FEATURE CARDS (IMAGE DRIVEN) --- */
+        .section-header-center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-main-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 8rem;
+        }
+
+        .feature-luxury-card {
+            background-color: var(--bg-pure);
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .feature-luxury-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .feature-img-box {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--bg-soft);
+        }
+
+        .feature-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .feature-luxury-card:hover .feature-img-box img {
+            transform: scale(1.05);
+        }
+
+        .feature-info-box {
+            padding: 2rem;
+        }
+
+        .feature-luxury-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--black-warm);
+        }
+
+        /* --- HOW IT WORKS: TIMELINE JOURNEY --- */
+        .journey-section {
+            background-color: var(--bg-soft);
+            padding: 7rem 0;
+            border-top: 1px solid var(--border-pure);
+            border-bottom: 1px solid var(--border-pure);
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .journey-step-card {
+            position: relative;
+            background: var(--bg-pure);
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .journey-number {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .journey-step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--black-warm);
+        }
+
+        /* ============================================================
+               DESIGN STUDIO VIEW (TESLA & APPLE CONFIGURATOR ARCHETYPE)
+               ============================================================ */
+
+        .studio-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .studio-layout { grid-template-columns: 1fr; }
+        }
+
+        /* --- CANVAS PREVIEW AREA --- */
+        .studio-preview-pane {
+            position: sticky;
+            top: 130px;
+            background-color: var(--bg-soft);
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-md);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 620px;
+        }
+
+        .canvas-container {
+            width: 100%;
+            max-width: 440px;
+            height: 480px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* High fashion abstraction for live avatar blueprint */
+        .avatar-blueprint {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.85;
+        }
+
+        .studio-layer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .luxury-badge-indicator {
+            position: absolute;
+            bottom: 2rem;
+            background: var(--black-warm);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* --- INTERACTIVE CONFIGURATION FORM --- */
+        .studio-control-panel {
+            background: var(--bg-pure);
+        }
+
+        .studio-panel-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .studio-panel-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        .config-group {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 2.5rem;
+        }
+
+        .config-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            color: var(--black-warm);
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        /* Custom premium radio grid options */
+        .luxury-radio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+        }
+
+        .luxury-radio-card {
+            position: relative;
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .luxury-radio-card:hover {
+            border-color: var(--black-warm);
+        }
+
+        .luxury-radio-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .luxury-radio-card input[type="radio"]:checked + .radio-custom-design {
+            border-color: var(--gold);
+            background-color: var(--black-warm);
+            color: var(--bg-pure);
+        }
+
+        .radio-custom-design {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .luxury-radio-card input[type="radio"]:checked ~ .radio-custom-design {
+            color: var(--bg-pure);
+        }
+
+        .luxury-radio-card:has(input[type="radio"]:checked) {
+            background-color: var(--black-warm);
+            border-color: var(--black-warm);
+        }
+
+        /* Fabric options specialized presentation */
+        .fabric-swatch-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .fabric-swatch-card {
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .fabric-swatch-card:has(input[type="radio"]:checked) {
+            border-color: var(--gold);
+            background-color: var(--bg-soft);
+        }
+
+        .swatch-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        /* Price summary widget */
+        .studio-price-sticky-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--border-pure);
+            padding: 2rem;
+            border-radius: var(--radius-sm);
+            margin-top: 3rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .price-amount {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--black-warm);
+            font-weight: 600;
+        }
+
+        /* ============================================================
+               DASHBOARD VIEW (LINEAR & STRIPE ARCHETYPE)
+               ============================================================ */
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--border-pure);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        /* Stat Counter row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card-premium {
+            background: var(--bg-pure);
+            border: 1px solid var(--border-pure);
+            padding: 2rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .stat-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stat-card-value {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--black-warm);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        /* Dashboard blocks layout split */
+        .dashboard-two-column {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-two-column { grid-template-columns: 1fr; }
+        }
+
+        .premium-table-box {
+            background: var(--bg-pure);
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .table-box-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-pure);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-box-title {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black-warm);
+        }
+
+        /* High-end linear tables */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .luxury-table th {
+            background: var(--bg-soft);
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-pure);
+        }
+
+        .luxury-table td {
+            padding: 1.25rem 2rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .luxury-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Clean Enterprise Badges */
+        .badge-premium {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 30px;
+            text-transform: capitalize;
+        }
+
+        .badge-pending { background-color: #FEF3C7; color: #D97706; }
+        .badge-completed { background-color: #D1FAE5; color: #059669; }
+        .badge-processing { background-color: #DBEAFE; color: #2563EB; }
+
+        /* Premium Lookbook Recommendations Grid */
+        .recommendations-wrapper {
+            margin-top: 4rem;
+        }
+
+        .recommendations-title {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .recommendation-card-luxury {
+            background: var(--bg-pure);
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .recommendation-card-luxury:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+        }
+
+        .rec-img-container {
+            height: 340px;
+            background-color: var(--bg-soft);
+            overflow: hidden;
+        }
+
+        .rec-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .recommendation-card-luxury:hover .rec-img-container img {
+            transform: scale(1.04);
+        }
+
+        .rec-body-container {
+            padding: 1.5rem;
+        }
+
+        .rec-outfit-name {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--black-warm);
+        }
+
+        /* ============================================================
+               FORMS & INPUT ARCHITECTURE (APPLE / STRIPE CLEAN)
+               ============================================================ */
+
+        .luxury-form-wrapper {
+            max-width: 580px;
+            margin: 0 auto;
+            background: var(--bg-pure);
+            border: 1px solid var(--border-pure);
+            padding: 3.5rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .form-title-suite {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-title-suite h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .luxury-input-group {
+            margin-bottom: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .luxury-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+        }
+
+        .luxury-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            background-color: var(--bg-pure);
+            border: 1px solid var(--border-pure);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            color: var(--text-primary);
+        }
+
+        .luxury-input:focus {
+            border-color: var(--black-warm);
+            background-color: var(--bg-pure);
+        }
+
+        .luxury-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 16px;
+            padding-right: 3rem;
+        }
+
+        /* Measurement visual assistance block */
+        .measurement-guide-panel {
+            background-color: var(--bg-soft);
+            border: 1px solid var(--border-pure);
+            padding: 2rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 2rem;
+        }
+
+        /* ============================================================
+               ADMIN COMPONENTRY ARCHITECTURE
+               ============================================================ */
+        .admin-meta-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-meta-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ============================================================
+               FOOTER DESIGN SYSTEM
+               ============================================================ */
+        .footer {
+            background-color: var(--black-warm);
+            color: #94A3B8;
+            padding: 6rem 0 4rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links-col h4 {
+            color: white;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links-col a {
+            color: #94A3B8;
+            cursor: pointer;
+        }
+
+        .footer-links-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        /* RESPONSIVE TOGGLES OVERRIDES */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-pure);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border-pure);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+                color: var(--black-warm);
+            }
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .journey-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="flash-container"></div>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo" onclick="navigateTo('home')">
+                Custom <span>Couture</span>
+            </div>
+            <nav class="nav-links" id="navLinks">
+                <a onclick="navigateTo('home')" id="nav-home">Atelier</a>
+                <a onclick="navigateTo('studio')" id="nav-studio">Design Studio</a>
+                <a onclick="navigateTo('dashboard')" id="nav-dashboard" class="auth-only customer-tailor">Dashboard</a>
+                <a onclick="navigateTo('admin')" id="nav-admin" class="auth-only admin-only">Management</a>
+                <a onclick="navigateTo('profile')" id="nav-profile" class="auth-only">Measurements</a>
+            </nav>
+            <div class="nav-actions">
+                <div id="auth-btn-container">
+                    </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="view-home" class="view-section">
+        <div class="container">
+            
+            <section class="hero-section">
+                <div class="hero-content">
+                    <span class="hero-tag">The Architecture of Haute Couture</span>
+                    <h1 class="hero-title">Design your dream outfit online.</h1>
+                    <p class="hero-desc">Experience the confluence of traditional savoir-faire and dynamic real-time tailoring customization. Commission a garment created strictly for your structural metrics.</p>
+                    <div class="hero-cta-group">
+                        <button class="btn btn-primary" onclick="navigateTo('studio')">Enter Design Studio</button>
+                        <button class="btn btn-secondary guest-only" onclick="navigateTo('login')">Initialize Account</button>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80" alt="Luxury Fashion Presentation" class="hero-img" />
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header-center">
+                    <span class="section-subtitle">Exceptional Ecosystem</span>
+                    <h2 class="section-main-title">Crafted Without Compromise</h2>
+                    <p>Every pattern is programmatically built from scratch to contour flawlessly around the singular lineatures of your physique.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-luxury-card">
+                        <div class="feature-img-box">
+                            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80" alt="Bespoke Design Studio" />
+                        </div>
+                        <div class="feature-info-box">
+                            <h3 class="feature-luxury-title">Architectural Silhouettes</h3>
+                            <p>Configure collars, hemlines, pockets, and linings using precise computational engineering mechanics.</p>
+                        </div>
+                    </div>
+                    <div class="feature-luxury-card">
+                        <div class="feature-img-box">
+                            <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80" alt="High Fidelity Preview" />
+                        </div>
+                        <div class="feature-info-box">
+                            <h3 class="feature-luxury-title">Live Structural Simulation</h3>
+                            <p>Interact with state-of-the-art interactive technical mockups detailing precise fabric drapery behavior.</p>
+                        </div>
+                    </div>
+                    <div class="feature-luxury-card">
+                        <div class="feature-img-box">
+                            <img src="https://images.unsplash.com/photo-1520004481431-240ebd976419?auto=format&fit=crop&w=600&q=80" alt="Seamless Ordering" />
+                        </div>
+                        <div class="feature-info-box">
+                            <h3 class="feature-luxury-title">Streamlined Production</h3>
+                            <p>Direct integration with certified master artisans accelerates delivery from studio blueprint to your closet.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <section class="journey-section">
+            <div class="container">
+                <div class="section-header-center">
+                    <span class="section-subtitle">The Digital Atelier Protocol</span>
+                    <h2 class="section-main-title">How Custom Couture Works</h2>
+                </div>
+                <div class="journey-grid">
+                    <div class="journey-step-card">
+                        <div class="journey-number">01</div>
+                        <h3 class="journey-step-title">Choose Design</h3>
+                        <p>Select your signature silhouette foundation and calibrate structural design attributes.</p>
+                    </div>
+                    <div class="journey-step-card">
+                        <div class="journey-number">02</div>
+                        <h3 class="journey-step-title">Preview Outfit</h3>
+                        <p>Evaluate real-time parametric visualizations featuring high-fidelity organic textile surfaces.</p>
+                    </div>
+                    <div class="journey-step-card">
+                        <div class="journey-number">03</div>
+                        <h3 class="journey-step-title">Submit Order</h3>
+                        <p>Finalize production coordinates with your pre-loaded anthropometric measurement profile.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="view-studio" class="view-section">
+        <div class="container">
+            <div class="studio-layout">
+                
+                <div class="studio-preview-pane">
+                    <div class="canvas-container">
+                        <svg class="avatar-blueprint" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#E8D5A3"/>
+                                    <stop offset="100%" stop-color="#C5A880"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M100,40 C110,40 115,48 112,58 C109,68 105,72 100,72 C95,72 91,68 88,58 C85,48 90,40 100,40 Z" fill="none" stroke="#C5A880" stroke-width="1"/>
+                            <path d="M88,58 C75,70 65,85 60,105 C55,125 50,160 52,200 C55,240 60,290 65,360" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="2,2"/>
+                            <path d="M112,58 C125,70 135,85 140,105 C145,125 150,160 148,200 C145,240 140,290 135,360" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="2,2"/>
+                            <path d="M70,110 Q100,120 130,110" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" id="svg-neckline"/>
+                            <path d="M60,105 Q100,115 140,105 L145,160 Q100,165 55,160 Z" fill="url(#goldGrad)" fill-opacity="0.15" stroke="url(#goldGrad)" stroke-width="1.5" id="svg-silhouette"/>
+                            <path d="M60,105 L45,180" fill="none" stroke="url(#goldGrad)" stroke-width="2" id="svg-sleeve-left"/>
+                            <path d="M140,105 L155,180" fill="none" stroke="url(#goldGrad)" stroke-width="2" id="svg-sleeve-right"/>
+                        </svg>
+                    </div>
+                    <div class="luxury-badge-indicator" id="studio-live-indicator">Structural Blueprint Master</div>
+                </div>
+
+                <div class="studio-control-panel">
+                    <span class="section-subtitle">Interactive Commissioning</span>
+                    <h2 class="studio-panel-title">Garment Architecture</h2>
+                    <p class="studio-panel-desc">Modify baseline foundational elements to build a completely custom configuration item.</p>
+
+                    <form id="studioForm" onsubmit="event.preventDefault();">
+                        
+                        <div class="config-group">
+                            <label class="config-label">Foundational Silhouette</label>
+                            <div class="luxury-radio-grid">
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="silhouette" value="A-Line" checked onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">A-Line Dress</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="silhouette" value="Mermaid" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Mermaid Evening</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="silhouette" value="Sheath" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Classic Sheath</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="config-group">
+                            <label class="config-label">Neckline Contour</label>
+                            <div class="luxury-radio-grid">
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="neckline" value="V-Neck" checked onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Plunging V-Neck</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="neckline" value="Sweetheart" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Sweetheart Collar</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="neckline" value="Off-Shoulder" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Off-Shoulder Cut</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="config-group">
+                            <label class="config-label">Sleeve Execution</label>
+                            <div class="luxury-radio-grid">
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="sleeve" value="Sleeveless" checked onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Sleeveless Shell</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="sleeve" value="Short" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Cap Sleeves</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="sleeve" value="Long" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Juliet Long</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="config-group">
+                            <label class="config-label">Premium Textile Selection</label>
+                            <div class="fabric-swatch-box">
+                                <label class="fabric-swatch-card">
+                                    <input type="radio" name="fabric" value="Silk" checked onchange="updateStudioPreview()" style="margin-right: 8px;" />
+                                    <span class="swatch-circle" style="background-color: #FAF9F6;"></span>
+                                    <span class="radio-custom-design">Mulberry Silk</span>
+                                </label>
+                                <label class="fabric-swatch-card">
+                                    <input type="radio" name="fabric" value="Satin" onchange="updateStudioPreview()" style="margin-right: 8px;" />
+                                    <span class="swatch-circle" style="background-color: #E6D7C3;"></span>
+                                    <span class="radio-custom-design">Duchesse Satin</span>
+                                </label>
+                                <label class="fabric-swatch-card">
+                                    <input type="radio" name="fabric" value="Velvet" onchange="updateStudioPreview()" style="margin-right: 8px;" />
+                                    <span class="swatch-circle" style="background-color: #1E293B;"></span>
+                                    <span class="radio-custom-design">Plush Velvet</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="config-group">
+                            <label class="config-label">Artisan Accoutrements</label>
+                            <div class="luxury-radio-grid">
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="embellishments" value="None" checked onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Pure Minimalist</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="embellishments" value="Beading" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Glass Beading</span>
+                                </label>
+                                <label class="luxury-radio-card">
+                                    <input type="radio" name="embellishments" value="Lace" onchange="updateStudioPreview()" />
+                                    <span class="radio-custom-design">Chantilly Lace</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="studio-price-sticky-card">
+                            <div class="price-row">
+                                <span class="price-label">Estimated Allocation Valuation</span>
+                                <span class="price-amount" id="studio-price-display">$1,200</span>
+                            </div>
+                            <button type="button" class="btn btn-primary" style="width: 100%;" onclick="handleStudioSubmit()">
+                                Authorize Configuration & Add Order
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="view-dashboard" class="view-section">
+        <div class="container">
+            
+            <div class="dashboard-header">
+                <div>
+                    <span class="section-subtitle" id="dashboard-role-badge">System Portal</span>
+                    <h1 class="editorial-title" id="dashboard-welcome-heading">Welcome Back</h1>
+                </div>
+                <div id="dashboard-action-node"></div>
+            </div>
+
+            <div class="dashboard-grid">
+                
+                <div class="stats-row" id="dashboard-stats-container">
+                    </div>
+
+                <div class="dashboard-two-column">
+                    
+                    <div class="premium-table-box">
+                        <div class="table-box-header">
+                            <h3 class="table-box-title">Active Platform Commits</h3>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="luxury-table">
+                                <thead>
+                                    <tr id="table-head-row">
+                                        </tr>
+                                </thead>
+                                <tbody id="table-body-rows">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div class="premium-table-box" style="padding: 2rem;">
+                            <h3 class="table-box-title" style="margin-bottom: 1rem;">Atelier Status Update Channel</h3>
+                            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Your customized computational patterns have been cross-checked against production tolerance standards. No operational exceptions detected.</p>
+                            <div style="border-left: 2px solid var(--gold); padding-left: 1rem; font-style: italic; font-size: 0.85rem; color: var(--text-secondary);">
+                                "Fashion is architectural geometry realized in textile planes."
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="recommendations-wrapper customer-only">
+                <h2 class="recommendations-title font-serif">Curated Masterpiece Templates</h2>
+                <div class="recommendations-grid">
+                    <div class="recommendation-card-luxury">
+                        <div class="rec-img-container">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" alt="Elegant A-Line Template" />
+                        </div>
+                        <div class="rec-body-container">
+                            <h3 class="rec-outfit-name">Elegant Silk A-Line</h3>
+                            <p style="font-size: 0.85rem; margin-bottom: 1rem;">An elegant baseline featuring luxurious Mulberry threads.</p>
+                            <button class="btn btn-secondary btn-sm" onclick="applyPreset('A-Line', 'V-Neck', 'Sleeveless', 'Silk', 'None')">Instantiate Base Configuration</button>
+                        </div>
+                    </div>
+                    <div class="recommendation-card-luxury">
+                        <div class="rec-img-container">
+                            <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=500&q=80" alt="Bold Mermaid Template" />
+                        </div>
+                        <div class="rec-body-container">
+                            <h3 class="rec-outfit-name">Bold Velvet Mermaid</h3>
+                            <p style="font-size: 0.85rem; margin-bottom: 1rem;">Sculpted evening garment optimized for high contrast galas.</p>
+                            <button class="btn btn-secondary btn-sm" onclick="applyPreset('Mermaid', 'Sweetheart', 'Long', 'Velvet', 'Beading')">Instantiate Base Configuration</button>
+                        </div>
+                    </div>
+                    <div class="recommendation-card-luxury">
+                        <div class="rec-img-container">
+                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" alt="Classic Sheath Template" />
+                        </div>
+                        <div class="rec-body-container">
+                            <h3 class="rec-outfit-name">Classic Satin Sheath</h3>
+                            <p style="font-size: 0.85rem; margin-bottom: 1rem;">Minimalistic profile execution with integrated fine lining.</p>
+                            <button class="btn btn-secondary btn-sm" onclick="applyPreset('Sheath', 'Off-Shoulder', 'Short', 'Satin', 'Lace')">Instantiate Base Configuration</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="view-login" class="view-section">
+        <div class="container">
+            <div class="luxury-form-wrapper">
+                <div class="form-title-suite">
+                    <h2>Access Identity Node</h2>
+                    <p>Provide credentials to enter your management dashboard context.</p>
+                </div>
+                <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+                    <div class="luxury-input-group">
+                        <label class="luxury-label" for="login-username">System Identification Key</label>
+                        <input type="text" id="login-username" class="luxury-input" placeholder="e.g., customer, tailor, boutique" required />
+                    </div>
+                    <div class="luxury-input-group">
+                        <label class="luxury-label" for="login-password">Cryptographic Passcode</label>
+                        <input type="password" id="login-password" class="luxury-input" value="password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Authenticate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-profile" class="view-section">
+        <div class="container">
+            <div class="luxury-form-wrapper" style="max-width: 720px;">
+                <div class="form-title-suite">
+                    <h2>Anthropometric Metrics Portfolio</h2>
+                    <p>Calibrate your structural architecture coordinates down to the millimeter level.</p>
+                </div>
+                
+                <div class="measurement-guide-panel">
+                    <h4 style="font-family: var(--font-sans); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--black-warm);">Precision Measurement Guarantee</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Our digital pattern algorithms combine these data dimensions with mechanical strain vectors to minimize structural fitting displacement fields.</p>
+                </div>
+
+                <form id="profileForm" onsubmit="event.preventDefault(); handleProfileUpdate();">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="luxury-input-group">
+                            <label class="luxury-label" for="measure-bust">Bust Lineature (inches)</label>
+                            <input type="number" id="measure-bust" class="luxury-input" step="0.1" required />
+                        </div>
+                        <div class="luxury-input-group">
+                            <label class="luxury-label" for="measure-waist">Waist Silhouette Line (inches)</label>
+                            <input type="number" id="measure-waist" class="luxury-input" step="0.1" required />
+                        </div>
+                        <div class="luxury-input-group">
+                            <label class="luxury-label" for="measure-hips">Pelvic Hip Perimeter (inches)</label>
+                            <input type="number" id="measure-hips" class="luxury-input" step="0.1" required />
+                        </div>
+                        <div class="luxury-input-group">
+                            <label class="luxury-label" for="measure-height">Vertical Stature Height (inches)</label>
+                            <input type="number" id="measure-height" class="luxury-input" step="0.1" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Commit Biometric Specification</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-admin" class="view-section">
+        <div class="container">
+            
+            <div class="dashboard-header">
+                <div>
+                    <span class="section-subtitle">Enterprise Command Matrix</span>
+                    <h1 class="editorial-title">Boutique Ecosystem Overview</h1>
+                </div>
+            </div>
+
+            <div class="admin-meta-row">
+                <div class="stat-card-premium">
+                    <div class="stat-card-label">Global Transaction Turnover</div>
+                    <div class="stat-card-value" id="admin-stat-revenue">$0</div>
+                </div>
+                <div class="stat-card-premium">
+                    <div class="stat-card-label">Active Commission Nodes</div>
+                    <div class="stat-card-value" id="admin-stat-orders">0</div>
+                </div>
+                <div class="stat-card-premium">
+                    <div class="stat-card-label">Assigned Tailor Handlers</div>
+                    <div class="stat-card-value" id="admin-stat-tailors">3</div>
+                </div>
+                <div class="stat-card-premium">
+                    <div class="stat-card-label">Inventory Consumables State</div>
+                    <div class="stat-card-value" id="admin-stat-inventory">0</div>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 4rem;">
+                
+                <div class="premium-table-box">
+                    <div class="table-box-header">
+                        <h3 class="table-box-title">System Orders Ledger</h3>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="luxury-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer Identifier</th>
+                                    <th>Architecture Spec</th>
+                                    <th>Valuation Allocation</th>
+                                    <th>Assigned Handler</th>
+                                    <th>Status State</th>
+                                    <th>Operational Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-rows">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="premium-table-box">
+                    <div class="table-box-header">
+                        <h3 class="table-box-title">Material Textile Consumables Registry</h3>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="luxury-table">
+                            <thead>
+                                <tr>
+                                    <th>Material Designation</th>
+                                    <th>Stock Units Level</th>
+                                    <th>Operational State</th>
+                                    <th>Modify Quantities Matrix</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inventory-rows">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Custom Couture</h3>
+                    <p style="font-size: 0.85rem; max-width: 320px; color: #64748B;">An international digital benchmark pairing algorithmic optimization protocols with traditional generational tailoring houses.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Atelier Coordinates</h4>
+                    <ul>
+                        <li><a onclick="navigateTo('home')">Front Page</a></li>
+                        <li><a onclick="navigateTo('studio')">Design Configurator</a></li>
+                        <li><a onclick="navigateTo('dashboard')">User Interface Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Corporate Office</h4>
+                    <p style="font-size: 0.85rem; color: #64748B;">Place Vendôme, 75001<br />Paris, Republic of France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Custom Couture Corporation. All engineering rights protected internationally.</div>
+                <div style="color: var(--gold);">Awwwards Design Archetype Selection</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        //  PERSISTENT DATA MANAGEMENT & BUSINESS LOGIC ENGINE
+        // ============================================================
+
+        const SEED_TAILORS = ['Tailor Savile', 'Tailor Atelier Jean', 'Tailor Milan Express'];
+
+        const SEED_INVENTORY = [
+            { material: 'Silk', quantity: 45, availability: true },
+            { material: 'Satin', quantity: 28, availability: true },
+            { material: 'Velvet', quantity: 12, availability: true }
+        ];
+
+        const SEED_ORDERS = [
+            { id: 1001, customer: 'customer', architecture: 'A-Line Dress, Plunging V-Neck, Sleeveless, Mulberry Silk', valuation: 1200, handler: 'Tailor Savile', status: 'processing' },
+            { id: 1002, customer: 'customer', architecture: 'Classic Sheath, Off-Shoulder Cut, Cap Sleeves, Duchesse Satin', valuation: 1450, handler: 'Tailor Milan Express', status: 'completed' }
+        ];
+
+        const SEED_MEASUREMENTS = { bust: 34.2, waist: 26.5, hips: 36.8, height: 66.0 };
+
+        const DB = {
+            init: function() {
+                if (!localStorage.getItem('cc_orders')) localStorage.setItem('cc_orders', JSON.stringify(SEED_ORDERS));
+                if (!localStorage.getItem('cc_inventory')) localStorage.setItem('cc_inventory', JSON.stringify(SEED_INVENTORY));
+                if (!localStorage.getItem('cc_measurements')) localStorage.setItem('cc_measurements', JSON.stringify(SEED_MEASUREMENTS));
+                if (!localStorage.getItem('cc_session')) localStorage.setItem('cc_session', JSON.stringify({ loggedIn: false, role: null, username: null }));
+            },
+            getOrders: function() { return JSON.parse(localStorage.getItem('cc_orders')); },
+            setOrders: function(data) { localStorage.setItem('cc_orders', JSON.stringify(data)); },
+            getInventory: function() { return JSON.parse(localStorage.getItem('cc_inventory')); },
+            setInventory: function(data) { localStorage.setItem('cc_inventory', JSON.stringify(data)); },
+            getMeasurements: function() { return JSON.parse(localStorage.getItem('cc_measurements')); },
+            setMeasurements: function(data) { localStorage.setItem('cc_measurements', JSON.stringify(data)); },
+            getSession: function() { return JSON.parse(localStorage.getItem('cc_session')); },
+            setSession: function(sess) { localStorage.setItem('cc_session', JSON.stringify(sess)); },
+            clearSession: function() { this.setSession({ loggedIn: false, role: null, username: null }); }
+        };
+
+        DB.init();
+
+        // ============================================================
+        //  ROUTING MANAGEMENT & DYNAMIC INTERACTION SYSTEM
+        // ============================================================
+
+        function navigateTo(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+            const activeSection = document.getElementById(`view-active-${viewId}`) || document.getElementById(`view-${viewId}`);
+            if (activeSection) activeSection.classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const activeNavLink = document.getElementById(`nav-${viewId}`);
+            if (activeNavLink) activeNavLink.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderAuthNodes();
+
+            if (viewId === 'dashboard') renderDashboardView();
+            if (viewId === 'admin') renderAdminView();
+            if (viewId === 'profile') loadProfileFields();
+
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        function flash(message, type = 'info') {
+            const container = document.getElementById('flash-container');
+            const alertElement = document.createElement('div');
+            alertElement.className = 'flash-msg';
+            
+            let symbol = '<i class="fa-solid fa-circle-info" style="color:var(--gold);"></i>';
+            if (type === 'success') symbol = '<i class="fa-solid fa-circle-check" style="color:#059669;"></i>';
+            if (type === 'error') symbol = '<i class="fa-solid fa-circle-exclamation" style="color:#D97706;"></i>';
+
+            alertElement.innerHTML = `${symbol} <span>${message}</span>`;
+            container.appendChild(alertElement);
+
+            setTimeout(() => {
+                alertElement.style.opacity = '0';
+                alertElement.style.transform = 'translateY(-10px)';
+                alertElement.style.transition = 'all 0.4s ease';
+                setTimeout(() => alertElement.remove(), 400);
+            }, 4000);
+        }
+
+        // ============================================================
+        //  AUTHENTICATION RENDERING CONTROLLER
+        // ============================================================
+
+        function renderAuthNodes() {
+            const sess = DB.getSession();
+            const container = document.getElementById('auth-btn-container');
+
+            if (sess.loggedIn) {
+                container.innerHTML = `<button class="btn btn-secondary btn-sm" onclick="handleLogout()">Disconnect Identity</button>`;
+                document.querySelectorAll('.auth-only').forEach(el => el.style.display = 'inline-block');
+                
+                if (sess.role === 'boutique') {
+                    document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'inline-block');
+                    document.querySelectorAll('.customer-tailor').forEach(el => el.style.display = 'none');
+                } else {
+                    document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+                    document.querySelectorAll('.customer-tailor').forEach(el => el.style.display = 'inline-block');
+                }
+
+                if (sess.role === 'customer') {
+                    document.querySelectorAll('.customer-only').forEach(el => el.style.display = 'block');
+                } else {
+                    document.querySelectorAll('.customer-only').forEach(el => el.style.display = 'none');
+                }
+
+                document.querySelectorAll('.guest-only').forEach(el => el.style.display = 'none');
+            } else {
+                container.innerHTML = `<button class="btn btn-primary btn-sm" onclick="navigateTo('login')">Access Node</button>`;
+                document.querySelectorAll('.auth-only').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.guest-only').forEach(el => el.style.display = 'inline-flex');
+                document.querySelectorAll('.customer-only').forEach(el => el.style.display = 'none');
+            }
+        }
+
+        function handleLogin() {
+            const user = document.getElementById('login-username').value.trim().toLowerCase();
+            let matchedRole = 'customer';
+
+            if (user === 'tailor') matchedRole = 'tailor';
+            else if (user === 'boutique' || user === 'admin') matchedRole = 'boutique';
+
+            DB.setSession({ loggedIn: true, role: matchedRole, username: user });
+            flash(`Identity Authenticated: welcome to the core context, ${user}.`, 'success');
+
+            if (matchedRole === 'boutique') navigateTo('admin');
+            else navigateTo('dashboard');
+        }
+
+        function handleLogout() {
+            DB.clearSession();
+            flash('Identity node connection systematically terminated.', 'success');
+            navigateTo('home');
+        }
+
+        // ============================================================
+        //  DESIGN STUDIO INTERACTIVE REAL-TIME COMPUTATION
+        // ============================================================
+
+        function updateStudioPreview() {
+            const form = document.getElementById('studioForm');
+            const silhouette = form.elements['silhouette'].value;
+            const neckline = form.elements['neckline'].value;
+            const sleeve = form.elements['sleeve'].value;
+            const fabric = form.elements['fabric'].value;
+            const embellishments = form.elements['embellishments'].value;
+
+            // Parametric Valuation Logic
+            let baselineCost = 1000;
+            if (silhouette === 'Mermaid') baselineCost += 300;
+            if (silhouette === 'Sheath') baselineCost += 150;
+            if (neckline === 'Sweetheart') baselineCost += 100;
+            if (sleeve === 'Long') baselineCost += 200;
+            if (fabric === 'Silk') baselineCost += 400;
+            if (fabric === 'Velvet') baselineCost += 500;
+            if (embellishments === 'Beading') baselineCost += 350;
+            if (embellishments === 'Lace') baselineCost += 250;
+
+            document.getElementById('studio-price-display').innerText = `$${baselineCost.toLocaleString()}`;
+
+            // Subtle Dynamic Vector Adjustment Matrix Updates
+            const svgSilhouette = document.getElementById('svg-silhouette');
+            const svgNeckline = document.getElementById('svg-neckline');
+
+            if (silhouette === 'Mermaid') {
+                svgSilhouette.setAttribute('d', 'M60,105 Q100,115 140,105 L135,220 Q100,240 145,360 L55,360 Q100,240 65,220 Z');
+            } else if (silhouette === 'Sheath') {
+                svgSilhouette.setAttribute('d', 'M60,105 Q100,115 140,105 L135,360 L65,360 Z');
+            } else {
+                svgSilhouette.setAttribute('d', 'M60,105 Q100,115 140,105 L155,360 L45,360 Z');
+            }
+
+            if (neckline === 'Sweetheart') {
+                svgNeckline.setAttribute('d', 'M70,110 Q85,95 100,110 Q115,95 130,110');
+            } else if (neckline === 'Off-Shoulder') {
+                svgNeckline.setAttribute('d', 'M55,120 Q100,120 145,120');
+            } else {
+                svgNeckline.setAttribute('d', 'M70,110 Q100,135 130,110');
+            }
+
+            document.getElementById('studio-live-indicator').innerText = `${fabric} Blueprint Instantiated`;
+        }
+
+        function handleStudioSubmit() {
+            const sess = DB.getSession();
+            if (!sess.loggedIn) {
+                flash('Authentication missing. Please mount identity node to commit orders.', 'error');
+                navigateTo('login');
+                return;
+            }
+
+            const form = document.getElementById('studioForm');
+            const silhouette = form.elements['silhouette'].value;
+            const neckline = form.elements['neckline'].value;
+            const sleeve = form.elements['sleeve'].value;
+            const fabric = form.elements['fabric'].value;
+            const embellishments = form.elements['embellishments'].value;
+            const valuation = parseInt(document.getElementById('studio-price-display').innerText.replace(/[^0-9]/g, ''));
+
+            const architectureDescription = `${silhouette} Foundation, ${neckline}, ${sleeve} Sleeves, ${fabric}, ${embellishments}`;
+
+            const currentOrders = DB.getOrders();
+            const compiledId = 1000 + currentOrders.length + 1;
+
+            const structuredOrder = {
+                id: compiledId,
+                customer: sess.username,
+                architecture: architectureDescription,
+                valuation: valuation,
+                handler: SEED_TAILORS[Math.floor(Math.random() * SEED_TAILORS.length)],
+                status: 'processing'
+            };
+
+            currentOrders.push(structuredOrder);
+            DB.setOrders(currentOrders);
+
+            flash(`Order Matrix [Hex ID: ${compiledId}] locked into production pipeline.`, 'success');
+            navigateTo('dashboard');
+        }
+
+        function applyPreset(silhouette, neckline, sleeve, fabric, embellishments) {
+            const form = document.getElementById('studioForm');
+            form.elements['silhouette'].value = silhouette;
+            form.elements['neckline'].value = neckline;
+            form.elements['sleeve'].value = sleeve;
+            form.elements['fabric'].value = fabric;
+            form.elements['embellishments'].value = embellishments;
+            
+            navigateTo('studio');
+            updateStudioPreview();
+            flash(`Preset architecture configuration synchronized into live preview environment.`, 'success');
+        }
+
+        // ============================================================
+        //  DASHBOARD VIEW RENDERER (LINEAR/STRIPE INTERFACE EXECUTION)
+        // ============================================================
+
+        function renderDashboardView() {
+            const sess = DB.getSession();
+            if (!sess.loggedIn) return;
+
+            document.getElementById('dashboard-role-badge').innerText = `Operational Context // ${sess.role.toUpperCase()}`;
+            document.getElementById('dashboard-welcome-heading').innerText = `Welcome Back, Account ${sess.username}`;
+
+            const actionNode = document.getElementById('dashboard-action-node');
+            if (sess.role === 'customer') {
+                actionNode.innerHTML = `<button class="btn btn-primary btn-sm" onclick="navigateTo('studio')">Initiate New Commission</button>`;
+            } else {
+                actionNode.innerHTML = ``;
+            }
+
+            const orders = DB.getOrders();
+            const statsContainer = document.getElementById('dashboard-stats-container');
+            const headRow = document.getElementById('table-head-row');
+            const bodyRows = document.getElementById('table-body-rows');
+
+            if (sess.role === 'customer') {
+                const consumerOrders = orders.filter(o => o.customer === sess.username);
+                const allocationAggregated = consumerOrders.reduce((sum, o) => sum + o.valuation, 0);
+
+                statsContainer.innerHTML = `
+                    <div class="stat-card-premium">
+                        <div class="stat-card-label">Active Structural Commits</div>
+                        <div class="stat-card-value">${consumerOrders.length}</div>
+                    </div>
+                    <div class="stat-card-premium">
+                        <div class="stat-card-label">Aggregated Capital Allocation</div>
+                        <div class="stat-card-value">$${allocationAggregated.toLocaleString()}</div>
+                    </div>
+                    <div class="stat-card-premium">
+                        <div class="stat-card-label">Anthropometric Verified</div>
+                        <div class="stat-card-value">True</div>
+                    </div>
+                `;
+
+                headRow.innerHTML = `
+                    <th>Specification ID</th>
+                    <th>Structural Architecture Frame</th>
+                    <th>Valuation Asset</th>
+                    <th>Artisan Handler</th>
+                    <th>Pipeline Status</th>
+                `;
+
+                if (consumerOrders.length === 0) {
+                    bodyRows.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--text-muted);">No active commission traces found in profile.</td></tr>`;
+                } else {
+                    bodyRows.innerHTML = consumerOrders.map(o => `
+                        <tr>
+                            <td style="font-weight:600; font-family:var(--font-sans); color:var(--black-warm);">#${o.id}</td>
+                            <td>${o.architecture}</td>
+                            <td>$${o.valuation.toLocaleString()}</td>
+                            <td>${o.handler}</td>
+                            <td><span class="badge-premium badge-${o.status}">${o.status}</span></td>
+                        </tr>
+                    `).join('');
+                }
+
+            } else if (sess.role === 'tailor') {
+                const assignedOrders = orders.filter(o => o.handler.toLowerCase().includes(sess.username) || o.handler === 'Tailor Savile');
+                const computationalTonnage = assignedOrders.filter(o => o.status === 'processing').length;
+
+                statsContainer.innerHTML = `
+                    <div class="stat-card-premium">
+                        <div class="stat-card-label">Assigned Pipeline Blocks</div>
+                        <div class="stat-card-value">${assignedOrders.length}</div>
+                    </div>
+                    <div class="stat-card-premium">
+                        <div class="stat-card-label">Pending Fabrication Backlog</div>
+                        <div class="stat-card-value">${computationalTonnage}</div>
+                    </div>
+                    <div class="stat-card-premium">
+                        <div class="stat-card-label">Atelier Quality Rating</div>
+                        <div class="stat-card-value">99.8%</div>
+                    </div>
+                `;
+
+                headRow.innerHTML = `
+                    <th>ID</th>
+                    <th>Customer Identity</th>
+                    <th>Structural Build Frame</th>
+                    <th>Pipeline Status Action State</th>
+                `;
+
+                if (assignedOrders.length === 0) {
+                    bodyRows.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">No assigned operational nodes.</td></tr>`;
+                } else {
+                    bodyRows.innerHTML = assignedOrders.map(o => `
+                        <tr>
+                            <td style="font-weight:600;">#${o.id}</td>
+                            <td style="text-transform:capitalize;">${o.customer}</td>
+                            <td>${o.architecture}</td>
+                            <td>
+                                <select class="luxury-input luxury-select" style="padding:0.4rem 2rem 0.4rem 0.8rem; font-size:0.8rem; width:auto;" onchange="updateOrderStatus(${o.id}, this.value)">
+                                    <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Fabrication Processing</option>
+                                    <option value="completed" ${o.status === 'completed' ? 'selected' : ''}>Commit Completed</option>
+                                </select>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            }
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const allOrders = DB.getOrders();
+            const index = allOrders.findIndex(o => o.id === orderId);
+            if (index >= 0) {
+                allOrders[index].status = newStatus;
+                DB.setOrders(allOrders);
+                flash(`Pipeline commit state updated for order record #${orderId}.`, 'success');
+                renderDashboardView();
+            }
+        }
+
+        // ============================================================
+        //  PROFILE BIOMETRICS HANDLER
+        // ============================================================
+
+        function loadProfileFields() {
+            const measurements = DB.getMeasurements();
+            document.getElementById('measure-bust').value = measurements.bust;
+            document.getElementById('measure-waist').value = measurements.waist;
+            document.getElementById('measure-hips').value = measurements.hips;
+            document.getElementById('measure-height').value = measurements.height;
+        }
+
+        function handleProfileUpdate() {
+            const compiledMetrics = {
+                bust: parseFloat(document.getElementById('measure-bust').value),
+                waist: parseFloat(document.getElementById('measure-waist').value),
+                hips: parseFloat(document.getElementById('measure-hips').value),
+                height: parseFloat(document.getElementById('measure-height').value)
+            };
+            DB.setMeasurements(compiledMetrics);
+            flash('Anthropometric biometric matrix successfully synchronized into secure layer.', 'success');
+            navigateTo('dashboard');
+        }
+
+        // ============================================================
+        //  ADMIN CONTROL REGISTRY PLATFORM SUITE
+        // ============================================================
+
+        function renderAdminView() {
+            const allOrders = DB.getOrders();
+            const inventory = DB.getInventory();
+
+            const netRevenueValue = allOrders.reduce((sum, o) => sum + o.valuation, 0);
+            document.getElementById('admin-stat-revenue').innerText = `$${netRevenueValue.toLocaleString()}`;
+            document.getElementById('admin-stat-orders').innerText = allOrders.length;
+            document.getElementById('admin-stat-inventory').innerText = inventory.reduce((sum, i) => sum + i.quantity, 0);
+
+            // Populate Master Orders Ledger Matrix Rows
+            const ordersBody = document.getElementById('admin-orders-rows');
+            ordersBody.innerHTML = allOrders.map(o => `
+                <tr>
+                    <td style="font-weight:600;">#${o.id}</td>
+                    <td style="text-transform:capitalize;">${o.customer}</td>
+                    <td style="font-size:0.85rem;">${o.architecture}</td>
+                    <td>$${o.valuation.toLocaleString()}</td>
+                    <td>
+                        <select class="luxury-input luxury-select" style="padding:0.4rem 2rem 0.4rem 0.8rem; font-size:0.8rem; width:auto;" onchange="reassignOrderHandler(${o.id}, this.value)">
+                            ${SEED_TAILORS.map(t => `<option value="${t}" ${o.handler === t ? 'selected' : ''}>${t}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td><span class="badge-premium badge-${o.status}">${o.status}</span></td>
+                    <td>
+                        <button class="btn btn-secondary btn-sm" style="padding:0.4rem 0.8rem;" onclick="purgeOrderRecord(${o.id})">Purge Trace</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Populate Material Consumables Matrix Rows
+            const inventoryBody = document.getElementById('admin-inventory-rows');
+            inventoryBody.innerHTML = inventory.map((inv, idx) => `
+                <tr>
+                    <td style="font-weight:600;">${inv.material} Package Core</td>
+                    <td>${inv.quantity} Metric Units</td>
+                    <td>
+                        <span class="badge-premium" style="background-color:${inv.availability ? '#D1FAE5' : '#FEE2E2'}; color:${inv.availability ? '#059669' : '#DC2626'};">
+                            ${inv.availability ? 'Operational Pipeline Feed' : 'Depleted Feed Critical'}
+                        </span>
+                    </td>
+                    <td>
+                        <div style="display:flex; gap:0.5rem; align-items:center;">
+                            <input type="number" value="${inv.quantity}" class="luxury-input" style="width:80px; padding:0.4rem;" id="inv-input-${idx}" />
+                            <button class="btn btn-primary btn-sm" style="padding:0.4rem 0.8rem;" onclick="commitInventoryCorrection(${idx})">Commit Scale</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function reassignOrderHandler(orderId, targetTailorName) {
+            const currentOrders = DB.getOrders();
+            const idx = currentOrders.findIndex(o => o.id === orderId);
+            if (idx >= 0) {
+                currentOrders[idx].handler = targetTailorName;
+                DB.setOrders(currentOrders);
+                flash(`Artisan handler mutation locked for pipeline record #${orderId}.`, 'success');
+                renderAdminView();
+            }
+        }
+
+        function purgeOrderRecord(orderId) {
+            let currentOrders = DB.getOrders();
+            currentOrders = currentOrders.filter(o => o.id !== orderId);
+            DB.setOrders(currentOrders);
+            flash(`Order profile transaction vector trace #${orderId} thoroughly purged from system context.`, 'success');
+            renderAdminView();
+        }
+
+        function commitInventoryCorrection(indexPosition) {
+            const inputField = document.getElementById(`inv-input-${indexPosition}`);
+            const updatedQuantity = parseInt(inputField.value) || 0;
+
+            const currentInventory = DB.getInventory();
+            if (indexPosition >= 0 && indexPosition < currentInventory.length) {
+                currentInventory[indexPosition].quantity = updatedQuantity;
+                currentInventory[indexPosition].availability = updatedQuantity > 0;
+                DB.setInventory(currentInventory);
+                flash('Material asset registry tracking configuration updated successfully.', 'success');
+                renderAdminView();
+            }
+        }
+
+        // ============================================================
+        //  INITIAL CORE HANDLER BOOTSTRAP STRAPPER
+        // ============================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('menuToggle').addEventListener('click', function() {
+                document.getElementById('navLinks').classList.toggle('active');
+            });
+            navigateTo('home');
+            updateStudioPreview();
+        });
+    </script>
+
+</body>
+</html>
