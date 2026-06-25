@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -804,23 +805,7 @@
             color: var(--black-warm);
             font-weight: 600;
         }
-        @media (max-width:640px) {
-            .studio-preview-pane {
-                padding: 1.5rem;
-                min-height: 400px;
-            }
-            .canvas-container {
-                height: 320px;
-            }
-            .luxury-radio-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .fabric-swatch-box {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
 
-        /* Outfit preview summary */
         .outfit-preview {
             margin-top: 1.5rem;
             padding: 1rem;
@@ -855,7 +840,6 @@
             transform: scale(1.15);
         }
 
-        /* Quick presets */
         .quick-presets {
             width: 100%;
             margin-top: 1.4rem;
@@ -937,19 +921,6 @@
             text-align: center;
             color: var(--black-warm, #2b2620);
             font-weight: 600;
-        }
-        @media (max-width:480px) {
-            #outfitIcon {
-                width: 76px;
-                height: 76px;
-            }
-            #outfitIcon svg {
-                width: 38px;
-                height: 46px;
-            }
-            .preset-chip {
-                width: 80px;
-            }
         }
 
         /* ============================================================ */
@@ -1054,7 +1025,6 @@
             margin-top: 3rem;
         }
 
-        /* Recommendations */
         .recommendations-wrapper {
             margin-top: 3rem;
         }
@@ -1139,7 +1109,6 @@
             justify-content: center;
         }
 
-        /* Orders table */
         .orders-box {
             margin-top: 3rem;
         }
@@ -1188,7 +1157,6 @@
             color: var(--black-warm);
         }
 
-        /* Status badges */
         .status {
             display: inline-flex;
             align-items: center;
@@ -1926,6 +1894,120 @@
             .try-btn {
                 font-size: 0.7rem;
                 padding: 0.4rem 1.2rem;
+            }
+        }
+
+        /* ============================================================ */
+        /* ENHANCED MOBILE RESPONSIVENESS FOR STUDIO (BUILDER)         */
+        /* ============================================================ */
+        @media (max-width: 640px) {
+            .studio-layout {
+                padding: 0;
+                gap: 1.5rem;
+            }
+            .studio-preview-pane {
+                padding: 1rem;
+                min-height: auto;
+            }
+            .canvas-container {
+                height: 280px;
+                max-width: 100%;
+            }
+            .studio-control-panel {
+                padding: 0 0.5rem;
+            }
+            .studio-panel-title {
+                font-size: 1.6rem;
+            }
+            .studio-panel-desc {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+            .config-group {
+                margin-bottom: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            .luxury-radio-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+            .fabric-swatch-box {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+            .studio-price-sticky-card {
+                padding: 1.5rem;
+                margin-top: 1.5rem;
+            }
+            .price-amount {
+                font-size: 1.4rem;
+            }
+            .quick-presets-row {
+                gap: 0.4rem;
+            }
+            .preset-chip {
+                width: 72px;
+                padding: 0.4rem 0.2rem;
+            }
+            .preset-chip-label {
+                font-size: 0.55rem;
+            }
+            .outfit-preview {
+                padding: 0.75rem;
+                margin-top: 1rem;
+            }
+            #outfitIcon {
+                width: 64px;
+                height: 64px;
+            }
+            #outfitIcon svg {
+                width: 32px;
+                height: 40px;
+            }
+            #designSummary {
+                font-size: 0.9rem;
+            }
+            .color-swatch {
+                width: 24px;
+                height: 24px;
+            }
+            .luxury-badge-indicator {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.8rem;
+                margin-top: 0.5rem;
+            }
+            .generating-shimmer {
+                width: 48px;
+                height: 48px;
+            }
+            .generating-text {
+                font-size: 0.7rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .studio-layout {
+                gap: 1rem;
+            }
+            .studio-preview-pane {
+                padding: 0.5rem;
+            }
+            .canvas-container {
+                height: 220px;
+            }
+            .preset-chip {
+                width: 60px;
+                padding: 0.3rem 0.1rem;
+            }
+            .preset-chip-label {
+                font-size: 0.5rem;
+            }
+            .luxury-radio-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
+            }
+            .fabric-swatch-box {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
             }
         }
     </style>
