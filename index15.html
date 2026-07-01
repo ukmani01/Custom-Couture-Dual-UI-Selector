@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ÉLYSÉE — Luxury Heritage</title>
+  <!-- Google Fonts: Modern, premium sans-serif (SF Pro / Inter inspired) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS v3 + basic layer -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 (clean icons for cart & account) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- custom overrides for refined luxury feel & subtle animations -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #FFFFFF;
+      scroll-behavior: smooth;
+    }
+    /* custom soft shadows & premium rounding override */
+    .premium-shadow {
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.15), 0 4px 12px -6px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .premium-shadow:hover {
+      box-shadow: 0 30px 55px -15px rgba(0, 0, 0, 0.2);
+    }
+    /* gentle floating animation for image depth (parallax/float feel) */
+    @keyframes subtleFloat {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    .float-image {
+      animation: subtleFloat 6s ease-in-out infinite;
+      will-change: transform;
+    }
+    /* soft zoom transition for image container on hover */
+    .zoom-soft {
+      transition: transform 0.45s cubic-bezier(0.2, 0.95, 0.4, 1);
+    }
+    .group:hover .zoom-soft {
+      transform: scale(1.02);
+    }
+    /* custom underline / accent for premium navigation hover */
+    .nav-link {
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background-color: currentColor;
+      transition: width 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    /* custom button subtle scale & smoothness */
+    .btn-primary, .btn-secondary {
+      transition: all 0.25s ease-out;
+    }
+    .btn-primary:hover {
+      transform: scale(0.98);
+      background-color: #1a1a1a;
+    }
+    .btn-secondary:hover {
+      transform: scale(0.98);
+      background-color: #000000;
+      color: white;
+      border-color: #000000;
+    }
+    /* mobile menu smooth overlay */
+    .mobile-menu-open {
+      max-height: 380px;
+      opacity: 1;
+      visibility: visible;
+      transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
+    }
+    .mobile-menu-closed {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: max-height 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease, visibility 0s 0.35s;
+    }
+    /* additional subtle background glow for right column */
+    .glow-bg {
+      position: relative;
+    }
+    .glow-bg::before {
+      content: '';
+      position: absolute;
+      inset: -12%;
+      background: radial-gradient(circle at 50% 30%, rgba(230, 225, 220, 0.3), rgba(255, 255, 255, 0) 70%);
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: -1;
+      border-radius: 50%;
+    }
+    /* consistent 8px spacing system via Tailwind + custom tweaks */
+    @media (max-width: 768px) {
+      .hero-headline {
+        font-size: 2.25rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+      .hero-subhead {
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+    }
+    .text-balance {
+      text-wrap: balance;
+    }
+  </style>
+</head>
+<body class="antialiased bg-white">
+
+  <!-- ENTIRE HERO SECTION (navigation + hero grid) - nothing extra below -->
+  <div class="relative w-full overflow-x-hidden">
+
+    <!-- TOP NAVIGATION (minimal, premium) -->
+    <nav class="w-full px-6 md:px-8 lg:px-12 py-5 md:py-6 border-b border-gray-100/80 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <!-- Left: Logo (premium wordmark) -->
+        <div class="flex-shrink-0">
+          <a href="#" class="text-2xl md:text-3xl font-light tracking-wide text-gray-900 transition hover:opacity-80">
+            ÉLYSÉE<span class="font-extralight text-gray-400">.</span>
+          </a>
+        </div>
+
+        <!-- Center nav links (desktop only) - hidden on mobile -->
+        <div class="hidden md:flex items-center space-x-10 text-sm font-medium text-gray-700 uppercase tracking-wide">
+          <a href="#" class="nav-link text-gray-800 hover:text-black transition">New Arrivals</a>
+          <a href="#" class="nav-link text-gray-800 hover:text-black transition">Ready to Wear</a>
+          <a href="#" class="nav-link text-gray-800 hover:text-black transition">Bags</a>
+          <a href="#" class="nav-link text-gray-800 hover:text-black transition">The Edit</a>
+          <a href="#" class="nav-link text-gray-800 hover:text-black transition">Journal</a>
+        </div>
+
+        <!-- Right: Cart + Account Icons (minimal) + Mobile hamburger -->
+        <div class="flex items-center gap-5 md:gap-6">
+          <a href="#" class="text-gray-700 hover:text-black transition text-xl" aria-label="Account">
+            <i class="far fa-user"></i>
+          </a>
+          <a href="#" class="text-gray-700 hover:text-black transition text-xl" aria-label="Shopping Bag">
+            <i class="far fa-shopping-bag"></i>
+          </a>
+          <!-- Hamburger button (mobile only) -->
+          <button id="menuToggle" class="block md:hidden text-2xl text-gray-800 focus:outline-none" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu (collapsible, premium overlay style) -->
+      <div id="mobileNav" class="mobile-menu-closed absolute left-0 top-full w-full bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl md:hidden overflow-hidden transition-all z-40">
+        <div class="flex flex-col py-6 px-6 space-y-5 text-base font-medium text-gray-800 tracking-wide">
+          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">New Arrivals</a>
+          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">Ready to Wear</a>
+          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">Bags</a>
+          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">The Edit</a>
+          <a href="#" class="py-2 w-full hover:text-black transition">Journal</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO MAIN SECTION (2 COLUMN GRID DESKTOP, STACK MOBILE) -->
+    <main class="relative w-full bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-20">
+        <!-- on mobile we reverse column order using flex-col-reverse, on desktop use grid -->
+        <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 lg:gap-12 gap-10 items-center">
+          
+          <!-- LEFT COLUMN (Content) -->
+          <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-7 w-full">
+            <!-- Small premium badge -->
+            <div class="inline-flex">
+              <span class="bg-gray-50/90 text-gray-700 text-[11px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full border border-gray-200/60 backdrop-blur-sm">New Season 2026</span>
+            </div>
+            
+            <!-- Large bold headline (max 2 lines) - premium typography -->
+            <h1 class="hero-headline text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] font-medium tracking-tight text-gray-900 leading-[1.15] max-w-2xl text-balance">
+              Where<br>timeless design meets quiet luxury.
+            </h1>
+            
+            <!-- Emotional + luxury tone subheading (max 2 lines) -->
+            <p class="hero-subhead text-base md:text-lg text-gray-500 max-w-md leading-relaxed font-light tracking-wide">
+              Redefine elegance with timeless fashion crafted for the modern soul. The art of intentional minimalism.
+            </p>
+            
+            <!-- CTA Buttons (row on desktop, stacked on mobile) -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2">
+              <button class="btn-primary bg-black text-white px-8 py-3.5 text-sm uppercase tracking-wider font-medium rounded-full shadow-sm transition-all duration-300 hover:bg-gray-900 focus:ring-1 focus:ring-gray-400 w-full sm:w-auto text-center">
+                Shop collection
+              </button>
+              <button class="btn-secondary bg-transparent border border-black text-black px-8 py-3.5 text-sm uppercase tracking-wider font-medium rounded-full transition-all duration-300 w-full sm:w-auto text-center">
+                Explore lookbook
+              </button>
+            </div>
+            
+            <!-- subtle spacer to match premium whitespace -->
+            <div class="h-2 lg:h-4"></div>
+          </div>
+
+          <!-- RIGHT COLUMN (Visual: cinematic image, depth, glow, floating effect) -->
+          <div class="relative w-full flex justify-center group">
+            <div class="relative w-full max-w-lg lg:max-w-none mx-auto rounded-3xl overflow-hidden glow-bg">
+              <!-- subtle gradient glow behind image (depth layering) -->
+              <div class="absolute inset-0 bg-gradient-to-tr from-amber-50/30 via-transparent to-stone-100/20 rounded-3xl z-0 pointer-events-none"></div>
+              <!-- cinematic image wrapper with floating & soft zoom on parent hover -->
+              <div class="relative z-10 overflow-hidden rounded-3xl shadow-2xl premium-shadow transition-all duration-500 float-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1000&auto=format" 
+                  alt="Luxury fashion editorial - modern elegance" 
+                  class="zoom-soft w-full h-full object-cover transition-transform duration-700 ease-out will-change-transform"
+                  style="aspect-ratio: 4/5; object-position: 50% 30%;"
+                />
+              </div>
+              <!-- additional atmospheric overlay for soft depth -->
+              <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-white/5 via-transparent to-transparent pointer-events-none"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- subtle design accent line (optional minimal luxury detail) -->
+        <div class="w-12 h-px bg-gray-200 mt-12 lg:mt-16 mx-auto lg:mx-0"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- simple JavaScript for mobile menu toggle & subtle enhancements -->
+  <script>
+    (function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      
+      if (menuToggle && mobileNav) {
+        // initial state closed
+        let isMenuOpen = false;
+        
+        function toggleMenu(open) {
+          if (open) {
+            mobileNav.classList.remove('mobile-menu-closed');
+            mobileNav.classList.add('mobile-menu-open');
+            // set aria expanded
+            menuToggle.setAttribute('aria-expanded', 'true');
+          } else {
+            mobileNav.classList.remove('mobile-menu-open');
+            mobileNav.classList.add('mobile-menu-closed');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+          isMenuOpen = open;
+        }
+        
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleMenu(!isMenuOpen);
+        });
+        
+        // close mobile menu when clicking on any mobile nav link (improves UX)
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (isMenuOpen) toggleMenu(false);
+          });
+        });
+        
+        // optional: close on window resize if switching to desktop, to avoid stale state
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768 && isMenuOpen) {
+            toggleMenu(false);
+          }
+        });
+      }
+      
+      // tiny subtle parallax / mousemove micro-interaction on image (premium floating nuance)
+      const imageContainer = document.querySelector('.float-image');
+      if (imageContainer && window.innerWidth > 768) {
+        document.querySelector('.group')?.addEventListener('mousemove', (e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const mouseX = (e.clientX - rect.left) / rect.width; // 0 to 1
+          const mouseY = (e.clientY - rect.top) / rect.height;
+          const moveX = (mouseX - 0.5) * 6;   // max 3px shift
+          const moveY = (mouseY - 0.5) * 6;
+          imageContainer.style.transform = `translateY(${moveY * 0.5}px) translateX(${moveX * 0.5}px)`;
+        });
+        
+        document.querySelector('.group')?.addEventListener('mouseleave', () => {
+          imageContainer.style.transform = '';
+          imageContainer.style.transition = 'transform 0.4s ease-out';
+          setTimeout(() => {
+            if(imageContainer) imageContainer.style.transition = '';
+          }, 400);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
