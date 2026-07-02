@@ -65,7 +65,7 @@
         }
 
         /* ================================================================
-               NAVIGATION — ORIGINAL
+               NAVIGATION — ORIGINAL (with icon updates)
                ================================================================ */
         .glass-nav {
             position: fixed;
@@ -111,6 +111,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
+            cursor: pointer;
         }
         .nav-links a:hover {
             color: #2a5f8f;
@@ -133,6 +134,20 @@
         }
         .nav-links a.admin-link:hover i {
             color: #fff;
+        }
+        .nav-links a.active {
+            color: #1a3a6b;
+            font-weight: 600;
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #f5c542;
+            border-radius: 2px;
         }
 
         .mobile-menu-btn {
@@ -198,6 +213,10 @@
             width: 1.4rem;
             color: #f5c542;
         }
+        .mobile-menu a.active {
+            color: #1a3a6b;
+            font-weight: 600;
+        }
 
         .mobile-menu-overlay {
             display: none;
@@ -236,6 +255,28 @@
             }
             .brand {
                 font-size: 1.25rem;
+            }
+        }
+
+        /* ================================================================
+               PAGE SECTIONS — show/hide via JS
+               ================================================================ */
+        .page-section {
+            display: none;
+            animation: fadeInPage 0.5s ease forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -401,7 +442,6 @@
             font-size: 0.7rem;
         }
 
-        /* Hero Image - right side */
         .hero-image-wrap {
             position: relative;
             border-radius: 1.5rem;
@@ -429,7 +469,6 @@
             pointer-events: none;
         }
 
-        /* Floating badge on hero image — shimmer on hover, no auto-scale */
         .hero-float-badge {
             position: absolute;
             bottom: 1.5rem;
@@ -455,7 +494,6 @@
             color: #f5c542;
             font-size: 0.6rem;
         }
-        /* Shimmer effect on hover only */
         .hero-float-badge::after {
             content: '';
             position: absolute;
@@ -479,7 +517,7 @@
         }
 
         /* ================================================================
-               SECTION UTILITY — NEW (matching original style)
+               SECTION UTILITY
                ================================================================ */
         .section-padding {
             padding: 80px 0;
@@ -674,7 +712,7 @@
         }
 
         /* ================================================================
-               IMAGE SECTION — ORIGINAL (UNCHANGED)
+               IMAGE / UNIVERSITIES SECTION — ORIGINAL (UNCHANGED)
                ================================================================ */
         .image-section {
             padding: 80px 0;
@@ -1116,6 +1154,62 @@
         }
 
         /* ================================================================
+               HOME PAGE — LEAD CARDS (summary for each section)
+               ================================================================ */
+        .home-leads {
+            padding: 60px 0 80px;
+            background: #ffffff;
+        }
+        .leads-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .lead-card {
+            background: #f8fafc;
+            padding: 2rem 1.5rem;
+            border-radius: 1.25rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(26, 58, 107, 0.04);
+        }
+        .lead-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.06);
+        }
+        .lead-card .lead-icon {
+            font-size: 2.2rem;
+            color: #f5c542;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .lead-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0a1a2f;
+        }
+        .lead-card p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.3rem;
+            line-height: 1.5;
+        }
+        .lead-card .lead-arrow {
+            display: inline-block;
+            margin-top: 0.6rem;
+            color: #1a3a6b;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        .lead-card:hover .lead-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ================================================================
                FOOTER — ORIGINAL (UPDATED with functional links + social)
                ================================================================ */
         .footer-gradient {
@@ -1234,10 +1328,12 @@
             .courses-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .leads-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 767px) {
-            /* Hero - original */
             .hero-section {
                 padding: 100px 0 40px;
             }
@@ -1292,7 +1388,6 @@
                 font-size: 0.5rem;
             }
 
-            /* Image section - original */
             .image-section {
                 padding: 50px 0;
             }
@@ -1327,14 +1422,10 @@
                 font-size: 0.9rem;
                 max-width: 100%;
             }
-            .image-text-content .feature-list .feature-item {
-                font-size: 0.85rem;
-            }
             .image-container .image-wrap {
                 order: -1;
             }
 
-            /* New sections - mobile */
             .section-padding {
                 padding: 50px 0;
             }
@@ -1350,6 +1441,10 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+            .leads-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
             .service-card {
                 padding: 1.25rem 1rem;
             }
@@ -1360,7 +1455,6 @@
                 padding: 1.25rem 1rem;
             }
 
-            /* Inquiry - mobile */
             #inquiry {
                 padding: 50px 0;
             }
@@ -1376,13 +1470,15 @@
                 padding: 1.5rem;
             }
 
-            /* Footer - original */
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 1.5rem;
             }
             .footer-social {
                 flex-wrap: wrap;
+            }
+            .home-leads {
+                padding: 40px 0 60px;
             }
         }
 
@@ -1391,6 +1487,9 @@
                 grid-template-columns: 1fr;
             }
             .countries-grid {
+                grid-template-columns: 1fr;
+            }
+            .leads-grid {
                 grid-template-columns: 1fr;
             }
             .footer-grid {
@@ -1466,7 +1565,6 @@
             opacity: 0;
         }
 
-        /* Stagger for feature items */
         .stagger-item {
             opacity: 0;
             transform: translateY(16px);
@@ -1515,18 +1613,18 @@
     <div id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
     <!-- ================================================================
-    NAVIGATION — All links now point to existing sections
+    NAVIGATION — All links now navigate to sections within the page
     ================================================================ -->
     <nav class="glass-nav" id="mainNav">
-        <a href="#home" class="brand">Sky<span>Scholar</span></a>
-        <div class="nav-links">
-            <a href="#home"><i class="fas fa-house" aria-hidden="true"></i> Home</a>
-            <a href="#services"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
-            <a href="#countries"><i class="fas fa-globe" aria-hidden="true"></i> Countries</a>
-            <a href="#universities"><i class="fas fa-university" aria-hidden="true"></i> Universities</a>
-            <a href="#courses"><i class="fas fa-book-open" aria-hidden="true"></i> Courses</a>
-            <a href="#inquiry"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
-            <a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
+        <a href="#home" class="brand" data-page="home">Sky<span>Scholar</span></a>
+        <div class="nav-links" id="navLinks">
+            <a data-page="home" class="active"><i class="fas fa-house" aria-hidden="true"></i> Home</a>
+            <a data-page="services"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
+            <a data-page="countries"><i class="fas fa-globe" aria-hidden="true"></i> Countries</a>
+            <a data-page="universities"><i class="fas fa-university" aria-hidden="true"></i> Universities</a>
+            <a data-page="courses"><i class="fas fa-book-open" aria-hidden="true"></i> Courses</a>
+            <a data-page="inquiry"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
+            <a data-page="contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
             <a href="#" class="admin-link"><i class="fas fa-lock" aria-hidden="true"></i> Admin</a>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -1537,286 +1635,356 @@
     <!-- ===== MOBILE MENU ===== -->
     <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
     <div id="mobileMenu" class="mobile-menu">
-        <a href="#home" onclick="closeMobileMenu();"><i class="fas fa-house" aria-hidden="true"></i> Home</a>
-        <a href="#services" onclick="closeMobileMenu();"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
-        <a href="#countries" onclick="closeMobileMenu();"><i class="fas fa-globe" aria-hidden="true"></i> Countries</a>
-        <a href="#universities" onclick="closeMobileMenu();"><i class="fas fa-university" aria-hidden="true"></i> Universities</a>
-        <a href="#courses" onclick="closeMobileMenu();"><i class="fas fa-book-open" aria-hidden="true"></i> Courses</a>
-        <a href="#inquiry" onclick="closeMobileMenu();"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
-        <a href="#contact" onclick="closeMobileMenu();"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
+        <a data-page="home" onclick="navigateTo('home'); closeMobileMenu();"><i class="fas fa-house" aria-hidden="true"></i> Home</a>
+        <a data-page="services" onclick="navigateTo('services'); closeMobileMenu();"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
+        <a data-page="countries" onclick="navigateTo('countries'); closeMobileMenu();"><i class="fas fa-globe" aria-hidden="true"></i> Countries</a>
+        <a data-page="universities" onclick="navigateTo('universities'); closeMobileMenu();"><i class="fas fa-university" aria-hidden="true"></i> Universities</a>
+        <a data-page="courses" onclick="navigateTo('courses'); closeMobileMenu();"><i class="fas fa-book-open" aria-hidden="true"></i> Courses</a>
+        <a data-page="inquiry" onclick="navigateTo('inquiry'); closeMobileMenu();"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
+        <a data-page="contact" onclick="navigateTo('contact'); closeMobileMenu();"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
         <a href="#" onclick="closeMobileMenu();" style="color:#1a3a6b;font-weight:600;"><i class="fas fa-lock" aria-hidden="true"></i> Admin</a>
     </div>
 
     <!-- ================================================================
-    HERO SECTION — ORIGINAL (UNCHANGED)
+    PAGE: HOME (shows hero + lead cards for each section)
     ================================================================ -->
-    <section class="hero-section" id="home">
-        <div class="hero-container">
-            <div class="hero-text">
-                <span class="hero-badge animate-fade-up">
-                    <i class="fas fa-graduation-cap" aria-hidden="true"></i> Premium Study Abroad
-                </span>
-                <h1 class="animate-fade-up-delay">
-                    Your Gateway to <br /><span class="accent">Global Education</span>
-                </h1>
-                <p class="animate-fade-up-delay-2">
-                    Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.
-                </p>
-                <div class="hero-actions animate-fade-up-delay-2">
-                    <a href="#inquiry" class="btn-primary gold">Book Free Consultation</a>
-                    <a href="#universities" class="btn-secondary">Explore Universities</a>
-                </div>
-                <div class="hero-stats animate-fade-up-delay-2" id="heroStats">
-                    <div class="stat-item">
-                        <span class="stat-number"><span class="counter" data-target="500">0</span><span class="suffix">+</span></span>
-                        <span class="stat-label"><i class="fas fa-user-graduate" aria-hidden="true"></i> Students Placed</span>
+    <div class="page-section active" id="page-home">
+        <!-- HERO SECTION — ORIGINAL -->
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <span class="hero-badge animate-fade-up">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i> Premium Study Abroad
+                    </span>
+                    <h1 class="animate-fade-up-delay">
+                        Your Gateway to <br /><span class="accent">Global Education</span>
+                    </h1>
+                    <p class="animate-fade-up-delay-2">
+                        Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.
+                    </p>
+                    <div class="hero-actions animate-fade-up-delay-2">
+                        <a href="#" onclick="navigateTo('inquiry'); return false;" class="btn-primary gold">Book Free Consultation</a>
+                        <a href="#" onclick="navigateTo('universities'); return false;" class="btn-secondary">Explore Universities</a>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number"><span class="counter" data-target="98">0</span><span class="suffix">%</span></span>
-                        <span class="stat-label"><i class="fas fa-passport" aria-hidden="true"></i> Visa Success</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number"><span class="counter" data-target="50">0</span><span class="suffix">+</span></span>
-                        <span class="stat-label"><i class="fas fa-building-columns" aria-hidden="true"></i> Partner Universities</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image-wrap animate-fade-up-delay">
-                <img
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=800&auto=format&fit=crop"
-                alt="Students celebrating graduation"
-                loading="lazy"
-                />
-                <div class="hero-image-overlay"></div>
-                <div class="hero-float-badge" role="status">
-                    <i class="fas fa-star" aria-hidden="true"></i> Top Rated 2026
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-    SERVICES SECTION — NEW
-    ================================================================ -->
-    <section class="section-padding bg-secondary" id="services">
-        <div class="container">
-            <span class="section-label"><i class="fas fa-briefcase" aria-hidden="true"></i> What We Offer</span>
-            <h2 class="section-title">Our <span class="highlight">Premium Services</span></h2>
-            <p class="section-desc">End-to-end support for your study abroad journey — from university selection to visa approval.</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon-wrap"><i class="fas fa-handshake" aria-hidden="true"></i></div>
-                    <h3>University Selection</h3>
-                    <p>Personalized matching with 50+ partner universities worldwide.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-wrap"><i class="fas fa-file-pen" aria-hidden="true"></i></div>
-                    <h3>Application Support</h3>
-                    <p>End-to-end assistance with applications, SOPs, and documentation.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-wrap"><i class="fas fa-passport" aria-hidden="true"></i></div>
-                    <h3>Visa Guidance</h3>
-                    <p>Expert visa counseling with 98% success rate across all countries.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon-wrap"><i class="fas fa-circle-dollar" aria-hidden="true"></i></div>
-                    <h3>Scholarship Help</h3>
-                    <p>Access to scholarships, grants, and funding opportunities worldwide.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-    COUNTRIES SECTION — NEW
-    ================================================================ -->
-    <section class="section-padding bg-primary" id="countries">
-        <div class="container">
-            <span class="section-label"><i class="fas fa-globe" aria-hidden="true"></i> Destinations</span>
-            <h2 class="section-title">Top <span class="highlight">Study Destinations</span></h2>
-            <p class="section-desc">Explore our partner countries with world-class education systems and vibrant student life.</p>
-            <div class="countries-grid">
-                <div class="country-card">
-                    <span class="flag-icon">🇨🇦</span>
-                    <h3>Canada</h3>
-                    <p>12+ partner universities</p>
-                </div>
-                <div class="country-card">
-                    <span class="flag-icon">🇬🇧</span>
-                    <h3>United Kingdom</h3>
-                    <p>15+ partner universities</p>
-                </div>
-                <div class="country-card">
-                    <span class="flag-icon">🇦🇺</span>
-                    <h3>Australia</h3>
-                    <p>10+ partner universities</p>
-                </div>
-                <div class="country-card">
-                    <span class="flag-icon">🇩🇪</span>
-                    <h3>Germany</h3>
-                    <p>8+ partner universities</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-    IMAGE / UNIVERSITIES SECTION — ORIGINAL (UNCHANGED)
-    ================================================================ -->
-    <section class="image-section" id="universities">
-        <div class="image-container">
-            <div class="image-wrap">
-                <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&auto=format&fit=crop"
-                alt="University campus with students"
-                loading="lazy"
-                />
-                <div class="image-overlay-content">
-                    <span class="tag"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Explore</span>
-                    <h3>Discover Your Dream University</h3>
-                    <p>Explore 50+ partner institutions across Canada, UK, Australia &amp; more.</p>
-                    <a href="#inquiry" class="btn-explore">
-                        Get Started <i class="fas fa-arrow-right" aria-hidden="true" style="font-size:0.6rem;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="image-text-content">
-                <span class="section-label"><i class="fas fa-globe-americas" aria-hidden="true"></i> Global Network</span>
-                <h2>World-Class <span class="highlight">Partner Institutions</span></h2>
-                <p>
-                    We've built strong relationships with top universities worldwide to give you the best options for your future.
-                </p>
-                <div class="feature-list" id="featureList">
-                    <div class="feature-item stagger-item"><i class="fas fa-handshake" aria-hidden="true"></i> 50+ trusted university partners</div>
-                    <div class="feature-item stagger-item"><i class="fas fa-book-open" aria-hidden="true"></i> Programs across 200+ disciplines</div>
-                    <div class="feature-item stagger-item"><i class="fas fa-circle-dollar" aria-hidden="true"></i> Scholarships &amp; funding assistance</div>
-                    <div class="feature-item stagger-item"><i class="fas fa-shield-check" aria-hidden="true"></i> 98% visa success rate</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-    COURSES SECTION — NEW
-    ================================================================ -->
-    <section class="section-padding bg-secondary" id="courses">
-        <div class="container">
-            <span class="section-label"><i class="fas fa-book-open" aria-hidden="true"></i> Programs</span>
-            <h2 class="section-title">Popular <span class="highlight">Courses</span></h2>
-            <p class="section-desc">Choose from a wide range of programs across top universities in our partner network.</p>
-            <div class="courses-grid">
-                <div class="course-card">
-                    <span class="course-icon"><i class="fas fa-flask" aria-hidden="true"></i></span>
-                    <h3>Computer Science</h3>
-                    <p>BSc, MSc, PhD with specializations in AI, ML, and Data Science.</p>
-                    <span class="course-tag">50+ Universities</span>
-                </div>
-                <div class="course-card">
-                    <span class="course-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
-                    <h3>Business Administration</h3>
-                    <p>MBA, BBA, and executive programs with global business networks.</p>
-                    <span class="course-tag">45+ Universities</span>
-                </div>
-                <div class="course-card">
-                    <span class="course-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></span>
-                    <h3>Medicine &amp; Health</h3>
-                    <p>MD, Nursing, Public Health, and allied health science programs.</p>
-                    <span class="course-tag">30+ Universities</span>
-                </div>
-                <div class="course-card">
-                    <span class="course-icon"><i class="fas fa-gavel" aria-hidden="true"></i></span>
-                    <h3>Law &amp; Legal Studies</h3>
-                    <p>LLB, LLM, and specialized legal programs with international focus.</p>
-                    <span class="course-tag">25+ Universities</span>
-                </div>
-                <div class="course-card">
-                    <span class="course-icon"><i class="fas fa-palette" aria-hidden="true"></i></span>
-                    <h3>Arts &amp; Design</h3>
-                    <p>Fine Arts, Graphic Design, Architecture, and creative programs.</p>
-                    <span class="course-tag">35+ Universities</span>
-                </div>
-                <div class="course-card">
-                    <span class="course-icon"><i class="fas fa-microscope" aria-hidden="true"></i></span>
-                    <h3>Engineering</h3>
-                    <p>Mechanical, Electrical, Civil, and cutting-edge engineering disciplines.</p>
-                    <span class="course-tag">40+ Universities</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-    INQUIRY / CONTACT FORM SECTION — NEW
-    ================================================================ -->
-    <section class="section-padding bg-primary" id="inquiry">
-        <div class="inquiry-container">
-            <div class="inquiry-text">
-                <span class="section-label"><i class="fas fa-paper-plane" aria-hidden="true"></i> Get Started</span>
-                <h2>Ready to <span class="highlight">Study Abroad?</span></h2>
-                <p>
-                    Fill out the form and our education specialists will reach out within 24 hours with personalized guidance.
-                </p>
-                <div class="contact-info">
-                    <div class="ci-item"><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:info@skyscholar.com">info@skyscholar.com</a></div>
-                    <div class="ci-item"><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+1234567890">+1 234 567 890</a></div>
-                    <div class="ci-item"><i class="fas fa-location-dot" aria-hidden="true"></i> New York, USA</div>
-                </div>
-            </div>
-            <div class="form-card">
-                <form id="contactForm" novalidate autocomplete="on">
-                    <div class="form-group">
-                        <label for="fullName">Full Name <span class="required">*</span></label>
-                        <div class="input-wrap">
-                            <i class="fas fa-user" aria-hidden="true"></i>
-                            <input type="text" id="fullName" name="fullName" placeholder="John Doe" required aria-required="true" autocomplete="name" />
+                    <div class="hero-stats animate-fade-up-delay-2" id="heroStats">
+                        <div class="stat-item">
+                            <span class="stat-number"><span class="counter" data-target="500">0</span><span class="suffix">+</span></span>
+                            <span class="stat-label"><i class="fas fa-user-graduate" aria-hidden="true"></i> Students Placed</span>
                         </div>
-                        <div class="error-msg" id="fullNameError">Please enter your full name.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address <span class="required">*</span></label>
-                        <div class="input-wrap">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" autocomplete="email" />
+                        <div class="stat-item">
+                            <span class="stat-number"><span class="counter" data-target="98">0</span><span class="suffix">%</span></span>
+                            <span class="stat-label"><i class="fas fa-passport" aria-hidden="true"></i> Visa Success</span>
                         </div>
-                        <div class="error-msg" id="emailError">Please enter a valid email address.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="country">Country <span class="required">*</span></label>
-                        <div class="input-wrap">
-                            <i class="fas fa-flag" aria-hidden="true"></i>
-                            <select id="country" name="country" required aria-required="true">
-                                <option value="">Select your country</option>
-                                <option value="USA">USA</option>
-                                <option value="Canada">Canada</option>
-                                <option value="UK">UK</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Germany">Germany</option>
-                                <option value="Other">Other</option>
-                            </select>
+                        <div class="stat-item">
+                            <span class="stat-number"><span class="counter" data-target="50">0</span><span class="suffix">+</span></span>
+                            <span class="stat-label"><i class="fas fa-building-columns" aria-hidden="true"></i> Partner Universities</span>
                         </div>
-                        <div class="error-msg" id="countryError">Please select your country.</div>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <div class="input-wrap">
-                            <i class="fas fa-comment" aria-hidden="true"></i>
-                            <textarea id="message" name="message" placeholder="Tell us about your study abroad goals..." required aria-required="true"></textarea>
-                        </div>
-                        <div class="error-msg" id="messageError">Please enter your message.</div>
+                </div>
+                <div class="hero-image-wrap animate-fade-up-delay">
+                    <img
+                    src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=800&auto=format&fit=crop"
+                    alt="Students celebrating graduation"
+                    loading="lazy"
+                    />
+                    <div class="hero-image-overlay"></div>
+                    <div class="hero-float-badge" role="status">
+                        <i class="fas fa-star" aria-hidden="true"></i> Top Rated 2026
                     </div>
-                    <div class="form-submit">
-                        <button type="submit" class="btn-primary" id="formSubmitBtn">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Inquiry
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- HOME LEADS — summary cards for each section -->
+        <section class="home-leads">
+            <div class="container">
+                <div style="text-align:center; margin-bottom:1rem;">
+                    <span class="section-label"><i class="fas fa-compass" aria-hidden="true"></i> Explore</span>
+                    <h2 class="section-title">Your <span class="highlight">Journey Starts Here</span></h2>
+                    <p class="section-desc" style="max-width:600px; margin:0.5rem auto 0;">Click any card to dive deeper into what SkyScholar offers for your study abroad dreams.</p>
+                </div>
+                <div class="leads-grid">
+                    <div class="lead-card" onclick="navigateTo('services')">
+                        <span class="lead-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></span>
+                        <h3>Services</h3>
+                        <p>University selection, visa guidance, application support &amp; more.</p>
+                        <span class="lead-arrow">Learn More →</span>
+                    </div>
+                    <div class="lead-card" onclick="navigateTo('countries')">
+                        <span class="lead-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
+                        <h3>Countries</h3>
+                        <p>Top destinations: Canada, UK, Australia, Germany &amp; beyond.</p>
+                        <span class="lead-arrow">Learn More →</span>
+                    </div>
+                    <div class="lead-card" onclick="navigateTo('universities')">
+                        <span class="lead-icon"><i class="fas fa-university" aria-hidden="true"></i></span>
+                        <h3>Universities</h3>
+                        <p>50+ partner institutions with world-class programs.</p>
+                        <span class="lead-arrow">Learn More →</span>
+                    </div>
+                    <div class="lead-card" onclick="navigateTo('courses')">
+                        <span class="lead-icon"><i class="fas fa-book-open" aria-hidden="true"></i></span>
+                        <h3>Courses</h3>
+                        <p>200+ disciplines from Computer Science to Medicine &amp; Law.</p>
+                        <span class="lead-arrow">Learn More →</span>
+                    </div>
+                    <div class="lead-card" onclick="navigateTo('inquiry')">
+                        <span class="lead-icon"><i class="fas fa-paper-plane" aria-hidden="true"></i></span>
+                        <h3>Inquiry</h3>
+                        <p>Get personalized guidance — fill out our quick form.</p>
+                        <span class="lead-arrow">Get Started →</span>
+                    </div>
+                    <div class="lead-card" onclick="navigateTo('contact')">
+                        <span class="lead-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                        <h3>Contact</h3>
+                        <p>Reach out via email, phone, or social media.</p>
+                        <span class="lead-arrow">Contact Us →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- ================================================================
-    FOOTER — ORIGINAL (UPDATED with functional links + social)
+    PAGE: SERVICES
+    ================================================================ -->
+    <div class="page-section" id="page-services">
+        <section class="section-padding bg-secondary">
+            <div class="container">
+                <span class="section-label"><i class="fas fa-briefcase" aria-hidden="true"></i> What We Offer</span>
+                <h2 class="section-title">Our <span class="highlight">Premium Services</span></h2>
+                <p class="section-desc">End-to-end support for your study abroad journey — from university selection to visa approval.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon-wrap"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+                        <h3>University Selection</h3>
+                        <p>Personalized matching with 50+ partner universities worldwide.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon-wrap"><i class="fas fa-file-pen" aria-hidden="true"></i></div>
+                        <h3>Application Support</h3>
+                        <p>End-to-end assistance with applications, SOPs, and documentation.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon-wrap"><i class="fas fa-passport" aria-hidden="true"></i></div>
+                        <h3>Visa Guidance</h3>
+                        <p>Expert visa counseling with 98% success rate across all countries.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon-wrap"><i class="fas fa-circle-dollar" aria-hidden="true"></i></div>
+                        <h3>Scholarship Help</h3>
+                        <p>Access to scholarships, grants, and funding opportunities worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================
+    PAGE: COUNTRIES
+    ================================================================ -->
+    <div class="page-section" id="page-countries">
+        <section class="section-padding bg-primary">
+            <div class="container">
+                <span class="section-label"><i class="fas fa-globe" aria-hidden="true"></i> Destinations</span>
+                <h2 class="section-title">Top <span class="highlight">Study Destinations</span></h2>
+                <p class="section-desc">Explore our partner countries with world-class education systems and vibrant student life.</p>
+                <div class="countries-grid">
+                    <div class="country-card">
+                        <span class="flag-icon">🇨🇦</span>
+                        <h3>Canada</h3>
+                        <p>12+ partner universities</p>
+                    </div>
+                    <div class="country-card">
+                        <span class="flag-icon">🇬🇧</span>
+                        <h3>United Kingdom</h3>
+                        <p>15+ partner universities</p>
+                    </div>
+                    <div class="country-card">
+                        <span class="flag-icon">🇦🇺</span>
+                        <h3>Australia</h3>
+                        <p>10+ partner universities</p>
+                    </div>
+                    <div class="country-card">
+                        <span class="flag-icon">🇩🇪</span>
+                        <h3>Germany</h3>
+                        <p>8+ partner universities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================
+    PAGE: UNIVERSITIES (original image section)
+    ================================================================ -->
+    <div class="page-section" id="page-universities">
+        <section class="image-section">
+            <div class="image-container">
+                <div class="image-wrap">
+                    <img
+                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&auto=format&fit=crop"
+                    alt="University campus with students"
+                    loading="lazy"
+                    />
+                    <div class="image-overlay-content">
+                        <span class="tag"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Explore</span>
+                        <h3>Discover Your Dream University</h3>
+                        <p>Explore 50+ partner institutions across Canada, UK, Australia &amp; more.</p>
+                        <a href="#" onclick="navigateTo('inquiry'); return false;" class="btn-explore">
+                            Get Started <i class="fas fa-arrow-right" aria-hidden="true" style="font-size:0.6rem;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="image-text-content">
+                    <span class="section-label"><i class="fas fa-globe-americas" aria-hidden="true"></i> Global Network</span>
+                    <h2>World-Class <span class="highlight">Partner Institutions</span></h2>
+                    <p>
+                        We've built strong relationships with top universities worldwide to give you the best options for your future.
+                    </p>
+                    <div class="feature-list" id="featureList">
+                        <div class="feature-item stagger-item"><i class="fas fa-handshake" aria-hidden="true"></i> 50+ trusted university partners</div>
+                        <div class="feature-item stagger-item"><i class="fas fa-book-open" aria-hidden="true"></i> Programs across 200+ disciplines</div>
+                        <div class="feature-item stagger-item"><i class="fas fa-circle-dollar" aria-hidden="true"></i> Scholarships &amp; funding assistance</div>
+                        <div class="feature-item stagger-item"><i class="fas fa-shield-check" aria-hidden="true"></i> 98% visa success rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================
+    PAGE: COURSES
+    ================================================================ -->
+    <div class="page-section" id="page-courses">
+        <section class="section-padding bg-secondary">
+            <div class="container">
+                <span class="section-label"><i class="fas fa-book-open" aria-hidden="true"></i> Programs</span>
+                <h2 class="section-title">Popular <span class="highlight">Courses</span></h2>
+                <p class="section-desc">Choose from a wide range of programs across top universities in our partner network.</p>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <span class="course-icon"><i class="fas fa-flask" aria-hidden="true"></i></span>
+                        <h3>Computer Science</h3>
+                        <p>BSc, MSc, PhD with specializations in AI, ML, and Data Science.</p>
+                        <span class="course-tag">50+ Universities</span>
+                    </div>
+                    <div class="course-card">
+                        <span class="course-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
+                        <h3>Business Administration</h3>
+                        <p>MBA, BBA, and executive programs with global business networks.</p>
+                        <span class="course-tag">45+ Universities</span>
+                    </div>
+                    <div class="course-card">
+                        <span class="course-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></span>
+                        <h3>Medicine &amp; Health</h3>
+                        <p>MD, Nursing, Public Health, and allied health science programs.</p>
+                        <span class="course-tag">30+ Universities</span>
+                    </div>
+                    <div class="course-card">
+                        <span class="course-icon"><i class="fas fa-gavel" aria-hidden="true"></i></span>
+                        <h3>Law &amp; Legal Studies</h3>
+                        <p>LLB, LLM, and specialized legal programs with international focus.</p>
+                        <span class="course-tag">25+ Universities</span>
+                    </div>
+                    <div class="course-card">
+                        <span class="course-icon"><i class="fas fa-palette" aria-hidden="true"></i></span>
+                        <h3>Arts &amp; Design</h3>
+                        <p>Fine Arts, Graphic Design, Architecture, and creative programs.</p>
+                        <span class="course-tag">35+ Universities</span>
+                    </div>
+                    <div class="course-card">
+                        <span class="course-icon"><i class="fas fa-microscope" aria-hidden="true"></i></span>
+                        <h3>Engineering</h3>
+                        <p>Mechanical, Electrical, Civil, and cutting-edge engineering disciplines.</p>
+                        <span class="course-tag">40+ Universities</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================
+    PAGE: INQUIRY (Contact Form)
+    ================================================================ -->
+    <div class="page-section" id="page-inquiry">
+        <section class="section-padding bg-primary" id="inquiry">
+            <div class="inquiry-container">
+                <div class="inquiry-text">
+                    <span class="section-label"><i class="fas fa-paper-plane" aria-hidden="true"></i> Get Started</span>
+                    <h2>Ready to <span class="highlight">Study Abroad?</span></h2>
+                    <p>
+                        Fill out the form and our education specialists will reach out within 24 hours with personalized guidance.
+                    </p>
+                    <div class="contact-info">
+                        <div class="ci-item"><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:info@skyscholar.com">info@skyscholar.com</a></div>
+                        <div class="ci-item"><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+1234567890">+1 234 567 890</a></div>
+                        <div class="ci-item"><i class="fas fa-location-dot" aria-hidden="true"></i> New York, USA</div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <form id="contactForm" novalidate autocomplete="on">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <div class="input-wrap">
+                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <input type="text" id="fullName" name="fullName" placeholder="John Doe" required aria-required="true" autocomplete="name" />
+                            </div>
+                            <div class="error-msg" id="fullNameError">Please enter your full name.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <div class="input-wrap">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" autocomplete="email" />
+                            </div>
+                            <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country <span class="required">*</span></label>
+                            <div class="input-wrap">
+                                <i class="fas fa-flag" aria-hidden="true"></i>
+                                <select id="country" name="country" required aria-required="true">
+                                    <option value="">Select your country</option>
+                                    <option value="USA">USA</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="UK">UK</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="error-msg" id="countryError">Please select your country.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <div class="input-wrap">
+                                <i class="fas fa-comment" aria-hidden="true"></i>
+                                <textarea id="message" name="message" placeholder="Tell us about your study abroad goals..." required aria-required="true"></textarea>
+                            </div>
+                            <div class="error-msg" id="messageError">Please enter your message.</div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn-primary" id="formSubmitBtn">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Inquiry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================
+    PAGE: CONTACT (Footer only — scrolls to footer)
+    ================================================================ -->
+    <div class="page-section" id="page-contact">
+        <!-- This section is just a spacer; the footer below is always visible -->
+        <div style="height:60px;"></div>
+    </div>
+
+    <!-- ================================================================
+    FOOTER — Always visible at the bottom
     ================================================================ -->
     <footer class="footer-gradient" id="contact">
         <div class="container">
@@ -1870,9 +2038,83 @@
     <div id="toast" role="alert" aria-live="polite"></div>
 
     <!-- ================================================================
-    JAVASCRIPT — All functionality added, original JS preserved
+    JAVASCRIPT — Full navigation, routing, and functionality
     ================================================================ -->
     <script>
+        // ================================================================
+        // NAVIGATION SYSTEM — SPA style with hash routing
+        // ================================================================
+        let currentPage = 'home';
+
+        function navigateTo(page) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Show target page
+            const target = document.getElementById('page-' + page);
+            if (target) {
+                target.classList.add('active');
+                currentPage = page;
+
+                // Update URL hash
+                if (page === 'home') {
+                    history.pushState(null, '', '#home');
+                } else {
+                    history.pushState(null, '', '#' + page);
+                }
+
+                // Update nav active states
+                document.querySelectorAll('#navLinks a, .mobile-menu a[data-page]').forEach(el => {
+                    el.classList.toggle('active', el.getAttribute('data-page') === page);
+                });
+
+                // Scroll to top of the page
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // If page is home, trigger counter animation
+                if (page === 'home') {
+                    setTimeout(triggerCounters, 300);
+                    setTimeout(triggerStagger, 400);
+                }
+
+                // If page is universities, trigger stagger
+                if (page === 'universities') {
+                    setTimeout(triggerStagger, 400);
+                }
+            }
+        }
+
+        // Handle hash on load
+        function handleHash() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById('page-' + hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        }
+
+        // Nav link click handlers
+        document.querySelectorAll('#navLinks a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.getAttribute('data-page');
+                navigateTo(page);
+                // Close mobile menu if open
+                if (document.getElementById('mobileMenu').classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Brand click goes home
+        document.querySelector('.brand').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigateTo('home');
+        });
+
         // ================================================================
         // MOBILE MENU — ORIGINAL
         // ================================================================
@@ -1917,7 +2159,7 @@
         });
 
         // ================================================================
-        // NAV SCROLL EFFECT + SCROLL PROGRESS — UPDATED
+        // NAV SCROLL EFFECT + SCROLL PROGRESS
         // ================================================================
         const nav = document.getElementById('mainNav');
         const progressBar = document.getElementById('scrollProgress');
@@ -1933,67 +2175,32 @@
             progressBar.style.width = progress + '%';
             progressBar.setAttribute('aria-valuenow', Math.round(progress));
 
-            // Back to top visibility
             const backBtn = document.getElementById('backToTop');
             if (scrollY > 500) backBtn.classList.add('visible');
             else backBtn.classList.remove('visible');
         });
 
         // ================================================================
-        // BACK TO TOP — NEW
+        // BACK TO TOP
         // ================================================================
         document.getElementById('backToTop').addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // ================================================================
-        // SMOOTH SCROLL FOR ANCHOR LINKS — UPDATED
-        // ================================================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const target = document.querySelector(targetId);
-                if (target) {
-                    e.preventDefault();
-                    // Close mobile menu if open
-                    if (document.getElementById('mobileMenu').classList.contains('open')) {
-                        closeMobileMenu();
-                    }
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // ================================================================
-        // INTERSECTION OBSERVER — animate image section on scroll (ORIGINAL)
-        // ================================================================
-        const imageSection = document.querySelector('.image-section');
-        if (imageSection) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            imageSection.style.opacity = '0';
-            imageSection.style.transform = 'translateY(30px)';
-            imageSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(imageSection);
-        }
-
-        // ================================================================
-        // HERO FLOATING BADGE — REMOVED auto-scale, now uses CSS hover shimmer
-        // ================================================================
-        // The badging now uses CSS ::after shimmer on hover only — no JS interval.
-
-        // ================================================================
-        // STAT COUNTER — NEW: scroll-triggered, once only
+        // STAT COUNTER — scroll-triggered, once only
         // ================================================================
         let countersAnimated = false;
+
+        function triggerCounters() {
+            if (countersAnimated) return;
+            const heroStats = document.getElementById('heroStats');
+            if (!heroStats) return;
+            const rect = heroStats.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                animateCounters();
+            }
+        }
 
         function animateCounters() {
             if (countersAnimated) return;
@@ -2024,6 +2231,7 @@
             });
         }
 
+        // Intersection observer for counters
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !countersAnimated) {
@@ -2036,8 +2244,19 @@
         if (heroStats) statsObserver.observe(heroStats);
 
         // ================================================================
-        // STAGGER REVEAL — feature items (NEW)
+        // STAGGER REVEAL — feature items
         // ================================================================
+        function triggerStagger() {
+            const featureList = document.getElementById('featureList');
+            if (!featureList) return;
+            const items = featureList.querySelectorAll('.stagger-item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 120);
+            });
+        }
+
         const staggerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2056,7 +2275,7 @@
         if (featureList) staggerObserver.observe(featureList);
 
         // ================================================================
-        // FORM VALIDATION + SUBMISSION — NEW
+        // FORM VALIDATION + SUBMISSION
         // ================================================================
         const form = document.getElementById('contactForm');
         const toast = document.getElementById('toast');
@@ -2180,9 +2399,22 @@
             }
         });
 
-        console.log('🚀 SkyScholar — All sections & functionality added.');
-        console.log('📋 Sections: Home, Services, Countries, Universities, Courses, Inquiry, Contact');
-        console.log('✅ Features: Counter animation, form validation, scroll progress, back to top, toast, shimmer badge.');
+        // ================================================================
+        // INIT — handle hash on load and window popstate
+        // ================================================================
+        window.addEventListener('popstate', handleHash);
+        document.addEventListener('DOMContentLoaded', function() {
+            handleHash();
+            // If home, trigger counters after a moment
+            if (currentPage === 'home') {
+                setTimeout(triggerCounters, 500);
+                setTimeout(triggerStagger, 600);
+            }
+        });
+
+        console.log('🚀 SkyScholar — Full multi-page navigation & functionality');
+        console.log('📋 Pages: Home, Services, Countries, Universities, Courses, Inquiry, Contact');
+        console.log('✅ Features: SPA routing, counter, form validation, toast, progress bar, back to top.');
     </script>
 </body>
 </html>
