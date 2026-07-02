@@ -22,7 +22,7 @@
             --bg-primary: #FFFFFF;
             --bg-secondary: #F8FAFC;
 
-            /* Colors */
+            /* Colors — US Minimalist Palette */
             --color-navy: #0A2540;
             --color-navy-light: #1A3A6B;
             --color-gold: #C9A84C;
@@ -30,7 +30,7 @@
             --color-text: #1A1A2E;
             --color-muted: #6B7280;
 
-            /* Shadows — Elevated US style */
+            /* Shadows — Elevated */
             --shadow-sm: 0 2px 8px rgba(10, 37, 64, 0.04);
             --shadow-md: 0 8px 24px rgba(10, 37, 64, 0.06);
             --shadow-lg: 0 16px 48px rgba(10, 37, 64, 0.08);
@@ -104,7 +104,7 @@
             z-index: 9999;
             border-radius: 0 2px 2px 0;
             transition: width 0.1s linear;
-            box-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+            box-shadow: 0 0 12px rgba(201, 168, 76, 0.25);
         }
 
         /* ================================================================
@@ -153,9 +153,19 @@
             color: var(--color-text);
             transition: color 0.2s ease;
             position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         .nav-links a:hover {
-            color: var(--color-navy-light);
+            color: var(--color-navy);
+        }
+        .nav-links a i {
+            font-size: 0.75rem;
+            color: var(--color-muted);
+        }
+        .nav-links a:hover i {
+            color: var(--color-navy);
         }
         .nav-links a.admin-link {
             border: 1px solid var(--color-navy);
@@ -164,9 +174,13 @@
             font-size: 0.8rem;
             transition: all 0.2s ease;
             color: var(--color-navy);
+            gap: 0.4rem;
         }
         .nav-links a.admin-link:hover {
             background: var(--color-navy);
+            color: #fff;
+        }
+        .nav-links a.admin-link:hover i {
             color: #fff;
         }
 
@@ -182,6 +196,8 @@
             min-height: 44px;
             min-width: 44px;
             border-radius: 8px;
+            align-items: center;
+            justify-content: center;
         }
         .mobile-menu-btn:focus-visible {
             outline: 3px solid var(--color-navy);
@@ -211,7 +227,9 @@
             pointer-events: auto;
         }
         .mobile-menu a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
             padding: 0.8rem 0;
             font-size: 1.1rem;
             font-weight: 500;
@@ -226,6 +244,10 @@
         }
         .mobile-menu a:last-child {
             border-bottom: none;
+        }
+        .mobile-menu a i {
+            width: 1.4rem;
+            color: var(--color-gold);
         }
 
         .mobile-menu-overlay {
@@ -259,8 +281,6 @@
             }
             .mobile-menu-btn {
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
             .glass-nav {
                 padding: 0.6rem 1rem;
@@ -271,7 +291,7 @@
         }
 
         /* ================================================================
-               HERO SECTION
+               HERO SECTION — Preserved structure, only spacing fixed
                ================================================================ */
         .hero-section {
             padding: 120px 0 80px;
@@ -324,7 +344,7 @@
         }
 
         .hero-text h1 {
-            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-size: clamp(2.8rem, 5vw, 4rem);
             font-weight: 700;
             color: var(--color-text);
             line-height: 1.08;
@@ -348,7 +368,7 @@
             margin-top: 1.75rem;
         }
 
-        /* Primary CTA — Navy */
+        /* Primary CTA — Navy (was gold) */
         .btn-primary {
             background: var(--color-navy);
             color: #fff;
@@ -375,7 +395,7 @@
             transform: scale(0.97);
         }
 
-        /* Secondary CTA — Gold Outline */
+        /* Secondary CTA — Gold Outline (was blue outline) */
         .btn-secondary {
             background: transparent;
             color: var(--color-navy);
@@ -428,6 +448,13 @@
             font-size: 0.8rem;
             color: var(--color-muted);
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .hero-stats .stat-label i {
+            color: var(--color-gold);
+            font-size: 0.7rem;
         }
 
         /* Hero Image */
@@ -459,7 +486,7 @@
             pointer-events: none;
         }
 
-        /* Floating Badge — Shimmer on hover only */
+        /* Floating badge — NO scale animation, only shimmer on hover */
         .hero-float-badge {
             position: absolute;
             bottom: 1.5rem;
@@ -485,7 +512,7 @@
             color: var(--color-gold);
             font-size: 0.6rem;
         }
-        /* Shimmer effect on hover */
+        /* Shimmer effect on hover — no auto scale */
         .hero-float-badge::after {
             content: '';
             position: absolute;
@@ -758,8 +785,14 @@
             text-align: center;
             font-size: 0.9rem;
         }
+        .inquiry-text .contact-info .ci-item a {
+            color: var(--color-text);
+            transition: color 0.2s ease;
+        }
+        .inquiry-text .contact-info .ci-item a:hover {
+            color: var(--color-navy);
+        }
 
-        /* Form */
         .form-card {
             background: var(--bg-secondary);
             padding: 2.5rem;
@@ -1060,10 +1093,9 @@
         }
 
         /* ================================================================
-               RESPONSIVE — MOBILE (below 768px)
+               RESPONSIVE — MOBILE
                ================================================================ */
         @media (max-width: 767px) {
-            /* Hero */
             .hero-section {
                 padding: 100px 0 40px;
             }
@@ -1073,7 +1105,7 @@
                 padding: 0 1.2rem;
             }
             .hero-text h1 {
-                font-size: clamp(1.8rem, 6vw, 2.4rem);
+                font-size: 2.2rem;
                 line-height: 1.1;
             }
             .hero-text p {
@@ -1120,7 +1152,6 @@
                 font-size: 0.5rem;
             }
 
-            /* Image section */
             .image-section {
                 padding: 50px 0;
             }
@@ -1162,7 +1193,6 @@
                 order: -1;
             }
 
-            /* Inquiry */
             #inquiry {
                 padding: 50px 0;
             }
@@ -1178,7 +1208,6 @@
                 padding: 1.5rem;
             }
 
-            /* Footer */
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 1.5rem;
@@ -1265,14 +1294,6 @@
                 transform: translateY(0);
             }
         }
-        @keyframes shimmerSweep {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -100% 0;
-            }
-        }
 
         .animate-fade-up {
             animation: fadeUp 0.8s ease forwards;
@@ -1327,9 +1348,6 @@
             outline-offset: 2px;
         }
 
-        /* ================================================================
-               TOUCH TARGETS — ensure 44px min
-               ================================================================ */
         button,
         a,
         input,
@@ -1376,7 +1394,7 @@
     </div>
 
     <!-- ================================================================
-    HERO SECTION
+    HERO SECTION — Preserved structure, only spacing fixed + color updates
     ================================================================ -->
     <section class="hero-section" id="home">
         <div class="hero-container">
@@ -1430,7 +1448,6 @@
     ================================================================ -->
     <section class="image-section" id="universities">
         <div class="image-container">
-            <!-- Left: Interactive Image -->
             <div class="image-wrap">
                 <img
                 src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&auto=format&fit=crop"
@@ -1448,8 +1465,6 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Right: Text Content -->
             <div class="image-text-content">
                 <span class="section-label"><i class="fas fa-globe-americas" aria-hidden="true"></i> Global Network</span>
                 <h2>World-Class <span class="highlight">Partner Institutions</span></h2>
@@ -1658,7 +1673,6 @@
             progressBar.style.width = progress + '%';
             progressBar.setAttribute('aria-valuenow', Math.round(progress));
 
-            // Back to top visibility
             const backBtn = document.getElementById('backToTop');
             if (scrollY > 500) backBtn.classList.add('visible');
             else backBtn.classList.remove('visible');
@@ -1701,7 +1715,6 @@
 
             counters.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-target'), 10);
-                const startValue = 0;
                 const el = counter;
 
                 function updateCounter(currentTime) {
@@ -1761,13 +1774,10 @@
 
         function showToast(message, type = 'success') {
             if (toastTimeout) clearTimeout(toastTimeout);
-            toast.textContent = message;
-            toast.className = type;
-            toast.classList.add('show');
-
-            // Add icon
             const icon = type === 'success' ? '✅' : '❌';
             toast.innerHTML = `<span class="toast-icon">${icon}</span> ${message}`;
+            toast.className = type;
+            toast.classList.add('show');
 
             toastTimeout = setTimeout(() => {
                 toast.classList.remove('show');
@@ -1816,13 +1826,11 @@
             const messageOk = validateField('message', 'messageError', isMessageValid);
 
             if (nameOk && emailOk && countryOk && messageOk) {
-                // Simulate submission
                 const btn = document.getElementById('formSubmitBtn');
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...';
 
                 setTimeout(() => {
-                    // Success — console log the data
                     console.log('📩 Form Submission Data:', {
                         name,
                         email,
@@ -1832,7 +1840,6 @@
                     });
                     showToast('Thank you! Our team will contact you within 24 hours.', 'success');
                     form.reset();
-                    // Reset all input wraps
                     document.querySelectorAll('.input-wrap').forEach(w => {
                         w.classList.remove('success', 'error');
                     });
@@ -1841,7 +1848,6 @@
                 }, 1500);
             } else {
                 showToast('Please fix the errors in the form.', 'error');
-                // Focus first error field
                 const firstError = document.querySelector('.input-wrap.error input, .input-wrap.error select, .input-wrap.error textarea');
                 if (firstError) firstError.focus();
             }
@@ -1852,21 +1858,16 @@
             field.addEventListener('blur', function() {
                 const id = this.id;
                 if (id === 'fullName') {
-                    const val = this.value.trim();
-                    validateField('fullName', 'fullNameError', val.length >= 2);
+                    validateField('fullName', 'fullNameError', this.value.trim().length >= 2);
                 } else if (id === 'email') {
-                    const val = this.value.trim();
-                    validateField('email', 'emailError', validateEmail(val));
+                    validateField('email', 'emailError', validateEmail(this.value.trim()));
                 } else if (id === 'country') {
-                    const val = this.value;
-                    validateField('country', 'countryError', val !== '');
+                    validateField('country', 'countryError', this.value !== '');
                 } else if (id === 'message') {
-                    const val = this.value.trim();
-                    validateField('message', 'messageError', val.length >= 5);
+                    validateField('message', 'messageError', this.value.trim().length >= 5);
                 }
             });
 
-            // Clear error on focus
             field.addEventListener('focus', function() {
                 const wrap = this.closest('.input-wrap');
                 wrap.classList.remove('error');
@@ -1896,7 +1897,7 @@
         });
 
         console.log('🚀 SkyScholar — Premium Study Abroad Platform (US Minimalist)');
-        console.log('📋 All UI/UX fixes applied — Counter, Form, Shimmer, Shadows, Icons.');
+        console.log('📋 All fixes applied: Counter, Form, Shimmer, Shadows, Icons, Spacing.');
     </script>
 </body>
 </html>
