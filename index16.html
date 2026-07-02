@@ -8,14 +8,14 @@
     <!-- ===== PREMIUM FONTS ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- ===== FONT AWESOME 6 (Free) ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
         /* ================================================================
-               RESET & BASE — with improved background & shadows
+               RESET & BASE — exactly matching original
                ================================================================ */
         * {
             margin: 0;
@@ -24,10 +24,9 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            background-color: #f8fafc;
             color: #0a1a2f;
             line-height: 1.6;
-            min-height: 100vh;
         }
         h1,
         h2,
@@ -131,7 +130,7 @@
             z-index: 1001;
         }
 
-        /* ===== MOBILE MENU ===== */
+        /* ===== MOBILE MENU — FIXED ===== */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -220,7 +219,7 @@
         }
 
         /* ================================================================
-               HERO — UNTOUCHED (exactly as provided)
+               HERO — DESKTOP & TABLET (unchanged)
                ================================================================ */
         .hero-bg {
             position: relative;
@@ -417,7 +416,7 @@
         }
 
         /* ================================================================
-               MOBILE HERO — UNTOUCHED (exactly as provided)
+               MOBILE HERO — Content on top, Image below (Reference style)
                ================================================================ */
         @media (max-width: 767px) {
             .hero-bg {
@@ -434,6 +433,7 @@
                 display: none;
             }
 
+            /* Content wrapper — solid background with brand colors */
             .hero-content-wrapper {
                 background: linear-gradient(160deg, #0b1d33 0%, #1a3a6b 50%, #2a5f8f 100%);
                 padding: 28px 16px 32px 16px;
@@ -546,6 +546,7 @@
                 color: rgba(255, 255, 255, 0.65);
             }
 
+            /* ---- Image section below content (separate) ---- */
             .hero-image-section {
                 padding: 0 16px 28px 16px;
                 background: #0b1d33;
@@ -572,6 +573,7 @@
                 background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 50%);
             }
 
+            /* Floating cards on the image */
             .hero-image-section .floating-card-1 {
                 position: absolute;
                 bottom: 6px;
@@ -655,6 +657,7 @@
                 letter-spacing: 0.04em;
             }
 
+            /* Disable animations on mobile */
             .float-animation,
             .float-animation-delay {
                 animation: none;
@@ -664,6 +667,7 @@
                 transition: none;
             }
 
+            /* Extra small screens */
             @media (max-width: 374px) {
                 .hero-content-wrapper {
                     padding: 18px 12px 24px 12px;
@@ -732,7 +736,7 @@
         }
 
         /* ================================================================
-               TABLET (768px - 1024px) — keep exactly as original
+               TABLET (768px - 1024px) — keep exactly as original desktop
                ================================================================ */
         @media (min-width: 768px) and (max-width: 1024px) {
             .hero-bg {
@@ -812,41 +816,32 @@
         }
 
         /* ================================================================
-               IMPROVED STYLES FOR OTHER SECTIONS (shadow, icons, etc.)
+               REST OF STYLES — unchanged from original
                ================================================================ */
-
-        /* ----- Premium Shadows on Cards ----- */
         .card-hover {
             transition: all 0.3s ease;
         }
         .card-hover:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.25), 0 4px 18px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.2);
         }
-
         .card {
             background: #fff;
             border-radius: 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
             padding: 1.5rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
         }
         .card:hover {
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+            border-color: #dce5f0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
             transform: translateY(-4px);
         }
-
         .card .card-icon {
-            font-size: 3rem; /* Larger icons */
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
             display: block;
             color: #1a3a6b;
-            transition: transform 0.3s ease;
-        }
-        .card:hover .card-icon {
-            transform: scale(1.05);
         }
         .card h3 {
             font-family: 'Playfair Display', serif;
@@ -855,12 +850,23 @@
             color: #1a3a6b;
         }
         .card p {
-            color: #555555;
+            color: #64748b;
             font-size: 0.9rem;
             margin-top: 0.25rem;
         }
+        .card .card-link {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-weight: 600;
+            color: #1a3a6b;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+        .card .card-link:hover {
+            color: #2a5f8f;
+            transform: translateX(4px);
+        }
 
-        /* ----- Lead Cards (Service Tiles) ----- */
         .lead-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -868,28 +874,23 @@
         }
         .lead-card {
             background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
             border-radius: 1rem;
             padding: 1.5rem 1rem;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
         }
         .lead-card:hover {
             border-color: #1a3a6b;
-            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.10), 0 8px 24px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 8px 32px rgba(26, 58, 107, 0.08);
             transform: translateY(-4px);
         }
         .lead-card .icon {
-            font-size: 2.8rem; /* Larger icons */
+            font-size: 2rem;
             display: block;
             margin-bottom: 0.25rem;
             color: #1a3a6b;
-            transition: transform 0.3s ease;
-        }
-        .lead-card:hover .icon {
-            transform: scale(1.05);
         }
         .lead-card h3 {
             font-family: 'Inter', sans-serif;
@@ -913,7 +914,6 @@
             color: #2a5f8f;
         }
 
-        /* ----- Testimonial Cards ----- */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -921,15 +921,14 @@
         }
         .testimonial-card {
             background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
             border-radius: 1rem;
             padding: 1.5rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
         }
         .testimonial-card:hover {
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+            border-color: #dce5f0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
             transform: translateY(-4px);
         }
         .testimonial-card .quote {
@@ -976,22 +975,6 @@
             color: #94a3b8;
         }
 
-        /* ================================================================
-               ANIMATIONS — fade-up on scroll (home page only)
-               ================================================================ */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ================================================================
-               OTHER ELEMENTS (unchanged)
-               ================================================================ */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1012,13 +995,10 @@
             padding: 4rem 0;
         }
         .section-alt {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(2px);
-            border-top: 1px solid rgba(0, 0, 0, 0.02);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+            background: #f0f4fb;
         }
         .section-white {
-            background: #ffffff;
+            background: #fff;
         }
         .section-soft {
             background: #f8fafc;
@@ -1180,7 +1160,6 @@
             transition: all 0.2s ease;
             min-width: 200px;
             outline: none;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
         .filter-bar .form-input:focus {
             border-color: #1a3a6b;
@@ -1189,10 +1168,6 @@
         .filter-bar .form-input::placeholder {
             color: #94a3b8;
         }
-
-        /* ================================================================
-               REST OF STYLES — unchanged from original
-               ================================================================ */
 
         .step-indicator {
             display: flex;
@@ -1285,7 +1260,6 @@
             border-radius: 1rem;
             border: 1px solid #eef2f6;
             background: #fff;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
         }
         .admin-table {
             width: 100%;
@@ -1337,7 +1311,6 @@
             border-radius: 1rem;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
         }
         .admin-form-panel.hidden {
             display: none;
@@ -1394,7 +1367,6 @@
         }
         .faq-item:hover {
             border-color: #dce5f0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
         .faq-item button {
             width: 100%;
@@ -1437,7 +1409,6 @@
             aspect-ratio: 4/3;
             object-fit: cover;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
         .gallery-grid img:hover {
             transform: scale(1.02);
@@ -1600,13 +1571,12 @@
             background: #fff;
             border-radius: 1rem;
             padding: 1.25rem;
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
         }
         .stat-card:hover {
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            border-color: #dce5f0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
         .stat-card .stat-label {
             font-size: 0.8rem;
@@ -1662,7 +1632,7 @@
                 padding: 1rem 0.6rem;
             }
             .lead-card .icon {
-                font-size: 2rem;
+                font-size: 1.4rem;
             }
             .lead-card h3 {
                 font-size: 0.8rem;
@@ -1809,8 +1779,9 @@
     ================================================================ -->
     <div id="page-home" class="page active">
 
-        <!-- ===== HERO — UNTOUCHED ===== -->
+        <!-- ===== HERO — Mobile: content on top, image below ===== -->
         <section class="hero-bg">
+            <!-- Content wrapper (mobile: solid background) -->
             <div class="hero-content-wrapper">
                 <div class="hero-content">
                     <div class="hero-text">
@@ -1829,6 +1800,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Image section — separate below content (mobile only) -->
             <div class="hero-image-section">
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=600&auto=format&fit=crop" alt="Students celebrating graduation" loading="lazy" />
@@ -1852,46 +1825,46 @@
             </div>
         </section>
 
-        <!-- ===== LEAD CARDS (fade-up animation) ===== -->
+        <!-- LEAD CARDS -->
         <section class="section section-white">
             <div class="container">
-                <div class="text-center fade-up">
+                <div class="text-center">
                     <span class="section-label">Explore</span>
                     <h2 class="section-title">Everything You Need <span class="highlight">in One Place</span></h2>
                     <p class="section-sub">From discovering destinations to booking a consultation — we've got you covered.</p>
                 </div>
                 <div class="lead-grid mt-3">
-                    <div class="lead-card fade-up" onclick="navigate('services')">
+                    <div class="lead-card" onclick="navigate('services')">
                         <span class="icon"><i class="fas fa-graduation-cap"></i></span>
                         <h3>Services</h3>
                         <p>Study abroad, visa, SOP &amp; more</p>
                         <span class="lead-link">Learn More →</span>
                     </div>
-                    <div class="lead-card fade-up" onclick="navigate('countries')">
+                    <div class="lead-card" onclick="navigate('countries')">
                         <span class="icon"><i class="fas fa-globe-americas"></i></span>
                         <h3>Countries</h3>
                         <p>Top destinations worldwide</p>
                         <span class="lead-link">Explore →</span>
                     </div>
-                    <div class="lead-card fade-up" onclick="navigate('universities')">
+                    <div class="lead-card" onclick="navigate('universities')">
                         <span class="icon"><i class="fas fa-university"></i></span>
                         <h3>Universities</h3>
                         <p>Partner institutions</p>
                         <span class="lead-link">View All →</span>
                     </div>
-                    <div class="lead-card fade-up" onclick="navigate('courses')">
+                    <div class="lead-card" onclick="navigate('courses')">
                         <span class="icon"><i class="fas fa-book-open"></i></span>
                         <h3>Courses</h3>
                         <p>Programs across disciplines</p>
                         <span class="lead-link">Browse →</span>
                     </div>
-                    <div class="lead-card fade-up" onclick="navigate('inquiry')">
+                    <div class="lead-card" onclick="navigate('inquiry')">
                         <span class="icon"><i class="fas fa-paper-plane"></i></span>
                         <h3>Inquiry</h3>
                         <p>Free consultation</p>
                         <span class="lead-link">Book Now →</span>
                     </div>
-                    <div class="lead-card fade-up" onclick="navigate('contact')">
+                    <div class="lead-card" onclick="navigate('contact')">
                         <span class="icon"><i class="fas fa-headset"></i></span>
                         <h3>Contact</h3>
                         <p>Get in touch with us</p>
@@ -1901,26 +1874,26 @@
             </div>
         </section>
 
-        <!-- ===== WHY CHOOSE US (fade-up) ===== -->
+        <!-- WHY CHOOSE US -->
         <section class="section section-alt">
             <div class="container">
-                <div class="text-center fade-up">
+                <div class="text-center">
                     <span class="section-label">Why SkyScholar</span>
                     <h2 class="section-title">Built for <span class="highlight">Your Success</span></h2>
                     <p class="section-sub">We combine deep industry expertise with a student‑first approach to deliver results.</p>
                 </div>
                 <div class="grid-3 mt-3">
-                    <div class="card card-hover fade-up">
+                    <div class="card card-hover">
                         <span class="card-icon"><i class="fas fa-brain"></i></span>
                         <h3>Expert Counsellors</h3>
                         <p>10+ years of study abroad experience guiding you at every step.</p>
                     </div>
-                    <div class="card card-hover fade-up">
+                    <div class="card card-hover">
                         <span class="card-icon"><i class="fas fa-arrows-rotate"></i></span>
                         <h3>End‑to‑End Support</h3>
                         <p>From university selection to visa and travel — we handle it all.</p>
                     </div>
-                    <div class="card card-hover fade-up">
+                    <div class="card card-hover">
                         <span class="card-icon"><i class="fas fa-check-circle"></i></span>
                         <h3>High Visa Success</h3>
                         <p>98% visa success rate across all countries, backed by our team.</p>
@@ -1929,10 +1902,10 @@
             </div>
         </section>
 
-        <!-- ===== TESTIMONIALS (fade-up) ===== -->
+        <!-- TESTIMONIALS -->
         <section class="section section-white">
             <div class="container">
-                <div class="text-center fade-up">
+                <div class="text-center">
                     <span class="section-label">Testimonials</span>
                     <h2 class="section-title">What Our <span class="highlight">Students Say</span></h2>
                     <p class="section-sub">Real stories from students who trusted us with their study abroad journey.</p>
@@ -1941,9 +1914,9 @@
             </div>
         </section>
 
-        <!-- ===== PARTNER UNIVERSITIES (fade-up) ===== -->
+        <!-- PARTNER UNIVERSITIES -->
         <section class="section section-alt">
-            <div class="container text-center fade-up">
+            <div class="container text-center">
                 <span class="section-label">Partners</span>
                 <h2 class="section-title">Trusted by <span class="highlight">Top Universities</span></h2>
                 <div class="flex flex-wrap justify-center gap-3 mt-3">
@@ -2469,7 +2442,7 @@
     </footer>
 
     <!-- ================================================================
-    JAVASCRIPT — Full application logic + Intersection Observer for animations
+    JAVASCRIPT — Full application logic
     ================================================================ -->
     <script>
         // ================================================================
@@ -2596,7 +2569,7 @@
         }
 
         // ================================================================
-        // MOBILE MENU
+        // MOBILE MENU — FIXED
         // ================================================================
         function openMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -2675,7 +2648,7 @@
             const container = document.getElementById('homeTestimonials');
             const data = DB.getTestimonials().slice(0, 3);
             container.innerHTML = data.map(t => `
-                    <div class="testimonial-card fade-up">
+                    <div class="testimonial-card">
                         <div class="quote">${t.content}</div>
                         <div class="author">
                             <img src="${t.image || 'https://ui-avatars.com/api/?name='+encodeURIComponent(t.studentName)}" alt="${t.studentName}" loading="lazy" />
@@ -2686,8 +2659,6 @@
                         </div>
                     </div>
                 `).join('');
-            // Re-run observer for new testimonial cards
-            observeFadeElements();
         }
 
         // ================================================================
@@ -3099,22 +3070,6 @@
         window.addEventListener('hashchange', handleHash);
 
         // ================================================================
-        // INTERSECTION OBSERVER — fade-up animations on home page
-        // ================================================================
-        function observeFadeElements() {
-            const fadeElements = document.querySelectorAll('.fade-up');
-            if (!fadeElements.length) return;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-            fadeElements.forEach(el => observer.observe(el));
-        }
-
-        // ================================================================
         // MOBILE MENU EVENT LISTENERS
         // ================================================================
         document.getElementById('mobileMenuBtn').addEventListener('click', function(e) {
@@ -3139,8 +3094,6 @@
                 footerCountries.innerHTML = countries.slice(0, 4).map(c => `<li>${c.name}</li>`).join('');
             }
             renderHomeTestimonials();
-            // Start observing after content is rendered
-            setTimeout(observeFadeElements, 100);
             console.log('🚀 SkyScholar loaded successfully.');
         });
 
