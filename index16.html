@@ -8,14 +8,14 @@
     <!-- ===== PREMIUM FONTS ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- ===== FONT AWESOME 6 (Free) ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
         /* ================================================================
-               RESET & BASE
+               RESET & BASE — with improved background & shadows
                ================================================================ */
         * {
             margin: 0;
@@ -24,9 +24,10 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
             color: #0a1a2f;
             line-height: 1.6;
+            min-height: 100vh;
         }
         h1,
         h2,
@@ -219,7 +220,7 @@
         }
 
         /* ================================================================
-               HERO — DESKTOP & TABLET
+               HERO — UNTOUCHED (exactly as provided)
                ================================================================ */
         .hero-bg {
             position: relative;
@@ -416,7 +417,7 @@
         }
 
         /* ================================================================
-               MOBILE HERO
+               MOBILE HERO — UNTOUCHED (exactly as provided)
                ================================================================ */
         @media (max-width: 767px) {
             .hero-bg {
@@ -731,7 +732,7 @@
         }
 
         /* ================================================================
-               TABLET (768px - 1024px)
+               TABLET (768px - 1024px) — keep exactly as original
                ================================================================ */
         @media (min-width: 768px) and (max-width: 1024px) {
             .hero-bg {
@@ -771,7 +772,7 @@
         }
 
         /* ================================================================
-               DESKTOP LARGE (1025px+)
+               DESKTOP LARGE (1025px+) — exactly as original
                ================================================================ */
         @media (min-width: 1025px) {
             .hero-bg {
@@ -811,262 +812,41 @@
         }
 
         /* ================================================================
-               UPGRADED SECTIONS — Premium Card Style from Reference
+               IMPROVED STYLES FOR OTHER SECTIONS (shadow, icons, etc.)
                ================================================================ */
 
-        /* ----- Premium Why Choose Us (Upgraded) ----- */
-        .premium-section {
-            padding: 4rem 0;
-            background: #ffffff;
-        }
-        .premium-section-alt {
-            padding: 4rem 0;
-            background: #f8fafc;
-        }
-
-        .premium-section .section-label {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #1a3a6b;
-            background: rgba(26, 58, 107, 0.08);
-            padding: 0.25rem 1rem;
-            border-radius: 9999px;
-            margin-bottom: 0.5rem;
-        }
-        .premium-section .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            font-weight: 700;
-            color: #1a3a6b;
-        }
-        .premium-section .section-title .highlight {
-            color: #f5c542;
-        }
-        .premium-section .section-sub {
-            font-size: 1rem;
-            color: #64748b;
-            max-width: 560px;
-            margin-top: 0.5rem;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-center .section-sub {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Premium Card — reference style with large icons & deep shadows */
-        .premium-card {
-            background: #ffffff;
-            border-radius: 1.25rem;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-            position: relative;
-            overflow: hidden;
-            min-height: 280px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .premium-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(26, 58, 107, 0.02), rgba(245, 197, 66, 0.02));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .premium-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.10), 0 8px 24px rgba(0, 0, 0, 0.04);
-            border-color: rgba(26, 58, 107, 0.08);
-        }
-        .premium-card:hover::before {
-            opacity: 1;
-        }
-
-        .premium-card .card-icon {
-            font-size: 3.5rem;
-            display: block;
-            margin-bottom: 1rem;
-            color: #1a3a6b;
-            transition: transform 0.3s ease;
-            line-height: 1;
-        }
-        .premium-card:hover .card-icon {
-            transform: scale(1.05);
-        }
-
-        .premium-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #1a3a6b;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-        .premium-card p {
-            color: #555555;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            max-width: 280px;
-            margin: 0 auto;
-        }
-
-        /* Premium grid */
-        .premium-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-
-        @media (max-width: 1024px) {
-            .premium-grid-3 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-        @media (max-width: 640px) {
-            .premium-grid-3 {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-            .premium-card {
-                padding: 2rem 1.5rem;
-                min-height: 220px;
-            }
-            .premium-card .card-icon {
-                font-size: 2.8rem;
-            }
-            .premium-card h3 {
-                font-size: 1.15rem;
-            }
-            .premium-card p {
-                font-size: 0.85rem;
-            }
-        }
-
-        /* ----- Mission & Values Section (New, from reference) ----- */
-        .mission-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        .mission-card {
-            background: #ffffff;
-            border-radius: 1.25rem;
-            padding: 2.5rem 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .mission-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
-            border-color: rgba(26, 58, 107, 0.08);
-        }
-        .mission-card .mission-icon {
-            font-size: 2.8rem;
-            color: #1a3a6b;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-        .mission-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1a3a6b;
-            margin-bottom: 0.5rem;
-        }
-        .mission-card p {
-            color: #555555;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Values list as chips */
-        .values-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.75rem;
-        }
-        .value-chip {
-            background: rgba(26, 58, 107, 0.06);
-            color: #1a3a6b;
-            padding: 0.4rem 1.2rem;
-            border-radius: 9999px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(26, 58, 107, 0.06);
-            transition: all 0.3s ease;
-        }
-        .value-chip:hover {
-            background: rgba(26, 58, 107, 0.10);
-            border-color: rgba(26, 58, 107, 0.12);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .mission-grid-2 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .mission-card {
-                padding: 2rem 1.5rem;
-            }
-            .mission-card .mission-icon {
-                font-size: 2.2rem;
-            }
-            .mission-card h3 {
-                font-size: 1.1rem;
-            }
-            .mission-card p {
-                font-size: 0.9rem;
-            }
-            .value-chip {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.9rem;
-            }
-        }
-
-        /* ================================================================
-               REST OF STYLES — unchanged
-               ================================================================ */
+        /* ----- Premium Shadows on Cards ----- */
         .card-hover {
             transition: all 0.3s ease;
         }
         .card-hover:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.2);
+            box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.25), 0 4px 18px rgba(0, 0, 0, 0.06);
         }
+
         .card {
             background: #fff;
             border-radius: 1rem;
-            border: 1px solid #eef2f6;
+            border: 1px solid rgba(0, 0, 0, 0.04);
             padding: 1.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
         }
         .card:hover {
-            border-color: #dce5f0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
             transform: translateY(-4px);
         }
+
         .card .card-icon {
-            font-size: 2.2rem;
+            font-size: 3rem; /* Larger icons */
             margin-bottom: 0.5rem;
             display: block;
             color: #1a3a6b;
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.05);
         }
         .card h3 {
             font-family: 'Playfair Display', serif;
@@ -1075,23 +855,12 @@
             color: #1a3a6b;
         }
         .card p {
-            color: #64748b;
+            color: #555555;
             font-size: 0.9rem;
             margin-top: 0.25rem;
         }
-        .card .card-link {
-            display: inline-block;
-            margin-top: 0.75rem;
-            font-weight: 600;
-            color: #1a3a6b;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-        .card .card-link:hover {
-            color: #2a5f8f;
-            transform: translateX(4px);
-        }
 
+        /* ----- Lead Cards (Service Tiles) ----- */
         .lead-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -1099,23 +868,28 @@
         }
         .lead-card {
             background: #fff;
-            border: 1px solid #eef2f6;
+            border: 1px solid rgba(0, 0, 0, 0.04);
             border-radius: 1rem;
             padding: 1.5rem 1rem;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
         }
         .lead-card:hover {
             border-color: #1a3a6b;
-            box-shadow: 0 8px 32px rgba(26, 58, 107, 0.08);
+            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.10), 0 8px 24px rgba(0, 0, 0, 0.04);
             transform: translateY(-4px);
         }
         .lead-card .icon {
-            font-size: 2rem;
+            font-size: 2.8rem; /* Larger icons */
             display: block;
             margin-bottom: 0.25rem;
             color: #1a3a6b;
+            transition: transform 0.3s ease;
+        }
+        .lead-card:hover .icon {
+            transform: scale(1.05);
         }
         .lead-card h3 {
             font-family: 'Inter', sans-serif;
@@ -1139,6 +913,7 @@
             color: #2a5f8f;
         }
 
+        /* ----- Testimonial Cards ----- */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1146,14 +921,15 @@
         }
         .testimonial-card {
             background: #fff;
-            border: 1px solid #eef2f6;
+            border: 1px solid rgba(0, 0, 0, 0.04);
             border-radius: 1rem;
             padding: 1.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01);
         }
         .testimonial-card:hover {
-            border-color: #dce5f0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 60px rgba(26, 58, 107, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
             transform: translateY(-4px);
         }
         .testimonial-card .quote {
@@ -1200,6 +976,22 @@
             color: #94a3b8;
         }
 
+        /* ================================================================
+               ANIMATIONS — fade-up on scroll (home page only)
+               ================================================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================================================================
+               OTHER ELEMENTS (unchanged)
+               ================================================================ */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1220,10 +1012,13 @@
             padding: 4rem 0;
         }
         .section-alt {
-            background: #f0f4fb;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(2px);
+            border-top: 1px solid rgba(0, 0, 0, 0.02);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.02);
         }
         .section-white {
-            background: #fff;
+            background: #ffffff;
         }
         .section-soft {
             background: #f8fafc;
@@ -1385,6 +1180,7 @@
             transition: all 0.2s ease;
             min-width: 200px;
             outline: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
         .filter-bar .form-input:focus {
             border-color: #1a3a6b;
@@ -1393,6 +1189,10 @@
         .filter-bar .form-input::placeholder {
             color: #94a3b8;
         }
+
+        /* ================================================================
+               REST OF STYLES — unchanged from original
+               ================================================================ */
 
         .step-indicator {
             display: flex;
@@ -1485,6 +1285,7 @@
             border-radius: 1rem;
             border: 1px solid #eef2f6;
             background: #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
         }
         .admin-table {
             width: 100%;
@@ -1536,6 +1337,7 @@
             border-radius: 1rem;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
         }
         .admin-form-panel.hidden {
             display: none;
@@ -1592,6 +1394,7 @@
         }
         .faq-item:hover {
             border-color: #dce5f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
         .faq-item button {
             width: 100%;
@@ -1634,6 +1437,7 @@
             aspect-ratio: 4/3;
             object-fit: cover;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
         .gallery-grid img:hover {
             transform: scale(1.02);
@@ -1796,12 +1600,13 @@
             background: #fff;
             border-radius: 1rem;
             padding: 1.25rem;
-            border: 1px solid #eef2f6;
+            border: 1px solid rgba(0, 0, 0, 0.04);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
         }
         .stat-card:hover {
-            border-color: #dce5f0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
         }
         .stat-card .stat-label {
             font-size: 0.8rem;
@@ -1857,7 +1662,7 @@
                 padding: 1rem 0.6rem;
             }
             .lead-card .icon {
-                font-size: 1.4rem;
+                font-size: 2rem;
             }
             .lead-card h3 {
                 font-size: 0.8rem;
@@ -2004,7 +1809,7 @@
     ================================================================ -->
     <div id="page-home" class="page active">
 
-        <!-- ===== HERO ===== -->
+        <!-- ===== HERO — UNTOUCHED ===== -->
         <section class="hero-bg">
             <div class="hero-content-wrapper">
                 <div class="hero-content">
@@ -2047,46 +1852,46 @@
             </div>
         </section>
 
-        <!-- ===== LEAD CARDS ===== -->
+        <!-- ===== LEAD CARDS (fade-up animation) ===== -->
         <section class="section section-white">
             <div class="container">
-                <div class="text-center">
+                <div class="text-center fade-up">
                     <span class="section-label">Explore</span>
                     <h2 class="section-title">Everything You Need <span class="highlight">in One Place</span></h2>
                     <p class="section-sub">From discovering destinations to booking a consultation — we've got you covered.</p>
                 </div>
                 <div class="lead-grid mt-3">
-                    <div class="lead-card" onclick="navigate('services')">
+                    <div class="lead-card fade-up" onclick="navigate('services')">
                         <span class="icon"><i class="fas fa-graduation-cap"></i></span>
                         <h3>Services</h3>
                         <p>Study abroad, visa, SOP &amp; more</p>
                         <span class="lead-link">Learn More →</span>
                     </div>
-                    <div class="lead-card" onclick="navigate('countries')">
+                    <div class="lead-card fade-up" onclick="navigate('countries')">
                         <span class="icon"><i class="fas fa-globe-americas"></i></span>
                         <h3>Countries</h3>
                         <p>Top destinations worldwide</p>
                         <span class="lead-link">Explore →</span>
                     </div>
-                    <div class="lead-card" onclick="navigate('universities')">
+                    <div class="lead-card fade-up" onclick="navigate('universities')">
                         <span class="icon"><i class="fas fa-university"></i></span>
                         <h3>Universities</h3>
                         <p>Partner institutions</p>
                         <span class="lead-link">View All →</span>
                     </div>
-                    <div class="lead-card" onclick="navigate('courses')">
+                    <div class="lead-card fade-up" onclick="navigate('courses')">
                         <span class="icon"><i class="fas fa-book-open"></i></span>
                         <h3>Courses</h3>
                         <p>Programs across disciplines</p>
                         <span class="lead-link">Browse →</span>
                     </div>
-                    <div class="lead-card" onclick="navigate('inquiry')">
+                    <div class="lead-card fade-up" onclick="navigate('inquiry')">
                         <span class="icon"><i class="fas fa-paper-plane"></i></span>
                         <h3>Inquiry</h3>
                         <p>Free consultation</p>
                         <span class="lead-link">Book Now →</span>
                     </div>
-                    <div class="lead-card" onclick="navigate('contact')">
+                    <div class="lead-card fade-up" onclick="navigate('contact')">
                         <span class="icon"><i class="fas fa-headset"></i></span>
                         <h3>Contact</h3>
                         <p>Get in touch with us</p>
@@ -2096,26 +1901,26 @@
             </div>
         </section>
 
-        <!-- ===== WHY CHOOSE US — UPGRADED with premium cards ===== -->
-        <section class="premium-section-alt">
+        <!-- ===== WHY CHOOSE US (fade-up) ===== -->
+        <section class="section section-alt">
             <div class="container">
-                <div class="text-center">
+                <div class="text-center fade-up">
                     <span class="section-label">Why SkyScholar</span>
                     <h2 class="section-title">Built for <span class="highlight">Your Success</span></h2>
                     <p class="section-sub">We combine deep industry expertise with a student‑first approach to deliver results.</p>
                 </div>
-                <div class="premium-grid-3">
-                    <div class="premium-card">
+                <div class="grid-3 mt-3">
+                    <div class="card card-hover fade-up">
                         <span class="card-icon"><i class="fas fa-brain"></i></span>
                         <h3>Expert Counsellors</h3>
                         <p>10+ years of study abroad experience guiding you at every step.</p>
                     </div>
-                    <div class="premium-card">
+                    <div class="card card-hover fade-up">
                         <span class="card-icon"><i class="fas fa-arrows-rotate"></i></span>
                         <h3>End‑to‑End Support</h3>
                         <p>From university selection to visa and travel — we handle it all.</p>
                     </div>
-                    <div class="premium-card">
+                    <div class="card card-hover fade-up">
                         <span class="card-icon"><i class="fas fa-check-circle"></i></span>
                         <h3>High Visa Success</h3>
                         <p>98% visa success rate across all countries, backed by our team.</p>
@@ -2124,44 +1929,10 @@
             </div>
         </section>
 
-        <!-- ===== MISSION & VALUES — NEW section (from reference) ===== -->
-        <section class="premium-section">
-            <div class="container">
-                <div class="text-center">
-                    <span class="section-label">Our Foundation</span>
-                    <h2 class="section-title">Mission, Vision &amp; <span class="highlight">Values</span></h2>
-                    <p class="section-sub">Driven by a commitment to transform lives through global education.</p>
-                </div>
-                <div class="mission-grid-2">
-                    <div class="mission-card">
-                        <span class="mission-icon"><i class="fas fa-rocket"></i></span>
-                        <h3>Our Mission</h3>
-                        <p>To provide accessible, high-quality study abroad guidance that equips students with the practical skills and global perspective needed to thrive in an interconnected world.</p>
-                    </div>
-                    <div class="mission-card">
-                        <span class="mission-icon"><i class="fas fa-eye"></i></span>
-                        <h3>Our Vision</h3>
-                        <p>To be a global leader in international education, fostering innovation, cultural exchange, and lifelong learning for a better society.</p>
-                    </div>
-                </div>
-                <div style="margin-top:2rem; text-align:center;">
-                    <div style="display:inline-block; background:#ffffff; border-radius:1.25rem; padding:1.5rem 2.5rem; box-shadow:0 4px 20px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.04);">
-                        <span style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:#1a3a6b; display:block; margin-bottom:0.75rem;">Our Core Values</span>
-                        <div class="values-chips" style="justify-content:center;">
-                            <span class="value-chip"><i class="fas fa-shield-alt" style="margin-right:0.4rem;"></i> Integrity</span>
-                            <span class="value-chip"><i class="fas fa-star" style="margin-right:0.4rem;"></i> Excellence</span>
-                            <span class="value-chip"><i class="fas fa-users" style="margin-right:0.4rem;"></i> Inclusivity</span>
-                            <span class="value-chip"><i class="fas fa-heart" style="margin-right:0.4rem;"></i> Student-Centricity</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== TESTIMONIALS ===== -->
+        <!-- ===== TESTIMONIALS (fade-up) ===== -->
         <section class="section section-white">
             <div class="container">
-                <div class="text-center">
+                <div class="text-center fade-up">
                     <span class="section-label">Testimonials</span>
                     <h2 class="section-title">What Our <span class="highlight">Students Say</span></h2>
                     <p class="section-sub">Real stories from students who trusted us with their study abroad journey.</p>
@@ -2170,9 +1941,9 @@
             </div>
         </section>
 
-        <!-- ===== PARTNER UNIVERSITIES ===== -->
+        <!-- ===== PARTNER UNIVERSITIES (fade-up) ===== -->
         <section class="section section-alt">
-            <div class="container text-center">
+            <div class="container text-center fade-up">
                 <span class="section-label">Partners</span>
                 <h2 class="section-title">Trusted by <span class="highlight">Top Universities</span></h2>
                 <div class="flex flex-wrap justify-center gap-3 mt-3">
@@ -2698,7 +2469,7 @@
     </footer>
 
     <!-- ================================================================
-    JAVASCRIPT — Full application logic
+    JAVASCRIPT — Full application logic + Intersection Observer for animations
     ================================================================ -->
     <script>
         // ================================================================
@@ -2904,7 +2675,7 @@
             const container = document.getElementById('homeTestimonials');
             const data = DB.getTestimonials().slice(0, 3);
             container.innerHTML = data.map(t => `
-                    <div class="testimonial-card">
+                    <div class="testimonial-card fade-up">
                         <div class="quote">${t.content}</div>
                         <div class="author">
                             <img src="${t.image || 'https://ui-avatars.com/api/?name='+encodeURIComponent(t.studentName)}" alt="${t.studentName}" loading="lazy" />
@@ -2915,6 +2686,8 @@
                         </div>
                     </div>
                 `).join('');
+            // Re-run observer for new testimonial cards
+            observeFadeElements();
         }
 
         // ================================================================
@@ -3326,6 +3099,22 @@
         window.addEventListener('hashchange', handleHash);
 
         // ================================================================
+        // INTERSECTION OBSERVER — fade-up animations on home page
+        // ================================================================
+        function observeFadeElements() {
+            const fadeElements = document.querySelectorAll('.fade-up');
+            if (!fadeElements.length) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            fadeElements.forEach(el => observer.observe(el));
+        }
+
+        // ================================================================
         // MOBILE MENU EVENT LISTENERS
         // ================================================================
         document.getElementById('mobileMenuBtn').addEventListener('click', function(e) {
@@ -3350,6 +3139,8 @@
                 footerCountries.innerHTML = countries.slice(0, 4).map(c => `<li>${c.name}</li>`).join('');
             }
             renderHomeTestimonials();
+            // Start observing after content is rendered
+            setTimeout(observeFadeElements, 100);
             console.log('🚀 SkyScholar loaded successfully.');
         });
 
