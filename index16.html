@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>SkyScholar – Study Abroad</title>
 
-    <!-- ===== PREMIUM FONTS (exactly as original) ===== -->
+    <!-- ===== PREMIUM FONTS ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- ===== FONT AWESOME 6 (Free) ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <!-- ===== TAILWIND CSS via CDN ===== -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         /* ================================================================
@@ -60,7 +57,7 @@
             display: block;
         }
 
-        /* ===== GLASS NAV (exactly as original) ===== */
+        /* ===== GLASS NAV ===== */
         .glass {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
@@ -92,9 +89,6 @@
             color: #1a3a6b;
             font-family: 'Playfair Display', serif;
             cursor: pointer;
-        }
-        .brand span {
-            color: #1a3a6b;
         }
 
         .nav-links {
@@ -132,35 +126,84 @@
             font-size: 1.5rem;
             color: #1a3a6b;
             cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            z-index: 1001;
         }
 
+        /* ===== MOBILE MENU — FIXED ===== */
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 72px;
+            top: 0;
             left: 0;
             width: 100%;
-            background: #fff;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
-            padding: 1.5rem;
-            z-index: 999;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 5rem 2rem 2rem;
+            z-index: 998;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border-bottom: 1px solid var(--color-border-light, #f0f0f0);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
         .mobile-menu.open {
             display: block;
+            opacity: 1;
+            pointer-events: auto;
         }
         .mobile-menu a {
             display: block;
-            padding: 0.6rem 0;
-            font-size: 0.9rem;
+            padding: 0.8rem 0;
+            font-size: 1.1rem;
             font-weight: 500;
             color: #0a1a2f;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: color 0.2s ease;
+            position: relative;
+            z-index: 999;
         }
         .mobile-menu a:last-child {
             border-bottom: none;
         }
         .mobile-menu a:hover {
-            color: #2a5f8f;
+            color: #1a3a6b;
+        }
+        .mobile-menu a .menu-arrow {
+            float: right;
+            color: #94a3b8;
+        }
+
+        /* Menu overlay close area */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 997;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .mobile-menu-overlay.open {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Body scroll lock when menu open */
+        body.menu-open {
+            overflow: hidden;
         }
 
         @media (max-width: 768px) {
@@ -179,7 +222,7 @@
         }
 
         /* ================================================================
-               HERO — DESKTOP & TABLET (exactly as original, untouched)
+               HERO — DESKTOP & TABLET (unchanged)
                ================================================================ */
         .hero-bg {
             position: relative;
@@ -212,7 +255,6 @@
             padding-bottom: 3rem;
         }
 
-        /* ===== DESKTOP HERO IMAGE ===== */
         .hero-image {
             position: relative;
             border-radius: 1rem;
@@ -230,7 +272,6 @@
             background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 60%);
         }
 
-        /* Floating cards — exactly as original (desktop) */
         .glass-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(12px);
@@ -282,7 +323,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
         }
 
-        /* ===== HERO TEXT (desktop) ===== */
         .hero-text .hero-badge {
             display: inline-block;
             padding: 0.25rem 1rem;
@@ -335,9 +375,6 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* ================================================================
-               BUTTONS (desktop)
-               ================================================================ */
         .btn-primary {
             background: linear-gradient(135deg, #1a3a6b, #2a5f8f);
             color: #fff;
@@ -382,253 +419,14 @@
         }
 
         /* ================================================================
-               MOBILE HERO OVERRIDES (only below 768px)
+               MOBILE HERO IMPROVEMENTS (only below 768px)
+               Uses reference layout: text → CTAs → stats → image
                ================================================================ */
         @media (max-width: 767px) {
-
-            /* ---- 1. Increase vertical spacing between navbar and hero ---- */
             .hero-bg {
                 min-height: 100vh;
                 align-items: flex-start;
-                padding-top: 16px;
-                /* extra breathing room after nav */
-            }
-
-            /* ---- 2. Hero content grid: single column, better spacing ---- */
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                /* 8px * 3 = 24px */
-                padding: 24px 20px 32px 20px;
-                /* pt-6, px-5, pb-8 */
-                padding-top: 28px;
-                /* extra top space */
-            }
-
-            /* ---- 3. Hero text order: badge → headline → paragraph → buttons → stats ---- */
-            .hero-text {
-                display: flex;
-                flex-direction: column;
-                gap: 0;
-                order: 1;
-            }
-
-            /* ---- 4. Badge: keep but add margin ---- */
-            .hero-text .hero-badge {
-                font-size: 0.65rem;
-                padding: 0.2rem 0.8rem;
-                margin-bottom: 12px;
-                /* 8px * 1.5 */
-                align-self: flex-start;
-            }
-
-            /* ---- 5. Headline: better responsive font size & line height ---- */
-            .hero-text h1 {
-                font-size: 2.1rem;
-                /* ~34px */
-                line-height: 1.08;
-                letter-spacing: -0.02em;
-                max-width: 100%;
-            }
-            .hero-text h1 br {
-                display: inline;
-            }
-
-            /* ---- 6. Paragraph: reduced width, better readability ---- */
-            .hero-text p {
-                font-size: 1rem;
-                /* 16px */
-                line-height: 1.6;
-                max-width: 100%;
-                margin-top: 12px;
-                /* 8px * 1.5 */
-                padding-right: 4px;
-            }
-
-            /* ---- 7. CTA buttons: stack vertically with consistent spacing ---- */
-            .hero-text .hero-actions {
-                flex-direction: column;
-                gap: 12px;
-                /* 8px * 1.5 */
-                margin-top: 20px;
-                /* 8px * 2.5 */
-                width: 100%;
-            }
-            .hero-text .hero-actions .btn-primary,
-            .hero-text .hero-actions .btn-secondary {
-                width: 100%;
-                min-height: 50px;
-                font-size: 0.95rem;
-                justify-content: center;
-                padding: 0.75rem 1rem;
-            }
-            /* Special gold CTA */
-            .hero-text .hero-actions .btn-primary[style*="background:#f5c542"] {
-                background: #f5c542 !important;
-                color: #1a3a6b !important;
-                font-weight: 700;
-            }
-
-            /* ---- 8. Statistics: premium glass card ---- */
-            .hero-text .hero-stats {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 16px 24px;
-                /* 8px * 2, 8px * 3 */
-                margin-top: 24px;
-                /* 8px * 3 */
-                padding: 20px 18px;
-                /* 8px * 2.5, 8px * 2.25 */
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                border-radius: 20px;
-                /* rounded-3xl */
-                background: rgba(255, 255, 255, 0.06);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-                justify-content: space-around;
-                width: 100%;
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-            .hero-text .hero-stats .stat-item {
-                text-align: center;
-                flex: 1 0 auto;
-                min-width: 72px;
-            }
-            .hero-text .hero-stats .stat-number {
-                font-size: 1.4rem;
-                /* 22px */
-                display: block;
-                line-height: 1.2;
-            }
-            .hero-text .hero-stats .stat-label {
-                font-size: 0.7rem;
-                /* 11px */
-                display: block;
-                margin-top: 2px;
-                letter-spacing: 0.02em;
-            }
-
-            /* ---- 9. Hero image: move upward so faces appear earlier ---- */
-            .hero-image {
-                order: 0;
-                /* image first */
-                margin-top: 0;
-                border-radius: 16px;
-                max-height: 260px;
-                /* reduced height so faces are visible */
-                min-height: 200px;
-                overflow: hidden;
-                width: 100%;
-            }
-            .hero-image img {
-                height: 100%;
-                min-height: 200px;
-                max-height: 260px;
-                object-fit: cover;
-                object-position: center 20%;
-                /* shift focus upward to faces */
-                width: 100%;
-            }
-            .hero-image .hero-image-overlay {
-                background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 50%);
-            }
-
-            /* ---- 10. Floating cards: reposition so they don't overlap important content ---- */
-            .hero-image .floating-card-1 {
-                bottom: 8px;
-                left: 8px;
-                padding: 6px 10px;
-                border-radius: 12px;
-                background: rgba(255, 255, 255, 0.12);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.15);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                transform: scale(0.85);
-                transform-origin: bottom left;
-            }
-            .hero-image .floating-card-1 span {
-                font-size: 1.1rem;
-            }
-            .hero-image .floating-card-1 div p:first-child {
-                font-size: 0.55rem;
-                font-weight: 600;
-                color: #fff;
-                margin: 0;
-                line-height: 1.2;
-            }
-            .hero-image .floating-card-1 div p:last-child {
-                font-size: 0.45rem;
-                color: rgba(255, 255, 255, 0.6);
-                margin: 0;
-                line-height: 1.2;
-            }
-
-            .hero-image .floating-card-2 {
-                top: 8px;
-                right: 8px;
-                padding: 6px 10px;
-                border-radius: 12px;
-                background: rgba(255, 255, 255, 0.12);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.15);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                transform: scale(0.85);
-                transform-origin: top right;
-            }
-            .hero-image .floating-card-2 span {
-                font-size: 1.1rem;
-            }
-            .hero-image .floating-card-2 div p:first-child {
-                font-size: 0.55rem;
-                font-weight: 600;
-                color: #fff;
-                margin: 0;
-                line-height: 1.2;
-            }
-            .hero-image .floating-card-2 div p:last-child {
-                font-size: 0.45rem;
-                color: rgba(255, 255, 255, 0.6);
-                margin: 0;
-                line-height: 1.2;
-            }
-
-            .hero-image .floating-badge {
-                bottom: 40px;
-                right: 10px;
-                padding: 2px 12px;
-                font-size: 0.5rem;
-                border-radius: 9999px;
-                background: rgba(255, 255, 255, 0.10);
-                backdrop-filter: blur(6px);
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                color: #f5c542;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-                letter-spacing: 0.04em;
-            }
-
-            /* ---- 11. Ensure nothing touches screen edges ---- */
-            .hero-content {
-                padding-left: 16px;
-                padding-right: 16px;
-            }
-            .hero-text .hero-stats {
-                margin-left: 0;
-                margin-right: 0;
-                width: 100%;
-            }
-
-            /* ---- 12. Mobile-only background enhancements ---- */
-            .hero-bg {
+                padding-top: 0;
                 background-image: url('https://plus.unsplash.com/premium_photo-1713296255442-e9338f42aad8?q=80&w=422&auto=format&fit=crop&ixlib=rb-4.1.0');
                 background-position: center 30%;
                 background-size: cover;
@@ -636,7 +434,6 @@
             .hero-bg::before {
                 background: linear-gradient(160deg, rgba(11, 29, 51, 0.82) 0%, rgba(26, 58, 107, 0.55) 50%, rgba(42, 95, 143, 0.45) 100%);
             }
-            /* Soft radial glow overlay (mobile only) */
             .hero-bg::after {
                 content: '';
                 position: absolute;
@@ -645,81 +442,206 @@
                 z-index: 0;
                 pointer-events: none;
             }
-            /* Ensure hero-content stays above the glow */
+
             .hero-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 24px 16px 32px 16px;
+                padding-top: 28px;
                 z-index: 2;
+                display: flex;
+                flex-direction: column;
             }
 
-            /* ---- 13. Extra small screens (320px - 374px) ---- */
-            @media (max-width: 374px) {
-                .hero-content {
-                    padding: 20px 12px 28px 12px;
-                    gap: 18px;
-                }
-                .hero-text h1 {
-                    font-size: 1.7rem;
-                }
-                .hero-text p {
-                    font-size: 0.9rem;
-                }
-                .hero-text .hero-stats {
-                    gap: 12px 16px;
-                    padding: 16px 10px;
-                }
-                .hero-text .hero-stats .stat-number {
-                    font-size: 1.2rem;
-                }
-                .hero-text .hero-stats .stat-label {
-                    font-size: 0.6rem;
-                }
-                .hero-image {
-                    max-height: 200px;
-                    min-height: 160px;
-                }
-                .hero-image img {
-                    min-height: 160px;
-                    max-height: 200px;
-                }
-                .hero-image .floating-card-1,
-                .hero-image .floating-card-2 {
-                    transform: scale(0.7);
-                }
-                .hero-image .floating-badge {
-                    font-size: 0.4rem;
-                    padding: 1px 8px;
-                    bottom: 32px;
-                    right: 6px;
-                }
-                .hero-text .hero-actions .btn-primary,
-                .hero-text .hero-actions .btn-secondary {
-                    font-size: 0.85rem;
-                    min-height: 44px;
-                    padding: 0.6rem 0.8rem;
-                }
+            /* ---- Hero Text (top) ---- */
+            .hero-text {
+                order: 1;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-text .hero-badge {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.8rem;
+                margin-bottom: 10px;
+                align-self: flex-start;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+                line-height: 1.08;
+                letter-spacing: -0.02em;
+            }
+            .hero-text h1 br {
+                display: inline;
+            }
+            .hero-text p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                max-width: 100%;
+                margin-top: 10px;
+                padding-right: 4px;
             }
 
-            /* ---- 14. Medium-small phones (375px - 480px) ---- */
-            @media (min-width: 375px) and (max-width: 480px) {
-                .hero-text h1 {
-                    font-size: 1.9rem;
-                }
-                .hero-text p {
-                    font-size: 0.95rem;
-                }
-                .hero-image {
-                    max-height: 230px;
-                    min-height: 180px;
-                }
-                .hero-image img {
-                    min-height: 180px;
-                    max-height: 230px;
-                }
-                .hero-text .hero-stats .stat-number {
-                    font-size: 1.3rem;
-                }
+            /* ---- CTAs (second) ---- */
+            .hero-text .hero-actions {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 18px;
+                width: 100%;
+            }
+            .hero-text .hero-actions .btn-primary,
+            .hero-text .hero-actions .btn-secondary {
+                width: 100%;
+                min-height: 48px;
+                font-size: 0.9rem;
+                justify-content: center;
+                padding: 0.7rem 1rem;
+            }
+            .hero-text .hero-actions .btn-primary[style*="background:#f5c542"] {
+                background: #f5c542 !important;
+                color: #1a3a6b !important;
+                font-weight: 700;
             }
 
-            /* ---- 15. Disable animations on mobile for performance ---- */
+            /* ---- Stats as glass card (third) ---- */
+            .hero-text .hero-stats {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px 20px;
+                margin-top: 20px;
+                padding: 18px 14px;
+                border: 1px solid rgba(255, 255, 255, 0.10);
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+                justify-content: space-around;
+                width: 100%;
+            }
+            .hero-text .hero-stats .stat-item {
+                text-align: center;
+                flex: 1 0 auto;
+                min-width: 60px;
+            }
+            .hero-text .hero-stats .stat-number {
+                font-size: 1.35rem;
+                display: block;
+                line-height: 1.2;
+            }
+            .hero-text .hero-stats .stat-label {
+                font-size: 0.65rem;
+                display: block;
+                margin-top: 2px;
+                letter-spacing: 0.02em;
+                color: rgba(255, 255, 255, 0.65);
+            }
+
+            /* ---- Hero Image (bottom) ---- */
+            .hero-image {
+                order: 2;
+                margin-top: 4px;
+                border-radius: 16px;
+                max-height: 240px;
+                min-height: 180px;
+                overflow: hidden;
+                width: 100%;
+                flex-shrink: 0;
+            }
+            .hero-image img {
+                height: 100%;
+                min-height: 180px;
+                max-height: 240px;
+                object-fit: cover;
+                object-position: center 20%;
+                width: 100%;
+            }
+            .hero-image .hero-image-overlay {
+                background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 50%);
+            }
+
+            /* ---- Floating cards repositioned ---- */
+            .hero-image .floating-card-1 {
+                bottom: 6px;
+                left: 6px;
+                padding: 4px 8px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transform: scale(0.8);
+                transform-origin: bottom left;
+            }
+            .hero-image .floating-card-1 span {
+                font-size: 1rem;
+            }
+            .hero-image .floating-card-1 div p:first-child {
+                font-size: 0.5rem;
+                font-weight: 600;
+                color: #fff;
+                margin: 0;
+                line-height: 1.1;
+            }
+            .hero-image .floating-card-1 div p:last-child {
+                font-size: 0.4rem;
+                color: rgba(255, 255, 255, 0.6);
+                margin: 0;
+                line-height: 1.1;
+            }
+
+            .hero-image .floating-card-2 {
+                top: 6px;
+                right: 6px;
+                padding: 4px 8px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transform: scale(0.8);
+                transform-origin: top right;
+            }
+            .hero-image .floating-card-2 span {
+                font-size: 1rem;
+            }
+            .hero-image .floating-card-2 div p:first-child {
+                font-size: 0.5rem;
+                font-weight: 600;
+                color: #fff;
+                margin: 0;
+                line-height: 1.1;
+            }
+            .hero-image .floating-card-2 div p:last-child {
+                font-size: 0.4rem;
+                color: rgba(255, 255, 255, 0.6);
+                margin: 0;
+                line-height: 1.1;
+            }
+
+            .hero-image .floating-badge {
+                bottom: 36px;
+                right: 8px;
+                padding: 2px 10px;
+                font-size: 0.45rem;
+                border-radius: 9999px;
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(6px);
+                border: 1px solid rgba(255, 255, 255, 0.10);
+                color: #f5c542;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+                letter-spacing: 0.04em;
+            }
+
+            /* Disable animations on mobile for performance */
             .float-animation,
             .float-animation-delay {
                 animation: none;
@@ -729,22 +651,72 @@
                 transition: none;
             }
 
-            /* ---- 16. Ensure CTA buttons don't overflow ---- */
-            .hero-text .hero-actions {
-                width: 100%;
-            }
-            .hero-text .hero-actions a {
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
+            /* Extra small screens */
+            @media (max-width: 374px) {
+                .hero-content {
+                    padding: 18px 12px 24px 12px;
+                    gap: 14px;
+                }
+                .hero-text h1 {
+                    font-size: 1.6rem;
+                }
+                .hero-text p {
+                    font-size: 0.85rem;
+                }
+                .hero-text .hero-stats {
+                    gap: 10px 14px;
+                    padding: 14px 10px;
+                }
+                .hero-text .hero-stats .stat-number {
+                    font-size: 1.1rem;
+                }
+                .hero-text .hero-stats .stat-label {
+                    font-size: 0.55rem;
+                }
+                .hero-image {
+                    max-height: 180px;
+                    min-height: 140px;
+                }
+                .hero-image img {
+                    min-height: 140px;
+                    max-height: 180px;
+                }
+                .hero-image .floating-card-1,
+                .hero-image .floating-card-2 {
+                    transform: scale(0.65);
+                }
+                .hero-image .floating-badge {
+                    font-size: 0.4rem;
+                    padding: 1px 6px;
+                    bottom: 28px;
+                    right: 4px;
+                }
+                .hero-text .hero-actions .btn-primary,
+                .hero-text .hero-actions .btn-secondary {
+                    font-size: 0.8rem;
+                    min-height: 42px;
+                    padding: 0.5rem 0.8rem;
+                }
             }
 
-            /* ---- 17. Stats card: ensure text contrast ---- */
-            .hero-text .hero-stats .stat-label {
-                color: rgba(255, 255, 255, 0.65);
-            }
-            .hero-text .hero-stats .stat-number {
-                color: #fff;
+            @media (min-width: 375px) and (max-width: 480px) {
+                .hero-text h1 {
+                    font-size: 1.8rem;
+                }
+                .hero-text p {
+                    font-size: 0.9rem;
+                }
+                .hero-image {
+                    max-height: 210px;
+                    min-height: 160px;
+                }
+                .hero-image img {
+                    min-height: 160px;
+                    max-height: 210px;
+                }
+                .hero-text .hero-stats .stat-number {
+                    font-size: 1.2rem;
+                }
             }
         }
 
@@ -766,7 +738,6 @@
             .hero-text h1 {
                 font-size: 2.8rem;
             }
-            /* Keep floating cards as original */
             .hero-image .floating-card-1 {
                 bottom: -0.5rem;
                 left: -0.5rem;
@@ -830,7 +801,7 @@
         }
 
         /* ================================================================
-               CARDS, SECTIONS, FOOTER — unchanged from original
+               REST OF STYLES — unchanged from original
                ================================================================ */
         .card-hover {
             transition: all 0.3s ease;
@@ -1632,7 +1603,6 @@
             outline-offset: 2px;
         }
 
-        /* ===== LEAD CARDS RESPONSIVE (unchanged) ===== */
         @media (max-width: 1024px) {
             .lead-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1754,8 +1724,11 @@
     <!-- ===== TOAST ===== -->
     <div id="toast" class="toast"></div>
 
+    <!-- ===== MOBILE MENU OVERLAY (click outside to close) ===== -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+
     <!-- ================================================================
-    NAVIGATION (exactly as original)
+    NAVIGATION
     ================================================================ -->
     <nav class="glass-nav" id="mainNav">
         <a href="#" onclick="navigate('home')" class="brand">SkyScholar</a>
@@ -1769,19 +1742,21 @@
             <a href="#" onclick="navigate('contact')">Contact</a>
             <a href="#" onclick="navigate('adminLogin')" class="admin-link">Admin</a>
         </div>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
-    <!-- ===== MOBILE MENU ===== -->
+    <!-- ===== MOBILE MENU — FIXED with proper click handling ===== -->
     <div id="mobileMenu" class="mobile-menu">
-        <a href="#" onclick="navigate('home');toggleMobileMenu()">Home</a>
-        <a href="#" onclick="navigate('services');toggleMobileMenu()">Services</a>
-        <a href="#" onclick="navigate('countries');toggleMobileMenu()">Countries</a>
-        <a href="#" onclick="navigate('universities');toggleMobileMenu()">Universities</a>
-        <a href="#" onclick="navigate('courses');toggleMobileMenu()">Courses</a>
-        <a href="#" onclick="navigate('inquiry');toggleMobileMenu()">Inquiry</a>
-        <a href="#" onclick="navigate('contact');toggleMobileMenu()">Contact</a>
-        <a href="#" onclick="navigate('adminLogin');toggleMobileMenu()" style="color:#1a3a6b;font-weight:600;">Admin</a>
+        <a href="#" onclick="navigate('home'); return false;"><i class="fas fa-home" style="width:1.5rem;color:#1a3a6b;"></i> Home</a>
+        <a href="#" onclick="navigate('services'); return false;"><i class="fas fa-graduation-cap" style="width:1.5rem;color:#1a3a6b;"></i> Services</a>
+        <a href="#" onclick="navigate('countries'); return false;"><i class="fas fa-globe-americas" style="width:1.5rem;color:#1a3a6b;"></i> Countries</a>
+        <a href="#" onclick="navigate('universities'); return false;"><i class="fas fa-university" style="width:1.5rem;color:#1a3a6b;"></i> Universities</a>
+        <a href="#" onclick="navigate('courses'); return false;"><i class="fas fa-book-open" style="width:1.5rem;color:#1a3a6b;"></i> Courses</a>
+        <a href="#" onclick="navigate('inquiry'); return false;"><i class="fas fa-paper-plane" style="width:1.5rem;color:#1a3a6b;"></i> Inquiry</a>
+        <a href="#" onclick="navigate('contact'); return false;"><i class="fas fa-headset" style="width:1.5rem;color:#1a3a6b;"></i> Contact</a>
+        <a href="#" onclick="navigate('adminLogin'); return false;" style="color:#1a3a6b;font-weight:600;border-bottom:none;"><i class="fas fa-lock" style="width:1.5rem;color:#1a3a6b;"></i> Admin</a>
     </div>
 
     <!-- ================================================================
@@ -1789,7 +1764,7 @@
     ================================================================ -->
     <div id="page-home" class="page active">
 
-        <!-- HERO — exact original with mobile fixes applied via CSS -->
+        <!-- HERO — mobile layout improved using reference structure -->
         <section class="hero-bg">
             <div class="hero-content">
                 <div class="hero-text">
@@ -1809,7 +1784,6 @@
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=600&auto=format&fit=crop" alt="Students celebrating graduation" loading="lazy" />
                     <div class="hero-image-overlay"></div>
-                    <!-- Floating cards — repositioned for mobile -->
                     <div class="glass-card floating-card-1 float-animation">
                         <span>🇨🇦</span>
                         <div>
@@ -1829,7 +1803,7 @@
             </div>
         </section>
 
-        <!-- LEAD CARDS (Service Tiles) — unchanged -->
+        <!-- LEAD CARDS -->
         <section class="section section-white">
             <div class="container">
                 <div class="text-center">
@@ -1878,7 +1852,7 @@
             </div>
         </section>
 
-        <!-- WHY CHOOSE US — unchanged -->
+        <!-- WHY CHOOSE US -->
         <section class="section section-alt">
             <div class="container">
                 <div class="text-center">
@@ -1906,7 +1880,7 @@
             </div>
         </section>
 
-        <!-- TESTIMONIALS — unchanged -->
+        <!-- TESTIMONIALS -->
         <section class="section section-white">
             <div class="container">
                 <div class="text-center">
@@ -1918,7 +1892,7 @@
             </div>
         </section>
 
-        <!-- PARTNER UNIVERSITIES — unchanged -->
+        <!-- PARTNER UNIVERSITIES -->
         <section class="section section-alt">
             <div class="container text-center">
                 <span class="section-label">Partners</span>
@@ -2446,11 +2420,11 @@
     </footer>
 
     <!-- ================================================================
-    JAVASCRIPT — Full application logic (unchanged)
+    JAVASCRIPT — Full application logic
     ================================================================ -->
     <script>
         // ================================================================
-        // DATA LAYER — localStorage (MongoDB replacement)
+        // DATA LAYER — localStorage
         // ================================================================
         const DB = {
             get(key, def) {
@@ -2474,7 +2448,7 @@
         };
 
         // ================================================================
-        // SEED DATA — initial demo data
+        // SEED DATA
         // ================================================================
         function seedData() {
             if (DB.getCountries().length === 0) {
@@ -2572,27 +2546,62 @@
             return c ? c.name : id;
         }
 
-        function getUniversityName(id) {
-            const u = DB.getUniversities().find(x => x.id === id);
-            return u ? u.name : id;
+        // ================================================================
+        // MOBILE MENU — FIXED
+        // ================================================================
+        function openMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            menu.classList.add('open');
+            overlay.classList.add('open');
+            document.body.classList.add('menu-open');
+            // Change hamburger to close icon
+            const btn = document.getElementById('mobileMenuBtn');
+            btn.innerHTML = '<i class="fas fa-times"></i>';
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            menu.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.classList.remove('menu-open');
+            const btn = document.getElementById('mobileMenuBtn');
+            btn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('open')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
         }
 
         // ================================================================
-        // NAVIGATION (hash-based routing)
+        // NAVIGATION
         // ================================================================
         function navigate(page) {
+            // Close mobile menu first
+            closeMobileMenu();
+
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('page-' + page);
             if (target) target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            document.getElementById('mobileMenu').classList.remove('open');
-            if (page !== 'adminLogin' && page !== 'adminDashboard' && page !== 'adminCountries' &&
-                page !== 'adminUniversities' && page !== 'adminCourses' && page !== 'adminTestimonials' &&
-                page !== 'adminLeads') {
+
+            // Update hash
+            const protectedPages = ['adminLogin', 'adminDashboard', 'adminCountries', 'adminUniversities',
+                'adminCourses', 'adminTestimonials', 'adminLeads'
+            ];
+            if (!protectedPages.includes(page)) {
                 window.location.hash = page;
             } else {
                 window.location.hash = page;
             }
+
+            // Re-render dynamic content
             if (page === 'home') renderHomeTestimonials();
             if (page === 'countries') renderCountries();
             if (page === 'universities') { populateUniFilter();
@@ -2604,17 +2613,15 @@
             if (page === 'adminCourses') renderAdminCourses();
             if (page === 'adminTestimonials') renderAdminTestimonials();
             if (page === 'adminLeads') renderAdminLeads();
-            const protectedPages = ['adminDashboard', 'adminCountries', 'adminUniversities', 'adminCourses',
+
+            // Check admin auth
+            const protectedPagesList = ['adminDashboard', 'adminCountries', 'adminUniversities', 'adminCourses',
                 'adminTestimonials', 'adminLeads'
             ];
-            if (protectedPages.includes(page) && !DB.getToken()) {
+            if (protectedPagesList.includes(page) && !DB.getToken()) {
                 navigate('adminLogin');
                 toast('Please login first', 'error');
             }
-        }
-
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('open');
         }
 
         // ================================================================
@@ -2703,7 +2710,7 @@
         }
 
         // ================================================================
-        // INQUIRY — multi-step
+        // INQUIRY
         // ================================================================
         let inquiryStep = 1;
 
@@ -3046,6 +3053,21 @@
         window.addEventListener('hashchange', handleHash);
 
         // ================================================================
+        // MOBILE MENU EVENT LISTENERS
+        // ================================================================
+        document.getElementById('mobileMenuBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // ================================================================
         // INIT
         // ================================================================
         document.addEventListener('DOMContentLoaded', function() {
@@ -3062,6 +3084,8 @@
         // Expose to global
         window.navigate = navigate;
         window.toggleMobileMenu = toggleMobileMenu;
+        window.openMobileMenu = openMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
         window.toggleFaq = toggleFaq;
         window.inquiryNext = inquiryNext;
         window.inquiryPrev = inquiryPrev;
@@ -3085,7 +3109,6 @@
         window.renderAdminLeads = renderAdminLeads;
         window.populateUniFilter = populateUniFilter;
         window.getCountryName = getCountryName;
-        window.getUniversityName = getUniversityName;
     </script>
 
 </body>
