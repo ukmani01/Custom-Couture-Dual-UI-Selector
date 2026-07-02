@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>SkyScholar – Study Abroad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkyScholar – Premium Study Abroad</title>
 
-    <!-- ===== PREMIUM FONTS ===== -->
+    <!-- ===== FONTS (EXACTLY as original) ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- ===== FONT AWESOME 6 (Free) ===== -->
+    <!-- ===== FONT AWESOME (Free icons) ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
@@ -57,7 +57,7 @@
             display: block;
         }
 
-        /* ===== GLASS NAV ===== */
+        /* ===== GLASS NAV (exactly as original) ===== */
         .glass {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
@@ -89,6 +89,9 @@
             color: #1a3a6b;
             font-family: 'Playfair Display', serif;
             cursor: pointer;
+        }
+        .brand span {
+            color: #1a3a6b;
         }
 
         .nav-links {
@@ -126,81 +129,35 @@
             font-size: 1.5rem;
             color: #1a3a6b;
             cursor: pointer;
-            padding: 0.25rem 0.5rem;
-            z-index: 1001;
         }
 
-        /* ===== MOBILE MENU — FIXED ===== */
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 0;
+            top: 72px;
             left: 0;
             width: 100%;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 5rem 2rem 2rem;
-            z-index: 998;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            border-bottom: 1px solid var(--color-border-light, #f0f0f0);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+            padding: 1.5rem;
+            z-index: 999;
         }
         .mobile-menu.open {
             display: block;
-            opacity: 1;
-            pointer-events: auto;
         }
         .mobile-menu a {
             display: block;
-            padding: 0.8rem 0;
-            font-size: 1.1rem;
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
             font-weight: 500;
             color: #0a1a2f;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            cursor: pointer;
-            transition: color 0.2s ease;
-            position: relative;
-            z-index: 999;
+            border-bottom: 1px solid #f0f0f0;
         }
         .mobile-menu a:last-child {
             border-bottom: none;
         }
         .mobile-menu a:hover {
-            color: #1a3a6b;
-        }
-        .mobile-menu a .menu-arrow {
-            float: right;
-            color: #94a3b8;
-        }
-
-        .mobile-menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 997;
-            background: rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        .mobile-menu-overlay.open {
-            display: block;
-            opacity: 1;
-            pointer-events: auto;
-        }
-        body.menu-open {
-            overflow: hidden;
+            color: #2a5f8f;
         }
 
         @media (max-width: 768px) {
@@ -218,9 +175,7 @@
             }
         }
 
-        /* ================================================================
-               HERO — DESKTOP & TABLET (unchanged)
-               ================================================================ */
+        /* ===== HERO — exact original ===== */
         .hero-bg {
             position: relative;
             background-image: url('https://images.unsplash.com/photo-1609134545248-1a41853280b5?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0');
@@ -251,73 +206,22 @@
             padding-top: 3rem;
             padding-bottom: 3rem;
         }
-
-        .hero-image {
-            position: relative;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-        .hero-image img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-        }
-        .hero-image .hero-image-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 60%);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        }
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image: url('https://plus.unsplash.com/premium_photo-1713296255442-e9338f42aad8?q=80&w=422&auto=format&fit=crop&ixlib=rb-4.1.0');
+                background-position: center;
             }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
             }
         }
-        .float-animation {
-            animation: float 4s ease-in-out infinite;
-        }
-        .float-animation-delay {
-            animation-delay: 2s;
-        }
-        .hero-image .floating-card-1 {
-            position: absolute;
-            bottom: -0.5rem;
-            left: -0.5rem;
-        }
-        .hero-image .floating-card-2 {
-            position: absolute;
-            top: -0.5rem;
-            right: -0.5rem;
-        }
-        .hero-image .floating-badge {
-            position: absolute;
-            bottom: 4rem;
-            right: 1rem;
-            border-radius: 9999px;
-            padding: 0.25rem 1rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: #f5c542;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-bg {
+                background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0');
+            }
         }
 
         .hero-text .hero-badge {
@@ -372,6 +276,104 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        .hero-image {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .hero-image img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+        .hero-image .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 60%);
+        }
+
+        /* Floating cards — exactly as original */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        .float-animation-delay {
+            animation-delay: 2s;
+        }
+        .hero-image .floating-card-1 {
+            position: absolute;
+            bottom: -0.5rem;
+            left: -0.5rem;
+        }
+        .hero-image .floating-card-2 {
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+        }
+        .hero-image .floating-badge {
+            position: absolute;
+            bottom: 4rem;
+            right: 1rem;
+            border-radius: 9999px;
+            padding: 0.25rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #f5c542;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        @media (max-width: 768px) {
+            .hero-image img {
+                height: 240px;
+            }
+            .hero-image .floating-card-1 {
+                bottom: -0.25rem;
+                left: -0.25rem;
+                padding: 0.5rem 0.75rem;
+            }
+            .hero-image .floating-card-2 {
+                top: -0.25rem;
+                right: -0.25rem;
+                padding: 0.5rem 0.75rem;
+            }
+            .hero-image .floating-badge {
+                bottom: 2.5rem;
+                right: 0.5rem;
+                font-size: 0.6rem;
+                padding: 0.15rem 0.75rem;
+            }
+            .hero-text .hero-stats {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            .hero-text .hero-stats .stat-number {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ===== BUTTONS ===== */
         .btn-primary {
             background: linear-gradient(135deg, #1a3a6b, #2a5f8f);
             color: #fff;
@@ -414,410 +416,47 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
-        /* ================================================================
-               MOBILE HERO — Content on top, Image below (Reference style)
-               ================================================================ */
-        @media (max-width: 767px) {
-            .hero-bg {
-                min-height: auto;
-                padding-top: 0;
-                background-image: none;
-                background-color: transparent;
-                display: block;
-            }
-            .hero-bg::before {
-                display: none;
-            }
-            .hero-bg::after {
-                display: none;
-            }
-
-            /* Content wrapper — solid background with brand colors */
-            .hero-content-wrapper {
-                background: linear-gradient(160deg, #0b1d33 0%, #1a3a6b 50%, #2a5f8f 100%);
-                padding: 28px 16px 32px 16px;
-                position: relative;
-                overflow: hidden;
-            }
-            .hero-content-wrapper::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: radial-gradient(ellipse at 50% 20%, rgba(245, 197, 66, 0.06) 0%, transparent 60%);
-                pointer-events: none;
-                z-index: 0;
-            }
-
-            .hero-content {
-                position: relative;
-                z-index: 1;
-                display: flex;
-                flex-direction: column;
-                gap: 0;
-                padding: 0;
-                max-width: 100%;
-                grid-template-columns: none;
-            }
-
-            .hero-text {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-            .hero-text .hero-badge {
-                font-size: 0.6rem;
-                padding: 0.2rem 0.8rem;
-                margin-bottom: 10px;
-                align-self: flex-start;
-                background: rgba(245, 197, 66, 0.2);
-                backdrop-filter: blur(4px);
-                border: 1px solid rgba(245, 197, 66, 0.15);
-            }
-            .hero-text h1 {
-                font-size: 2rem;
-                line-height: 1.08;
-                letter-spacing: -0.02em;
-                color: #fff;
-            }
-            .hero-text h1 br {
-                display: inline;
-            }
-            .hero-text p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-                max-width: 100%;
-                margin-top: 10px;
-                padding-right: 4px;
-                color: rgba(255, 255, 255, 0.85);
-            }
-
-            .hero-text .hero-actions {
-                flex-direction: column;
-                gap: 10px;
-                margin-top: 18px;
-                width: 100%;
-            }
-            .hero-text .hero-actions .btn-primary,
-            .hero-text .hero-actions .btn-secondary {
-                width: 100%;
-                min-height: 48px;
-                font-size: 0.9rem;
-                justify-content: center;
-                padding: 0.7rem 1rem;
-            }
-            .hero-text .hero-actions .btn-primary[style*="background:#f5c542"] {
-                background: #f5c542 !important;
-                color: #1a3a6b !important;
-                font-weight: 700;
-            }
-
-            .hero-text .hero-stats {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 14px 20px;
-                margin-top: 20px;
-                padding: 18px 14px;
-                border: 1px solid rgba(255, 255, 255, 0.10);
-                border-radius: 20px;
-                background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-                justify-content: space-around;
-                width: 100%;
-            }
-            .hero-text .hero-stats .stat-item {
-                text-align: center;
-                flex: 1 0 auto;
-                min-width: 60px;
-            }
-            .hero-text .hero-stats .stat-number {
-                font-size: 1.35rem;
-                display: block;
-                line-height: 1.2;
-                color: #fff;
-            }
-            .hero-text .hero-stats .stat-label {
-                font-size: 0.65rem;
-                display: block;
-                margin-top: 2px;
-                letter-spacing: 0.02em;
-                color: rgba(255, 255, 255, 0.65);
-            }
-
-            /* ---- Image section below content (separate) ---- */
-            .hero-image-section {
-                padding: 0 16px 28px 16px;
-                background: #0b1d33;
-                position: relative;
-            }
-            .hero-image-section .hero-image {
-                border-radius: 16px;
-                overflow: hidden;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-                max-height: 240px;
-                min-height: 180px;
-                width: 100%;
-                position: relative;
-            }
-            .hero-image-section .hero-image img {
-                height: 100%;
-                min-height: 180px;
-                max-height: 240px;
-                object-fit: cover;
-                object-position: center 20%;
-                width: 100%;
-            }
-            .hero-image-section .hero-image .hero-image-overlay {
-                background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 50%);
-            }
-
-            /* Floating cards on the image */
-            .hero-image-section .floating-card-1 {
-                position: absolute;
-                bottom: 6px;
-                left: 6px;
-                padding: 4px 8px;
-                border-radius: 10px;
-                background: rgba(255, 255, 255, 0.12);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                transform: scale(0.8);
-                transform-origin: bottom left;
-            }
-            .hero-image-section .floating-card-1 span {
-                font-size: 1rem;
-            }
-            .hero-image-section .floating-card-1 div p:first-child {
-                font-size: 0.5rem;
-                font-weight: 600;
-                color: #fff;
-                margin: 0;
-                line-height: 1.1;
-            }
-            .hero-image-section .floating-card-1 div p:last-child {
-                font-size: 0.4rem;
-                color: rgba(255, 255, 255, 0.6);
-                margin: 0;
-                line-height: 1.1;
-            }
-
-            .hero-image-section .floating-card-2 {
-                position: absolute;
-                top: 6px;
-                right: 6px;
-                padding: 4px 8px;
-                border-radius: 10px;
-                background: rgba(255, 255, 255, 0.12);
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                transform: scale(0.8);
-                transform-origin: top right;
-            }
-            .hero-image-section .floating-card-2 span {
-                font-size: 1rem;
-            }
-            .hero-image-section .floating-card-2 div p:first-child {
-                font-size: 0.5rem;
-                font-weight: 600;
-                color: #fff;
-                margin: 0;
-                line-height: 1.1;
-            }
-            .hero-image-section .floating-card-2 div p:last-child {
-                font-size: 0.4rem;
-                color: rgba(255, 255, 255, 0.6);
-                margin: 0;
-                line-height: 1.1;
-            }
-
-            .hero-image-section .floating-badge {
-                position: absolute;
-                bottom: 36px;
-                right: 8px;
-                padding: 2px 10px;
-                font-size: 0.45rem;
-                border-radius: 9999px;
-                background: rgba(255, 255, 255, 0.08);
-                backdrop-filter: blur(6px);
-                border: 1px solid rgba(255, 255, 255, 0.10);
-                color: #f5c542;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-                letter-spacing: 0.04em;
-            }
-
-            /* Disable animations on mobile */
-            .float-animation,
-            .float-animation-delay {
-                animation: none;
-            }
-            .hero-image-section .floating-card-1,
-            .hero-image-section .floating-card-2 {
-                transition: none;
-            }
-
-            /* Extra small screens */
-            @media (max-width: 374px) {
-                .hero-content-wrapper {
-                    padding: 18px 12px 24px 12px;
-                }
-                .hero-text h1 {
-                    font-size: 1.6rem;
-                }
-                .hero-text p {
-                    font-size: 0.85rem;
-                }
-                .hero-text .hero-stats {
-                    gap: 10px 14px;
-                    padding: 14px 10px;
-                }
-                .hero-text .hero-stats .stat-number {
-                    font-size: 1.1rem;
-                }
-                .hero-text .hero-stats .stat-label {
-                    font-size: 0.55rem;
-                }
-                .hero-image-section .hero-image {
-                    max-height: 180px;
-                    min-height: 140px;
-                }
-                .hero-image-section .hero-image img {
-                    min-height: 140px;
-                    max-height: 180px;
-                }
-                .hero-image-section .floating-card-1,
-                .hero-image-section .floating-card-2 {
-                    transform: scale(0.65);
-                }
-                .hero-image-section .floating-badge {
-                    font-size: 0.4rem;
-                    padding: 1px 6px;
-                    bottom: 28px;
-                    right: 4px;
-                }
-                .hero-text .hero-actions .btn-primary,
-                .hero-text .hero-actions .btn-secondary {
-                    font-size: 0.8rem;
-                    min-height: 42px;
-                    padding: 0.5rem 0.8rem;
-                }
-            }
-
-            @media (min-width: 375px) and (max-width: 480px) {
-                .hero-text h1 {
-                    font-size: 1.8rem;
-                }
-                .hero-text p {
-                    font-size: 0.9rem;
-                }
-                .hero-image-section .hero-image {
-                    max-height: 210px;
-                    min-height: 160px;
-                }
-                .hero-image-section .hero-image img {
-                    min-height: 160px;
-                    max-height: 210px;
-                }
-                .hero-text .hero-stats .stat-number {
-                    font-size: 1.2rem;
-                }
-            }
+        .btn-outline {
+            background: transparent;
+            color: #1a3a6b;
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: 1px solid #1a3a6b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+        .btn-outline:hover {
+            background: #1a3a6b;
+            color: #fff;
+        }
+        .btn-danger {
+            background: #dc2626;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        .btn-danger:hover {
+            background: #b91c1c;
+            transform: scale(1.03);
+        }
+        .btn-sm {
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            min-height: 32px;
+            min-width: auto;
         }
 
-        /* ================================================================
-               TABLET (768px - 1024px) — keep exactly as original desktop
-               ================================================================ */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .hero-bg {
-                background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0');
-            }
-            .hero-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 2.5rem;
-                padding: 2.5rem 1.5rem;
-            }
-            .hero-image img {
-                height: 320px;
-            }
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-            .hero-image .floating-card-1 {
-                bottom: -0.5rem;
-                left: -0.5rem;
-                transform: none;
-            }
-            .hero-image .floating-card-2 {
-                top: -0.5rem;
-                right: -0.5rem;
-                transform: none;
-            }
-            .hero-image .floating-badge {
-                bottom: 4rem;
-                right: 1rem;
-            }
-            .float-animation {
-                animation: float 4s ease-in-out infinite;
-            }
-            .float-animation-delay {
-                animation-delay: 2s;
-            }
-        }
-
-        /* ================================================================
-               DESKTOP LARGE (1025px+) — exactly as original
-               ================================================================ */
-        @media (min-width: 1025px) {
-            .hero-bg {
-                background-image: url('https://images.unsplash.com/photo-1609134545248-1a41853280b5?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0');
-            }
-            .hero-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-                padding: 3rem 1.5rem;
-            }
-            .hero-image img {
-                height: 380px;
-            }
-            .hero-text h1 {
-                font-size: clamp(2.5rem, 5vw, 3.75rem);
-            }
-            .hero-image .floating-card-1 {
-                bottom: -0.5rem;
-                left: -0.5rem;
-                transform: none;
-            }
-            .hero-image .floating-card-2 {
-                top: -0.5rem;
-                right: -0.5rem;
-                transform: none;
-            }
-            .hero-image .floating-badge {
-                bottom: 4rem;
-                right: 1rem;
-            }
-            .float-animation {
-                animation: float 4s ease-in-out infinite;
-            }
-            .float-animation-delay {
-                animation-delay: 2s;
-            }
-        }
-
-        /* ================================================================
-               REST OF STYLES — unchanged from original
-               ================================================================ */
+        /* ===== CARDS ===== */
         .card-hover {
             transition: all 0.3s ease;
         }
@@ -867,6 +506,7 @@
             transform: translateX(4px);
         }
 
+        /* ===== LEAD CARDS (home service tiles) ===== */
         .lead-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -913,7 +553,31 @@
         .lead-card .lead-link:hover {
             color: #2a5f8f;
         }
+        @media (max-width: 1024px) {
+            .lead-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .lead-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+            .lead-card {
+                padding: 1rem 0.6rem;
+            }
+            .lead-card .icon {
+                font-size: 1.4rem;
+            }
+            .lead-card h3 {
+                font-size: 0.8rem;
+            }
+            .lead-card p {
+                font-size: 0.65rem;
+            }
+        }
 
+        /* ===== TESTIMONIALS ===== */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -974,7 +638,18 @@
             font-size: 0.75rem;
             color: #94a3b8;
         }
+        @media (max-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
+        /* ===== GRID UTILITIES ===== */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -990,7 +665,27 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 1.25rem;
         }
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
 
+        /* ===== SECTIONS ===== */
         .section {
             padding: 4rem 0;
         }
@@ -1055,6 +750,7 @@
             margin-right: auto;
         }
 
+        /* ===== FOOTER ===== */
         .footer-gradient {
             background: linear-gradient(180deg, #0b1d33, #060e1a);
             color: #fff;
@@ -1111,7 +807,20 @@
             padding-top: 1.5rem;
             letter-spacing: 0.04em;
         }
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
 
+        /* ===== COUNTRY / UNIVERSITY / COURSE CARDS ===== */
         .country-card .flag {
             width: 48px;
             height: 48px;
@@ -1142,6 +851,7 @@
             font-weight: 500;
         }
 
+        /* ===== FILTER BAR ===== */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -1169,6 +879,7 @@
             color: #94a3b8;
         }
 
+        /* ===== INQUIRY MULTI-STEP ===== */
         .step-indicator {
             display: flex;
             justify-content: space-between;
@@ -1255,6 +966,7 @@
             margin-top: 0.5rem;
         }
 
+        /* ===== ADMIN TABLES ===== */
         .admin-table-wrap {
             overflow-x: auto;
             border-radius: 1rem;
@@ -1305,6 +1017,7 @@
             color: #92400e;
         }
 
+        /* ===== ADMIN FORM PANEL ===== */
         .admin-form-panel {
             background: #fff;
             border: 1px solid #eef2f6;
@@ -1356,7 +1069,13 @@
             accent-color: #1a3a6b;
             cursor: pointer;
         }
+        @media (max-width: 640px) {
+            .admin-form-panel .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
+        /* ===== FAQ ===== */
         .faq-item {
             border: 1px solid #eef2f6;
             border-radius: 0.75rem;
@@ -1398,6 +1117,7 @@
             display: block;
         }
 
+        /* ===== GALLERY ===== */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1414,7 +1134,13 @@
             transform: scale(1.02);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
         }
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
+        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 24px;
@@ -1448,6 +1174,7 @@
             }
         }
 
+        /* ===== MAP PLACEHOLDER ===== */
         .map-placeholder {
             background: #f1f5f9;
             border-radius: 1rem;
@@ -1459,7 +1186,13 @@
             font-size: 0.85rem;
             border: 1px dashed #dce5f0;
         }
+        @media (min-width: 768px) {
+            .map-placeholder {
+                height: 280px;
+            }
+        }
 
+        /* ===== UTILITY ===== */
         .hidden {
             display: none !important;
         }
@@ -1515,6 +1248,23 @@
             width: 100%;
         }
 
+        /* ===== RESPONSIVE FIXES ===== */
+        @media (max-width: 640px) {
+            .section {
+                padding: 2.5rem 0;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .glass-nav {
+                padding: 0.5rem 1rem;
+            }
+            .brand {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ===== ADMIN NAV ===== */
         .admin-nav {
             position: fixed;
             top: 0;
@@ -1566,7 +1316,20 @@
         .admin-nav .admin-links .logout-btn:hover {
             text-decoration: underline;
         }
+        @media (max-width: 640px) {
+            .admin-nav {
+                padding: 0.5rem 1rem;
+            }
+            .admin-nav .admin-brand {
+                font-size: 1rem;
+            }
+            .admin-nav .admin-links {
+                gap: 0.5rem;
+                font-size: 0.7rem;
+            }
+        }
 
+        /* ===== DASHBOARD STATS ===== */
         .stat-card {
             background: #fff;
             border-radius: 1rem;
@@ -1590,6 +1353,21 @@
             color: #1a3a6b;
         }
 
+        /* ===== RESPONSIVE TABLES ===== */
+        @media (max-width: 640px) {
+            .admin-table {
+                font-size: 0.75rem;
+            }
+            .admin-table th,
+            .admin-table td {
+                padding: 0.4rem 0.6rem;
+            }
+            .admin-table .hide-mobile {
+                display: none;
+            }
+        }
+
+        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -1605,6 +1383,7 @@
             background: #c0cbd8;
         }
 
+        /* ===== REDUCED MOTION ===== */
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -1613,124 +1392,11 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ===== FOCUS VISIBLE ===== */
         :focus-visible {
             outline: 3px solid #1a3a6b;
             outline-offset: 2px;
-        }
-
-        @media (max-width: 1024px) {
-            .lead-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (max-width: 640px) {
-            .lead-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.6rem;
-            }
-            .lead-card {
-                padding: 1rem 0.6rem;
-            }
-            .lead-card .icon {
-                font-size: 1.4rem;
-            }
-            .lead-card h3 {
-                font-size: 0.8rem;
-            }
-            .lead-card p {
-                font-size: 0.65rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        @media (max-width: 480px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .grid-3 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 640px) {
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .grid-4 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .section {
-                padding: 2.5rem 0;
-            }
-            .container {
-                padding: 0 1rem;
-            }
-            .glass-nav {
-                padding: 0.5rem 1rem;
-            }
-            .brand {
-                font-size: 1.1rem;
-            }
-            .admin-table {
-                font-size: 0.75rem;
-            }
-            .admin-table th,
-            .admin-table td {
-                padding: 0.4rem 0.6rem;
-            }
-            .admin-nav {
-                padding: 0.5rem 1rem;
-            }
-            .admin-nav .admin-brand {
-                font-size: 1rem;
-            }
-            .admin-nav .admin-links {
-                gap: 0.5rem;
-                font-size: 0.7rem;
-            }
-            .admin-form-panel .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .map-placeholder {
-                height: 280px;
-            }
         }
     </style>
 </head>
@@ -1739,11 +1405,8 @@
     <!-- ===== TOAST ===== -->
     <div id="toast" class="toast"></div>
 
-    <!-- ===== MOBILE MENU OVERLAY ===== -->
-    <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
-
     <!-- ================================================================
-    NAVIGATION
+    NAVIGATION (exactly as original)
     ================================================================ -->
     <nav class="glass-nav" id="mainNav">
         <a href="#" onclick="navigate('home')" class="brand">SkyScholar</a>
@@ -1757,21 +1420,19 @@
             <a href="#" onclick="navigate('contact')">Contact</a>
             <a href="#" onclick="navigate('adminLogin')" class="admin-link">Admin</a>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-            <i class="fas fa-bars"></i>
-        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
     </nav>
 
     <!-- ===== MOBILE MENU ===== -->
     <div id="mobileMenu" class="mobile-menu">
-        <a href="#" onclick="navigate('home'); return false;"><i class="fas fa-home" style="width:1.5rem;color:#1a3a6b;"></i> Home</a>
-        <a href="#" onclick="navigate('services'); return false;"><i class="fas fa-graduation-cap" style="width:1.5rem;color:#1a3a6b;"></i> Services</a>
-        <a href="#" onclick="navigate('countries'); return false;"><i class="fas fa-globe-americas" style="width:1.5rem;color:#1a3a6b;"></i> Countries</a>
-        <a href="#" onclick="navigate('universities'); return false;"><i class="fas fa-university" style="width:1.5rem;color:#1a3a6b;"></i> Universities</a>
-        <a href="#" onclick="navigate('courses'); return false;"><i class="fas fa-book-open" style="width:1.5rem;color:#1a3a6b;"></i> Courses</a>
-        <a href="#" onclick="navigate('inquiry'); return false;"><i class="fas fa-paper-plane" style="width:1.5rem;color:#1a3a6b;"></i> Inquiry</a>
-        <a href="#" onclick="navigate('contact'); return false;"><i class="fas fa-headset" style="width:1.5rem;color:#1a3a6b;"></i> Contact</a>
-        <a href="#" onclick="navigate('adminLogin'); return false;" style="color:#1a3a6b;font-weight:600;border-bottom:none;"><i class="fas fa-lock" style="width:1.5rem;color:#1a3a6b;"></i> Admin</a>
+        <a href="#" onclick="navigate('home');toggleMobileMenu()">Home</a>
+        <a href="#" onclick="navigate('services');toggleMobileMenu()">Services</a>
+        <a href="#" onclick="navigate('countries');toggleMobileMenu()">Countries</a>
+        <a href="#" onclick="navigate('universities');toggleMobileMenu()">Universities</a>
+        <a href="#" onclick="navigate('courses');toggleMobileMenu()">Courses</a>
+        <a href="#" onclick="navigate('inquiry');toggleMobileMenu()">Inquiry</a>
+        <a href="#" onclick="navigate('contact');toggleMobileMenu()">Contact</a>
+        <a href="#" onclick="navigate('adminLogin');toggleMobileMenu()" style="color:#1a3a6b;font-weight:600;">Admin</a>
     </div>
 
     <!-- ================================================================
@@ -1779,45 +1440,39 @@
     ================================================================ -->
     <div id="page-home" class="page active">
 
-        <!-- ===== HERO — Mobile: content on top, image below ===== -->
+        <!-- HERO — exact original -->
         <section class="hero-bg">
-            <!-- Content wrapper (mobile: solid background) -->
-            <div class="hero-content-wrapper">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <span class="hero-badge">✦ PREMIUM STUDY ABROAD</span>
-                        <h1>Your Gateway to <br /><span class="accent">Global Education</span></h1>
-                        <p>Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.</p>
-                        <div class="hero-actions">
-                            <a href="#" onclick="navigate('inquiry')" class="btn-primary" style="background:#f5c542;color:#1a3a6b;font-weight:700;">Book Free Consultation</a>
-                            <a href="#" onclick="navigate('universities')" class="btn-secondary">Explore Universities</a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Students Placed</span></div>
-                            <div class="stat-item"><span class="stat-number">98%</span><span class="stat-label">Visa Success</span></div>
-                            <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Partner Universities</span></div>
-                        </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">✦ PREMIUM STUDY ABROAD</span>
+                    <h1>Your Gateway to <br /><span class="accent">Global Education</span></h1>
+                    <p>Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.</p>
+                    <div class="hero-actions">
+                        <a href="#" onclick="navigate('inquiry')" class="btn-primary" style="background:#f5c542;color:#1a3a6b;font-weight:700;">Book Free Consultation</a>
+                        <a href="#" onclick="navigate('universities')" class="btn-secondary">Explore Universities</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div><span class="stat-number">500+</span><div class="stat-label">Students Placed</div></div>
+                        <div><span class="stat-number">98%</span><div class="stat-label">Visa Success</div></div>
+                        <div><span class="stat-number">50+</span><div class="stat-label">Partner Universities</div></div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Image section — separate below content (mobile only) -->
-            <div class="hero-image-section">
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=600&auto=format&fit=crop" alt="Students celebrating graduation" loading="lazy" />
                     <div class="hero-image-overlay"></div>
-                    <div class="glass-card floating-card-1 float-animation">
-                        <span>🇨🇦</span>
+                    <!-- Floating cards — exactly as original -->
+                    <div class="glass-card floating-card-1 float-animation" style="display:flex;align-items:center;gap:0.5rem;">
+                        <span style="font-size:1.5rem;">🇨🇦</span>
                         <div>
-                            <p>Canada</p>
-                            <p>Avg Tuition: $25k</p>
+                            <p style="font-size:0.7rem;font-weight:600;color:#fff;">Canada</p>
+                            <p style="font-size:0.6rem;color:rgba(255,255,255,0.6);">Avg Tuition: $25k</p>
                         </div>
                     </div>
-                    <div class="glass-card floating-card-2 float-animation float-animation-delay">
-                        <span>🇬🇧</span>
+                    <div class="glass-card floating-card-2 float-animation float-animation-delay" style="display:flex;align-items:center;gap:0.5rem;">
+                        <span style="font-size:1.5rem;">🇬🇧</span>
                         <div>
-                            <p>United Kingdom</p>
-                            <p>Avg Tuition: £22k</p>
+                            <p style="font-size:0.7rem;font-weight:600;color:#fff;">United Kingdom</p>
+                            <p style="font-size:0.6rem;color:rgba(255,255,255,0.6);">Avg Tuition: £22k</p>
                         </div>
                     </div>
                     <div class="floating-badge">✦ Top Rated 2026</div>
@@ -1825,7 +1480,7 @@
             </div>
         </section>
 
-        <!-- LEAD CARDS -->
+        <!-- LEAD CARDS (Service Tiles) -->
         <section class="section section-white">
             <div class="container">
                 <div class="text-center">
@@ -1931,7 +1586,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ABOUT (unchanged)
+    PAGE: ABOUT
     ================================================================ -->
     <div id="page-about" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -1951,7 +1606,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: SERVICES (unchanged)
+    PAGE: SERVICES
     ================================================================ -->
     <div id="page-services" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -1974,7 +1629,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: COUNTRIES (unchanged)
+    PAGE: COUNTRIES
     ================================================================ -->
     <div id="page-countries" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -1990,7 +1645,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: UNIVERSITIES (unchanged)
+    PAGE: UNIVERSITIES
     ================================================================ -->
     <div id="page-universities" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -2012,7 +1667,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: COURSES (unchanged)
+    PAGE: COURSES
     ================================================================ -->
     <div id="page-courses" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -2031,7 +1686,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: INQUIRY (unchanged)
+    PAGE: INQUIRY
     ================================================================ -->
     <div id="page-inquiry" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -2079,7 +1734,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: CONTACT (unchanged)
+    PAGE: CONTACT
     ================================================================ -->
     <div id="page-contact" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -2106,7 +1761,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: GALLERY (unchanged)
+    PAGE: GALLERY
     ================================================================ -->
     <div id="page-gallery" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -2131,7 +1786,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: FAQ (unchanged)
+    PAGE: FAQ
     ================================================================ -->
     <div id="page-faq" class="page">
         <section class="section section-white" style="padding-top:100px;">
@@ -2160,7 +1815,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: STUDENT DASHBOARD (unchanged)
+    PAGE: STUDENT DASHBOARD
     ================================================================ -->
     <div id="page-studentDashboard" class="page">
         <section class="section section-alt" style="padding-top:100px;min-height:80vh;">
@@ -2187,7 +1842,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN LOGIN (unchanged)
+    PAGE: ADMIN LOGIN
     ================================================================ -->
     <div id="page-adminLogin" class="page">
         <section class="section section-alt" style="padding-top:100px;min-height:80vh;display:flex;align-items:center;justify-content:center;">
@@ -2207,7 +1862,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN DASHBOARD (unchanged)
+    PAGE: ADMIN DASHBOARD
     ================================================================ -->
     <div id="page-adminDashboard" class="page">
         <nav class="admin-nav">
@@ -2239,7 +1894,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN COUNTRIES (unchanged)
+    PAGE: ADMIN COUNTRIES
     ================================================================ -->
     <div id="page-adminCountries" class="page">
         <nav class="admin-nav">
@@ -2275,7 +1930,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN UNIVERSITIES (unchanged)
+    PAGE: ADMIN UNIVERSITIES
     ================================================================ -->
     <div id="page-adminUniversities" class="page">
         <nav class="admin-nav">
@@ -2312,7 +1967,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN COURSES (unchanged)
+    PAGE: ADMIN COURSES
     ================================================================ -->
     <div id="page-adminCourses" class="page">
         <nav class="admin-nav">
@@ -2347,7 +2002,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN TESTIMONIALS (unchanged)
+    PAGE: ADMIN TESTIMONIALS
     ================================================================ -->
     <div id="page-adminTestimonials" class="page">
         <nav class="admin-nav">
@@ -2381,7 +2036,7 @@
     </div>
 
     <!-- ================================================================
-    PAGE: ADMIN LEADS (unchanged)
+    PAGE: ADMIN LEADS
     ================================================================ -->
     <div id="page-adminLeads" class="page">
         <nav class="admin-nav">
@@ -2403,7 +2058,7 @@
     </div>
 
     <!-- ================================================================
-    FOOTER (unchanged)
+    FOOTER
     ================================================================ -->
     <footer class="footer-gradient">
         <div class="container">
@@ -2446,7 +2101,7 @@
     ================================================================ -->
     <script>
         // ================================================================
-        // DATA LAYER — localStorage
+        // DATA LAYER — localStorage (MongoDB replacement)
         // ================================================================
         const DB = {
             get(key, def) {
@@ -2470,7 +2125,7 @@
         };
 
         // ================================================================
-        // SEED DATA
+        // SEED DATA — initial demo data
         // ================================================================
         function seedData() {
             if (DB.getCountries().length === 0) {
@@ -2568,58 +2223,29 @@
             return c ? c.name : id;
         }
 
-        // ================================================================
-        // MOBILE MENU — FIXED
-        // ================================================================
-        function openMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('mobileMenuOverlay');
-            menu.classList.add('open');
-            overlay.classList.add('open');
-            document.body.classList.add('menu-open');
-            const btn = document.getElementById('mobileMenuBtn');
-            btn.innerHTML = '<i class="fas fa-times"></i>';
-        }
-
-        function closeMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('mobileMenuOverlay');
-            menu.classList.remove('open');
-            overlay.classList.remove('open');
-            document.body.classList.remove('menu-open');
-            const btn = document.getElementById('mobileMenuBtn');
-            btn.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (menu.classList.contains('open')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
+        function getUniversityName(id) {
+            const u = DB.getUniversities().find(x => x.id === id);
+            return u ? u.name : id;
         }
 
         // ================================================================
-        // NAVIGATION
+        // NAVIGATION (hash-based routing)
         // ================================================================
         function navigate(page) {
-            closeMobileMenu();
-
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('page-' + page);
             if (target) target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            const protectedPages = ['adminLogin', 'adminDashboard', 'adminCountries', 'adminUniversities',
-                'adminCourses', 'adminTestimonials', 'adminLeads'
-            ];
-            if (!protectedPages.includes(page)) {
+            document.getElementById('mobileMenu').classList.remove('open');
+            // Update hash
+            if (page !== 'adminLogin' && page !== 'adminDashboard' && page !== 'adminCountries' &&
+                page !== 'adminUniversities' && page !== 'adminCourses' && page !== 'adminTestimonials' &&
+                page !== 'adminLeads') {
                 window.location.hash = page;
             } else {
                 window.location.hash = page;
             }
-
+            // Re-render dynamic content
             if (page === 'home') renderHomeTestimonials();
             if (page === 'countries') renderCountries();
             if (page === 'universities') { populateUniFilter();
@@ -2631,14 +2257,18 @@
             if (page === 'adminCourses') renderAdminCourses();
             if (page === 'adminTestimonials') renderAdminTestimonials();
             if (page === 'adminLeads') renderAdminLeads();
-
-            const protectedPagesList = ['adminDashboard', 'adminCountries', 'adminUniversities', 'adminCourses',
+            // Check admin auth
+            const protectedPages = ['adminDashboard', 'adminCountries', 'adminUniversities', 'adminCourses',
                 'adminTestimonials', 'adminLeads'
             ];
-            if (protectedPagesList.includes(page) && !DB.getToken()) {
+            if (protectedPages.includes(page) && !DB.getToken()) {
                 navigate('adminLogin');
                 toast('Please login first', 'error');
             }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
         }
 
         // ================================================================
@@ -2727,7 +2357,7 @@
         }
 
         // ================================================================
-        // INQUIRY
+        // INQUIRY — multi-step
         // ================================================================
         let inquiryStep = 1;
 
@@ -3051,10 +2681,11 @@
         });
 
         // ================================================================
-        // HASH ROUTER
+        // HASH ROUTER — handle back/forward and direct links
         // ================================================================
         function handleHash() {
             const hash = window.location.hash.replace('#', '') || 'home';
+            // Map hash to page name
             const validPages = ['home', 'about', 'services', 'countries', 'universities', 'courses',
                 'inquiry', 'contact', 'gallery', 'faq', 'studentDashboard',
                 'adminLogin', 'adminDashboard', 'adminCountries', 'adminUniversities',
@@ -3070,29 +2701,18 @@
         window.addEventListener('hashchange', handleHash);
 
         // ================================================================
-        // MOBILE MENU EVENT LISTENERS
-        // ================================================================
-        document.getElementById('mobileMenuBtn').addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleMobileMenu();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeMobileMenu();
-            }
-        });
-
-        // ================================================================
         // INIT
         // ================================================================
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle initial hash
             handleHash();
+            // Update footer countries
             const countries = DB.getCountries();
             const footerCountries = document.getElementById('footerCountries');
             if (footerCountries) {
                 footerCountries.innerHTML = countries.slice(0, 4).map(c => `<li>${c.name}</li>`).join('');
             }
+            // Render home testimonials
             renderHomeTestimonials();
             console.log('🚀 SkyScholar loaded successfully.');
         });
@@ -3100,8 +2720,6 @@
         // Expose to global
         window.navigate = navigate;
         window.toggleMobileMenu = toggleMobileMenu;
-        window.openMobileMenu = openMobileMenu;
-        window.closeMobileMenu = closeMobileMenu;
         window.toggleFaq = toggleFaq;
         window.inquiryNext = inquiryNext;
         window.inquiryPrev = inquiryPrev;
@@ -3125,6 +2743,7 @@
         window.renderAdminLeads = renderAdminLeads;
         window.populateUniFilter = populateUniFilter;
         window.getCountryName = getCountryName;
+        window.getUniversityName = getUniversityName;
     </script>
 
 </body>
