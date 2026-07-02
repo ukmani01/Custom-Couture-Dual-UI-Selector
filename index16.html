@@ -18,19 +18,14 @@
                DESIGN TOKENS — US Minimalist Premium
                ================================================================ */
         :root {
-            /* Backgrounds */
             --bg-primary: #FFFFFF;
             --bg-secondary: #F8FAFC;
-
-            /* Colors — US Minimalist Palette */
             --color-navy: #0A2540;
             --color-navy-light: #1A3A6B;
             --color-gold: #C9A84C;
             --color-gold-light: #F5ECD7;
             --color-text: #1A1A2E;
             --color-muted: #6B7280;
-
-            /* Shadows — Elevated */
             --shadow-sm: 0 2px 8px rgba(10, 37, 64, 0.04);
             --shadow-md: 0 8px 24px rgba(10, 37, 64, 0.06);
             --shadow-lg: 0 16px 48px rgba(10, 37, 64, 0.08);
@@ -39,16 +34,6 @@
             --shadow-hover: 0 32px 80px rgba(10, 37, 64, 0.12);
             --shadow-glow-gold: 0 0 30px rgba(201, 168, 76, 0.25);
             --shadow-glow-navy: 0 0 30px rgba(10, 37, 64, 0.15);
-
-            /* Spacing (8px grid) */
-            --space-8: 8px;
-            --space-16: 16px;
-            --space-24: 24px;
-            --space-32: 32px;
-            --space-48: 48px;
-            --space-64: 64px;
-            --space-80: 80px;
-            --space-120: 120px;
         }
 
         /* ================================================================
@@ -59,7 +44,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
@@ -69,7 +53,6 @@
             padding-top: env(safe-area-inset-top, 0);
             padding-bottom: env(safe-area-inset-bottom, 0);
         }
-
         h1,
         h2,
         h3,
@@ -80,20 +63,16 @@
             font-weight: 700;
             letter-spacing: -0.02em;
         }
-
         a {
             text-decoration: none;
             color: inherit;
         }
-
         img {
             max-width: 100%;
             display: block;
         }
 
-        /* ================================================================
-               SCROLL PROGRESS BAR
-               ================================================================ */
+        /* ===== SCROLL PROGRESS ===== */
         #scrollProgress {
             position: fixed;
             top: 0;
@@ -126,11 +105,9 @@
             border-bottom: 1px solid rgba(10, 37, 64, 0.04);
             transition: box-shadow 0.3s ease;
         }
-
         .glass-nav.scrolled {
             box-shadow: var(--shadow-sm);
         }
-
         .brand {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
@@ -141,7 +118,6 @@
         .brand span {
             color: var(--color-gold);
         }
-
         .nav-links {
             display: flex;
             align-items: center;
@@ -183,7 +159,6 @@
         .nav-links a.admin-link:hover i {
             color: #fff;
         }
-
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -203,7 +178,6 @@
             outline: 3px solid var(--color-navy);
             outline-offset: 2px;
         }
-
         .mobile-menu {
             display: none;
             position: fixed;
@@ -249,7 +223,6 @@
             width: 1.4rem;
             color: var(--color-gold);
         }
-
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -270,11 +243,9 @@
             opacity: 1;
             pointer-events: auto;
         }
-
         body.menu-open {
             overflow: hidden;
         }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -291,7 +262,7 @@
         }
 
         /* ================================================================
-               HERO SECTION — Preserved structure, only spacing fixed
+               HERO SECTION
                ================================================================ */
         .hero-section {
             padding: 120px 0 80px;
@@ -310,7 +281,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .hero-container {
             max-width: 1280px;
             margin: 0 auto;
@@ -322,7 +292,6 @@
             position: relative;
             z-index: 1;
         }
-
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -342,7 +311,6 @@
             color: var(--color-gold);
             font-size: 0.6rem;
         }
-
         .hero-text h1 {
             font-size: clamp(2.8rem, 5vw, 4rem);
             font-weight: 700;
@@ -360,15 +328,12 @@
             margin-top: 1rem;
             line-height: 1.7;
         }
-
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
             margin-top: 1.75rem;
         }
-
-        /* Primary CTA — Navy (was gold) */
         .btn-primary {
             background: var(--color-navy);
             color: #fff;
@@ -394,8 +359,6 @@
         .btn-primary:active {
             transform: scale(0.97);
         }
-
-        /* Secondary CTA — Gold Outline (was blue outline) */
         .btn-secondary {
             background: transparent;
             color: var(--color-navy);
@@ -421,7 +384,6 @@
         .btn-secondary:active {
             transform: scale(0.97);
         }
-
         .hero-stats {
             display: flex;
             gap: 2.5rem;
@@ -456,8 +418,6 @@
             color: var(--color-gold);
             font-size: 0.7rem;
         }
-
-        /* Hero Image */
         .hero-image-wrap {
             position: relative;
             border-radius: 1.5rem;
@@ -485,8 +445,6 @@
             background: linear-gradient(to top, rgba(10, 37, 64, 0.12), transparent 50%);
             pointer-events: none;
         }
-
-        /* Floating badge — NO scale animation, only shimmer on hover */
         .hero-float-badge {
             position: absolute;
             bottom: 1.5rem;
@@ -512,7 +470,6 @@
             color: var(--color-gold);
             font-size: 0.6rem;
         }
-        /* Shimmer effect on hover — no auto scale */
         .hero-float-badge::after {
             content: '';
             position: absolute;
@@ -536,6 +493,201 @@
         }
 
         /* ================================================================
+               SECTION UTILITY
+               ================================================================ */
+        .section-padding {
+            padding: 80px 0;
+        }
+        .section-padding-sm {
+            padding: 60px 0;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-navy);
+            background: rgba(10, 37, 64, 0.06);
+            padding: 0.2rem 0.8rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+        }
+        .section-label i {
+            color: var(--color-gold);
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .section-title .highlight {
+            color: var(--color-gold);
+        }
+        .section-desc {
+            font-size: 1rem;
+            color: var(--color-muted);
+            line-height: 1.7;
+            margin-top: 0.75rem;
+            max-width: 560px;
+        }
+        .bg-secondary {
+            background: var(--bg-secondary);
+        }
+        .bg-primary {
+            background: var(--bg-primary);
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ================================================================
+               SERVICES SECTION
+               ================================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .service-card {
+            background: var(--bg-primary);
+            padding: 1.75rem 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(10, 37, 64, 0.04);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .service-card .icon-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 9999px;
+            background: rgba(10, 37, 64, 0.06);
+            color: var(--color-gold);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            transition: background 0.3s ease;
+        }
+        .service-card:hover .icon-wrap {
+            background: rgba(10, 37, 64, 0.10);
+        }
+        .service-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.3rem;
+        }
+        .service-card p {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            line-height: 1.5;
+        }
+
+        /* ================================================================
+               COUNTRIES SECTION
+               ================================================================ */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .country-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(10, 37, 64, 0.04);
+            cursor: pointer;
+        }
+        .country-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .country-card .flag-icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .country-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        .country-card p {
+            font-size: 0.8rem;
+            color: var(--color-muted);
+        }
+
+        /* ================================================================
+               COURSES SECTION
+               ================================================================ */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .course-card {
+            background: var(--bg-primary);
+            padding: 1.75rem 1.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(10, 37, 64, 0.04);
+        }
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .course-card .course-icon {
+            font-size: 1.6rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .course-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        .course-card p {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            line-height: 1.5;
+            margin-top: 0.2rem;
+        }
+        .course-card .course-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            background: var(--color-gold-light);
+            padding: 0.15rem 0.6rem;
+            border-radius: 9999px;
+            margin-top: 0.5rem;
+        }
+
+        /* ================================================================
                IMAGE / UNIVERSITIES SECTION
                ================================================================ */
         .image-section {
@@ -554,7 +706,6 @@
             background: radial-gradient(ellipse, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
             pointer-events: none;
         }
-
         .image-container {
             max-width: 1280px;
             margin: 0 auto;
@@ -566,7 +717,6 @@
             position: relative;
             z-index: 1;
         }
-
         .image-section .image-wrap {
             border-radius: 1.5rem;
             overflow: hidden;
@@ -589,7 +739,6 @@
         .image-section .image-wrap:hover img {
             transform: scale(1.04);
         }
-
         .image-overlay-content {
             position: absolute;
             inset: 0;
@@ -603,7 +752,6 @@
         .image-section .image-wrap:hover .image-overlay-content {
             background: linear-gradient(135deg, rgba(10, 37, 64, 0.65) 0%, rgba(26, 58, 107, 0.40) 50%, transparent 80%);
         }
-
         .image-overlay-content .tag {
             display: inline-flex;
             align-items: center;
@@ -657,7 +805,6 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateX(4px);
         }
-
         .image-text-content .section-label {
             display: inline-flex;
             align-items: center;
@@ -724,7 +871,6 @@
             background: var(--bg-primary);
             scroll-margin-top: 80px;
         }
-
         .inquiry-container {
             max-width: 1280px;
             margin: 0 auto;
@@ -734,7 +880,6 @@
             gap: 4rem;
             align-items: start;
         }
-
         .inquiry-text .section-label {
             display: inline-flex;
             align-items: center;
@@ -792,7 +937,6 @@
         .inquiry-text .contact-info .ci-item a:hover {
             color: var(--color-navy);
         }
-
         .form-card {
             background: var(--bg-secondary);
             padding: 2.5rem;
@@ -803,12 +947,10 @@
         .form-card:hover {
             box-shadow: var(--shadow-lg);
         }
-
         .form-group {
             margin-bottom: 1.25rem;
             position: relative;
         }
-
         .form-group label {
             display: block;
             font-size: 0.8rem;
@@ -820,7 +962,6 @@
             color: #EF4444;
             margin-left: 0.1rem;
         }
-
         .form-group .input-wrap {
             display: flex;
             align-items: center;
@@ -840,7 +981,6 @@
             border-color: #10B981;
             box-shadow: 0 2px 0 #10B981;
         }
-
         .form-group .input-wrap i {
             color: var(--color-muted);
             font-size: 0.9rem;
@@ -851,7 +991,6 @@
         .form-group .input-wrap:focus-within i {
             color: var(--color-navy);
         }
-
         .form-group .input-wrap input,
         .form-group .input-wrap select,
         .form-group .input-wrap textarea {
@@ -878,7 +1017,6 @@
             background-repeat: no-repeat;
             background-position: right 0.2rem center;
         }
-
         .form-group .error-msg {
             display: none;
             font-size: 0.7rem;
@@ -889,11 +1027,9 @@
         .form-group .error-msg.show {
             display: block;
         }
-
         .form-group .input-wrap.error+.error-msg {
             display: block;
         }
-
         .form-submit {
             margin-top: 0.5rem;
         }
@@ -1058,7 +1194,6 @@
             font-size: 0.8rem;
             color: var(--color-gold);
         }
-
         .footer-social {
             display: flex;
             gap: 0.6rem;
@@ -1083,7 +1218,6 @@
             transform: translateY(-3px);
             border-color: rgba(201, 168, 76, 0.2);
         }
-
         .footer-bottom {
             text-align: center;
             font-size: 0.7rem;
@@ -1093,8 +1227,20 @@
         }
 
         /* ================================================================
-               RESPONSIVE — MOBILE
+               RESPONSIVE
                ================================================================ */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .countries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 767px) {
             .hero-section {
                 padding: 100px 0 40px;
@@ -1106,7 +1252,6 @@
             }
             .hero-text h1 {
                 font-size: 2.2rem;
-                line-height: 1.1;
             }
             .hero-text p {
                 font-size: 0.95rem;
@@ -1133,7 +1278,6 @@
             .hero-stats .stat-label {
                 font-size: 0.7rem;
             }
-
             .hero-image-wrap {
                 order: -1;
                 border-radius: 1rem;
@@ -1150,6 +1294,13 @@
             }
             .hero-float-badge i {
                 font-size: 0.5rem;
+            }
+
+            .section-padding {
+                padding: 50px 0;
+            }
+            .section-padding-sm {
+                padding: 40px 0;
             }
 
             .image-section {
@@ -1186,11 +1337,30 @@
                 font-size: 0.9rem;
                 max-width: 100%;
             }
-            .image-text-content .feature-list .feature-item {
-                font-size: 0.85rem;
-            }
             .image-container .image-wrap {
                 order: -1;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .countries-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .service-card {
+                padding: 1.25rem 1rem;
+            }
+            .country-card {
+                padding: 1rem;
+            }
+            .course-card {
+                padding: 1.25rem 1rem;
             }
 
             #inquiry {
@@ -1218,6 +1388,12 @@
         }
 
         @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .countries-grid {
+                grid-template-columns: 1fr;
+            }
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -1245,9 +1421,6 @@
             }
         }
 
-        /* ================================================================
-               TABLET (768px - 1024px)
-               ================================================================ */
         @media (min-width: 768px) and (max-width: 1024px) {
             .hero-container {
                 gap: 2.5rem;
@@ -1270,18 +1443,6 @@
         }
 
         /* ================================================================
-               UTILITY
-               ================================================================ */
-        .text-center {
-            text-align: center;
-        }
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* ================================================================
                ANIMATIONS
                ================================================================ */
         @keyframes fadeUp {
@@ -1294,7 +1455,6 @@
                 transform: translateY(0);
             }
         }
-
         .animate-fade-up {
             animation: fadeUp 0.8s ease forwards;
         }
@@ -1306,7 +1466,6 @@
             animation: fadeUp 0.8s ease 0.4s forwards;
             opacity: 0;
         }
-
         .stagger-item {
             opacity: 0;
             transform: translateY(16px);
@@ -1347,7 +1506,6 @@
             outline: 3px solid var(--color-navy);
             outline-offset: 2px;
         }
-
         button,
         a,
         input,
@@ -1363,15 +1521,16 @@
     <div id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
     <!-- ================================================================
-    NAVIGATION
+    NAVIGATION — All links now point to existing sections
     ================================================================ -->
     <nav class="glass-nav" id="mainNav" aria-label="Main navigation">
-        <a href="#" class="brand" aria-label="SkyScholar Home">Sky<span>Scholar</span></a>
+        <a href="#home" class="brand" aria-label="SkyScholar Home">Sky<span>Scholar</span></a>
         <div class="nav-links">
             <a href="#home"><i class="fas fa-house" aria-hidden="true"></i> Home</a>
             <a href="#services"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
             <a href="#countries"><i class="fas fa-globe" aria-hidden="true"></i> Countries</a>
             <a href="#universities"><i class="fas fa-university" aria-hidden="true"></i> Universities</a>
+            <a href="#courses"><i class="fas fa-book-open" aria-hidden="true"></i> Courses</a>
             <a href="#inquiry"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
             <a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
             <a href="#" class="admin-link"><i class="fas fa-lock" aria-hidden="true"></i> Admin</a>
@@ -1388,13 +1547,14 @@
         <a href="#services" onclick="closeMobileMenu();"><i class="fas fa-briefcase" aria-hidden="true"></i> Services</a>
         <a href="#countries" onclick="closeMobileMenu();"><i class="fas fa-globe" aria-hidden="true"></i> Countries</a>
         <a href="#universities" onclick="closeMobileMenu();"><i class="fas fa-university" aria-hidden="true"></i> Universities</a>
+        <a href="#courses" onclick="closeMobileMenu();"><i class="fas fa-book-open" aria-hidden="true"></i> Courses</a>
         <a href="#inquiry" onclick="closeMobileMenu();"><i class="fas fa-paper-plane" aria-hidden="true"></i> Inquiry</a>
         <a href="#contact" onclick="closeMobileMenu();"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
         <a href="#" onclick="closeMobileMenu();" style="color:var(--color-navy);font-weight:600;"><i class="fas fa-lock" aria-hidden="true"></i> Admin</a>
     </div>
 
     <!-- ================================================================
-    HERO SECTION — Preserved structure, only spacing fixed + color updates
+    HERO SECTION
     ================================================================ -->
     <section class="hero-section" id="home">
         <div class="hero-container">
@@ -1444,6 +1604,72 @@
     </section>
 
     <!-- ================================================================
+    SERVICES SECTION — NEW
+    ================================================================ -->
+    <section class="section-padding bg-secondary" id="services">
+        <div class="container">
+            <span class="section-label"><i class="fas fa-briefcase" aria-hidden="true"></i> What We Offer</span>
+            <h2 class="section-title">Our <span class="highlight">Premium Services</span></h2>
+            <p class="section-desc">End-to-end support for your study abroad journey — from university selection to visa approval.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon-wrap"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+                    <h3>University Selection</h3>
+                    <p>Personalized matching with 50+ partner universities worldwide.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-wrap"><i class="fas fa-file-pen" aria-hidden="true"></i></div>
+                    <h3>Application Support</h3>
+                    <p>End-to-end assistance with applications, SOPs, and documentation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-wrap"><i class="fas fa-passport" aria-hidden="true"></i></div>
+                    <h3>Visa Guidance</h3>
+                    <p>Expert visa counseling with 98% success rate across all countries.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-wrap"><i class="fas fa-circle-dollar" aria-hidden="true"></i></div>
+                    <h3>Scholarship Help</h3>
+                    <p>Access to scholarships, grants, and funding opportunities worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+    COUNTRIES SECTION — NEW
+    ================================================================ -->
+    <section class="section-padding bg-primary" id="countries">
+        <div class="container">
+            <span class="section-label"><i class="fas fa-globe" aria-hidden="true"></i> Destinations</span>
+            <h2 class="section-title">Top <span class="highlight">Study Destinations</span></h2>
+            <p class="section-desc">Explore our partner countries with world-class education systems and vibrant student life.</p>
+            <div class="countries-grid">
+                <div class="country-card">
+                    <span class="flag-icon">🇨🇦</span>
+                    <h3>Canada</h3>
+                    <p>12+ partner universities</p>
+                </div>
+                <div class="country-card">
+                    <span class="flag-icon">🇬🇧</span>
+                    <h3>United Kingdom</h3>
+                    <p>15+ partner universities</p>
+                </div>
+                <div class="country-card">
+                    <span class="flag-icon">🇦🇺</span>
+                    <h3>Australia</h3>
+                    <p>10+ partner universities</p>
+                </div>
+                <div class="country-card">
+                    <span class="flag-icon">🇩🇪</span>
+                    <h3>Germany</h3>
+                    <p>8+ partner universities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
     IMAGE / UNIVERSITIES SECTION
     ================================================================ -->
     <section class="image-section" id="universities">
@@ -1460,8 +1686,8 @@
                     <span class="tag"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Explore</span>
                     <h3>Discover Your Dream University</h3>
                     <p>Explore 50+ partner institutions across Canada, UK, Australia &amp; more.</p>
-                    <a href="#" class="btn-explore">
-                        View All Universities <i class="fas fa-arrow-right" aria-hidden="true" style="font-size:0.6rem;"></i>
+                    <a href="#inquiry" class="btn-explore">
+                        Get Started <i class="fas fa-arrow-right" aria-hidden="true" style="font-size:0.6rem;"></i>
                     </a>
                 </div>
             </div>
@@ -1482,9 +1708,58 @@
     </section>
 
     <!-- ================================================================
+    COURSES SECTION — NEW
+    ================================================================ -->
+    <section class="section-padding bg-secondary" id="courses">
+        <div class="container">
+            <span class="section-label"><i class="fas fa-book-open" aria-hidden="true"></i> Programs</span>
+            <h2 class="section-title">Popular <span class="highlight">Courses</span></h2>
+            <p class="section-desc">Choose from a wide range of programs across top universities in our partner network.</p>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <span class="course-icon"><i class="fas fa-flask" aria-hidden="true"></i></span>
+                    <h3>Computer Science</h3>
+                    <p>BSc, MSc, PhD programs with specializations in AI, ML, and Data Science.</p>
+                    <span class="course-tag">50+ Universities</span>
+                </div>
+                <div class="course-card">
+                    <span class="course-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></span>
+                    <h3>Business Administration</h3>
+                    <p>MBA, BBA, and executive programs with global business networks.</p>
+                    <span class="course-tag">45+ Universities</span>
+                </div>
+                <div class="course-card">
+                    <span class="course-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></span>
+                    <h3>Medicine &amp; Health</h3>
+                    <p>MD, Nursing, Public Health, and allied health science programs.</p>
+                    <span class="course-tag">30+ Universities</span>
+                </div>
+                <div class="course-card">
+                    <span class="course-icon"><i class="fas fa-gavel" aria-hidden="true"></i></span>
+                    <h3>Law &amp; Legal Studies</h3>
+                    <p>LLB, LLM, and specialized legal programs with international focus.</p>
+                    <span class="course-tag">25+ Universities</span>
+                </div>
+                <div class="course-card">
+                    <span class="course-icon"><i class="fas fa-palette" aria-hidden="true"></i></span>
+                    <h3>Arts &amp; Design</h3>
+                    <p>Fine Arts, Graphic Design, Architecture, and creative programs.</p>
+                    <span class="course-tag">35+ Universities</span>
+                </div>
+                <div class="course-card">
+                    <span class="course-icon"><i class="fas fa-microscope" aria-hidden="true"></i></span>
+                    <h3>Engineering</h3>
+                    <p>Mechanical, Electrical, Civil, and cutting-edge engineering disciplines.</p>
+                    <span class="course-tag">40+ Universities</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
     INQUIRY / CONTACT FORM SECTION
     ================================================================ -->
-    <section id="inquiry" aria-label="Inquiry form">
+    <section class="section-padding bg-primary" id="inquiry">
         <div class="inquiry-container">
             <div class="inquiry-text">
                 <span class="section-label"><i class="fas fa-paper-plane" aria-hidden="true"></i> Get Started</span>
@@ -1498,7 +1773,6 @@
                     <div class="ci-item"><i class="fas fa-location-dot" aria-hidden="true"></i> New York, USA</div>
                 </div>
             </div>
-
             <div class="form-card">
                 <form id="contactForm" novalidate autocomplete="on">
                     <div class="form-group">
@@ -1509,7 +1783,6 @@
                         </div>
                         <div class="error-msg" id="fullNameError">Please enter your full name.</div>
                     </div>
-
                     <div class="form-group">
                         <label for="email">Email Address <span class="required">*</span></label>
                         <div class="input-wrap">
@@ -1518,7 +1791,6 @@
                         </div>
                         <div class="error-msg" id="emailError">Please enter a valid email address.</div>
                     </div>
-
                     <div class="form-group">
                         <label for="country">Country <span class="required">*</span></label>
                         <div class="input-wrap">
@@ -1535,7 +1807,6 @@
                         </div>
                         <div class="error-msg" id="countryError">Please select your country.</div>
                     </div>
-
                     <div class="form-group">
                         <label for="message">Message <span class="required">*</span></label>
                         <div class="input-wrap">
@@ -1544,7 +1815,6 @@
                         </div>
                         <div class="error-msg" id="messageError">Please enter your message.</div>
                     </div>
-
                     <div class="form-submit">
                         <button type="submit" class="btn-primary" id="formSubmitBtn">
                             <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Inquiry
@@ -1610,7 +1880,7 @@
     <div id="toast" role="alert" aria-live="polite"></div>
 
     <!-- ================================================================
-    JAVASCRIPT
+    JAVASCRIPT — Navigation + all functionality
     ================================================================ -->
     <script>
         // ================================================================
@@ -1686,7 +1956,7 @@
         });
 
         // ================================================================
-        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // SMOOTH SCROLL FOR ANCHOR LINKS — Navigation fix
         // ================================================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1695,6 +1965,10 @@
                 const target = document.querySelector(targetId);
                 if (target) {
                     e.preventDefault();
+                    // Close mobile menu if open
+                    if (document.getElementById('mobileMenu').classList.contains('open')) {
+                        closeMobileMenu();
+                    }
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
@@ -1766,7 +2040,7 @@
         if (featureList) staggerObserver.observe(featureList);
 
         // ================================================================
-        // FORM VALIDATION + SUBMISSION (console log)
+        // FORM VALIDATION + SUBMISSION
         // ================================================================
         const form = document.getElementById('contactForm');
         const toast = document.getElementById('toast');
@@ -1831,13 +2105,7 @@
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...';
 
                 setTimeout(() => {
-                    console.log('📩 Form Submission Data:', {
-                        name,
-                        email,
-                        country,
-                        message,
-                        timestamp: new Date().toISOString()
-                    });
+                    console.log('📩 Form Submission:', { name, email, country, message });
                     showToast('Thank you! Our team will contact you within 24 hours.', 'success');
                     form.reset();
                     document.querySelectorAll('.input-wrap').forEach(w => {
@@ -1896,8 +2164,8 @@
             }
         });
 
-        console.log('🚀 SkyScholar — Premium Study Abroad Platform (US Minimalist)');
-        console.log('📋 All fixes applied: Counter, Form, Shimmer, Shadows, Icons, Spacing.');
+        console.log('🚀 SkyScholar — Navigation fixed. All sections now work.');
+        console.log('📋 Sections: Home, Services, Countries, Universities, Courses, Inquiry, Contact');
     </script>
 </body>
 </html>
