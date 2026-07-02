@@ -179,6 +179,7 @@
             color: #94a3b8;
         }
 
+        /* Menu overlay close area */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -199,6 +200,8 @@
             opacity: 1;
             pointer-events: auto;
         }
+
+        /* Body scroll lock when menu open */
         body.menu-open {
             overflow: hidden;
         }
@@ -416,69 +419,57 @@
         }
 
         /* ================================================================
-               MOBILE HERO — Content on top, Image below (Reference style)
+               MOBILE HERO IMPROVEMENTS (only below 768px)
+               Uses reference layout: text → CTAs → stats → image
                ================================================================ */
         @media (max-width: 767px) {
             .hero-bg {
-                min-height: auto;
+                min-height: 100vh;
+                align-items: flex-start;
                 padding-top: 0;
-                background-image: none;
-                background-color: transparent;
-                display: block;
+                background-image: url('https://plus.unsplash.com/premium_photo-1713296255442-e9338f42aad8?q=80&w=422&auto=format&fit=crop&ixlib=rb-4.1.0');
+                background-position: center 30%;
+                background-size: cover;
             }
             .hero-bg::before {
-                display: none;
+                background: linear-gradient(160deg, rgba(11, 29, 51, 0.82) 0%, rgba(26, 58, 107, 0.55) 50%, rgba(42, 95, 143, 0.45) 100%);
             }
             .hero-bg::after {
-                display: none;
-            }
-
-            /* Content wrapper — solid background with brand colors */
-            .hero-content-wrapper {
-                background: linear-gradient(160deg, #0b1d33 0%, #1a3a6b 50%, #2a5f8f 100%);
-                padding: 28px 16px 32px 16px;
-                position: relative;
-                overflow: hidden;
-            }
-            .hero-content-wrapper::after {
                 content: '';
                 position: absolute;
                 inset: 0;
                 background: radial-gradient(ellipse at 50% 20%, rgba(245, 197, 66, 0.06) 0%, transparent 60%);
-                pointer-events: none;
                 z-index: 0;
+                pointer-events: none;
             }
 
             .hero-content {
-                position: relative;
-                z-index: 1;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 24px 16px 32px 16px;
+                padding-top: 28px;
+                z-index: 2;
                 display: flex;
                 flex-direction: column;
-                gap: 0;
-                padding: 0;
-                max-width: 100%;
-                grid-template-columns: none;
             }
 
+            /* ---- Hero Text (top) ---- */
             .hero-text {
-                width: 100%;
+                order: 1;
                 display: flex;
                 flex-direction: column;
+                width: 100%;
             }
             .hero-text .hero-badge {
                 font-size: 0.6rem;
                 padding: 0.2rem 0.8rem;
                 margin-bottom: 10px;
                 align-self: flex-start;
-                background: rgba(245, 197, 66, 0.2);
-                backdrop-filter: blur(4px);
-                border: 1px solid rgba(245, 197, 66, 0.15);
             }
             .hero-text h1 {
                 font-size: 2rem;
                 line-height: 1.08;
                 letter-spacing: -0.02em;
-                color: #fff;
             }
             .hero-text h1 br {
                 display: inline;
@@ -489,9 +480,9 @@
                 max-width: 100%;
                 margin-top: 10px;
                 padding-right: 4px;
-                color: rgba(255, 255, 255, 0.85);
             }
 
+            /* ---- CTAs (second) ---- */
             .hero-text .hero-actions {
                 flex-direction: column;
                 gap: 10px;
@@ -512,6 +503,7 @@
                 font-weight: 700;
             }
 
+            /* ---- Stats as glass card (third) ---- */
             .hero-text .hero-stats {
                 display: flex;
                 flex-wrap: wrap;
@@ -536,7 +528,6 @@
                 font-size: 1.35rem;
                 display: block;
                 line-height: 1.2;
-                color: #fff;
             }
             .hero-text .hero-stats .stat-label {
                 font-size: 0.65rem;
@@ -546,22 +537,18 @@
                 color: rgba(255, 255, 255, 0.65);
             }
 
-            /* ---- Image section below content (separate) ---- */
-            .hero-image-section {
-                padding: 0 16px 28px 16px;
-                background: #0b1d33;
-                position: relative;
-            }
-            .hero-image-section .hero-image {
+            /* ---- Hero Image (bottom) ---- */
+            .hero-image {
+                order: 2;
+                margin-top: 4px;
                 border-radius: 16px;
-                overflow: hidden;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
                 max-height: 240px;
                 min-height: 180px;
+                overflow: hidden;
                 width: 100%;
-                position: relative;
+                flex-shrink: 0;
             }
-            .hero-image-section .hero-image img {
+            .hero-image img {
                 height: 100%;
                 min-height: 180px;
                 max-height: 240px;
@@ -569,13 +556,12 @@
                 object-position: center 20%;
                 width: 100%;
             }
-            .hero-image-section .hero-image .hero-image-overlay {
+            .hero-image .hero-image-overlay {
                 background: linear-gradient(to top, rgba(11, 29, 51, 0.5), transparent 50%);
             }
 
-            /* Floating cards on the image */
-            .hero-image-section .floating-card-1 {
-                position: absolute;
+            /* ---- Floating cards repositioned ---- */
+            .hero-image .floating-card-1 {
                 bottom: 6px;
                 left: 6px;
                 padding: 4px 8px;
@@ -591,25 +577,24 @@
                 transform: scale(0.8);
                 transform-origin: bottom left;
             }
-            .hero-image-section .floating-card-1 span {
+            .hero-image .floating-card-1 span {
                 font-size: 1rem;
             }
-            .hero-image-section .floating-card-1 div p:first-child {
+            .hero-image .floating-card-1 div p:first-child {
                 font-size: 0.5rem;
                 font-weight: 600;
                 color: #fff;
                 margin: 0;
                 line-height: 1.1;
             }
-            .hero-image-section .floating-card-1 div p:last-child {
+            .hero-image .floating-card-1 div p:last-child {
                 font-size: 0.4rem;
                 color: rgba(255, 255, 255, 0.6);
                 margin: 0;
                 line-height: 1.1;
             }
 
-            .hero-image-section .floating-card-2 {
-                position: absolute;
+            .hero-image .floating-card-2 {
                 top: 6px;
                 right: 6px;
                 padding: 4px 8px;
@@ -625,25 +610,24 @@
                 transform: scale(0.8);
                 transform-origin: top right;
             }
-            .hero-image-section .floating-card-2 span {
+            .hero-image .floating-card-2 span {
                 font-size: 1rem;
             }
-            .hero-image-section .floating-card-2 div p:first-child {
+            .hero-image .floating-card-2 div p:first-child {
                 font-size: 0.5rem;
                 font-weight: 600;
                 color: #fff;
                 margin: 0;
                 line-height: 1.1;
             }
-            .hero-image-section .floating-card-2 div p:last-child {
+            .hero-image .floating-card-2 div p:last-child {
                 font-size: 0.4rem;
                 color: rgba(255, 255, 255, 0.6);
                 margin: 0;
                 line-height: 1.1;
             }
 
-            .hero-image-section .floating-badge {
-                position: absolute;
+            .hero-image .floating-badge {
                 bottom: 36px;
                 right: 8px;
                 padding: 2px 10px;
@@ -657,20 +641,21 @@
                 letter-spacing: 0.04em;
             }
 
-            /* Disable animations on mobile */
+            /* Disable animations on mobile for performance */
             .float-animation,
             .float-animation-delay {
                 animation: none;
             }
-            .hero-image-section .floating-card-1,
-            .hero-image-section .floating-card-2 {
+            .hero-image .floating-card-1,
+            .hero-image .floating-card-2 {
                 transition: none;
             }
 
             /* Extra small screens */
             @media (max-width: 374px) {
-                .hero-content-wrapper {
+                .hero-content {
                     padding: 18px 12px 24px 12px;
+                    gap: 14px;
                 }
                 .hero-text h1 {
                     font-size: 1.6rem;
@@ -688,19 +673,19 @@
                 .hero-text .hero-stats .stat-label {
                     font-size: 0.55rem;
                 }
-                .hero-image-section .hero-image {
+                .hero-image {
                     max-height: 180px;
                     min-height: 140px;
                 }
-                .hero-image-section .hero-image img {
+                .hero-image img {
                     min-height: 140px;
                     max-height: 180px;
                 }
-                .hero-image-section .floating-card-1,
-                .hero-image-section .floating-card-2 {
+                .hero-image .floating-card-1,
+                .hero-image .floating-card-2 {
                     transform: scale(0.65);
                 }
-                .hero-image-section .floating-badge {
+                .hero-image .floating-badge {
                     font-size: 0.4rem;
                     padding: 1px 6px;
                     bottom: 28px;
@@ -721,11 +706,11 @@
                 .hero-text p {
                     font-size: 0.9rem;
                 }
-                .hero-image-section .hero-image {
+                .hero-image {
                     max-height: 210px;
                     min-height: 160px;
                 }
-                .hero-image-section .hero-image img {
+                .hero-image img {
                     min-height: 160px;
                     max-height: 210px;
                 }
@@ -1739,7 +1724,7 @@
     <!-- ===== TOAST ===== -->
     <div id="toast" class="toast"></div>
 
-    <!-- ===== MOBILE MENU OVERLAY ===== -->
+    <!-- ===== MOBILE MENU OVERLAY (click outside to close) ===== -->
     <div id="mobileMenuOverlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
 
     <!-- ================================================================
@@ -1762,7 +1747,7 @@
         </button>
     </nav>
 
-    <!-- ===== MOBILE MENU ===== -->
+    <!-- ===== MOBILE MENU — FIXED with proper click handling ===== -->
     <div id="mobileMenu" class="mobile-menu">
         <a href="#" onclick="navigate('home'); return false;"><i class="fas fa-home" style="width:1.5rem;color:#1a3a6b;"></i> Home</a>
         <a href="#" onclick="navigate('services'); return false;"><i class="fas fa-graduation-cap" style="width:1.5rem;color:#1a3a6b;"></i> Services</a>
@@ -1779,30 +1764,23 @@
     ================================================================ -->
     <div id="page-home" class="page active">
 
-        <!-- ===== HERO — Mobile: content on top, image below ===== -->
+        <!-- HERO — mobile layout improved using reference structure -->
         <section class="hero-bg">
-            <!-- Content wrapper (mobile: solid background) -->
-            <div class="hero-content-wrapper">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <span class="hero-badge">✦ PREMIUM STUDY ABROAD</span>
-                        <h1>Your Gateway to <br /><span class="accent">Global Education</span></h1>
-                        <p>Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.</p>
-                        <div class="hero-actions">
-                            <a href="#" onclick="navigate('inquiry')" class="btn-primary" style="background:#f5c542;color:#1a3a6b;font-weight:700;">Book Free Consultation</a>
-                            <a href="#" onclick="navigate('universities')" class="btn-secondary">Explore Universities</a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Students Placed</span></div>
-                            <div class="stat-item"><span class="stat-number">98%</span><span class="stat-label">Visa Success</span></div>
-                            <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Partner Universities</span></div>
-                        </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">✦ PREMIUM STUDY ABROAD</span>
+                    <h1>Your Gateway to <br /><span class="accent">Global Education</span></h1>
+                    <p>Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.</p>
+                    <div class="hero-actions">
+                        <a href="#" onclick="navigate('inquiry')" class="btn-primary" style="background:#f5c542;color:#1a3a6b;font-weight:700;">Book Free Consultation</a>
+                        <a href="#" onclick="navigate('universities')" class="btn-secondary">Explore Universities</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Students Placed</span></div>
+                        <div class="stat-item"><span class="stat-number">98%</span><span class="stat-label">Visa Success</span></div>
+                        <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Partner Universities</span></div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Image section — separate below content (mobile only) -->
-            <div class="hero-image-section">
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=600&auto=format&fit=crop" alt="Students celebrating graduation" loading="lazy" />
                     <div class="hero-image-overlay"></div>
@@ -2577,6 +2555,7 @@
             menu.classList.add('open');
             overlay.classList.add('open');
             document.body.classList.add('menu-open');
+            // Change hamburger to close icon
             const btn = document.getElementById('mobileMenuBtn');
             btn.innerHTML = '<i class="fas fa-times"></i>';
         }
@@ -2604,6 +2583,7 @@
         // NAVIGATION
         // ================================================================
         function navigate(page) {
+            // Close mobile menu first
             closeMobileMenu();
 
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -2611,6 +2591,7 @@
             if (target) target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
+            // Update hash
             const protectedPages = ['adminLogin', 'adminDashboard', 'adminCountries', 'adminUniversities',
                 'adminCourses', 'adminTestimonials', 'adminLeads'
             ];
@@ -2620,6 +2601,7 @@
                 window.location.hash = page;
             }
 
+            // Re-render dynamic content
             if (page === 'home') renderHomeTestimonials();
             if (page === 'countries') renderCountries();
             if (page === 'universities') { populateUniFilter();
@@ -2632,6 +2614,7 @@
             if (page === 'adminTestimonials') renderAdminTestimonials();
             if (page === 'adminLeads') renderAdminLeads();
 
+            // Check admin auth
             const protectedPagesList = ['adminDashboard', 'adminCountries', 'adminUniversities', 'adminCourses',
                 'adminTestimonials', 'adminLeads'
             ];
@@ -3077,6 +3060,7 @@
             toggleMobileMenu();
         });
 
+        // Close menu on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeMobileMenu();
