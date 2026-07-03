@@ -1,575 +1,1071 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LUXE Fashion</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .product-card:hover img {
-      transform: scale(1.06);
-    }
-
-    .product-card img {
-      transition: transform 0.7s ease;
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-
-    .fade-up.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-
-<body class="bg-[#f7f7f5] text-zinc-900 antialiased">
-
-  <!-- Announcement Bar -->
-  <div class="bg-black text-white text-center text-sm py-3 tracking-wide">
-    Free worldwide shipping on all premium collections
-  </div>
-
-  <!-- Navbar -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-black/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center justify-between h-20">
-
-        <a href="#" class="text-2xl font-black tracking-[0.2em]">
-          LUXE
-        </a>
-
-        <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
-          <a href="#" class="hover:text-black/60 transition">New</a>
-          <a href="#" class="hover:text-black/60 transition">Women</a>
-          <a href="#" class="hover:text-black/60 transition">Men</a>
-          <a href="#" class="hover:text-black/60 transition">Collections</a>
-          <a href="#" class="hover:text-black/60 transition">Journal</a>
-        </nav>
-
-        <div class="flex items-center gap-4">
-          <button class="hover:opacity-60 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-
-          <button class="hover:opacity-60 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M5.121 17.804A9 9 0 1118 20H6a1 1 0 01-.879-1.496z" />
-            </svg>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="relative min-h-screen overflow-hidden">
-
-    <img
-      src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1974&auto=format&fit=crop"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
-
-    <div class="absolute inset-0 bg-black/30"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
-
-      <div class="max-w-2xl text-white">
-
-        <p class="uppercase tracking-[0.3em] text-sm mb-6">
-          New Luxury Collection
-        </p>
-
-        <h1 class="text-5xl md:text-7xl font-black leading-none mb-8">
-          Redefining Modern Fashion
-        </h1>
-
-        <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-10">
-          Minimal silhouettes, premium materials, and timeless pieces designed
-          for the modern generation.
-        </p>
-
-        <div class="flex flex-wrap gap-4">
-          <button class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition duration-300">
-            Shop Women
-          </button>
-
-          <button class="border border-white/50 px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition duration-300">
-            Explore Collection
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Categories -->
-  <section class="py-28">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <div class="flex items-end justify-between mb-14">
-        <div>
-          <p class="uppercase tracking-[0.3em] text-xs text-zinc-500 mb-4">
-            Categories
-          </p>
-
-          <h2 class="text-4xl md:text-5xl font-black">
-            Shop By Style
-          </h2>
-        </div>
-
-        <a href="#" class="hidden md:block text-sm underline underline-offset-4">
-          View All
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <div class="relative rounded-[2rem] overflow-hidden h-[500px] group">
-          <img
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1974&auto=format&fit=crop"
-            class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          />
-
-          <div class="absolute inset-0 bg-black/20"></div>
-
-          <div class="absolute bottom-10 left-10 text-white">
-            <h3 class="text-3xl font-bold mb-2">Women</h3>
-            <p class="text-white/80">Modern essentials</p>
-          </div>
-        </div>
-
-        <div class="relative rounded-[2rem] overflow-hidden h-[500px] group">
-          <img
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
-            class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          />
-
-          <div class="absolute inset-0 bg-black/20"></div>
-
-          <div class="absolute bottom-10 left-10 text-white">
-            <h3 class="text-3xl font-bold mb-2">Men</h3>
-            <p class="text-white/80">Elevated basics</p>
-          </div>
-        </div>
-
-        <div class="relative rounded-[2rem] overflow-hidden h-[500px] group">
-          <img
-            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1974&auto=format&fit=crop"
-            class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          />
-
-          <div class="absolute inset-0 bg-black/20"></div>
-
-          <div class="absolute bottom-10 left-10 text-white">
-            <h3 class="text-3xl font-bold mb-2">Accessories</h3>
-            <p class="text-white/80">Luxury finishing touch</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Products -->
-  <section class="pb-28">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <div class="flex items-end justify-between mb-14">
-        <div>
-          <p class="uppercase tracking-[0.3em] text-xs text-zinc-500 mb-4">
-            Trending
-          </p>
-
-          <h2 class="text-4xl md:text-5xl font-black">
-            Best Sellers
-          </h2>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- Card -->
-        <div class="product-card bg-white rounded-[2rem] overflow-hidden border border-black/5 hover:-translate-y-2 transition duration-500">
-
-          <div class="overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1887&auto=format&fit=crop"
-              class="w-full h-[380px] object-cover"
-            />
-          </div>
-
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-semibold text-lg">
-                  Essential Tee
-                </h3>
-
-                <p class="text-sm text-zinc-500">
-                  Minimal cotton fit
-                </p>
-              </div>
-
-              <span class="font-semibold">$89</span>
-            </div>
-
-            <button class="w-full bg-black text-white py-3 rounded-full hover:opacity-90 transition">
-              Add To Cart
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Card -->
-        <div class="product-card bg-white rounded-[2rem] overflow-hidden border border-black/5 hover:-translate-y-2 transition duration-500">
-
-          <div class="overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1974&auto=format&fit=crop"
-              class="w-full h-[380px] object-cover"
-            />
-          </div>
-
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-semibold text-lg">
-                  Urban Jacket
-                </h3>
-
-                <p class="text-sm text-zinc-500">
-                  Luxury oversized fit
-                </p>
-              </div>
-
-              <span class="font-semibold">$240</span>
-            </div>
-
-            <button class="w-full bg-black text-white py-3 rounded-full hover:opacity-90 transition">
-              Add To Cart
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Card -->
-        <div class="product-card bg-white rounded-[2rem] overflow-hidden border border-black/5 hover:-translate-y-2 transition duration-500">
-
-          <div class="overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1887&auto=format&fit=crop"
-              class="w-full h-[380px] object-cover"
-            />
-          </div>
-
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-semibold text-lg">
-                  Signature Coat
-                </h3>
-
-                <p class="text-sm text-zinc-500">
-                  Premium winter layer
-                </p>
-              </div>
-
-              <span class="font-semibold">$320</span>
-            </div>
-
-            <button class="w-full bg-black text-white py-3 rounded-full hover:opacity-90 transition">
-              Add To Cart
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Card -->
-        <div class="product-card bg-white rounded-[2rem] overflow-hidden border border-black/5 hover:-translate-y-2 transition duration-500">
-
-          <div class="overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1974&auto=format&fit=crop"
-              class="w-full h-[380px] object-cover"
-            />
-          </div>
-
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-semibold text-lg">
-                  Modern Hoodie
-                </h3>
-
-                <p class="text-sm text-zinc-500">
-                  Soft premium fabric
-                </p>
-              </div>
-
-              <span class="font-semibold">$160</span>
-            </div>
-
-            <button class="w-full bg-black text-white py-3 rounded-full hover:opacity-90 transition">
-              Add To Cart
-            </button>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Editorial Banner -->
-  <section class="pb-28">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <div class="rounded-[3rem] overflow-hidden relative h-[650px]">
-
-        <img
-          src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1974&auto=format&fit=crop"
-          class="w-full h-full object-cover"
-        />
-
-        <div class="absolute inset-0 bg-black/30"></div>
-
-        <div class="absolute inset-0 flex items-center">
-
-          <div class="max-w-2xl px-10 md:px-20 text-white">
-
-            <p class="uppercase tracking-[0.3em] text-sm mb-6">
-              Editorial Collection
-            </p>
-
-            <h2 class="text-5xl md:text-6xl font-black leading-tight mb-8">
-              Crafted For Everyday Luxury
-            </h2>
-
-            <button class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition">
-              Discover Now
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="pb-28">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <div class="text-center mb-16">
-        <p class="uppercase tracking-[0.3em] text-xs text-zinc-500 mb-4">
-          Reviews
-        </p>
-
-        <h2 class="text-4xl md:text-5xl font-black">
-          Trusted By Thousands
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-
-        <div class="bg-white p-8 rounded-[2rem] border border-black/5">
-          <p class="text-zinc-600 leading-relaxed mb-6">
-            “The quality feels incredibly premium. The shopping experience is
-            smooth and beautiful.”
-          </p>
-
-          <div>
-            <h4 class="font-semibold">Sophia Lee</h4>
-            <p class="text-sm text-zinc-500">Fashion Creator</p>
-          </div>
-        </div>
-
-        <div class="bg-white p-8 rounded-[2rem] border border-black/5">
-          <p class="text-zinc-600 leading-relaxed mb-6">
-            “Minimal design, luxury feel, and very fast checkout experience.”
-          </p>
-
-          <div>
-            <h4 class="font-semibold">Daniel Ross</h4>
-            <p class="text-sm text-zinc-500">Creative Director</p>
-          </div>
-        </div>
-
-        <div class="bg-white p-8 rounded-[2rem] border border-black/5">
-          <p class="text-zinc-600 leading-relaxed mb-6">
-            “One of the best premium ecommerce experiences I’ve seen recently.”
-          </p>
-
-          <div>
-            <h4 class="font-semibold">Olivia Carter</h4>
-            <p class="text-sm text-zinc-500">Brand Strategist</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="pb-28">
-    <div class="max-w-4xl mx-auto px-6">
-
-      <div class="text-center mb-14">
-        <p class="uppercase tracking-[0.3em] text-xs text-zinc-500 mb-4">
-          FAQ
-        </p>
-
-        <h2 class="text-4xl md:text-5xl font-black">
-          Questions & Answers
-        </h2>
-      </div>
-
-      <div class="space-y-4">
-
-        <div class="bg-white rounded-3xl border border-black/5 p-6">
-          <button class="faq-btn w-full flex justify-between items-center text-left">
-            <span class="font-semibold">Do you offer worldwide shipping?</span>
-            <span>+</span>
-          </button>
-
-          <div class="faq-content hidden pt-4 text-zinc-600">
-            Yes, we ship worldwide with premium tracked delivery.
-          </div>
-        </div>
-
-        <div class="bg-white rounded-3xl border border-black/5 p-6">
-          <button class="faq-btn w-full flex justify-between items-center text-left">
-            <span class="font-semibold">Can I return products?</span>
-            <span>+</span>
-          </button>
-
-          <div class="faq-content hidden pt-4 text-zinc-600">
-            Returns are accepted within 14 days of delivery.
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-black text-white py-20">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <div class="grid md:grid-cols-4 gap-12">
-
-        <div>
-          <h2 class="text-3xl font-black tracking-[0.2em] mb-6">
-            LUXE
-          </h2>
-
-          <p class="text-white/60 leading-relaxed">
-            Timeless luxury fashion crafted for modern lifestyles.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="font-semibold mb-6">Shop</h3>
-
-          <ul class="space-y-3 text-white/60">
-            <li><a href="#">Women</a></li>
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Accessories</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="font-semibold mb-6">Company</h3>
-
-          <ul class="space-y-3 text-white/60">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Journal</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="font-semibold mb-6">Newsletter</h3>
-
-          <div class="flex gap-3">
-            <input
-              type="email"
-              placeholder="Email address"
-              class="w-full rounded-full bg-white/10 border border-white/10 px-5 py-3 outline-none"
-            />
-
-            <button class="bg-white text-black px-6 rounded-full font-semibold">
-              Join
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="border-t border-white/10 mt-16 pt-8 text-sm text-white/50 flex flex-col md:flex-row justify-between gap-4">
-        <p>© 2026 LUXE. All rights reserved.</p>
-        <p>Privacy Policy · Terms</p>
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-
-    // FAQ
-    const faqButtons = document.querySelectorAll(".faq-btn");
-
-    faqButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const content = btn.nextElementSibling;
-
-        content.classList.toggle("hidden");
-      });
-    });
-
-    // Scroll Animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyScholar - Study Abroad Experts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #0f172a;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --radius: 8px;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-      });
-    });
 
-    document.querySelectorAll(".fade-up").forEach((el) => {
-      observer.observe(el);
-    });
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  </script>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--secondary);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+            background: none;
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Countries Section */
+        .countries {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-header img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-body p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-body strong {
+            color: var(--secondary);
+        }
+
+        /* Universities Section */
+        .universities {
+            padding: 6rem 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-bar, .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            min-width: 250px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            background: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        /* Inquiry Section */
+        .inquiry {
+            padding: 6rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-control.error {
+            border-color: var(--error);
+        }
+
+        .error-text {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-status {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #34d399;
+        }
+
+        .form-status.error {
+            display: block;
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #f87171;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Admin Dashboard Overlay */
+        #admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-light);
+            z-index: 9999;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: var(--white);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 600;
+        }
+
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-delete {
+            background: var(--error);
+            color: var(--white);
+        }
+
+        .btn-update {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        #login-form-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-plane-departure"></i> SkyScholar
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#countries">Countries</a></li>
+                    <li><a href="#universities">Universities</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><button onclick="openAdmin()" class="btn btn-outline" style="padding: 0.5rem 1rem;">Admin</button></li>
+                </ul>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero fade-in">
+        <div class="container">
+            <h1>Your Journey to Global Education Starts Here</h1>
+            <p>Expert guidance for admissions, visas, and scholarships to top universities worldwide.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Book Consultation</a>
+                <a href="#universities" class="btn btn-outline">Explore Universities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-item">
+                    <h3 class="counter" data-target="98">0</h3>
+                    <p>% Visa Success</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Universities</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="15">0</h3>
+                    <p>Countries</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="10000">0</h3>
+                    <p>Students Placed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Services</h2>
+            <p class="section-subtitle fade-in">Comprehensive support for your study abroad journey.</p>
+            
+            <div class="services-grid fade-in">
+                <div class="service-card">
+                    <i class="fa-solid fa-university service-icon"></i>
+                    <h3>University Selection</h3>
+                    <p>We help you find the best fit university based on your profile and career goals.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-file-signature service-icon"></i>
+                    <h3>Application Support</h3>
+                    <p>Assistance with SOPs, LORs, and seamless application submission.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-passport service-icon"></i>
+                    <h3>Visa Guidance</h3>
+                    <p>Step-by-step guidance for visa interviews and documentation.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-award service-icon"></i>
+                    <h3>Scholarships</h3>
+                    <p>Identify and apply for global scholarships to fund your education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries -->
+    <section id="countries" class="countries">
+        <div class="container">
+            <h2 class="section-title fade-in">Top Study Destinations</h2>
+            <p class="section-subtitle fade-in">Explore the most popular countries for international students.</p>
+            
+            <div id="countriesGrid" class="grid-cards fade-in">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Universities -->
+    <section id="universities" class="universities bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Universities</h2>
+            <p class="section-subtitle fade-in">Discover top-ranked institutions.</p>
+            
+            <div class="controls fade-in">
+                <input type="text" id="uniSearch" class="search-bar" placeholder="Search universities or courses..." aria-label="Search universities">
+                <select id="countryFilter" class="filter-select" aria-label="Filter by country">
+                    <option value="all">All Countries</option>
+                    <!-- Injected via JS -->
+                </select>
+            </div>
+
+            <div id="universitiesGrid" class="grid-cards fade-in">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <p class="section-subtitle fade-in">Got questions? We have answers.</p>
+            
+            <div class="accordion fade-in">
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        When should I start my application process?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>It is recommended to start your application process at least 9-12 months before the intake begins. This gives you ample time for standardized tests, document preparation, and visa processing.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        Do I need to take IELTS/TOEFL?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Most universities require an English proficiency test for international students from non-English speaking countries. However, some universities offer waivers based on your previous education medium.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        Are scholarships available for international students?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, many universities and governments offer merit-based and need-based scholarships. Our team will help you identify and apply for eligible scholarships to reduce your financial burden.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry / Contact -->
+    <section id="contact" class="inquiry bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Get in Touch</h2>
+            <p class="section-subtitle fade-in">Schedule a free counseling session today.</p>
+
+            <div class="form-container fade-in">
+                <div id="formStatus" class="form-status"></div>
+                
+                <form id="inquiryForm" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                        <span class="error-text">Please enter your full name.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <span class="error-text">Please enter a valid email address.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                        <span class="error-text">Please enter your phone number.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prefCountry" class="form-label">Preferred Country</label>
+                        <select id="prefCountry" name="preferredCountry" class="form-control" required>
+                            <option value="">Select a country</option>
+                            <!-- Injected via JS -->
+                        </select>
+                        <span class="error-text">Please select a preferred country.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Additional Message (Optional)</label>
+                        <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SkyScholar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Admin Overlay -->
+    <div id="admin-overlay">
+        
+        <!-- Login Form -->
+        <div id="login-form-container">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Admin Login</h2>
+            <div id="loginError" class="error-text" style="text-align: center; margin-bottom: 1rem;">Invalid credentials</div>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="adminEmail" class="form-control" required value="admin@skyscholar.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="adminPassword" class="form-control" required value="admin123">
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Login</button>
+                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="closeAdmin()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="admin-dashboard" class="admin-container" style="display: none;">
+            <div class="admin-header">
+                <h2>Admin Dashboard</h2>
+                <button class="btn btn-outline" onclick="logoutAdmin()">Logout</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="inquiriesTab">Inquiries</button>
+                <button class="tab-btn" data-tab="countriesTab">Countries</button>
+                <button class="tab-btn" data-tab="universitiesTab">Universities</button>
+            </div>
+
+            <!-- Inquiries Tab -->
+            <div id="inquiriesTab" class="tab-content active">
+                <h3>Recent Inquiries</h3>
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Country</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminInquiriesList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Countries Tab -->
+            <div id="countriesTab" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Manage Countries</h3>
+                </div>
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Tuition (Avg)</th>
+                                <th>Visa Success</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminCountriesList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Universities Tab -->
+            <div id="universitiesTab" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Manage Universities</h3>
+                </div>
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Tuition Fee</th>
+                                <th>Ranking</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUniversitiesList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const DB_KEY = 'skyscholar_db';
+
+        // --- 1. Initial Data Seeding (Replaces Mongoose logic) ---
+        const initialData = {
+            countries: [
+                { id: 'c1', name: 'Canada', flag: 'ca', averageTuition: 25000, averageSalary: 55000, visaSuccess: 92, processingTime: '4-6 weeks', scholarships: true },
+                { id: 'c2', name: 'United Kingdom', flag: 'gb', averageTuition: 22000, averageSalary: 50000, visaSuccess: 88, processingTime: '3-5 weeks', scholarships: true },
+                { id: 'c3', name: 'Australia', flag: 'au', averageTuition: 28000, averageSalary: 60000, visaSuccess: 90, processingTime: '4-8 weeks', scholarships: true },
+                { id: 'c4', name: 'Germany', flag: 'de', averageTuition: 12000, averageSalary: 58000, visaSuccess: 85, processingTime: '6-10 weeks', scholarships: false },
+                { id: 'c5', name: 'USA', flag: 'us', averageTuition: 35000, averageSalary: 65000, visaSuccess: 80, processingTime: '8-12 weeks', scholarships: true },
+            ],
+            universities: [
+                { id: 'u1', name: 'University of Toronto', countryId: 'c1', logo: 'https://picsum.photos/seed/utoronto/64', tuitionFee: 30000, intake: 'Sep, Jan', courseCount: 120, ranking: 18, acceptanceRate: 43 },
+                { id: 'u2', name: 'University of Oxford', countryId: 'c2', logo: 'https://picsum.photos/seed/oxford/64', tuitionFee: 28000, intake: 'Oct', courseCount: 100, ranking: 5, acceptanceRate: 17 },
+                { id: 'u3', name: 'University of Melbourne', countryId: 'c3', logo: 'https://picsum.photos/seed/melbourne/64', tuitionFee: 32000, intake: 'Feb, Jul', courseCount: 90, ranking: 33, acceptanceRate: 70 },
+                { id: 'u4', name: 'Technical University of Munich', countryId: 'c4', logo: 'https://picsum.photos/seed/tum/64', tuitionFee: 15000, intake: 'Oct, Apr', courseCount: 60, ranking: 50, acceptanceRate: 30 },
+                { id: 'u5', name: 'Harvard University', countryId: 'c5', logo: 'https://picsum.photos/seed/harvard/64', tuitionFee: 45000, intake: 'Sep', courseCount: 150, ranking: 1, acceptanceRate: 4 },
+            ],
+            inquiries: []
+        };
+
+        function getDB() {
+            let db = localStorage.getItem(DB_KEY);
+            if (!db) {
+                localStorage.setItem(DB_KEY, JSON.stringify(initialData));
+                return initialData;
+            }
+            return JSON.parse(db);
+        }
+
+        function saveDB(data) {
+            localStorage.setItem(DB_KEY, JSON.stringify(data));
+        }
+
+        const db = getDB();
+
+        // --- 2. DOM Rendering ---
+        
+        function renderCountries() {
+            const grid = document.getElementById('countriesGrid');
+            const select = document.getElementById('prefCountry');
+            const filterSelect = document.getElementById('countryFilter');
+            
+            grid.innerHTML = '';
+            
+            // Clear selects keeping default option
+            select.innerHTML = '<option value="">Select a country</option>';
+            filterSelect.innerHTML = '<option value="all">All Countries</option>';
+
+            db.countries.forEach(country => {
+                // Card
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="https://flagcdn.com/w40/${country.flag}.png" alt="${country.name} Flag">
+                        <h3>${country.name}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span>Avg. Tuition:</span> <strong>$${country.averageTuition.toLocaleString()}</strong></p>
+                        <p><span>Visa Success:</span> <strong>${country.visaSuccess}%</strong></p>
+                        <p><span>Processing:</span> <strong>${country.processingTime}</strong></p>
+                        <p><span>Scholarships:</span> <strong>${country.scholarships ? 'Yes' : 'No'}</strong></p>
+                    </div>
+                `;
+                grid.appendChild(card);
+
+                // Form Selects
+                select.innerHTML += `<option value="${country.id}">${country.name}</option>`;
+                filterSelect.innerHTML += `<option value="${country.id}">${country.name}</option>`;
+            });
+        }
+
+        function renderUniversities(filterText = '', filterCountry = 'all') {
+            const grid = document.getElementById('universitiesGrid');
+            grid.innerHTML = '';
+
+            let filtered = db.universities.filter(uni => {
+                const matchText = uni.name.toLowerCase().includes(filterText.toLowerCase());
+                const matchCountry = filterCountry === 'all' || uni.countryId === filterCountry;
+                return matchText && matchCountry;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">No universities found.</p>`;
+                return;
+            }
+
+            filtered.forEach(uni => {
+                const country = db.countries.find(c => c.id === uni.countryId);
+                const countryName = country ? country.name : 'Unknown';
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${uni.logo}" alt="${uni.name} Logo">
+                        <div>
+                            <h3 style="font-size: 1.1rem;">${uni.name}</h3>
+                            <small style="color: var(--text-light);"><i class="fa-solid fa-location-dot"></i> ${countryName}</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><span>Global Rank:</span> <strong>#${uni.ranking}</strong></p>
+                        <p><span>Tuition Fee:</span> <strong>$${uni.tuitionFee.toLocaleString()}/yr</strong></p>
+                        <p><span>Acceptance Rate:</span> <strong>${uni.acceptanceRate}%</strong></p>
+                        <p><span>Intakes:</span> <strong>${uni.intake}</strong></p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- 3. UI Interactions & Animations ---
+
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if(navLinks.classList.contains('active')){
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+        </script>
 </body>
 </html>
-
