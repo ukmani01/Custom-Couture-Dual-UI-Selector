@@ -1,314 +1,1534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>ÉLYSÉE — Luxury Heritage</title>
-  <!-- Google Fonts: Modern, premium sans-serif (SF Pro / Inter inspired) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS v3 + basic layer -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyScholar – Premium Global Study Abroad Platform</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 (clean icons for cart & account) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- custom overrides for refined luxury feel & subtle animations -->
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#0B1D33',
+              blue: '#1A3A6B',
+              royal: '#2A5F8F',
+              ivory: '#FFFDF9',
+              gold: '#F5C542',
+              grayLight: '#F8FAFC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Premium Architecture Styles */
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #FFFFFF;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
-    /* custom soft shadows & premium rounding override */
+    
+    .serif-heading {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Minimal Apple-Level Shadows */
     .premium-shadow {
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.15), 0 4px 12px -6px rgba(0, 0, 0, 0.02);
-      transition: box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.015), 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    
     .premium-shadow:hover {
-      box-shadow: 0 30px 55px -15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 20px 40px rgba(26, 58, 107, 0.04), 0 1px 8px rgba(0, 0, 0, 0.02);
     }
-    /* gentle floating animation for image depth (parallax/float feel) */
-    @keyframes subtleFloat {
-      0% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
-      100% {
-        transform: translateY(0px);
-      }
-    }
-    .float-image {
-      animation: subtleFloat 6s ease-in-out infinite;
-      will-change: transform;
-    }
-    /* soft zoom transition for image container on hover */
-    .zoom-soft {
-      transition: transform 0.45s cubic-bezier(0.2, 0.95, 0.4, 1);
-    }
-    .group:hover .zoom-soft {
-      transform: scale(1.02);
-    }
-    /* custom underline / accent for premium navigation hover */
-    .nav-link {
+
+    /* Universal Button Lift Systems */
+    .btn-universal-primary {
+      background-color: #1A3A6B;
+      color: #FFFFFF;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      transition: color 0.2s ease;
+      overflow: hidden;
     }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background-color: currentColor;
-      transition: width 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    .btn-universal-primary:hover {
+      background-color: #0B1D33;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26, 58, 107, 0.15);
     }
-    .nav-link:hover::after {
-      width: 100%;
+    .btn-universal-primary:active {
+      transform: translateY(0);
     }
-    /* custom button subtle scale & smoothness */
-    .btn-primary, .btn-secondary {
-      transition: all 0.25s ease-out;
+
+    .btn-universal-secondary {
+      border: 1px solid #1A3A6B;
+      color: #1A3A6B;
+      background: transparent;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .btn-primary:hover {
-      transform: scale(0.98);
-      background-color: #1a1a1a;
+    .btn-universal-secondary:hover {
+      background-color: rgba(26, 58, 107, 0.03);
+      transform: translateY(-2px);
     }
-    .btn-secondary:hover {
-      transform: scale(0.98);
-      background-color: #000000;
-      color: white;
-      border-color: #000000;
+
+    /* Smooth Image Hover Zoom */
+    .zoom-container {
+      overflow: hidden;
     }
-    /* mobile menu smooth overlay */
-    .mobile-menu-open {
-      max-height: 380px;
-      opacity: 1;
-      visibility: visible;
-      transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
+    .zoom-img {
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .mobile-menu-closed {
-      max-height: 0;
+    .zoom-container:hover .zoom-img {
+      transform: scale(1.06);
+    }
+
+    /* Custom Glassmorphism */
+    .premium-glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Form Inputs */
+    .premium-input {
+      border: 1px solid #E2E8F0;
+      transition: all 0.3s ease;
+    }
+    .premium-input:focus {
+      outline: none;
+      border-color: #1A3A6B;
+      box-shadow: 0 0 0 3px rgba(26, 58, 107, 0.08);
+    }
+
+    /* Timelines */
+    .timeline-line {
+      background: linear-gradient(to bottom, #1A3A6B 0%, #F5C542 100%);
+    }
+
+    /* Page Switcher Display Handling */
+    .spa-page {
+      display: none;
       opacity: 0;
-      visibility: hidden;
-      transition: max-height 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease, visibility 0s 0.35s;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    /* additional subtle background glow for right column */
-    .glow-bg {
+    .spa-page.active-page {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Reading Progress & Scrollers */
+    #readingProgress {
+      transform-origin: top left;
+      transition: transform 0.1s linear;
+    }
+
+    /* Hide Scrollbar for Carousels */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Skeleton Loading State */
+    .skeleton {
+      background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+      background-size: 200% 100%;
+      animation: loading-shimmer 1.5s infinite;
+    }
+    @keyframes loading-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Hero Layout Preservation */
+    .hero-bg {
       position: relative;
+      background-image: url('https://images.unsplash.com/photo-1609134545248-1a41853280b5?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
     }
-    .glow-bg::before {
+    .hero-bg::before {
       content: '';
       position: absolute;
-      inset: -12%;
-      background: radial-gradient(circle at 50% 30%, rgba(230, 225, 220, 0.3), rgba(255, 255, 255, 0) 70%);
-      opacity: 0.65;
-      pointer-events: none;
-      z-index: -1;
-      border-radius: 50%;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11,29,51,0.85) 0%, rgba(26,58,107,0.7) 50%, rgba(42,95,143,0.5) 100%);
+      z-index: 1;
     }
-    /* consistent 8px spacing system via Tailwind + custom tweaks */
-    @media (max-width: 768px) {
-      .hero-headline {
-        font-size: 2.25rem;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-      }
-      .hero-subhead {
-        font-size: 1rem;
-        line-height: 1.4;
-      }
-    }
-    .text-balance {
-      text-wrap: balance;
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
   </style>
 </head>
-<body class="antialiased bg-white">
+<body class="bg-white text-gray-900 antialiased font-sans selection:bg-brand-blue/10 selection:text-brand-blue">
 
-  <!-- ENTIRE HERO SECTION (navigation + hero grid) - nothing extra below -->
-  <div class="relative w-full overflow-x-hidden">
-
-    <!-- TOP NAVIGATION (minimal, premium) -->
-    <nav class="w-full px-6 md:px-8 lg:px-12 py-5 md:py-6 border-b border-gray-100/80 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <!-- Left: Logo (premium wordmark) -->
-        <div class="flex-shrink-0">
-          <a href="#" class="text-2xl md:text-3xl font-light tracking-wide text-gray-900 transition hover:opacity-80">
-            ÉLYSÉE<span class="font-extralight text-gray-400">.</span>
-          </a>
-        </div>
-
-        <!-- Center nav links (desktop only) - hidden on mobile -->
-        <div class="hidden md:flex items-center space-x-10 text-sm font-medium text-gray-700 uppercase tracking-wide">
-          <a href="#" class="nav-link text-gray-800 hover:text-black transition">New Arrivals</a>
-          <a href="#" class="nav-link text-gray-800 hover:text-black transition">Ready to Wear</a>
-          <a href="#" class="nav-link text-gray-800 hover:text-black transition">Bags</a>
-          <a href="#" class="nav-link text-gray-800 hover:text-black transition">The Edit</a>
-          <a href="#" class="nav-link text-gray-800 hover:text-black transition">Journal</a>
-        </div>
-
-        <!-- Right: Cart + Account Icons (minimal) + Mobile hamburger -->
-        <div class="flex items-center gap-5 md:gap-6">
-          <a href="#" class="text-gray-700 hover:text-black transition text-xl" aria-label="Account">
-            <i class="far fa-user"></i>
-          </a>
-          <a href="#" class="text-gray-700 hover:text-black transition text-xl" aria-label="Shopping Bag">
-            <i class="far fa-shopping-bag"></i>
-          </a>
-          <!-- Hamburger button (mobile only) -->
-          <button id="menuToggle" class="block md:hidden text-2xl text-gray-800 focus:outline-none" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Menu (collapsible, premium overlay style) -->
-      <div id="mobileNav" class="mobile-menu-closed absolute left-0 top-full w-full bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl md:hidden overflow-hidden transition-all z-40">
-        <div class="flex flex-col py-6 px-6 space-y-5 text-base font-medium text-gray-800 tracking-wide">
-          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">New Arrivals</a>
-          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">Ready to Wear</a>
-          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">Bags</a>
-          <a href="#" class="py-2 border-b border-gray-50 w-full hover:text-black transition">The Edit</a>
-          <a href="#" class="py-2 w-full hover:text-black transition">Journal</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO MAIN SECTION (2 COLUMN GRID DESKTOP, STACK MOBILE) -->
-    <main class="relative w-full bg-white">
-      <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-20">
-        <!-- on mobile we reverse column order using flex-col-reverse, on desktop use grid -->
-        <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 lg:gap-12 gap-10 items-center">
-          
-          <!-- LEFT COLUMN (Content) -->
-          <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-7 w-full">
-            <!-- Small premium badge -->
-            <div class="inline-flex">
-              <span class="bg-gray-50/90 text-gray-700 text-[11px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full border border-gray-200/60 backdrop-blur-sm">New Season 2026</span>
-            </div>
-            
-            <!-- Large bold headline (max 2 lines) - premium typography -->
-            <h1 class="hero-headline text-4xl sm:text-5xl md:text-6xl lg:text-[3.8rem] font-medium tracking-tight text-gray-900 leading-[1.15] max-w-2xl text-balance">
-              Where<br>timeless design meets quiet luxury.
-            </h1>
-            
-            <!-- Emotional + luxury tone subheading (max 2 lines) -->
-            <p class="hero-subhead text-base md:text-lg text-gray-500 max-w-md leading-relaxed font-light tracking-wide">
-              Redefine elegance with timeless fashion crafted for the modern soul. The art of intentional minimalism.
-            </p>
-            
-            <!-- CTA Buttons (row on desktop, stacked on mobile) -->
-            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2">
-              <button class="btn-primary bg-black text-white px-8 py-3.5 text-sm uppercase tracking-wider font-medium rounded-full shadow-sm transition-all duration-300 hover:bg-gray-900 focus:ring-1 focus:ring-gray-400 w-full sm:w-auto text-center">
-                Shop collection
-              </button>
-              <button class="btn-secondary bg-transparent border border-black text-black px-8 py-3.5 text-sm uppercase tracking-wider font-medium rounded-full transition-all duration-300 w-full sm:w-auto text-center">
-                Explore lookbook
-              </button>
-            </div>
-            
-            <!-- subtle spacer to match premium whitespace -->
-            <div class="h-2 lg:h-4"></div>
-          </div>
-
-          <!-- RIGHT COLUMN (Visual: cinematic image, depth, glow, floating effect) -->
-          <div class="relative w-full flex justify-center group">
-            <div class="relative w-full max-w-lg lg:max-w-none mx-auto rounded-3xl overflow-hidden glow-bg">
-              <!-- subtle gradient glow behind image (depth layering) -->
-              <div class="absolute inset-0 bg-gradient-to-tr from-amber-50/30 via-transparent to-stone-100/20 rounded-3xl z-0 pointer-events-none"></div>
-              <!-- cinematic image wrapper with floating & soft zoom on parent hover -->
-              <div class="relative z-10 overflow-hidden rounded-3xl shadow-2xl premium-shadow transition-all duration-500 float-image">
-                <img 
-                  src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1000&auto=format" 
-                  alt="Luxury fashion editorial - modern elegance" 
-                  class="zoom-soft w-full h-full object-cover transition-transform duration-700 ease-out will-change-transform"
-                  style="aspect-ratio: 4/5; object-position: 50% 30%;"
-                />
-              </div>
-              <!-- additional atmospheric overlay for soft depth -->
-              <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-white/5 via-transparent to-transparent pointer-events-none"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- subtle design accent line (optional minimal luxury detail) -->
-        <div class="w-12 h-px bg-gray-200 mt-12 lg:mt-16 mx-auto lg:mx-0"></div>
-      </div>
-    </main>
+  <!-- Scroll Progress Indicator -->
+  <div class="fixed top-0 left-0 w-full h-[3px] bg-gray-100 z-[60]">
+    <div id="readingProgress" class="w-full h-full bg-brand-blue scale-x-0"></div>
   </div>
 
-  <!-- simple JavaScript for mobile menu toggle & subtle enhancements -->
+  <!-- Sticky Dynamic Navigation Header -->
+  <nav class="premium-glass fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-4 flex justify-between items-center transition-all duration-300">
+    <a href="#home" onclick="navigateToPage('home')" class="text-2xl font-bold tracking-tight text-brand-navy flex items-center gap-2">
+      <span class="serif-heading font-black text-brand-blue">SkyScholar</span>
+    </a>
+    
+    <!-- Central Desktop Links -->
+    <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+      <a href="#home" onclick="navigateToPage('home')" class="nav-link text-brand-blue font-semibold border-b-2 border-brand-blue pb-1 transition-all">Home</a>
+      <a href="#services" onclick="navigateToPage('services')" class="nav-link text-gray-500 hover:text-brand-blue border-b-2 border-transparent pb-1 transition-all">Services</a>
+      <a href="#countries" onclick="navigateToPage('countries')" class="nav-link text-gray-500 hover:text-brand-blue border-b-2 border-transparent pb-1 transition-all">Countries</a>
+      <a href="#universities" onclick="navigateToPage('universities')" class="nav-link text-gray-500 hover:text-brand-blue border-b-2 border-transparent pb-1 transition-all">Universities</a>
+      <a href="#courses" onclick="navigateToPage('courses')" class="nav-link text-gray-500 hover:text-brand-blue border-b-2 border-transparent pb-1 transition-all">Courses</a>
+      <a href="#inquiry" onclick="navigateToPage('inquiry')" class="nav-link text-gray-500 hover:text-brand-blue border-b-2 border-transparent pb-1 transition-all">Inquiry</a>
+      <a href="#contact" onclick="navigateToPage('contact')" class="nav-link text-gray-500 hover:text-brand-blue border-b-2 border-transparent pb-1 transition-all">Contact</a>
+    </div>
+
+    <!-- Right Interaction Suite -->
+    <div class="flex items-center space-x-4">
+      <a href="#admin" onclick="navigateToPage('admin')" class="hidden sm:inline-block text-xs uppercase tracking-wider text-brand-blue border border-brand-blue/30 px-4 py-2 rounded-full hover:bg-brand-blue hover:text-white transition duration-300 font-medium">Portal Console</a>
+      <button class="md:hidden text-brand-blue p-2 focus:outline-none" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Premium Mobile Drawer Overlay Menu -->
+  <div id="mobileMenu" class="hidden fixed inset-0 bg-brand-navy/40 backdrop-blur-md z-40 transition-all duration-300">
+    <div class="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center pb-6 border-b border-gray-100">
+          <span class="serif-heading text-xl font-bold text-brand-blue">SkyScholar Navigation</span>
+          <button id="closeMenuBtn" class="text-gray-400 hover:text-brand-navy">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="flex flex-col space-y-4 mt-8 text-base font-medium">
+          <a href="#home" onclick="navigateToPage('home')" class="text-brand-blue py-2 border-b border-gray-50">Home</a>
+          <a href="#services" onclick="navigateToPage('services')" class="text-gray-600 py-2 border-b border-gray-50">Services</a>
+          <a href="#countries" onclick="navigateToPage('countries')" class="text-gray-600 py-2 border-b border-gray-50">Countries</a>
+          <a href="#universities" onclick="navigateToPage('universities')" class="text-gray-600 py-2 border-b border-gray-50">Universities</a>
+          <a href="#courses" onclick="navigateToPage('courses')" class="text-gray-600 py-2 border-b border-gray-50">Courses</a>
+          <a href="#inquiry" onclick="navigateToPage('inquiry')" class="text-gray-600 py-2 border-b border-gray-50">Inquiry</a>
+          <a href="#contact" onclick="navigateToPage('contact')" class="text-gray-600 py-2 border-b border-gray-50">Contact</a>
+          <a href="#admin" onclick="navigateToPage('admin')" class="text-brand-gold py-2 font-semibold">Portal Console</a>
+        </div>
+      </div>
+      <div class="text-xs text-gray-400">
+        © 2026 SkyScholar. Global Advisory Operations.
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Post-Hero Universal Action Banner -->
+  <div id="stickyCTA" class="fixed bottom-6 right-6 z-40 transform translate-y-24 opacity-0 transition-all duration-500">
+    <button onclick="navigateToPage('inquiry')" class="bg-brand-gold text-brand-navy shadow-xl font-bold px-6 py-4 rounded-full flex items-center gap-3 hover:bg-white border border-brand-gold hover:text-brand-blue transition transform hover:-translate-y-1">
+      <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-blue"></span>
+      </span>
+      Apply Globally Now
+    </button>
+  </div>
+
+  <!-- Universal Back-To-Top Tracker Container -->
+  <button id="backToTop" class="fixed bottom-6 left-6 z-40 bg-white border border-gray-200 text-brand-blue p-3.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-gray-50">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+
+  <!-- ==================== SPA PAGE OUTLETS CONTAINER ==================== -->
+  <main class="min-h-screen">
+
+    <!-- 1. HOME VIEW -->
+    <div id="home" class="spa-page active-page">
+      <!-- FIXED UNTOUCHED HERO SECTION APPLICATION -->
+      <section class="hero-bg flex items-center pt-20">
+        <div class="hero-content max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
+          <div>
+            <span class="inline-block px-4 py-1 rounded-full text-xs font-semibold tracking-wider text-white bg-[#f5c542]/30 backdrop-blur-sm mb-4">
+              ✦ PREMIUM STUDY ABROAD
+            </span>
+            <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Your Gateway to <br /><span class="text-[#f5c542]">Global Education</span>
+            </h1>
+            <p class="text-lg text-gray-200 mt-4 max-w-lg">
+              Get expert guidance for studying abroad – from application to visa, with our dedicated team of international education specialists.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#inquiry" onclick="navigateToPage('inquiry')" class="btn-primary bg-[#f5c542] hover:bg-[#e0b03a] text-[#1a3a6b] font-bold px-8 py-3 rounded-full transition-all hover:scale-105 shadow-lg">
+                Book Free Consultation
+              </a>
+              <a href="#universities" onclick="navigateToPage('universities')" class="btn-secondary bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 px-8 py-3 rounded-full transition-all">
+                Explore Universities
+              </a>
+            </div>
+            <!-- Interactive Statically Mounted Counting Counters Matrix -->
+            <div class="mt-12 grid grid-cols-3 gap-4">
+              <div class="text-white">
+                <span data-target="500" class="stat-counter text-2xl md:text-3xl font-bold">0</span><span class="text-2xl md:text-3xl font-bold text-brand-gold">+</span>
+                <p class="text-sm text-gray-300">Students Placed</p>
+              </div>
+              <div class="text-white">
+                <span data-target="98" class="stat-counter text-2xl md:text-3xl font-bold">0</span><span class="text-2xl md:text-3xl font-bold text-brand-gold">%</span>
+                <p class="text-sm text-gray-300">Visa Success</p>
+              </div>
+              <div class="text-white">
+                <span data-target="50" class="stat-counter text-2xl md:text-3xl font-bold">0</span><span class="text-2xl md:text-3xl font-bold text-brand-gold">+</span>
+                <p class="text-sm text-gray-300">Partner Universities</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative hidden lg:block">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl zoom-container">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop" alt="Campus Life" class="zoom-img rounded-2xl">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0b1d33]/60 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST BADGES INTERACTIVE SUITE -->
+      <section class="py-10 bg-brand-grayLight border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+          <p class="text-center text-xs uppercase tracking-widest text-gray-400 font-semibold mb-6">Institutional Compliance & Elite Global Memberships</p>
+          <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-500">
+            <span class="font-serif text-lg font-bold text-brand-blue tracking-tight">✦ AIRC CERTIFIED</span>
+            <span class="font-serif text-lg font-bold text-brand-blue tracking-tight">✦ NAFSA MEMBER</span>
+            <span class="font-serif text-lg font-bold text-brand-blue tracking-tight">✦ ICEF AGENCY</span>
+            <span class="font-serif text-lg font-bold text-brand-blue tracking-tight">✦ BRITISH COUNCIL APPROVED</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADMISSION JOURNEY / TIMELINE PROCESS STEPPER -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="serif-heading text-3xl md:text-4xl font-bold text-brand-navy">The Orchestrated Student Journey</h2>
+            <p class="text-gray-500 mt-3">From initial validation framework to your first international lecture hall session.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100 premium-shadow">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center font-bold text-brand-blue mb-4">01</div>
+              <h3 class="text-lg font-semibold text-brand-navy mb-2">Profile Matrix Tuning</h3>
+              <p class="text-sm text-gray-500">We audit historical academic transcripts, language profiles, and financial parameters.</p>
+            </div>
+            <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100 premium-shadow">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center font-bold text-brand-blue mb-4">02</div>
+              <h3 class="text-lg font-semibold text-brand-navy mb-2">Target Selection</h3>
+              <p class="text-sm text-gray-500">Mapping optimization models to surface ideal institutional and geopolitical targets.</p>
+            </div>
+            <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100 premium-shadow">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center font-bold text-brand-blue mb-4">03</div>
+              <h3 class="text-lg font-semibold text-brand-navy mb-2">Dossier Application</h3>
+              <p class="text-sm text-gray-500">Direct channel compilation for structured submissions, essays, and references.</p>
+            </div>
+            <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100 premium-shadow">
+              <div class="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center font-bold text-brand-blue mb-4">04</div>
+              <h3 class="text-lg font-semibold text-brand-navy mb-2">Visa & Departure</h3>
+              <p class="text-sm text-gray-500">Immigration clearance architecture management with 98% validated success tracking.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL CAROUSEL ROW -->
+      <section class="py-20 bg-brand-grayLight">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <h2 class="serif-heading text-3xl font-bold text-brand-navy">Validated Success Stories</h2>
+              <p class="text-gray-500 mt-2">True programmatic outcomes recorded from premium international transitions.</p>
+            </div>
+          </div>
+          <div id="homeTestimonialsList" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Dynamically populated via local state pipeline -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 2. SERVICES VIEW -->
+    <div id="services" class="spa-page">
+      <section class="pt-32 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold tracking-widest text-brand-blue uppercase bg-blue-50 px-3 py-1 rounded-full">Core Ecosystem</span>
+            <h1 class="serif-heading text-4xl font-bold text-brand-navy mt-4">Premium Service Offerings</h1>
+            <p class="text-gray-500 mt-3">Structured programmatic advisory workflows driving exceptional student outcomes.</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl premium-shadow">
+              <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center mb-6 font-bold font-serif text-lg">A</div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">Global Advisory Architecture</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Strategic optimization models matching target profiles with premium global institutional tiers securely.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl premium-shadow">
+              <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center mb-6 font-bold font-serif text-lg">V</div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">Visa Architecture Management</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Flawless compliance formatting across multiple immigration protocols maintaining standard high-tier conversions.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl premium-shadow">
+              <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center mb-6 font-bold font-serif text-lg">S</div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">SOP & Portfolio Curation</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Elite literary feedback alignment frameworks to present candidate profiles brilliantly to admissions bodies.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl premium-shadow">
+              <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center mb-6 font-bold font-serif text-lg">F</div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">Financial Allocation Support</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Access clean institutional scholarship mapping, customized private endowments, and optimized loan models.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl premium-shadow">
+              <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center mb-6 font-bold font-serif text-lg">L</div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">Language Performance Training</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Accelerated training programs targeting high performance metrics for IELTS, TOEFL, and PTE qualification standards.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl premium-shadow">
+              <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center mb-6 font-bold font-serif text-lg">P</div>
+              <h3 class="text-xl font-bold text-brand-navy mb-3">Post-Arrival Integration</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Immediate physical support ecosystem including local real estate tracking, logistics, and orientation frameworks.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY OUR PROCESS WORKS METRIC SECTION -->
+      <section class="py-20 bg-brand-grayLight">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+          <h2 class="serif-heading text-3xl font-bold text-brand-navy mb-4">Precision-Driven Conversion Metrics</h2>
+          <p class="text-gray-500 max-w-2xl mx-auto mb-12">Our operational standards convert standard documentation frameworks into predictable Ivy League & elite group clearances.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="p-6 bg-white rounded-xl premium-shadow">
+              <p class="text-3xl font-bold text-brand-blue">99.2%</p>
+              <p class="text-xs font-medium uppercase tracking-wider text-gray-400 mt-1">Admissions Matching</p>
+            </div>
+            <div class="p-6 bg-white rounded-xl premium-shadow">
+              <p class="text-3xl font-bold text-brand-blue">14 Days</p>
+              <p class="text-xs font-medium uppercase tracking-wider text-gray-400 mt-1">Avg Case Turnaround</p>
+            </div>
+            <div class="p-6 bg-white rounded-xl premium-shadow">
+              <p class="text-3xl font-bold text-brand-blue">$4.2M+</p>
+              <p class="text-xs font-medium uppercase tracking-wider text-gray-400 mt-1">Scholarships Secured</p>
+            </div>
+            <div class="p-6 bg-white rounded-xl premium-shadow">
+              <p class="text-3xl font-bold text-brand-blue">24/7</p>
+              <p class="text-xs font-medium uppercase tracking-wider text-gray-400 mt-1">Emergency Operations</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 3. COUNTRIES VIEW -->
+    <div id="countries" class="spa-page">
+      <section class="pt-32 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="serif-heading text-4xl font-bold text-brand-navy">Elite Destinations Map</h1>
+            <p class="text-gray-500 mt-3">Select a premier global territory to view structural cost tracking models, placement indexes, and immediate opportunity indices.</p>
+          </div>
+
+          <div id="countriesListContainer" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Dynamically populated via JS pipeline -->
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTRAS: COUNTRY COMPARISON SYSTEM -->
+      <section class="py-20 bg-brand-grayLight">
+        <div class="max-w-7xl mx-auto px-6">
+          <h2 class="serif-heading text-3xl font-bold text-brand-navy text-center mb-4">Strategic Country Matrix Comparison</h2>
+          <p class="text-center text-gray-500 max-w-xl mx-auto mb-12">Analyze key operational decision criteria across premier destinations directly.</p>
+          
+          <div class="overflow-x-auto rounded-xl border border-gray-100 bg-white shadow-sm">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-brand-navy text-white text-sm tracking-wide">
+                  <th class="p-4 font-semibold">Target Geopolitical Zone</th>
+                  <th class="p-4 font-semibold">Visa Approval Rate</th>
+                  <th class="p-4 font-semibold">Post-Study Work Permit</th>
+                  <th class="p-4 font-semibold">Average Base Starting Salary</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm divide-y divide-gray-100">
+                <tr>
+                  <td class="p-4 font-semibold text-brand-blue">United States</td>
+                  <td class="p-4">95.4%</td>
+                  <td class="p-4">Up to 3 Years (STEM OPT)</td>
+                  <td class="p-4">$82,000 / yr</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-brand-blue">United Kingdom</td>
+                  <td class="p-4">97.8%</td>
+                  <td class="p-4">2 Years Graduate Route</td>
+                  <td class="p-4">£44,000 / yr</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-brand-blue">Canada</td>
+                  <td class="p-4">96.1%</td>
+                  <td class="p-4">Up to 3 Years PGWP</td>
+                  <td class="p-4">CAD$68,000 / yr</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-brand-blue">Germany</td>
+                  <td class="p-4">98.2%</td>
+                  <td class="p-4">18-Month Job Seeking License</td>
+                  <td class="p-4">€52,000 / yr</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-brand-blue">Australia</td>
+                  <td class="p-4">95.9%</td>
+                  <td class="p-4">2 - 4 Years Post-Study Tiers</td>
+                  <td class="p-4">AUD$74,000 / yr</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 4. UNIVERSITIES VIEW -->
+    <div id="universities" class="spa-page">
+      <section class="pt-32 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <h1 class="serif-heading text-4xl font-bold text-brand-navy">Elite University Portal</h1>
+            <p class="text-gray-500 mt-2">Filter and inspect world-ranked academic centers directly associated with our immediate placement systems.</p>
+          </div>
+
+          <!-- Filters Frame -->
+          <div class="bg-brand-grayLight p-6 rounded-2xl mb-12 border border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="w-full md:w-1/2 relative">
+              <input type="text" id="uniSearchInput" oninput="executeUniversityFilter()" placeholder="Filter by institution name or location..." class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-blue premium-input">
+            </div>
+            <div class="w-full md:w-1/3">
+              <select id="uniCountrySelect" onchange="executeUniversityFilter()" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-blue">
+                <option value="">All Destinations</option>
+                <!-- Filled via setup runtime -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Target University Dynamic Content Matrix Grid -->
+          <div id="universitiesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Dynamically populated loading framework -->
+          </div>
+
+          <!-- Empty State Grid Component View -->
+          <div id="uniEmptyState" class="hidden text-center py-20 bg-brand-grayLight rounded-2xl border border-dashed border-gray-200 mt-6">
+            <p class="text-gray-400 text-sm">No institutions match the current operational filter vectors.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 5. COURSES VIEW -->
+    <div id="courses" class="spa-page">
+      <section class="pt-32 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <h1 class="serif-heading text-4xl font-bold text-brand-navy">Global Program Registries</h1>
+            <p class="text-gray-500 mt-2">Surface highly lucrative degree pathways structured specifically for elite international professional pipelines.</p>
+          </div>
+
+          <!-- Search Engine Wrapper Bar -->
+          <div class="max-w-xl mx-auto mb-12">
+            <input type="text" id="courseSearchInput" oninput="executeCourseFilter()" placeholder="Search disciplines (e.g. Data, Engineering, MBA)..." class="w-full bg-brand-grayLight border border-gray-200 rounded-full px-6 py-3.5 text-sm focus:outline-none focus:border-brand-blue premium-input">
+          </div>
+
+          <!-- Courses Data List Frame Grid -->
+          <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Dynamic Inject -->
+          </div>
+
+          <div id="courseEmptyState" class="hidden text-center py-20">
+            <p class="text-gray-400 text-sm">No specialized programs meet your design constraints.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 6. INQUIRY VIEW -->
+    <div id="inquiry" class="spa-page">
+      <section class="pt-32 pb-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h1 class="serif-heading text-4xl font-bold text-brand-navy">Global Consultation Architecture</h1>
+            <p class="text-gray-500 mt-2">Initialize your background check validation parameters to connect securely with an assignments director.</p>
+          </div>
+
+          <!-- Stepper Flow Progress Layout Indicator Header -->
+          <div class="flex justify-between items-center mb-10 max-w-md mx-auto">
+            <div id="stepIndicator-1" class="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs font-bold font-mono">1</div>
+            <div class="h-[2px] bg-gray-200 flex-1 mx-2"></div>
+            <div id="stepIndicator-2" class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-xs font-bold font-mono">2</div>
+            <div class="h-[2px] bg-gray-200 flex-1 mx-2"></div>
+            <div id="stepIndicator-3" class="w-8 h-8 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-xs font-bold font-mono">3</div>
+          </div>
+
+          <!-- Active Multi-step Operational Form Framework -->
+          <div class="bg-brand-grayLight border border-gray-100 rounded-2xl p-8 premium-shadow">
+            <form id="inquiryFormEngine" onsubmit="handleInquirySubmission(event)">
+              
+              <!-- STEP ONE BLOCK MODULE CONTAINER -->
+              <div id="inquiryStepBlock-1" class="space-y-6">
+                <h3 class="text-lg font-bold text-brand-navy tracking-tight border-b border-gray-200 pb-2">01. Candidate Demographics Identification</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Legal Family/Given Name</label>
+                    <input type="text" id="inq_name" required class="w-full bg-white premium-input rounded-xl px-4 py-3 text-sm">
+                  </div>
+                  <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Primary Secured Email Address</label>
+                    <input type="email" id="inq_email" required class="w-full bg-white premium-input rounded-xl px-4 py-3 text-sm">
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Verified Mobile Telephony Number (with country code)</label>
+                    <input type="tel" id="inq_phone" required class="w-full bg-white premium-input rounded-xl px-4 py-3 text-sm">
+                  </div>
+                </div>
+                <div class="pt-4 flex justify-end">
+                  <button type="button" onclick="transitionInquiryStep(2)" class="btn-universal-primary px-6 py-3 rounded-xl text-sm font-semibold">Advance Metrics</button>
+                </div>
+              </div>
+
+              <!-- STEP TWO BLOCK MODULE CONTAINER -->
+              <div id="inquiryStepBlock-2" class="hidden space-y-6">
+                <h3 class="text-lg font-bold text-brand-navy tracking-tight border-b border-gray-200 pb-2">02. Geopolitical & Academic Vector Selection</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Target Geopolitical Area</label>
+                    <select id="inq_country" required class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none">
+                      <option value="United States">United States</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Australia">Australia</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Discipline Vertical</label>
+                    <input type="text" id="inq_course" placeholder="e.g. Master of Computer Science" required class="w-full bg-white premium-input rounded-xl px-4 py-3 text-sm">
+                  </div>
+                </div>
+                <div class="pt-4 flex justify-between">
+                  <button type="button" onclick="transitionInquiryStep(1)" class="btn-universal-secondary px-6 py-3 rounded-xl text-sm font-semibold">Back</button>
+                  <button type="button" onclick="transitionInquiryStep(3)" class="btn-universal-primary px-6 py-3 rounded-xl text-sm font-semibold">Advance Metrics</button>
+                </div>
+              </div>
+
+              <!-- STEP THREE BLOCK MODULE CONTAINER -->
+              <div id="inquiryStepBlock-3" class="hidden space-y-6">
+                <h3 class="text-lg font-bold text-brand-navy tracking-tight border-b border-gray-200 pb-2">03. Context Validation Parameters</h3>
+                <div>
+                  <label class="block text-xs uppercase tracking-wider text-gray-400 font-bold mb-2">Case Context Notes / Timeline Mandates</label>
+                  <textarea id="inq_message" rows="4" placeholder="Outline specific timeline imperatives, professional targets, or background exceptions..." class="w-full bg-white premium-input rounded-xl px-4 py-3 text-sm"></textarea>
+                </div>
+                <div class="pt-4 flex justify-between">
+                  <button type="button" onclick="transitionInquiryStep(2)" class="btn-universal-secondary px-6 py-3 rounded-xl text-sm font-semibold">Back</button>
+                  <button type="submit" class="bg-brand-gold text-brand-navy font-bold px-8 py-3.5 rounded-xl text-sm hover:bg-brand-blue hover:text-white transition-all duration-300">Submit Application File</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 7. CONTACT VIEW -->
+    <div id="contact" class="spa-page">
+      <section class="pt-32 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="serif-heading text-4xl font-bold text-brand-navy">Global Response Command Channels</h1>
+            <p class="text-gray-500 mt-2">Connect immediately with global triage officers across available communication interfaces.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Left Data Core Coordinates -->
+            <div class="space-y-8">
+              <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">HQ Location Center</p>
+                <p class="text-lg font-bold text-brand-navy mt-1">123 Global Avenue, Floor 14, New York, NY 10001</p>
+              </div>
+              <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Secure Global Switchboard</p>
+                <p class="text-lg font-bold text-brand-blue mt-1">+1 (234) 567-890</p>
+                <p class="text-xs text-gray-400 mt-1">Standard response matching under 120 seconds monitored.</p>
+              </div>
+              <div class="p-6 bg-brand-grayLight rounded-2xl border border-gray-100">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Operations C-Suite Support</p>
+                <p class="text-lg font-bold text-brand-blue mt-1">admissions@skyscholar.corp</p>
+              </div>
+              <div>
+                <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-emerald-600 text-white font-semibold text-sm px-6 py-3 rounded-full shadow-md hover:bg-emerald-700 transition">
+                  Establish Direct Secure WhatsApp Link
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Interactive Map Embed Frame Context Mock Container -->
+            <div class="rounded-2xl overflow-hidden bg-brand-grayLight border border-gray-100 relative h-96 lg:h-full min-h-[380px]">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.0062589!3d40.7130616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb7e3a7%3A0x2a5f0b5b4c2e4f6c!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1612345678901" width="100%" height="100%" style="border:0; min-height: 380px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 8. ADMIN LOCALSTORAGE CRUD CONSOLE PORTAL INTERFACE -->
+    <div id="admin" class="spa-page">
+      <section class="pt-32 pb-20 bg-brand-grayLight min-h-screen">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-gray-200 mb-8 gap-4">
+            <div>
+              <span class="text-xs font-mono font-bold uppercase text-brand-blue tracking-widest bg-white border px-2 py-0.5 rounded">Core Console Architecture</span>
+              <h1 class="serif-heading text-3xl font-bold text-brand-navy mt-1">Data Model CRUD Dashboard</h1>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="switchAdminSubTab('inquiries')" class="admin-subtab-btn bg-brand-blue text-white text-xs font-semibold tracking-wider uppercase px-4 py-2.5 rounded-lg transition-all shadow-sm">Inquiries Log</button>
+              <button onclick="switchAdminSubTab('universities')" class="admin-subtab-btn bg-white text-gray-600 border border-gray-200 text-xs font-semibold tracking-wider uppercase px-4 py-2.5 rounded-lg transition-all shadow-sm">Universities Engine</button>
+              <button onclick="switchAdminSubTab('courses')" class="admin-subtab-btn bg-white text-gray-600 border border-gray-200 text-xs font-semibold tracking-wider uppercase px-4 py-2.5 rounded-lg transition-all shadow-sm">Programs Registry</button>
+            </div>
+          </div>
+
+          <!-- SUB MODULE OUTLET: INQUIRIES -->
+          <div id="adminPanel-inquiries" class="admin-panel-module space-y-6">
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+              <div class="p-4 bg-brand-navy text-white text-xs font-bold uppercase tracking-wider">Candidate Inquiry Stream Logger</div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm divide-y divide-gray-100">
+                  <thead class="bg-gray-50 text-gray-400 font-medium text-xs uppercase tracking-wider">
+                    <tr>
+                      <th class="p-4">Timestamp</th>
+                      <th class="p-4">Candidate Identity</th>
+                      <th class="p-4">Target Matrix</th>
+                      <th class="p-4">Context / Narrative</th>
+                      <th class="p-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminInquiriesTableBody" class="divide-y divide-gray-50">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB MODULE OUTLET: UNIVERSITIES CRUD -->
+          <div id="adminPanel-universities" class="admin-panel-module hidden space-y-6">
+            <div class="flex justify-between items-center bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+              <span class="text-sm font-semibold text-brand-navy">Institutional Placement Matrices</span>
+              <button onclick="openUniversityModal()" class="bg-brand-blue text-white font-medium text-xs px-4 py-2 rounded-lg hover:bg-brand-navy transition">Deploy New Institution Model</button>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm divide-y divide-gray-100">
+                  <thead class="bg-gray-50 text-gray-400 font-medium text-xs uppercase tracking-wider">
+                    <tr>
+                      <th class="p-4">Name</th>
+                      <th class="p-4">Geopolitical Zone</th>
+                      <th class="p-4">QS Rank</th>
+                      <th class="p-4">Tuition Scale</th>
+                      <th class="p-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminUniversitiesTableBody" class="divide-y divide-gray-50">
+                    <!-- Dynamic Injection -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB MODULE OUTLET: COURSES CRUD -->
+          <div id="adminPanel-courses" class="admin-panel-module hidden space-y-6">
+            <div class="flex justify-between items-center bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+              <span class="text-sm font-semibold text-brand-navy">Program Configuration Node</span>
+              <button onclick="openCourseModal()" class="bg-brand-blue text-white font-medium text-xs px-4 py-2 rounded-lg hover:bg-brand-navy transition">Deploy New Degree Track</button>
+            </div>
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm divide-y divide-gray-100">
+                  <thead class="bg-gray-50 text-gray-400 font-medium text-xs uppercase tracking-wider">
+                    <tr>
+                      <th class="p-4">Program Track</th>
+                      <th class="p-4">Parent Center</th>
+                      <th class="p-4">Duration Metric</th>
+                      <th class="p-4">Annual Cost Scale</th>
+                      <th class="p-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminCoursesTableBody" class="divide-y divide-gray-50">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+
+  <!-- ==================== UNIVERSAL ADMIN MODAL SUITE ENGINE ==================== -->
+  <!-- UNIVERSITY EDIT/CREATE MODAL -->
+  <div id="uniModal" class="hidden fixed inset-0 bg-brand-navy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h3 id="uniModalTitle" class="text-base font-bold text-brand-navy">Deploy New Institution Model</h3>
+        <button onclick="closeUniversityModal()" class="text-gray-400 hover:text-gray-600">&times;</button>
+      </div>
+      <form id="uniModalForm" onsubmit="handleUniversityFormSubmit(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="uni_edit_id">
+        <div>
+          <label class="block font-bold text-gray-500 mb-1">Institution Signature Name</label>
+          <input type="text" id="uni_modal_name" required class="w-full border p-2.5 rounded-lg text-sm">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-gray-500 mb-1">Geopolitical Destination</label>
+            <select id="uni_modal_country" required class="w-full border p-2.5 rounded-lg text-sm">
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Germany">Germany</option>
+              <option value="Australia">Australia</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-gray-500 mb-1">QS World Ranking Metric</label>
+            <input type="number" id="uni_modal_rank" required class="w-full border p-2.5 rounded-lg text-sm">
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-gray-500 mb-1">Annual Base Tuition Cost Scale (USD)</label>
+          <input type="number" id="uni_modal_fee" required class="w-full border p-2.5 rounded-lg text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-500 mb-1">Cover Imagery Endpoint (URL)</label>
+          <input type="url" id="uni_modal_img" class="w-full border p-2.5 rounded-lg text-sm" placeholder="https://images.unsplash.com/...">
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeUniversityModal()" class="px-4 py-2 bg-gray-100 rounded-lg">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-brand-blue text-white rounded-lg">Commit Configuration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- COURSE EDIT/CREATE MODAL -->
+  <div id="courseModal" class="hidden fixed inset-0 bg-brand-navy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h3 id="courseModalTitle" class="text-base font-bold text-brand-navy">Deploy New Degree Track</h3>
+        <button onclick="closeCourseModal()" class="text-gray-400 hover:text-gray-600">&times;</button>
+      </div>
+      <form id="courseModalForm" onsubmit="handleCourseFormSubmit(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="course_edit_id">
+        <div>
+          <label class="block font-bold text-gray-500 mb-1">Degree Title Pathway</label>
+          <input type="text" id="course_modal_name" required class="w-full border p-2.5 rounded-lg text-sm" placeholder="e.g. M.S. in Data Analytics">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-500 mb-1">Hosting Academic Center</label>
+          <input type="text" id="course_modal_uni" required class="w-full border p-2.5 rounded-lg text-sm" placeholder="e.g. Stanford University">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-gray-500 mb-1">Program Track Duration</label>
+            <input type="text" id="course_modal_duration" required class="w-full border p-2.5 rounded-lg text-sm" placeholder="e.g. 24 Months">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-500 mb-1">Annual Net Tuition Fee (USD)</label>
+            <input type="number" id="course_modal_fee" required class="w-full border p-2.5 rounded-lg text-sm">
+          </div>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeCourseModal()" class="px-4 py-2 bg-gray-100 rounded-lg">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-brand-blue text-white rounded-lg">Commit Configuration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ==================== PREMIUM RE-ENGINEERED LIGHT LANDSCAPE FOOTER ==================== -->
+  <footer class="bg-gradient-to-b from-white via-brand-grayLight to-blue-50 border-t border-gray-100 pt-20 pb-10 relative overflow-hidden">
+    <!-- Sophisticated background pattern styling -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,100 Q300,50 600,100 T1200,100" fill="none" stroke="#1A3A6B" stroke-width="2"/>
+        <path d="M0,150 Q400,200 800,150 T1600,150" fill="none" stroke="#F5C542" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+      <div class="space-y-4">
+        <h3 class="serif-heading text-2xl font-black tracking-tight text-brand-navy">SkyScholar</h3>
+        <p class="text-xs text-gray-400 leading-relaxed max-w-xs">
+          Global Educational Placements Compliance Council. Orchestrating advanced international academic pathways seamlessly for modern elites.
+        </p>
+        <div class="pt-2 flex items-center gap-3 text-xs font-semibold text-brand-blue">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span> Global Operations Normal
+        </div>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-blue mb-4">Core Structural Links</h4>
+        <ul class="text-xs text-gray-500 space-y-2.5">
+          <li><a href="#home" onclick='navigateToPage("home")' class="hover:text-brand-blue transition">Primary Environment</a></li>
+          <li><a href="#services" onclick='navigateToPage("services")' class="hover:text-brand-blue transition">Services Ecosystem</a></li>
+          <li><a href="#countries" onclick='navigateToPage("countries")' class="hover:text-brand-blue transition">Destinations Registry</a></li>
+          <li><a href="#universities" onclick='navigateToPage("universities")' class="hover:text-brand-blue transition">Institutional Framework</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-blue mb-4">Regulatory Domains</h4>
+        <ul class="text-xs text-gray-500 space-y-2.5">
+          <li>United States (F-1 Command)</li>
+          <li>United Kingdom (Tier 4 Route)</li>
+          <li>European Union Compliance</li>
+          <li>Australian Subclass Systems</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-blue mb-4">Admissions Node Desk</h4>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          Central Dispatch: triage@skyscholar.internal<br>
+          Direct Trunk: +1 (234) 567-890<br>
+          Secure Wire Tracking Active.
+        </p>
+      </div>
+    </div>
+
+    <!-- Final Scene Horizon Illustration -->
+    <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-200/60 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-400 font-medium gap-4">
+      <div>© 2026 SkyScholar. Certified Placement Repository. Protocol V4 Secure Deployment.</div>
+      <div class="flex space-x-6">
+        <a href="#admin" onclick='navigateToPage("admin")' class="hover:text-brand-navy">Console Core</a>
+        <span>Privacy Operations Directive</span>
+        <span>Cryptographic Terms Layout</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ==================== RE-ENGINEERED PRODUCTION ARCHITECTURE JAVASCRIPT ==================== -->
   <script>
-    (function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileNav = document.getElementById('mobileNav');
-      
-      if (menuToggle && mobileNav) {
-        // initial state closed
-        let isMenuOpen = false;
-        
-        function toggleMenu(open) {
-          if (open) {
-            mobileNav.classList.remove('mobile-menu-closed');
-            mobileNav.classList.add('mobile-menu-open');
-            // set aria expanded
-            menuToggle.setAttribute('aria-expanded', 'true');
-          } else {
-            mobileNav.classList.remove('mobile-menu-open');
-            mobileNav.classList.add('mobile-menu-closed');
-            menuToggle.setAttribute('aria-expanded', 'false');
-          }
-          isMenuOpen = open;
+    /* ==================== SECURE CLIENT DATABASE MOCK ARCHITECTURE STORAGE SYSTEM ==================== */
+    const DEFAULT_DATA_STORE = {
+      countries: [
+        { id: "c1", name: "United States", flag: "us", averageTuition: "38,500", visaSuccess: "95.4", link: "us" },
+        { id: "c2", name: "United Kingdom", flag: "gb", averageTuition: "29,000", visaSuccess: "97.8", link: "uk" },
+        { id: "c3", name: "Canada", flag: "ca", averageTuition: "26,000", visaSuccess: "96.1", link: "ca" },
+        { id: "c4", name: "Germany", flag: "de", averageTuition: "1,200", visaSuccess: "98.2", link: "de" },
+        { id: "c5", name: "Australia", flag: "au", averageTuition: "31,000", visaSuccess: "95.9", link: "au" }
+      ],
+      universities: [
+        { id: "u1", name: "Stanford University", country: "United States", rank: 3, tuitionFee: 55000, logo: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=400&auto=format&fit=crop" },
+        { id: "u2", name: "University of Oxford", country: "United Kingdom", rank: 4, tuitionFee: 42000, logo: "https://images.unsplash.com/photo-1548625361-155deee2614a?q=80&w=400&auto=format&fit=crop" },
+        { id: "u3", name: "University of Toronto", country: "Canada", rank: 21, tuitionFee: 38000, logo: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=400&auto=format&fit=crop" },
+        { id: "u4", name: "Technical University of Munich", country: "Germany", rank: 49, tuitionFee: 0, logo: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=400&auto=format&fit=crop" },
+        { id: "u5", name: "University of Melbourne", country: "Australia", rank: 33, tuitionFee: 34000, logo: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=400&auto=format&fit=crop" }
+      ],
+      courses: [
+        { id: "cr1", name: "M.S. in Advanced Computer Science", university: "Stanford University", duration: "24 Months", tuitionFee: 52000 },
+        { id: "cr2", name: "M.Sc. in Mathematical Finance", university: "University of Oxford", duration: "12 Months", tuitionFee: 46000 },
+        { id: "cr3", name: "B.Sc. in Data Engineering Frameworks", university: "University of Toronto", duration: "48 Months", tuitionFee: 39000 },
+        { id: "cr4", name: "M.Sc. in Automotive Systems Technology", university: "Technical University of Munich", duration: "24 Months", tuitionFee: 500 },
+        { id: "cr5", name: "Master of Business Administration (MBA)", university: "University of Melbourne", duration: "18 Months", tuitionFee: 48000 }
+      ],
+      testimonials: [
+        { id: "t1", studentName: "Aarav Mehta", content: "SkyScholar managed my Tier 4 configuration seamlessly. Clearance processed smoothly within 11 business days.", country: "United Kingdom", image: "" },
+        { id: "t2", studentName: "Elena Rostova", content: "The structural financial scholarship optimization matching secured me a complete waiver profile at Munich.", country: "Germany", image: "" },
+        { id: "t3", studentName: "Marcus Vance", content: "Elite transactional advisory precision execution. Direct structural optimization models generated accurate admissions clearance.", country: "United States", image: "" }
+      ],
+      inquiries: [
+        { id: "inq_initial", timestamp: "2026-03-01 10:14", name: "Sarah Jenkins", email: "sarah.j@outlook.com", phone: "+1 415 889 0122", country: "United States", course: "Data Analytics", message: "Initial evaluation run placeholder record configuration set." }
+      ]
+    };
+
+    // Database Sync Initializer Framework
+    function initDatabaseInstance() {
+      if (!localStorage.getItem("skyscholar_db_v4")) {
+        localStorage.setItem("skyscholar_db_v4", JSON.stringify(DEFAULT_DATA_STORE));
+      }
+    }
+    initDatabaseInstance();
+
+    function getDB() {
+      return JSON.parse(localStorage.getItem("skyscholar_db_v4"));
+    }
+
+    function saveDB(data) {
+      localStorage.setItem("skyscholar_db_v4", JSON.stringify(data));
+    }
+
+
+    /* ==================== ROUTING SYSTEM (SPA EXECUTION FRAMEWORK) ==================== */
+    function navigateToPage(targetPageId) {
+      // Hide all elements cleanly
+      const pages = document.querySelectorAll('.spa-page');
+      pages.forEach(p => p.classList.remove('active-page'));
+
+      // Target Activation
+      const activeTarget = document.getElementById(targetPageId);
+      if (activeTarget) {
+        activeTarget.classList.add('active-page');
+      }
+
+      // Synchronize Nav Elements Look
+      const links = document.querySelectorAll('.nav-link');
+      links.forEach(lnk => {
+        if (lnk.getAttribute('href') === `#${targetPageId}`) {
+          lnk.classList.add('text-brand-blue', 'font-semibold', 'border-brand-blue');
+          lnk.classList.remove('text-gray-500', 'border-transparent');
+        } else {
+          lnk.classList.remove('text-brand-blue', 'font-semibold', 'border-brand-blue');
+          lnk.classList.add('text-gray-500', 'border-transparent');
         }
-        
-        menuToggle.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleMenu(!isMenuOpen);
-        });
-        
-        // close mobile menu when clicking on any mobile nav link (improves UX)
-        const mobileLinks = mobileNav.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            if (isMenuOpen) toggleMenu(false);
-          });
-        });
-        
-        // optional: close on window resize if switching to desktop, to avoid stale state
-        window.addEventListener('resize', () => {
-          if (window.innerWidth >= 768 && isMenuOpen) {
-            toggleMenu(false);
-          }
-        });
+      });
+
+      // Collapse Drawer Overlay Menu safely if active
+      document.getElementById('mobileMenu').classList.add('hidden');
+
+      // Scroll reset behavior to maintain flow paradigm
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Run specific dynamic rendering components on view visibility switches
+      if (targetPageId === 'home') triggerCountersMatrixAnimation();
+      if (targetPageId === 'countries') renderCountriesView();
+      if (targetPageId === 'universities') { renderUniversitiesView(); populateCountrySelectFilters(); }
+      if (targetPageId === 'courses') renderCoursesView();
+      if (targetPageId === 'admin') renderAdminConsolePanels();
+    }
+
+    // Capture initial address link hashing states for proper initial load tracking execution
+    window.addEventListener('DOMContentLoaded', () => {
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash && ['home', 'services', 'countries', 'universities', 'courses', 'inquiry', 'contact', 'admin'].includes(initialHash)) {
+        navigateToPage(initialHash);
+      } else {
+        navigateToPage('home');
       }
+      // Populate standard components out-of-the-box
+      renderTestimonialsHomeRow();
+    });
+
+
+    /* ==================== INTERACTIVE DATA INTERFACES RENDER IMPLEMENTATIONS ==================== */
+    
+    // Testimonials Home Inject System
+    function renderTestimonialsHomeRow() {
+      const db = getDB();
+      const container = document.getElementById('homeTestimonialsList');
+      if (!container) return;
+      container.innerHTML = db.testimonials.map(t => `
+        <div class="p-8 bg-white rounded-2xl border border-gray-100 premium-shadow">
+          <p class="text-gray-500 text-sm italic leading-relaxed">"${t.content}"</p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-blue/10 text-brand-blue font-bold flex items-center justify-center text-xs font-serif uppercase">${t.studentName.charAt(0)}</div>
+            <div>
+              <h4 class="text-sm font-bold text-brand-navy">${t.studentName}</h4>
+              <p class="text-[11px] font-semibold text-brand-gold uppercase tracking-wider">${t.country} Candidate</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Countries List System Inject Node
+    function renderCountriesView() {
+      const db = getDB();
+      const container = document.getElementById('countriesListContainer');
+      if (!container) return;
+      container.innerHTML = db.countries.map(c => `
+        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden premium-shadow zoom-container">
+          <div class="p-8 space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono tracking-widest text-gray-400 uppercase">Geopolitical Target</span>
+              <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">${c.visaSuccess}% Cleared</span>
+            </div>
+            <h3 class="serif-heading text-2xl font-bold text-brand-navy flex items-center gap-3">
+              <span class="text-xl uppercase">${c.flag === 'us' ? '🇺🇸' : c.flag === 'gb' ? '🇬🇧' : c.flag === 'ca' ? '🇨🇦' : c.flag === 'de' ? '🇩🇪' : '🇦🇺'}</span>
+              ${c.name}
+            </h3>
+            <p class="text-xs text-gray-500">Average institutional ledger overhead scales around <strong class="text-brand-blue">$${c.averageTuition}/year</strong> configuration parameters base tracking.</p>
+            <div class="pt-2">
+              <button onclick="navigateToPage('inquiry')" class="w-full text-center text-xs font-bold uppercase tracking-wider text-brand-blue border border-brand-blue/10 bg-brand-grayLight py-3 rounded-xl hover:bg-brand-blue hover:text-white transition duration-300">Initialize Placement Vector</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Populate Filters
+    function populateCountrySelectFilters() {
+      const db = getDB();
+      const selectNode = document.getElementById('uniCountrySelect');
+      if (!selectNode) return;
+      // Maintain initial standard option element safely
+      selectNode.innerHTML = '<option value="">All Destinations</option>';
+      db.countries.forEach(c => {
+        selectNode.innerHTML += `<option value="${c.name}">${c.name}</option>`;
+      });
+    }
+
+    // Universities Portal Data Execution
+    function renderUniversitiesView(filteredDataset = null) {
+      const db = getDB();
+      const targetData = filteredDataset || db.universities;
+      const grid = document.getElementById('universitiesGrid');
+      const emptyState = document.getElementById('uniEmptyState');
+      if (!grid) return;
+
+      if (targetData.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.add ? emptyState.classList.add('hidden') : emptyState.classList.add('hidden');
+
+      grid.innerHTML = targetData.map(u => `
+        <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden premium-shadow group">
+          <div class="h-48 bg-gray-100 relative overflow-hidden zoom-container">
+            <img src="${u.logo}" alt="${u.name}" class="w-full h-full object-cover zoom-img">
+            <span class="absolute top-4 right-4 bg-brand-navy/80 backdrop-blur-md text-brand-gold text-[10px] font-mono tracking-wider px-2.5 py-1 rounded-full font-bold">QS World Rank #${u.rank}</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${u.country}</p>
+            <h3 class="serif-heading text-lg font-bold text-brand-navy group-hover:text-brand-blue transition">${u.name}</h3>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-50 text-xs">
+              <span class="text-gray-400">Est. Base Tuition</span>
+              <span class="font-bold text-brand-blue">${u.tuitionFee > 0 ? '$' + u.tuitionFee.toLocaleString() + ' / yr' : 'Fully Funded / Free'}</span>
+            </div>
+            <button onclick="navigateToPage('inquiry')" class="w-full mt-2 text-center text-xs font-bold bg-brand-blue text-white py-3 rounded-xl hover:bg-brand-navy transition duration-300">File Placement Ledger Form</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function executeUniversityFilter() {
+      const db = getDB();
+      const searchVal = document.getElementById('uniSearchInput').value.toLowerCase();
+      const countryVal = document.getElementById('uniCountrySelect').value;
+
+      const filtered = db.universities.filter(u => {
+        const matchesSearch = u.name.toLowerCase().includes(searchVal) || u.country.toLowerCase().includes(searchVal);
+        const matchesCountry = countryVal === "" || u.country === countryVal;
+        return matchesSearch && matchesCountry;
+      });
+
+      renderUniversitiesView(filtered);
+    }
+
+    // Specialized Program Registries Core Render Block
+    function renderCoursesView(filteredData = null) {
+      const db = getDB();
+      const source = filteredData || db.courses;
+      const grid = document.getElementById('coursesGrid');
+      const emptyState = document.getElementById('courseEmptyState');
+      if (!grid) return;
+
+      if (source.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = source.map(c => `
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 premium-shadow flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="inline-block bg-blue-50 text-brand-blue text-[10px] font-mono tracking-wider font-bold px-2 py-0.5 rounded">${c.duration}</span>
+            <h3 class="text-base font-bold text-brand-navy leading-tight">${c.name}</h3>
+            <p class="text-xs text-gray-400 font-medium">${c.university}</p>
+          </div>
+          <div class="pt-3 border-t border-gray-50 flex justify-between items-center text-xs">
+            <div>
+              <p class="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Annual Ledger Cost</p>
+              <p class="text-sm font-bold text-brand-blue mt-0.5">${c.tuitionFee > 1000 ? '$' + c.tuitionFee.toLocaleString() : 'Funded Options Scale'}</p>
+            </div>
+            <button onclick="navigateToPage('inquiry')" class="px-4 py-2 bg-brand-grayLight hover:bg-brand-blue hover:text-white rounded-lg text-xs font-semibold text-brand-blue transition duration-300">Apply</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function executeCourseFilter() {
+      const db = getDB();
+      const s = document.getElementById('courseSearchInput').value.toLowerCase();
+      const res = db.courses.filter(c => c.name.toLowerCase().includes(s) || c.university.toLowerCase().includes(s));
+      renderCoursesView(res);
+    }
+
+
+    /* ==================== MULTI-STEP CONSULTATION INQUIRY ENGINE ==================== */
+    let currentInquiryActiveStep = 1;
+
+    function transitionInquiryStep(targetStep) {
+      // Validate tracking ranges safely
+      if (targetStep < 1 || targetStep > 3) return;
       
-      // tiny subtle parallax / mousemove micro-interaction on image (premium floating nuance)
-      const imageContainer = document.querySelector('.float-image');
-      if (imageContainer && window.innerWidth > 768) {
-        document.querySelector('.group')?.addEventListener('mousemove', (e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          const mouseX = (e.clientX - rect.left) / rect.width; // 0 to 1
-          const mouseY = (e.clientY - rect.top) / rect.height;
-          const moveX = (mouseX - 0.5) * 6;   // max 3px shift
-          const moveY = (mouseY - 0.5) * 6;
-          imageContainer.style.transform = `translateY(${moveY * 0.5}px) translateX(${moveX * 0.5}px)`;
-        });
-        
-        document.querySelector('.group')?.addEventListener('mouseleave', () => {
-          imageContainer.style.transform = '';
-          imageContainer.style.transition = 'transform 0.4s ease-out';
-          setTimeout(() => {
-            if(imageContainer) imageContainer.style.transition = '';
-          }, 400);
-        });
+      // Step Block Hiding Layer Rules
+      document.getElementById('inquiryStepBlock-1').classList.add('hidden');
+      document.getElementById('inquiryStepBlock-2').classList.add('hidden');
+      document.getElementById('inquiryStepBlock-3').classList.add('hidden');
+
+      document.getElementById(`inquiryStepBlock-${targetStep}`).classList.remove('hidden');
+
+      // Sync Graphical Visual Step State Metrics Icons
+      for (let i = 1; i <= 3; i++) {
+        const indicator = document.getElementById(`stepIndicator-${i}`);
+        if (i <= targetStep) {
+          indicator.classList.remove('bg-gray-100', 'text-gray-400');
+          indicator.classList.add('bg-brand-blue', 'text-white');
+        } else {
+          indicator.classList.remove('bg-brand-blue', 'text-white');
+          indicator.classList.add('bg-gray-100', 'text-gray-400');
+        }
       }
-    })();
+      currentInquiryActiveStep = targetStep;
+    }
+
+    function handleInquirySubmission(e) {
+      e.preventDefault();
+      const db = getDB();
+
+      const newRecord = {
+        id: "inq_" + Date.now(),
+        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+        name: document.getElementById('inq_name').value,
+        email: document.getElementById('inq_email').value,
+        phone: document.getElementById('inq_phone').value,
+        country: document.getElementById('inq_country').value,
+        course: document.getElementById('inq_course').value,
+        message: document.getElementById('inq_message').value || 'No programmatic context attached.'
+      };
+
+      db.inquiries.unshift(newRecord);
+      saveDB(db);
+
+      // Trigger structural confirmation alert interface notice
+      alert("Operational Case File Cleared. An assignments director has scheduled dossier evaluation mapping rules on your submission profile.");
+      
+      // Reset forms engine validation parameters cleanly
+      document.getElementById('inquiryFormEngine').reset();
+      transitionInquiryStep(1);
+      navigateToPage('home');
+    }
+
+
+    /* ==================== CORE CRUD PORTAL MANAGEMENT SYSTEM OPERATIONS ==================== */
+    let activeAdminTabSignature = 'inquiries';
+
+    function switchAdminSubTab(targetTabSignature) {
+      activeAdminTabSignature = targetTabSignature;
+      
+      // Toggle CSS visual state configurations across control matrix layout
+      const tabs = document.querySelectorAll('.admin-subtab-btn');
+      tabs.forEach(btn => {
+        if (btn.getAttribute('onclick').includes(`'${targetTabSignature}'`)) {
+          btn.classList.remove('bg-white', 'text-gray-600', 'border');
+          btn.classList.add('bg-brand-blue', 'text-white');
+        } else {
+          btn.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+          btn.classList.remove('bg-brand-blue', 'text-white');
+        }
+      });
+
+      // Panel Display Toggling
+      document.querySelectorAll('.admin-panel-module').forEach(pnl => pnl.classList.add('hidden'));
+      document.getElementById(`adminPanel-${targetTabSignature}`).classList.remove('hidden');
+
+      renderAdminConsolePanels();
+    }
+
+    function renderAdminConsolePanels() {
+      const db = getDB();
+
+      if (activeAdminTabSignature === 'inquiries') {
+        const container = document.getElementById('adminInquiriesTableBody');
+        if (!container) return;
+        if (db.inquiries.length === 0) {
+          container.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-xs text-gray-400">Stream logging stack cleared. No passive submission profiles detected.</td></tr>`;
+          return;
+        }
+        container.innerHTML = db.inquiries.map(i => `
+          <tr class="hover:bg-gray-50/80 text-xs">
+            <td class="p-4 font-mono text-gray-400">${i.timestamp}</td>
+            <td class="p-4"><p class="font-bold text-brand-navy">${i.name}</p><p class="text-[10px] text-gray-400 font-mono">${i.email} | ${i.phone}</p></td>
+            <td class="p-4"><span class="bg-blue-50 text-brand-blue px-2 py-0.5 rounded font-medium">${i.country}</span><p class="text-[10px] text-gray-400 mt-1">${i.course}</p></td>
+            <td class="p-4 text-gray-500 max-w-xs truncate" title="${i.message}">${i.message}</td>
+            <td class="p-4 text-right"><button onclick="purgeInquiryRecord('${i.id}')" class="text-rose-600 font-bold hover:underline">Purge</button></td>
+          </tr>
+        `).join('');
+      }
+
+      if (activeAdminTabSignature === 'universities') {
+        const container = document.getElementById('adminUniversitiesTableBody');
+        if (!container) return;
+        container.innerHTML = db.universities.map(u => `
+          <tr class="hover:bg-gray-50/80 text-xs">
+            <td class="p-4 font-bold text-brand-navy">${u.name}</td>
+            <td class="p-4 text-gray-500">${u.country}</td>
+            <td class="p-4 font-mono font-bold text-brand-blue">#${u.rank}</td>
+            <td class="p-4 font-medium">${u.tuitionFee > 0 ? '$' + u.tuitionFee.toLocaleString() : 'Free Track'}</td>
+            <td class="p-4 text-right space-x-2">
+              <button onclick="openUniversityModal('${u.id}')" class="text-brand-blue font-bold hover:underline">Modify</button>
+              <button onclick="purgeUniversityRecord('${u.id}')" class="text-rose-600 font-bold hover:underline">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      if (activeAdminTabSignature === 'courses') {
+        const container = document.getElementById('adminCoursesTableBody');
+        if (!container) return;
+        container.innerHTML = db.courses.map(c => `
+          <tr class="hover:bg-gray-50/80 text-xs">
+            <td class="p-4 font-bold text-brand-navy">${c.name}</td>
+            <td class="p-4 text-gray-400">${c.university}</td>
+            <td class="p-4 font-mono">${c.duration}</td>
+            <td class="p-4 font-bold text-brand-blue">$${c.tuitionFee.toLocaleString()}</td>
+            <td class="p-4 text-right space-x-2">
+              <button onclick="openCourseModal('${c.id}')" class="text-brand-blue font-bold hover:underline">Modify</button>
+              <button onclick="purgeCourseRecord('${c.id}')" class="text-rose-600 font-bold hover:underline">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    // CRUD DELETION PARADIGMS
+    function purgeInquiryRecord(id) {
+      if (!confirm("Confirm execution vector to drop targeted user submission configuration?")) return;
+      let db = getDB();
+      db.inquiries = db.inquiries.filter(x => x.id !== id);
+      saveDB(db);
+      renderAdminConsolePanels();
+    }
+
+    function purgeUniversityRecord(id) {
+      if (!confirm("Drop targeted placement center configuration matrix?")) return;
+      let db = getDB();
+      db.universities = db.universities.filter(x => x.id !== id);
+      saveDB(db);
+      renderAdminConsolePanels();
+    }
+
+    function purgeCourseRecord(id) {
+      if (!confirm("Drop targeted program specialization node track?")) return;
+      let db = getDB();
+      db.courses = db.courses.filter(x => x.id !== id);
+      saveDB(db);
+      renderAdminConsolePanels();
+    }
+
+    // UNIVERSITY OPERATIONS CONSOLE MODAL
+    function openUniversityModal(editId = null) {
+      const modal = document.getElementById('uniModal');
+      const form = document.getElementById('uniModalForm');
+      form.reset();
+      document.getElementById('uni_edit_id').value = editId || '';
+      
+      if (editId) {
+        document.getElementById('uniModalTitle').innerText = "Modify Existing Institution Framework";
+        const targetObj = getDB().universities.find(x => x.id === editId);
+        if (targetObj) {
+          document.getElementById('uni_modal_name').value = targetObj.name;
+          document.getElementById('uni_modal_country').value = targetObj.country;
+          document.getElementById('uni_modal_rank').value = targetObj.rank;
+          document.getElementById('uni_modal_fee').value = targetObj.tuitionFee;
+          document.getElementById('uni_modal_img').value = targetObj.logo;
+        }
+      } else {
+        document.getElementById('uniModalTitle').innerText = "Deploy New Institution Model";
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeUniversityModal() {
+      document.getElementById('uniModal').classList.add('hidden');
+    }
+
+    function handleUniversityFormSubmit(e) {
+      e.preventDefault();
+      let db = getDB();
+      const editId = document.getElementById('uni_edit_id').value;
+
+      const modelPayload = {
+        id: editId || "u_" + Date.now(),
+        name: document.getElementById('uni_modal_name').value,
+        country: document.getElementById('uni_modal_country').value,
+        rank: parseInt(document.getElementById('uni_modal_rank').value) || 100,
+        tuitionFee: parseInt(document.getElementById('uni_modal_fee').value) || 0,
+        logo: document.getElementById('uni_modal_img').value || "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=400&auto=format&fit=crop"
+      };
+
+      if (editId) {
+        const targetIdx = db.universities.findIndex(x => x.id === editId);
+        if (targetIdx !== -1) db.universities[targetIdx] = modelPayload;
+      } else {
+        db.universities.push(modelPayload);
+      }
+
+      saveDB(db);
+      closeUniversityModal();
+      renderAdminConsolePanels();
+    }
+
+    // COURSE OPERATIONS CONSOLE MODAL
+    function openCourseModal(editId = null) {
+      const modal = document.getElementById('courseModal');
+      const form = document.getElementById('courseModalForm');
+      form.reset();
+      document.getElementById('course_edit_id').value = editId || '';
+
+      if (editId) {
+        document.getElementById('courseModalTitle').innerText = "Modify Program Track Specifications";
+        const targetObj = getDB().courses.find(x => x.id === editId);
+        if (targetObj) {
+          document.getElementById('course_modal_name').value = targetObj.name;
+          document.getElementById('course_modal_uni').value = targetObj.university;
+          document.getElementById('course_modal_duration').value = targetObj.duration;
+          document.getElementById('course_modal_fee').value = targetObj.tuitionFee;
+        }
+      } else {
+        document.getElementById('courseModalTitle').innerText = "Deploy New Degree Track";
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeCourseModal() {
+      document.getElementById('courseModal').classList.add('hidden');
+    }
+
+    function handleCourseFormSubmit(e) {
+      e.preventDefault();
+      let db = getDB();
+      const editId = document.getElementById('course_edit_id').value;
+
+      const modelPayload = {
+        id: editId || "cr_" + Date.now(),
+        name: document.getElementById('course_modal_name').value,
+        university: document.getElementById('course_modal_uni').value,
+        duration: document.getElementById('course_modal_duration').value,
+        tuitionFee: parseInt(document.getElementById('course_modal_fee').value) || 0
+      };
+
+      if (editId) {
+        const targetIdx = db.courses.findIndex(x => x.id === editId);
+        if (targetIdx !== -1) db.courses[targetIdx] = modelPayload;
+      } else {
+        db.courses.push(modelPayload);
+      }
+
+      saveDB(db);
+      closeCourseModal();
+      renderAdminConsolePanels();
+    }
+
+
+    /* ==================== GLOBAL USER INTERFACE MICRO INTERACTIONS INTERSECTIONS ==================== */
+    
+    // Smooth Linear Counters Metrics Engine Processing Loop 
+    let countersMatrixLoadedTrigger = false;
+    function triggerCountersMatrixAnimation() {
+      if (countersMatrixLoadedTrigger) return;
+      const counters = document.querySelectorAll('.stat-counter');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let currentCount = 0;
+        const inc = target / 60; // Smooth increment steps inside frame cycles
+
+        const updateFrameValue = () => {
+          currentCount += inc;
+          if (currentCount < target) {
+            counter.innerText = Math.ceil(currentCount);
+            setTimeout(updateFrameValue, 20);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateFrameValue();
+      });
+      countersMatrixLoadedTrigger = true;
+    }
+
+    // Scroll Depth Visual Tracker Framework Logic
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const currentProgressRatio = window.scrollY / scrollHeight;
+      const progressTrackerBarNode = document.getElementById('readingProgress');
+      if (progressTrackerBarNode) {
+        progressTrackerBarNode.style.transform = `scaleX(${currentProgressRatio})`;
+      }
+
+      // Sticky Bottom Applied Target Tracking Indicator Trigger Logic
+      const stickyCtaNode = document.getElementById('stickyCTA');
+      if (window.scrollY > 450) {
+        stickyCtaNode.classList.remove('translate-y-24', 'opacity-0');
+      } else {
+        stickyCtaNode.classList.add('translate-y-24', 'opacity-0');
+      }
+
+      // Back to top structural button toggle checks
+      const backTopNode = document.getElementById('backToTop');
+      if (window.scrollY > 700) {
+        backTopNode.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        backTopNode.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile View Interlocking Control Bindings
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('hidden');
+    });
+    document.getElementById('closeMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('hidden');
+    });
+    document.getElementById('mobileMenu').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('mobileMenu')) {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      }
+    });
+
+    // Execute core counter trigger immediately in case of fallback configuration variants
+    setTimeout(triggerCountersMatrixAnimation, 800);
   </script>
 </body>
 </html>
