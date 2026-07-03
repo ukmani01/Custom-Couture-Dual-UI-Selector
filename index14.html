@@ -1,1038 +1,1344 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyScholar - Study Abroad Consultancy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>SkyScholar - Study Abroad Experts</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { primary: '#2563eb', secondary: '#1e40af', dark: '#0f172a', light: '#f8fafc' }
-                }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #0f172a;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --radius: 8px;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--secondary);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+            background: none;
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Countries Section */
+        .countries {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-header img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-body p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-body strong {
+            color: var(--secondary);
+        }
+
+        /* Universities Section */
+        .universities {
+            padding: 6rem 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-bar, .filter-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            min-width: 250px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            background: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        /* Inquiry Section */
+        .inquiry {
+            padding: 6rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-control.error {
+            border-color: var(--error);
+        }
+
+        .error-text {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-status {
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #34d399;
+        }
+
+        .form-status.error {
+            display: block;
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #f87171;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Admin Dashboard Overlay */
+        #admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-light);
+            z-index: 9999;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: var(--white);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 600;
+        }
+
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-delete {
+            background: var(--error);
+            color: var(--white);
+        }
+
+        .btn-update {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        #login-form-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
             }
         }
-    </script>
-    <style>
-        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
-        .accordion-active .accordion-content { max-height: 500px; }
-        .accordion-active .fa-chevron-down { transform: rotate(180deg); }
-        .tab-active { border-bottom: 2px solid #2563eb; color: #2563eb; font-weight: 600; }
-        #toast { transition: opacity 0.3s, transform 0.3s; transform: translateY(100%); opacity: 0; }
-        #toast.show { transform: translateY(0); opacity: 1; }
-        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #2563eb; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: none; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="bg-light text-slate-800 font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur shadow-sm transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('home')">
-                    <i class="fa-solid fa-graduation-cap text-primary text-3xl mr-2"></i>
-                    <span class="font-bold text-2xl tracking-tight text-dark">SkyScholar</span>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-plane-departure"></i> SkyScholar
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#countries">Countries</a></li>
+                    <li><a href="#universities">Universities</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><button onclick="openAdmin()" class="btn btn-outline" style="padding: 0.5rem 1rem;">Admin</button></li>
+                </ul>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero fade-in">
+        <div class="container">
+            <h1>Your Journey to Global Education Starts Here</h1>
+            <p>Expert guidance for admissions, visas, and scholarships to top universities worldwide.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Book Consultation</a>
+                <a href="#universities" class="btn btn-outline">Explore Universities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-item">
+                    <h3 class="counter" data-target="98">0</h3>
+                    <p>% Visa Success</p>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center" id="nav-links">
-                    <a href="#" onclick="navigate('home')" class="text-gray-600 hover:text-primary transition font-medium">Home</a>
-                    <a href="#services" class="text-gray-600 hover:text-primary transition font-medium">Services</a>
-                    <a href="#destinations" class="text-gray-600 hover:text-primary transition font-medium">Destinations</a>
-                    <a href="#universities" class="text-gray-600 hover:text-primary transition font-medium">Universities</a>
-                    <a href="#" onclick="navigate('admin')" class="text-gray-600 hover:text-primary transition font-medium"><i class="fa-solid fa-lock mr-1"></i> Admin</a>
-                    <a href="#contact" class="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg shadow-blue-500/30">Apply Now</a>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Universities</p>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none text-2xl">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="15">0</h3>
+                    <p>Countries</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="10000">0</h3>
+                    <p>Students Placed</p>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-lg">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#" onclick="navigate('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Home</a>
-                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Services</a>
-                <a href="#destinations" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Destinations</a>
-                <a href="#" onclick="navigate('admin')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Admin</a>
+    </section>
+
+    <!-- Services -->
+    <section class="services bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Services</h2>
+            <p class="section-subtitle fade-in">Comprehensive support for your study abroad journey.</p>
+            
+            <div class="services-grid fade-in">
+                <div class="service-card">
+                    <i class="fa-solid fa-university service-icon"></i>
+                    <h3>University Selection</h3>
+                    <p>We help you find the best fit university based on your profile and career goals.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-file-signature service-icon"></i>
+                    <h3>Application Support</h3>
+                    <p>Assistance with SOPs, LORs, and seamless application submission.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-passport service-icon"></i>
+                    <h3>Visa Guidance</h3>
+                    <p>Step-by-step guidance for visa interviews and documentation.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-award service-icon"></i>
+                    <h3>Scholarships</h3>
+                    <p>Identify and apply for global scholarships to fund your education.</p>
+                </div>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- MAIN APP CONTAINER -->
-    <main id="app-container" class="flex-grow pt-20">
-        <!-- PUBLIC VIEW -->
-        <div id="public-view" class="block">
+    <!-- Countries -->
+    <section id="countries" class="countries">
+        <div class="container">
+            <h2 class="section-title fade-in">Top Study Destinations</h2>
+            <p class="section-subtitle fade-in">Explore the most popular countries for international students.</p>
             
-            <!-- Hero Section -->
-            <section class="relative bg-dark text-white overflow-hidden">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/90 to-transparent"></div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-32 pb-40">
-                    <div class="max-w-2xl fade-in">
-                        <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 font-semibold text-sm mb-6 border border-blue-500/30">Your Global Education Partner</span>
-                        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">Shape Your Future with <span class="text-blue-400">SkyScholar</span></h1>
-                        <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">Expert guidance for studying abroad. From university selection to visa approval, we make your dream of global education a reality.</p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#contact" class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-bold text-center transition shadow-lg shadow-blue-500/40 text-lg">Start Your Journey</a>
-                            <a href="#universities" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white px-8 py-4 rounded-full font-bold text-center transition border border-white/20 text-lg">Explore Universities</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Stats Counters -->
-            <section class="bg-white border-b border-gray-100 relative z-20 -mt-12 mx-4 sm:mx-auto max-w-6xl rounded-2xl shadow-xl p-8 fade-in">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="92">0</span>%</div>
-                        <div class="text-gray-500 font-medium">Visa Success Rate</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="150">0</span>+</div>
-                        <div class="text-gray-500 font-medium">Partner Universities</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="10">0</span>k+</div>
-                        <div class="text-gray-500 font-medium">Students Placed</div>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="7">0</span></div>
-                        <div class="text-gray-500 font-medium">Top Countries</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Services -->
-            <section id="services" class="py-24 bg-light">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-16 fade-in">
-                        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Our Premium Services</h2>
-                        <p class="text-gray-600 max-w-2xl mx-auto text-lg">Comprehensive support tailored for your international academic journey.</p>
-                    </div>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 fade-in group">
-                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-building-columns"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">University Selection</h3>
-                            <p class="text-gray-600">We help you choose the right university and course based on your academic profile and career goals.</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 fade-in group" style="transition-delay: 100ms;">
-                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-passport"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">Visa Assistance</h3>
-                            <p class="text-gray-600">Expert guidance on visa documentation, interview preparation, and application filing with high success rates.</p>
-                        </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 fade-in group" style="transition-delay: 200ms;">
-                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-file-pen"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">SOP & LOR Support</h3>
-                            <p class="text-gray-600">Professional editing and drafting support for Statement of Purpose and Letters of Recommendation.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Destinations / Countries -->
-            <section id="destinations" class="py-24 bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-end mb-12 fade-in">
-                        <div>
-                            <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Top Study Destinations</h2>
-                            <p class="text-gray-600 text-lg">Explore opportunities in the world's leading educational hubs.</p>
-                        </div>
-                    </div>
-                    <div id="countries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Universities & Courses -->
-            <section id="universities" class="py-24 bg-slate-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-12 fade-in">
-                        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Partner Universities</h2>
-                        <p class="text-gray-600 max-w-2xl mx-auto text-lg mb-8">Search through our extensive network of prestigious institutions globally.</p>
-                        
-                        <!-- Search & Filter -->
-                        <div class="max-w-3xl mx-auto flex flex-col md:flex-row gap-4">
-                            <div class="relative flex-grow">
-                                <i class="fa-solid fa-search absolute left-4 top-3.5 text-gray-400"></i>
-                                <input type="text" id="search-uni" placeholder="Search universities or courses..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition shadow-sm">
-                            </div>
-                            <select id="filter-country" class="px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary outline-none shadow-sm bg-white">
-                                <option value="">All Countries</option>
-                                <!-- Populated by JS -->
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="universities-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section class="py-24 bg-white">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-16 fade-in">
-                        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Frequently Asked Questions</h2>
-                    </div>
-                    <div class="space-y-4 fade-in">
-                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden accordion">
-                            <button class="w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center focus:outline-none accordion-btn">
-                                What is the best time to start applying?
-                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                            </button>
-                            <div class="accordion-content px-6 bg-gray-50">
-                                <p class="py-4 text-gray-600">Ideally, you should start your application process 9-12 months before your intended intake. This gives ample time for standardized tests, document preparation, and visa processing.</p>
-                            </div>
-                        </div>
-                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden accordion">
-                            <button class="w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center focus:outline-none accordion-btn">
-                                Do you provide scholarship assistance?
-                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                            </button>
-                            <div class="accordion-content px-6 bg-gray-50">
-                                <p class="py-4 text-gray-600">Yes, we guide students on identifying and applying for university-specific, government, and private scholarships based on their profile and eligibility.</p>
-                            </div>
-                        </div>
-                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden accordion">
-                            <button class="w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center focus:outline-none accordion-btn">
-                                Is IELTS/TOEFL mandatory?
-                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
-                            </button>
-                            <div class="accordion-content px-6 bg-gray-50">
-                                <p class="py-4 text-gray-600">While highly recommended for English-speaking countries, some universities offer waivers based on your medium of instruction in high school or bachelor's degree. We evaluate this on a case-by-case basis.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Inquiry/Contact Form -->
-            <section id="contact" class="py-24 bg-dark text-white relative overflow-hidden">
-                <div class="absolute inset-0 bg-blue-900/20"></div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="grid md:grid-cols-2 gap-16 items-center">
-                        <div class="fade-in">
-                            <h2 class="text-4xl font-bold mb-6">Ready to take the leap?</h2>
-                            <p class="text-gray-300 mb-8 text-lg">Fill out the form and our expert counselors will get back to you within 24 hours for a free consultation.</p>
-                            <div class="space-y-6">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fa-solid fa-phone text-blue-400"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-400">Call Us</div>
-                                        <div class="font-semibold">+1 (800) 123-4567</div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
-                                        <i class="fa-solid fa-envelope text-blue-400"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-400">Email Us</div>
-                                        <div class="font-semibold">contact@skyscholar.com</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-2xl p-8 shadow-2xl text-slate-800 fade-in">
-                            <h3 class="text-2xl font-bold mb-6">Free Consultation</h3>
-                            <form id="inquiry-form" class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                                    <input type="text" id="inq-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                                        <input type="email" id="inq-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
-                                        <input type="tel" id="inq-phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Country *</label>
-                                    <select id="inq-country" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition bg-white">
-                                        <option value="">Select a country</option>
-                                        <!-- Populated via JS -->
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
-                                    <textarea id="inq-msg" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition"></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition flex justify-center items-center">
-                                    <span id="inq-btn-text">Submit Inquiry</span>
-                                    <div id="inq-loader" class="loader ml-2"></div>
-                                </button>
-                                <div id="inq-success" class="hidden text-green-600 text-sm font-medium text-center mt-2 bg-green-50 p-2 rounded">
-                                    Inquiry submitted successfully! We'll contact you soon.
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Footer -->
-            <footer class="bg-slate-900 text-gray-400 py-12 border-t border-gray-800">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="col-span-1 md:col-span-2">
-                        <div class="flex items-center mb-4">
-                            <i class="fa-solid fa-graduation-cap text-primary text-2xl mr-2"></i>
-                            <span class="font-bold text-xl text-white">SkyScholar</span>
-                        </div>
-                        <p class="mb-4 max-w-sm">Empowering students to achieve global education dreams with expert, end-to-end consultancy services.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-white transition">Home</a></li>
-                            <li><a href="#services" class="hover:text-white transition">Services</a></li>
-                            <li><a href="#universities" class="hover:text-white transition">Universities</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-semibold mb-4">Legal</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-                            <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-sm text-center">
-                    &copy; 2026 SkyScholar. All rights reserved.
-                </div>
-            </footer>
+            <div id="countriesGrid" class="grid-cards fade-in">
+                <!-- Injected via JS -->
+            </div>
         </div>
+    </section>
 
-        <!-- ADMIN VIEW -->
-        <div id="admin-view" class="hidden min-h-screen bg-gray-50 flex">
-            <!-- Sidebar -->
-            <aside class="w-64 bg-dark text-gray-300 flex flex-col fixed h-full z-40 transition-transform transform -translate-x-full md:translate-x-0" id="admin-sidebar">
-                <div class="p-6 flex items-center border-b border-gray-800">
-                    <i class="fa-solid fa-graduation-cap text-primary text-2xl mr-2"></i>
-                    <span class="font-bold text-xl text-white">Admin Panel</span>
+    <!-- Universities -->
+    <section id="universities" class="universities bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Universities</h2>
+            <p class="section-subtitle fade-in">Discover top-ranked institutions.</p>
+            
+            <div class="controls fade-in">
+                <input type="text" id="uniSearch" class="search-bar" placeholder="Search universities or courses..." aria-label="Search universities">
+                <select id="countryFilter" class="filter-select" aria-label="Filter by country">
+                    <option value="all">All Countries</option>
+                    <!-- Injected via JS -->
+                </select>
+            </div>
+
+            <div id="universitiesGrid" class="grid-cards fade-in">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <p class="section-subtitle fade-in">Got questions? We have answers.</p>
+            
+            <div class="accordion fade-in">
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        When should I start my application process?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>It is recommended to start your application process at least 9-12 months before the intake begins. This gives you ample time for standardized tests, document preparation, and visa processing.</p>
+                    </div>
                 </div>
-                <nav class="flex-grow py-6 space-y-1">
-                    <a href="#" onclick="switchAdminTab('dashboard')" class="admin-tab-btn flex items-center px-6 py-3 text-white bg-gray-800 border-l-4 border-primary" data-tab="dashboard">
-                        <i class="fa-solid fa-chart-pie w-6"></i> Dashboard
-                    </a>
-                    <a href="#" onclick="switchAdminTab('inquiries')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="inquiries">
-                        <i class="fa-solid fa-envelope w-6"></i> Inquiries
-                    </a>
-                    <a href="#" onclick="switchAdminTab('countries')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="countries">
-                        <i class="fa-solid fa-globe w-6"></i> Countries
-                    </a>
-                    <a href="#" onclick="switchAdminTab('universities')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="universities">
-                        <i class="fa-solid fa-building-columns w-6"></i> Universities
-                    </a>
-                    <a href="#" onclick="switchAdminTab('courses')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="courses">
-                        <i class="fa-solid fa-book w-6"></i> Courses
-                    </a>
-                </nav>
-                <div class="p-6 border-t border-gray-800">
-                    <button onclick="adminLogout()" class="flex items-center text-red-400 hover:text-red-300 transition w-full">
-                        <i class="fa-solid fa-sign-out-alt w-6"></i> Logout
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        Do I need to take IELTS/TOEFL?
+                        <i class="fa-solid fa-chevron-down"></i>
                     </button>
-                    <button onclick="navigate('home')" class="flex items-center text-gray-400 hover:text-white transition w-full mt-4">
-                        <i class="fa-solid fa-arrow-left w-6"></i> Back to Site
-                    </button>
+                    <div class="accordion-content">
+                        <p>Most universities require an English proficiency test for international students from non-English speaking countries. However, some universities offer waivers based on your previous education medium.</p>
+                    </div>
                 </div>
-            </aside>
-
-            <!-- Admin Content -->
-            <div class="flex-1 md:ml-64 flex flex-col min-h-screen">
-                <!-- Admin Header (Mobile toggler) -->
-                <header class="bg-white shadow-sm h-16 flex items-center justify-between px-6 md:hidden">
-                    <span class="font-bold text-lg text-dark">SkyScholar Admin</span>
-                    <button onclick="document.getElementById('admin-sidebar').classList.toggle('-translate-x-full')" class="text-gray-600 focus:outline-none">
-                        <i class="fa-solid fa-bars text-xl"></i>
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        Are scholarships available for international students?
+                        <i class="fa-solid fa-chevron-down"></i>
                     </button>
-                </header>
+                    <div class="accordion-content">
+                        <p>Yes, many universities and governments offer merit-based and need-based scholarships. Our team will help you identify and apply for eligible scholarships to reduce your financial burden.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <main class="flex-1 p-6 md:p-8 overflow-y-auto w-full">
+    <!-- Inquiry / Contact -->
+    <section id="contact" class="inquiry bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Get in Touch</h2>
+            <p class="section-subtitle fade-in">Schedule a free counseling session today.</p>
+
+            <div class="form-container fade-in">
+                <div id="formStatus" class="form-status"></div>
+                
+                <form id="inquiryForm" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                        <span class="error-text">Please enter your full name.</span>
+                    </div>
                     
-                    <!-- Dashboard Tab -->
-                    <div id="tab-dashboard" class="admin-tab block fade-in">
-                        <h2 class="text-2xl font-bold text-dark mb-6">Overview Statistics</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <div class="text-gray-500 text-sm font-medium mb-1">Total Inquiries</div>
-                                <div class="text-3xl font-bold text-dark" id="stat-inquiries">0</div>
-                            </div>
-                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <div class="text-gray-500 text-sm font-medium mb-1">Universities</div>
-                                <div class="text-3xl font-bold text-dark" id="stat-universities">0</div>
-                            </div>
-                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <div class="text-gray-500 text-sm font-medium mb-1">Courses</div>
-                                <div class="text-3xl font-bold text-dark" id="stat-courses">0</div>
-                            </div>
-                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <div class="text-gray-500 text-sm font-medium mb-1">Countries</div>
-                                <div class="text-3xl font-bold text-dark" id="stat-countries">0</div>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-dark mb-4">Recent Inquiries</h3>
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-gray-50 text-gray-500 text-sm border-b">
-                                        <th class="p-4 font-medium">Name</th>
-                                        <th class="p-4 font-medium">Email</th>
-                                        <th class="p-4 font-medium">Country</th>
-                                        <th class="p-4 font-medium">Status</th>
-                                        <th class="p-4 font-medium">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="recent-inquiries-tbody" class="text-sm divide-y">
-                                    <!-- Populated by JS -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <span class="error-text">Please enter a valid email address.</span>
                     </div>
 
-                    <!-- Inquiries Tab -->
-                    <div id="tab-inquiries" class="admin-tab hidden fade-in">
-                        <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-2xl font-bold text-dark">Manage Inquiries</h2>
-                        </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-gray-50 text-gray-500 text-sm border-b">
-                                        <th class="p-4 font-medium">Name</th>
-                                        <th class="p-4 font-medium">Contact</th>
-                                        <th class="p-4 font-medium">Destination</th>
-                                        <th class="p-4 font-medium">Status</th>
-                                        <th class="p-4 font-medium text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="all-inquiries-tbody" class="text-sm divide-y">
-                                    <!-- Populated by JS -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                        <span class="error-text">Please enter your phone number.</span>
                     </div>
 
-                    <!-- Shared CRUD layout for other entities (Countries, Universities, Courses) -->
-                    <!-- We use a generic approach to save space -->
-                    <div id="generic-crud-container" class="hidden fade-in">
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                            <h2 class="text-2xl font-bold text-dark" id="crud-title">Manage Entity</h2>
-                            <button onclick="openCrudModal()" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm">
-                                <i class="fa-solid fa-plus mr-1"></i> Add New
-                            </button>
-                        </div>
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
-                            <table class="w-full text-left border-collapse" id="crud-table">
-                                <thead id="crud-thead" class="bg-gray-50 text-gray-500 text-sm border-b">
-                                    <!-- Dynamic -->
-                                </thead>
-                                <tbody id="crud-tbody" class="text-sm divide-y">
-                                    <!-- Dynamic -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="form-group">
+                        <label for="prefCountry" class="form-label">Preferred Country</label>
+                        <select id="prefCountry" name="preferredCountry" class="form-control" required>
+                            <option value="">Select a country</option>
+                            <!-- Injected via JS -->
+                        </select>
+                        <span class="error-text">Please select a preferred country.</span>
                     </div>
-                </main>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Additional Message (Optional)</label>
+                        <textarea id="message" name="message" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                </form>
             </div>
         </div>
+    </section>
 
-        <!-- Admin Login Modal -->
-        <div id="admin-login-modal" class="fixed inset-0 bg-dark/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-            <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative fade-in">
-                <button onclick="navigate('home')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-                <div class="text-center mb-8">
-                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl">
-                        <i class="fa-solid fa-lock"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-dark">Admin Access</h2>
-                    <p class="text-gray-500 text-sm mt-1">Sign in to manage SkyScholar (admin@skyscholar.com / admin123)</p>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SkyScholar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Admin Overlay -->
+    <div id="admin-overlay">
+        
+        <!-- Login Form -->
+        <div id="login-form-container">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Admin Login</h2>
+            <div id="loginError" class="error-text" style="text-align: center; margin-bottom: 1rem;">Invalid credentials</div>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="adminEmail" class="form-control" required value="admin@skyscholar.com">
                 </div>
-                <form id="login-form" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="login-email" value="admin@skyscholar.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <input type="password" id="login-pwd" value="admin123" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none">
-                    </div>
-                    <div id="login-error" class="text-red-500 text-sm hidden">Invalid credentials.</div>
-                    <button type="submit" class="w-full bg-dark hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-lg transition mt-4">Login</button>
-                </form>
-            </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="adminPassword" class="form-control" required value="admin123">
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Login</button>
+                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="closeAdmin()">Cancel</button>
+                </div>
+            </form>
         </div>
 
-        <!-- Generic CRUD Modal -->
-        <div id="crud-modal" class="fixed inset-0 bg-dark/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
-            <div class="bg-white rounded-2xl w-full max-w-lg p-6 md:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto fade-in">
-                <button onclick="closeCrudModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-                <h2 class="text-xl font-bold text-dark mb-6" id="crud-modal-title">Add Item</h2>
-                <form id="crud-form" class="space-y-4">
-                    <div id="crud-dynamic-fields" class="space-y-4">
-                        <!-- Populated by JS -->
-                    </div>
-                    <div class="flex justify-end gap-3 mt-8">
-                        <button type="button" onclick="closeCrudModal()" class="px-5 py-2.5 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition">Cancel</button>
-                        <button type="submit" class="px-5 py-2.5 text-white bg-primary hover:bg-secondary rounded-lg font-medium transition shadow-sm">Save</button>
-                    </div>
-                </form>
+        <!-- Dashboard -->
+        <div id="admin-dashboard" class="admin-container" style="display: none;">
+            <div class="admin-header">
+                <h2>Admin Dashboard</h2>
+                <button class="btn btn-outline" onclick="logoutAdmin()">Logout</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="inquiriesTab">Inquiries</button>
+                <button class="tab-btn" data-tab="countriesTab">Countries</button>
+                <button class="tab-btn" data-tab="universitiesTab">Universities</button>
+            </div>
+
+            <!-- Inquiries Tab -->
+            <div id="inquiriesTab" class="tab-content active">
+                <h3>Recent Inquiries</h3>
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Country</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminInquiriesList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Countries Tab -->
+            <div id="countriesTab" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Manage Countries</h3>
+                </div>
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Tuition (Avg)</th>
+                                <th>Visa Success</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminCountriesList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Universities Tab -->
+            <div id="universitiesTab" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Manage Universities</h3>
+                </div>
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Tuition Fee</th>
+                                <th>Ranking</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUniversitiesList"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </main>
-
-    <!-- Global Toast Notification -->
-    <div id="toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-xl z-[100] flex items-center gap-3">
-        <i class="fa-solid fa-circle-check text-green-400" id="toast-icon"></i>
-        <span id="toast-msg" class="font-medium">Success!</span>
     </div>
 
-    <!-- Scripts -->
+    <!-- JavaScript Logic -->
     <script>
-        // --- 1. INITIALIZATION & DATA SEEDING ---
-        const initDB = () => {
-            if (!localStorage.getItem('ss_seeded')) {
-                const data = {
-                    admin: { email: 'admin@skyscholar.com', password: 'admin123' },
-                    countries: [
-                        { id: 'c1', name: 'Canada', flag: 'ca', averageTuition: 25000, visaSuccess: 92 },
-                        { id: 'c2', name: 'United Kingdom', flag: 'gb', averageTuition: 22000, visaSuccess: 88 },
-                        { id: 'c3', name: 'Australia', flag: 'au', averageTuition: 28000, visaSuccess: 90 },
-                        { id: 'c4', name: 'USA', flag: 'us', averageTuition: 35000, visaSuccess: 80 }
-                    ],
-                    universities: [
-                        { id: 'u1', name: 'University of Toronto', countryId: 'c1', ranking: 18, tuitionFee: 30000, image: 'https://images.unsplash.com/photo-1555529902-5261145633bf?w=500&q=80' },
-                        { id: 'u2', name: 'University of Oxford', countryId: 'c2', ranking: 5, tuitionFee: 28000, image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&q=80' },
-                        { id: 'u3', name: 'University of Melbourne', countryId: 'c3', ranking: 33, tuitionFee: 32000, image: 'https://images.unsplash.com/photo-1601287955546-5be5402928c6?w=500&q=80' },
-                        { id: 'u4', name: 'Harvard University', countryId: 'c4', ranking: 1, tuitionFee: 45000, image: 'https://images.unsplash.com/photo-1590402237070-5f25a75cf015?w=500&q=80' }
-                    ],
-                    courses: [
-                        { id: 'cs1', name: 'Computer Science (BSc)', duration: '3 years', tuitionFee: 28000, universityId: 'u1' },
-                        { id: 'cs2', name: 'Business Administration (MBA)', duration: '1 year', tuitionFee: 35000, universityId: 'u2' },
-                        { id: 'cs3', name: 'Data Science (MSc)', duration: '2 years', tuitionFee: 30000, universityId: 'u3' }
-                    ],
-                    inquiries: [
-                        { id: 'i1', name: 'John Doe', email: 'john@example.com', phone: '1234567890', countryId: 'c1', message: 'Looking for Fall intake', status: 'new', date: new Date().toISOString() }
-                    ]
-                };
-                localStorage.setItem('ss_data', JSON.stringify(data));
-                localStorage.setItem('ss_seeded', 'true');
+        const DB_KEY = 'skyscholar_db';
+
+        const initialData = {
+            countries: [
+                { id: 'c1', name: 'Canada', flag: 'ca', averageTuition: 25000, averageSalary: 55000, visaSuccess: 92, processingTime: '4-6 weeks', scholarships: true },
+                { id: 'c2', name: 'United Kingdom', flag: 'gb', averageTuition: 22000, averageSalary: 50000, visaSuccess: 88, processingTime: '3-5 weeks', scholarships: true },
+                { id: 'c3', name: 'Australia', flag: 'au', averageTuition: 28000, averageSalary: 60000, visaSuccess: 90, processingTime: '4-8 weeks', scholarships: true },
+                { id: 'c4', name: 'Germany', flag: 'de', averageTuition: 12000, averageSalary: 58000, visaSuccess: 85, processingTime: '6-10 weeks', scholarships: false },
+                { id: 'c5', name: 'USA', flag: 'us', averageTuition: 35000, averageSalary: 65000, visaSuccess: 80, processingTime: '8-12 weeks', scholarships: true },
+            ],
+            universities: [
+                { id: 'u1', name: 'University of Toronto', countryId: 'c1', logo: 'https://picsum.photos/seed/utoronto/64', tuitionFee: 30000, intake: 'Sep, Jan', courseCount: 120, ranking: 18, acceptanceRate: 43 },
+                { id: 'u2', name: 'University of Oxford', countryId: 'c2', logo: 'https://picsum.photos/seed/oxford/64', tuitionFee: 28000, intake: 'Oct', courseCount: 100, ranking: 5, acceptanceRate: 17 },
+                { id: 'u3', name: 'University of Melbourne', countryId: 'c3', logo: 'https://picsum.photos/seed/melbourne/64', tuitionFee: 32000, intake: 'Feb, Jul', courseCount: 90, ranking: 33, acceptanceRate: 70 },
+                { id: 'u4', name: 'Technical University of Munich', countryId: 'c4', logo: 'https://picsum.photos/seed/tum/64', tuitionFee: 15000, intake: 'Oct, Apr', courseCount: 60, ranking: 50, acceptanceRate: 30 },
+                { id: 'u5', name: 'Harvard University', countryId: 'c5', logo: 'https://picsum.photos/seed/harvard/64', tuitionFee: 45000, intake: 'Sep', courseCount: 150, ranking: 1, acceptanceRate: 4 },
+            ],
+            inquiries: []
+        };
+
+        function getDB() {
+            const stored = localStorage.getItem(DB_KEY);
+            if (!stored) {
+                localStorage.setItem(DB_KEY, JSON.stringify(initialData));
+                return JSON.parse(JSON.stringify(initialData));
             }
-        };
-
-        const getDB = () => JSON.parse(localStorage.getItem('ss_data'));
-        const saveDB = (data) => localStorage.setItem('ss_data', JSON.stringify(data));
-        const generateId = () => Math.random().toString(36).substr(2, 9);
-
-        initDB();
-
-        // --- 2. GLOBAL UTILS ---
-        const showToast = (msg, type = 'success') => {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = msg;
-            const icon = document.getElementById('toast-icon');
-            icon.className = type === 'success' ? 'fa-solid fa-circle-check text-green-400' : 'fa-solid fa-circle-exclamation text-red-400';
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        };
-
-        const checkAuth = () => localStorage.getItem('ss_auth') === 'true';
-
-        // --- 3. NAVIGATION & ROUTING ---
-        const navigate = (view) => {
-            const publicView = document.getElementById('public-view');
-            const adminView = document.getElementById('admin-view');
-            const navbar = document.getElementById('navbar');
-            
-            // Close mobile menu if open
-            document.getElementById('mobile-menu').classList.add('hidden');
-
-            if (view === 'home') {
-                publicView.classList.remove('hidden');
-                adminView.classList.add('hidden');
-                navbar.classList.remove('hidden');
-                renderPublicView();
-                window.scrollTo(0,0);
-            } else if (view === 'admin') {
-                if (checkAuth()) {
-                    publicView.classList.add('hidden');
-                    navbar.classList.add('hidden');
-                    adminView.classList.remove('hidden');
-                    renderAdminDashboard();
-                    switchAdminTab('dashboard');
-                } else {
-                    document.getElementById('admin-login-modal').classList.remove('hidden');
-                    document.getElementById('admin-login-modal').classList.add('flex');
-                }
+            try {
+                return JSON.parse(stored);
+            } catch (err) {
+                localStorage.setItem(DB_KEY, JSON.stringify(initialData));
+                return JSON.parse(JSON.stringify(initialData));
             }
-        };
+        }
 
-        // UI Interactions
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+        function saveDB(data) {
+            localStorage.setItem(DB_KEY, JSON.stringify(data));
+        }
 
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 10) nav.classList.add('shadow-md');
-            else nav.classList.remove('shadow-md');
-        });
+        const db = getDB();
 
-        // Accordions
-        document.querySelectorAll('.accordion-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const parent = this.parentElement;
-                parent.classList.toggle('accordion-active');
+        function renderCountries() {
+            const grid = document.getElementById('countriesGrid');
+            const select = document.getElementById('prefCountry');
+            const filterSelect = document.getElementById('countryFilter');
+
+            grid.innerHTML = '';
+            select.innerHTML = '<option value="">Select a country</option>';
+            filterSelect.innerHTML = '<option value="all">All Countries</option>';
+
+            db.countries.forEach(country => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="https://flagcdn.com/w40/${country.flag}.png" alt="${country.name} Flag">
+                        <h3>${country.name}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><span>Avg. Tuition:</span> <strong>$${country.averageTuition.toLocaleString()}</strong></p>
+                        <p><span>Visa Success:</span> <strong>${country.visaSuccess}%</strong></p>
+                        <p><span>Processing:</span> <strong>${country.processingTime}</strong></p>
+                        <p><span>Scholarships:</span> <strong>${country.scholarships ? 'Yes' : 'No'}</strong></p>
+                    </div>
+                `;
+                grid.appendChild(card);
+
+                const option = document.createElement('option');
+                option.value = country.id;
+                option.textContent = country.name;
+                select.appendChild(option);
+
+                const filterOption = option.cloneNode(true);
+                filterSelect.appendChild(filterOption);
             });
-        });
+        }
 
-        // Intersection Observer for Animations & Counters
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Check if it has counters
-                    const counters = entry.target.querySelectorAll('.counter');
-                    counters.forEach(counter => {
-                        const target = +counter.getAttribute('data-target');
-                        const duration = 2000;
-                        const step = target / (duration / 16);
-                        let current = 0;
-                        const updateCounter = () => {
-                            current += step;
-                            if (current < target) {
-                                counter.innerText = Math.ceil(current);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.innerText = target;
-                            }
-                        };
-                        updateCounter();
-                        counter.classList.remove('counter'); // Prevent re-triggering
-                    });
-                    observer.unobserve(entry.target);
-                }
+        function renderUniversities(filterText = '', filterCountry = 'all') {
+            const grid = document.getElementById('universitiesGrid');
+            grid.innerHTML = '';
+
+            const searchTerm = filterText.trim().toLowerCase();
+            const filtered = db.universities.filter(uni => {
+                const matchesText = uni.name.toLowerCase().includes(searchTerm);
+                const matchesCountry = filterCountry === 'all' || uni.countryId === filterCountry;
+                return matchesText && matchesCountry;
             });
-        }, observerOptions);
 
-        const initAnimations = () => {
-            document.querySelectorAll('.fade-in').forEach(el => {
-                el.classList.remove('visible');
-                observer.observe(el);
-            });
-        };
-
-        // --- 4. PUBLIC FRONTEND LOGIC ---
-        const renderPublicView = () => {
-            const db = getDB();
-            
-            // Populate Form Dropdown
-            const countrySelect = document.getElementById('inq-country');
-            const filterCountry = document.getElementById('filter-country');
-            
-            const countryOptions = db.countries.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-            countrySelect.innerHTML = `<option value="">Select a country</option>${countryOptions}`;
-            filterCountry.innerHTML = `<option value="">All Countries</option>${countryOptions}`;
-
-            // Render Countries Grid
-            const cGrid = document.getElementById('countries-grid');
-            cGrid.innerHTML = db.countries.slice(0, 4).map(c => `
-                <div class="bg-slate-50 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100 shadow-sm cursor-pointer" onclick="filterByCountry('${c.id}')">
-                    <img src="https://flagcdn.com/w80/${c.flag}.png" alt="${c.name}" class="w-16 h-16 rounded-full mx-auto mb-4 object-cover shadow-sm">
-                    <h3 class="text-xl font-bold text-dark">${c.name}</h3>
-                    <p class="text-primary font-medium mt-2">${c.visaSuccess}% Success Rate</p>
-                </div>
-            `).join('');
-
-            renderUniversitiesPublic();
-            initAnimations();
-        };
-
-        const renderUniversitiesPublic = (search = '', filterCId = '') => {
-            const db = getDB();
-            let unis = db.universities;
-            
-            if (search) {
-                unis = unis.filter(u => u.name.toLowerCase().includes(search.toLowerCase()));
-            }
-            if (filterCId) {
-                unis = unis.filter(u => u.countryId === filterCId);
-            }
-
-            const uGrid = document.getElementById('universities-grid');
-            if (unis.length === 0) {
-                uGrid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">No universities found matching your criteria.</div>`;
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">No universities found.</p>';
                 return;
             }
 
-            uGrid.innerHTML = unis.map(u => {
-                const country = db.countries.find(c => c.id === u.countryId);
-                const uCourses = db.courses.filter(cs => cs.universityId === u.id).length;
-                return `
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="${u.image}" alt="${u.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-dark shadow-sm">
-                            Rank #${u.ranking}
+            filtered.forEach(uni => {
+                const country = db.countries.find(c => c.id === uni.countryId);
+                const countryName = country ? country.name : 'Unknown';
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${uni.logo}" alt="${uni.name} Logo">
+                        <div>
+                            <h3 style="font-size: 1.1rem;">${uni.name}</h3>
+                            <small style="color: var(--text-light);"><i class="fa-solid fa-location-dot"></i> ${countryName}</small>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-2">
-                            <i class="fa-solid fa-location-dot mr-1 text-primary"></i> ${country ? country.name : 'Global'}
-                        </div>
-                        <h3 class="text-xl font-bold text-dark mb-2 line-clamp-1">${u.name}</h3>
-                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100 text-sm">
-                            <div class="font-medium text-gray-600"><i class="fa-solid fa-book-open mr-1"></i> ${uCourses} Courses</div>
-                            <div class="font-bold text-primary">$${u.tuitionFee.toLocaleString()}/yr</div>
-                        </div>
+                    <div class="card-body">
+                        <p><span>Global Rank:</span> <strong>#${uni.ranking}</strong></p>
+                        <p><span>Tuition Fee:</span> <strong>$${uni.tuitionFee.toLocaleString()}/yr</strong></p>
+                        <p><span>Acceptance Rate:</span> <strong>${uni.acceptanceRate}%</strong></p>
+                        <p><span>Intakes:</span> <strong>${uni.intake}</strong></p>
                     </div>
-                </div>
-            `}).join('');
-        };
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-        document.getElementById('search-uni').addEventListener('input', (e) => {
-            renderUniversitiesPublic(e.target.value, document.getElementById('filter-country').value);
-        });
-        document.getElementById('filter-country').addEventListener('change', (e) => {
-            renderUniversitiesPublic(document.getElementById('search-uni').value, e.target.value);
-        });
+        function renderAdminLists() {
+            const inquiriesBody = document.getElementById('adminInquiriesList');
+            const countriesBody = document.getElementById('adminCountriesList');
+            const universitiesBody = document.getElementById('adminUniversitiesList');
 
-        window.filterByCountry = (cId) => {
-            document.getElementById('filter-country').value = cId;
-            document.getElementById('universities').scrollIntoView({ behavior: 'smooth' });
-            renderUniversitiesPublic('', cId);
-        };
+            inquiriesBody.innerHTML = '';
+            countriesBody.innerHTML = '';
+            universitiesBody.innerHTML = '';
 
-        // Inquiry Form Handling
-        document.getElementById('inquiry-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btnText = document.getElementById('inq-btn-text');
-            const loader = document.getElementById('inq-loader');
-            const success = document.getElementById('inq-success');
-            
-            btnText.classList.add('hidden');
-            loader.style.display = 'block';
-
-            setTimeout(() => {
-                const db = getDB();
-                const newInq = {
-                    id: generateId(),
-                    name: document.getElementById('inq-name').value,
-                    email: document.getElementById('inq-email').value,
-                    phone: document.getElementById('inq-phone').value,
-                    countryId: document.getElementById('inq-country').value,
-                    message: document.getElementById('inq-msg').value,
-                    status: 'new',
-                    date: new Date().toISOString()
-                };
-                
-                db.inquiries.unshift(newInq);
-                saveDB(db);
-
-                btnText.classList.remove('hidden');
-                loader.style.display = 'none';
-                e.target.reset();
-                success.classList.remove('hidden');
-                setTimeout(() => success.classList.add('hidden'), 5000);
-                showToast('Inquiry submitted successfully!');
-            }, 800);
-        });
-
-        // --- 5. ADMIN LOGIC ---
-        
-        // Login
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const pwd = document.getElementById('login-pwd').value;
-            const db = getDB();
-            
-            if (email === db.admin.email && pwd === db.admin.password) {
-                localStorage.setItem('ss_auth', 'true');
-                document.getElementById('admin-login-modal').classList.add('hidden');
-                navigate('admin');
+            if (db.inquiries.length === 0) {
+                inquiriesBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 1rem;">No inquiries yet.</td></tr>';
             } else {
-                document.getElementById('login-error').classList.remove('hidden');
+                db.inquiries.forEach(inquiry => {
+                    const country = db.countries.find(c => c.id === inquiry.countryId);
+                    const countryName = country ? country.name : 'Unknown';
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${inquiry.name}</td>
+                        <td>${inquiry.email}</td>
+                        <td>${inquiry.phone}</td>
+                        <td>${countryName}</td>
+                        <td>${inquiry.status}</td>
+                        <td><button class="action-btn btn-delete" type="button">Delete</button></td>
+                    `;
+                    row.querySelector('button').addEventListener('click', () => deleteInquiry(inquiry.id));
+                    inquiriesBody.appendChild(row);
+                });
             }
-        });
 
-        const adminLogout = () => {
-            localStorage.removeItem('ss_auth');
-            navigate('home');
-            showToast('Logged out successfully');
-        };
-
-        let currentAdminTab = 'dashboard';
-        const switchAdminTab = (tab) => {
-            currentAdminTab = tab;
-            // UI classes
-            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-gray-800', 'border-primary', 'text-white');
-                btn.classList.add('hover:bg-gray-800', 'hover:text-white', 'border-transparent', 'text-gray-300');
-                if (btn.dataset.tab === tab) {
-                    btn.classList.add('bg-gray-800', 'border-primary', 'text-white');
-                    btn.classList.remove('hover:bg-gray-800', 'hover:text-white', 'border-transparent', 'text-gray-300');
-                }
+            db.countries.forEach(country => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${country.name}</td>
+                    <td>$${country.averageTuition.toLocaleString()}</td>
+                    <td>${country.visaSuccess}%</td>
+                    <td><button class="action-btn btn-update" type="button" disabled>View</button></td>
+                `;
+                countriesBody.appendChild(row);
             });
 
-            // Hide all tabs
-            document.getElementById('tab-dashboard').classList.add('hidden');
-            document.getElementById('tab-inquiries').classList.add('hidden');
-            document.getElementById('generic-crud-container').classList.add('hidden');
-
-            // Show selected
-            if (tab === 'dashboard') {
-                document.getElementById('tab-dashboard').classList.remove('hidden');
-                renderAdminDashboard();
-            } else if (tab === 'inquiries') {
-                document.getElementById('tab-inquiries').classList.remove('hidden');
-                renderInquiriesTab();
-            } else {
-                document.getElementById('generic-crud-container').classList.remove('hidden');
-                renderCRUD(tab);
-            }
-        };
-
-        const renderAdminDashboard = () => {
-            const db = getDB();
-            document.getElementById('stat-inquiries').innerText = db.inquiries.length;
-            document.getElementById('stat-universities').innerText = db.universities.length;
-            document.getElementById('stat-courses').innerText = db.courses.length;
-            document.getElementById('stat-countries').innerText = db.countries.length;
-
-            const recentTbody = document.getElementById('recent-inquiries-tbody');
-            const recent = db.inquiries.slice(0, 5);
-            recentTbody.innerHTML = recent.length ? recent.map(i => {
-                const c = db.countries.find(x => x.id === i.countryId);
-                const statusColor = i.status === 'new' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700';
-                return `
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="p-4"><div class="font-medium text-dark">${i.name}</div></td>
-                    <td class="p-4 text-gray-600">${i.email}</td>
-                    <td class="p-4">${c ? c.name : '-'}</td>
-                    <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">${i.status.toUpperCase()}</span></td>
-                    <td class="p-4 text-gray-500">${new Date(i.date).toLocaleDateString()}</td>
-                </tr>
-            `}).join('') : `<tr><td colspan="5" class="p-4 text-center text-gray-500">No recent inquiries</td></tr>`;
-        };
-
-        const renderInquiriesTab = () => {
-            const db = getDB();
-            const tbody = document.getElementById('all-inquiries-tbody');
-            tbody.innerHTML = db.inquiries.map(i => {
-                const c = db.countries.find(x => x.id === i.countryId);
-                const statusColor = i.status === 'new' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700';
-                return `
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="p-4">
-                        <div class="font-medium text-dark">${i.name}</div>
-                        <div class="text-xs text-gray-500 mt-1">${new Date(i.date).toLocaleString()}</div>
-                    </td>
-                    <td class="p-4">
-                        <div class="text-sm">${i.email}</div>
-                        <div class="text-sm text-gray-500">${i.phone}</div>
-                    </td>
-                    <td class="p-4">${c ? c.name : '-'}</td>
-                    <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">${i.status.toUpperCase()}</span></td>
-                    <td class="p-4 text-right">
-                        ${i.status === 'new' ? `<button onclick="markContacted('${i.id}')" class="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3" title="Mark Contacted"><i class="fa-solid fa-check"></i></button>` : ''}
-                        <button onclick="deleteEntity('inquiries', '${i.id}')" class="text-red-500 hover:text-red-700 text-sm font-medium" title="Delete"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-            `}).join('');
-        };
-
-        window.markContacted = (id) => {
-            const db = getDB();
-            const idx = db.inquiries.findIndex(i => i.id === id);
-            if (idx > -1) {
-                db.inquiries[idx].status = 'contacted';
-                saveDB(db);
-                renderInquiriesTab();
-                showToast('Marked as contacted');
-            }
-        };
-
-        // Generic CRUD Rendering
-        const renderCRUD = (entity) => {
-            const db = getDB();
-            const thead = document.getElementById('crud-thead');
-            const tbody = document.getElementById('crud-tbody');
-            document.getElementById('crud-title').innerText = `Manage ${entity.charAt(0).toUpperCase() + entity.slice(1)}`;
-
-            let htmlHead = '';
-            let htmlBody = '';
-
-            if (entity === 'countries') {
-                htmlHead = `<tr><th class="p-4">Country</th><th class="p-4">Visa Success %</th><th class="p-4">Avg Tuition</th><th class="p-4 text-right">Actions</th></tr>`;
-                htmlBody = db.countries.map(c => `
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="p-4 font-medium"><img src="https://flagcdn.com/w20/${c.flag}.png" class="inline mr-2 shadow-sm">${c.name}</td>
-                        <td class="p-4">${c.visaSuccess}%</td>
-                        <td class="p-4">$${c.averageTuition.toLocaleString()}</td>
-                        <td class="p-4 text-right">
-                            <button onclick="deleteEntity('countries', '${c.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `).join('');
-            } else if (entity === 'universities') {
-                htmlHead = `<tr><th class="p-4">Name</th><th class="p-4">Country</th><th class="p-4">Ranking</th><th class="p-4 text-right">Actions</th></tr>`;
-                htmlBody = db.universities.map(u => {
-                    const c = db.countries.find(x => x.id === u.countryId);
-                    return `
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="p-4 font-medium">${u.name}</td>
-                        <td class="p-4">${c ? c.name : '-'}</td>
-                        <td class="p-4">#${u.ranking}</td>
-                        <td class="p-4 text-right">
-                            <button onclick="deleteEntity('universities', '${u.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `}).join('');
-            } else if (entity === 'courses') {
-                htmlHead = `<tr><th class="p-4">Course</th><th class="p-4">University</th><th class="p-4">Duration</th><th class="p-4 text-right">Actions</th></tr>`;
-                htmlBody = db.courses.map(cs => {
-                    const u = db.universities.find(x => x.id === cs.universityId);
-                    return `
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="p-4 font-medium">${cs.name}</td>
-                        <td class="p-4 text-sm text-gray-600">${u ? u.name : '-'}</td>
-                        <td class="p-4">${cs.duration}</td>
-                        <td class="p-4 text-right">
-                            <button onclick="deleteEntity('courses', '${cs.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `}).join('');
-            }
-
-            thead.innerHTML = htmlHead;
-            tbody.innerHTML = htmlBody || `<tr><td colspan="4" class="p-4 text-center text-gray-500">No records found.</td></tr>`;
-        };
-
-        window.deleteEntity = (entity, id) => {
-            if(confirm('Are you sure you want to delete this?')) {
-                const db = getDB();
-                db[entity] = db[entity].filter(item => item.id !== id);
-                saveDB(db);
-                if (entity === 'inquiries') renderInquiriesTab();
-                else renderCRUD(entity);
-                showToast('Deleted successfully');
-            }
-        };
-
-        // CRUD Modal Logic (Add)
-        window.openCrudModal = () => {
-            const container = document.getElementById('crud-dynamic-fields');
-            const entity = currentAdminTab;
-            document.getElementById('crud-modal-title').innerText = `Add New ${entity.slice(0,-1).toUpperCase()}`;
-            const db = getDB();
-            
-            let fields = '';
-            if (entity === 'countries') {
-                fields = `
-                    <div><label class="block text-sm font-medium mb-1">Name</label><input type="text" id="add-c-name" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Flag Code (e.g., in, ca, gb)</label><input type="text" id="add-c-flag" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Visa Success %</label><input type="number" id="add-c-visa" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Avg Tuition ($)</label><input type="number" id="add-c-tuition" required class="w-full px-3 py-2 border rounded-lg"></div>
+            db.universities.forEach(uni => {
+                const country = db.countries.find(c => c.id === uni.countryId);
+                const countryName = country ? country.name : 'Unknown';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${uni.name}</td>
+                    <td>${countryName}</td>
+                    <td>$${uni.tuitionFee.toLocaleString()}</td>
+                    <td>#${uni.ranking}</td>
+                    <td><button class="action-btn btn-update" type="button" disabled>View</button></td>
                 `;
-            } else if (entity === 'universities') {
-                const cOpts = db.countries.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-                fields = `
-                    <div><label class="block text-sm font-medium mb-1">Name</label><input type="text" id="add-u-name" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Country</label><select id="add-u-country" required class="w-full px-3 py-2 border rounded-lg bg-white">${cOpts}</select></div>
-                    <div><label class="block text-sm font-medium mb-1">Ranking</label><input type="number" id="add-u-rank" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Tuition Fee ($)</label><input type="number" id="add-u-tuition" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="add-u-img" required class="w-full px-3 py-2 border rounded-lg" value="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&q=80"></div>
-                `;
-            } else if (entity === 'courses') {
-                const uOpts = db.universities.map(u => `<option value="${u.id}">${u.name}</option>`).join('');
-                fields = `
-                    <div><label class="block text-sm font-medium mb-1">Course Name</label><input type="text" id="add-cs-name" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">University</label><select id="add-cs-uni" required class="w-full px-3 py-2 border rounded-lg bg-white">${uOpts}</select></div>
-                    <div><label class="block text-sm font-medium mb-1">Duration</label><input type="text" id="add-cs-dur" placeholder="e.g. 2 years" required class="w-full px-3 py-2 border rounded-lg"></div>
-                    <div><label class="block text-sm font-medium mb-1">Tuition Fee ($)</label><input type="number" id="add-cs-tuition" required class="w-full px-3 py-2 border rounded-lg"></div>
-                `;
-            }
+                universitiesBody.appendChild(row);
+            });
+        }
 
-            container.innerHTML = fields;
-            document.getElementById('crud-modal').classList.remove('hidden');
-            document.getElementById('crud-modal').classList.add('flex');
-        };
-
-        window.closeCrudModal = () => {
-            document.getElementById('crud-modal').classList.add('hidden');
-            document.getElementById('crud-form').reset();
-        };
-
-        document.getElementById('crud-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const db = getDB();
-            const entity = currentAdminTab;
-            
-            if (entity === 'countries') {
-                db.countries.push({
-                    id: generateId(),
-                    name: document.getElementById('add-c-name').value,
-                    flag: document.getElementById('add-c-flag').value,
-                    visaSuccess: parseInt(document.getElementById('add-c-visa').value),
-                    averageTuition: parseInt(document.getElementById('add-c-tuition').value)
-                });
-            } else if (entity === 'universities') {
-                db.universities.push({
-                    id: generateId(),
-                    name: document.getElementById('add-u-name').value,
-                    countryId: document.getElementById('add-u-country').value,
-                    ranking: parseInt(document.getElementById('add-u-rank').value),
-                    tuitionFee: parseInt(document.getElementById('add-u-tuition').value),
-                    image: document.getElementById('add-u-img').value
-                });
-            } else if (entity === 'courses') {
-                db.courses.push({
-                    id: generateId(),
-                    name: document.getElementById('add-cs-name').value,
-                    universityId: document.getElementById('add-cs-uni').value,
-                    duration: document.getElementById('add-cs-dur').value,
-                    tuitionFee: parseInt(document.getElementById('add-cs-tuition').value)
-                });
-            }
-
+        function deleteInquiry(id) {
+            db.inquiries = db.inquiries.filter(item => item.id !== id);
             saveDB(db);
-            closeCrudModal();
-            renderCRUD(entity);
-            showToast('Added successfully');
-        });
+            renderAdminLists();
+        }
 
-        // Initialize App
-        document.addEventListener('DOMContentLoaded', () => {
-            renderPublicView();
-        });
+        function showFormStatus(message, type = 'success') {
+            const statusEl = document.getElementById('formStatus');
+            statusEl.textContent = message;
+            statusEl.className = `form-status ${type}`;
+            statusEl.style.display = message ? 'block' : 'none';
+            if (message) {
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 4000);
+            }
+        }
 
+        function clearFieldError(field) {
+            field.classList.remove('error');
+            const errorText = field.nextElementSibling;
+            if (errorText && errorText.classList.contains('error-text')) {
+                errorText.style.display = 'none';
+            }
+        }
+
+        function setFieldError(field, message) {
+            field.classList.add('error');
+            const errorText = field.nextElementSibling;
+            if (errorText && errorText.classList.contains('error-text')) {
+                errorText.textContent = message;
+                errorText.style.display = 'block';
+            }
+        }
+
+        function validateEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        function validatePhone(value) {
+            return /^\+?[0-9\s-]{7,15}$/.test(value);
+        }
+
+        function clearAllErrors(form) {
+            form.querySelectorAll('.form-control').forEach(input => clearFieldError(input));
+        }
+
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+            clearAllErrors(inquiryForm);
+            showFormStatus('', 'success');
+
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
+            const phoneField = document.getElementById('phone');
+            const prefCountryField = document.getElementById('prefCountry');
+            const messageField = document.getElementById('message');
+
+            let hasError = false;
+
+            if (!nameField.value.trim()) {
+                setFieldError(nameField, 'Please enter your full name.');
+                hasError = true;
+            }
+            if (!validateEmail(emailField.value.trim())) {
+                setFieldError(emailField, 'Please enter a valid email address.');
+                hasError = true;
+            }
+            if (!validatePhone(phoneField.value.trim())) {
+                setFieldError(phoneField, 'Please enter a valid phone number.');
+                hasError = true;
+            }
+            if (!prefCountryField.value) {
+                setFieldError(prefCountryField, 'Please select a preferred country.');
+                hasError = true;
+            }
+
+            if (hasError) {
+                showFormStatus('Please fix the highlighted fields before submitting.', 'error');
+                return;
+            }
+
+            const newInquiry = {
+                id: Date.now().toString(),
+                name: nameField.value.trim(),
+                email: emailField.value.trim(),
+                phone: phoneField.value.trim(),
+                countryId: prefCountryField.value,
+                message: messageField.value.trim(),
+                status: 'New',
+                createdAt: new Date().toISOString()
+            };
+
+            db.inquiries.unshift(newInquiry);
+            saveDB(db);
+            renderAdminLists();
+            inquiryForm.reset();
+            showFormStatus('Your inquiry has been submitted successfully.', 'success');
+        }
+
+        function handleSearchAndFilter() {
+            const searchTerm = document.getElementById('uniSearch').value;
+            const countryValue = document.getElementById('countryFilter').value;
+            renderUniversities(searchTerm, countryValue);
+        }
+
+        function openAdmin() {
+            document.getElementById('admin-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('login-form-container').style.display = 'block';
+            document.getElementById('admin-dashboard').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+        }
+
+        function closeAdmin() {
+            document.getElementById('admin-overlay').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function logoutAdmin() {
+            closeAdmin();
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value.trim();
+            const loginError = document.getElementById('loginError');
+
+            if (email === 'admin@skyscholar.com' && password === 'admin123') {
+                loginError.style.display = 'none';
+                document.getElementById('login-form-container').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                renderAdminLists();
+                setActiveTab('inquiriesTab');
+            } else {
+                loginError.textContent = 'Invalid admin credentials.';
+                loginError.style.display = 'block';
+            }
+        }
+
+        function setActiveTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabId);
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.toggle('active', content.id === tabId);
+            });
+        }
+
+        function handleTabClick(event) {
+            setActiveTab(event.currentTarget.dataset.tab);
+        }
+
+        function toggleAccordion(event) {
+            const item = event.currentTarget.closest('.accordion-item');
+            const expanded = event.currentTarget.getAttribute('aria-expanded') === 'true';
+            item.classList.toggle('active');
+            event.currentTarget.setAttribute('aria-expanded', String(!expanded));
+        }
+
+        function animateCounters(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.querySelectorAll('.counter').forEach(counter => {
+                    const targetValue = Number(counter.dataset.target);
+                    const duration = 1500;
+                    const startTime = performance.now();
+
+                    const updateCounter = (currentTime) => {
+                        const elapsed = Math.min((currentTime - startTime) / duration, 1);
+                        counter.textContent = Math.floor(elapsed * targetValue).toLocaleString();
+                        if (elapsed < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = targetValue.toLocaleString();
+                        }
+                    };
+
+                    requestAnimationFrame(updateCounter);
+                });
+                observer.unobserve(entry.target);
+            });
+        }
+
+        function initIntersectionObservers() {
+            const fadeItems = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            fadeItems.forEach(item => fadeObserver.observe(item));
+
+            const statsSection = document.querySelector('.stats-grid');
+            if (statsSection) {
+                const counterObserver = new IntersectionObserver(animateCounters, { threshold: 0.4 });
+                counterObserver.observe(statsSection);
+            }
+        }
+
+        function init() {
+            renderCountries();
+            renderUniversities();
+            renderAdminLists();
+            initIntersectionObservers();
+
+            document.getElementById('uniSearch').addEventListener('input', handleSearchAndFilter);
+            document.getElementById('countryFilter').addEventListener('change', handleSearchAndFilter);
+            document.getElementById('inquiryForm').addEventListener('submit', handleInquirySubmit);
+            document.getElementById('adminLoginForm').addEventListener('submit', handleAdminLogin);
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', handleTabClick));
+            document.querySelectorAll('.accordion-header').forEach(header => header.addEventListener('click', toggleAccordion));
+
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navLinks = document.getElementById('navLinks');
+            mobileToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.replace('fa-bars', 'fa-times');
+                } else {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    icon.classList.replace('fa-times', 'fa-bars');
+                });
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
