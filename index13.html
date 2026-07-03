@@ -1,621 +1,1038 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>NEXUS — Real‑time 3D Commerce Engine</title>
-  <!-- SYSTEM_ID: LUX_3D_002 | ENGINE_VERSION: GAME_ENGINE_V1.0 -->
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    }
-    /* floating UI overlay (glass panel) – non‑intrusive */
-    .engine-ui {
-      position: fixed;
-      z-index: 20;
-      background: rgba(8, 8, 12, 0.65);
-      backdrop-filter: blur(16px);
-      border-radius: 60px;
-      padding: 0.6rem 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #f0ede8;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      pointer-events: auto;
-    }
-    #top-panel {
-      top: 20px;
-      left: 20px;
-      right: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(20px);
-      border-radius: 60px;
-      padding: 0.6rem 1.5rem;
-      z-index: 30;
-    }
-    .engine-logo {
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: 0.2em;
-      background: linear-gradient(130deg, #fff, #c6a43f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .category-pills {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .cat-engine {
-      background: rgba(255,255,255,0.08);
-      border: none;
-      padding: 5px 14px;
-      border-radius: 40px;
-      color: #ddd;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .cat-engine.active {
-      background: #c6a43f;
-      color: #0a0a0a;
-    }
-    .engine-actions {
-      display: flex;
-      gap: 18px;
-    }
-    .action-engine {
-      cursor: pointer;
-      position: relative;
-      font-size: 1.2rem;
-      transition: transform 0.2s;
-    }
-    .action-engine:hover { transform: scale(1.05); }
-    .badge-engine {
-      position: absolute;
-      top: -8px;
-      right: -12px;
-      background: #c6a43f;
-      color: black;
-      font-size: 0.6rem;
-      font-weight: bold;
-      border-radius: 30px;
-      padding: 0px 6px;
-      min-width: 18px;
-      text-align: center;
-    }
-    .search-engine input {
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 6px 12px;
-      border-radius: 40px;
-      color: white;
-      font-size: 0.7rem;
-      width: 150px;
-    }
-    .search-engine input::placeholder { color: #aaa; }
-    /* drawers (cart & wishlist) */
-    .engine-drawer {
-      position: fixed;
-      top: 0;
-      right: -380px;
-      width: 360px;
-      height: 100%;
-      background: #0a0a0f;
-      backdrop-filter: blur(24px);
-      z-index: 100;
-      transition: right 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      padding: 1.5rem;
-      color: white;
-      border-left: 1px solid rgba(255,255,255,0.1);
-      overflow-y: auto;
-    }
-    .engine-drawer.open { right: 0; }
-    .close-drawer { float: right; cursor: pointer; font-size: 1.2rem; }
-    .engine-drawer h3 { margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
-    .cart-item, .wish-item { display: flex; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid #222; padding-bottom: 12px; }
-    .cart-item img, .wish-item img { width: 60px; height: 80px; object-fit: cover; border-radius: 8px; }
-    .engine-btn { background: #c6a43f; border: none; padding: 6px 12px; border-radius: 30px; cursor: pointer; font-weight: 500; }
-    .engine-btn-small { background: #333; }
-    .instruction {
-      position: fixed;
-      bottom: 18px;
-      left: 18px;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      color: #ccc;
-      pointer-events: none;
-      z-index: 15;
-    }
-    @media (max-width: 680px) {
-      .category-pills { display: none; }
-      .engine-drawer { width: 100%; right: -100%; }
-      .search-engine input { width: 110px; }
-    }
-    /* particle animation for add-to-cart feedback */
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translate(-50%, 0); }
-      100% { opacity: 0; transform: translate(-50%, -60px); }
-    }
-  </style>
-</head>
-<body>
-  <div id="top-panel" class="engine-ui">
-    <div class="engine-logo">◈ NEXUS ◈</div>
-    <div class="category-pills" id="engineCategories">
-      <button data-cat="all" class="cat-engine active">All</button>
-      <button data-cat="watches" class="cat-engine">Watches</button>
-      <button data-cat="apparel" class="cat-engine">Apparel</button>
-      <button data-cat="accessories" class="cat-engine">Objets</button>
-      <button data-cat="footwear" class="cat-engine">Footwear</button>
-      <button data-cat="electronics" class="cat-engine">Audio</button>
-    </div>
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <div class="search-engine"><input type="text" id="engineSearch" placeholder="Search spatial..."></div>
-      <div class="engine-actions">
-        <div class="action-engine" id="engineCartBtn">🛒<span id="cartEngineBadge" class="badge-engine">0</span></div>
-        <div class="action-engine" id="engineWishBtn">❤️<span id="wishEngineBadge" class="badge-engine">0</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Cart Drawer (Engine UI) -->
-  <div id="engineCartDrawer" class="engine-drawer">
-    <span class="close-drawer" id="closeCartEngine">✕</span>
-    <h3>Cart · engine state</h3>
-    <div id="engineCartList"></div>
-    <div id="engineCartTotal" style="margin-top: 1rem; font-weight: bold;">Total: $0</div>
-    <button id="engineCheckoutBtn" class="engine-btn" style="width:100%; margin-top: 1rem;">Checkout →</button>
-  </div>
-  <!-- Wishlist Drawer -->
-  <div id="engineWishDrawer" class="engine-drawer">
-    <span class="close-drawer" id="closeWishEngine">✕</span>
-    <h3>Wishlist · saved objects</h3>
-    <div id="engineWishList"></div>
-  </div>
-
-  <div class="instruction">🖱️ Drag to rotate world | Scroll = camera zoom | Click product → cinematic focus</div>
-
-  <!-- IMPORT Three.js Core -->
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
-      }
-    }
-  </script>
-
-  <script type="module">
-    import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-    import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-
-    // =========================================================================
-    // ENGINE LAYER 1: SCENE ENGINE
-    // =========================================================================
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x030318);
-    scene.fog = new THREE.FogExp2(0x030318, 0.01);
-
-    const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(6, 3.2, 9);
-    camera.lookAt(0, 0.5, 0);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.shadowMap.enabled = true;
-    renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement);
-
-    const labelRenderer = new CSS2DRenderer();
-    labelRenderer.setSize(window.innerWidth, window.innerHeight);
-    labelRenderer.domElement.style.position = 'absolute';
-    labelRenderer.domElement.style.top = '0px';
-    labelRenderer.domElement.style.left = '0px';
-    labelRenderer.domElement.style.pointerEvents = 'none';
-    document.body.appendChild(labelRenderer.domElement);
-
-    // ----- ENGINE CONTROLS (Orbit + scroll inertia) -----
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.06;
-    controls.rotateSpeed = 0.8;
-    controls.zoomSpeed = 1.2;
-    controls.panSpeed = 0.5;
-    controls.target.set(0, 0.6, 0);
-
-    // =========================================================================
-    // ENGINE LAYER 2: LIGHTING SYSTEM (cinematic)
-    // =========================================================================
-    const ambientLight = new THREE.AmbientLight(0x222222);
-    scene.add(ambientLight);
-    const keyLight = new THREE.DirectionalLight(0xffeedd, 1.2);
-    keyLight.position.set(3, 5, 2);
-    keyLight.castShadow = true;
-    scene.add(keyLight);
-    const fillLight = new THREE.PointLight(0x5588aa, 0.45);
-    fillLight.position.set(-2, 1.5, 3);
-    scene.add(fillLight);
-    const rimLight = new THREE.PointLight(0xffaa77, 0.6);
-    rimLight.position.set(1, 2.2, -3.5);
-    scene.add(rimLight);
-    const backRim = new THREE.PointLight(0xccaa88, 0.4);
-    backRim.position.set(-1, 1.8, -4);
-    scene.add(backRim);
-
-    // floating particles (spatial dust)
-    const particleCount = 1200;
-    const particleGeo = new THREE.BufferGeometry();
-    const particlePositions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      particlePositions[i*3] = (Math.random() - 0.5) * 45;
-      particlePositions[i*3+1] = (Math.random() - 0.5) * 18;
-      particlePositions[i*3+2] = (Math.random() - 0.5) * 30 - 10;
-    }
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0xaaccff, size: 0.045, transparent: true, opacity: 0.35 });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-    
-    // decorative floor reflection (invisible plane)
-    const shadowCatcher = new THREE.Mesh(
-      new THREE.PlaneGeometry(18, 18),
-      new THREE.ShadowMaterial({ opacity: 0.35, color: 0x000000, transparent: true, side: THREE.DoubleSide })
-    );
-    shadowCatcher.rotation.x = -Math.PI / 2;
-    shadowCatcher.position.y = -1.1;
-    shadowCatcher.receiveShadow = true;
-    scene.add(shadowCatcher);
-    
-    // central abstract sculpture (engine heart)
-    const coreGeo = new THREE.IcosahedronGeometry(0.7, 0);
-    const coreMat = new THREE.MeshStandardMaterial({ color: 0xc6a43f, emissive: 0x331c00, roughness: 0.2, metalness: 0.85 });
-    const coreObject = new THREE.Mesh(coreGeo, coreMat);
-    coreObject.position.set(0, -0.4, 0);
-    coreObject.castShadow = true;
-    scene.add(coreObject);
-
-    // =========================================================================
-    // ENGINE LAYER 3: OBJECT REGISTRY SYSTEM (Product entities)
-    // =========================================================================
-    const productsData = [
-      { id: '3d_1', name: 'Aether Chronograph', price: 4850, category: 'watches', img: 'https://picsum.photos/id/20/512/512', color: 0xaa8866, posAngle: 0, radius: 4.2, yOffset: 0.2 },
-      { id: '3d_2', name: 'Noir Kimono Dress', price: 1250, category: 'apparel', img: 'https://picsum.photos/id/30/512/512', color: 0x664455, posAngle: 0.5, radius: 4.0, yOffset: -0.1 },
-      { id: '3d_3', name: 'Monolith Tote', price: 890, category: 'accessories', img: 'https://picsum.photos/id/40/512/512', color: 0x886655, posAngle: 1.1, radius: 4.3, yOffset: 0.4 },
-      { id: '3d_4', name: 'Obsidian Shades', price: 450, category: 'accessories', img: 'https://picsum.photos/id/42/512/512', color: 0x222222, posAngle: 1.7, radius: 3.9, yOffset: 0.0 },
-      { id: '3d_5', name: 'Echelon Loafers', price: 720, category: 'footwear', img: 'https://picsum.photos/id/43/512/512', color: 0xaa7744, posAngle: 2.3, radius: 4.4, yOffset: 0.1 },
-      { id: '3d_6', name: 'Halo Diamond Cuff', price: 3200, category: 'accessories', img: 'https://picsum.photos/id/34/512/512', color: 0xffaa88, posAngle: 2.9, radius: 4.1, yOffset: -0.2 },
-      { id: '3d_7', name: 'Cashmere Sweater', price: 980, category: 'apparel', img: 'https://picsum.photos/id/26/512/512', color: 0xccaa99, posAngle: 3.5, radius: 4.5, yOffset: 0.3 },
-      { id: '3d_8', name: 'Void Speaker', price: 1550, category: 'electronics', img: 'https://picsum.photos/id/0/512/512', color: 0x88aacc, posAngle: 4.1, radius: 4.0, yOffset: -0.15 }
-    ];
-    
-    // product mesh registry
-    let productEntities = []; // each: { mesh, label, data, baseScale, hoverTween }
-    let productMap = new Map(); // id -> entity
-    
-    function buildWorldFromRegistry(filterCat = 'all', searchTerm = '') {
-      // remove existing
-      productEntities.forEach(ent => {
-        scene.remove(ent.mesh);
-        if (ent.label) scene.remove(ent.label);
-      });
-      productEntities = [];
-      productMap.clear();
-      
-      let filtered = productsData.filter(p => filterCat === 'all' || p.category === filterCat);
-      if (searchTerm.trim()) {
-        filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
-      }
-      const count = filtered.length;
-      const stepAngle = (Math.PI * 2) / Math.max(count, 1);
-      filtered.forEach((prod, idx) => {
-        const angle = idx * stepAngle;
-        const radiusVal = prod.radius || 4.2;
-        const x = Math.cos(angle) * radiusVal;
-        const z = Math.sin(angle) * radiusVal;
-        const y = prod.yOffset + 0.2;
-        
-        // create plane texture material
-        const texture = new THREE.TextureLoader().load(prod.img);
-        texture.colorSpace = THREE.SRGBColorSpace;
-        const material = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.25, metalness: 0.1 });
-        const planeGeo = new THREE.PlaneGeometry(1.55, 1.95);
-        const mesh = new THREE.Mesh(planeGeo, material);
-        mesh.position.set(x, y, z);
-        mesh.userData = { productId: prod.id, isProduct: true, originalPos: new THREE.Vector3(x, y, z) };
-        mesh.castShadow = true;
-        mesh.receiveShadow = false;
-        scene.add(mesh);
-        
-        // CSS2D label
-        const div = document.createElement('div');
-        div.textContent = `${prod.name}\n$${prod.price}`;
-        div.style.backgroundColor = 'rgba(0,0,0,0.7)';
-        div.style.color = '#f0e2c5';
-        div.style.padding = '4px 12px';
-        div.style.borderRadius = '24px';
-        div.style.fontSize = '11px';
-        div.style.fontWeight = '500';
-        div.style.backdropFilter = 'blur(5px)';
-        div.style.border = '1px solid rgba(198,164,63,0.6)';
-        div.style.whiteSpace = 'pre';
-        const label = new CSS2DObject(div);
-        label.position.set(x, y + 1.05, z);
-        scene.add(label);
-        
-        const entity = { mesh, label, data: prod, baseScale: 1, hoverIntensity: 0 };
-        productEntities.push(entity);
-        productMap.set(prod.id, entity);
-      });
-    }
-    
-    // initial build
-    let currentFilter = 'all';
-    let currentSearch = '';
-    buildWorldFromRegistry(currentFilter, currentSearch);
-    
-    // =========================================================================
-    // ENGINE LAYER 4: INTERACTION PIPELINE (Raycaster + Hover/Focus)
-    // =========================================================================
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    let activeProductId = null;
-    let isAnimatingCamera = false;
-    let originalCameraPos = camera.position.clone();
-    let originalTarget = controls.target.clone();
-    
-    function focusOnProduct(entity) {
-      if (isAnimatingCamera) return;
-      const targetPos = entity.mesh.position.clone().add(new THREE.Vector3(1.2, 0.8, 1.8));
-      const startPos = camera.position.clone();
-      const startTarget = controls.target.clone();
-      const endTarget = entity.mesh.position.clone();
-      const duration = 650;
-      const startTime = performance.now();
-      isAnimatingCamera = true;
-      function animateCamera(now) {
-        const t = Math.min(1, (now - startTime) / duration);
-        const ease = 1 - Math.pow(1-t, 3);
-        camera.position.lerpVectors(startPos, targetPos, ease);
-        controls.target.lerpVectors(startTarget, endTarget, ease);
-        controls.update();
-        if (t < 1) requestAnimationFrame(animateCamera);
-        else { isAnimatingCamera = false; activeProductId = entity.data.id; }
-      }
-      requestAnimationFrame(animateCamera);
-    }
-    
-    function resetCameraFocus() {
-      if (isAnimatingCamera) return;
-      const startPos = camera.position.clone();
-      const startTarget = controls.target.clone();
-      const endPos = new THREE.Vector3(6, 3.2, 9);
-      const endTarget = new THREE.Vector3(0, 0.6, 0);
-      const duration = 550;
-      const startTime = performance.now();
-      isAnimatingCamera = true;
-      function animate(now) {
-        const t = Math.min(1, (now - startTime) / duration);
-        const ease = 1 - Math.pow(1-t, 3);
-        camera.position.lerpVectors(startPos, endPos, ease);
-        controls.target.lerpVectors(startTarget, endTarget, ease);
-        controls.update();
-        if (t < 1) requestAnimationFrame(animate);
-        else { isAnimatingCamera = false; activeProductId = null; }
-      }
-      requestAnimationFrame(animate);
-    }
-    
-    // hover effect (engine layer: scale + light)
-    let currentHoverEntity = null;
-    function updateHoverEffect() {
-      // continuous lerp for smoothness
-      productEntities.forEach(ent => {
-        let targetScale = (currentHoverEntity === ent) ? 1.08 : 1.0;
-        ent.mesh.scale.lerp(new THREE.Vector3(targetScale, targetScale, 1), 0.2);
-        if (ent.label) {
-          const labelOpacity = (currentHoverEntity === ent) ? 1 : 0.85;
-          ent.label.element.style.opacity = labelOpacity;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyScholar - Study Abroad Consultancy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#2563eb', secondary: '#1e40af', dark: '#0f172a', light: '#f8fafc' }
+                }
+            }
         }
-      });
-    }
-    
-    // click & hover detection (raycaster)
-    window.addEventListener('click', (event) => {
-      if (event.target.closest('.engine-ui') || event.target.closest('.engine-drawer')) return;
-      mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-      mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = productEntities.map(e => e.mesh).filter(m => raycaster.intersectObject(m).length > 0);
-      if (intersects.length > 0) {
-        const hitEntity = productEntities.find(e => e.mesh === intersects[0]);
-        if (hitEntity) focusOnProduct(hitEntity);
-      } else {
-        resetCameraFocus();
-      }
-    });
-    
-    // hover tracking (mousemove)
-    window.addEventListener('mousemove', (event) => {
-      mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-      mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = productEntities.map(e => e.mesh).filter(m => raycaster.intersectObject(m).length > 0);
-      if (intersects.length > 0) {
-        const hit = productEntities.find(e => e.mesh === intersects[0]);
-        currentHoverEntity = hit || null;
-      } else {
-        currentHoverEntity = null;
-      }
-    });
-    
-    // =========================================================================
-    // ENGINE LAYER 5: STATE MANAGEMENT (Cart + Wishlist)
-    // =========================================================================
-    let cartItems = JSON.parse(localStorage.getItem('engine_cart') || '[]'); // { id, name, price, qty, img }
-    let wishlistSet = new Set(JSON.parse(localStorage.getItem('engine_wish') || '[]'));
-    
-    function updateCounters() {
-      const cartCount = cartItems.reduce((s,i) => s + i.qty, 0);
-      document.getElementById('cartEngineBadge').innerText = cartCount;
-      document.getElementById('wishEngineBadge').innerText = wishlistSet.size;
-      renderCartUI();
-      renderWishUI();
-    }
-    function saveCart() { localStorage.setItem('engine_cart', JSON.stringify(cartItems)); updateCounters(); }
-    function saveWish() { localStorage.setItem('engine_wish', JSON.stringify(Array.from(wishlistSet))); updateCounters(); }
-    
-    function addToEngineCart(id) {
-      const prod = productsData.find(p => p.id === id);
-      if (!prod) return;
-      const existing = cartItems.find(i => i.id === id);
-      if (existing) existing.qty++;
-      else cartItems.push({ id, name: prod.name, price: prod.price, qty: 1, img: prod.img });
-      saveCart();
-      // animated floating particle (visceral feedback)
-      spawnFloatingText(`+1 ${prod.name}`);
-    }
-    function removeFromCart(id) { cartItems = cartItems.filter(i => i.id !== id); saveCart(); }
-    function updateQty(id, delta) {
-      const item = cartItems.find(i => i.id === id);
-      if (item) { item.qty += delta; if (item.qty <= 0) removeFromCart(id); else saveCart(); }
-    }
-    function toggleEngineWish(id) {
-      if (wishlistSet.has(id)) wishlistSet.delete(id);
-      else wishlistSet.add(id);
-      saveWish();
-      spawnFloatingText(wishlistSet.has(id) ? '❤️ Saved' : '♡ Removed');
-    }
-    
-    function renderCartUI() {
-      const container = document.getElementById('engineCartList');
-      if (cartItems.length === 0) { container.innerHTML = '<div style="color:#aaa;">Cart is empty</div>'; document.getElementById('engineCartTotal').innerHTML = 'Total: $0'; return; }
-      let total = 0;
-      container.innerHTML = cartItems.map(item => {
-        total += item.price * item.qty;
-        return `<div class="cart-item"><img src="${item.img}"><div><b>${item.name}</b><div>$${item.price}</div><div><button onclick="window.engineUpdateQty('${item.id}',-1)">-</button> ${item.qty} <button onclick="window.engineUpdateQty('${item.id}',1)">+</button> <button onclick="window.engineRemoveCart('${item.id}')" style="background:#444;">✕</button></div></div></div>`;
-      }).join('');
-      document.getElementById('engineCartTotal').innerHTML = `Total: $${total.toLocaleString()}`;
-    }
-    function renderWishUI() {
-      const container = document.getElementById('engineWishList');
-      const wishArr = Array.from(wishlistSet);
-      if (wishArr.length === 0) { container.innerHTML = '<div style="color:#aaa;">No items saved</div>'; return; }
-      const wishProducts = productsData.filter(p => wishlistSet.has(p.id));
-      container.innerHTML = wishProducts.map(p => `<div class="wish-item"><img src="${p.img}"><div><b>${p.name}</b><div>$${p.price}</div><button onclick="window.engineToggleWish('${p.id}')" class="engine-btn-small">Remove</button></div></div>`).join('');
-    }
-    
-    window.engineUpdateQty = (id, delta) => updateQty(id, delta);
-    window.engineRemoveCart = (id) => removeFromCart(id);
-    window.engineToggleWish = (id) => toggleEngineWish(id);
-    
-    function spawnFloatingText(msg) {
-      const div = document.createElement('div');
-      div.innerText = msg;
-      div.style.position = 'fixed';
-      div.style.bottom = '30%';
-      div.style.left = '50%';
-      div.style.transform = 'translateX(-50%)';
-      div.style.backgroundColor = '#c6a43f';
-      div.style.color = '#000';
-      div.style.padding = '8px 18px';
-      div.style.borderRadius = '40px';
-      div.style.fontWeight = 'bold';
-      div.style.zIndex = '200';
-      div.style.fontSize = '0.8rem';
-      div.style.animation = 'floatUp 1s ease forwards';
-      document.body.appendChild(div);
-      setTimeout(() => div.remove(), 1000);
-    }
-    
-    // Category + Search (rebuild world)
-    function refreshWorld() {
-      buildWorldFromRegistry(currentFilter, currentSearch);
-      // reset hover and active state
-      currentHoverEntity = null;
-      if (!isAnimatingCamera) resetCameraFocus();
-    }
-    document.querySelectorAll('.cat-engine').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.cat-engine').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = btn.getAttribute('data-cat');
-        refreshWorld();
-      });
-    });
-    const searchField = document.getElementById('engineSearch');
-    searchField.addEventListener('input', (e) => {
-      currentSearch = e.target.value;
-      refreshWorld();
-    });
-    
-    // UI drawers events
-    document.getElementById('engineCartBtn').addEventListener('click', () => document.getElementById('engineCartDrawer').classList.add('open'));
-    document.getElementById('engineWishBtn').addEventListener('click', () => document.getElementById('engineWishDrawer').classList.add('open'));
-    document.getElementById('closeCartEngine').addEventListener('click', () => document.getElementById('engineCartDrawer').classList.remove('open'));
-    document.getElementById('closeWishEngine').addEventListener('click', () => document.getElementById('engineWishDrawer').classList.remove('open'));
-    document.getElementById('engineCheckoutBtn').addEventListener('click', () => alert(`Checkout (simulated) · Total: $${cartItems.reduce((s,i)=>s+(i.price*i.qty),0)}`));
-    
-    // =========================================================================
-    // ENGINE RENDER LOOP (Continuous frame updates + hover interpolation)
-    // =========================================================================
-    let lastTime = performance.now();
-    function engineRenderLoop() {
-      requestAnimationFrame(engineRenderLoop);
-      const now = performance.now();
-      const delta = Math.min(1/30, (now - lastTime) / 1000);
-      lastTime = now;
-      
-      // animate core rotating object
-      coreObject.rotation.y += 0.008;
-      coreObject.rotation.x = Math.sin(Date.now() * 0.002) * 0.1;
-      particles.rotation.y += 0.002;
-      particles.rotation.x = Math.sin(Date.now() * 0.0005) * 0.05;
-      
-      // dynamic hover effect (lerp scale)
-      updateHoverEffect();
-      
-      controls.update(); // update damping
-      renderer.render(scene, camera);
-      labelRenderer.render(scene, camera);
-    }
-    engineRenderLoop();
-    
-    // resize handler
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      labelRenderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    
-    // initial UI sync
-    updateCounters();
-    console.log('3D Commerce Engine Initialized — Runtime interactive world active.');
-  </script>
-  <!-- ========== LINE PADDING (2000+ lines enterprise compliance) ========== -->
-  <!-- 001 --><!-- 002 --><!-- 003 --><!-- 004 --><!-- 005 --><!-- 006 --><!-- 007 --><!-- 008 --><!-- 009 --><!-- 010 -->
-  <!-- 011 --><!-- 012 --><!-- 013 --><!-- 014 --><!-- 015 --><!-- 016 --><!-- 017 --><!-- 018 --><!-- 019 --><!-- 020 -->
-  <!-- 050 --><!-- 051 --><!-- 052 --><!-- 053 --><!-- 054 --><!-- 055 --><!-- 056 --><!-- 057 --><!-- 058 --><!-- 059 --><!-- 060 -->
-  <!-- 100 --><!-- 101 --><!-- 102 --><!-- 103 --><!-- 104 --><!-- 105 --><!-- 106 --><!-- 107 --><!-- 108 --><!-- 109 --><!-- 110 -->
-  <!-- 200 --><!-- 201 --><!-- 202 --><!-- 203 --><!-- 204 --><!-- 205 --><!-- 206 --><!-- 207 --><!-- 208 --><!-- 209 --><!-- 210 -->
-  <!-- 500 --><!-- 501 --><!-- 502 --><!-- 503 --><!-- 504 --><!-- 505 --><!-- 506 --><!-- 507 --><!-- 508 --><!-- 509 --><!-- 510 -->
-  <!-- 1000 --><!-- 1001 --><!-- 1002 --><!-- 1003 --><!-- 1004 --><!-- 1005 --><!-- 1006 --><!-- 1007 --><!-- 1008 --><!-- 1009 --><!-- 1010 -->
-  <!-- 1500 --><!-- 1501 --><!-- 1502 --><!-- 1503 --><!-- 1504 --><!-- 1505 --><!-- 1506 --><!-- 1507 --><!-- 1508 --><!-- 1509 --><!-- 1510 -->
-  <!-- 1900 --><!-- 1901 --><!-- 1902 --><!-- 1903 --><!-- 1904 --><!-- 1905 --><!-- 1906 --><!-- 1907 --><!-- 1908 --><!-- 1909 --><!-- 1910 -->
-  <!-- 1990 --><!-- 1991 --><!-- 1992 --><!-- 1993 --><!-- 1994 --><!-- 1995 --><!-- 1996 --><!-- 1997 --><!-- 1998 --><!-- 1999 --><!-- 2000 -->
+    </script>
+    <style>
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
+        .accordion-active .accordion-content { max-height: 500px; }
+        .accordion-active .fa-chevron-down { transform: rotate(180deg); }
+        .tab-active { border-bottom: 2px solid #2563eb; color: #2563eb; font-weight: 600; }
+        #toast { transition: opacity 0.3s, transform 0.3s; transform: translateY(100%); opacity: 0; }
+        #toast.show { transform: translateY(0); opacity: 1; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #2563eb; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: none; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-light text-slate-800 font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('home')">
+                    <i class="fa-solid fa-graduation-cap text-primary text-3xl mr-2"></i>
+                    <span class="font-bold text-2xl tracking-tight text-dark">SkyScholar</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center" id="nav-links">
+                    <a href="#" onclick="navigate('home')" class="text-gray-600 hover:text-primary transition font-medium">Home</a>
+                    <a href="#services" class="text-gray-600 hover:text-primary transition font-medium">Services</a>
+                    <a href="#destinations" class="text-gray-600 hover:text-primary transition font-medium">Destinations</a>
+                    <a href="#universities" class="text-gray-600 hover:text-primary transition font-medium">Universities</a>
+                    <a href="#" onclick="navigate('admin')" class="text-gray-600 hover:text-primary transition font-medium"><i class="fa-solid fa-lock mr-1"></i> Admin</a>
+                    <a href="#contact" class="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg shadow-blue-500/30">Apply Now</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#" onclick="navigate('home')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Services</a>
+                <a href="#destinations" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Destinations</a>
+                <a href="#" onclick="navigate('admin')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN APP CONTAINER -->
+    <main id="app-container" class="flex-grow pt-20">
+        <!-- PUBLIC VIEW -->
+        <div id="public-view" class="block">
+            
+            <!-- Hero Section -->
+            <section class="relative bg-dark text-white overflow-hidden">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/90 to-transparent"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-32 pb-40">
+                    <div class="max-w-2xl fade-in">
+                        <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 font-semibold text-sm mb-6 border border-blue-500/30">Your Global Education Partner</span>
+                        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">Shape Your Future with <span class="text-blue-400">SkyScholar</span></h1>
+                        <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">Expert guidance for studying abroad. From university selection to visa approval, we make your dream of global education a reality.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#contact" class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-bold text-center transition shadow-lg shadow-blue-500/40 text-lg">Start Your Journey</a>
+                            <a href="#universities" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white px-8 py-4 rounded-full font-bold text-center transition border border-white/20 text-lg">Explore Universities</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Counters -->
+            <section class="bg-white border-b border-gray-100 relative z-20 -mt-12 mx-4 sm:mx-auto max-w-6xl rounded-2xl shadow-xl p-8 fade-in">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="92">0</span>%</div>
+                        <div class="text-gray-500 font-medium">Visa Success Rate</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="150">0</span>+</div>
+                        <div class="text-gray-500 font-medium">Partner Universities</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="10">0</span>k+</div>
+                        <div class="text-gray-500 font-medium">Students Placed</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-primary mb-2"><span class="counter" data-target="7">0</span></div>
+                        <div class="text-gray-500 font-medium">Top Countries</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services -->
+            <section id="services" class="py-24 bg-light">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Our Premium Services</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto text-lg">Comprehensive support tailored for your international academic journey.</p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 fade-in group">
+                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">University Selection</h3>
+                            <p class="text-gray-600">We help you choose the right university and course based on your academic profile and career goals.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 fade-in group" style="transition-delay: 100ms;">
+                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-passport"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Visa Assistance</h3>
+                            <p class="text-gray-600">Expert guidance on visa documentation, interview preparation, and application filing with high success rates.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 fade-in group" style="transition-delay: 200ms;">
+                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-file-pen"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">SOP & LOR Support</h3>
+                            <p class="text-gray-600">Professional editing and drafting support for Statement of Purpose and Letters of Recommendation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Destinations / Countries -->
+            <section id="destinations" class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-end mb-12 fade-in">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Top Study Destinations</h2>
+                            <p class="text-gray-600 text-lg">Explore opportunities in the world's leading educational hubs.</p>
+                        </div>
+                    </div>
+                    <div id="countries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Universities & Courses -->
+            <section id="universities" class="py-24 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Partner Universities</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto text-lg mb-8">Search through our extensive network of prestigious institutions globally.</p>
+                        
+                        <!-- Search & Filter -->
+                        <div class="max-w-3xl mx-auto flex flex-col md:flex-row gap-4">
+                            <div class="relative flex-grow">
+                                <i class="fa-solid fa-search absolute left-4 top-3.5 text-gray-400"></i>
+                                <input type="text" id="search-uni" placeholder="Search universities or courses..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition shadow-sm">
+                            </div>
+                            <select id="filter-country" class="px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary outline-none shadow-sm bg-white">
+                                <option value="">All Countries</option>
+                                <!-- Populated by JS -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="universities-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="py-24 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Frequently Asked Questions</h2>
+                    </div>
+                    <div class="space-y-4 fade-in">
+                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden accordion">
+                            <button class="w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center focus:outline-none accordion-btn">
+                                What is the best time to start applying?
+                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-6 bg-gray-50">
+                                <p class="py-4 text-gray-600">Ideally, you should start your application process 9-12 months before your intended intake. This gives ample time for standardized tests, document preparation, and visa processing.</p>
+                            </div>
+                        </div>
+                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden accordion">
+                            <button class="w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center focus:outline-none accordion-btn">
+                                Do you provide scholarship assistance?
+                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-6 bg-gray-50">
+                                <p class="py-4 text-gray-600">Yes, we guide students on identifying and applying for university-specific, government, and private scholarships based on their profile and eligibility.</p>
+                            </div>
+                        </div>
+                        <div class="border border-gray-200 rounded-xl bg-white overflow-hidden accordion">
+                            <button class="w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center focus:outline-none accordion-btn">
+                                Is IELTS/TOEFL mandatory?
+                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-6 bg-gray-50">
+                                <p class="py-4 text-gray-600">While highly recommended for English-speaking countries, some universities offer waivers based on your medium of instruction in high school or bachelor's degree. We evaluate this on a case-by-case basis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inquiry/Contact Form -->
+            <section id="contact" class="py-24 bg-dark text-white relative overflow-hidden">
+                <div class="absolute inset-0 bg-blue-900/20"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="fade-in">
+                            <h2 class="text-4xl font-bold mb-6">Ready to take the leap?</h2>
+                            <p class="text-gray-300 mb-8 text-lg">Fill out the form and our expert counselors will get back to you within 24 hours for a free consultation.</p>
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa-solid fa-phone text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-400">Call Us</div>
+                                        <div class="font-semibold">+1 (800) 123-4567</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fa-solid fa-envelope text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-400">Email Us</div>
+                                        <div class="font-semibold">contact@skyscholar.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-8 shadow-2xl text-slate-800 fade-in">
+                            <h3 class="text-2xl font-bold mb-6">Free Consultation</h3>
+                            <form id="inquiry-form" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                                    <input type="text" id="inq-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                        <input type="email" id="inq-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+                                        <input type="tel" id="inq-phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Country *</label>
+                                    <select id="inq-country" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition bg-white">
+                                        <option value="">Select a country</option>
+                                        <!-- Populated via JS -->
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+                                    <textarea id="inq-msg" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none transition"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition flex justify-center items-center">
+                                    <span id="inq-btn-text">Submit Inquiry</span>
+                                    <div id="inq-loader" class="loader ml-2"></div>
+                                </button>
+                                <div id="inq-success" class="hidden text-green-600 text-sm font-medium text-center mt-2 bg-green-50 p-2 rounded">
+                                    Inquiry submitted successfully! We'll contact you soon.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <footer class="bg-slate-900 text-gray-400 py-12 border-t border-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center mb-4">
+                            <i class="fa-solid fa-graduation-cap text-primary text-2xl mr-2"></i>
+                            <span class="font-bold text-xl text-white">SkyScholar</span>
+                        </div>
+                        <p class="mb-4 max-w-sm">Empowering students to achieve global education dreams with expert, end-to-end consultancy services.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition">Home</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                            <li><a href="#universities" class="hover:text-white transition">Universities</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-sm text-center">
+                    &copy; 2026 SkyScholar. All rights reserved.
+                </div>
+            </footer>
+        </div>
+
+        <!-- ADMIN VIEW -->
+        <div id="admin-view" class="hidden min-h-screen bg-gray-50 flex">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-dark text-gray-300 flex flex-col fixed h-full z-40 transition-transform transform -translate-x-full md:translate-x-0" id="admin-sidebar">
+                <div class="p-6 flex items-center border-b border-gray-800">
+                    <i class="fa-solid fa-graduation-cap text-primary text-2xl mr-2"></i>
+                    <span class="font-bold text-xl text-white">Admin Panel</span>
+                </div>
+                <nav class="flex-grow py-6 space-y-1">
+                    <a href="#" onclick="switchAdminTab('dashboard')" class="admin-tab-btn flex items-center px-6 py-3 text-white bg-gray-800 border-l-4 border-primary" data-tab="dashboard">
+                        <i class="fa-solid fa-chart-pie w-6"></i> Dashboard
+                    </a>
+                    <a href="#" onclick="switchAdminTab('inquiries')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="inquiries">
+                        <i class="fa-solid fa-envelope w-6"></i> Inquiries
+                    </a>
+                    <a href="#" onclick="switchAdminTab('countries')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="countries">
+                        <i class="fa-solid fa-globe w-6"></i> Countries
+                    </a>
+                    <a href="#" onclick="switchAdminTab('universities')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="universities">
+                        <i class="fa-solid fa-building-columns w-6"></i> Universities
+                    </a>
+                    <a href="#" onclick="switchAdminTab('courses')" class="admin-tab-btn flex items-center px-6 py-3 hover:bg-gray-800 hover:text-white transition border-l-4 border-transparent" data-tab="courses">
+                        <i class="fa-solid fa-book w-6"></i> Courses
+                    </a>
+                </nav>
+                <div class="p-6 border-t border-gray-800">
+                    <button onclick="adminLogout()" class="flex items-center text-red-400 hover:text-red-300 transition w-full">
+                        <i class="fa-solid fa-sign-out-alt w-6"></i> Logout
+                    </button>
+                    <button onclick="navigate('home')" class="flex items-center text-gray-400 hover:text-white transition w-full mt-4">
+                        <i class="fa-solid fa-arrow-left w-6"></i> Back to Site
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Admin Content -->
+            <div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+                <!-- Admin Header (Mobile toggler) -->
+                <header class="bg-white shadow-sm h-16 flex items-center justify-between px-6 md:hidden">
+                    <span class="font-bold text-lg text-dark">SkyScholar Admin</span>
+                    <button onclick="document.getElementById('admin-sidebar').classList.toggle('-translate-x-full')" class="text-gray-600 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </header>
+
+                <main class="flex-1 p-6 md:p-8 overflow-y-auto w-full">
+                    
+                    <!-- Dashboard Tab -->
+                    <div id="tab-dashboard" class="admin-tab block fade-in">
+                        <h2 class="text-2xl font-bold text-dark mb-6">Overview Statistics</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <div class="text-gray-500 text-sm font-medium mb-1">Total Inquiries</div>
+                                <div class="text-3xl font-bold text-dark" id="stat-inquiries">0</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <div class="text-gray-500 text-sm font-medium mb-1">Universities</div>
+                                <div class="text-3xl font-bold text-dark" id="stat-universities">0</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <div class="text-gray-500 text-sm font-medium mb-1">Courses</div>
+                                <div class="text-3xl font-bold text-dark" id="stat-courses">0</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <div class="text-gray-500 text-sm font-medium mb-1">Countries</div>
+                                <div class="text-3xl font-bold text-dark" id="stat-countries">0</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-4">Recent Inquiries</h3>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 text-gray-500 text-sm border-b">
+                                        <th class="p-4 font-medium">Name</th>
+                                        <th class="p-4 font-medium">Email</th>
+                                        <th class="p-4 font-medium">Country</th>
+                                        <th class="p-4 font-medium">Status</th>
+                                        <th class="p-4 font-medium">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-inquiries-tbody" class="text-sm divide-y">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Inquiries Tab -->
+                    <div id="tab-inquiries" class="admin-tab hidden fade-in">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-dark">Manage Inquiries</h2>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 text-gray-500 text-sm border-b">
+                                        <th class="p-4 font-medium">Name</th>
+                                        <th class="p-4 font-medium">Contact</th>
+                                        <th class="p-4 font-medium">Destination</th>
+                                        <th class="p-4 font-medium">Status</th>
+                                        <th class="p-4 font-medium text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="all-inquiries-tbody" class="text-sm divide-y">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Shared CRUD layout for other entities (Countries, Universities, Courses) -->
+                    <!-- We use a generic approach to save space -->
+                    <div id="generic-crud-container" class="hidden fade-in">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                            <h2 class="text-2xl font-bold text-dark" id="crud-title">Manage Entity</h2>
+                            <button onclick="openCrudModal()" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm">
+                                <i class="fa-solid fa-plus mr-1"></i> Add New
+                            </button>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+                            <table class="w-full text-left border-collapse" id="crud-table">
+                                <thead id="crud-thead" class="bg-gray-50 text-gray-500 text-sm border-b">
+                                    <!-- Dynamic -->
+                                </thead>
+                                <tbody id="crud-tbody" class="text-sm divide-y">
+                                    <!-- Dynamic -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Admin Login Modal -->
+        <div id="admin-login-modal" class="fixed inset-0 bg-dark/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative fade-in">
+                <button onclick="navigate('home')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-dark">Admin Access</h2>
+                    <p class="text-gray-500 text-sm mt-1">Sign in to manage SkyScholar (admin@skyscholar.com / admin123)</p>
+                </div>
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="login-email" value="admin@skyscholar.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="login-pwd" value="admin123" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none">
+                    </div>
+                    <div id="login-error" class="text-red-500 text-sm hidden">Invalid credentials.</div>
+                    <button type="submit" class="w-full bg-dark hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-lg transition mt-4">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Generic CRUD Modal -->
+        <div id="crud-modal" class="fixed inset-0 bg-dark/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl w-full max-w-lg p-6 md:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto fade-in">
+                <button onclick="closeCrudModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+                <h2 class="text-xl font-bold text-dark mb-6" id="crud-modal-title">Add Item</h2>
+                <form id="crud-form" class="space-y-4">
+                    <div id="crud-dynamic-fields" class="space-y-4">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="flex justify-end gap-3 mt-8">
+                        <button type="button" onclick="closeCrudModal()" class="px-5 py-2.5 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition">Cancel</button>
+                        <button type="submit" class="px-5 py-2.5 text-white bg-primary hover:bg-secondary rounded-lg font-medium transition shadow-sm">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-xl z-[100] flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-green-400" id="toast-icon"></i>
+        <span id="toast-msg" class="font-medium">Success!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. INITIALIZATION & DATA SEEDING ---
+        const initDB = () => {
+            if (!localStorage.getItem('ss_seeded')) {
+                const data = {
+                    admin: { email: 'admin@skyscholar.com', password: 'admin123' },
+                    countries: [
+                        { id: 'c1', name: 'Canada', flag: 'ca', averageTuition: 25000, visaSuccess: 92 },
+                        { id: 'c2', name: 'United Kingdom', flag: 'gb', averageTuition: 22000, visaSuccess: 88 },
+                        { id: 'c3', name: 'Australia', flag: 'au', averageTuition: 28000, visaSuccess: 90 },
+                        { id: 'c4', name: 'USA', flag: 'us', averageTuition: 35000, visaSuccess: 80 }
+                    ],
+                    universities: [
+                        { id: 'u1', name: 'University of Toronto', countryId: 'c1', ranking: 18, tuitionFee: 30000, image: 'https://images.unsplash.com/photo-1555529902-5261145633bf?w=500&q=80' },
+                        { id: 'u2', name: 'University of Oxford', countryId: 'c2', ranking: 5, tuitionFee: 28000, image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&q=80' },
+                        { id: 'u3', name: 'University of Melbourne', countryId: 'c3', ranking: 33, tuitionFee: 32000, image: 'https://images.unsplash.com/photo-1601287955546-5be5402928c6?w=500&q=80' },
+                        { id: 'u4', name: 'Harvard University', countryId: 'c4', ranking: 1, tuitionFee: 45000, image: 'https://images.unsplash.com/photo-1590402237070-5f25a75cf015?w=500&q=80' }
+                    ],
+                    courses: [
+                        { id: 'cs1', name: 'Computer Science (BSc)', duration: '3 years', tuitionFee: 28000, universityId: 'u1' },
+                        { id: 'cs2', name: 'Business Administration (MBA)', duration: '1 year', tuitionFee: 35000, universityId: 'u2' },
+                        { id: 'cs3', name: 'Data Science (MSc)', duration: '2 years', tuitionFee: 30000, universityId: 'u3' }
+                    ],
+                    inquiries: [
+                        { id: 'i1', name: 'John Doe', email: 'john@example.com', phone: '1234567890', countryId: 'c1', message: 'Looking for Fall intake', status: 'new', date: new Date().toISOString() }
+                    ]
+                };
+                localStorage.setItem('ss_data', JSON.stringify(data));
+                localStorage.setItem('ss_seeded', 'true');
+            }
+        };
+
+        const getDB = () => JSON.parse(localStorage.getItem('ss_data'));
+        const saveDB = (data) => localStorage.setItem('ss_data', JSON.stringify(data));
+        const generateId = () => Math.random().toString(36).substr(2, 9);
+
+        initDB();
+
+        // --- 2. GLOBAL UTILS ---
+        const showToast = (msg, type = 'success') => {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            const icon = document.getElementById('toast-icon');
+            icon.className = type === 'success' ? 'fa-solid fa-circle-check text-green-400' : 'fa-solid fa-circle-exclamation text-red-400';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        };
+
+        const checkAuth = () => localStorage.getItem('ss_auth') === 'true';
+
+        // --- 3. NAVIGATION & ROUTING ---
+        const navigate = (view) => {
+            const publicView = document.getElementById('public-view');
+            const adminView = document.getElementById('admin-view');
+            const navbar = document.getElementById('navbar');
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            if (view === 'home') {
+                publicView.classList.remove('hidden');
+                adminView.classList.add('hidden');
+                navbar.classList.remove('hidden');
+                renderPublicView();
+                window.scrollTo(0,0);
+            } else if (view === 'admin') {
+                if (checkAuth()) {
+                    publicView.classList.add('hidden');
+                    navbar.classList.add('hidden');
+                    adminView.classList.remove('hidden');
+                    renderAdminDashboard();
+                    switchAdminTab('dashboard');
+                } else {
+                    document.getElementById('admin-login-modal').classList.remove('hidden');
+                    document.getElementById('admin-login-modal').classList.add('flex');
+                }
+            }
+        };
+
+        // UI Interactions
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) nav.classList.add('shadow-md');
+            else nav.classList.remove('shadow-md');
+        });
+
+        // Accordions
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('accordion-active');
+            });
+        });
+
+        // Intersection Observer for Animations & Counters
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Check if it has counters
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        const step = target / (duration / 16);
+                        let current = 0;
+                        const updateCounter = () => {
+                            current += step;
+                            if (current < target) {
+                                counter.innerText = Math.ceil(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCounter();
+                        counter.classList.remove('counter'); // Prevent re-triggering
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const initAnimations = () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.remove('visible');
+                observer.observe(el);
+            });
+        };
+
+        // --- 4. PUBLIC FRONTEND LOGIC ---
+        const renderPublicView = () => {
+            const db = getDB();
+            
+            // Populate Form Dropdown
+            const countrySelect = document.getElementById('inq-country');
+            const filterCountry = document.getElementById('filter-country');
+            
+            const countryOptions = db.countries.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+            countrySelect.innerHTML = `<option value="">Select a country</option>${countryOptions}`;
+            filterCountry.innerHTML = `<option value="">All Countries</option>${countryOptions}`;
+
+            // Render Countries Grid
+            const cGrid = document.getElementById('countries-grid');
+            cGrid.innerHTML = db.countries.slice(0, 4).map(c => `
+                <div class="bg-slate-50 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform duration-300 border border-gray-100 shadow-sm cursor-pointer" onclick="filterByCountry('${c.id}')">
+                    <img src="https://flagcdn.com/w80/${c.flag}.png" alt="${c.name}" class="w-16 h-16 rounded-full mx-auto mb-4 object-cover shadow-sm">
+                    <h3 class="text-xl font-bold text-dark">${c.name}</h3>
+                    <p class="text-primary font-medium mt-2">${c.visaSuccess}% Success Rate</p>
+                </div>
+            `).join('');
+
+            renderUniversitiesPublic();
+            initAnimations();
+        };
+
+        const renderUniversitiesPublic = (search = '', filterCId = '') => {
+            const db = getDB();
+            let unis = db.universities;
+            
+            if (search) {
+                unis = unis.filter(u => u.name.toLowerCase().includes(search.toLowerCase()));
+            }
+            if (filterCId) {
+                unis = unis.filter(u => u.countryId === filterCId);
+            }
+
+            const uGrid = document.getElementById('universities-grid');
+            if (unis.length === 0) {
+                uGrid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">No universities found matching your criteria.</div>`;
+                return;
+            }
+
+            uGrid.innerHTML = unis.map(u => {
+                const country = db.countries.find(c => c.id === u.countryId);
+                const uCourses = db.courses.filter(cs => cs.universityId === u.id).length;
+                return `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="${u.image}" alt="${u.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-dark shadow-sm">
+                            Rank #${u.ranking}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <i class="fa-solid fa-location-dot mr-1 text-primary"></i> ${country ? country.name : 'Global'}
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-2 line-clamp-1">${u.name}</h3>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100 text-sm">
+                            <div class="font-medium text-gray-600"><i class="fa-solid fa-book-open mr-1"></i> ${uCourses} Courses</div>
+                            <div class="font-bold text-primary">$${u.tuitionFee.toLocaleString()}/yr</div>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+        };
+
+        document.getElementById('search-uni').addEventListener('input', (e) => {
+            renderUniversitiesPublic(e.target.value, document.getElementById('filter-country').value);
+        });
+        document.getElementById('filter-country').addEventListener('change', (e) => {
+            renderUniversitiesPublic(document.getElementById('search-uni').value, e.target.value);
+        });
+
+        window.filterByCountry = (cId) => {
+            document.getElementById('filter-country').value = cId;
+            document.getElementById('universities').scrollIntoView({ behavior: 'smooth' });
+            renderUniversitiesPublic('', cId);
+        };
+
+        // Inquiry Form Handling
+        document.getElementById('inquiry-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btnText = document.getElementById('inq-btn-text');
+            const loader = document.getElementById('inq-loader');
+            const success = document.getElementById('inq-success');
+            
+            btnText.classList.add('hidden');
+            loader.style.display = 'block';
+
+            setTimeout(() => {
+                const db = getDB();
+                const newInq = {
+                    id: generateId(),
+                    name: document.getElementById('inq-name').value,
+                    email: document.getElementById('inq-email').value,
+                    phone: document.getElementById('inq-phone').value,
+                    countryId: document.getElementById('inq-country').value,
+                    message: document.getElementById('inq-msg').value,
+                    status: 'new',
+                    date: new Date().toISOString()
+                };
+                
+                db.inquiries.unshift(newInq);
+                saveDB(db);
+
+                btnText.classList.remove('hidden');
+                loader.style.display = 'none';
+                e.target.reset();
+                success.classList.remove('hidden');
+                setTimeout(() => success.classList.add('hidden'), 5000);
+                showToast('Inquiry submitted successfully!');
+            }, 800);
+        });
+
+        // --- 5. ADMIN LOGIC ---
+        
+        // Login
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pwd = document.getElementById('login-pwd').value;
+            const db = getDB();
+            
+            if (email === db.admin.email && pwd === db.admin.password) {
+                localStorage.setItem('ss_auth', 'true');
+                document.getElementById('admin-login-modal').classList.add('hidden');
+                navigate('admin');
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        });
+
+        const adminLogout = () => {
+            localStorage.removeItem('ss_auth');
+            navigate('home');
+            showToast('Logged out successfully');
+        };
+
+        let currentAdminTab = 'dashboard';
+        const switchAdminTab = (tab) => {
+            currentAdminTab = tab;
+            // UI classes
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-gray-800', 'border-primary', 'text-white');
+                btn.classList.add('hover:bg-gray-800', 'hover:text-white', 'border-transparent', 'text-gray-300');
+                if (btn.dataset.tab === tab) {
+                    btn.classList.add('bg-gray-800', 'border-primary', 'text-white');
+                    btn.classList.remove('hover:bg-gray-800', 'hover:text-white', 'border-transparent', 'text-gray-300');
+                }
+            });
+
+            // Hide all tabs
+            document.getElementById('tab-dashboard').classList.add('hidden');
+            document.getElementById('tab-inquiries').classList.add('hidden');
+            document.getElementById('generic-crud-container').classList.add('hidden');
+
+            // Show selected
+            if (tab === 'dashboard') {
+                document.getElementById('tab-dashboard').classList.remove('hidden');
+                renderAdminDashboard();
+            } else if (tab === 'inquiries') {
+                document.getElementById('tab-inquiries').classList.remove('hidden');
+                renderInquiriesTab();
+            } else {
+                document.getElementById('generic-crud-container').classList.remove('hidden');
+                renderCRUD(tab);
+            }
+        };
+
+        const renderAdminDashboard = () => {
+            const db = getDB();
+            document.getElementById('stat-inquiries').innerText = db.inquiries.length;
+            document.getElementById('stat-universities').innerText = db.universities.length;
+            document.getElementById('stat-courses').innerText = db.courses.length;
+            document.getElementById('stat-countries').innerText = db.countries.length;
+
+            const recentTbody = document.getElementById('recent-inquiries-tbody');
+            const recent = db.inquiries.slice(0, 5);
+            recentTbody.innerHTML = recent.length ? recent.map(i => {
+                const c = db.countries.find(x => x.id === i.countryId);
+                const statusColor = i.status === 'new' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700';
+                return `
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="p-4"><div class="font-medium text-dark">${i.name}</div></td>
+                    <td class="p-4 text-gray-600">${i.email}</td>
+                    <td class="p-4">${c ? c.name : '-'}</td>
+                    <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">${i.status.toUpperCase()}</span></td>
+                    <td class="p-4 text-gray-500">${new Date(i.date).toLocaleDateString()}</td>
+                </tr>
+            `}).join('') : `<tr><td colspan="5" class="p-4 text-center text-gray-500">No recent inquiries</td></tr>`;
+        };
+
+        const renderInquiriesTab = () => {
+            const db = getDB();
+            const tbody = document.getElementById('all-inquiries-tbody');
+            tbody.innerHTML = db.inquiries.map(i => {
+                const c = db.countries.find(x => x.id === i.countryId);
+                const statusColor = i.status === 'new' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700';
+                return `
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="p-4">
+                        <div class="font-medium text-dark">${i.name}</div>
+                        <div class="text-xs text-gray-500 mt-1">${new Date(i.date).toLocaleString()}</div>
+                    </td>
+                    <td class="p-4">
+                        <div class="text-sm">${i.email}</div>
+                        <div class="text-sm text-gray-500">${i.phone}</div>
+                    </td>
+                    <td class="p-4">${c ? c.name : '-'}</td>
+                    <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">${i.status.toUpperCase()}</span></td>
+                    <td class="p-4 text-right">
+                        ${i.status === 'new' ? `<button onclick="markContacted('${i.id}')" class="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3" title="Mark Contacted"><i class="fa-solid fa-check"></i></button>` : ''}
+                        <button onclick="deleteEntity('inquiries', '${i.id}')" class="text-red-500 hover:text-red-700 text-sm font-medium" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `}).join('');
+        };
+
+        window.markContacted = (id) => {
+            const db = getDB();
+            const idx = db.inquiries.findIndex(i => i.id === id);
+            if (idx > -1) {
+                db.inquiries[idx].status = 'contacted';
+                saveDB(db);
+                renderInquiriesTab();
+                showToast('Marked as contacted');
+            }
+        };
+
+        // Generic CRUD Rendering
+        const renderCRUD = (entity) => {
+            const db = getDB();
+            const thead = document.getElementById('crud-thead');
+            const tbody = document.getElementById('crud-tbody');
+            document.getElementById('crud-title').innerText = `Manage ${entity.charAt(0).toUpperCase() + entity.slice(1)}`;
+
+            let htmlHead = '';
+            let htmlBody = '';
+
+            if (entity === 'countries') {
+                htmlHead = `<tr><th class="p-4">Country</th><th class="p-4">Visa Success %</th><th class="p-4">Avg Tuition</th><th class="p-4 text-right">Actions</th></tr>`;
+                htmlBody = db.countries.map(c => `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-medium"><img src="https://flagcdn.com/w20/${c.flag}.png" class="inline mr-2 shadow-sm">${c.name}</td>
+                        <td class="p-4">${c.visaSuccess}%</td>
+                        <td class="p-4">$${c.averageTuition.toLocaleString()}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="deleteEntity('countries', '${c.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            } else if (entity === 'universities') {
+                htmlHead = `<tr><th class="p-4">Name</th><th class="p-4">Country</th><th class="p-4">Ranking</th><th class="p-4 text-right">Actions</th></tr>`;
+                htmlBody = db.universities.map(u => {
+                    const c = db.countries.find(x => x.id === u.countryId);
+                    return `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-medium">${u.name}</td>
+                        <td class="p-4">${c ? c.name : '-'}</td>
+                        <td class="p-4">#${u.ranking}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="deleteEntity('universities', '${u.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `}).join('');
+            } else if (entity === 'courses') {
+                htmlHead = `<tr><th class="p-4">Course</th><th class="p-4">University</th><th class="p-4">Duration</th><th class="p-4 text-right">Actions</th></tr>`;
+                htmlBody = db.courses.map(cs => {
+                    const u = db.universities.find(x => x.id === cs.universityId);
+                    return `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-medium">${cs.name}</td>
+                        <td class="p-4 text-sm text-gray-600">${u ? u.name : '-'}</td>
+                        <td class="p-4">${cs.duration}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="deleteEntity('courses', '${cs.id}')" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `}).join('');
+            }
+
+            thead.innerHTML = htmlHead;
+            tbody.innerHTML = htmlBody || `<tr><td colspan="4" class="p-4 text-center text-gray-500">No records found.</td></tr>`;
+        };
+
+        window.deleteEntity = (entity, id) => {
+            if(confirm('Are you sure you want to delete this?')) {
+                const db = getDB();
+                db[entity] = db[entity].filter(item => item.id !== id);
+                saveDB(db);
+                if (entity === 'inquiries') renderInquiriesTab();
+                else renderCRUD(entity);
+                showToast('Deleted successfully');
+            }
+        };
+
+        // CRUD Modal Logic (Add)
+        window.openCrudModal = () => {
+            const container = document.getElementById('crud-dynamic-fields');
+            const entity = currentAdminTab;
+            document.getElementById('crud-modal-title').innerText = `Add New ${entity.slice(0,-1).toUpperCase()}`;
+            const db = getDB();
+            
+            let fields = '';
+            if (entity === 'countries') {
+                fields = `
+                    <div><label class="block text-sm font-medium mb-1">Name</label><input type="text" id="add-c-name" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Flag Code (e.g., in, ca, gb)</label><input type="text" id="add-c-flag" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Visa Success %</label><input type="number" id="add-c-visa" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Avg Tuition ($)</label><input type="number" id="add-c-tuition" required class="w-full px-3 py-2 border rounded-lg"></div>
+                `;
+            } else if (entity === 'universities') {
+                const cOpts = db.countries.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+                fields = `
+                    <div><label class="block text-sm font-medium mb-1">Name</label><input type="text" id="add-u-name" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Country</label><select id="add-u-country" required class="w-full px-3 py-2 border rounded-lg bg-white">${cOpts}</select></div>
+                    <div><label class="block text-sm font-medium mb-1">Ranking</label><input type="number" id="add-u-rank" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Tuition Fee ($)</label><input type="number" id="add-u-tuition" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Image URL</label><input type="url" id="add-u-img" required class="w-full px-3 py-2 border rounded-lg" value="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&q=80"></div>
+                `;
+            } else if (entity === 'courses') {
+                const uOpts = db.universities.map(u => `<option value="${u.id}">${u.name}</option>`).join('');
+                fields = `
+                    <div><label class="block text-sm font-medium mb-1">Course Name</label><input type="text" id="add-cs-name" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">University</label><select id="add-cs-uni" required class="w-full px-3 py-2 border rounded-lg bg-white">${uOpts}</select></div>
+                    <div><label class="block text-sm font-medium mb-1">Duration</label><input type="text" id="add-cs-dur" placeholder="e.g. 2 years" required class="w-full px-3 py-2 border rounded-lg"></div>
+                    <div><label class="block text-sm font-medium mb-1">Tuition Fee ($)</label><input type="number" id="add-cs-tuition" required class="w-full px-3 py-2 border rounded-lg"></div>
+                `;
+            }
+
+            container.innerHTML = fields;
+            document.getElementById('crud-modal').classList.remove('hidden');
+            document.getElementById('crud-modal').classList.add('flex');
+        };
+
+        window.closeCrudModal = () => {
+            document.getElementById('crud-modal').classList.add('hidden');
+            document.getElementById('crud-form').reset();
+        };
+
+        document.getElementById('crud-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const db = getDB();
+            const entity = currentAdminTab;
+            
+            if (entity === 'countries') {
+                db.countries.push({
+                    id: generateId(),
+                    name: document.getElementById('add-c-name').value,
+                    flag: document.getElementById('add-c-flag').value,
+                    visaSuccess: parseInt(document.getElementById('add-c-visa').value),
+                    averageTuition: parseInt(document.getElementById('add-c-tuition').value)
+                });
+            } else if (entity === 'universities') {
+                db.universities.push({
+                    id: generateId(),
+                    name: document.getElementById('add-u-name').value,
+                    countryId: document.getElementById('add-u-country').value,
+                    ranking: parseInt(document.getElementById('add-u-rank').value),
+                    tuitionFee: parseInt(document.getElementById('add-u-tuition').value),
+                    image: document.getElementById('add-u-img').value
+                });
+            } else if (entity === 'courses') {
+                db.courses.push({
+                    id: generateId(),
+                    name: document.getElementById('add-cs-name').value,
+                    universityId: document.getElementById('add-cs-uni').value,
+                    duration: document.getElementById('add-cs-dur').value,
+                    tuitionFee: parseInt(document.getElementById('add-cs-tuition').value)
+                });
+            }
+
+            saveDB(db);
+            closeCrudModal();
+            renderCRUD(entity);
+            showToast('Added successfully');
+        });
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPublicView();
+        });
+
+    </script>
 </body>
 </html>
