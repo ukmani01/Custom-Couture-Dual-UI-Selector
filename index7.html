@@ -92,20 +92,6 @@
             outline: 3px solid #1a3a6b;
             outline-offset: 2px;
         }
-        .btn-primary .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.35);
-            transform: scale(0);
-            animation: rippleAnim 0.6s ease-out;
-            pointer-events: none;
-        }
-        @keyframes rippleAnim {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
         .btn-secondary {
             background: transparent;
             color: #1a3a6b;
@@ -125,10 +111,6 @@
             background: #f0f4fb;
             border-color: #b0c4dd;
             transform: translateY(-2px);
-        }
-        .btn-secondary:focus-visible {
-            outline: 3px solid #1a3a6b;
-            outline-offset: 2px;
         }
         .btn-gold {
             background: linear-gradient(135deg, #f5c542, #e0b03a);
@@ -393,6 +375,105 @@
         .hero-actions .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.22);
             border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ===== FLIGHT MAP CONTAINER ===== */
+        .flight-map-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 16/10;
+            max-width: 520px;
+            margin: 0 auto;
+            background: #0a1628;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .flight-map-wrapper .map-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            mix-blend-mode: screen;
+        }
+        .flight-map-wrapper .map-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(10, 22, 40, 0.2) 0%, rgba(10, 22, 40, 0.6) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .flight-map-wrapper canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: block;
+        }
+        /* City labels on the map */
+        .city-label {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.55rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            pointer-events: none;
+            z-index: 3;
+            text-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+            white-space: nowrap;
+        }
+        .city-label .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 4px;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+        .city-label .dot.gold {
+            background: #f5c542;
+            box-shadow: 0 0 12px rgba(245, 197, 66, 0.5);
+        }
+        .city-label .dot.blue {
+            background: #4a9eff;
+            box-shadow: 0 0 12px rgba(74, 158, 255, 0.4);
+        }
+        .city-label .dot.green {
+            background: #34d399;
+            box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+        }
+        .city-label .dot.purple {
+            background: #a78bfa;
+            box-shadow: 0 0 12px rgba(167, 139, 250, 0.4);
+        }
+        .city-label .dot.orange {
+            background: #fb923c;
+            box-shadow: 0 0 12px rgba(251, 146, 60, 0.4);
+        }
+        .city-label .dot.cyan {
+            background: #22d3ee;
+            box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+        }
+        .city-label .dot.pink {
+            background: #f472b6;
+            box-shadow: 0 0 12px rgba(244, 114, 182, 0.4);
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.6);
+                opacity: 0.7;
+            }
         }
 
         /* ===== SECTION COMMON ===== */
@@ -917,6 +998,10 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 32px;
             }
+            .flight-map-wrapper {
+                max-width: 100%;
+                aspect-ratio: 16/9;
+            }
         }
         @media (max-width: 768px) {
             nav {
@@ -976,6 +1061,16 @@
             .container {
                 padding: 0 16px;
             }
+            .flight-map-wrapper {
+                aspect-ratio: 4/3;
+            }
+            .city-label {
+                font-size: 0.45rem;
+            }
+            .city-label .dot {
+                width: 4px;
+                height: 4px;
+            }
         }
         @media (max-width: 480px) {
             .hero-title {
@@ -1007,6 +1102,12 @@
             .testimonial-card .author {
                 flex-direction: column;
                 text-align: center;
+            }
+            .flight-map-wrapper {
+                aspect-ratio: 1/1;
+            }
+            .city-label {
+                font-size: 0.4rem;
             }
         }
 
@@ -1328,11 +1429,13 @@
                             <div class="stat-item"><span class="stat-number" data-count="50">0</span><span class="stat-label">+ Partner Universities</span></div>
                         </div>
                     </div>
-                    <div style="display:flex;justify-content:center;align-items:center;">
-                        <div style="border-radius:24px;overflow:hidden;box-shadow:0 32px 64px rgba(0,0,0,0.2);width:100%;max-width:440px;aspect-ratio:4/3;background:linear-gradient(135deg,#1a3a6b,#2a5f8f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;padding:32px;text-align:center;flex-direction:column;gap:8px;">
-                            <span style="font-size:4rem;">🌍</span>
-                            <span style="font-weight:600;font-size:1.4rem;">Study Anywhere</span>
-                            <span style="opacity:0.7;font-size:0.95rem;">Your future starts here</span>
+                    <!-- ===== FLIGHT MAP ===== -->
+                    <div>
+                        <div class="flight-map-wrapper" id="flightMap">
+                            <img src="https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=800&h=500&fit=crop&q=80" alt="World Map" class="map-bg" loading="lazy" />
+                            <div class="map-overlay"></div>
+                            <canvas id="flightCanvas"></canvas>
+                            <!-- City labels rendered via JS -->
                         </div>
                     </div>
                 </div>
@@ -1818,6 +1921,255 @@
     <!-- ============================================================ -->
     <script>
         // ================================================================
+        // FLIGHT MAP — ANIMATED ROUTES
+        // ================================================================
+
+        (function initFlightMap() {
+            const canvas = document.getElementById('flightCanvas');
+            const wrapper = document.getElementById('flightMap');
+            if (!canvas || !wrapper) return;
+
+            let ctx = canvas.getContext('2d');
+            let W, H;
+            let animId = null;
+
+            // Cities: [name, x%, y%, color]
+            const cities = [
+                ['Toronto', 0.18, 0.38, '#f5c542'],
+                ['New York', 0.22, 0.42, '#4a9eff'],
+                ['London', 0.42, 0.32, '#f5c542'],
+                ['Paris', 0.44, 0.35, '#a78bfa'],
+                ['Berlin', 0.48, 0.30, '#34d399'],
+                ['Dubai', 0.62, 0.45, '#fb923c'],
+                ['Singapore', 0.78, 0.55, '#22d3ee'],
+                ['Sydney', 0.88, 0.72, '#f472b6'],
+                ['Vancouver', 0.12, 0.35, '#34d399'],
+                ['Tokyo', 0.80, 0.40, '#f472b6'],
+                ['Mumbai', 0.68, 0.48, '#fb923c'],
+                ['Cape Town', 0.54, 0.72, '#a78bfa'],
+            ];
+
+            // Routes: [fromIndex, toIndex, color]
+            const routes = [
+                [0, 2, '#f5c542'],
+                [1, 2, '#4a9eff'],
+                [8, 7, '#34d399'],
+                [2, 4, '#a78bfa'],
+                [4, 10, '#fb923c'],
+                [10, 5, '#22d3ee'],
+                [5, 6, '#fb923c'],
+                [6, 7, '#f472b6'],
+                [9, 8, '#f472b6'],
+                [3, 2, '#a78bfa'],
+                [10, 2, '#fb923c'],
+                [11, 4, '#a78bfa'],
+            ];
+
+            // Animated dots on each route
+            let dots = routes.map(() => ({
+                t: Math.random(),
+                speed: 0.002 + Math.random() * 0.003,
+            }));
+
+            function resize() {
+                const rect = wrapper.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                W = rect.width;
+                H = rect.height;
+                canvas.width = W * dpr;
+                canvas.height = H * dpr;
+                canvas.style.width = W + 'px';
+                canvas.style.height = H + 'px';
+                ctx.scale(dpr, dpr);
+                draw();
+            }
+
+            function getCityPos(idx) {
+                const c = cities[idx];
+                return { x: c[1] * W, y: c[2] * H };
+            }
+
+            function bezier(p0, p1, p2, p3, t) {
+                const x = Math.pow(1 - t, 3) * p0.x + 3 * Math.pow(1 - t, 2) * t * p1.x + 3 * (1 - t) * Math.pow(t, 2) * p2.x +
+                    Math.pow(t, 3) * p3.x;
+                const y = Math.pow(1 - t, 3) * p0.y + 3 * Math.pow(1 - t, 2) * t * p1.y + 3 * (1 - t) * Math.pow(t, 2) * p2.y +
+                    Math.pow(t, 3) * p3.y;
+                return { x, y };
+            }
+
+            function drawRoute(routeIdx, t) {
+                const r = routes[routeIdx];
+                const from = getCityPos(r[0]);
+                const to = getCityPos(r[1]);
+                const midX = (from.x + to.x) / 2;
+                const midY = (from.y + to.y) / 2 - 40 - Math.random() * 20;
+                const cp1 = { x: (from.x + midX) / 2, y: (from.y + midY) / 2 - 20 };
+                const cp2 = { x: (to.x + midX) / 2, y: (to.y + midY) / 2 - 20 };
+
+                const color = r[2] || '#f5c542';
+
+                // Draw path (glow line)
+                ctx.beginPath();
+                ctx.moveTo(from.x, from.y);
+                ctx.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y, to.x, to.y);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 12;
+                ctx.globalAlpha = 0.5;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+
+                // Draw dashed trail
+                ctx.beginPath();
+                ctx.moveTo(from.x, from.y);
+                ctx.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y, to.x, to.y);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.2;
+                ctx.globalAlpha = 0.25;
+                ctx.setLineDash([4, 8]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.globalAlpha = 1;
+
+                // Draw the dot (plane) along the path
+                const pos = bezier(from, cp1, cp2, to, t);
+                const size = 5 + Math.sin(t * Math.PI * 6) * 1.5;
+
+                // Glow
+                const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, 18);
+                grad.addColorStop(0, color + '90');
+                grad.addColorStop(1, color + '00');
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // Core dot
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, size, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 20;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Inner white highlight
+                ctx.beginPath();
+                ctx.arc(pos.x - size * 0.2, pos.y - size * 0.2, size * 0.35, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                ctx.fill();
+
+                return pos;
+            }
+
+            function drawCityLabels() {
+                // Render city labels as HTML overlays
+                const existing = wrapper.querySelectorAll('.city-label');
+                existing.forEach(el => el.remove());
+
+                cities.forEach((c, idx) => {
+                    const el = document.createElement('span');
+                    el.className = 'city-label';
+                    const dotColor = c[3] || '#f5c542';
+                    el.innerHTML =
+                        `<span class="dot" style="background:${dotColor};box-shadow:0 0 12px ${dotColor}80;"></span> ${c[0]}`;
+                    el.style.left = (c[1] * 100 - 3) + '%';
+                    el.style.top = (c[2] * 100 - 2) + '%';
+                    el.style.transform = 'translate(-50%, -50%)';
+                    wrapper.appendChild(el);
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                // Draw all routes
+                routes.forEach((r, idx) => {
+                    const dot = dots[idx];
+                    drawRoute(idx, dot.t);
+                    dot.t += dot.speed;
+                    if (dot.t > 1) dot.t = 0;
+                });
+
+                // Draw city markers (pulsing)
+                cities.forEach((c) => {
+                    const pos = getCityPos(cities.indexOf(c));
+                    const color = c[3] || '#f5c542';
+
+                    // Outer pulse ring
+                    const pulse = 0.5 + 0.5 * Math.sin(Date.now() / 1200 + cities.indexOf(c) * 0.8);
+                    const radius = 8 + pulse * 10;
+                    ctx.beginPath();
+                    ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = color + '25';
+                    ctx.strokeStyle = color + '60';
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                    ctx.fill();
+
+                    // Core
+                    ctx.beginPath();
+                    ctx.arc(pos.x, pos.y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = color;
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 16;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+
+                    // Inner highlight
+                    ctx.beginPath();
+                    ctx.arc(pos.x - 1.5, pos.y - 1.5, 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                    ctx.fill();
+                });
+
+                animId = requestAnimationFrame(draw);
+            }
+
+            function init() {
+                resize();
+                drawCityLabels();
+                window.addEventListener('resize', () => {
+                    resize();
+                    drawCityLabels();
+                });
+                // Redraw city labels on scroll
+                const ro = new ResizeObserver(() => { drawCityLabels(); });
+                ro.observe(wrapper);
+            }
+
+            // Start when visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!animId) {
+                            resize();
+                            drawCityLabels();
+                            draw();
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(wrapper);
+
+            // Also start immediately if visible
+            if (wrapper.getBoundingClientRect().top < window.innerHeight) {
+                setTimeout(() => {
+                    resize();
+                    drawCityLabels();
+                    draw();
+                }, 200);
+            }
+
+            // Cleanup
+            window._flightMapCleanup = function() {
+                if (animId) cancelAnimationFrame(animId);
+                animId = null;
+            };
+        })();
+
+        // ================================================================
         // DATA LAYER (LocalStorage)
         // ================================================================
 
@@ -1897,7 +2249,6 @@
                 const raw = localStorage.getItem(DB_KEY);
                 if (!raw) return getDefaultData();
                 const data = JSON.parse(raw);
-                // Ensure all collections exist
                 if (!data.countries) data.countries = getDefaultData().countries;
                 if (!data.universities) data.universities = getDefaultData().universities;
                 if (!data.courses) data.courses = getDefaultData().courses;
@@ -1951,12 +2302,6 @@
             return u ? u.name : id;
         }
 
-        function getFlag(id) {
-            const db = getDB();
-            const c = db.countries.find(x => x.id === id);
-            return c ? c.flag : 'xx';
-        }
-
         // ================================================================
         // NAVIGATION
         // ================================================================
@@ -1988,29 +2333,22 @@
                 navigateTo('admin-dashboard');
                 return;
             }
-            // Hide all pages
             document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
             const target = document.getElementById(pageMap[page]);
             if (target) target.classList.add('active');
             currentPage = page;
-            // Update nav links
             document.querySelectorAll('.nav-links a, .mobile-drawer a').forEach(el => {
                 const p = el.dataset.page;
                 if (p) {
                     el.classList.toggle('active', p === page);
                 }
             });
-            // Close mobile drawer
             closeDrawer();
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Trigger animations
             setTimeout(triggerAnimations, 300);
-            // Render page content
             renderPage(page);
         }
 
-        // Navigation click handlers
         document.querySelectorAll('[data-page]').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2019,7 +2357,6 @@
             });
         });
 
-        // Mobile toggle
         const mobileToggle = document.getElementById('mobileToggle');
         const mobileDrawer = document.getElementById('mobileDrawer');
         const mobileOverlay = document.getElementById('mobileOverlay');
@@ -2046,11 +2383,9 @@
         mobileOverlay.addEventListener('click', closeDrawer);
         closeDrawerBtn.addEventListener('click', closeDrawer);
 
-        // Nav scroll shadow
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
             nav.classList.toggle('scrolled', window.scrollY > 20);
-            // Back to top
             const backTop = document.getElementById('backTop');
             const progress = document.getElementById('progressCircle');
             const scrollTop = window.scrollY;
@@ -2160,7 +2495,6 @@
             </div>
           `).join('');
 
-            // Comparison table
             const comp = document.getElementById('countryComparison');
             comp.innerHTML = `
             <table>
@@ -2183,7 +2517,6 @@
             const search = document.getElementById('uniSearch')?.value?.toLowerCase() || '';
             const countryFilter = document.getElementById('countryFilterUni')?.value || '';
 
-            // Populate country filter
             const filterEl = document.getElementById('countryFilterUni');
             if (filterEl && filterEl.options.length <= 1) {
                 filterEl.innerHTML = '<option value="">All Countries</option>' +
@@ -2268,7 +2601,6 @@
             const item = btn.closest('.faq-item');
             if (!item) return;
             const isOpen = item.classList.contains('open');
-            // Close all siblings
             const parent = item.parentElement;
             if (parent) {
                 parent.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
@@ -2302,7 +2634,6 @@
             saveDB(db);
             toast('✅ Inquiry submitted successfully! We\'ll contact you within 24 hours.', 'success');
             this.reset();
-            // Confetti
             launchConfetti();
         });
 
@@ -2359,7 +2690,6 @@
             renderAdminTestimonials();
         }
 
-        // Admin Tabs
         document.querySelectorAll('#adminTabs button').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('#adminTabs button').forEach(b => b.classList.remove('active'));
@@ -2677,7 +3007,7 @@
         // ================================================================
 
         function renderStudentDashboard() {
-            // Static for now — shows placeholder data
+            // Static placeholder
         }
 
         // ================================================================
@@ -2685,19 +3015,16 @@
         // ================================================================
 
         function triggerAnimations() {
-            // Stagger children
             document.querySelectorAll('.stagger-children').forEach(el => {
                 if (!el.classList.contains('visible')) {
                     el.classList.add('visible');
                 }
             });
-            // Animate on scroll
             document.querySelectorAll('.animate-on-scroll').forEach(el => {
                 if (isInViewport(el) && !el.classList.contains('visible')) {
                     el.classList.add('visible');
                 }
             });
-            // Counters
             animateCounters();
         }
 
@@ -2706,12 +3033,10 @@
             return rect.top < window.innerHeight - 60 && rect.bottom > 0;
         }
 
-        // IntersectionObserver for scroll animations
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Counters inside
                     entry.target.querySelectorAll('.stat-number[data-count]').forEach(el => {
                         const target = parseInt(el.dataset.count);
                         if (target && !el._counted) {
@@ -2726,8 +3051,6 @@
         document.querySelectorAll('.animate-on-scroll, .stagger-children').forEach(el => {
             obs.observe(el);
         });
-
-        // Also observe stat boxes
         document.querySelectorAll('.stat-box .num[data-count]').forEach(el => {
             const parent = el.closest('.stat-box');
             if (parent) obs.observe(parent);
@@ -2762,7 +3085,6 @@
             function update(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                // Ease out cubic
                 const eased = 1 - Math.pow(1 - progress, 3);
                 const current = start + (target - start) * eased;
                 el.textContent = isFloat ? current.toFixed(1) : Math.floor(current);
@@ -2800,7 +3122,7 @@
         }
 
         // ================================================================
-        // KEYBOARD NAVIGATION (accessibility)
+        // KEYBOARD NAVIGATION
         // ================================================================
 
         document.addEventListener('keydown', (e) => {
@@ -2813,16 +3135,10 @@
         // INIT
         // ================================================================
 
-        // Ensure DB exists
         getDB();
-
-        // Navigate to home
         navigateTo('home');
-
-        // Trigger animations after load
         setTimeout(triggerAnimations, 500);
 
-        // Re-trigger on scroll
         window.addEventListener('scroll', () => {
             document.querySelectorAll('.animate-on-scroll:not(.visible)').forEach(el => {
                 if (isInViewport(el)) el.classList.add('visible');
@@ -2831,10 +3147,6 @@
                 if (isInViewport(el)) el.classList.add('visible');
             });
         });
-
-        // ================================================================
-        // RESPONSIVE: Close drawer on resize to desktop
-        // ================================================================
 
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768 && mobileDrawer.classList.contains('open')) {
