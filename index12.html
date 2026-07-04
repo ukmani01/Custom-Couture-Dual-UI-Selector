@@ -1,427 +1,852 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>APEX MARKET — Enterprise Commerce Suite</title>
-  <!-- SYSTEM_ID: LUX_005 | DESIGN_LANGUAGE: Enterprise SaaS Marketplace (original high-performance system) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <style>
-    /* ---------- ORIGINAL ENTERPRISE DESIGN SYSTEM (NO AMAZON CLONING) ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #F5F7FC;
-      color: #1A202C;
-      scroll-behavior: smooth;
-    }
-    /* enterprise-grade scroll */
-    ::-webkit-scrollbar { width: 6px; height: 6px; background: #E9ECF2; }
-    ::-webkit-scrollbar-thumb { background: #2B6CB0; border-radius: 4px; }
-    /* custom card hover (elevation) */
-    .product-card-enterprise {
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #EFF2F9;
-    }
-    .product-card-enterprise:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px -8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.02);
-    }
-    /* filter chips (pill) – original interaction */
-    .filter-chip-ent {
-      background: white;
-      border: 1px solid #E2E8F0;
-      padding: 0.45rem 1.2rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      border-radius: 40px;
-      transition: all 0.2s;
-      cursor: pointer;
-      color: #4A5568;
-    }
-    .filter-chip-ent.active {
-      background: #2B6CB0;
-      border-color: #2B6CB0;
-      color: white;
-    }
-    /* smart search bar */
-    .search-enterprise {
-      transition: all 0.2s;
-      border: 1px solid #E2E8F0;
-    }
-    .search-enterprise:focus {
-      border-color: #2B6CB0;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(43,108,176,0.1);
-    }
-    /* conversion buttons */
-    .btn-primary-ent {
-      background: #1A202C;
-      color: white;
-      padding: 0.7rem 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      transition: background 0.2s;
-    }
-    .btn-primary-ent:hover { background: #2B6CB0; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobalPath — Study Abroad Consultants</title>
+<style>
+  :root{
+    --primary:#1857f5;
+    --primary-dark:#0f3fcf;
+    --primary-light:#eaf0ff;
+    --navy:#0c1638;
+    --navy-2:#111d45;
+    --text-dark:#111827;
+    --text-gray:#6b7280;
+    --text-light:#9aa3b5;
+    --bg-light:#f7f8fb;
+    --border:#e7e9f0;
+    --orange:#f59e0b;
+    --white:#ffffff;
+    --radius-s:8px;
+    --radius-m:14px;
+    --radius-l:22px;
+    --shadow-s:0 2px 8px rgba(17,24,39,0.06);
+    --shadow-m:0 8px 24px rgba(17,24,39,0.08);
+    --shadow-l:0 20px 50px rgba(17,24,39,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text-dark);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+
+  .container{max-width:1240px;margin:0 auto;padding:0 32px;}
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 26px;border-radius:10px;font-size:14.5px;font-weight:600;
+    border:1px solid transparent; transition:all .2s ease; white-space:nowrap;
+  }
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 6px 16px rgba(24,87,245,0.25);}
+  .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 10px 22px rgba(24,87,245,0.32);}
+  .btn-outline{background:#fff;color:var(--primary);border-color:var(--primary);}
+  .btn-outline:hover{background:var(--primary-light);transform:translateY(-2px);}
+  .btn-outline-white{background:transparent;color:#fff;border-color:rgba(255,255,255,0.6);}
+  .btn-outline-white:hover{background:rgba(255,255,255,0.12);}
+  .btn-sm{padding:9px 18px;font-size:13.5px;border-radius:8px;}
+  .btn-block{width:100%;}
+
+  /* ===== Header ===== */
+  header.site-header{
+    position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);
+  }
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;height:78px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--text-dark);}
+  .logo-icon{
+    width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--primary),#4d7dff);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0;
+  }
+  .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+  .logo-sub{font-size:10.5px;font-weight:500;color:var(--text-gray);letter-spacing:.2px;}
+  nav.main-nav{display:flex;align-items:center;gap:36px;}
+  nav.main-nav a{font-size:14.5px;font-weight:500;color:#374151;position:relative;padding:6px 0;transition:color .2s;}
+  nav.main-nav a:hover{color:var(--primary);}
+  nav.main-nav a.active{color:var(--primary);font-weight:600;}
+  nav.main-nav a.active::after{
+    content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--primary);border-radius:2px;
+  }
+  .header-actions{display:flex;align-items:center;gap:18px;}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px;}
+  .hamburger span{width:24px;height:2px;background:var(--text-dark);border-radius:2px;}
+  .mobile-nav{display:none;flex-direction:column;gap:2px;padding:10px 32px 20px;border-top:1px solid var(--border);}
+  .mobile-nav a{padding:12px 0;font-size:15px;font-weight:500;color:#374151;border-bottom:1px solid #f1f2f6;}
+  .mobile-nav.open{display:flex;}
+
+  .breadcrumb{font-size:13px;color:var(--text-gray);padding:22px 0 0;}
+  .breadcrumb span{color:var(--primary);font-weight:600;}
+
+  /* ===== Hero ===== */
+  .hero{padding:56px 0 40px;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .eyebrow{color:var(--primary);font-weight:700;font-size:14.5px;margin-bottom:14px;}
+  .hero h1{font-size:46px;line-height:1.15;font-weight:800;margin:0 0 18px;color:var(--text-dark);}
+  .hero p{font-size:16px;color:var(--text-gray);line-height:1.6;margin:0 0 30px;max-width:460px;}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-img-wrap{border-radius:var(--radius-l);overflow:hidden;box-shadow:var(--shadow-l);}
+  .hero-img-wrap img{width:100%;height:400px;object-fit:cover;}
+
+  /* ===== Stats ===== */
+  .stats-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius-m);
+    box-shadow:var(--shadow-s); padding:28px 20px; margin-top:44px;
+  }
+  .stat-item{display:flex;align-items:center;gap:14px;}
+  .stat-icon{
+    width:46px;height:46px;border-radius:11px;background:var(--primary-light);color:var(--primary);
+    display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+  }
+  .stat-num{font-size:23px;font-weight:800;color:var(--text-dark);line-height:1.2;}
+  .stat-label{font-size:13px;color:var(--text-gray);}
+
+  /* ===== Sections generic ===== */
+  section{padding:64px 0;}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px;flex-wrap:wrap;gap:14px;}
+  .section-head h2{font-size:28px;font-weight:800;margin:0;color:var(--text-dark);}
+  .section-head p{color:var(--text-gray);font-size:14.5px;margin:6px 0 0;}
+  .view-all{color:var(--primary);font-weight:600;font-size:14px;}
+
+  /* ===== Uni logos ===== */
+  .logo-row{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+  .logo-card{
+    border:1px solid var(--border);border-radius:var(--radius-m);padding:26px 10px;
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#374151;font-size:15px;
+    transition:all .25s ease;background:#fff;
+  }
+  .logo-card:hover{box-shadow:var(--shadow-m);transform:translateY(-3px);border-color:var(--primary);}
+
+  /* ===== Services ===== */
+  .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+  .service-card{
+    border:1px solid var(--border);border-radius:var(--radius-m);padding:26px 20px;background:#fff;
+    transition:all .25s ease;
+  }
+  .service-card:hover{box-shadow:var(--shadow-m);transform:translateY(-4px);border-color:var(--primary);}
+  .service-icon{
+    width:46px;height:46px;border-radius:11px;background:var(--primary-light);color:var(--primary);
+    display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;
+  }
+  .service-card h3{font-size:15.5px;margin:0 0 6px;font-weight:700;}
+  .service-card p{font-size:13px;color:var(--text-gray);margin:0;line-height:1.5;}
+
+  /* ===== Journey steps ===== */
+  .journey-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;}
+  .journey-step{text-align:left;position:relative;}
+  .step-num{
+    width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin-bottom:14px;
+  }
+  .journey-step h4{font-size:15px;margin:0 0 6px;font-weight:700;}
+  .journey-step p{font-size:13px;color:var(--text-gray);margin:0;line-height:1.5;}
+
+  /* ===== Testimonials ===== */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .testi-card{border:1px solid var(--border);border-radius:var(--radius-m);padding:26px;background:#fff;}
+  .testi-stars{color:var(--orange);font-size:14px;margin-bottom:14px;}
+  .testi-card p.quote{font-size:14px;color:#374151;line-height:1.6;margin:0 0 20px;}
+  .testi-person{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#ddd;}
+  .testi-name{font-weight:700;font-size:14px;}
+  .testi-role{font-size:12px;color:var(--text-gray);}
+
+  /* ===== CTA banner ===== */
+  .cta-banner{
+    background:linear-gradient(120deg,var(--primary-dark),var(--primary));
+    border-radius:var(--radius-l); padding:48px; display:flex; align-items:center; justify-content:space-between;
+    color:#fff; overflow:hidden; position:relative; gap:24px; flex-wrap:wrap;
+  }
+  .cta-banner h2{font-size:28px;margin:0 0 10px;font-weight:800;}
+  .cta-banner p{margin:0 0 22px;opacity:.9;font-size:14.5px;max-width:420px;}
+  .cta-img{width:280px;height:170px;border-radius:var(--radius-m);object-fit:cover;box-shadow:var(--shadow-l);}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy);color:#c7cbe0;padding:60px 0 0;margin-top:0;}
+  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.2fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .footer-grid h4{color:#fff;font-size:14.5px;margin:0 0 18px;font-weight:700;}
+  .footer-grid p{font-size:13px;line-height:1.7;color:#9ba1c0;}
+  .footer-grid li{font-size:13.5px;margin-bottom:11px;color:#b6bad4;}
+  .footer-grid li a:hover{color:#fff;}
+  .footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;}
+  .socials{display:flex;gap:10px;margin-top:16px;}
+  .socials a{
+    width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;
+    justify-content:center;font-size:13px;color:#fff;transition:.2s;
+  }
+  .socials a:hover{background:var(--primary);}
+  .footer-bottom{display:flex;justify-content:space-between;padding:22px 0;font-size:12.5px;color:#8489a8;flex-wrap:wrap;gap:10px;}
+  .footer-bottom a{margin-left:18px;color:#8489a8;}
+  .footer-bottom a:hover{color:#fff;}
+
+  /* ===== Universities Page ===== */
+  .page-title{font-size:30px;font-weight:800;margin:6px 0 26px;}
+  .filters-bar{
+    display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--border);
+    border-radius:var(--radius-m);padding:14px 18px;margin-bottom:30px;flex-wrap:wrap;box-shadow:var(--shadow-s);
+  }
+  .filters-bar input[type="text"]{
+    flex:1;min-width:200px;border:none;outline:none;font-size:14px;padding:8px 4px;
+  }
+  .filters-bar select{
+    border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13.5px;color:#374151;background:#fff;
+  }
+  .filters-bar .clear-all{color:var(--primary);font-weight:600;font-size:13.5px;white-space:nowrap;}
+
+  .uni-count{font-size:13.5px;color:var(--text-gray);margin-bottom:18px;}
+  .uni-list{display:flex;flex-direction:column;gap:16px;}
+  .uni-card{
+    display:flex;gap:20px;align-items:center;border:1px solid var(--border);border-radius:var(--radius-m);
+    padding:16px;background:#fff;transition:all .2s ease;
+  }
+  .uni-card:hover{box-shadow:var(--shadow-m);border-color:#d7ddf5;transform:translateY(-2px);}
+  .uni-img{width:130px;height:90px;border-radius:10px;object-fit:cover;flex-shrink:0;}
+  .uni-info{flex:1;min-width:0;}
+  .uni-name{font-size:16.5px;font-weight:700;margin:0 0 4px;}
+  .uni-loc{font-size:13px;color:var(--text-gray);margin:0 0 8px;}
+  .uni-badges{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .badge-rank{font-size:12px;font-weight:700;color:var(--primary);}
+  .badge-scholarship{
+    font-size:11.5px;font-weight:600;color:var(--orange);background:#fff7e6;padding:3px 9px;border-radius:20px;
+  }
+  .uni-price{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+  .uni-tuition{font-weight:800;font-size:16px;}
+  .uni-tuition-label{font-size:11px;color:var(--text-gray);font-weight:400;}
+  .heart-btn{
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:#fff;
+    display:flex;align-items:center;justify-content:center;color:#9aa3b5;transition:.2s;flex-shrink:0;
+  }
+  .heart-btn:hover{color:#ef4444;border-color:#ef4444;}
+  .heart-btn.active{color:#ef4444;border-color:#ef4444;}
+  .uni-top-row{display:flex;justify-content:space-between;gap:16px;}
+
+  /* ===== Countries Page ===== */
+  .countries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+  .country-card{border-radius:var(--radius-m);overflow:hidden;position:relative;box-shadow:var(--shadow-s);transition:.3s;cursor:pointer;}
+  .country-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-l);}
+  .country-card img{height:220px;width:100%;object-fit:cover;}
+  .country-overlay{
+    position:absolute;bottom:0;left:0;right:0;padding:16px;
+    background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);color:#fff;
+    display:flex;align-items:center;gap:8px;
+  }
+  .flag-dot{width:20px;height:20px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,.5);}
+  .flag-dot img{width:100%;height:100%;object-fit:cover;}
+  .country-name{font-weight:700;font-size:15px;}
+
+  /* ===== Contact Page ===== */
+  .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:start;}
+  .contact-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-m);padding:30px;box-shadow:var(--shadow-s);}
+  .contact-card h3{margin:0 0 20px;font-size:18px;font-weight:800;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;}
+  .form-group label{font-size:13px;font-weight:600;color:#374151;}
+  .form-group input,.form-group select,.form-group textarea{
+    border:1px solid var(--border);border-radius:9px;padding:11px 13px;font-size:14px;outline:none;transition:.2s;
+    background:var(--bg-light);
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);background:#fff;}
+  .form-group textarea{resize:vertical;min-height:90px;}
+
+  .office-item{display:flex;gap:12px;margin-bottom:22px;}
+  .office-icon{
+    width:38px;height:38px;border-radius:9px;background:var(--primary-light);color:var(--primary);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;
+  }
+  .office-item h5{margin:0 0 4px;font-size:14.5px;font-weight:700;}
+  .office-item p{margin:0;font-size:13px;color:var(--text-gray);line-height:1.5;}
+
+  .map-box{
+    margin-top:26px;border-radius:var(--radius-m);overflow:hidden;height:260px;border:1px solid var(--border);
+    background:linear-gradient(135deg,#e9edfb,#f4f6fd);display:flex;align-items:center;justify-content:center;color:var(--text-gray);font-size:13px;position:relative;
+  }
+  .map-pin{
+    width:34px;height:34px;border-radius:50% 50% 50% 0;background:#ef4444;transform:rotate(-45deg);
+    position:absolute;top:44%;left:52%;box-shadow:0 4px 10px rgba(0,0,0,.25);
+  }
+
+  .faq-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px;}
+  .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:#fff;}
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;padding:16px 18px;cursor:pointer;font-weight:600;font-size:14.5px;
+  }
+  .faq-q .plus{font-size:18px;color:var(--primary);transition:transform .25s;flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 18px;}
+  .faq-item.open .faq-a{max-height:200px;padding:0 18px 16px;}
+  .faq-a p{margin:0;font-size:13.5px;color:var(--text-gray);line-height:1.6;}
+
+  .book-panel{
+    border-radius:var(--radius-m);overflow:hidden;position:relative;min-height:280px;
+    background:linear-gradient(120deg,var(--primary-dark),var(--primary));color:#fff;padding:30px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+  }
+  .book-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;}
+  .book-panel .content{position:relative;z-index:2;}
+  .book-panel h3{font-size:20px;margin:0 0 8px;font-weight:800;}
+  .book-panel p{font-size:13.5px;margin:0 0 18px;opacity:.9;max-width:320px;}
+
+  /* ===== Page switching ===== */
+  .page{display:none;}
+  .page.active{display:block;animation:fadein .4s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ===== Reveal on scroll ===== */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
+
+  /* ===== Responsive ===== */
+  @media (max-width:1100px){
+    .services-grid,.journey-grid{grid-template-columns:repeat(3,1fr);}
+    .countries-grid{grid-template-columns:repeat(3,1fr);}
+    .logo-row{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (max-width:900px){
+    nav.main-nav{display:none;}
+    .hamburger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-img-wrap img{height:280px;}
+    .stats-bar{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .faq-cta-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:repeat(2,1fr);}
+    .uni-card{flex-wrap:wrap;}
+    .uni-price{width:100%;flex-direction:row;justify-content:space-between;align-items:center;}
+  }
+  @media (max-width:640px){
+    .container{padding:0 18px;}
+    .hero h1{font-size:32px;}
+    .services-grid,.journey-grid{grid-template-columns:repeat(2,1fr);}
+    .countries-grid{grid-template-columns:repeat(2,1fr);}
+    .logo-row{grid-template-columns:repeat(2,1fr);}
+    .stats-bar{grid-template-columns:1fr 1fr;padding:20px 14px;}
+    .cta-banner{flex-direction:column;text-align:center;padding:32px 22px;}
+    .cta-banner .cta-text{display:flex;flex-direction:column;align-items:center;}
+    .footer-grid{grid-template-columns:1fr;}
+    .filters-bar{flex-direction:column;align-items:stretch;}
+    .filters-bar select{width:100%;}
+    .uni-top-row{flex-direction:column;gap:8px;}
+    .section-head{flex-direction:column;align-items:flex-start;}
+  }
+  @media (min-width:1600px){
+    .container{max-width:1400px;}
+    .hero h1{font-size:52px;}
+  }
+</style>
 </head>
-<body class="antialiased">
+<body>
 
-  <!-- ========== ENTERPRISE HEADER (COMPLETELY ORIGINAL) ========== -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
-    <div class="max-w-[1440px] mx-auto px-5 py-3 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-2">
-        <div class="text-2xl font-bold tracking-tight bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">APEX⏺</div>
-        <span class="text-[10px] font-mono bg-gray-100 px-2 py-0.5 rounded">v2.0</span>
-      </div>
-      <!-- category nav – horizontal pill (no amazon dropdown) -->
-      <div class="hidden md:flex gap-1.5">
-        <button data-cat="all" class="filter-chip-ent active">All</button>
-        <button data-cat="electronics" class="filter-chip-ent">Electronics</button>
-        <button data-cat="apparel" class="filter-chip-ent">Apparel</button>
-        <button data-cat="accessories" class="filter-chip-ent">Accessories</button>
-        <button data-cat="home" class="filter-chip-ent">Home & Living</button>
-        <button data-cat="books" class="filter-chip-ent">Books</button>
-      </div>
-      <!-- action bar -->
-      <div class="flex items-center gap-4">
-        <div class="relative w-64">
-          <input type="text" id="enterpriseSearch" placeholder="Search products, brands..." class="search-enterprise w-full pl-9 pr-3 py-2 rounded-full text-sm bg-gray-50">
-          <span class="absolute left-3 top-2 text-gray-400 text-sm">🔍</span>
-        </div>
-        <button id="cartEnterpriseBtn" class="relative text-xl">🛒 <span id="cartEnterpriseCount" class="absolute -top-2 -right-2.5 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span></button>
-        <button id="wishEnterpriseBtn" class="text-xl">❤️</button>
-      </div>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="#" class="logo" onclick="goTo('home');return false;">
+      <span class="logo-icon">🌐</span>
+      <span class="logo-text">GlobalPath<span class="logo-sub">Study Abroad Consultants</span></span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#" data-page="home" class="active" onclick="goTo('home');return false;">Home</a>
+      <a href="#" data-page="universities" onclick="goTo('universities');return false;">Universities</a>
+      <a href="#" data-page="countries" onclick="goTo('countries');return false;">Countries</a>
+      <a href="#" data-page="services" onclick="goTo('home');return false;">Services</a>
+      <a href="#" data-page="about" onclick="goTo('home');return false;">About Us</a>
+      <a href="#" data-page="contact" onclick="goTo('contact');return false;">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-primary" onclick="goTo('contact')">Book Consultation</button>
+      <button class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     </div>
-  </header>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" onclick="goTo('home');closeMobileNav();return false;">Home</a>
+    <a href="#" onclick="goTo('universities');closeMobileNav();return false;">Universities</a>
+    <a href="#" onclick="goTo('countries');closeMobileNav();return false;">Countries</a>
+    <a href="#" onclick="goTo('home');closeMobileNav();return false;">Services</a>
+    <a href="#" onclick="goTo('home');closeMobileNav();return false;">About Us</a>
+    <a href="#" onclick="goTo('contact');closeMobileNav();return false;">Contact</a>
+  </div>
+</header>
 
-  <main class="max-w-[1440px] mx-auto px-5 py-8">
-    <!-- HERO: CONVERSION BANNER (scalable) -->
-    <div class="bg-gradient-to-r from-indigo-50 via-white to-indigo-50 rounded-2xl p-8 mb-10 border border-indigo-100">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div>
-          <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wide">Enterprise Summer '25</p>
-          <h2 class="text-3xl md:text-4xl font-bold mt-1 tracking-tight">Smart Deals. <span class="text-indigo-700">Zero Friction.</span></h2>
-          <p class="text-gray-500 text-sm mt-2 max-w-md">Volume pricing + free bulk shipping. Trusted by 10k+ businesses.</p>
-          <button id="enterpriseHeroCta" class="mt-5 btn-primary-ent rounded-full px-6 py-2.5">Explore Collection →</button>
-        </div>
-        <div class="text-right text-6xl opacity-20">⚡</div>
-      </div>
-    </div>
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="page-home">
 
-    <!-- DYNAMIC PRODUCT GRID (16 products for scale) -->
-    <div class="mb-6 flex justify-between items-center flex-wrap gap-3">
+  <section class="hero" style="padding-top:44px;">
+    <div class="container hero-grid">
       <div>
-        <p class="text-xs text-gray-500 font-medium uppercase tracking-wider">Marketplace inventory</p>
-        <h3 class="text-xl font-bold">Featured Items</h3>
+        <div class="eyebrow">Your Future. Our Guidance.</div>
+        <h1>Study Abroad.<br>Build a Global Future.</h1>
+        <p>Personalized guidance for your global education journey. From shortlisting to visa — we're with you, every step.</p>
+        <div class="hero-btns">
+          <button class="btn btn-primary" onclick="goTo('universities')">Explore Universities</button>
+          <button class="btn btn-outline" onclick="goTo('contact')">Book Free Consultation</button>
+        </div>
       </div>
-      <div class="text-xs text-gray-400">⚡ real‑time stock</div>
-    </div>
-    <div id="enterpriseProductGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5"></div>
-
-    <!-- TRUST SECTION (enterprise credibility) -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-16 py-6 border-t border-b border-gray-200">
-      <div class="text-center"><span class="font-bold text-lg">✓</span> <span class="text-sm font-medium">4.8★ (2,300+ reviews)</span></div>
-      <div class="text-center"><span class="font-bold text-lg">🚚</span> <span class="text-sm font-medium">Free 2‑day shipping</span></div>
-      <div class="text-center"><span class="font-bold text-lg">🛡️</span> <span class="text-sm font-medium">365‑day warranty</span></div>
-      <div class="text-center"><span class="font-bold text-lg">🏢</span> <span class="text-sm font-medium">B2B bulk pricing</span></div>
-    </div>
-
-    <!-- NEWSLETTER + CONVERSION BLOCK -->
-    <div class="bg-white rounded-xl border border-gray-200 p-8 my-10 text-center shadow-sm">
-      <h4 class="text-xl font-semibold">Priority access for enterprises</h4>
-      <p class="text-gray-500 text-sm mt-1">Get early access to wholesale deals and trend reports.</p>
-      <form id="enterpriseNewsForm" class="max-w-md mx-auto mt-5 flex flex-col sm:flex-row gap-3">
-        <input type="email" id="enterpriseNewsEmail" placeholder="Work email" class="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm" required>
-        <button type="submit" class="bg-indigo-700 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-indigo-800 transition">Subscribe</button>
-      </form>
-      <div id="enterpriseNewsMsg" class="text-sm mt-2 text-indigo-600"></div>
-    </div>
-  </main>
-
-  <footer class="border-t border-gray-200 py-8 text-center text-xs text-gray-400 bg-white">
-    <p>© 2025 APEX Marketplace — enterprise commerce infrastructure. All prices inclusive of taxes.</p>
-  </footer>
-
-  <!-- CART DRAWER (smooth, enterprise) -->
-  <div id="enterpriseCartDrawer" class="fixed top-0 right-0 h-full w-[420px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-400 p-6 flex flex-col">
-    <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-lg">Cart summary</h3><button id="closeEnterpriseCart" class="text-gray-400">✕</button></div>
-    <div id="enterpriseCartItems" class="flex-1 overflow-y-auto py-4 space-y-4"></div>
-    <div class="border-t pt-4 mt-2"><div class="flex justify-between font-semibold"><span>Subtotal</span><span id="enterpriseCartTotal">$0</span></div><button id="checkoutEnterpriseBtn" class="w-full mt-4 bg-indigo-700 text-white py-3 rounded-lg font-semibold hover:bg-indigo-800 transition">Proceed to checkout →</button></div>
-  </div>
-  <div id="enterpriseCartOverlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
-
-  <!-- WISHLIST DRAWER -->
-  <div id="enterpriseWishDrawer" class="fixed top-0 left-0 h-full w-80 bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-400 p-5 flex flex-col">
-    <div class="flex justify-between border-b pb-3"><h3 class="font-bold">Wishlist</h3><button id="closeEnterpriseWish">✕</button></div>
-    <div id="enterpriseWishItems" class="flex-1 overflow-y-auto mt-3 space-y-3"></div>
-  </div>
-
-  <!-- CHECKOUT MODAL (multi-step enterprise flow) -->
-  <div id="enterpriseCheckoutModal" class="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center hidden">
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
-      <div class="p-6 border-b flex justify-between items-center"><h2 class="text-xl font-bold">Checkout</h2><button id="closeCheckoutModal" class="text-gray-400">✕</button></div>
-      <div class="p-6">
-        <div id="checkoutStepContent"></div>
-        <div class="flex justify-between mt-6"><button id="prevStep" class="text-gray-500 hidden">← Back</button><button id="nextStep" class="bg-indigo-700 text-white px-6 py-2 rounded-lg">Continue</button></div>
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80" alt="Students walking on campus">
       </div>
     </div>
-  </div>
+    <div class="container">
+      <div class="stats-bar reveal">
+        <div class="stat-item">
+          <div class="stat-icon">🎓</div>
+          <div><div class="stat-num" data-count="10" data-suffix="+">0</div><div class="stat-label">Years of Excellence</div></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">👥</div>
+          <div><div class="stat-num" data-count="25000" data-suffix="+" data-format="k">0</div><div class="stat-label">Students Guided</div></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">🏛️</div>
+          <div><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">Partner Universities</div></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">✅</div>
+          <div><div class="stat-num" data-count="95" data-suffix="%">0</div><div class="stat-label">Visa Success Rate</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    // ================================================================
-    // ENTERPRISE E-COMMERCE ENGINE (Amazon-level functionality, ORIGINAL UI)
-    // Product dataset: 16 items (scalable)
-    // Cart: reducer + localStorage, Wishlist: Set, Search: debounced filter
-    // Checkout: 3-step wizard (address → payment → confirmation)
-    // ================================================================
-    (function() {
-      // ---------- PRODUCT MASTER DATA (16 items, multi-category)
-      const productCatalog = [
-        { id: 'e1', name: 'UltraBook Pro X1', price: 1299, category: 'electronics', rating: 4.8, image: 'https://picsum.photos/id/0/400/500', badge: 'top seller' },
-        { id: 'e2', name: 'Noise Cancelling Headphones', price: 299, category: 'electronics', rating: 4.7, image: 'https://picsum.photos/id/1/400/500', badge: null },
-        { id: 'e3', name: 'Merino Wool Sweater', price: 89, category: 'apparel', rating: 4.5, image: 'https://picsum.photos/id/20/400/500', badge: 'sustainable' },
-        { id: 'e4', name: 'Leather Messenger Bag', price: 149, category: 'accessories', rating: 4.6, image: 'https://picsum.photos/id/40/400/500', badge: 'handmade' },
-        { id: 'e5', name: 'Smart Home Hub', price: 199, category: 'electronics', rating: 4.4, image: 'https://picsum.photos/id/34/400/500', badge: null },
-        { id: 'e6', name: 'Ceramic Coffee Set', price: 55, category: 'home', rating: 4.9, image: 'https://picsum.photos/id/30/400/500', badge: 'limited' },
-        { id: 'e7', name: 'Minimalist Desk Lamp', price: 79, category: 'home', rating: 4.3, image: 'https://picsum.photos/id/26/400/500', badge: null },
-        { id: 'e8', name: 'The Design of Everyday Things', price: 24, category: 'books', rating: 4.8, image: 'https://picsum.photos/id/24/400/500', badge: 'bestseller' },
-        { id: 'e9', name: 'Wireless Mechanical Keyboard', price: 159, category: 'electronics', rating: 4.6, image: 'https://picsum.photos/id/42/400/500', badge: null },
-        { id: 'e10', name: 'Cotton Linen Shirt', price: 65, category: 'apparel', rating: 4.4, image: 'https://picsum.photos/id/43/400/500', badge: 'eco' },
-        { id: 'e11', name: 'Stainless Steel Water Bottle', price: 32, category: 'accessories', rating: 4.7, image: 'https://picsum.photos/id/44/400/500', badge: null },
-        { id: 'e12', name: 'Ergonomic Office Chair', price: 399, category: 'home', rating: 4.5, image: 'https://picsum.photos/id/45/400/500', badge: 'stock low' },
-        { id: 'e13', name: 'Sapiens: A Brief History', price: 28, category: 'books', rating: 4.9, image: 'https://picsum.photos/id/46/400/500', badge: null },
-        { id: 'e14', name: 'Smart Watch Ultra', price: 399, category: 'electronics', rating: 4.7, image: 'https://picsum.photos/id/47/400/500', badge: 'new' },
-        { id: 'e15', name: 'Wool Blend Blazer', price: 189, category: 'apparel', rating: 4.6, image: 'https://picsum.photos/id/48/400/500', badge: null },
-        { id: 'e16', name: 'Portable Power Bank 20000mAh', price: 49, category: 'electronics', rating: 4.5, image: 'https://picsum.photos/id/49/400/500', badge: 'sale' }
-      ];
-      
-      let activeCategory = 'all';
-      let searchText = '';
-      let currentCart = { items: [] };
-      let wishlistSet = new Set();
-      
-      // load persistence
-      const savedCart = localStorage.getItem('apex_cart');
-      if (savedCart) currentCart.items = JSON.parse(savedCart);
-      const savedWish = localStorage.getItem('apex_wishlist');
-      if (savedWish) wishlistSet = new Set(JSON.parse(savedWish));
-      
-      // ---------- CART ENGINE (reducer like, but simple)
-      function saveCart() { localStorage.setItem('apex_cart', JSON.stringify(currentCart.items)); }
-      function renderCartUI() {
-        let total = 0, count = 0;
-        currentCart.items.forEach(i => { total += i.price * i.qty; count += i.qty; });
-        document.getElementById('cartEnterpriseCount').innerText = count;
-        document.getElementById('enterpriseCartTotal').innerHTML = `$${total.toLocaleString()}`;
-        const container = document.getElementById('enterpriseCartItems');
-        if (currentCart.items.length === 0) { container.innerHTML = '<div class="text-gray-400 text-center py-8">Cart is empty</div>'; return; }
-        container.innerHTML = currentCart.items.map(item => `
-          <div class="flex justify-between items-center border-b pb-2">
-            <div class="flex-1"><span class="font-medium">${item.name}</span><div class="text-xs text-gray-500">Qty: 
-              <button class="px-1 border" onclick="updateCartQty('${item.id}', -1)">-</button> ${item.qty} 
-              <button class="px-1 border" onclick="updateCartQty('${item.id}', 1)">+</button>
-            </div></div>
-            <div>$${(item.price * item.qty).toLocaleString()}</div>
-            <button onclick="removeFromCart('${item.id}')" class="text-red-500 ml-2">✕</button>
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>Top Universities We Work With</h2>
+        <a href="#" class="view-all" onclick="goTo('universities');return false;">View all →</a>
+      </div>
+      <div class="logo-row reveal">
+        <div class="logo-card">MIT</div>
+        <div class="logo-card">Stanford</div>
+        <div class="logo-card">Berkeley</div>
+        <div class="logo-card">Melbourne</div>
+        <div class="logo-card">NUS</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-light);">
+    <div class="container">
+      <div class="section-head"><h2>Our Services</h2></div>
+      <div class="services-grid reveal">
+        <div class="service-card"><div class="service-icon">🧭</div><h3>University Shortlisting</h3><p>Find the right fit in universities based on your profile.</p></div>
+        <div class="service-card"><div class="service-icon">📝</div><h3>Application Support</h3><p>End-to-end guidance on your application process.</p></div>
+        <div class="service-card"><div class="service-icon">🛂</div><h3>Visa Assistance</h3><p>Expert visa filing support with high success rates.</p></div>
+        <div class="service-card"><div class="service-icon">💰</div><h3>Scholarship Guidance</h3><p>Maximize your funding opportunities abroad.</p></div>
+        <div class="service-card"><div class="service-icon">✈️</div><h3>Pre-Departure Support</h3><p>Smooth transition abroad, every step covered.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head"><h2>Your Journey, Simplified</h2></div>
+      <div class="journey-grid reveal">
+        <div class="journey-step"><div class="step-num">1</div><h4>Counseling</h4><p>We understand your goals.</p></div>
+        <div class="journey-step"><div class="step-num">2</div><h4>Shortlist</h4><p>Curate your best-fit options.</p></div>
+        <div class="journey-step"><div class="step-num">3</div><h4>Apply</h4><p>We help you apply, seamlessly.</p></div>
+        <div class="journey-step"><div class="step-num">4</div><h4>Visa</h4><p>We assist your visa filing.</p></div>
+        <div class="journey-step"><div class="step-num">5</div><h4>Depart</h4><p>Begin your global journey.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-light);">
+    <div class="container">
+      <div class="section-head">
+        <h2>What Students Say</h2>
+        <a href="#" class="view-all">View all testimonials →</a>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="quote">GlobalPath made my dream of studying in Canada a reality. Their guidance was spot on at every step.</p>
+          <div class="testi-person">
+            <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg">
+            <div><div class="testi-name">Arjun Mehta</div><div class="testi-role">University of Toronto</div></div>
           </div>
-        `).join('');
-      }
-      
-      window.updateCartQty = (id, delta) => {
-        const idx = currentCart.items.findIndex(i => i.id === id);
-        if (idx !== -1) {
-          const newQty = currentCart.items[idx].qty + delta;
-          if (newQty <= 0) removeFromCart(id);
-          else { currentCart.items[idx].qty = newQty; saveCart(); renderCartUI(); }
-        }
-      };
-      window.removeFromCart = (id) => { currentCart.items = currentCart.items.filter(i => i.id !== id); saveCart(); renderCartUI(); };
-      
-      function addToCart(id) {
-        const prod = productCatalog.find(p => p.id === id);
-        if (!prod) return;
-        const existing = currentCart.items.find(i => i.id === id);
-        if (existing) existing.qty++;
-        else currentCart.items.push({ id, name: prod.name, price: prod.price, qty: 1, image: prod.image });
-        saveCart();
-        renderCartUI();
-        showEnterpriseToast(`Added ${prod.name}`);
-      }
-      window.addToCartEnterprise = addToCart;
-      
-      // ---------- WISHLIST (set)
-      function toggleWishlist(id) {
-        if (wishlistSet.has(id)) wishlistSet.delete(id);
-        else wishlistSet.add(id);
-        localStorage.setItem('apex_wishlist', JSON.stringify(Array.from(wishlistSet)));
-        renderProducts();
-        renderWishlistUI();
-        showEnterpriseToast(wishlistSet.has(id) ? 'Saved' : 'Removed');
-      }
-      window.toggleWishlist = toggleWishlist;
-      
-      function renderWishlistUI() {
-        const container = document.getElementById('enterpriseWishItems');
-        const wishArr = Array.from(wishlistSet);
-        const items = productCatalog.filter(p => wishArr.includes(p.id));
-        if (items.length === 0) { container.innerHTML = '<div class="text-gray-400 text-center py-6">Your wishlist is empty</div>'; return; }
-        container.innerHTML = items.map(p => `
-          <div class="flex gap-3 border-b pb-2">
-            <img src="${p.image}" class="w-16 h-20 object-cover rounded">
-            <div class="flex-1"><div class="font-medium">${p.name}</div><div class="text-sm">$${p.price}</div><button onclick="toggleWishlist('${p.id}')" class="text-xs text-indigo-600 mt-1">Remove</button></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="quote">From shortlisting to visa, everything was so well managed. Highly recommended to every aspiring student.</p>
+          <div class="testi-person">
+            <img class="testi-avatar" src="https://randomuser.me/api/portraits/women/44.jpg">
+            <div><div class="testi-name">Meera Patel</div><div class="testi-role">University of Melbourne</div></div>
           </div>
-        `).join('');
-      }
-      
-      // ---------- PRODUCT GRID RENDER (dynamic filtering + search)
-      function renderProducts() {
-        let filtered = productCatalog.filter(p => activeCategory === 'all' || p.category === activeCategory);
-        if (searchText.trim()) {
-          filtered = filtered.filter(p => p.name.toLowerCase().includes(searchText.toLowerCase()) || p.category.toLowerCase().includes(searchText.toLowerCase()));
-        }
-        const grid = document.getElementById('enterpriseProductGrid');
-        grid.innerHTML = filtered.map(p => {
-          const inWish = wishlistSet.has(p.id);
-          return `
-            <div class="product-card-enterprise group">
-              <div class="relative">
-                <img src="${p.image}" class="w-full aspect-[3/4] object-cover" alt="${p.name}">
-                ${p.badge ? `<div class="absolute top-2 left-2 bg-black/70 text-white text-[10px] px-2 py-0.5 rounded">${p.badge}</div>` : ''}
-                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition"></div>
-                <div class="absolute bottom-2 right-2 flex gap-1">
-                  <button onclick="addToCartEnterprise('${p.id}')" class="bg-white rounded-full p-1.5 shadow-md hover:bg-indigo-50 transition">🛒</button>
-                  <button onclick="toggleWishlist('${p.id}')" class="bg-white rounded-full p-1.5 shadow-md hover:bg-pink-50 transition">${inWish ? '❤️' : '♡'}</button>
-                </div>
-              </div>
-              <div class="p-3">
-                <div class="text-sm font-semibold">${p.name}</div>
-                <div class="flex justify-between items-center mt-1"><span class="text-indigo-700 font-bold">$${p.price}</span><span class="text-xs text-gray-500">★ ${p.rating}</span></div>
-                <div class="text-[10px] text-gray-400 uppercase mt-1">${p.category}</div>
-              </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="quote">The team is very professional and supportive. Got my visa without any hassle at all.</p>
+          <div class="testi-person">
+            <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/65.jpg">
+            <div><div class="testi-name">Rohan Singh</div><div class="testi-role">NUS, Singapore</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-text">
+          <h2>Ready to Start Your Journey?</h2>
+          <p>Book a free consultation with expert counsellors and take the first step abroad.</p>
+          <button class="btn btn-outline-white" onclick="goTo('contact')">Book Free Consultation</button>
+        </div>
+        <img class="cta-img" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" alt="Students consultation">
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ UNIVERSITIES PAGE ============ -->
+<div class="page" id="page-universities">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Universities</span></div>
+    <h1 class="page-title">Find Your Dream University</h1>
+
+    <div class="filters-bar">
+      <input type="text" placeholder="Search universities by name or country..." id="uniSearch" oninput="filterUnis()">
+      <select id="uniCountry" onchange="filterUnis()">
+        <option value="">Country</option>
+        <option>USA</option><option>UK</option><option>Australia</option><option>Canada</option><option>Singapore</option>
+      </select>
+      <select id="uniSort" onchange="filterUnis()">
+        <option value="">QS Ranking</option>
+        <option value="rank">Rank: Low to High</option>
+        <option value="tuition">Tuition: Low to High</option>
+      </select>
+      <select><option>Tuition Range</option></select>
+      <span class="clear-all" onclick="clearUniFilters()">Clear All</span>
+    </div>
+
+    <div class="uni-count" id="uniCount">Showing 6 universities</div>
+
+    <div class="uni-list reveal" id="uniList">
+      <!-- filled by JS -->
+    </div>
+  </div>
+  <div style="height:60px;"></div>
+</div>
+
+<!-- ============ COUNTRIES PAGE ============ -->
+<div class="page" id="page-countries">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Countries</span></div>
+    <h1 class="page-title">Explore Top Study Destinations</h1>
+    <p style="color:var(--text-gray);margin-top:-16px;margin-bottom:30px;">Choose the perfect destination for your global education journey.</p>
+
+    <div class="countries-grid reveal">
+      <div class="country-card" onclick="goTo('universities')">
+        <img src="https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&w=500&q=80">
+        <div class="country-overlay">
+          <div class="flag-dot"><img src="https://flagcdn.com/w80/us.png"></div>
+          <div class="country-name">USA</div>
+        </div>
+      </div>
+      <div class="country-card" onclick="goTo('universities')">
+        <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=500&q=80">
+        <div class="country-overlay">
+          <div class="flag-dot"><img src="https://flagcdn.com/w80/ca.png"></div>
+          <div class="country-name">Canada</div>
+        </div>
+      </div>
+      <div class="country-card" onclick="goTo('universities')">
+        <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=500&q=80">
+        <div class="country-overlay">
+          <div class="flag-dot"><img src="https://flagcdn.com/w80/gb.png"></div>
+          <div class="country-name">UK</div>
+        </div>
+      </div>
+      <div class="country-card" onclick="goTo('universities')">
+        <img src="https://images.unsplash.com/photo-1524293581917-878a6d017c71?auto=format&fit=crop&w=500&q=80">
+        <div class="country-overlay">
+          <div class="flag-dot"><img src="https://flagcdn.com/w80/au.png"></div>
+          <div class="country-name">Australia</div>
+        </div>
+      </div>
+      <div class="country-card" onclick="goTo('universities')">
+        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=500&q=80">
+        <div class="country-overlay">
+          <div class="flag-dot"><img src="https://flagcdn.com/w80/de.png"></div>
+          <div class="country-name">Germany</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:60px;"></div>
+</div>
+
+<!-- ============ CONTACT PAGE ============ -->
+<div class="page" id="page-contact">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Contact</span></div>
+    <h1 class="page-title">Get In Touch</h1>
+    <p style="color:var(--text-gray);margin-top:-16px;margin-bottom:30px;max-width:520px;">We're here to help you achieve your study abroad dreams.</p>
+
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm" onsubmit="submitContact(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" placeholder="Enter your full name" required></div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="Enter your email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="Enter your phone number"></div>
+            <div class="form-group"><label>Preferred Destination</label>
+              <select><option>Select a country</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Germany</option></select>
             </div>
-          `;
-        }).join('');
+          </div>
+          <div class="form-group" style="margin-bottom:20px;"><label>Your Message</label><textarea placeholder="Write your message..."></textarea></div>
+          <button class="btn btn-primary btn-block" type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-card">
+        <h3>Our Offices</h3>
+        <div class="office-item">
+          <div class="office-icon">📍</div>
+          <div><h5>New York, USA</h5><p>120 Education Way, Suite 200<br>New York, NY 10001<br>+1 (555) 123-4567<br>usa@globalpath.com</p></div>
+        </div>
+        <div class="office-item">
+          <div class="office-icon">📍</div>
+          <div><h5>Toronto, Canada</h5><p>458 University Ave, Suite 300<br>Toronto, ON M5B 1B8<br>+1 (647) 123-4567<br>canada@globalpath.com</p></div>
+        </div>
+        <div class="office-item">
+          <div class="office-icon">📍</div>
+          <div><h5>London, UK</h5><p>78 College Road, Suite 100<br>London, EC1V 0DR<br>+44 20 7946 0958<br>uk@globalpath.com</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-box reveal"><div class="map-pin"></div>Map preview</div>
+
+    <div class="faq-cta-grid reveal">
+      <div>
+        <h3 style="margin:0 0 18px;font-size:19px;font-weight:800;">Frequently Asked Questions</h3>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How can GlobalPath help me?<span class="plus">+</span></div>
+          <div class="faq-a"><p>We guide you through every step of studying abroad — from shortlisting universities to visa filing and departure.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What services do you offer?<span class="plus">+</span></div>
+          <div class="faq-a"><p>University shortlisting, application support, visa assistance, scholarship guidance, and pre-departure support.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How much do your services cost?<span class="plus">+</span></div>
+          <div class="faq-a"><p>Pricing depends on the package you choose. Book a free consultation to get a personalized quote.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How long does the application process take?<span class="plus">+</span></div>
+          <div class="faq-a"><p>It varies by country and university, typically between 3 to 9 months from shortlisting to visa approval.</p></div>
+        </div>
+      </div>
+      <div class="book-panel">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="">
+        <div class="content">
+          <h3>Book a Free Consultation</h3>
+          <p>Schedule a one-on-one session with our expert counsellors and take the first step.</p>
+          <button class="btn btn-outline-white">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:60px;"></div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="logo-icon">🌐</span> GlobalPath</div>
+        <p>Empowering students to achieve their study abroad dreams with expert guidance and personalized support.</p>
+        <div class="socials"><a href="#">f</a><a href="#">t</a><a href="#">in</a><a href="#">ig</a></div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="goTo('home');return false;">Home</a></li>
+          <li><a href="#" onclick="goTo('universities');return false;">Universities</a></li>
+          <li><a href="#" onclick="goTo('countries');return false;">Countries</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Popular Destinations</h4>
+        <ul><li>USA</li><li>Canada</li><li>UK</li><li>Australia</li><li>Germany</li><li>Singapore</li></ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul><li>University Shortlisting</li><li>Application Support</li><li>Visa Assistance</li><li>Scholarship Guidance</li><li>Pre-Departure Support</li></ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul>
+          <li>📞 +1 (555) 123-4567</li>
+          <li>✉️ hello@globalpath.com</li>
+          <li>📍 120 Education Way,<br>New York, NY 10001</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2024 GlobalPath Consultants. All rights reserved.</div>
+      <div><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- Page navigation ----------
+  function goTo(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+page).classList.add('active');
+    document.querySelectorAll('nav.main-nav a').forEach(a=>a.classList.remove('active'));
+    const navLink = document.querySelector('nav.main-nav a[data-page="'+page+'"]');
+    if(navLink) navLink.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(page==='universities') renderUnis();
+    triggerReveal();
+  }
+
+  function toggleMobileNav(){
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+  function closeMobileNav(){
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+
+  // ---------- FAQ accordion ----------
+  function toggleFaq(el){
+    const item = el.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
+
+  // ---------- Contact form ----------
+  function submitContact(e){
+    e.preventDefault();
+    alert('Thank you! Your message has been sent. Our team will reach out shortly.');
+    e.target.reset();
+  }
+
+  // ---------- Count-up animation ----------
+  function animateCount(el){
+    const target = parseInt(el.getAttribute('data-count'),10);
+    const suffix = el.getAttribute('data-suffix')||'';
+    const isK = el.getAttribute('data-format')==='k';
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now){
+      const progress = Math.min((now-start)/duration,1);
+      const eased = 1 - Math.pow(1-progress,3);
+      const val = Math.floor(eased*target);
+      el.textContent = (isK ? Math.floor(val/1000)+'K' : val) + suffix;
+      if(progress<1) requestAnimationFrame(tick);
+      else el.textContent = (isK ? Math.floor(target/1000)+'K' : target) + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+  let countedOnce=false;
+  const statObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && !countedOnce){
+        countedOnce=true;
+        document.querySelectorAll('.stat-num').forEach(animateCount);
       }
-      
-      // category filter
-      function setCategory(cat, btnEl) {
-        activeCategory = cat;
-        document.querySelectorAll('.filter-chip-ent').forEach(btn => btn.classList.remove('active'));
-        if (btnEl) btnEl.classList.add('active');
-        renderProducts();
-      }
-      
-      // search debounce
-      let searchTimer;
-      const searchInput = document.getElementById('enterpriseSearch');
-      searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(() => { searchText = e.target.value; renderProducts(); }, 200);
-      });
-      
-      // newsletter
-      document.getElementById('enterpriseNewsForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('enterpriseNewsEmail').value;
-        if (email && email.includes('@')) {
-          let subs = JSON.parse(localStorage.getItem('apex_newsletter') || '[]');
-          if (!subs.includes(email)) subs.push(email);
-          localStorage.setItem('apex_newsletter', JSON.stringify(subs));
-          document.getElementById('enterpriseNewsMsg').innerHTML = '✓ Enterprise access confirmed.';
-          document.getElementById('enterpriseNewsEmail').value = '';
-        } else alert('Valid business email required');
-      });
-      
-      // ----- CHECKOUT WIZARD (enterprise multi-step)
-      let checkoutStep = 1;
-      let checkoutData = { address: '', city: '', zip: '', payment: 'card' };
-      function updateCheckoutUI() {
-        const stepDiv = document.getElementById('checkoutStepContent');
-        if (checkoutStep === 1) {
-          stepDiv.innerHTML = `<h3 class="font-semibold mb-3">Shipping address</h3><input type="text" id="chAddr" placeholder="Street address" class="w-full border p-2 rounded mb-2"><input type="text" id="chCity" placeholder="City" class="w-full border p-2 rounded mb-2"><input type="text" id="chZip" placeholder="ZIP code" class="w-full border p-2 rounded">`;
-          document.getElementById('nextStep').innerText = 'Continue →';
-          document.getElementById('prevStep').classList.add('hidden');
-        } else if (checkoutStep === 2) {
-          stepDiv.innerHTML = `<h3 class="font-semibold mb-3">Payment method</h3><div><label class="flex gap-2 items-center"><input type="radio" name="payment" value="card" checked> Credit/Debit card</label><label class="flex gap-2 items-center mt-2"><input type="radio" name="payment" value="paypal"> PayPal</label><label class="flex gap-2 items-center"><input type="radio" name="payment" value="cod"> Cash on delivery</label></div>`;
-          document.getElementById('nextStep').innerText = 'Review order';
-          document.getElementById('prevStep').classList.remove('hidden');
-        } else if (checkoutStep === 3) {
-          const total = currentCart.items.reduce((s,i)=>s+(i.price*i.qty),0);
-          stepDiv.innerHTML = `<h3 class="font-semibold mb-2">Order summary</h3><p class="text-sm">Items: ${currentCart.items.length}</p><p class="text-sm">Subtotal: $${total.toLocaleString()}</p><p class="text-sm">Shipping: free</p><p class="font-bold mt-2">Total: $${total.toLocaleString()}</p><button id="confirmOrderBtn" class="mt-4 bg-green-700 text-white py-2 px-4 rounded">Place order</button>`;
-          document.getElementById('nextStep').innerText = 'Confirm';
-        }
-      }
-      
-      function nextCheckoutStep() {
-        if (checkoutStep === 1) {
-          const addr = document.getElementById('chAddr')?.value;
-          const city = document.getElementById('chCity')?.value;
-          const zip = document.getElementById('chZip')?.value;
-          if (!addr || !city || !zip) { alert('Please fill address details'); return; }
-          checkoutData.address = addr; checkoutData.city = city; checkoutData.zip = zip;
-          checkoutStep = 2; updateCheckoutUI();
-        } else if (checkoutStep === 2) {
-          const paymentRadio = document.querySelector('input[name="payment"]:checked');
-          if (paymentRadio) checkoutData.payment = paymentRadio.value;
-          checkoutStep = 3; updateCheckoutUI();
-          document.getElementById('confirmOrderBtn')?.addEventListener('click', () => {
-            alert(`Order placed! Total: $${currentCart.items.reduce((s,i)=>s+(i.price*i.qty),0)}. Thank you for using APEX Marketplace.`);
-            currentCart.items = []; saveCart(); renderCartUI();
-            document.getElementById('enterpriseCheckoutModal').classList.add('hidden');
-            checkoutStep = 1; updateCheckoutUI();
-          });
-        } else if (checkoutStep === 3) {
-          // confirm handled by listener
-        }
-      }
-      
-      function prevCheckoutStep() {
-        if (checkoutStep > 1) { checkoutStep--; updateCheckoutUI(); }
-      }
-      
-      // open/close cart/wishlist/checkout
-      document.getElementById('cartEnterpriseBtn').onclick = () => { document.getElementById('enterpriseCartDrawer').classList.remove('translate-x-full'); document.getElementById('enterpriseCartOverlay').classList.remove('hidden'); };
-      document.getElementById('closeEnterpriseCart').onclick = () => { document.getElementById('enterpriseCartDrawer').classList.add('translate-x-full'); document.getElementById('enterpriseCartOverlay').classList.add('hidden'); };
-      document.getElementById('enterpriseCartOverlay').onclick = () => { document.getElementById('enterpriseCartDrawer').classList.add('translate-x-full'); document.getElementById('enterpriseCartOverlay').classList.add('hidden'); };
-      document.getElementById('wishEnterpriseBtn').onclick = () => { document.getElementById('enterpriseWishDrawer').classList.remove('-translate-x-full'); };
-      document.getElementById('closeEnterpriseWish').onclick = () => { document.getElementById('enterpriseWishDrawer').classList.add('-translate-x-full'); };
-      document.getElementById('checkoutEnterpriseBtn').onclick = () => { document.getElementById('enterpriseCheckoutModal').classList.remove('hidden'); updateCheckoutUI(); };
-      document.getElementById('closeCheckoutModal').onclick = () => { document.getElementById('enterpriseCheckoutModal').classList.add('hidden'); checkoutStep=1; updateCheckoutUI(); };
-      document.getElementById('nextStep').onclick = nextCheckoutStep;
-      document.getElementById('prevStep').onclick = prevCheckoutStep;
-      document.getElementById('enterpriseHeroCta').onclick = () => document.getElementById('enterpriseProductGrid').scrollIntoView({ behavior: 'smooth' });
-      
-      // category buttons
-      document.querySelectorAll('.filter-chip-ent').forEach(btn => {
-        btn.addEventListener('click', () => setCategory(btn.getAttribute('data-cat'), btn));
-      });
-      
-      function showEnterpriseToast(msg) { const t = document.createElement('div'); t.className = 'fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-5 py-2 rounded-full text-sm z-[200]'; t.innerText = msg; document.body.appendChild(t); setTimeout(()=>t.remove(), 2000); }
-      
-      // initial render
-      renderProducts();
-      renderCartUI();
-      renderWishlistUI();
-    })();
-  </script>
-  <!-- ========== LINE PADDING (2000+ LINES ENTERPRISE COMPLIANCE) ========== -->
-  <!-- 001 --><!-- 002 --><!-- 003 --><!-- 004 --><!-- 005 --><!-- 006 --><!-- 007 --><!-- 008 --><!-- 009 --><!-- 010 -->
-  <!-- 011 --><!-- 012 --><!-- 013 --><!-- 014 --><!-- 015 --><!-- 016 --><!-- 017 --><!-- 018 --><!-- 019 --><!-- 020 -->
-  <!-- 050 --><!-- 051 --><!-- 052 --><!-- 053 --><!-- 054 --><!-- 055 --><!-- 056 --><!-- 057 --><!-- 058 --><!-- 059 -->
-  <!-- 100 --><!-- 101 --><!-- 102 --><!-- 103 --><!-- 104 --><!-- 105 --><!-- 106 --><!-- 107 --><!-- 108 --><!-- 109 -->
-  <!-- 200 --><!-- 201 --><!-- 202 --><!-- 203 --><!-- 204 --><!-- 205 --><!-- 206 --><!-- 207 --><!-- 208 --><!-- 209 -->
-  <!-- 500 --><!-- 501 --><!-- 502 --><!-- 503 --><!-- 504 --><!-- 505 --><!-- 506 --><!-- 507 --><!-- 508 --><!-- 509 -->
-  <!-- 1000 --><!-- 1001 --><!-- 1002 --><!-- 1003 --><!-- 1004 --><!-- 1005 --><!-- 1006 --><!-- 1007 --><!-- 1008 --><!-- 1009 -->
-  <!-- 1500 --><!-- 1501 --><!-- 1502 --><!-- 1503 --><!-- 1504 --><!-- 1505 --><!-- 1506 --><!-- 1507 --><!-- 1508 --><!-- 1509 -->
-  <!-- 1900 --><!-- 1901 --><!-- 1902 --><!-- 1903 --><!-- 1904 --><!-- 1905 --><!-- 1906 --><!-- 1907 --><!-- 1908 --><!-- 1909 -->
-  <!-- 1990 --><!-- 1991 --><!-- 1992 --><!-- 1993 --><!-- 1994 --><!-- 1995 --><!-- 1996 --><!-- 1997 --><!-- 1998 --><!-- 1999 --><!-- 2000 -->
+    });
+  },{threshold:0.4});
+  document.addEventListener('DOMContentLoaded',()=>{
+    const bar = document.querySelector('.stats-bar');
+    if(bar) statObserver.observe(bar);
+  });
+
+  // ---------- Scroll reveal ----------
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add('show');
+    });
+  },{threshold:0.15});
+  function triggerReveal(){
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+  }
+  document.addEventListener('DOMContentLoaded',triggerReveal);
+
+  // ---------- Universities data + render ----------
+  const universities = [
+    {name:"Massachusetts Institute of Technology", loc:"Cambridge, USA", country:"USA", rank:1, tuition:61850, scholarship:true, img:"https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=300&q=80"},
+    {name:"Stanford University", loc:"Stanford, USA", country:"USA", rank:5, tuition:62484, scholarship:true, img:"https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=300&q=80"},
+    {name:"University of Oxford", loc:"Oxford, UK", country:"UK", rank:3, tuition:41060, scholarship:true, img:"https://images.unsplash.com/photo-1548484352-ea579e5233a8?auto=format&fit=crop&w=300&q=80"},
+    {name:"The University of Melbourne", loc:"Melbourne, Australia", country:"Australia", rank:14, tuition:38400, scholarship:true, img:"https://images.unsplash.com/photo-1595113230185-b7ca19bee933?auto=format&fit=crop&w=300&q=80"},
+    {name:"National University of Singapore", loc:"Singapore", country:"Singapore", rank:8, tuition:31650, scholarship:true, img:"https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=300&q=80"},
+    {name:"University of Toronto", loc:"Toronto, Canada", country:"Canada", rank:21, tuition:29714, scholarship:false, img:"https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=300&q=80"}
+  ];
+
+  function renderUnis(list){
+    const data = list || universities;
+    const container = document.getElementById('uniList');
+    container.innerHTML = data.map((u,i)=>`
+      <div class="uni-card">
+        <img class="uni-img" src="${u.img}" alt="${u.name}">
+        <div class="uni-info">
+          <div class="uni-top-row">
+            <div>
+              <div class="uni-name">${u.name}</div>
+              <div class="uni-loc">📍 ${u.loc}</div>
+            </div>
+          </div>
+          <div class="uni-badges">
+            <span class="badge-rank">#${u.rank} QS World Ranking</span>
+            ${u.scholarship ? '<span class="badge-scholarship">🏅 Scholarship Available</span>':''}
+          </div>
+        </div>
+        <div class="uni-price">
+          <button class="heart-btn" onclick="this.classList.toggle('active')">♥</button>
+          <div>
+            <div class="uni-tuition">$${u.tuition.toLocaleString()}</div>
+            <div class="uni-tuition-label">Annual Tuition</div>
+          </div>
+          <button class="btn btn-primary btn-sm">Apply Now</button>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('uniCount').textContent = 'Showing '+data.length+' universities';
+  }
+
+  function filterUnis(){
+    const q = document.getElementById('uniSearch').value.toLowerCase();
+    const country = document.getElementById('uniCountry').value;
+    const sort = document.getElementById('uniSort').value;
+    let filtered = universities.filter(u=>{
+      const matchesQ = u.name.toLowerCase().includes(q) || u.country.toLowerCase().includes(q);
+      const matchesCountry = !country || u.country===country;
+      return matchesQ && matchesCountry;
+    });
+    if(sort==='rank') filtered.sort((a,b)=>a.rank-b.rank);
+    if(sort==='tuition') filtered.sort((a,b)=>a.tuition-b.tuition);
+    renderUnis(filtered);
+  }
+
+  function clearUniFilters(){
+    document.getElementById('uniSearch').value='';
+    document.getElementById('uniCountry').value='';
+    document.getElementById('uniSort').value='';
+    renderUnis();
+  }
+
+  renderUnis();
+</script>
+
 </body>
 </html>
