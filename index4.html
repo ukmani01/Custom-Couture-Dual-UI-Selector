@@ -1,1688 +1,1484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apollo Hospitals, Mumbai | Apollo Hospitals</title>
-    <style>
-        /* ───── ROOT VARIABLES ───── */
-        :root {
-            --primary: #0a6b6b;
-            --secondary: #f2a900;
-            --accent: #1e9e9e;
-            --background: #ffffff;
-            --surface: #f5f6f7;
-            --text: #2b2b2b;
-            --text-muted: #5a5a5a;
-            --border: #e6e6e6;
-            --red: #e63946;
-            --radius-lg: 28px;
-            --radius-md: 16px;
-            --radius-sm: 10px;
-            --font-body: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        /* ─── RESET ─── */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: var(--font-body);
-            color: var(--text);
-            background: var(--background);
-            -webkit-font-smoothing: antialiased;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        button {
-            font-family: inherit;
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* ─── NAVBAR ─── */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #fff;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .navbar-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 24px;
-            gap: 20px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-
-        .brand-name {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            font-style: italic;
-        }
-
-        .brand-sub {
-            font-size: 9px;
-            letter-spacing: 2px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .nav-links a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text);
-            padding: 6px 0;
-            position: relative;
-            transition: color .2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 0%;
-            height: 2px;
-            background: var(--secondary);
-            transition: width .25s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .navbar-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .icon-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform .15s ease, background .2s ease;
-        }
-
-        .icon-btn.call {
-            background: var(--secondary);
-            color: #fff;
-        }
-
-        .icon-btn.search {
-            background: #f07d1a;
-            color: #fff;
-        }
-
-        .icon-btn:hover {
-            transform: scale(1.06);
-        }
-
-        .emergency {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.2;
-        }
-
-        .lang-select {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 8px 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 8px;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            display: block;
-        }
-
-        .drawer {
-            display: none;
-            flex-direction: column;
-            border-top: 1px solid var(--border);
-            background: #fff;
-        }
-
-        .drawer.open {
-            display: flex;
-        }
-
-        .drawer a {
-            padding: 14px 24px;
-            border-bottom: 1px solid var(--border);
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        /* ─── HERO ─── */
-        .hero {
-            position: relative;
-        }
-
-        .hero-image {
-            position: relative;
-            width: 100%;
-            height: 460px;
-            overflow: hidden;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay-card {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65));
-            color: #fff;
-            padding: 18px 28px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .rating-block {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .stars {
-            display: flex;
-            gap: 4px;
-        }
-
-        .rating-label {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .availability-block {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 6px;
-        }
-
-        .availability-label {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .availability-value {
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .search-bar-wrap {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-            transform: translateY(-30px);
-            position: relative;
-            z-index: 5;
-        }
-
-        .search-bar {
-            background: #fff;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 8px 8px 26px;
-        }
-
-        .search-static {
-            font-size: 15px;
-            color: #8a8a8a;
-            font-weight: 500;
-            flex-shrink: 0;
-        }
-
-        .search-bar input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 14px;
-            color: var(--text);
-            background: transparent;
-            min-width: 0;
-        }
-
-        .search-bar input::placeholder {
-            color: #a9a9a9;
-        }
-
-        .search-submit {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        /* ─── BOTTOM NAV ─── */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding: 10px 8px 14px;
-            z-index: 200;
-        }
-
-        .bottom-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #333;
-            flex: 1;
-            transition: color .2s ease;
-        }
-
-        .bottom-nav-item:hover {
-            color: var(--primary);
-        }
-
-        .bottom-nav-item.center {
-            transform: translateY(-18px);
-        }
-
-        .chat-bubble {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 16px rgba(10, 107, 107, 0.4);
-            margin-bottom: 2px;
-        }
-
-        /* ───── EXISTING SECTIONS STYLES ───── */
-        :root {
-            --teal-dark: #0b4a63;
-            --teal: #0e6d82;
-            --teal-light: #127a8f;
-            --navy: #0a3a52;
-            --gold-1: #f7c94c;
-            --gold-2: #eea90c;
-            --orange: #f0791c;
-            --orange-2: #e56a10;
-            --text-dark: #2b2f33;
-            --text-gray: #6b7278;
-            --text-light-gray: #8a9096;
-            --bg-gray: #f4f5f6;
-            --line: #e3e6e8;
-            --radius-card: 18px;
-            --radius-pill: 999px;
-            --shadow-card: 0 4px 18px rgba(20, 40, 55, 0.08);
-            --font: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-        }
-
-        .app {
-            max-width: 480px;
-            margin: 0 auto;
-            background: #fff;
-            position: relative;
-            min-height: 100vh;
-            overflow-x: hidden;
-            padding-bottom: 88px;
-        }
-
-        .spec-banner {
-            background: var(--bg-gray);
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .spec-banner .label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-gray);
-            letter-spacing: .8px;
-            text-transform: uppercase;
-        }
-
-        .spec-slide-item {
-            display: none;
-            align-items: center;
-            gap: 14px;
-            background: #fff;
-            padding: 14px 18px;
-            border-radius: var(--radius-card);
-            box-shadow: var(--shadow-card);
-        }
-
-        .spec-slide-item:first-child {
-            display: flex;
-        }
-
-        .spec-slide-item .spec-icon-big {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--teal-dark);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .spec-slide-item .spec-icon-big svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .spec-slide-item .info h4 {
-            margin: 0 0 2px;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .spec-slide-item .info p {
-            margin: 0;
-            font-size: 13px;
-            color: var(--text-gray);
-        }
-
-        .spec-dots {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            padding: 4px 0 2px;
-        }
-
-        .spec-dots span {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--line);
-            transition: background .3s ease, transform .3s ease;
-        }
-
-        .spec-dots span.active {
-            background: var(--teal);
-            transform: scale(1.25);
-        }
-
-        .specialities-section {
-            padding: 24px 20px 12px;
-        }
-
-        .specialities-section .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 0 16px;
-            color: var(--teal-dark);
-        }
-
-        .specialities-section .section-title span {
-            color: var(--gold-2);
-        }
-
-        .spec-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--line);
-            cursor: pointer;
-            transition: background .1s ease;
-        }
-
-        .spec-row:active {
-            background: var(--bg-gray);
-        }
-
-        .spec-row .spec-icon {
-            width: 32px;
-            height: 32px;
-            color: var(--teal);
-            flex-shrink: 0;
-        }
-
-        .spec-row .spec-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .spec-row .spec-row-name {
-            flex: 1;
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .spec-row .spec-row-arrow {
-            width: 18px;
-            height: 18px;
-            color: var(--text-light-gray);
-            flex-shrink: 0;
-        }
-
-        .prohealth-section {
-            padding: 24px 20px;
-            background: linear-gradient(145deg, #f7fafb, #eef3f5);
-            margin: 12px 0;
-        }
-
-        .prohealth-section .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 0 6px;
-            color: var(--teal-dark);
-        }
-
-        .prohealth-section .section-sub {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin: 0 0 18px;
-        }
-
-        .ph-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .ph-card {
-            background: #fff;
-            border-radius: var(--radius-card);
-            padding: 18px 20px;
-            box-shadow: var(--shadow-card);
-            border-left: 4px solid var(--gold-2);
-        }
-
-        .ph-card h4 {
-            margin: 0 0 4px;
-            font-size: 16px;
-        }
-
-        .ph-card p {
-            margin: 0;
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .ph-dots {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 16px;
-        }
-
-        .ph-dots span {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--line);
-            transition: background .3s ease, transform .3s ease;
-        }
-
-        .ph-dots span.active {
-            background: var(--teal);
-            transform: scale(1.25);
-        }
-
-        .doctors-section {
-            padding: 16px 20px 8px;
-        }
-
-        .doctors-section .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 0 6px;
-            color: var(--teal-dark);
-        }
-
-        .doctors-section .section-sub {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin: 0 0 16px;
-        }
-
-        .doctor-scroll {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding: 4px 0 12px;
-            scrollbar-width: none;
-        }
-
-        .doctor-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .doctor-card {
-            flex: 0 0 160px;
-            scroll-snap-align: start;
-            background: #fff;
-            border-radius: var(--radius-card);
-            box-shadow: var(--shadow-card);
-            padding: 16px 14px 18px;
-            text-align: center;
-            border: 1px solid var(--line);
-            transition: transform .15s ease;
-        }
-
-        .doctor-card:active {
-            transform: scale(.97);
-        }
-
-        .doctor-card .avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: var(--teal-light);
-            margin: 0 auto 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 700;
-            font-size: 26px;
-        }
-
-        .doctor-card .name {
-            font-weight: 700;
-            font-size: 15px;
-            margin: 0 0 2px;
-        }
-
-        .doctor-card .title {
-            font-size: 12px;
-            color: var(--text-gray);
-            margin: 0 0 8px;
-        }
-
-        .doctor-card .exp {
-            font-size: 12px;
-            color: var(--gold-2);
-            font-weight: 600;
-        }
-
-        .doctor-nav {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 6px;
-        }
-
-        .doctor-nav button {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1.4px solid var(--line);
-            background: #fff;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background .15s ease, border-color .15s ease;
-        }
-
-        .doctor-nav button:active {
-            background: var(--bg-gray);
-            border-color: var(--teal);
-        }
-
-        .health-check-section {
-            padding: 20px 20px 12px;
-        }
-
-        .health-check-section .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 0 6px;
-            color: var(--teal-dark);
-        }
-
-        .health-check-section .section-sub {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin: 0 0 16px;
-        }
-
-        .hc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .hc-item {
-            background: var(--bg-gray);
-            border-radius: var(--radius-card);
-            padding: 16px 12px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            transition: background .15s ease, transform .15s ease;
-            border: 1px solid transparent;
-        }
-
-        .hc-item:active {
-            background: #e8ebed;
-            transform: scale(.97);
-        }
-
-        .hc-item .hc-icon {
-            font-size: 28px;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .rating-section {
-            padding: 20px 20px 12px;
-            background: var(--bg-gray);
-            margin: 12px 0;
-            border-radius: var(--radius-card);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .rating-item {
-            text-align: center;
-        }
-
-        .rating-item .number {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--teal-dark);
-        }
-
-        .rating-item .label {
-            font-size: 13px;
-            color: var(--text-gray);
-            font-weight: 500;
-        }
-
-        .faq-section {
-            padding: 20px 20px 12px;
-        }
-
-        .faq-section .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 0 16px;
-            color: var(--teal-dark);
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid var(--line);
-            padding: 4px 0;
-        }
-
-        .accordion-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            gap: 12px;
-            user-select: none;
-            transition: color .15s ease;
-        }
-
-        .accordion-header:active {
-            color: var(--teal);
-        }
-
-        .accordion-header .chev {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            transition: transform .3s ease;
-            color: var(--text-light-gray);
-        }
-
-        .accordion-item.open .accordion-header .chev {
-            transform: rotate(180deg);
-        }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .35s ease, padding .35s ease;
-            padding: 0;
-        }
-
-        .accordion-body p {
-            margin: 0 0 14px;
-            font-size: 14px;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        .accordion-item.open .accordion-body {
-            max-height: 300px;
-            padding: 0 0 8px;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity .6s ease, transform .6s ease;
-        }
-
-        .reveal.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ───── RESPONSIVE ───── */
-
-        /* Tablet & below */
-        @media (max-width: 1024px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .hc-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .hamburger {
-                display: none;
-            }
-            .drawer {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-image {
-                height: 380px;
-            }
-            .hero-overlay-card {
-                padding: 14px 18px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .availability-block {
-                align-items: flex-start;
-            }
-            .availability-value {
-                font-size: 22px;
-            }
-            body {
-                padding-bottom: 90px;
-            }
-            .hc-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .doctor-card {
-                flex: 0 0 140px;
-            }
-            .brand-name {
-                font-size: 18px;
-            }
-            .navbar-actions .emergency span {
-                font-size: 9px;
-            }
-            .lang-select {
-                padding: 6px 10px;
-                font-size: 12px;
-            }
-            .icon-btn {
-                width: 34px;
-                height: 34px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar-inner {
-                padding: 10px 16px;
-                gap: 10px;
-            }
-            .search-static {
-                display: none;
-            }
-            .search-bar {
-                padding: 6px 6px 6px 18px;
-                border-radius: 30px;
-            }
-            .search-bar input {
-                font-size: 13px;
-            }
-            .search-submit {
-                width: 36px;
-                height: 36px;
-            }
-            .search-bar-wrap {
-                transform: translateY(-20px);
-                padding: 0 14px;
-            }
-            .hero-overlay-card {
-                padding: 12px 16px;
-            }
-            .rating-label {
-                font-size: 12px;
-            }
-            .availability-value {
-                font-size: 20px;
-            }
-            .hc-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            .hc-item {
-                font-size: 12px;
-                padding: 12px 8px;
-            }
-            .hc-item .hc-icon {
-                font-size: 22px;
-            }
-            .rating-item .number {
-                font-size: 26px;
-            }
-            .doctor-card {
-                flex: 0 0 130px;
-                padding: 12px 10px 14px;
-            }
-            .doctor-card .avatar {
-                width: 52px;
-                height: 52px;
-                font-size: 20px;
-            }
-            .doctor-card .name {
-                font-size: 13px;
-            }
-            .spec-slide-item {
-                padding: 12px 14px;
-            }
-            .spec-slide-item .spec-icon-big {
-                width: 38px;
-                height: 38px;
-            }
-            .spec-slide-item .spec-icon-big svg {
-                width: 20px;
-                height: 20px;
-            }
-            .spec-slide-item .info h4 {
-                font-size: 14px;
-            }
-            .spec-slide-item .info p {
-                font-size: 12px;
-            }
-            .specialities-section .section-title {
-                font-size: 20px;
-            }
-            .prohealth-section .section-title {
-                font-size: 20px;
-            }
-            .doctors-section .section-title {
-                font-size: 20px;
-            }
-            .health-check-section .section-title {
-                font-size: 20px;
-            }
-            .faq-section .section-title {
-                font-size: 20px;
-            }
-            .accordion-header {
-                font-size: 14px;
-                padding: 12px 0;
-            }
-            .ph-card {
-                padding: 14px 16px;
-            }
-            .ph-card h4 {
-                font-size: 15px;
-            }
-            .ph-card p {
-                font-size: 13px;
-            }
-            .bottom-nav-item {
-                font-size: 10px;
-            }
-            .bottom-nav-item.center {
-                transform: translateY(-14px);
-            }
-            .chat-bubble {
-                width: 44px;
-                height: 44px;
-            }
-            .chat-bubble svg {
-                width: 18px;
-                height: 18px;
-            }
-            .bottom-nav {
-                padding: 6px 4px 10px;
-            }
-            .brand-name {
-                font-size: 16px;
-            }
-            .brand-sub {
-                font-size: 7px;
-                letter-spacing: 1.5px;
-            }
-            .brand .logo-mark svg {
-                width: 28px;
-                height: 28px;
-            }
-            .navbar-actions {
-                gap: 6px;
-            }
-            .emergency {
-                font-size: 8px;
-            }
-            .emergency svg {
-                width: 16px;
-                height: 16px;
-            }
-            .icon-btn {
-                width: 30px;
-                height: 30px;
-            }
-            .icon-btn svg {
-                width: 14px;
-                height: 14px;
-            }
-            .lang-select {
-                padding: 4px 8px;
-                font-size: 11px;
-            }
-            .lang-select svg {
-                width: 10px;
-                height: 10px;
-            }
-            .hamburger span {
-                width: 20px;
-                height: 2px;
-            }
-            .hamburger {
-                gap: 4px;
-                padding: 6px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hc-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 6px;
-            }
-            .hc-item {
-                font-size: 11px;
-                padding: 10px 6px;
-                border-radius: 12px;
-            }
-            .hc-item .hc-icon {
-                font-size: 18px;
-            }
-            .doctor-card {
-                flex: 0 0 120px;
-                padding: 10px 8px 12px;
-            }
-            .doctor-card .avatar {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
-            }
-            .doctor-card .name {
-                font-size: 12px;
-            }
-            .doctor-card .title {
-                font-size: 10px;
-            }
-            .doctor-card .exp {
-                font-size: 10px;
-            }
-            .spec-slide-item {
-                padding: 10px 12px;
-                gap: 10px;
-            }
-            .spec-slide-item .spec-icon-big {
-                width: 32px;
-                height: 32px;
-            }
-            .spec-slide-item .spec-icon-big svg {
-                width: 16px;
-                height: 16px;
-            }
-            .spec-slide-item .info h4 {
-                font-size: 13px;
-            }
-            .spec-slide-item .info p {
-                font-size: 11px;
-            }
-            .rating-item .number {
-                font-size: 22px;
-            }
-            .rating-item .label {
-                font-size: 11px;
-            }
-            .ph-card {
-                padding: 12px 14px;
-            }
-            .ph-card h4 {
-                font-size: 14px;
-            }
-            .ph-card p {
-                font-size: 12px;
-            }
-        }
-
-        @media (min-width: 1440px) {
-            .navbar-inner,
-            .search-bar-wrap {
-                max-width: 1200px;
-            }
-        }
-
-        @media (min-width: 481px) {
-            .app {
-                border-left: 1px solid var(--line);
-                border-right: 1px solid var(--line);
-                box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vitalis Hospitals — Multi-Speciality Care in Mumbai</title>
+<meta name="description" content="Vitalis Hospitals, Mumbai — 12 specialities, 60+ consultants and 24/7 emergency care under one roof. Book appointments, explore health packages and find the right specialist." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:#16211d;
+  --teal-900:#0a3f3b;
+  --teal-700:#0f5c56;
+  --teal-600:#157069;
+  --teal-500:#1d8a82;
+  --teal-100:#e3efed;
+  --teal-050:#f2f7f6;
+  --sand-050:#faf8f4;
+  --sand-100:#f2efe6;
+  --line:#e3ded0;
+  --line-strong:#cdc4ac;
+  --gold-700:#8f6323;
+  --gold-600:#b8863a;
+  --gold-400:#d7a862;
+  --gold-100:#f5e9d3;
+  --text-1:#16211d;
+  --text-2:#48544e;
+  --text-3:#7c8780;
+  --white:#ffffff;
+  --success:#2f7d52;
+  --success-bg:#e7f3ec;
+  --error:#b3432f;
+  --error-bg:#fbeae6;
+  --shadow-sm:0 1px 2px rgba(15,40,35,.07), 0 1px 1px rgba(15,40,35,.04);
+  --shadow-md:0 8px 24px rgba(15,40,35,.08);
+  --shadow-lg:0 20px 48px rgba(15,40,35,.14);
+  --r-sm:10px;
+  --r-md:16px;
+  --r-lg:26px;
+  --r-full:999px;
+  --container:1240px;
+  --font-display:'Outfit',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font-body);color:var(--text-1);background:var(--sand-050);line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;font-size:inherit;border:none;background:none;cursor:pointer;color:inherit;}
+input,textarea,select{font-family:inherit;font-size:inherit;color:inherit;}
+ul{list-style:none;}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;color:var(--text-1);line-height:1.15;}
+:focus-visible{outline:2px solid var(--teal-600);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important;}}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container{max-width:var(--container);margin:0 auto;padding:0 24px;}
+.vt-section{padding:88px 0;}
+.vt-section--tight{padding:56px 0;}
+.vt-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--teal-600);text-transform:uppercase;margin-bottom:14px;}
+.vt-eyebrow::before{content:'';width:16px;height:1.5px;background:var(--gold-600);}
+.vt-heading{font-size:clamp(26px,3.4vw,42px);letter-spacing:-.02em;margin-bottom:16px;max-width:640px;}
+.vt-heading .hl{color:var(--teal-700);}
+.vt-lede{font-size:17px;color:var(--text-2);max-width:560px;margin-bottom:32px;line-height:1.7;}
+.vt-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px;}
+.vt-head-row .vt-heading,.vt-head-row .vt-lede{margin-bottom:0;}
+.vt-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.vt-reveal.is-visible{opacity:1;transform:translateY(0);}
+.vt-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+/* Buttons */
+.vt-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:var(--r-full);font-weight:600;font-size:14.5px;transition:transform .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease),color .18s var(--ease);white-space:nowrap;}
+.vt-btn--primary{background:var(--teal-700);color:var(--white);box-shadow:var(--shadow-sm);}
+.vt-btn--primary:hover{background:var(--teal-900);box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.vt-btn--primary:active{transform:translateY(0) scale(.98);}
+.vt-btn--gold{background:var(--gold-600);color:var(--white);}
+.vt-btn--gold:hover{background:var(--gold-700);transform:translateY(-1px);}
+.vt-btn--outline{border:1.5px solid var(--line-strong);color:var(--text-1);}
+.vt-btn--outline:hover{border-color:var(--teal-600);color:var(--teal-700);background:var(--teal-050);}
+.vt-btn--ghost{color:var(--teal-700);padding:10px 4px;}
+.vt-btn--ghost:hover{color:var(--teal-900);}
+.vt-btn--sm{padding:9px 18px;font-size:13.5px;}
+.vt-btn--block{width:100%;}
+.vt-btn[disabled]{opacity:.5;cursor:not-allowed;}
+.vt-btn svg{width:16px;height:16px;flex-shrink:0;}
+
+/* Chips */
+.vt-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r-full);border:1.5px solid var(--line);background:var(--white);font-size:13.5px;font-weight:600;color:var(--text-2);transition:all .18s var(--ease);}
+.vt-chip:hover{border-color:var(--teal-500);}
+.vt-chip.is-active{background:var(--teal-700);border-color:var(--teal-700);color:var(--white);}
+
+/* Cards baseline */
+.vt-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-sm);transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s var(--ease);}
+.vt-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--line-strong);}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.vt-nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .2s;}
+.vt-nav.is-scrolled{box-shadow:0 4px 20px rgba(15,40,35,.06);}
+.vt-nav__inner{display:flex;align-items:center;gap:28px;padding:14px 24px;}
+.vt-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.vt-brand__mark{width:38px;height:38px;flex-shrink:0;}
+.vt-brand__text{display:flex;flex-direction:column;line-height:1.1;}
+.vt-brand__name{font-family:var(--font-display);font-size:21px;font-weight:800;color:var(--teal-900);letter-spacing:-.02em;}
+.vt-brand__sub{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;color:var(--gold-700);}
+.vt-links{display:flex;gap:6px;flex:1;justify-content:center;}
+.vt-links a{padding:10px 14px;border-radius:var(--r-full);font-size:14px;font-weight:600;color:var(--text-2);transition:all .18s var(--ease);}
+.vt-links a:hover{color:var(--teal-700);background:var(--teal-050);}
+.vt-links a.is-active{color:var(--teal-700);background:var(--teal-100);}
+.vt-nav__actions{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.vt-emergency{display:none;flex-direction:column;line-height:1.2;text-align:right;}
+.vt-emergency__label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);font-weight:700;}
+.vt-emergency__num{font-family:var(--font-mono);font-size:13.5px;font-weight:600;color:var(--error);}
+.vt-hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;}
+.vt-hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s var(--ease),opacity .25s var(--ease);}
+.vt-hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.vt-hamburger.is-open span:nth-child(2){opacity:0;}
+.vt-hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.vt-drawer{display:none;flex-direction:column;border-top:1px solid var(--line);background:var(--sand-050);}
+.vt-drawer.is-open{display:flex;}
+.vt-drawer a{padding:16px 24px;font-weight:600;font-size:15px;border-bottom:1px solid var(--line);color:var(--text-2);}
+.vt-drawer a.is-active{color:var(--teal-700);}
+@media (min-width:900px){
+  .vt-hamburger{display:none;}
+  .vt-emergency{display:flex;}
+}
+@media (max-width:899px){
+  .vt-links{display:none;}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.vt-hero{background:linear-gradient(180deg,var(--teal-050) 0%, var(--sand-050) 62%);border-bottom:1px solid var(--line);overflow:hidden;position:relative;}
+.vt-hero__grid{display:grid;grid-template-columns:1fr;gap:48px;padding:56px 0 64px;align-items:center;}
+.vt-hero__title{font-size:clamp(34px,5vw,58px);letter-spacing:-.03em;margin-bottom:20px;}
+.vt-hero__sub{font-size:17px;color:var(--text-2);max-width:520px;margin-bottom:30px;line-height:1.7;}
+.vt-hero__actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
+.vt-hero__facts{display:flex;gap:32px;flex-wrap:wrap;}
+.vt-hero__facts div{display:flex;flex-direction:column;}
+.vt-hero__facts dt{font-family:var(--font-mono);font-size:22px;font-weight:600;color:var(--teal-700);}
+.vt-hero__facts dd{font-size:12.5px;color:var(--text-3);font-weight:600;}
+.vt-hero__visual{position:relative;}
+.vt-vitals-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:28px 24px 24px;position:relative;}
+.vt-vitals-card__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.vt-vitals-card__label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);font-weight:700;}
+.vt-vitals-card__dot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 4px var(--success-bg);}
+.vt-pulse-wrap{background:var(--teal-900);border-radius:var(--r-md);padding:18px 6px;overflow:hidden;}
+.vt-pulse{width:100%;height:64px;display:block;}
+.vt-pulse path{fill:none;stroke:var(--gold-400);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:340;stroke-dashoffset:340;animation:vt-draw 3.2s var(--ease) infinite;}
+@keyframes vt-draw{0%{stroke-dashoffset:340;}55%{stroke-dashoffset:0;}100%{stroke-dashoffset:0;}}
+.vt-vitals-chips{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.vt-vitals-chip{background:var(--sand-100);border-radius:var(--r-sm);padding:10px 12px;flex:1;min-width:130px;}
+.vt-vitals-chip strong{display:block;font-family:var(--font-mono);font-size:14px;color:var(--teal-800,var(--teal-700));}
+.vt-vitals-chip span{font-size:11px;color:var(--text-3);font-weight:600;}
+.vt-float-chip{position:absolute;background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-md);border-radius:var(--r-full);padding:9px 16px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.vt-float-chip--top{top:-18px;right:24px;color:var(--teal-700);}
+.vt-float-chip--bottom{bottom:-16px;left:20px;color:var(--gold-700);}
+.vt-float-chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
+@media (min-width:960px){
+  .vt-hero__grid{grid-template-columns:1.05fr .95fr;}
+}
+
+/* ============================================================
+   TRUST STRIP
+   ============================================================ */
+.vt-trust{border-bottom:1px solid var(--line);background:var(--white);}
+.vt-trust__row{display:grid;grid-template-columns:repeat(2,1fr);gap:0;}
+.vt-trust__item{display:flex;align-items:center;gap:12px;padding:22px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.vt-trust__item svg{width:26px;height:26px;color:var(--teal-600);flex-shrink:0;}
+.vt-trust__item strong{display:block;font-size:14px;}
+.vt-trust__item span{font-size:12px;color:var(--text-3);}
+@media (min-width:720px){
+  .vt-trust__row{grid-template-columns:repeat(4,1fr);}
+  .vt-trust__item{border-bottom:none;}
+}
+
+/* ============================================================
+   GRIDS: departments / doctors / packages
+   ============================================================ */
+.vt-dept-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.vt-dept-card{padding:24px 20px;cursor:pointer;}
+.vt-dept-card__icon{width:44px;height:44px;border-radius:var(--r-sm);background:var(--teal-100);color:var(--teal-700);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.vt-dept-card__icon svg{width:22px;height:22px;}
+.vt-dept-card h4{font-size:16px;margin-bottom:6px;}
+.vt-dept-card p{font-size:13.5px;color:var(--text-3);line-height:1.55;}
+@media (min-width:720px){.vt-dept-grid{grid-template-columns:repeat(3,1fr);}}
+@media (min-width:1180px){.vt-dept-grid{grid-template-columns:repeat(4,1fr);}}
+
+.vt-doctor-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+.vt-doctor-card{padding:26px 22px;text-align:left;}
+.vt-doctor-card__top{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
+.vt-avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(150deg,var(--teal-600),var(--teal-900));color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:17px;flex-shrink:0;}
+.vt-doctor-card__name{font-size:16px;font-weight:700;}
+.vt-doctor-card__dept{font-size:13px;color:var(--teal-700);font-weight:600;}
+.vt-fav-btn{margin-left:auto;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:color .18s;flex-shrink:0;}
+.vt-fav-btn svg{width:18px;height:18px;}
+.vt-fav-btn.is-fav{color:var(--error);}
+.vt-doctor-card__meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.vt-tag{font-size:11.5px;font-weight:600;color:var(--text-2);background:var(--sand-100);padding:5px 10px;border-radius:var(--r-full);}
+.vt-doctor-card__foot{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.vt-avail{font-size:12px;font-family:var(--font-mono);color:var(--success);}
+@media (min-width:720px){.vt-doctor-grid{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1180px){.vt-doctor-grid{grid-template-columns:repeat(3,1fr);}}
+
+.vt-pkg-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+.vt-pkg-card{padding:28px 24px;display:flex;flex-direction:column;position:relative;}
+.vt-pkg-card.is-popular{border-color:var(--gold-600);box-shadow:0 0 0 1px var(--gold-600), var(--shadow-md);}
+.vt-pkg-badge{position:absolute;top:-12px;left:24px;background:var(--gold-600);color:var(--white);font-size:11px;font-weight:700;padding:5px 12px;border-radius:var(--r-full);letter-spacing:.02em;}
+.vt-pkg-card h4{font-size:18px;margin-bottom:6px;}
+.vt-pkg-card .vt-pkg-price{font-family:var(--font-mono);font-size:26px;color:var(--teal-700);font-weight:600;margin-bottom:4px;}
+.vt-pkg-card .vt-pkg-note{font-size:12px;color:var(--text-3);margin-bottom:18px;}
+.vt-pkg-list{margin-bottom:22px;flex:1;}
+.vt-pkg-list li{display:flex;gap:8px;font-size:13.5px;color:var(--text-2);padding:6px 0;align-items:flex-start;}
+.vt-pkg-list svg{width:16px;height:16px;color:var(--teal-600);flex-shrink:0;margin-top:2px;}
+@media (min-width:720px){.vt-pkg-grid{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1180px){.vt-pkg-grid{grid-template-columns:repeat(3,1fr);}}
+
+/* value props */
+.vt-value-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+.vt-value-card{padding:26px 22px;border-left:3px solid var(--gold-600);border-radius:var(--r-md);}
+.vt-value-card svg{width:26px;height:26px;color:var(--teal-700);margin-bottom:14px;}
+.vt-value-card h4{font-size:15.5px;margin-bottom:6px;}
+.vt-value-card p{font-size:13.5px;color:var(--text-3);line-height:1.6;}
+@media (min-width:720px){.vt-value-grid{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1180px){.vt-value-grid{grid-template-columns:repeat(4,1fr);}}
+
+/* testimonials */
+.vt-testi-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+.vt-testi-card{padding:26px 24px;}
+.vt-testi-stars{display:flex;gap:3px;margin-bottom:14px;}
+.vt-testi-stars svg{width:15px;height:15px;color:var(--gold-600);}
+.vt-testi-card p{font-size:14.5px;color:var(--text-2);line-height:1.7;margin-bottom:18px;}
+.vt-testi-who{display:flex;align-items:center;gap:10px;}
+.vt-testi-who strong{font-size:13.5px;display:block;}
+.vt-testi-who span{font-size:12px;color:var(--text-3);}
+@media (min-width:720px){.vt-testi-grid{grid-template-columns:repeat(3,1fr);}}
+
+/* stats */
+.vt-stats{background:var(--teal-900);border-radius:var(--r-lg);padding:44px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+.vt-stats .vt-stat strong{display:block;font-family:var(--font-mono);font-size:32px;color:var(--white);font-weight:600;}
+.vt-stats .vt-stat span{font-size:12.5px;color:rgba(255,255,255,.65);font-weight:600;}
+@media (min-width:720px){.vt-stats{grid-template-columns:repeat(4,1fr);}}
+
+/* FAQ */
+.vt-faq-list{max-width:760px;}
+.vt-faq-item{border-bottom:1px solid var(--line);}
+.vt-faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 4px;font-weight:600;font-size:15px;text-align:left;}
+.vt-faq-q svg{width:18px;height:18px;flex-shrink:0;color:var(--text-3);transition:transform .3s var(--ease);}
+.vt-faq-item.is-open .vt-faq-q svg{transform:rotate(180deg);color:var(--teal-700);}
+.vt-faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);}
+.vt-faq-item.is-open .vt-faq-a{max-height:240px;}
+.vt-faq-a p{font-size:14.5px;color:var(--text-2);padding:0 4px 20px;line-height:1.7;}
+
+/* CTA banner */
+.vt-cta{background:linear-gradient(120deg,var(--teal-700),var(--teal-900));border-radius:var(--r-lg);padding:48px 32px;color:var(--white);display:flex;flex-direction:column;gap:24px;align-items:flex-start;position:relative;overflow:hidden;}
+.vt-cta h3{color:var(--white);font-size:clamp(22px,3vw,30px);max-width:480px;}
+.vt-cta p{color:rgba(255,255,255,.75);max-width:460px;font-size:15px;}
+.vt-cta__actions{display:flex;gap:14px;flex-wrap:wrap;}
+.vt-cta .vt-btn--outline{border-color:rgba(255,255,255,.4);color:var(--white);}
+.vt-cta .vt-btn--outline:hover{background:rgba(255,255,255,.1);border-color:var(--white);}
+@media (min-width:860px){.vt-cta{flex-direction:row;align-items:center;justify-content:space-between;}}
+
+/* ============================================================
+   PAGE HEADERS (non-home views)
+   ============================================================ */
+.vt-page-head{background:var(--teal-050);border-bottom:1px solid var(--line);padding:52px 0;}
+.vt-page-head .vt-heading{margin-bottom:12px;}
+.vt-page-head .vt-lede{margin-bottom:0;max-width:640px;}
+
+/* Filters bar */
+.vt-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;align-items:center;}
+.vt-search{display:flex;align-items:center;gap:10px;background:var(--white);border:1.5px solid var(--line);border-radius:var(--r-full);padding:10px 18px;flex:1;min-width:220px;max-width:340px;}
+.vt-search svg{width:17px;height:17px;color:var(--text-3);flex-shrink:0;}
+.vt-search input{border:none;outline:none;background:none;width:100%;font-size:14px;}
+.vt-empty{text-align:center;padding:60px 20px;color:var(--text-3);}
+.vt-empty svg{width:40px;height:40px;margin:0 auto 14px;color:var(--line-strong);}
+
+/* ============================================================
+   APPOINTMENT VIEW
+   ============================================================ */
+.vt-appt-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start;}
+.vt-form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-sm);}
+.vt-form-card h3{font-size:20px;margin-bottom:6px;}
+.vt-form-card > p{color:var(--text-3);font-size:13.5px;margin-bottom:26px;}
+.vt-field{margin-bottom:18px;}
+.vt-field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px;color:var(--text-1);}
+.vt-field .req{color:var(--error);}
+.vt-field input[type=text],.vt-field input[type=tel],.vt-field input[type=email],.vt-field input[type=date],.vt-field select,.vt-field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--sand-050);transition:border-color .18s,background .18s;}
+.vt-field input:focus,.vt-field select:focus,.vt-field textarea:focus{border-color:var(--teal-600);background:var(--white);outline:none;}
+.vt-field textarea{resize:vertical;min-height:88px;}
+.vt-field-row{display:grid;grid-template-columns:1fr;gap:14px;}
+.vt-time-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.vt-time-chip{flex:1;min-width:100px;text-align:center;padding:10px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-size:13px;font-weight:600;background:var(--sand-050);}
+.vt-time-chip.is-selected{border-color:var(--teal-700);background:var(--teal-050);color:var(--teal-700);}
+.vt-pkg-note-pill{display:inline-flex;align-items:center;gap:8px;background:var(--gold-100);color:var(--gold-700);padding:8px 14px;border-radius:var(--r-full);font-size:12.5px;font-weight:700;margin-bottom:18px;}
+.vt-pkg-note-pill button{color:var(--gold-700);text-decoration:underline;}
+.vt-form-msg{padding:12px 14px;border-radius:var(--r-sm);font-size:13.5px;margin-bottom:18px;display:none;}
+.vt-form-msg.is-error{display:block;background:var(--error-bg);color:var(--error);}
+@media (min-width:640px){.vt-field-row{grid-template-columns:1fr 1fr;}}
+@media (min-width:980px){.vt-appt-grid{grid-template-columns:1.1fr .9fr;}}
+
+.vt-appt-list-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;}
+.vt-appt-list-card h3{font-size:16px;margin-bottom:16px;}
+.vt-appt-item{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin-bottom:12px;}
+.vt-appt-item__top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.vt-appt-item__id{font-family:var(--font-mono);font-size:11.5px;color:var(--text-3);}
+.vt-appt-status{font-size:11px;font-weight:700;color:var(--success);background:var(--success-bg);padding:3px 10px;border-radius:var(--r-full);}
+.vt-appt-item__meta{font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:12px;}
+.vt-appt-item__meta strong{color:var(--text-1);}
+.vt-appt-cancel{font-size:12.5px;color:var(--error);font-weight:600;}
+
+/* Toast */
+#vtToastWrap{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:400;display:flex;flex-direction:column;gap:10px;width:calc(100% - 32px);max-width:380px;pointer-events:none;}
+.vt-toast{background:var(--ink);color:var(--white);padding:14px 18px;border-radius:var(--r-md);box-shadow:var(--shadow-lg);font-size:13.5px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(10px);transition:opacity .25s var(--ease),transform .25s var(--ease);}
+.vt-toast.is-visible{opacity:1;transform:translateY(0);}
+.vt-toast svg{width:17px;height:17px;color:var(--success);flex-shrink:0;}
+@media (min-width:900px){#vtToastWrap{bottom:32px;}}
+
+/* ============================================================
+   ABOUT VIEW
+   ============================================================ */
+.vt-about-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+.vt-about-copy p{color:var(--text-2);margin-bottom:16px;line-height:1.75;}
+.vt-timeline{border-left:2px solid var(--line);padding-left:20px;display:flex;flex-direction:column;gap:20px;}
+.vt-timeline li strong{display:block;font-family:var(--font-mono);color:var(--teal-700);font-size:13px;}
+.vt-timeline li span{font-size:13.5px;color:var(--text-2);}
+@media (min-width:960px){.vt-about-grid{grid-template-columns:1.1fr .9fr;}}
+
+/* ============================================================
+   CONTACT VIEW
+   ============================================================ */
+.vt-contact-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+.vt-info-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;}
+.vt-info-card h4{font-size:14px;margin-bottom:12px;}
+.vt-info-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+.vt-info-row:last-child{border-bottom:none;}
+.vt-info-row svg{width:18px;height:18px;color:var(--teal-600);flex-shrink:0;margin-top:1px;}
+.vt-map{background:repeating-linear-gradient(45deg,var(--teal-050),var(--teal-050) 12px,var(--sand-100) 12px,var(--sand-100) 24px);border:1px solid var(--line);border-radius:var(--r-lg);height:220px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-3);}
+.vt-map svg{width:30px;height:30px;color:var(--teal-600);}
+@media (min-width:980px){.vt-contact-grid{grid-template-columns:1fr 1fr;}}
+
+/* ============================================================
+   FOOTER + BOTTOM NAV
+   ============================================================ */
+.vt-footer{background:var(--teal-900);color:rgba(255,255,255,.75);padding:64px 0 100px;}
+.vt-footer a{color:rgba(255,255,255,.75);}
+.vt-footer a:hover{color:var(--white);}
+.vt-footer-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-bottom:40px;}
+.vt-footer-brand .vt-brand__name{color:var(--white);}
+.vt-footer-brand p{font-size:13.5px;margin:14px 0 0;max-width:280px;line-height:1.7;}
+.vt-footer h5{color:var(--white);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;}
+.vt-footer ul li{margin-bottom:10px;font-size:13.5px;}
+.vt-footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;flex-direction:column;gap:14px;font-size:12.5px;}
+.vt-newsletter{display:flex;gap:8px;margin-top:6px;max-width:340px;}
+.vt-newsletter input{flex:1;padding:10px 14px;border-radius:var(--r-full);border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:var(--white);}
+.vt-newsletter input::placeholder{color:rgba(255,255,255,.45);}
+@media (min-width:720px){.vt-footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr;}}
+@media (min-width:720px){.vt-footer-bottom{flex-direction:row;justify-content:space-between;align-items:center;}}
+
+.vt-bottomnav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:flex-end;padding:8px 4px 10px;z-index:100;box-shadow:0 -4px 20px rgba(15,40,35,.05);}
+.vt-bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:700;color:var(--text-3);flex:1;padding:4px;}
+.vt-bottomnav a.is-active{color:var(--teal-700);}
+.vt-bottomnav a svg{width:21px;height:21px;}
+.vt-bottomnav a.center{transform:translateY(-12px);}
+.vt-bottomnav a.center .vt-bn-icon{width:46px;height:46px;border-radius:50%;background:var(--teal-700);color:var(--white);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(15,92,86,.35);}
+.vt-bottomnav a.center .vt-bn-icon svg{width:20px;height:20px;}
+@media (min-width:900px){.vt-bottomnav{display:none;}}
+@media (max-width:899px){.vt-footer{padding-bottom:110px;}}
+
+/* view visibility */
+.vt-view{display:none;}
+.vt-view.is-active{display:block;}
+</style>
 </head>
 <body>
 
-    <!-- ═══ NAVBAR ═══ -->
-    <header class="navbar" id="navbar">
-        <div class="navbar-inner">
-            <a href="#" class="brand">
-                <div class="logo-mark">
-                    <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
-                        <path d="M20 2 C20 2 8 10 8 22 C8 30 13.5 36 20 36 C26.5 36 32 30 32 22 C32 10 20 2 20 2 Z" fill="#0a6b6b" />
-                        <path d="M20 2 C24 6 24 14 20 18 C16 14 16 6 20 2 Z" fill="#f2a900" />
-                    </svg>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-name">Apollo</span>
-                    <span class="brand-sub">HOSPITALS</span>
-                </div>
-            </a>
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<header class="vt-nav" id="vtNav">
+  <div class="vt-nav__inner container">
+    <a href="#home" class="vt-brand" data-nav="home">
+      <span class="vt-brand__mark">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="19" fill="#0a3f3b"/>
+          <path d="M6 21h6l3-9 5 16 4-11 2 4h8" stroke="#d7a862" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </span>
+      <span class="vt-brand__text">
+        <span class="vt-brand__name">Vitalis</span>
+        <span class="vt-brand__sub">HOSPITALS · MUMBAI</span>
+      </span>
+    </a>
 
-            <nav class="nav-links">
-                <a href="#">Find Doctors</a>
-                <a href="#">Hospitals</a>
-                <a href="#">Specialities</a>
-                <a href="#">Health Checks</a>
-                <a href="#">About Us</a>
-            </nav>
-
-            <div class="navbar-actions">
-                <button class="icon-btn call" aria-label="Call">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.6 21 3 12.4 3 2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" /></svg>
-                </button>
-                <button class="icon-btn search" aria-label="Search">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.8l-.3-.3c1-1.1 1.6-2.6 1.6-4.2C16 6 13.3 3.5 10 3.5S4 6 4 9.5 6.7 15.5 10 15.5c1.6 0 3.1-.6 4.2-1.6l.3.3v.8l5 5 1.5-1.5-5-5zm-5.5 0C7.5 14 5.5 12 5.5 9.5S7.5 5 10 5s4.5 2 4.5 4.5S12.5 14 10 14z" /></svg>
-                </button>
-                <div class="emergency">
-                    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#e63946" d="M12 2C9 6 4 8 4 13a8 8 0 0016 0c0-5-5-7-8-11z" /></svg>
-                    <span>1066</span>
-                </div>
-                <button class="lang-select">EN <svg viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M7 10l5 5 5-5z" /></svg></button>
-                <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-
-        <div class="drawer" id="drawer">
-            <a href="#">Find Doctors</a>
-            <a href="#">Hospitals</a>
-            <a href="#">Specialities</a>
-            <a href="#">Health Checks</a>
-            <a href="#">About Us</a>
-        </div>
-    </header>
-
-    <!-- ═══ HERO ═══ -->
-    <section class="hero">
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1587351021355-a479a299d2f9?q=80&w=1600&auto=format&fit=crop" alt="Apollo Hospitals building">
-            <div class="hero-overlay-card">
-                <div class="rating-block">
-                    <div class="stars">
-                        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z" /></svg>
-                        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z" /></svg>
-                        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z" /></svg>
-                        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z" /></svg>
-                        <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#f2a900" opacity="0.5" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z" /></svg>
-                    </div>
-                    <span class="rating-label">4.6 Google Ratings</span>
-                </div>
-                <div class="availability-block">
-                    <span class="availability-label">Available</span>
-                    <span class="availability-value">24/7</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="search-bar-wrap">
-            <div class="search-bar">
-                <span class="search-static">Search</span>
-                <input type="text" placeholder="Health Care Package, Specialities, Conditions ..." aria-label="Search">
-                <button class="search-submit" aria-label="Submit search">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M15.5 14h-.8l-.3-.3c1-1.1 1.6-2.6 1.6-4.2C16 6 13.3 3.5 10 3.5S4 6 4 9.5 6.7 15.5 10 15.5c1.6 0 3.1-.6 4.2-1.6l.3.3v.8l5 5 1.5-1.5-5-5zm-5.5 0C7.5 14 5.5 12 5.5 9.5S7.5 5 10 5s4.5 2 4.5 4.5S12.5 14 10 14z" /></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ EXISTING SECTIONS ═══ -->
-    <div class="app">
-        <!-- Specialities Banner -->
-        <div class="spec-banner">
-            <div class="label">⚕️ Top Specialities</div>
-            <div class="spec-slide-item" style="display:flex;">
-                <div class="spec-icon-big">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="6" r="2"/><circle cx="6" cy="14" r="2"/><circle cx="18" cy="14" r="2"/><circle cx="12" cy="19" r="2"/><line x1="12" y1="8" x2="7" y2="12.5"/><line x1="12" y1="8" x2="17" y2="12.5"/><line x1="8" y1="15.5" x2="11" y2="17.5"/><line x1="16" y1="15.5" x2="13" y2="17.5"/></svg>
-                </div>
-                <div class="info">
-                    <h4>Oncology</h4>
-                    <p>Advanced cancer care with precision</p>
-                </div>
-            </div>
-            <div class="spec-slide-item" style="display:none;">
-                <div class="spec-icon-big">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3a4 4 0 00-4 4c0 1 .3 1.7.8 2.3A3 3 0 004 12a3 3 0 001.6 2.6A3.5 3.5 0 008 20a3.5 3.5 0 003.5-3.5V6A3 3 0 009 3z"/><path d="M15 3a4 4 0 014 4c0 1-.3 1.7-.8 2.3A3 3 0 0120 12a3 3 0 01-1.6 2.6A3.5 3.5 0 0116 20a3.5 3.5 0 01-3.5-3.5V6"/></svg>
-                </div>
-                <div class="info">
-                    <h4>Neurology</h4>
-                    <p>Expert brain &amp; spine care</p>
-                </div>
-            </div>
-            <div class="spec-slide-item" style="display:none;">
-                <div class="spec-icon-big">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 4c-2 0-3.5 2-3.5 5s2 8 3.5 9c1-1 1.5-2 1.5-3.5S8 12 8 9.5 7.5 4 7 4z"/><path d="M17 4c2 0 3.5 2 3.5 5s-2 8-3.5 9c-1-1-1.5-2-1.5-3.5S16 12 16 9.5 16.5 4 17 4z"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-                </div>
-                <div class="info">
-                    <h4>Nephrology</h4>
-                    <p>Kidney care &amp; transplants</p>
-                </div>
-            </div>
-            <div id="specDots" class="spec-dots"></div>
-        </div>
-
-        <!-- Specialities List -->
-        <section class="specialities-section reveal">
-            <div class="section-title">Our <span>Specialities</span></div>
-            <div id="specList"></div>
-        </section>
-
-        <!-- ProHealth -->
-        <section class="prohealth-section reveal">
-            <div class="section-title">🌿 ProHealth</div>
-            <div class="section-sub">Your personalised preventive health program</div>
-            <div class="ph-grid" id="phGrid">
-                <div class="ph-card">
-                    <h4>🧬 Risk Analysis</h4>
-                    <p>Comprehensive genetic &amp; lifestyle risk assessment.</p>
-                </div>
-                <div class="ph-card">
-                    <h4>📋 Tailored Packages</h4>
-                    <p>Custom diagnostic plans based on your profile.</p>
-                </div>
-                <div class="ph-card">
-                    <h4>👨‍⚕️ Health Mentor</h4>
-                    <p>Dedicated mentor for ongoing guidance &amp; support.</p>
-                </div>
-                <div class="ph-card">
-                    <h4>📊 Track Progress</h4>
-                    <p>Digital dashboard to monitor your health journey.</p>
-                </div>
-            </div>
-            <div id="phDots" class="ph-dots"></div>
-        </section>
-
-        <!-- Doctors -->
-        <section class="doctors-section reveal">
-            <div class="section-title">👨‍⚕️ Top Doctors</div>
-            <div class="section-sub">Meet our experienced specialists</div>
-            <div class="doctor-scroll" id="doctorScroll">
-                <div class="doctor-card">
-                    <div class="avatar">DR</div>
-                    <div class="name">Dr. Rajesh Kumar</div>
-                    <div class="title">Cardiologist</div>
-                    <div class="exp">★ 22 yrs</div>
-                </div>
-                <div class="doctor-card">
-                    <div class="avatar">SM</div>
-                    <div class="name">Dr. Sunita Mehta</div>
-                    <div class="title">Oncologist</div>
-                    <div class="exp">★ 18 yrs</div>
-                </div>
-                <div class="doctor-card">
-                    <div class="avatar">AR</div>
-                    <div class="name">Dr. Anil Reddy</div>
-                    <div class="title">Neurologist</div>
-                    <div class="exp">★ 15 yrs</div>
-                </div>
-                <div class="doctor-card">
-                    <div class="avatar">PS</div>
-                    <div class="name">Dr. Priya Sharma</div>
-                    <div class="title">Gynaecologist</div>
-                    <div class="exp">★ 12 yrs</div>
-                </div>
-                <div class="doctor-card">
-                    <div class="avatar">VP</div>
-                    <div class="name">Dr. Vikram Patel</div>
-                    <div class="title">Orthopaedic</div>
-                    <div class="exp">★ 20 yrs</div>
-                </div>
-            </div>
-            <div class="doctor-nav">
-                <button id="docPrev" aria-label="Previous">‹</button>
-                <button id="docNext" aria-label="Next">›</button>
-            </div>
-        </section>
-
-        <!-- Health Checks -->
-        <section class="health-check-section reveal">
-            <div class="section-title">🩺 Health Checks</div>
-            <div class="section-sub">Book a comprehensive check-up today</div>
-            <div class="hc-grid">
-                <div class="hc-item"><span class="hc-icon">❤️</span> Cardiac</div>
-                <div class="hc-item"><span class="hc-icon">🧠</span> Neuro</div>
-                <div class="hc-item"><span class="hc-icon">🫁</span> Pulmonary</div>
-                <div class="hc-item"><span class="hc-icon">🦴</span> Ortho</div>
-                <div class="hc-item"><span class="hc-icon">🧬</span> Oncology</div>
-                <div class="hc-item"><span class="hc-icon">👶</span> Wellness</div>
-            </div>
-        </section>
-
-        <!-- Rating -->
-        <div class="rating-section reveal">
-            <div class="rating-item">
-                <div class="number count-up" data-target="4.8">0</div>
-                <div class="label">★ Rating</div>
-            </div>
-            <div class="rating-item">
-                <div class="number count-up" data-target="9.2">0</div>
-                <div class="label">/10 Trust</div>
-            </div>
-            <div class="rating-item">
-                <div class="number count-up" data-target="4.5">0</div>
-                <div class="label">M+ Patients</div>
-            </div>
-        </div>
-
-        <!-- FAQ -->
-        <section class="faq-section reveal">
-            <div class="section-title">❓ FAQs</div>
-            <div id="accordion"></div>
-        </section>
-    </div>
-
-    <!-- ═══ BOTTOM NAV ═══ -->
-    <nav class="bottom-nav">
-        <a href="#" class="bottom-nav-item">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-                <circle cx="12" cy="7" r="4" fill="none" stroke="#333" stroke-width="1.6" />
-                <path fill="none" stroke="#333" stroke-width="1.6" d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
-            </svg>
-            <span>Appointments</span>
-        </a>
-        <a href="#" class="bottom-nav-item">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-                <path fill="none" stroke="#333" stroke-width="1.6" d="M4 21V7l8-4 8 4v14" />
-                <path fill="none" stroke="#333" stroke-width="1.6" d="M9 21v-6h6v6" />
-            </svg>
-            <span>Hospitals</span>
-        </a>
-        <a href="#" class="bottom-nav-item center">
-            <span class="chat-bubble">
-                <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="#fff" d="M12 2a9 9 0 00-3 17.5L12 22l3-2.5A9 9 0 0012 2z" />
-                </svg>
-            </span>
-            <span>Chat</span>
-        </a>
-        <a href="#" class="bottom-nav-item">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-                <path fill="none" stroke="#333" stroke-width="1.6" d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z" />
-                <path fill="none" stroke="#333" stroke-width="1.6" d="M12 8v6M9 11h6" />
-            </svg>
-            <span>Health Checks</span>
-        </a>
-        <a href="#" class="bottom-nav-item">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-                <path fill="none" stroke="#333" stroke-width="1.6" d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.6 21 3 12.4 3 2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" />
-            </svg>
-            <span>Call Us</span>
-        </a>
+    <nav class="vt-links" id="vtLinks">
+      <a data-nav="home">Home</a>
+      <a data-nav="doctors">Doctors</a>
+      <a data-nav="departments">Departments</a>
+      <a data-nav="packages">Health Packages</a>
+      <a data-nav="about">About</a>
+      <a data-nav="contact">Contact</a>
     </nav>
 
-    <!-- ═══ JAVASCRIPT ═══ -->
-    <script>
-        /* ─── NEW NAVBAR & BOTTOM NAV ─── */
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-            const drawer = document.getElementById('drawer');
-            if (hamburgerBtn && drawer) {
-                hamburgerBtn.addEventListener('click', function() {
-                    const isOpen = drawer.classList.toggle('open');
-                    hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                    hamburgerBtn.classList.toggle('active', isOpen);
-                });
+    <div class="vt-nav__actions">
+      <div class="vt-emergency">
+        <span class="vt-emergency__label">Emergency</span>
+        <span class="vt-emergency__num">1800-266-0000</span>
+      </div>
+      <button class="vt-btn vt-btn--primary vt-btn--sm" data-nav="appointment">Book Appointment</button>
+      <button class="vt-hamburger" id="vtHamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="vt-drawer" id="vtDrawer">
+    <a data-nav="home">Home</a>
+    <a data-nav="doctors">Doctors</a>
+    <a data-nav="departments">Departments</a>
+    <a data-nav="packages">Health Packages</a>
+    <a data-nav="appointment">Book Appointment</a>
+    <a data-nav="about">About</a>
+    <a data-nav="contact">Contact</a>
+  </div>
+</header>
 
-                drawer.querySelectorAll('a').forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        drawer.classList.remove('open');
-                        hamburgerBtn.setAttribute('aria-expanded', 'false');
-                        hamburgerBtn.classList.remove('active');
-                    });
-                });
-            }
+<main id="vtMain">
 
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 10) {
-                    navbar.style.boxShadow = '0 4px 14px rgba(0,0,0,0.08)';
-                } else {
-                    navbar.style.boxShadow = 'none';
-                }
-            });
+<!-- ============================================================
+     HOME VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-home">
 
-            const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
-            bottomNavItems.forEach(function(item) {
-                item.addEventListener('click', function() {
-                    bottomNavItems.forEach(function(i) { i.classList.remove('active'); });
-                    item.classList.add('active');
-                });
-            });
-        });
+  <div class="vt-hero">
+    <div class="container vt-hero__grid">
+      <div class="vt-hero__content">
+        <p class="vt-eyebrow">Multi-speciality hospital · Bandra, Mumbai</p>
+        <h1 class="vt-hero__title">Care that keeps up with every vital sign.</h1>
+        <p class="vt-hero__sub">Twelve specialities, 60+ consultants and round-the-clock emergency care, brought together so the next step in your care is never far away.</p>
+        <div class="vt-hero__actions">
+          <button class="vt-btn vt-btn--primary" data-nav="appointment">Book an appointment</button>
+          <a href="tel:18002660000" class="vt-btn vt-btn--outline">Call emergency line</a>
+        </div>
+        <dl class="vt-hero__facts">
+          <div><dt>24/7</dt><dd>Emergency &amp; ICU</dd></div>
+          <div><dt>60+</dt><dd>Specialist consultants</dd></div>
+          <div><dt>12</dt><dd>Centres of care</dd></div>
+        </dl>
+      </div>
+      <div class="vt-hero__visual">
+        <div class="vt-vitals-card">
+          <span class="vt-float-chip vt-float-chip--top"><span class="dot"></span>Next available: Today, 4:30 PM</span>
+          <div class="vt-vitals-card__top">
+            <span class="vt-vitals-card__label">Live department status</span>
+            <span class="vt-vitals-card__dot"></span>
+          </div>
+          <div class="vt-pulse-wrap">
+            <svg class="vt-pulse" viewBox="0 0 300 60" preserveAspectRatio="none">
+              <path d="M0 30 H70 L85 10 L100 50 L115 30 H150 L162 18 L174 42 L186 30 H300" />
+            </svg>
+          </div>
+          <div class="vt-vitals-chips">
+            <div class="vt-vitals-chip"><strong>3 min</strong><span>Avg. ER wait</span></div>
+            <div class="vt-vitals-chip"><strong>12</strong><span>Specialities open</span></div>
+          </div>
+          <span class="vt-float-chip vt-float-chip--bottom"><span class="dot"></span>12 specialities · 60+ consultants</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        /* ─── EXISTING JAVASCRIPT ─── */
-        (function() {
-            /* Specialities Banner Dots */
-            (function() {
-                const slides = document.querySelectorAll('.spec-slide-item');
-                const dotsWrap = document.getElementById('specDots');
-                if (!slides.length || !dotsWrap) return;
-                slides.forEach(function(_, i) {
-                    const d = document.createElement('span');
-                    if (i === 0) d.classList.add('active');
-                    dotsWrap.appendChild(d);
-                });
-                let idx = 0;
-                setInterval(function() {
-                    slides[idx].style.display = 'none';
-                    dotsWrap.children[idx].classList.remove('active');
-                    idx = (idx + 1) % slides.length;
-                    slides[idx].style.display = 'flex';
-                    dotsWrap.children[idx].classList.add('active');
-                }, 2600);
-            })();
+  <div class="vt-trust">
+    <div class="container">
+      <div class="vt-trust__row">
+        <div class="vt-trust__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg>
+          <div><strong>24/7 Emergency</strong><span>Trauma &amp; critical care</span></div>
+        </div>
+        <div class="vt-trust__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          <div><strong>Cashless insurance</strong><span>50+ partner insurers</span></div>
+        </div>
+        <div class="vt-trust__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+          <div><strong>300-bed facility</strong><span>Modern diagnostics on-site</span></div>
+        </div>
+        <div class="vt-trust__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          <div><strong>60+ consultants</strong><span>Across 12 specialities</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            /* Specialities List */
-            (function() {
-                const container = document.getElementById('specList');
-                if (!container) return;
-                const list = [
-                    { name: 'Oncology',
-                        icon: '<circle cx="12" cy="6" r="2"/><circle cx="6" cy="14" r="2"/><circle cx="18" cy="14" r="2"/><circle cx="12" cy="19" r="2"/><line x1="12" y1="8" x2="7" y2="12.5"/><line x1="12" y1="8" x2="17" y2="12.5"/><line x1="8" y1="15.5" x2="11" y2="17.5"/><line x1="16" y1="15.5" x2="13" y2="17.5"/>' },
-                    { name: 'Neurology',
-                        icon: '<path d="M9 3a4 4 0 00-4 4c0 1 .3 1.7.8 2.3A3 3 0 004 12a3 3 0 001.6 2.6A3.5 3.5 0 008 20a3.5 3.5 0 003.5-3.5V6A3 3 0 009 3z"/><path d="M15 3a4 4 0 014 4c0 1-.3 1.7-.8 2.3A3 3 0 0120 12a3 3 0 01-1.6 2.6A3.5 3.5 0 0116 20a3.5 3.5 0 01-3.5-3.5V6"/>' },
-                    { name: 'Nephrology',
-                        icon: '<path d="M7 4c-2 0-3.5 2-3.5 5s2 8 3.5 9c1-1 1.5-2 1.5-3.5S8 12 8 9.5 7.5 4 7 4z"/><path d="M17 4c2 0 3.5 2 3.5 5s-2 8-3.5 9c-1-1-1.5-2-1.5-3.5S16 12 16 9.5 16.5 4 17 4z"/><line x1="12" y1="4" x2="12" y2="20"/>' },
-                    { name: 'Gastroenterology & Hepatology',
-                        icon: '<path d="M9 3c-3 0-5 2.5-5 6 0 3 2 4.5 2 7a4 4 0 004 4c2.5 0 4-2 4-4"/><path d="M9 3c2 0 3 1.5 3 3.5S10.5 10 9 10"/><line x1="16" y1="7" x2="20" y2="7"/><line x1="18" y1="5" x2="18" y2="9"/>' },
-                    { name: 'Gynaecology',
-                        icon: '<circle cx="12" cy="8" r="5"/><path d="M9 6.5a3 3 0 013-1.5 3 3 0 013 1.5"/><line x1="12" y1="13" x2="12" y2="20"/><line x1="9" y1="17" x2="15" y2="17"/>' },
-                    { name: 'Pulmonology',
-                        icon: '<path d="M12 3v7"/><path d="M12 10c-1.5-2-4-2-5.5 0S5 16 6 19a3 3 0 005.5-1"/><path d="M12 10c1.5-2 4-2 5.5 0S19 16 18 19a3 3 0 01-5.5-1"/>' },
-                    { name: 'Orthopaedics',
-                        icon: '<line x1="12" y1="3" x2="12" y2="21"/><line x1="7" y1="6" x2="17" y2="6"/><line x1="7" y1="10" x2="17" y2="10"/><line x1="7" y1="14" x2="17" y2="14"/><line x1="7" y1="18" x2="17" y2="18"/>' },
-                    { name: 'Urology',
-                        icon: '<path d="M7 4c-2 0-3.5 2-3.5 5s2 8 3.5 9c1-1 1.5-2 1.5-3.5S8 12 8 9.5 7.5 4 7 4z"/><path d="M17 4c2 0 3.5 2 3.5 5s-2 8-3.5 9c-1-1-1.5-2-1.5-3.5S16 12 16 9.5 16.5 4 17 4z"/><circle cx="12" cy="19" r="1.6"/>' },
-                    { name: 'Transplants',
-                        icon: '<path d="M12 6c-2-3-7-2-7 2 0 3.5 4 6 7 9 3-3 7-5.5 7-9 0-4-5-5-7-2z"/>' },
-                    { name: 'Critical Care',
-                        icon: '<rect x="4" y="9" width="6" height="6" rx="1"/><rect x="14" y="9" width="6" height="6" rx="1"/><line x1="10" y1="12" x2="14" y2="12"/>' },
-                    { name: 'Bariatric Surgery',
-                        icon: '<circle cx="12" cy="12" r="9"/><path d="M8 12a4 4 0 108 0 4 4 0 00-8 0z"/>' },
-                    { name: 'Colorectal Surgery',
-                        icon: '<path d="M6 4c-2 3-2 6 0 8s5 1 6 4-1 5-3 5"/><circle cx="17" cy="6" r="2"/>' },
-                    { name: 'Emergency Medicine',
-                        icon: '<rect x="4" y="9" width="6" height="6" rx="1"/><rect x="14" y="9" width="6" height="6" rx="1"/><line x1="10" y1="12" x2="14" y2="12"/>' }
-                ];
-                list.forEach(function(s) {
-                    const row = document.createElement('div');
-                    row.className = 'spec-row';
-                    row.innerHTML =
-                        '<div class="spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
-                        s.icon + '</svg></div>' +
-                        '<div class="spec-row-name">' + s.name + '</div>' +
-                        '<svg class="spec-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>';
-                    container.appendChild(row);
-                });
-            })();
+  <section class="vt-section vt-reveal">
+    <div class="container">
+      <div class="vt-head-row">
+        <div>
+          <p class="vt-eyebrow">Specialities</p>
+          <h2 class="vt-heading">Care organised around <span class="hl">how you actually feel.</span></h2>
+        </div>
+        <button class="vt-btn vt-btn--ghost" data-nav="departments">View all departments →</button>
+      </div>
+      <div class="vt-dept-grid" id="homeDeptGrid"></div>
+    </div>
+  </section>
 
-            /* ProHealth Dots */
-            (function() {
-                const dotsWrap = document.getElementById('phDots');
-                if (!dotsWrap) return;
-                for (let i = 0; i < 4; i++) {
-                    const d = document.createElement('span');
-                    if (i === 0) d.classList.add('active');
-                    dotsWrap.appendChild(d);
-                }
-                let idx = 0;
-                setInterval(function() {
-                    dotsWrap.children[idx].classList.remove('active');
-                    idx = (idx + 1) % 4;
-                    dotsWrap.children[idx].classList.add('active');
-                }, 3000);
-            })();
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <div class="vt-head-row">
+        <div>
+          <p class="vt-eyebrow">Our consultants</p>
+          <h2 class="vt-heading">Meet a few of the <span class="hl">specialists</span> you'll see.</h2>
+        </div>
+        <button class="vt-btn vt-btn--ghost" data-nav="doctors">Browse all doctors →</button>
+      </div>
+      <div class="vt-doctor-grid" id="homeDoctorGrid"></div>
+    </div>
+  </section>
 
-            /* Doctor Carousel */
-            (function() {
-                const scrollEl = document.getElementById('doctorScroll');
-                if (!scrollEl) return;
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <p class="vt-eyebrow">Why Vitalis</p>
+      <h2 class="vt-heading">Four commitments that <span class="hl">don't change.</span></h2>
+      <p class="vt-lede">These aren't taglines — they're what every department is measured against.</p>
+      <div class="vt-value-grid">
+        <div class="vt-value-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+          <h4>Compassionate first</h4>
+          <p>Every consultation starts with listening — not a checklist.</p>
+        </div>
+        <div class="vt-value-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          <h4>Answers, fast</h4>
+          <p>On-site labs and imaging mean fewer days spent waiting to know.</p>
+        </div>
+        <div class="vt-value-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+          <h4>Transparent pricing</h4>
+          <p>Package costs and inclusions are stated upfront, always.</p>
+        </div>
+        <div class="vt-value-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg>
+          <h4>Never off the clock</h4>
+          <p>Emergency and critical care teams are on-site every hour, every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                function getScrollAmount() {
-                    const card = scrollEl.querySelector('.doctor-card');
-                    if (!card) return 170;
-                    const gap = 14;
-                    return card.getBoundingClientRect().width + gap;
-                }
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <p class="vt-eyebrow">Health packages</p>
+      <h2 class="vt-heading">Preventive care, <span class="hl">priced upfront.</span></h2>
+      <div class="vt-pkg-grid" id="homePkgGrid"></div>
+    </div>
+  </section>
 
-                function scrollDoctors(dir) {
-                    const amt = getScrollAmount();
-                    scrollEl.scrollBy({ left: dir * amt, behavior: 'smooth' });
-                }
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <p class="vt-eyebrow">Patient stories</p>
+      <h2 class="vt-heading">What bringing your family here <span class="hl">feels like.</span></h2>
+      <div class="vt-testi-grid" id="homeTestiGrid"></div>
+    </div>
+  </section>
 
-                const prevBtn = document.getElementById('docPrev');
-                const nextBtn = document.getElementById('docNext');
-                if (prevBtn) prevBtn.addEventListener('click', function() { scrollDoctors(-1); });
-                if (nextBtn) nextBtn.addEventListener('click', function() { scrollDoctors(1); });
-            })();
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <div class="vt-stats" id="homeStats"></div>
+    </div>
+  </section>
 
-            /* FAQ Accordion */
-            (function() {
-                const container = document.getElementById('accordion');
-                if (!container) return;
-                const faqs = [
-                    { q: 'How do I book an appointment at Apollo Hospitals, Mumbai?',
-                        a: 'You can book an appointment online through the website, via the Apollo mobile app, or by calling 08062972766. Walk-in consultations are also available.' },
-                    { q: 'What specialities are available at this hospital?',
-                        a: 'Apollo Hospitals, Mumbai offers Cardiology, Oncology, Neurology, Nephrology, Orthopaedics, Gastroenterology, Urology, Transplants and more under one roof.' },
-                    { q: 'Does the hospital offer 24/7 emergency care?',
-                        a: 'Yes, the hospital is available 24/7 with a dedicated emergency department. You can also reach the emergency helpline at 1066.' },
-                    { q: 'What is the ProHealth program?',
-                        a: 'ProHealth is a personalized preventive health program offering risk analysis, tailored diagnostic packages, and ongoing guidance from a dedicated health mentor.' }
-                ];
-                faqs.forEach(function(item, i) {
-                    const div = document.createElement('div');
-                    div.className = 'accordion-item' + (i === 0 ? ' open' : '');
-                    div.innerHTML =
-                        '<div class="accordion-header">' +
-                        '<span>' + item.q + '</span>' +
-                        '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>' +
-                        '</div>' +
-                        '<div class="accordion-body"><p>' + item.a + '</p></div>';
-                    const header = div.querySelector('.accordion-header');
-                    if (header) {
-                        header.addEventListener('click', function() {
-                            const wasOpen = div.classList.contains('open');
-                            document.querySelectorAll('.accordion-item').forEach(function(el) {
-                                el.classList.remove('open');
-                            });
-                            if (!wasOpen) div.classList.add('open');
-                        });
-                    }
-                    container.appendChild(div);
-                });
-            })();
+  <section class="vt-section vt-reveal">
+    <div class="container">
+      <p class="vt-eyebrow text-center">Questions</p>
+      <h2 class="vt-heading" style="max-width:none;">Frequently asked <span class="hl">questions.</span></h2>
+      <div class="vt-faq-list" id="homeFaqList"></div>
+    </div>
+  </section>
 
-            /* Scroll Reveal */
-            (function() {
-                const els = document.querySelectorAll('.reveal');
-                if (!els.length) return;
-                const observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('in-view');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.12 });
-                els.forEach(function(el) { observer.observe(el); });
-            })();
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <div class="vt-cta">
+        <div>
+          <h3>Not sure which specialist you need?</h3>
+          <p>Tell us your symptoms when you book — our care coordinators will match you with the right department.</p>
+        </div>
+        <div class="vt-cta__actions">
+          <button class="vt-btn vt-btn--gold" data-nav="appointment">Book an appointment</button>
+          <a href="tel:18002660000" class="vt-btn vt-btn--outline">Call 1800-266-0000</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            /* Count Up */
-            (function() {
-                const els = document.querySelectorAll('.count-up');
-                if (!els.length) return;
-                const observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            const el = entry.target;
-                            const target = parseFloat(el.dataset.target) || 0;
-                            let cur = 0;
-                            const step = target / 30;
-                            const timer = setInterval(function() {
-                                cur += step;
-                                if (cur >= target) {
-                                    cur = target;
-                                    clearInterval(timer);
-                                }
-                                el.textContent = cur.toFixed(1);
-                            }, 30);
-                            observer.unobserve(el);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                els.forEach(function(el) { observer.observe(el); });
-            })();
+</section>
 
-            /* Smooth Anchor Scroll */
-            (function() {
-                document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-                    a.addEventListener('click', function(e) {
-                        const id = this.getAttribute('href').slice(1);
-                        const target = document.getElementById(id);
-                        if (target) {
-                            e.preventDefault();
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    });
-                });
-            })();
+<!-- ============================================================
+     DOCTORS VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-doctors">
+  <div class="vt-page-head">
+    <div class="container">
+      <p class="vt-eyebrow">Find a doctor</p>
+      <h1 class="vt-heading">60+ consultants, <span class="hl">one search away.</span></h1>
+      <p class="vt-lede">Filter by speciality or search by name to find the right consultant, then book directly into their next available slot.</p>
+    </div>
+  </div>
+  <section class="vt-section">
+    <div class="container">
+      <div class="vt-filters">
+        <div class="vt-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          <input type="text" id="doctorSearch" placeholder="Search doctors by name..." aria-label="Search doctors" />
+        </div>
+        <div class="vt-chip is-active" data-dept-filter="all">All</div>
+        <div id="doctorDeptChips" style="display:contents;"></div>
+      </div>
+      <div class="vt-doctor-grid" id="doctorsFullGrid"></div>
+      <div class="vt-empty" id="doctorsEmpty" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+        <p>No doctors match that search. Try a different name or speciality.</p>
+      </div>
+    </div>
+  </section>
+</section>
 
-        })();
-    </script>
+<!-- ============================================================
+     DEPARTMENTS VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-departments">
+  <div class="vt-page-head">
+    <div class="container">
+      <p class="vt-eyebrow">Departments</p>
+      <h1 class="vt-heading">Twelve specialities, <span class="hl">under one roof.</span></h1>
+      <p class="vt-lede">Every department shares the same diagnostics, records and care coordinators — so referrals between specialists happen in hours, not weeks.</p>
+    </div>
+  </div>
+  <section class="vt-section">
+    <div class="container">
+      <div class="vt-dept-grid" id="departmentsFullGrid"></div>
+    </div>
+  </section>
+</section>
 
+<!-- ============================================================
+     HEALTH PACKAGES VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-packages">
+  <div class="vt-page-head">
+    <div class="container">
+      <p class="vt-eyebrow">Health packages</p>
+      <h1 class="vt-heading">Screening built around <span class="hl">your stage of life.</span></h1>
+      <p class="vt-lede">Every package includes a physician consultation to walk through results — nothing is just a printout.</p>
+    </div>
+  </div>
+  <section class="vt-section">
+    <div class="container">
+      <div class="vt-pkg-grid" id="packagesFullGrid"></div>
+    </div>
+  </section>
+</section>
+
+<!-- ============================================================
+     APPOINTMENT VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-appointment">
+  <div class="vt-page-head">
+    <div class="container">
+      <p class="vt-eyebrow">Book an appointment</p>
+      <h1 class="vt-heading">Let's find you <span class="hl">the right slot.</span></h1>
+      <p class="vt-lede">Share a few details and our care coordinators will confirm your appointment by phone within a few hours.</p>
+    </div>
+  </div>
+  <section class="vt-section">
+    <div class="container">
+      <div class="vt-appt-grid">
+        <div class="vt-form-card">
+          <h3>Appointment details</h3>
+          <p>Fields marked <span class="req">*</span> are required.</p>
+          <div id="pkgNotePill"></div>
+          <div class="vt-form-msg" id="apptFormMsg"></div>
+          <form id="apptForm" novalidate>
+            <div class="vt-field">
+              <label for="apptName">Full name <span class="req">*</span></label>
+              <input type="text" id="apptName" name="name" autocomplete="name" required />
+            </div>
+            <div class="vt-field-row">
+              <div class="vt-field">
+                <label for="apptPhone">Phone number <span class="req">*</span></label>
+                <input type="tel" id="apptPhone" name="phone" placeholder="10-digit mobile number" autocomplete="tel" required />
+              </div>
+              <div class="vt-field">
+                <label for="apptEmail">Email (optional)</label>
+                <input type="email" id="apptEmail" name="email" autocomplete="email" />
+              </div>
+            </div>
+            <div class="vt-field-row">
+              <div class="vt-field">
+                <label for="apptDept">Department <span class="req">*</span></label>
+                <select id="apptDept" name="department" required></select>
+              </div>
+              <div class="vt-field">
+                <label for="apptDoctor">Preferred doctor</label>
+                <select id="apptDoctor" name="doctor"></select>
+              </div>
+            </div>
+            <div class="vt-field-row">
+              <div class="vt-field">
+                <label for="apptDate">Preferred date <span class="req">*</span></label>
+                <input type="date" id="apptDate" name="date" required />
+              </div>
+              <div class="vt-field">
+                <label>Preferred time <span class="req">*</span></label>
+                <div class="vt-time-chips" id="apptTimeChips">
+                  <div class="vt-time-chip" data-time="Morning (9 AM – 12 PM)">Morning</div>
+                  <div class="vt-time-chip" data-time="Afternoon (12 – 4 PM)">Afternoon</div>
+                  <div class="vt-time-chip" data-time="Evening (4 – 8 PM)">Evening</div>
+                </div>
+              </div>
+            </div>
+            <div class="vt-field">
+              <label for="apptReason">Reason for visit (optional)</label>
+              <textarea id="apptReason" name="reason" placeholder="Briefly describe your symptoms or reason for the visit"></textarea>
+            </div>
+            <button type="submit" class="vt-btn vt-btn--primary vt-btn--block">Confirm appointment request</button>
+          </form>
+        </div>
+
+        <div class="vt-appt-list-card">
+          <h3>Your appointment requests</h3>
+          <div id="apptListWrap"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============================================================
+     ABOUT VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-about">
+  <div class="vt-page-head">
+    <div class="container">
+      <p class="vt-eyebrow">About Vitalis</p>
+      <h1 class="vt-heading">Built as a hospital, run like a <span class="hl">promise kept.</span></h1>
+      <p class="vt-lede">Vitalis Hospitals opened in Bandra West with one goal: make specialist care coordinated instead of scattered.</p>
+    </div>
+  </div>
+  <section class="vt-section">
+    <div class="container vt-about-grid">
+      <div class="vt-about-copy">
+        <h2 class="vt-heading" style="font-size:22px;">Our story</h2>
+        <p>Vitalis began as a 120-bed cardiac and orthopaedic centre. Over a decade, it grew into a 300-bed multi-speciality hospital — adding oncology, neurology, nephrology and women's health, while keeping every department on one shared medical record.</p>
+        <p>That's still the idea today: a patient referred from cardiology to nephrology shouldn't have to repeat their history, redo a scan, or wait a week for a second opinion. One hospital, one file, one care team.</p>
+        <h2 class="vt-heading" style="font-size:22px;margin-top:32px;">Our promise</h2>
+        <p>Clear pricing before treatment. A consultant who explains results in person, not just a report. And an emergency department that never asks you to wait to be seen.</p>
+      </div>
+      <ul class="vt-timeline">
+        <li><strong>Founded</strong><span>Opened as a 120-bed cardiac &amp; ortho centre in Bandra West</span></li>
+        <li><strong>Expansion</strong><span>Added oncology, neurology and critical care wings</span></li>
+        <li><strong>300 beds</strong><span>Grew into a full multi-speciality campus</span></li>
+        <li><strong>12 specialities</strong><span>Unified under one shared patient record</span></li>
+        <li><strong>Today</strong><span>60+ consultants, 24/7 emergency &amp; critical care</span></li>
+      </ul>
+    </div>
+  </section>
+  <section class="vt-section vt-reveal" style="padding-top:0;">
+    <div class="container">
+      <div class="vt-stats" id="aboutStats"></div>
+    </div>
+  </section>
+</section>
+
+<!-- ============================================================
+     CONTACT VIEW
+     ============================================================ -->
+<section class="vt-view" id="view-contact">
+  <div class="vt-page-head">
+    <div class="container">
+      <p class="vt-eyebrow">Contact &amp; emergency</p>
+      <h1 class="vt-heading">Reach the right team, <span class="hl">right away.</span></h1>
+      <p class="vt-lede">For medical emergencies, please call the emergency line directly rather than using the form below.</p>
+    </div>
+  </div>
+  <section class="vt-section">
+    <div class="container vt-contact-grid">
+      <div>
+        <div class="vt-info-card" style="margin-bottom:20px;">
+          <h4>Emergency &amp; helpline</h4>
+          <div class="vt-info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg>
+            <div><strong>Emergency line (24/7):</strong> 1800-266-0000</div>
+          </div>
+          <div class="vt-info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7 12.8 12.8 0 00.7 2.8 2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.5 2.8.7a2 2 0 011.7 2z"/></svg>
+            <div><strong>Appointments desk:</strong> 022-6127-4000</div>
+          </div>
+          <div class="vt-info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+            <div><strong>General enquiries:</strong> care@vitalishospitals.example</div>
+          </div>
+        </div>
+        <div class="vt-info-card">
+          <h4>Visit us</h4>
+          <div class="vt-info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>142 Turner Road, Bandra West, Mumbai 400050</div>
+          </div>
+          <div class="vt-info-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div>OPD: Mon–Sat, 8 AM – 8 PM · Emergency: 24/7</div>
+          </div>
+        </div>
+        <div class="vt-map" style="margin-top:20px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Map preview — Bandra West, Mumbai</span>
+        </div>
+      </div>
+
+      <div class="vt-form-card">
+        <h3>Send a message</h3>
+        <p>For non-urgent queries — we typically reply within one business day.</p>
+        <div class="vt-form-msg" id="contactFormMsg"></div>
+        <form id="contactForm" novalidate>
+          <div class="vt-field">
+            <label for="cName">Full name <span class="req">*</span></label>
+            <input type="text" id="cName" required />
+          </div>
+          <div class="vt-field">
+            <label for="cEmail">Email <span class="req">*</span></label>
+            <input type="email" id="cEmail" required />
+          </div>
+          <div class="vt-field">
+            <label for="cMsg">Message <span class="req">*</span></label>
+            <textarea id="cMsg" required placeholder="How can we help?"></textarea>
+          </div>
+          <button type="submit" class="vt-btn vt-btn--primary vt-btn--block">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="vt-footer">
+  <div class="container">
+    <div class="vt-footer-grid">
+      <div class="vt-footer-brand">
+        <span class="vt-brand__name" style="font-size:22px;">Vitalis</span>
+        <p>A 300-bed multi-speciality hospital in Bandra West, Mumbai, offering coordinated specialist care and 24/7 emergency services.</p>
+        <div class="vt-newsletter">
+          <input type="email" id="newsletterEmail" placeholder="Your email" aria-label="Newsletter email" />
+          <button class="vt-btn vt-btn--gold vt-btn--sm" id="newsletterBtn">Join</button>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a data-nav="doctors">Find doctors</a></li>
+          <li><a data-nav="departments">Departments</a></li>
+          <li><a data-nav="packages">Health packages</a></li>
+          <li><a data-nav="appointment">Book appointment</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Hospital</h5>
+        <ul>
+          <li><a data-nav="about">About Vitalis</a></li>
+          <li><a data-nav="contact">Contact us</a></li>
+          <li><a href="tel:18002660000">Emergency line</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#" onclick="return false;">Privacy policy</a></li>
+          <li><a href="#" onclick="return false;">Terms of use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="vt-footer-bottom">
+      <span>© 2026 Vitalis Hospitals. This is a demo hospital website — not a real medical provider.</span>
+      <span>Bandra West, Mumbai · 24/7 Emergency: 1800-266-0000</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="vt-bottomnav">
+  <a data-nav="appointment">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <span>Book</span>
+  </a>
+  <a data-nav="departments">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+    <span>Departments</span>
+  </a>
+  <a data-nav="home" class="center">
+    <span class="vt-bn-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+    </span>
+  </a>
+  <a data-nav="doctors">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+    <span>Doctors</span>
+  </a>
+  <a href="tel:18002660000">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.5 2.8.7a2 2 0 011.7 2z"/></svg>
+    <span>Call Us</span>
+  </a>
+</nav>
+
+<div id="vtToastWrap" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   STORAGE — tries real localStorage, falls back to in-memory
+   (this page can run inside a preview sandbox where localStorage
+   is blocked, so every read/write goes through this wrapper)
+   ============================================================ */
+const Store = (function(){
+  let memory = {};
+  let useLocal = true;
+  try {
+    localStorage.setItem('__vt_test__','1');
+    localStorage.removeItem('__vt_test__');
+  } catch(e){ useLocal = false; }
+
+  return {
+    get(key, fallback){
+      try{
+        if(useLocal){
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : (fallback !== undefined ? fallback : null);
+        }
+        return memory[key] !== undefined ? JSON.parse(JSON.stringify(memory[key])) : (fallback !== undefined ? fallback : null);
+      }catch(e){ return fallback !== undefined ? fallback : null; }
+    },
+    set(key, value){
+      try{
+        if(useLocal){ localStorage.setItem(key, JSON.stringify(value)); return; }
+      }catch(e){ useLocal = false; }
+      memory[key] = value;
+    }
+  };
+})();
+
+/* ============================================================
+   DATA
+   ============================================================ */
+const ICONS = {
+  cardiology:'<path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/>',
+  orthopaedics:'<line x1="12" y1="3" x2="12" y2="21"/><line x1="7" y1="7" x2="17" y2="7"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="17" x2="17" y2="17"/>',
+  oncology:'<circle cx="12" cy="6" r="2"/><circle cx="6" cy="14" r="2"/><circle cx="18" cy="14" r="2"/><circle cx="12" cy="19" r="2"/><line x1="12" y1="8" x2="7" y2="12.5"/><line x1="12" y1="8" x2="17" y2="12.5"/><line x1="8" y1="15.5" x2="11" y2="17.5"/><line x1="16" y1="15.5" x2="13" y2="17.5"/>',
+  neurology:'<path d="M9 3a4 4 0 00-4 4c0 1 .3 1.7.8 2.3A3 3 0 004 12a3 3 0 001.6 2.6A3.5 3.5 0 008 20a3.5 3.5 0 003.5-3.5V6A3 3 0 009 3z"/><path d="M15 3a4 4 0 014 4c0 1-.3 1.7-.8 2.3A3 3 0 0120 12a3 3 0 01-1.6 2.6A3.5 3.5 0 0116 20a3.5 3.5 0 01-3.5-3.5V6"/>',
+  womens:'<circle cx="12" cy="8" r="5"/><path d="M9 6.3a3 3 0 016 0"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="8.5" y1="17" x2="15.5" y2="17"/>',
+  paediatrics:'<circle cx="12" cy="7" r="4"/><path d="M6 21c0-4 2.5-6 6-6s6 2 6 6"/><path d="M9 21v-2M15 21v-2"/>',
+  nephrology:'<path d="M7 4c-2 0-3.5 2-3.5 5s2 8 3.5 9c1-1 1.5-2 1.5-3.5S8 12 8 9.5 7.5 4 7 4z"/><path d="M17 4c2 0 3.5 2 3.5 5s-2 8-3.5 9c-1-1-1.5-2-1.5-3.5S16 12 16 9.5 16.5 4 17 4z"/><line x1="12" y1="4" x2="12" y2="20"/>',
+  gastro:'<path d="M9 3c-3 0-5 2.5-5 6 0 3 2 4.5 2 7a4 4 0 004 4c2.5 0 4-2 4-4"/><path d="M9 3c2 0 3 1.5 3 3.5S10.5 10 9 10"/><line x1="16" y1="7" x2="20" y2="7"/><line x1="18" y1="5" x2="18" y2="9"/>',
+  pulmonology:'<path d="M12 3v7"/><path d="M12 10c-1.5-2-4-2-5.5 0S5 16 6 19a3 3 0 005.5-1"/><path d="M12 10c1.5-2 4-2 5.5 0S19 16 18 19a3 3 0 01-5.5-1"/>',
+  emergency:'<rect x="4" y="9" width="6" height="6" rx="1"/><rect x="14" y="9" width="6" height="6" rx="1"/><line x1="10" y1="12" x2="14" y2="12"/>',
+  general:'<path d="M9 3H5a2 2 0 00-2 2v4m0 6v4a2 2 0 002 2h4m6 0h4a2 2 0 002-2v-4m0-6V5a2 2 0 00-2-2h-4"/>'
+};
+
+const DEPARTMENTS = [
+  {id:'cardiology',name:'Cardiology',desc:'Heart, vascular and rhythm care with on-site cath lab.'},
+  {id:'oncology',name:'Oncology',desc:'Precision cancer care spanning surgery, chemo and radiation.'},
+  {id:'neurology',name:'Neurology',desc:'Brain, spine and nerve conditions, from migraine to stroke.'},
+  {id:'orthopaedics',name:'Orthopaedics',desc:'Joint, bone and sports injury care, including replacements.'},
+  {id:'nephrology',name:'Nephrology',desc:'Kidney care, dialysis and transplant coordination.'},
+  {id:'gastro',name:'Gastroenterology',desc:'Digestive and liver care, endoscopy and hepatology.'},
+  {id:'pulmonology',name:'Pulmonology',desc:'Lung and respiratory care, including sleep studies.'},
+  {id:'womens',name:"Women's Health",desc:'Gynaecology, maternity and fertility support.'},
+  {id:'paediatrics',name:'Paediatrics',desc:'Child and adolescent care, from newborns to teens.'},
+  {id:'emergency',name:'Emergency & Critical Care',desc:'24/7 trauma response and intensive care.'},
+  {id:'general',name:'General Medicine',desc:'Everyday illness, checkups and referrals to specialists.'}
+];
+
+const DOCTORS = [
+  {id:'d1',name:'Dr. Ananya Rao',dept:'cardiology',exp:18,quals:'MBBS, MD, DM (Cardiology)',days:'Mon · Wed · Fri',avail:'Today, 4:30 PM'},
+  {id:'d2',name:'Dr. Vikram Oberoi',dept:'orthopaedics',exp:22,quals:'MBBS, MS (Orthopaedics)',days:'Tue · Thu · Sat',avail:'Tomorrow, 11 AM'},
+  {id:'d3',name:'Dr. Meera Iyer',dept:'oncology',exp:16,quals:'MBBS, MD, DM (Oncology)',days:'Mon – Fri',avail:'Today, 6 PM'},
+  {id:'d4',name:'Dr. Arjun Nair',dept:'neurology',exp:14,quals:'MBBS, DM (Neurology)',days:'Mon · Tue · Thu',avail:'Thu, 10 AM'},
+  {id:'d5',name:'Dr. Kavita Desai',dept:'womens',exp:12,quals:'MBBS, MS (OBG)',days:'Mon – Sat',avail:'Today, 2 PM'},
+  {id:'d6',name:'Dr. Rohan Shah',dept:'paediatrics',exp:10,quals:'MBBS, MD (Paediatrics)',days:'Mon – Sat',avail:'Tomorrow, 9 AM'},
+  {id:'d7',name:'Dr. Farida Khan',dept:'nephrology',exp:20,quals:'MBBS, MD, DM (Nephrology)',days:'Tue · Thu · Fri',avail:'Fri, 3 PM'},
+  {id:'d8',name:'Dr. Suresh Pillai',dept:'gastro',exp:15,quals:'MBBS, DM (Gastroenterology)',days:'Mon · Wed · Fri',avail:'Wed, 5 PM'},
+  {id:'d9',name:'Dr. Neha Kulkarni',dept:'pulmonology',exp:11,quals:'MBBS, MD (Pulmonology)',days:'Tue · Wed · Sat',avail:'Sat, 11 AM'},
+  {id:'d10',name:'Dr. Aditya Menon',dept:'emergency',exp:13,quals:'MBBS, MD (Emergency Medicine)',days:'24/7 rotation',avail:'On-site now'}
+];
+
+const PACKAGES = [
+  {id:'p1',name:'Essential Health Checkup',price:2999,note:'~45 minutes · Fasting required',popular:false,
+    items:['Complete blood count & sugar panel','Blood pressure & BMI assessment','Physician consultation & summary']},
+  {id:'p2',name:'Executive Health Checkup',price:7499,note:'2–3 hours · Most booked package',popular:true,
+    items:['Comprehensive blood panel (40+ markers)','ECG and abdominal ultrasound','Physician consultation with report walkthrough']},
+  {id:'p3',name:'Cardiac Care Package',price:9999,note:'~2 hours · Cardiologist-led',popular:false,
+    items:['ECG and 2D echocardiogram','Lipid profile & cardiac risk markers','Consultation with a cardiologist']},
+  {id:'p4',name:"Women's Wellness Package",price:6499,note:'~1.5 hours',popular:false,
+    items:['Pap smear & breast screening','Bone density assessment','Consultation with a gynaecologist']},
+  {id:'p5',name:'Senior Citizen Package (60+)',price:8999,note:'~2 hours',popular:false,
+    items:['Comprehensive geriatric health panel','Bone density, vision & hearing screen','Physician consultation & care plan']}
+];
+
+const TESTIMONIALS = [
+  {name:'Priya M.',area:'Bandra',text:'The cardiology team explained every test result in plain language before deciding on a plan. Never felt rushed.'},
+  {name:'Rohit S.',area:'Andheri',text:'Booked an appointment online and a coordinator called within the hour to confirm. My father was seen the same day.'},
+  {name:'Fatima A.',area:'Khar',text:'The executive checkup was thorough and the pricing was exactly what was listed — no surprises at the counter.'}
+];
+
+const FAQS = [
+  {q:'How do I book an appointment at Vitalis Hospitals?',a:'Use the "Book Appointment" button to submit your details online, or call our appointments desk at 022-6127-4000. A care coordinator confirms every request by phone.'},
+  {q:'Is emergency care available 24/7?',a:'Yes. Our emergency department and critical care unit are staffed around the clock. For emergencies, please call 1800-266-0000 directly rather than booking online.'},
+  {q:'Do you accept cashless insurance?',a:'Vitalis works with 50+ insurance partners for cashless treatment. Bring your policy details to the admissions desk, or check with us in advance for planned procedures.'},
+  {q:'Can I request a specific doctor for a health package?',a:'Yes — when booking a package appointment, you can note a preferred consultant and department in the form, and we\u2019ll do our best to match you.'},
+  {q:'How soon will my appointment be confirmed?',a:'Most requests are confirmed by phone within a few hours during working hours. Urgent requests are prioritised — mention urgency in the reason field.'},
+  {q:'Is the hospital accessible for elderly or wheelchair-using patients?',a:'Yes, the campus is fully wheelchair accessible with dedicated parking, ramps and elevator access to every department.'}
+];
+
+/* ============================================================
+   RENDER HELPERS
+   ============================================================ */
+function initials(name){
+  return name.replace('Dr. ','').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+}
+function deptName(id){ const d = DEPARTMENTS.find(x=>x.id===id); return d ? d.name : id; }
+function iconSvg(id){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[id]||ICONS.general)+'</svg>'; }
+
+function renderDeptCard(d){
+  return '<div class="vt-card vt-dept-card" data-nav="departments" role="button" tabindex="0">'+
+    '<div class="vt-dept-card__icon">'+iconSvg(d.id)+'</div>'+
+    '<h4>'+d.name+'</h4><p>'+d.desc+'</p></div>';
+}
+
+function renderDoctorCard(doc){
+  const favs = Store.get('vt_favourites', []);
+  const isFav = favs.includes(doc.id);
+  return '<div class="vt-card vt-doctor-card" data-doctor-id="'+doc.id+'">'+
+    '<div class="vt-doctor-card__top">'+
+      '<div class="vt-avatar">'+initials(doc.name)+'</div>'+
+      '<div>'+
+        '<div class="vt-doctor-card__name">'+doc.name+'</div>'+
+        '<div class="vt-doctor-card__dept">'+deptName(doc.dept)+'</div>'+
+      '</div>'+
+      '<button class="vt-fav-btn'+(isFav?' is-fav':'')+'" data-fav-id="'+doc.id+'" aria-label="Save doctor">'+
+        '<svg viewBox="0 0 24 24" fill="'+(isFav?'currentColor':'none')+'" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>'+
+      '</button>'+
+    '</div>'+
+    '<div class="vt-doctor-card__meta">'+
+      '<span class="vt-tag">'+doc.exp+' yrs experience</span>'+
+      '<span class="vt-tag">'+doc.quals+'</span>'+
+      '<span class="vt-tag">'+doc.days+'</span>'+
+    '</div>'+
+    '<div class="vt-doctor-card__foot">'+
+      '<span class="vt-avail">● '+doc.avail+'</span>'+
+      '<button class="vt-btn vt-btn--primary vt-btn--sm" data-book-doctor="'+doc.id+'">Book</button>'+
+    '</div></div>';
+}
+
+function renderPkgCard(p){
+  return '<div class="vt-card vt-pkg-card'+(p.popular?' is-popular':'')+'">'+
+    (p.popular?'<span class="vt-pkg-badge">Most popular</span>':'')+
+    '<h4>'+p.name+'</h4>'+
+    '<div class="vt-pkg-price">₹'+p.price.toLocaleString('en-IN')+'</div>'+
+    '<div class="vt-pkg-note">'+p.note+'</div>'+
+    '<ul class="vt-pkg-list">'+p.items.map(i=>'<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><span>'+i+'</span></li>').join('')+'</ul>'+
+    '<button class="vt-btn vt-btn--outline vt-btn--block" data-book-package="'+p.id+'">Book this package</button>'+
+    '</div>';
+}
+
+function renderTestiCard(t){
+  const stars = Array(5).fill('<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>').join('');
+  return '<div class="vt-card vt-testi-card">'+
+    '<div class="vt-testi-stars">'+stars+'</div>'+
+    '<p>"'+t.text+'"</p>'+
+    '<div class="vt-testi-who"><div class="vt-avatar" style="width:38px;height:38px;font-size:13px;">'+t.name[0]+'</div>'+
+    '<div><strong>'+t.name+'</strong><span>'+t.area+'</span></div></div></div>';
+}
+
+function renderStats(){
+  const stats = [
+    {n:60,suffix:'+',label:'Specialist consultants'},
+    {n:300,suffix:'',label:'Hospital beds'},
+    {n:12,suffix:'',label:'Centres of care'},
+    {n:98,suffix:'%',label:'Patients who\u2019d refer us'}
+  ];
+  return stats.map(s=>'<div class="vt-stat"><strong class="vt-count" data-target="'+s.n+'" data-suffix="'+s.suffix+'">0'+s.suffix+'</strong><span>'+s.label+'</span></div>').join('');
+}
+
+function renderFaq(list){
+  return list.map((f,i)=>'<div class="vt-faq-item'+(i===0?' is-open':'')+'">'+
+    '<button class="vt-faq-q"><span>'+f.q+'</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>'+
+    '<div class="vt-faq-a"><p>'+f.a+'</p></div></div>').join('');
+}
+
+/* Populate static content blocks */
+document.getElementById('homeDeptGrid').innerHTML = DEPARTMENTS.slice(0,8).map(renderDeptCard).join('');
+document.getElementById('departmentsFullGrid').innerHTML = DEPARTMENTS.map(renderDeptCard).join('');
+document.getElementById('homeDoctorGrid').innerHTML = DOCTORS.slice(0,3).map(renderDoctorCard).join('');
+document.getElementById('doctorsFullGrid').innerHTML = DOCTORS.map(renderDoctorCard).join('');
+document.getElementById('homePkgGrid').innerHTML = PACKAGES.slice(0,3).map(renderPkgCard).join('');
+document.getElementById('packagesFullGrid').innerHTML = PACKAGES.map(renderPkgCard).join('');
+document.getElementById('homeTestiGrid').innerHTML = TESTIMONIALS.map(renderTestiCard).join('');
+document.getElementById('homeStats').innerHTML = renderStats();
+document.getElementById('aboutStats').innerHTML = renderStats();
+document.getElementById('homeFaqList').innerHTML = renderFaq(FAQS);
+
+const deptChipsWrap = document.getElementById('doctorDeptChips');
+const uniqueDoctorDepts = [...new Set(DOCTORS.map(d=>d.dept))];
+deptChipsWrap.innerHTML = uniqueDoctorDepts.map(id=>'<div class="vt-chip" data-dept-filter="'+id+'">'+deptName(id)+'</div>').join('');
+
+/* Populate appointment form selects */
+const apptDeptSel = document.getElementById('apptDept');
+apptDeptSel.innerHTML = '<option value="">Select a department</option>'+DEPARTMENTS.map(d=>'<option value="'+d.id+'">'+d.name+'</option>').join('');
+const apptDoctorSel = document.getElementById('apptDoctor');
+function refreshDoctorOptions(deptId){
+  const opts = DOCTORS.filter(d=> !deptId || d.dept===deptId);
+  apptDoctorSel.innerHTML = '<option value="">No preference — any available doctor</option>'+opts.map(d=>'<option value="'+d.id+'">'+d.name+' — '+deptName(d.dept)+'</option>').join('');
+}
+refreshDoctorOptions('');
+apptDeptSel.addEventListener('change', function(){ refreshDoctorOptions(this.value); });
+
+/* min date = today */
+document.getElementById('apptDate').min = new Date().toISOString().split('T')[0];
+
+/* ============================================================
+   VIEW ROUTER
+   ============================================================ */
+const VALID_VIEWS = ['home','doctors','departments','packages','appointment','about','contact'];
+function showView(name){
+  if(!VALID_VIEWS.includes(name)) name = 'home';
+  VALID_VIEWS.forEach(v=>{
+    const el = document.getElementById('view-'+v);
+    if(el) el.classList.toggle('is-active', v===name);
+  });
+  document.querySelectorAll('[data-nav]').forEach(el=>{
+    el.classList.toggle('is-active', el.dataset.nav===name);
+  });
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  reobserveReveals();
+}
+document.querySelectorAll('[data-nav]').forEach(el=>{
+  el.addEventListener('click', function(e){
+    if(this.tagName === 'A' && this.getAttribute('href')) e.preventDefault();
+    const name = this.dataset.nav;
+    location.hash = name;
+    showView(name);
+    const drawer = document.getElementById('vtDrawer');
+    drawer.classList.remove('is-open');
+    document.getElementById('vtHamburger').classList.remove('is-open');
+  });
+});
+window.addEventListener('hashchange', function(){
+  showView(location.hash.replace('#','') || 'home');
+});
+showView(location.hash.replace('#','') || 'home');
+
+/* ============================================================
+   NAVBAR: scroll shadow + hamburger
+   ============================================================ */
+window.addEventListener('scroll', function(){
+  document.getElementById('vtNav').classList.toggle('is-scrolled', window.scrollY > 8);
+}, {passive:true});
+
+const hamburgerBtn = document.getElementById('vtHamburger');
+const drawer = document.getElementById('vtDrawer');
+hamburgerBtn.addEventListener('click', function(){
+  const open = drawer.classList.toggle('is-open');
+  hamburgerBtn.classList.toggle('is-open', open);
+  hamburgerBtn.setAttribute('aria-expanded', open);
+});
+
+/* ============================================================
+   REVEAL ON SCROLL + COUNTERS
+   ============================================================ */
+document.querySelectorAll('.vt-section').forEach(s=> s.classList.add('vt-reveal'));
+
+let revealObserver;
+function reobserveReveals(){
+  if(revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.vt-reveal:not(.is-visible)').forEach(el=>revealObserver.observe(el));
+
+  if(counterObserver) counterObserver.disconnect();
+  counterObserver = new IntersectionObserver(function(entries){
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.4});
+  document.querySelectorAll('.vt-count:not(.is-done)').forEach(el=>counterObserver.observe(el));
+}
+let counterObserver;
+function animateCounter(el){
+  el.classList.add('is-done');
+  const target = parseFloat(el.dataset.target)||0;
+  const suffix = el.dataset.suffix||'';
+  let cur = 0;
+  const step = Math.max(target/40,1);
+  const timer = setInterval(function(){
+    cur += step;
+    if(cur >= target){ cur = target; clearInterval(timer); }
+    el.textContent = Math.round(cur)+suffix;
+  }, 30);
+}
+reobserveReveals();
+
+/* ============================================================
+   FAQ ACCORDION (event delegation, works across views)
+   ============================================================ */
+document.addEventListener('click', function(e){
+  const q = e.target.closest('.vt-faq-q');
+  if(!q) return;
+  const item = q.closest('.vt-faq-item');
+  const wasOpen = item.classList.contains('is-open');
+  item.parentElement.querySelectorAll('.vt-faq-item').forEach(i=>i.classList.remove('is-open'));
+  if(!wasOpen) item.classList.add('is-open');
+});
+
+/* ============================================================
+   DOCTOR SEARCH + FILTER
+   ============================================================ */
+const doctorSearchInput = document.getElementById('doctorSearch');
+let activeDeptFilter = 'all';
+function applyDoctorFilters(){
+  const term = (doctorSearchInput.value||'').trim().toLowerCase();
+  const filtered = DOCTORS.filter(d=>{
+    const matchesDept = activeDeptFilter==='all' || d.dept===activeDeptFilter;
+    const matchesTerm = !term || d.name.toLowerCase().includes(term) || deptName(d.dept).toLowerCase().includes(term);
+    return matchesDept && matchesTerm;
+  });
+  document.getElementById('doctorsFullGrid').innerHTML = filtered.map(renderDoctorCard).join('');
+  document.getElementById('doctorsEmpty').style.display = filtered.length ? 'none' : 'block';
+}
+doctorSearchInput.addEventListener('input', applyDoctorFilters);
+document.querySelector('.vt-filters').addEventListener('click', function(e){
+  const chip = e.target.closest('[data-dept-filter]');
+  if(!chip) return;
+  this.querySelectorAll('[data-dept-filter]').forEach(c=>c.classList.remove('is-active'));
+  chip.classList.add('is-active');
+  activeDeptFilter = chip.dataset.deptFilter;
+  applyDoctorFilters();
+});
+
+/* ============================================================
+   FAVOURITE DOCTORS
+   ============================================================ */
+document.addEventListener('click', function(e){
+  const btn = e.target.closest('[data-fav-id]');
+  if(!btn) return;
+  const id = btn.dataset.favId;
+  let favs = Store.get('vt_favourites', []);
+  if(favs.includes(id)){
+    favs = favs.filter(f=>f!==id);
+    btn.classList.remove('is-fav');
+    btn.querySelector('svg').setAttribute('fill','none');
+    showToast('Removed from saved doctors');
+  } else {
+    favs.push(id);
+    btn.classList.add('is-fav');
+    btn.querySelector('svg').setAttribute('fill','currentColor');
+    showToast('Saved to your doctors');
+  }
+  Store.set('vt_favourites', favs);
+});
+
+/* ============================================================
+   BOOK BUTTONS → jump to appointment view, prefill form
+   ============================================================ */
+let pendingPackage = null;
+
+document.addEventListener('click', function(e){
+  const docBtn = e.target.closest('[data-book-doctor]');
+  const pkgBtn = e.target.closest('[data-book-package]');
+  if(docBtn){
+    const doc = DOCTORS.find(d=>d.id===docBtn.dataset.bookDoctor);
+    if(doc){
+      apptDeptSel.value = doc.dept;
+      refreshDoctorOptions(doc.dept);
+      apptDoctorSel.value = doc.id;
+    }
+    location.hash='appointment'; showView('appointment');
+  }
+  if(pkgBtn){
+    const pkg = PACKAGES.find(p=>p.id===pkgBtn.dataset.bookPackage);
+    pendingPackage = pkg || null;
+    renderPkgPill();
+    location.hash='appointment'; showView('appointment');
+  }
+});
+
+function renderPkgPill(){
+  const wrap = document.getElementById('pkgNotePill');
+  if(!pendingPackage){ wrap.innerHTML=''; return; }
+  wrap.innerHTML = '<div class="vt-pkg-note-pill">Booking package: '+pendingPackage.name+' &nbsp;<button type="button" id="clearPkgBtn">remove</button></div>';
+  document.getElementById('clearPkgBtn').addEventListener('click', function(){
+    pendingPackage = null; renderPkgPill();
+  });
+}
+
+/* ============================================================
+   TIME CHIPS
+   ============================================================ */
+let selectedTime = '';
+document.getElementById('apptTimeChips').addEventListener('click', function(e){
+  const chip = e.target.closest('.vt-time-chip');
+  if(!chip) return;
+  this.querySelectorAll('.vt-time-chip').forEach(c=>c.classList.remove('is-selected'));
+  chip.classList.add('is-selected');
+  selectedTime = chip.dataset.time;
+});
+
+/* ============================================================
+   APPOINTMENT FORM SUBMIT
+   ============================================================ */
+function genId(){
+  return 'VT-'+Date.now().toString(36).slice(-5).toUpperCase()+'-'+Math.floor(100+Math.random()*900);
+}
+function renderAppointments(){
+  const list = Store.get('vt_appointments', []);
+  const wrap = document.getElementById('apptListWrap');
+  if(!list.length){
+    wrap.innerHTML = '<div class="vt-empty" style="padding:24px 10px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><p>No appointment requests yet. Submitted requests will appear here.</p></div>';
+    return;
+  }
+  wrap.innerHTML = list.slice().reverse().map(a=>
+    '<div class="vt-appt-item" data-appt-id="'+a.id+'">'+
+      '<div class="vt-appt-item__top"><span class="vt-appt-item__id">'+a.id+'</span><span class="vt-appt-status">'+a.status+'</span></div>'+
+      '<div class="vt-appt-item__meta">'+
+        '<strong>'+a.name+'</strong> · '+deptName(a.department)+
+        (a.doctor ? ' · '+ (DOCTORS.find(d=>d.id===a.doctor)?.name || '') : ' · Any available doctor')+'<br>'+
+        a.date+' · '+a.time+
+        (a.package ? '<br>Package: '+a.package : '')+
+      '</div>'+
+      '<button class="vt-appt-cancel" data-cancel-id="'+a.id+'">Cancel request</button>'+
+    '</div>'
+  ).join('');
+}
+renderAppointments();
+
+document.getElementById('apptListWrap').addEventListener('click', function(e){
+  const btn = e.target.closest('[data-cancel-id]');
+  if(!btn) return;
+  let list = Store.get('vt_appointments', []);
+  list = list.filter(a=>a.id !== btn.dataset.cancelId);
+  Store.set('vt_appointments', list);
+  renderAppointments();
+  showToast('Appointment request cancelled');
+});
+
+document.getElementById('apptForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const msgEl = document.getElementById('apptFormMsg');
+  const name = document.getElementById('apptName').value.trim();
+  const phone = document.getElementById('apptPhone').value.trim();
+  const department = apptDeptSel.value;
+  const date = document.getElementById('apptDate').value;
+
+  if(!name || !phone || !department || !date || !selectedTime){
+    msgEl.textContent = 'Please fill in your name, phone, department, date and a preferred time.';
+    msgEl.className = 'vt-form-msg is-error';
+    return;
+  }
+  if(!/^[0-9+\-\s]{10,14}$/.test(phone)){
+    msgEl.textContent = 'Please enter a valid phone number.';
+    msgEl.className = 'vt-form-msg is-error';
+    return;
+  }
+
+  const appt = {
+    id: genId(),
+    name, phone,
+    email: document.getElementById('apptEmail').value.trim(),
+    department,
+    doctor: apptDoctorSel.value,
+    date,
+    time: selectedTime,
+    reason: document.getElementById('apptReason').value.trim(),
+    package: pendingPackage ? pendingPackage.name : '',
+    status: 'Pending confirmation',
+    createdAt: new Date().toISOString()
+  };
+  const list = Store.get('vt_appointments', []);
+  list.push(appt);
+  Store.set('vt_appointments', list);
+
+  msgEl.className = 'vt-form-msg';
+  this.reset();
+  selectedTime = '';
+  document.querySelectorAll('.vt-time-chip').forEach(c=>c.classList.remove('is-selected'));
+  pendingPackage = null;
+  renderPkgPill();
+  refreshDoctorOptions('');
+  renderAppointments();
+  showToast('Appointment request '+appt.id+' submitted — we\u2019ll call to confirm.');
+});
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const msgEl = document.getElementById('contactFormMsg');
+  const name = document.getElementById('cName').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const message = document.getElementById('cMsg').value.trim();
+  if(!name || !email || !message){
+    msgEl.textContent = 'Please fill in all fields.';
+    msgEl.className = 'vt-form-msg is-error';
+    return;
+  }
+  const list = Store.get('vt_messages', []);
+  list.push({name,email,message,createdAt:new Date().toISOString()});
+  Store.set('vt_messages', list);
+  msgEl.className='vt-form-msg';
+  this.reset();
+  showToast('Message sent — we\u2019ll reply within one business day.');
+});
+
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
+document.getElementById('newsletterBtn').addEventListener('click', function(){
+  const input = document.getElementById('newsletterEmail');
+  const val = input.value.trim();
+  if(!val || !val.includes('@')){ showToast('Please enter a valid email'); return; }
+  const list = Store.get('vt_newsletter', []);
+  list.push(val);
+  Store.set('vt_newsletter', list);
+  input.value='';
+  showToast('Subscribed to Vitalis health updates');
+});
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+function showToast(text){
+  const wrap = document.getElementById('vtToastWrap');
+  const toast = document.createElement('div');
+  toast.className = 'vt-toast';
+  toast.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><span>'+text+'</span>';
+  wrap.appendChild(toast);
+  requestAnimationFrame(()=> toast.classList.add('is-visible'));
+  setTimeout(function(){
+    toast.classList.remove('is-visible');
+    setTimeout(()=> toast.remove(), 300);
+  }, 3600);
+}
+
+})();
+</script>
 </body>
 </html>
