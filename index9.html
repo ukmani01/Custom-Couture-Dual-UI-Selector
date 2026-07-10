@@ -8,7 +8,7 @@
     <meta name="keywords" content="Apollo Hospitals Mumbai, healthcare, doctors, appointments, medical services" />
     <style>
         /* ═══════════════════════════════════════════════
-           ROOT VARIABLES - Design System Foundation
+           ROOT VARIABLES - Premium Design System
            ═══════════════════════════════════════════════ */
         :root {
             --primary: #0a6b6b;
@@ -476,7 +476,17 @@
         }
 
         /* ═══════════════════════════════════════════════
-           SPECIALITIES BANNER
+           PAGE LAYOUT - Hidden views
+           ═══════════════════════════════════════════════ */
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HOME PAGE SECTIONS (existing)
            ═══════════════════════════════════════════════ */
         .spec-banner {
             background: var(--surface);
@@ -553,139 +563,117 @@
             transform: scale(1.3);
         }
 
-        /* ═══════════════════════════════════════════════
-           SPECIALITIES LIST
-           ═══════════════════════════════════════════════ */
-        .specialities-grid {
+        .vt-spec-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: var(--space-md);
         }
-        .spec-item {
+        .vt-spec-item {
             display: flex;
             align-items: center;
             gap: var(--space-md);
             padding: var(--space-md) var(--space-lg);
             border-radius: var(--radius-md);
-            background: var(--surface);
+            background: var(--white);
             border: 1px solid var(--border);
-            transition: all var(--transition-base);
+            transition: all .22s var(--transition-base);
             cursor: pointer;
         }
-        .spec-item:hover {
+        .vt-spec-item:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
             border-color: var(--primary-light);
         }
-        .spec-item .icon {
+        .vt-spec-item .spec-icon {
             width: 36px;
             height: 36px;
             border-radius: var(--radius-sm);
             overflow: hidden;
             flex-shrink: 0;
         }
-        .spec-item .icon img {
+        .vt-spec-item .spec-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .spec-item .name {
+        .vt-spec-item .spec-name {
             flex: 1;
             font-weight: 600;
             font-size: var(--font-size-md);
             color: var(--text-primary);
         }
-        .spec-item .arrow {
+        .vt-spec-item .spec-arrow {
             color: var(--text-light);
             flex-shrink: 0;
             transition: transform var(--transition-fast);
         }
-        .spec-item:hover .arrow {
+        .vt-spec-item:hover .spec-arrow {
             transform: translateX(4px);
             color: var(--primary);
         }
 
-        /* ═══════════════════════════════════════════════
-           PROHEALTH SECTION
-           ═══════════════════════════════════════════════ */
-        .prohealth-section {
-            background: linear-gradient(145deg, #f0f5f5, #e8efef);
-            padding: var(--space-3xl) 0;
-        }
-        .prohealth-grid {
+        .vt-prohealth-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: var(--space-lg);
         }
-        .prohealth-card {
-            background: var(--background);
+        .vt-prohealth-card {
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--secondary);
-            transition: all var(--transition-base);
+            border-left: 3px solid var(--secondary);
+            transition: all .22s var(--transition-base);
         }
-        .prohealth-card:hover {
+        .vt-prohealth-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
         }
-        .prohealth-card .icon {
+        .vt-prohealth-card .ph-icon {
             width: 48px;
             height: 48px;
             border-radius: var(--radius-md);
             overflow: hidden;
             margin-bottom: var(--space-sm);
         }
-        .prohealth-card .icon img {
+        .vt-prohealth-card .ph-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .prohealth-card h4 {
+        .vt-prohealth-card h4 {
             font-size: var(--font-size-lg);
             font-weight: 700;
             margin-bottom: var(--space-xs);
             color: var(--text-primary);
         }
-        .prohealth-card p {
+        .vt-prohealth-card p {
             font-size: var(--font-size-sm);
             color: var(--text-muted);
             line-height: 1.6;
-            margin: 0;
         }
 
-        /* ═══════════════════════════════════════════════
-           DOCTORS SECTION
-           ═══════════════════════════════════════════════ */
-        .doctors-scroll {
-            display: flex;
+        .vt-doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: var(--space-lg);
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding: var(--space-sm) 0 var(--space-lg);
-            scrollbar-width: none;
         }
-        .doctors-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        .doctor-card {
-            flex: 0 0 220px;
-            scroll-snap-align: start;
-            background: var(--background);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            padding: var(--space-xl) var(--space-lg) var(--space-lg);
-            text-align: center;
+        .vt-doctor-card {
+            background: var(--white);
             border: 1px solid var(--border);
-            transition: all var(--transition-base);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all .22s var(--transition-base);
         }
-        .doctor-card:hover {
+        .vt-doctor-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
             border-color: var(--primary-light);
         }
-        .doctor-card .avatar {
+        .vt-doctor-card .avatar {
             width: 72px;
             height: 72px;
             border-radius: var(--radius-full);
@@ -693,187 +681,151 @@
             overflow: hidden;
             background: var(--primary-light);
         }
-        .doctor-card .avatar img {
+        .vt-doctor-card .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .doctor-card .name {
+        .vt-doctor-card .name {
             font-weight: 700;
             font-size: var(--font-size-md);
             color: var(--text-primary);
             margin-bottom: 2px;
         }
-        .doctor-card .specialty {
+        .vt-doctor-card .specialty {
             font-size: var(--font-size-sm);
             color: var(--text-muted);
             margin-bottom: var(--space-sm);
         }
-        .doctor-card .experience {
+        .vt-doctor-card .experience {
             font-size: var(--font-size-sm);
             color: var(--secondary-dark);
             font-weight: 600;
         }
-        .doctor-nav {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            margin-top: var(--space-md);
-        }
-        .doctor-nav button {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-full);
-            border: 1.5px solid var(--border);
-            background: var(--background);
-            font-size: var(--font-size-lg);
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-fast);
-        }
-        .doctor-nav button:hover {
-            background: var(--primary);
-            color: var(--text-white);
-            border-color: var(--primary);
-        }
-        .doctor-nav button:active {
-            transform: scale(0.94);
-        }
 
-        /* ═══════════════════════════════════════════════
-           HEALTH CHECKS
-           ═══════════════════════════════════════════════ */
-        .health-checks-grid {
+        .vt-hc-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: var(--space-md);
         }
-        .health-check-item {
-            background: var(--surface);
+        .vt-hc-item {
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: var(--radius-md);
             padding: var(--space-lg);
             text-align: center;
-            border: 1px solid var(--border);
-            transition: all var(--transition-base);
+            transition: all .22s var(--transition-base);
             cursor: pointer;
         }
-        .health-check-item:hover {
+        .vt-hc-item:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
             border-color: var(--primary-light);
         }
-        .health-check-item .icon {
+        .vt-hc-item .hc-icon {
             width: 48px;
             height: 48px;
             border-radius: var(--radius-md);
             overflow: hidden;
             margin: 0 auto var(--space-sm);
         }
-        .health-check-item .icon img {
+        .vt-hc-item .hc-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .health-check-item .label {
+        .vt-hc-item .hc-label {
             font-weight: 600;
             font-size: var(--font-size-sm);
             color: var(--text-primary);
         }
 
-        /* ═══════════════════════════════════════════════
-           RATING SECTION
-           ═══════════════════════════════════════════════ */
-        .rating-section {
-            background: var(--surface);
+        .vt-rating-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--space-xl);
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: var(--space-2xl) var(--space-xl);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--space-xl);
             margin: var(--space-3xl) 0;
         }
-        .rating-item {
+        .vt-rating-item {
             text-align: center;
         }
-        .rating-item .number {
-            font-size: var(--font-size-3xl);
-            font-weight: 800;
+        .vt-rating-item .r-number {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
             color: var(--primary);
             letter-spacing: -1px;
         }
-        .rating-item .label {
+        .vt-rating-item .r-label {
             font-size: var(--font-size-sm);
             color: var(--text-muted);
             font-weight: 500;
         }
 
-        /* ═══════════════════════════════════════════════
-           FAQ SECTION
-           ═══════════════════════════════════════════════ */
-        .faq-list {
+        .vt-faq-list {
             max-width: 800px;
             margin: 0 auto;
         }
-        .faq-item {
+        .vt-faq-item {
             border-bottom: 1px solid var(--border);
             padding: var(--space-sm) 0;
         }
-        .faq-header {
+        .vt-faq-q {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: var(--space-lg);
             padding: var(--space-md) 0;
             font-weight: 600;
             font-size: var(--font-size-md);
             color: var(--text-primary);
-            cursor: pointer;
-            gap: var(--space-lg);
-            user-select: none;
+            text-align: left;
             transition: color var(--transition-fast);
         }
-        .faq-header:hover {
+        .vt-faq-q:hover {
             color: var(--primary);
         }
-        .faq-header .chevron {
+        .vt-faq-q svg {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
             color: var(--text-light);
             transition: transform var(--transition-base);
         }
-        .faq-item.open .faq-header .chevron {
+        .vt-faq-item.is-open .vt-faq-q svg {
             transform: rotate(180deg);
         }
-        .faq-body {
+        .vt-faq-a {
             max-height: 0;
             overflow: hidden;
             transition: max-height var(--transition-slow), padding var(--transition-base);
             padding: 0;
         }
-        .faq-body p {
+        .vt-faq-a p {
             margin: 0 0 var(--space-lg);
             font-size: var(--font-size-md);
             color: var(--text-secondary);
             line-height: 1.7;
         }
-        .faq-item.open .faq-body {
+        .vt-faq-item.is-open .vt-faq-a {
             max-height: 500px;
             padding: 0 0 var(--space-md);
         }
 
         /* ═══════════════════════════════════════════════
-           CHAT WIDGET
+           CHAT WIDGET - Premium Hospital Assistant
            ═══════════════════════════════════════════════ */
         .chat-widget {
             position: fixed;
             bottom: 100px;
             right: 24px;
             z-index: var(--z-modal);
-            width: 340px;
+            width: 380px;
             max-width: calc(100vw - 48px);
             background: var(--background);
             border-radius: var(--radius-lg);
@@ -883,6 +835,7 @@
             flex-direction: column;
             overflow: hidden;
             transition: all var(--transition-base);
+            max-height: 560px;
         }
         .chat-widget.open {
             display: flex;
@@ -896,12 +849,14 @@
             align-items: center;
             font-weight: 700;
             font-size: var(--font-size-md);
+            flex-shrink: 0;
         }
         .chat-header .close-btn {
             color: var(--text-white);
             font-size: var(--font-size-lg);
             opacity: 0.8;
             transition: opacity var(--transition-fast);
+            padding: 4px 8px;
         }
         .chat-header .close-btn:hover {
             opacity: 1;
@@ -909,12 +864,13 @@
         .chat-messages {
             flex: 1;
             padding: var(--space-lg);
-            max-height: 320px;
             overflow-y: auto;
             background: var(--surface-light);
             display: flex;
             flex-direction: column;
             gap: var(--space-sm);
+            min-height: 300px;
+            max-height: 360px;
         }
         .chat-msg {
             max-width: 85%;
@@ -922,24 +878,92 @@
             border-radius: var(--radius-md);
             font-size: var(--font-size-sm);
             line-height: 1.5;
+            animation: chatFadeIn 0.3s ease;
         }
         .chat-msg.user {
             align-self: flex-end;
             background: var(--primary);
             color: var(--text-white);
+            border-bottom-right-radius: 4px;
         }
         .chat-msg.bot {
             align-self: flex-start;
             background: var(--background);
             border: 1px solid var(--border);
             color: var(--text-primary);
+            border-bottom-left-radius: 4px;
         }
+        .chat-msg .time {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-top: 4px;
+            display: block;
+        }
+        .chat-msg.typing {
+            background: var(--background);
+            border: 1px solid var(--border);
+            padding: var(--space-md) var(--space-lg);
+            min-width: 60px;
+        }
+        .chat-msg.typing .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background: var(--text-muted);
+            margin: 0 2px;
+            animation: typingBounce 1.4s infinite both;
+        }
+        .chat-msg.typing .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .chat-msg.typing .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        @keyframes chatFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg) var(--space-sm);
+            background: var(--surface-light);
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .chat-quick-replies button {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            padding: 6px 14px;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        .chat-quick-replies button:hover {
+            background: var(--primary);
+            color: var(--text-white);
+            border-color: var(--primary);
+        }
+
         .chat-input-wrap {
             display: flex;
             gap: var(--space-sm);
             padding: var(--space-md);
             border-top: 1px solid var(--border);
             background: var(--background);
+            flex-shrink: 0;
         }
         .chat-input-wrap input {
             flex: 1;
@@ -965,6 +989,7 @@
         .chat-input-wrap button:hover {
             background: var(--primary-dark);
         }
+
         .chat-toggle {
             position: fixed;
             bottom: 100px;
@@ -1025,6 +1050,7 @@
             padding: 4px 8px;
             transition: color var(--transition-fast);
             position: relative;
+            cursor: pointer;
         }
         .bottom-nav-item:hover {
             color: var(--primary);
@@ -1060,6 +1086,434 @@
         }
 
         /* ═══════════════════════════════════════════════
+           PAGE SPECIFIC STYLES
+           ═══════════════════════════════════════════════ */
+
+        /* --- Appointment Page --- */
+        .appt-page-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        .appt-form-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+        }
+        .appt-form-card h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+        .appt-form-card .sub {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-lg);
+        }
+        .appt-field {
+            margin-bottom: var(--space-md);
+        }
+        .appt-field label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        .appt-field label .req {
+            color: var(--error);
+        }
+        .appt-field input,
+        .appt-field select,
+        .appt-field textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--surface-light);
+            font-size: var(--font-size-sm);
+            transition: border-color var(--transition-fast), background var(--transition-fast);
+        }
+        .appt-field input:focus,
+        .appt-field select:focus,
+        .appt-field textarea:focus {
+            border-color: var(--primary);
+            background: var(--background);
+            outline: none;
+        }
+        .appt-field textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .appt-field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        .appt-time-chips {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        .appt-time-chip {
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+            padding: 8px 12px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            background: var(--surface-light);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+        .appt-time-chip:hover {
+            border-color: var(--primary-light);
+        }
+        .appt-time-chip.selected {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--text-white);
+        }
+        .appt-list-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+        }
+        .appt-list-card h3 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+        .appt-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-sm);
+        }
+        .appt-item:last-child {
+            margin-bottom: 0;
+        }
+        .appt-item .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xs);
+        }
+        .appt-item .id {
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .appt-item .status {
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            color: var(--success);
+            background: var(--success-bg, #e7f3ec);
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+        }
+        .appt-item .details {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .appt-item .details strong {
+            color: var(--text-primary);
+        }
+        .appt-cancel-btn {
+            font-size: var(--font-size-xs);
+            color: var(--error);
+            font-weight: 600;
+            margin-top: var(--space-xs);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .appt-cancel-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Hospitals Page --- */
+        .hospital-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+        .hospital-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            transition: all .22s var(--transition-base);
+        }
+        .hospital-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .hospital-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--primary);
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: var(--font-size-xl);
+        }
+        .hospital-card .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+        .hospital-card h4 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+        .hospital-card p {
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .hospital-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+        .hospital-gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            transition: transform var(--transition-base);
+            cursor: pointer;
+        }
+        .hospital-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        .hospital-map {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: var(--space-xl) 0;
+            height: 320px;
+        }
+        .hospital-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- Health Checks Page --- */
+        .hc-page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-xl);
+        }
+        .hc-package-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            transition: all .22s var(--transition-base);
+        }
+        .hc-package-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .hc-package-card.popular {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 1px var(--secondary), var(--shadow-md);
+        }
+        .hc-package-card .badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--text-white);
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-sm);
+        }
+        .hc-package-card h4 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+        }
+        .hc-package-card .price {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--space-xs) 0;
+        }
+        .hc-package-card .note {
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+            margin-bottom: var(--space-md);
+        }
+        .hc-package-card ul {
+            list-style: none;
+            margin: var(--space-md) 0;
+        }
+        .hc-package-card ul li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            padding: var(--space-xs) 0;
+        }
+        .hc-package-card ul li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+        }
+        .hc-package-card .btn {
+            width: 100%;
+            padding: 10px;
+            border-radius: var(--radius-full);
+            background: var(--primary);
+            color: var(--text-white);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            transition: background var(--transition-fast);
+        }
+        .hc-package-card .btn:hover {
+            background: var(--primary-dark);
+        }
+        .hc-package-card .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+        }
+        .hc-package-card .btn-outline:hover {
+            background: var(--primary);
+            color: var(--text-white);
+        }
+
+        .hc-search-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+            align-items: center;
+        }
+        .hc-search-filter input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            outline: none;
+            transition: border-color var(--transition-fast);
+        }
+        .hc-search-filter input:focus {
+            border-color: var(--primary);
+        }
+        .hc-search-filter .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+        .hc-search-filter .filter-chip {
+            padding: 6px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .hc-search-filter .filter-chip:hover {
+            border-color: var(--primary-light);
+        }
+        .hc-search-filter .filter-chip.active {
+            background: var(--primary);
+            color: var(--text-white);
+            border-color: var(--primary);
+        }
+
+        /* --- Contact Page --- */
+        .contact-page-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        .contact-info-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-lg);
+        }
+        .contact-info-card h4 {
+            font-size: var(--font-size-md);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+        }
+        .contact-info-row {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--border);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            align-items: center;
+        }
+        .contact-info-row:last-child {
+            border-bottom: none;
+        }
+        .contact-info-row .icon {
+            width: 28px;
+            height: 28px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        .contact-info-row .icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        .contact-info-row strong {
+            color: var(--text-primary);
+        }
+        .contact-form-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-form-card h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+        .contact-form-card .sub {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* ═══════════════════════════════════════════════
            SCROLL REVEAL
            ═══════════════════════════════════════════════ */
         .reveal {
@@ -1075,8 +1529,6 @@
         /* ═══════════════════════════════════════════════
            RESPONSIVE DESIGN
            ═══════════════════════════════════════════════ */
-
-        /* --- Tablet --- */
         @media (max-width: 1024px) {
             .nav-links {
                 display: none;
@@ -1090,15 +1542,14 @@
             .section-title {
                 font-size: var(--font-size-xl);
             }
-            .specialities-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            .appt-page-grid {
+                grid-template-columns: 1fr;
             }
-            .prohealth-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            .contact-page-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* --- Mobile --- */
         @media (max-width: 768px) {
             :root {
                 --container-padding: 16px;
@@ -1183,78 +1634,79 @@
             .spec-slide-item .info p {
                 font-size: var(--font-size-xs);
             }
-            .specialities-grid {
+            .vt-spec-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: var(--space-sm);
             }
-            .spec-item {
+            .vt-spec-item {
                 padding: var(--space-sm) var(--space-md);
-                border-radius: var(--radius-sm);
             }
-            .spec-item .name {
+            .vt-spec-item .spec-name {
                 font-size: var(--font-size-sm);
             }
-            .spec-item .icon {
+            .vt-spec-item .spec-icon {
                 width: 28px;
                 height: 28px;
             }
-            .prohealth-grid {
+            .vt-prohealth-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: var(--space-md);
             }
-            .prohealth-card {
+            .vt-prohealth-card {
                 padding: var(--space-lg);
             }
-            .prohealth-card h4 {
+            .vt-prohealth-card h4 {
                 font-size: var(--font-size-md);
             }
-            .prohealth-card p {
+            .vt-prohealth-card p {
                 font-size: var(--font-size-xs);
             }
-            .doctor-card {
-                flex: 0 0 180px;
+            .vt-doctor-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-md);
+            }
+            .vt-doctor-card {
                 padding: var(--space-lg) var(--space-md);
             }
-            .doctor-card .avatar {
+            .vt-doctor-card .avatar {
                 width: 60px;
                 height: 60px;
             }
-            .doctor-card .name {
+            .vt-doctor-card .name {
                 font-size: var(--font-size-sm);
             }
-            .doctor-card .specialty {
+            .vt-doctor-card .specialty {
                 font-size: var(--font-size-xs);
             }
-            .health-checks-grid {
+            .vt-hc-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: var(--space-sm);
             }
-            .health-check-item {
+            .vt-hc-item {
                 padding: var(--space-md) var(--space-sm);
             }
-            .health-check-item .icon {
+            .vt-hc-item .hc-icon {
                 width: 36px;
                 height: 36px;
             }
-            .health-check-item .label {
+            .vt-hc-item .hc-label {
                 font-size: var(--font-size-xs);
             }
-            .rating-section {
+            .vt-rating-grid {
                 padding: var(--space-xl) var(--space-md);
                 gap: var(--space-lg);
-                border-radius: var(--radius-md);
             }
-            .rating-item .number {
-                font-size: var(--font-size-xl);
+            .vt-rating-item .r-number {
+                font-size: 28px;
             }
-            .rating-item .label {
+            .vt-rating-item .r-label {
                 font-size: var(--font-size-xs);
             }
-            .faq-header {
+            .vt-faq-q {
                 font-size: var(--font-size-sm);
                 padding: var(--space-sm) 0;
             }
-            .faq-body p {
+            .vt-faq-a p {
                 font-size: var(--font-size-sm);
             }
             .bottom-nav-item {
@@ -1283,9 +1735,14 @@
                 font-size: var(--font-size-sm);
             }
             .chat-widget {
-                width: 300px;
+                width: 340px;
                 bottom: 90px;
                 right: 16px;
+                max-height: 480px;
+            }
+            .chat-widget .chat-messages {
+                max-height: 280px;
+                min-height: 220px;
             }
             .chat-toggle {
                 width: 48px;
@@ -1297,27 +1754,51 @@
                 width: 24px;
                 height: 24px;
             }
+            .appt-field-row {
+                grid-template-columns: 1fr;
+            }
+            .appt-form-card,
+            .appt-list-card {
+                padding: var(--space-lg);
+            }
+            .hc-page-grid {
+                grid-template-columns: 1fr;
+            }
+            .hc-search-filter input {
+                min-width: 100%;
+            }
+            .hospital-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hospital-gallery img {
+                height: 120px;
+            }
+            .hospital-map {
+                height: 220px;
+            }
         }
 
-        /* --- Small Mobile --- */
         @media (max-width: 480px) {
             .hero-image {
                 height: 260px;
             }
-            .specialities-grid {
+            .vt-spec-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            .prohealth-grid {
+            .vt-prohealth-grid {
                 grid-template-columns: 1fr;
             }
-            .health-checks-grid {
+            .vt-doctor-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .vt-hc-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .doctor-card {
+            .vt-doctor-card {
                 flex: 0 0 160px;
                 padding: var(--space-md);
             }
-            .doctor-card .avatar {
+            .vt-doctor-card .avatar {
                 width: 50px;
                 height: 50px;
             }
@@ -1350,6 +1831,11 @@
                 width: calc(100vw - 32px);
                 right: 16px;
                 bottom: 80px;
+                max-height: 420px;
+            }
+            .chat-widget .chat-messages {
+                max-height: 240px;
+                min-height: 180px;
             }
             .chat-toggle {
                 width: 44px;
@@ -1361,21 +1847,30 @@
                 width: 20px;
                 height: 20px;
             }
+            .hospital-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hospital-gallery img {
+                height: 100px;
+            }
+            .hospital-map {
+                height: 180px;
+            }
+            .hc-page-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 390px) {
-            .specialities-grid {
+            .vt-spec-grid {
                 grid-template-columns: 1fr;
             }
-            .health-checks-grid {
+            .vt-doctor-grid {
+                grid-template-columns: 1fr;
+            }
+            .vt-hc-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            .doctor-card {
-                flex: 0 0 140px;
-            }
-        }
-
-        @media (max-width: 360px) {
             .hero-image {
                 height: 220px;
             }
@@ -1402,34 +1897,26 @@
             .section-title {
                 font-size: var(--font-size-md);
             }
-            .rating-item .number {
+            .vt-rating-item .r-number {
                 font-size: var(--font-size-lg);
-            }
-            .doctor-card {
-                flex: 0 0 130px;
-                padding: var(--space-sm);
-            }
-            .doctor-card .avatar {
-                width: 42px;
-                height: 42px;
-            }
-            .chat-toggle {
-                width: 40px;
-                height: 40px;
-                bottom: 72px;
-                right: 12px;
-            }
-            .chat-toggle svg {
-                width: 18px;
-                height: 18px;
-            }
-            .chat-widget {
-                bottom: 72px;
-                right: 12px;
             }
         }
 
-        /* --- Large Desktop --- */
+        @media (max-width: 360px) {
+            .vt-hc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .vt-doctor-grid {
+                grid-template-columns: 1fr;
+            }
+            .hospital-gallery {
+                grid-template-columns: 1fr;
+            }
+            .hospital-gallery img {
+                height: 140px;
+            }
+        }
+
         @media (min-width: 1440px) {
             .navbar-inner,
             .container {
@@ -1438,16 +1925,20 @@
             .hero-image {
                 height: 600px;
             }
-            .specialities-grid {
+            .vt-spec-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
-            .prohealth-grid {
+            .vt-prohealth-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
-            .health-checks-grid {
+            .vt-hc-grid {
                 grid-template-columns: repeat(6, 1fr);
             }
+            .hc-page-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
+
         @media (min-width: 1600px) {
             .navbar-inner,
             .container {
@@ -1457,6 +1948,7 @@
                 height: 650px;
             }
         }
+
         @media (min-width: 1920px) {
             .navbar-inner,
             .container {
@@ -1465,25 +1957,29 @@
             .hero-image {
                 height: 700px;
             }
-            .specialities-grid {
+            .vt-spec-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
-            .prohealth-grid {
+            .vt-prohealth-grid {
                 grid-template-columns: repeat(5, 1fr);
             }
-            .health-checks-grid {
+            .vt-hc-grid {
                 grid-template-columns: repeat(7, 1fr);
+            }
+            .hc-page-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
 </head>
 <body>
+
     <!-- ═══════════════════════════════════════════════
     HEADER / NAVBAR
     ═══════════════════════════════════════════════ -->
     <header class="navbar" id="navbar">
         <div class="navbar-inner">
-            <a href="#" class="brand">
+            <a href="#" class="brand" data-page="home">
                 <span class="brand-icon">
                     <svg viewBox="0 0 40 40" fill="none">
                         <circle cx="20" cy="20" r="18" fill="#0a6b6b" />
@@ -1499,11 +1995,11 @@
             </a>
 
             <nav class="nav-links">
-                <a href="#">Find Doctors</a>
-                <a href="#">Hospitals</a>
-                <a href="#">Specialities</a>
-                <a href="#">Health Checks</a>
-                <a href="#">About Us</a>
+                <a href="#" data-page="home">Home</a>
+                <a href="#" data-page="appointments">Find Doctors</a>
+                <a href="#" data-page="hospitals">Hospitals</a>
+                <a href="#" data-page="healthchecks">Health Checks</a>
+                <a href="#" data-page="contact">Contact Us</a>
             </nav>
 
             <div class="navbar-actions">
@@ -1539,90 +2035,71 @@
         </div>
 
         <div class="drawer" id="drawer">
-            <a href="#">Find Doctors</a>
-            <a href="#">Hospitals</a>
-            <a href="#">Specialities</a>
-            <a href="#">Health Checks</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+            <a href="#" data-page="home">Home</a>
+            <a href="#" data-page="appointments">Find Doctors</a>
+            <a href="#" data-page="hospitals">Hospitals</a>
+            <a href="#" data-page="healthchecks">Health Checks</a>
+            <a href="#" data-page="contact">Contact Us</a>
         </div>
     </header>
 
     <!-- ═══════════════════════════════════════════════
-    HERO SECTION (unchanged)
+    PAGE VIEWS
     ═══════════════════════════════════════════════ -->
-    <section class="hero">
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1587351021355-a479a299d2f9?q=80&w=1600&auto=format&fit=crop" alt="Apollo Hospitals Mumbai - World-class healthcare facility" loading="lazy" />
-            <div class="hero-overlay">
-                <div class="hero-rating">
-                    <div class="hero-stars">
-                        <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
-                        <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
-                        <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
-                        <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
-                        <svg viewBox="0 0 24 24"><path fill="#f2a900" opacity="0.4" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+
+    <!-- ===== HOME PAGE ===== -->
+    <div class="page-view active" id="page-home">
+        <section class="hero">
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1587351021355-a479a299d2f9?q=80&w=1600&auto=format&fit=crop" alt="Apollo Hospitals Mumbai" loading="lazy" />
+                <div class="hero-overlay">
+                    <div class="hero-rating">
+                        <div class="hero-stars">
+                            <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                            <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                            <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                            <svg viewBox="0 0 24 24"><path fill="#f2a900" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                            <svg viewBox="0 0 24 24"><path fill="#f2a900" opacity="0.4" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        </div>
+                        <span class="hero-rating-text">4.6 Google Rating · 2,500+ Reviews</span>
                     </div>
-                    <span class="hero-rating-text">4.6 Google Rating · 2,500+ Reviews</span>
-                </div>
-                <div class="hero-availability">
-                    <span class="hero-availability-label">Available</span>
-                    <span class="hero-availability-value">24/7</span>
+                    <div class="hero-availability">
+                        <span class="hero-availability-label">Available</span>
+                        <span class="hero-availability-value">24/7</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="search-bar-wrap">
-            <div class="search-bar" id="mainSearchBar">
-                <span class="search-static">Search</span>
-                <input type="text" id="searchInput" placeholder="Doctor, Specialty, Condition, Health Package..." aria-label="Search Apollo Hospitals" />
-                <button class="search-submit" id="searchBtn" aria-label="Submit search">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="7" />
-                        <line x1="16" y1="16" x2="21" y2="21" />
-                    </svg>
-                </button>
+            <div class="search-bar-wrap">
+                <div class="search-bar">
+                    <span class="search-static">Search</span>
+                    <input type="text" id="searchInput" placeholder="Doctor, Specialty, Condition, Health Package..." aria-label="Search" />
+                    <button class="search-submit" id="searchBtn" aria-label="Submit search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7" />
+                            <line x1="16" y1="16" x2="21" y2="21" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ═══════════════════════════════════════════════
-    MAIN CONTENT
-    ═══════════════════════════════════════════════ -->
-    <main>
-
-        <!-- ===== SPECIALITIES BANNER ===== -->
         <section class="spec-banner">
             <div class="container">
                 <div class="label">⚕️ Top Specialities</div>
                 <div class="spec-slide-wrapper">
                     <div class="spec-slide-track" id="specTrack">
                         <div class="spec-slide-item">
-                            <div class="spec-icon">
-                                <img src="https://images.unsplash.com/photo-1579684385128-1ef15d2b5a4d?w=100&h=100&fit=crop" alt="Oncology" loading="lazy" />
-                            </div>
-                            <div class="info">
-                                <h4>Oncology</h4>
-                                <p>Advanced cancer care with precision medicine</p>
-                            </div>
+                            <div class="spec-icon"><img src="https://images.unsplash.com/photo-1579684385128-1ef15d2b5a4d?w=100&h=100&fit=crop" alt="Oncology" loading="lazy" /></div>
+                            <div class="info"><h4>Oncology</h4><p>Advanced cancer care with precision medicine</p></div>
                         </div>
                         <div class="spec-slide-item">
-                            <div class="spec-icon">
-                                <img src="https://images.unsplash.com/photo-1559757175-7a5ae73f9b3f?w=100&h=100&fit=crop" alt="Neurology" loading="lazy" />
-                            </div>
-                            <div class="info">
-                                <h4>Neurology</h4>
-                                <p>Expert brain &amp; spine care</p>
-                            </div>
+                            <div class="spec-icon"><img src="https://images.unsplash.com/photo-1559757175-7a5ae73f9b3f?w=100&h=100&fit=crop" alt="Neurology" loading="lazy" /></div>
+                            <div class="info"><h4>Neurology</h4><p>Expert brain &amp; spine care</p></div>
                         </div>
                         <div class="spec-slide-item">
-                            <div class="spec-icon">
-                                <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=100&h=100&fit=crop" alt="Nephrology" loading="lazy" />
-                            </div>
-                            <div class="info">
-                                <h4>Nephrology</h4>
-                                <p>Comprehensive kidney care &amp; transplants</p>
-                            </div>
+                            <div class="spec-icon"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=100&h=100&fit=crop" alt="Nephrology" loading="lazy" /></div>
+                            <div class="info"><h4>Nephrology</h4><p>Comprehensive kidney care &amp; transplants</p></div>
                         </div>
                     </div>
                 </div>
@@ -1630,82 +2107,293 @@
             </div>
         </section>
 
-        <!-- ===== SPECIALITIES LIST ===== -->
         <section class="section-padding reveal">
             <div class="container">
                 <h2 class="section-title">Our <span class="highlight">Specialities</span></h2>
                 <p class="section-subtitle">World-class medical expertise across 14+ specialities, delivered with compassion and precision.</p>
-                <div class="specialities-grid" id="specialitiesGrid"></div>
+                <div class="vt-spec-grid" id="homeSpecGrid"></div>
             </div>
         </section>
 
-        <!-- ===== PROHEALTH SECTION ===== -->
-        <section class="prohealth-section reveal">
-            <div class="container">
-                <h2 class="section-title">🌿 <span class="highlight">ProHealth</span></h2>
-                <p class="section-subtitle">Your personalised preventive health program designed to keep you healthy, informed, and empowered.</p>
-                <div class="prohealth-grid" id="prohealthGrid"></div>
-                <div class="ph-dots" id="phDots"></div>
-            </div>
-        </section>
-
-        <!-- ===== TOP DOCTORS ===== -->
-        <section class="section-padding reveal">
-            <div class="container">
-                <h2 class="section-title">👨‍⚕️ Top <span class="highlight">Doctors</span></h2>
-                <p class="section-subtitle">Meet our experienced specialists who combine expertise with compassion to deliver world-class care.</p>
-                <div class="doctors-scroll" id="doctorScroll"></div>
-                <div class="doctor-nav">
-                    <button id="docPrev" aria-label="Previous doctors">‹</button>
-                    <button id="docNext" aria-label="Next doctors">›</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== HEALTH CHECKS ===== -->
         <section class="section-padding reveal" style="padding-top:0;">
             <div class="container">
-                <h2 class="section-title">🩺 Health <span class="highlight">Checks</span></h2>
-                <p class="section-subtitle">Book a comprehensive health check-up today and take the first step toward a healthier you.</p>
-                <div class="health-checks-grid" id="healthChecksGrid"></div>
+                <h2 class="section-title"><span class="highlight">ProHealth</span></h2>
+                <p class="section-subtitle">Your personalised preventive health program designed to keep you healthy, informed, and empowered.</p>
+                <div class="vt-prohealth-grid" id="homeProhealthGrid"></div>
             </div>
         </section>
 
-        <!-- ===== RATING SECTION ===== -->
-        <div class="container reveal">
-            <div class="rating-section" id="ratingSection">
-                <div class="rating-item">
-                    <div class="number count-up" data-target="4.8">0</div>
-                    <div class="label">★ Google Rating</div>
+        <section class="section-padding reveal" style="padding-top:0;">
+            <div class="container">
+                <h2 class="section-title">Top <span class="highlight">Doctors</span></h2>
+                <p class="section-subtitle">Meet our experienced specialists who combine expertise with compassion.</p>
+                <div class="vt-doctor-grid" id="homeDoctorGrid"></div>
+            </div>
+        </section>
+
+        <section class="section-padding reveal" style="padding-top:0;">
+            <div class="container">
+                <h2 class="section-title">Health <span class="highlight">Checks</span></h2>
+                <p class="section-subtitle">Book a comprehensive health check-up today and take the first step toward a healthier you.</p>
+                <div class="vt-hc-grid" id="homeHcGrid"></div>
+            </div>
+        </section>
+
+        <section class="section-padding reveal" style="padding-top:0;">
+            <div class="container">
+                <div class="vt-rating-grid" id="homeRatingGrid">
+                    <div class="vt-rating-item"><div class="r-number count-up" data-target="4.8">0</div><div class="r-label">★ Google Rating</div></div>
+                    <div class="vt-rating-item"><div class="r-number count-up" data-target="9.2">0</div><div class="r-label">/10 Patient Trust</div></div>
+                    <div class="vt-rating-item"><div class="r-number count-up" data-target="4.5">0</div><div class="r-label">M+ Lives Touched</div></div>
+                    <div class="vt-rating-item"><div class="r-number count-up" data-target="95">0</div><div class="r-label">% Patient Satisfaction</div></div>
                 </div>
-                <div class="rating-item">
-                    <div class="number count-up" data-target="9.2">0</div>
-                    <div class="label">/10 Patient Trust</div>
-                </div>
-                <div class="rating-item">
-                    <div class="number count-up" data-target="4.5">0</div>
-                    <div class="label">M+ Lives Touched</div>
-                </div>
-                <div class="rating-item">
-                    <div class="number count-up" data-target="95">0</div>
-                    <div class="label">% Patient Satisfaction</div>
-                </div>
+            </div>
+        </section>
+
+        <section class="section-padding reveal" style="padding-top:0;">
+            <div class="container">
+                <h2 class="section-title text-center">Frequently Asked <span class="highlight">Questions</span></h2>
+                <p class="section-subtitle text-center">Find answers to the most common questions about Apollo Hospitals.</p>
+                <div class="vt-faq-list" id="homeFaqList"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== APPOINTMENT PAGE ===== -->
+    <div class="page-view" id="page-appointments">
+        <div class="vt-page-head" style="background:var(--surface);border-bottom:1px solid var(--border);padding:48px 0;">
+            <div class="container">
+                <p class="vt-eyebrow" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Book Appointment</p>
+                <h1 style="font-family:var(--font-heading);font-size:var(--font-size-2xl);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;">Find the right <span style="color:var(--secondary-dark);">specialist</span></h1>
+                <p style="font-size:var(--font-size-md);color:var(--text-secondary);max-width:560px;line-height:1.7;">Book an appointment with our expert doctors. Our team will confirm your slot within a few hours.</p>
             </div>
         </div>
 
-        <!-- ===== FAQ SECTION ===== -->
-        <section class="section-padding reveal" style="padding-top:0;">
+        <section class="section-padding">
             <div class="container">
-                <h2 class="section-title text-center">❓ Frequently Asked <span class="highlight">Questions</span></h2>
-                <p class="section-subtitle text-center">Find answers to the most common questions about Apollo Hospitals, Mumbai.</p>
-                <div class="faq-list" id="faqList"></div>
+                <div class="appt-page-grid">
+                    <div class="appt-form-card">
+                        <h3>Appointment Details</h3>
+                        <p class="sub">Fields marked <span style="color:var(--error);">*</span> are required.</p>
+                        <div id="apptMsg" style="display:none;padding:10px 14px;border-radius:var(--radius-sm);background:var(--error-bg,#fbeae6);color:var(--error);font-size:var(--font-size-sm);margin-bottom:var(--space-md);"></div>
+                        <form id="apptForm">
+                            <div class="appt-field">
+                                <label>Full name <span class="req">*</span></label>
+                                <input type="text" id="apptName" required />
+                            </div>
+                            <div class="appt-field-row">
+                                <div class="appt-field">
+                                    <label>Phone <span class="req">*</span></label>
+                                    <input type="tel" id="apptPhone" required />
+                                </div>
+                                <div class="appt-field">
+                                    <label>Email</label>
+                                    <input type="email" id="apptEmail" />
+                                </div>
+                            </div>
+                            <div class="appt-field-row">
+                                <div class="appt-field">
+                                    <label>Department <span class="req">*</span></label>
+                                    <select id="apptDept" required></select>
+                                </div>
+                                <div class="appt-field">
+                                    <label>Doctor</label>
+                                    <select id="apptDoctor"></select>
+                                </div>
+                            </div>
+                            <div class="appt-field-row">
+                                <div class="appt-field">
+                                    <label>Date <span class="req">*</span></label>
+                                    <input type="date" id="apptDate" required />
+                                </div>
+                                <div class="appt-field">
+                                    <label>Time <span class="req">*</span></label>
+                                    <div class="appt-time-chips" id="apptTimeChips">
+                                        <div class="appt-time-chip" data-time="Morning (9 AM – 12 PM)">Morning</div>
+                                        <div class="appt-time-chip" data-time="Afternoon (12 – 4 PM)">Afternoon</div>
+                                        <div class="appt-time-chip" data-time="Evening (4 – 8 PM)">Evening</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="appt-field">
+                                <label>Reason for visit</label>
+                                <textarea id="apptReason" placeholder="Briefly describe your symptoms..."></textarea>
+                            </div>
+                            <button type="submit" style="width:100%;padding:12px;border-radius:var(--radius-full);background:var(--primary);color:var(--text-white);font-weight:600;font-size:var(--font-size-md);transition:background var(--transition-fast);">Confirm Appointment</button>
+                        </form>
+                    </div>
+
+                    <div class="appt-list-card">
+                        <h3>Your Appointments</h3>
+                        <div id="apptListWrap">
+                            <div class="vt-empty" style="text-align:center;padding:40px 20px;color:var(--text-muted);">
+                                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                                <p>No appointment requests yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+    </div>
 
-    </main>
+    <!-- ===== HOSPITALS PAGE ===== -->
+    <div class="page-view" id="page-hospitals">
+        <div class="vt-page-head" style="background:var(--surface);border-bottom:1px solid var(--border);padding:48px 0;">
+            <div class="container">
+                <p class="vt-eyebrow" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Our Hospital</p>
+                <h1 style="font-family:var(--font-heading);font-size:var(--font-size-2xl);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;">World-Class <span style="color:var(--secondary-dark);">Facilities</span></h1>
+                <p style="font-size:var(--font-size-md);color:var(--text-secondary);max-width:560px;line-height:1.7;">Apollo Hospitals Mumbai offers comprehensive healthcare services with state-of-the-art infrastructure.</p>
+            </div>
+        </div>
+
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Hospital <span class="highlight">Overview</span></h2>
+                <p style="font-size:var(--font-size-md);color:var(--text-secondary);line-height:1.8;max-width:800px;margin-bottom:var(--space-2xl);">Apollo Hospitals, Mumbai is a multi-speciality tertiary care hospital with 300+ beds, 60+ consultants, and 12 centres of excellence. We provide comprehensive healthcare services with advanced medical technology and patient-centric care.</p>
+
+                <div class="hospital-grid">
+                    <div class="hospital-card"><div class="icon">🏥</div><h4>Departments</h4><p>Cardiology, Oncology, Neurology, Nephrology, Orthopaedics, and more.</p></div>
+                    <div class="hospital-card"><div class="icon">🚑</div><h4>Emergency Services</h4><p>24/7 emergency care with dedicated trauma centre and ambulances.</p></div>
+                    <div class="hospital-card"><div class="icon">🫀</div><h4>ICU &amp; Critical Care</h4><p>State-of-the-art intensive care units with round-the-clock monitoring.</p></div>
+                    <div class="hospital-card"><div class="icon">🔬</div><h4>Diagnostic Centre</h4><p>Advanced imaging including MRI, CT Scan, Ultrasound, and Pathology.</p></div>
+                    <div class="hospital-card"><div class="icon">💊</div><h4>Pharmacy</h4><p>24/7 pharmacy with prescription medicines and medical supplies.</p></div>
+                    <div class="hospital-card"><div class="icon">🩸</div><h4>Blood Bank</h4><p>Fully equipped blood bank with screening and storage facilities.</p></div>
+                    <div class="hospital-card"><div class="icon">🏨</div><h4>Operation Theatres</h4><p>Modern operation theatres with advanced surgical equipment.</p></div>
+                    <div class="hospital-card"><div class="icon">🤝</div><h4>Insurance Partners</h4><p>Cashless treatment with 50+ leading insurance providers.</p></div>
+                    <div class="hospital-card"><div class="icon">🕐</div><h4>Visiting Hours</h4><p>OPD: Mon–Sat, 8 AM – 8 PM · Emergency: 24/7</p></div>
+                    <div class="hospital-card"><div class="icon">🅿️</div><h4>Parking</h4><p>Ample parking space for patients and visitors with wheelchair access.</p></div>
+                    <div class="hospital-card"><div class="icon">📞</div><h4>Contact</h4><p>Emergency: 1066 · Appointments: 022-6127-4000</p></div>
+                    <div class="hospital-card"><div class="icon">📍</div><h4>Address</h4><p>142 Turner Road, Bandra West, Mumbai 400050</p></div>
+                </div>
+
+                <h2 class="section-title" style="margin-top:var(--space-3xl);">Hospital <span class="highlight">Gallery</span></h2>
+                <div class="hospital-gallery">
+                    <img src="https://images.unsplash.com/photo-1587351021355-a479a299d2f9?w=400&h=300&fit=crop" alt="Hospital exterior" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=300&fit=crop" alt="Hospital lobby" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1579684385128-1ef15d2b5a4d?w=400&h=300&fit=crop" alt="Medical equipment" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1559757175-7a5ae73f9b3f?w=400&h=300&fit=crop" alt="Patient room" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop" alt="Operating theatre" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Pharmacy" loading="lazy" />
+                </div>
+
+                <div class="hospital-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.3309764319576!2d72.8258503153847!3d19.05929708708804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9a7b4b4b4b7%3A0x2b4b4b4b4b4b4b4b!2sBandra%20West%2C%20Mumbai%2C%20Maharashtra%20400050!5e0!3m2!1sen!2sin!4v1612345678901" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== HEALTH CHECKS PAGE ===== -->
+    <div class="page-view" id="page-healthchecks">
+        <div class="vt-page-head" style="background:var(--surface);border-bottom:1px solid var(--border);padding:48px 0;">
+            <div class="container">
+                <p class="vt-eyebrow" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Health Packages</p>
+                <h1 style="font-family:var(--font-heading);font-size:var(--font-size-2xl);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;">Preventive <span style="color:var(--secondary-dark);">Health Checks</span></h1>
+                <p style="font-size:var(--font-size-md);color:var(--text-secondary);max-width:560px;line-height:1.7;">Comprehensive health packages designed to detect and prevent health issues early.</p>
+            </div>
+        </div>
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="hc-search-filter">
+                    <input type="text" id="hcSearch" placeholder="Search packages..." />
+                    <div class="filter-chips" id="hcFilterChips">
+                        <span class="filter-chip active" data-filter="all">All</span>
+                        <span class="filter-chip" data-filter="cardiac">Cardiac</span>
+                        <span class="filter-chip" data-filter="general">General</span>
+                        <span class="filter-chip" data-filter="women">Women's</span>
+                        <span class="filter-chip" data-filter="senior">Senior</span>
+                        <span class="filter-chip" data-filter="executive">Executive</span>
+                    </div>
+                </div>
+                <div class="hc-page-grid" id="hcPackageGrid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== CONTACT PAGE ===== -->
+    <div class="page-view" id="page-contact">
+        <div class="vt-page-head" style="background:var(--surface);border-bottom:1px solid var(--border);padding:48px 0;">
+            <div class="container">
+                <p class="vt-eyebrow" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Contact Us</p>
+                <h1 style="font-family:var(--font-heading);font-size:var(--font-size-2xl);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;">Get in <span style="color:var(--secondary-dark);">Touch</span></h1>
+                <p style="font-size:var(--font-size-md);color:var(--text-secondary);max-width:560px;line-height:1.7;">For medical emergencies, call 1066 directly. For other queries, use the form below.</p>
+            </div>
+        </div>
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="contact-page-grid">
+                    <div>
+                        <div class="contact-info-card">
+                            <h4>Emergency &amp; Helpline</h4>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg></span>
+                                <div><strong>Emergency (24/7):</strong> 1066</div>
+                            </div>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7 12.8 12.8 0 00.7 2.8 2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.5 2.8.7a2 2 0 011.7 2z"/></svg></span>
+                                <div><strong>Appointments:</strong> 022-6127-4000</div>
+                            </div>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg></span>
+                                <div><strong>General Enquiry:</strong> info@apollohospitals.example</div>
+                            </div>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+                                <div><strong>WhatsApp:</strong> +91-98765-43210</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <h4>Visit Us</h4>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                                <div><strong>Address:</strong> 142 Turner Road, Bandra West, Mumbai 400050</div>
+                            </div>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+                                <div><strong>Hours:</strong> OPD: Mon–Sat, 8 AM – 8 PM · Emergency: 24/7</div>
+                            </div>
+                            <div class="contact-info-row">
+                                <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                                <div><strong>Ambulance:</strong> 1066 (24/7 emergency response)</div>
+                            </div>
+                        </div>
+
+                        <div class="hospital-map" style="border-radius:var(--radius-lg);overflow:hidden;height:240px;margin-top:var(--space-lg);">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.3309764319576!2d72.8258503153847!3d19.05929708708804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9a7b4b4b4b7%3A0x2b4b4b4b4b4b4b4b!2sBandra%20West%2C%20Mumbai%2C%20Maharashtra%20400050!5e0!3m2!1sen!2sin!4v1612345678901" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card">
+                        <h3>Send a Message</h3>
+                        <p class="sub">For non-urgent queries — we typically reply within one business day.</p>
+                        <div id="contactMsg" style="display:none;padding:10px 14px;border-radius:var(--radius-sm);background:var(--error-bg,#fbeae6);color:var(--error);font-size:var(--font-size-sm);margin-bottom:var(--space-md);"></div>
+                        <form id="contactForm">
+                            <div class="appt-field">
+                                <label>Full name <span class="req">*</span></label>
+                                <input type="text" id="cName" required />
+                            </div>
+                            <div class="appt-field">
+                                <label>Email <span class="req">*</span></label>
+                                <input type="email" id="cEmail" required />
+                            </div>
+                            <div class="appt-field">
+                                <label>Message <span class="req">*</span></label>
+                                <textarea id="cMsg" required placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" style="width:100%;padding:12px;border-radius:var(--radius-full);background:var(--primary);color:var(--text-white);font-weight:600;font-size:var(--font-size-md);transition:background var(--transition-fast);">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- ═══════════════════════════════════════════════
-    CHAT WIDGET
+    CHAT WIDGET - Premium Hospital Assistant
     ═══════════════════════════════════════════════ -->
     <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1715,11 +2403,22 @@
 
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header">
-            <span>💬 Apollo Care</span>
+            <span>💬 Apollo Care Assistant</span>
             <button class="close-btn" id="chatClose">✕</button>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg bot">Hello 👋<br>Welcome to Apollo Hospitals Mumbai.<br>How can we help you today?</div>
+            <div class="chat-msg bot">
+                Hello 👋<br>Welcome to Apollo Hospitals Mumbai.<br>How can we help you today?
+                <span class="time">Just now</span>
+            </div>
+        </div>
+        <div class="chat-quick-replies" id="chatQuickReplies">
+            <button data-reply="Appointment">📅 Appointment</button>
+            <button data-reply="Doctor">👨‍⚕️ Doctor</button>
+            <button data-reply="Emergency">🚑 Emergency</button>
+            <button data-reply="Health Check">🩺 Health Check</button>
+            <button data-reply="Insurance">📋 Insurance</button>
+            <button data-reply="Location">📍 Location</button>
         </div>
         <div class="chat-input-wrap">
             <input type="text" id="chatInput" placeholder="Type your message..." />
@@ -1731,7 +2430,7 @@
     BOTTOM NAVIGATION
     ═══════════════════════════════════════════════ -->
     <nav class="bottom-nav" id="bottomNav">
-        <a href="#" class="bottom-nav-item active" data-nav="appointments">
+        <a class="bottom-nav-item active" data-page="appointments">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="7" r="4" />
@@ -1740,7 +2439,7 @@
             </span>
             <span>Appointments</span>
         </a>
-        <a href="#" class="bottom-nav-item" data-nav="hospitals">
+        <a class="bottom-nav-item" data-page="hospitals">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 21V7l8-4 8 4v14" />
@@ -1749,15 +2448,15 @@
             </span>
             <span>Hospitals</span>
         </a>
-        <a href="#" class="bottom-nav-item center" data-nav="chat">
+        <a class="bottom-nav-item center" data-page="home">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 2a9 9 0 00-3 17.5L12 22l3-2.5A9 9 0 0012 2z" />
                 </svg>
             </span>
-            <span>Chat</span>
+            <span>Home</span>
         </a>
-        <a href="#" class="bottom-nav-item" data-nav="healthchecks">
+        <a class="bottom-nav-item" data-page="healthchecks">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z" />
@@ -1766,7 +2465,7 @@
             </span>
             <span>Health Checks</span>
         </a>
-        <a href="#" class="bottom-nav-item" data-nav="callus">
+        <a class="bottom-nav-item" data-page="contact">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.6 21 3 12.4 3 2c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z" />
@@ -1783,7 +2482,7 @@
         /* ═══════════════════════════════════════════════
            DATA
            ═══════════════════════════════════════════════ */
-        const specialitiesData = [
+        const SPECIALITIES = [
             { name: 'Oncology', img: 'https://images.unsplash.com/photo-1579684385128-1ef15d2b5a4d?w=100&h=100&fit=crop' },
             { name: 'Neurology', img: 'https://images.unsplash.com/photo-1559757175-7a5ae73f9b3f?w=100&h=100&fit=crop' },
             { name: 'Nephrology', img: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=100&h=100&fit=crop' },
@@ -1800,7 +2499,7 @@
             { name: 'Cardiology', img: 'https://images.unsplash.com/photo-1559757175-7a5ae73f9b3f?w=100&h=100&fit=crop' }
         ];
 
-        const prohealthData = [
+        const PROHEALTH = [
             { icon: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop', title: 'Risk Analysis',
                 desc: 'Comprehensive genetic and lifestyle risk assessment tailored to your unique health profile.' },
             { icon: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=100&h=100&fit=crop', title: 'Tailored Packages',
@@ -1811,7 +2510,7 @@
                 desc: 'Digital dashboard to monitor your health journey and celebrate your milestones.' }
         ];
 
-        const doctorsData = [
+        const DOCTORS = [
             { name: 'Dr. Rajesh Kumar', specialty: 'Cardiologist', exp: '22 years',
                 img: 'https://randomuser.me/api/portraits/men/32.jpg' },
             { name: 'Dr. Sunita Mehta', specialty: 'Oncologist', exp: '18 years',
@@ -1826,7 +2525,7 @@
                 img: 'https://randomuser.me/api/portraits/men/22.jpg' }
         ];
 
-        const healthChecksData = [
+        const HEALTH_CHECKS = [
             { icon: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop', label: 'Cardiac' },
             { icon: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=100&h=100&fit=crop', label: 'Neuro' },
             { icon: 'https://images.unsplash.com/photo-1559757175-7a5ae73f9b3f?w=100&h=100&fit=crop', label: 'Pulmonary' },
@@ -1839,7 +2538,7 @@
             { icon: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=100&h=100&fit=crop', label: 'Stress' }
         ];
 
-        const faqsData = [
+        const FAQS = [
             { q: 'How do I book an appointment at Apollo Hospitals, Mumbai?',
                 a: 'You can book an appointment online through our website, via the Apollo mobile app, or by calling our helpline at 08062972766. Walk-in consultations are also available at the hospital.' },
             { q: 'What specialities are available at this hospital?',
@@ -1852,143 +2551,203 @@
                 a: 'You can use our "Find Doctors" feature on our website or mobile app to search by specialty, location, or name. Each doctor profile includes their experience, qualifications, and consultation availability.' }
         ];
 
+        const HEALTH_PACKAGES = [
+            { id: 'p1', name: 'Essential Health Checkup', price: 2999, note: '~45 minutes · Fasting required',
+                category: 'general', popular: false,
+                items: ['Complete blood count & sugar panel', 'Blood pressure & BMI assessment',
+                    'Physician consultation & summary'
+                ] },
+            { id: 'p2', name: 'Executive Health Checkup', price: 7499, note: '2–3 hours · Most booked package',
+                category: 'executive', popular: true,
+                items: ['Comprehensive blood panel (40+ markers)', 'ECG and abdominal ultrasound',
+                    'Physician consultation with report walkthrough'
+                ] },
+            { id: 'p3', name: 'Cardiac Care Package', price: 9999, note: '~2 hours · Cardiologist-led',
+                category: 'cardiac', popular: false,
+                items: ['ECG and 2D echocardiogram', 'Lipid profile & cardiac risk markers',
+                    'Consultation with a cardiologist'
+                ] },
+            { id: 'p4', name: "Women's Wellness Package", price: 6499, note: '~1.5 hours', category: 'women',
+                popular: false,
+                items: ['Pap smear & breast screening', 'Bone density assessment',
+                    'Consultation with a gynaecologist'
+                ] },
+            { id: 'p5', name: 'Senior Citizen Package (60+)', price: 8999, note: '~2 hours', category: 'senior',
+                popular: false,
+                items: ['Comprehensive geriatric health panel', 'Bone density, vision & hearing screen',
+                    'Physician consultation & care plan'
+                ] }
+        ];
+
+        const CHAT_RESPONSES = {
+            'hi': 'Hello 👋\nWelcome to Apollo Hospitals Mumbai.\nHow can we help you today?',
+            'hello': 'Hello 👋\nWelcome to Apollo Hospitals Mumbai.\nHow can we help you today?',
+            'appointment': 'You can book an appointment online through our website, via the Apollo mobile app, or by calling our helpline at 08062972766.',
+            'doctor': 'Please use the doctor search above to find specialists. You can search by name or specialty.',
+            'doctors': 'Please use the doctor search above to find specialists. You can search by name or specialty.',
+            'specialist': 'Our specialists cover 14+ specialities including Cardiology, Oncology, Neurology, and more. Use the search above to find one.',
+            'department': 'We have 14+ departments including Cardiology, Oncology, Neurology, Nephrology, Orthopaedics, and more.',
+            'cardiology': 'Our Cardiology department offers advanced heart care including cath lab, ECG, and angioplasty.',
+            'neurology': 'Our Neurology department provides expert brain and spine care, including stroke treatment and nerve conduction studies.',
+            'oncology': 'Our Oncology department offers comprehensive cancer care including surgery, chemotherapy, and radiation therapy.',
+            'emergency': '⚠️ Please call our 24/7 emergency helpline immediately at **1066** for immediate assistance.',
+            'icu': 'Our Intensive Care Unit is fully equipped with advanced monitoring and life support systems, staffed 24/7 by critical care specialists.',
+            'ambulance': 'Our ambulance service is available 24/7. In case of emergency, call 1066 immediately.',
+            'health check': 'Our preventive health packages are available for all age groups. Explore our ProHealth program for personalized wellness plans.',
+            'health checks': 'Our preventive health packages are available for all age groups. Explore our ProHealth program for personalized wellness plans.',
+            'packages': 'We offer health packages including Essential Health Checkup, Executive Health Checkup, Cardiac Care Package, and more.',
+            'insurance': 'We support multiple cashless insurance providers. Please contact our insurance desk for more details about your specific policy.',
+            'cashless': 'We support multiple cashless insurance providers. Please contact our insurance desk for more details about your specific policy.',
+            'location': 'We are located at 142 Turner Road, Bandra West, Mumbai 400050. View our map on the Hospitals page.',
+            'address': 'We are located at 142 Turner Road, Bandra West, Mumbai 400050. View our map on the Hospitals page.',
+            'contact': 'You can reach us at 08062972766 or visit our hospital at Mumbai location. Our support team is available 24/7.',
+            'opd': 'OPD timings are Monday to Saturday, 8 AM to 8 PM. Emergency services are available 24/7.',
+            'timing': 'OPD timings are Monday to Saturday, 8 AM to 8 PM. Emergency services are available 24/7.',
+            'pharmacy': 'Our 24/7 pharmacy is available for all prescription medicines and medical supplies.',
+            'lab': 'Our diagnostic lab offers comprehensive testing including blood tests, pathology, and advanced imaging.',
+            'scan': 'We offer advanced imaging services including MRI, CT Scan, Ultrasound, and X-Ray.',
+            'mri': 'Our MRI facility provides detailed imaging for accurate diagnosis. Available with prior appointment.',
+            'ct scan': 'Our CT Scan facility provides detailed imaging for accurate diagnosis. Available with prior appointment.',
+            'blood test': 'Our pathology lab offers comprehensive blood testing with quick and accurate results.',
+            'surgery': 'Our operation theatres are equipped with advanced surgical technology. Consult our surgeons for more details.',
+            'room': 'We offer comfortable patient rooms with modern amenities. Various room categories are available.',
+            'billing': 'Our billing department can assist with insurance claims, cashless treatment, and payment options.',
+            'visitor': 'Visiting hours: 8 AM to 8 PM. Please check with the ward for specific visiting times.',
+            'parking': 'Ample parking space is available for patients and visitors. Wheelchair accessible parking is also available.',
+            'thank you': 'You\'re welcome! 😊\nIs there anything else I can help you with?',
+            'thanks': 'You\'re welcome! 😊\nIs there anything else I can help you with?',
+            'bye': 'Thank you for contacting Apollo Hospitals. Stay healthy! 💚\nWe\'re always here to help.'
+        };
+
         /* ═══════════════════════════════════════════════
-           RENDER FUNCTIONS
+           STORAGE
            ═══════════════════════════════════════════════ */
-        function renderSpecialities() {
-            const grid = document.getElementById('specialitiesGrid');
-            if (!grid) return;
-            grid.innerHTML = specialitiesData.map(s =>
-                `<div class="spec-item">
-                    <span class="icon"><img src="${s.img}" alt="${s.name}" loading="lazy" /></span>
-                    <span class="name">${s.name}</span>
-                    <span class="arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
-                </div>`
-            ).join('');
-        }
+        const Store = (function() {
+            let memory = {};
+            let useLocal = true;
+            try {
+                localStorage.setItem('__test__', '1');
+                localStorage.removeItem('__test__');
+            } catch (e) { useLocal = false; }
 
-        function renderProhealth() {
-            const grid = document.getElementById('prohealthGrid');
-            if (!grid) return;
-            grid.innerHTML = prohealthData.map(p =>
-                `<div class="prohealth-card">
-                    <div class="icon"><img src="${p.icon}" alt="${p.title}" loading="lazy" /></div>
-                    <h4>${p.title}</h4>
-                    <p>${p.desc}</p>
-                </div>`
-            ).join('');
-        }
-
-        function renderDoctors() {
-            const scroll = document.getElementById('doctorScroll');
-            if (!scroll) return;
-            scroll.innerHTML = doctorsData.map(d =>
-                `<div class="doctor-card">
-                    <div class="avatar"><img src="${d.img}" alt="${d.name}" loading="lazy" /></div>
-                    <div class="name">${d.name}</div>
-                    <div class="specialty">${d.specialty}</div>
-                    <div class="experience">★ ${d.exp}</div>
-                </div>`
-            ).join('');
-        }
-
-        function renderHealthChecks() {
-            const grid = document.getElementById('healthChecksGrid');
-            if (!grid) return;
-            grid.innerHTML = healthChecksData.map(h =>
-                `<div class="health-check-item">
-                    <div class="icon"><img src="${h.icon}" alt="${h.label}" loading="lazy" /></div>
-                    <span class="label">${h.label}</span>
-                </div>`
-            ).join('');
-        }
-
-        function renderFaq() {
-            const list = document.getElementById('faqList');
-            if (!list) return;
-            list.innerHTML = faqsData.map((item, index) =>
-                `<div class="faq-item${index === 0 ? ' open' : ''}">
-                    <div class="faq-header">
-                        <span>${item.q}</span>
-                        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                    </div>
-                    <div class="faq-body"><p>${item.a}</p></div>
-                </div>`
-            ).join('');
-
-            // FAQ accordion
-            document.querySelectorAll('.faq-item').forEach(item => {
-                const header = item.querySelector('.faq-header');
-                if (header) {
-                    header.addEventListener('click', function() {
-                        const wasOpen = item.classList.contains('open');
-                        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
-                        if (!wasOpen) item.classList.add('open');
-                    });
+            return {
+                get(key, fallback) {
+                    try {
+                        if (useLocal) {
+                            const raw = localStorage.getItem(key);
+                            return raw ? JSON.parse(raw) : (fallback !== undefined ? fallback : null);
+                        }
+                        return memory[key] !== undefined ? JSON.parse(JSON.stringify(memory[key])) : (fallback !==
+                            undefined ? fallback : null);
+                    } catch (e) { return fallback !== undefined ? fallback : null; }
+                },
+                set(key, value) {
+                    try {
+                        if (useLocal) { localStorage.setItem(key, JSON.stringify(value)); return; }
+                    } catch (e) { useLocal = false; }
+                    memory[key] = value;
                 }
+            };
+        })();
+
+        /* ═══════════════════════════════════════════════
+           RENDER HOME PAGE
+           ═══════════════════════════════════════════════ */
+        function renderHome() {
+            const specGrid = document.getElementById('homeSpecGrid');
+            if (specGrid) {
+                specGrid.innerHTML = SPECIALITIES.map(s =>
+                    `<div class="vt-spec-item">
+                        <span class="spec-icon"><img src="${s.img}" alt="${s.name}" loading="lazy" /></span>
+                        <span class="spec-name">${s.name}</span>
+                        <span class="spec-arrow"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
+                    </div>`
+                ).join('');
+            }
+
+            const phGrid = document.getElementById('homeProhealthGrid');
+            if (phGrid) {
+                phGrid.innerHTML = PROHEALTH.map(p =>
+                    `<div class="vt-prohealth-card">
+                        <div class="ph-icon"><img src="${p.icon}" alt="${p.title}" loading="lazy" /></div>
+                        <h4>${p.title}</h4>
+                        <p>${p.desc}</p>
+                    </div>`
+                ).join('');
+            }
+
+            const docGrid = document.getElementById('homeDoctorGrid');
+            if (docGrid) {
+                docGrid.innerHTML = DOCTORS.map(d =>
+                    `<div class="vt-doctor-card">
+                        <div class="avatar"><img src="${d.img}" alt="${d.name}" loading="lazy" /></div>
+                        <div class="name">${d.name}</div>
+                        <div class="specialty">${d.specialty}</div>
+                        <div class="experience">★ ${d.exp}</div>
+                    </div>`
+                ).join('');
+            }
+
+            const hcGrid = document.getElementById('homeHcGrid');
+            if (hcGrid) {
+                hcGrid.innerHTML = HEALTH_CHECKS.map(h =>
+                    `<div class="vt-hc-item">
+                        <div class="hc-icon"><img src="${h.icon}" alt="${h.label}" loading="lazy" /></div>
+                        <span class="hc-label">${h.label}</span>
+                    </div>`
+                ).join('');
+            }
+
+            const faqList = document.getElementById('homeFaqList');
+            if (faqList) {
+                faqList.innerHTML = FAQS.map((item, index) =>
+                    `<div class="vt-faq-item${index === 0 ? ' is-open' : ''}">
+                        <button class="vt-faq-q"><span>${item.q}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                        <div class="vt-faq-a"><p>${item.a}</p></div>
+                    </div>`
+                ).join('');
+            }
+
+            // Count up
+            document.querySelectorAll('#homeRatingGrid .count-up').forEach(el => {
+                const target = parseFloat(el.dataset.target) || 0;
+                let current = 0;
+                const step = target / 40;
+                const timer = setInterval(function() {
+                    current += step;
+                    if (current >= target) { current = target;
+                        clearInterval(timer); }
+                    el.textContent = target >= 10 ? Math.round(current) : current.toFixed(1);
+                }, 25);
             });
         }
 
         /* ═══════════════════════════════════════════════
-           SEARCH FUNCTIONALITY
+           RENDER HEALTH CHECKS PAGE
            ═══════════════════════════════════════════════ */
-        function setupSearch() {
-            const input = document.getElementById('searchInput');
-            const btn = document.getElementById('searchBtn');
+        function renderHealthPackages(filter) {
+            const grid = document.getElementById('hcPackageGrid');
+            if (!grid) return;
 
-            function performSearch() {
-                const query = input.value.trim().toLowerCase();
-                if (!query) {
-                    alert('Please enter a search term.');
-                    return;
-                }
-
-                // Search through doctors
-                const doctorMatches = doctorsData.filter(d =>
-                    d.name.toLowerCase().includes(query) ||
-                    d.specialty.toLowerCase().includes(query)
-                );
-
-                // Search through specialities
-                const specMatches = specialitiesData.filter(s =>
-                    s.name.toLowerCase().includes(query)
-                );
-
-                // Search through health checks
-                const healthMatches = healthChecksData.filter(h =>
-                    h.label.toLowerCase().includes(query)
-                );
-
-                let resultMsg = `🔍 Search results for "${query}":\n\n`;
-                if (doctorMatches.length) {
-                    resultMsg += `👨‍⚕️ Doctors (${doctorMatches.length}):\n${doctorMatches.map(d => `  • ${d.name} - ${d.specialty}`).join('\n')}\n\n`;
-                }
-                if (specMatches.length) {
-                    resultMsg += `🏥 Specialities (${specMatches.length}):\n${specMatches.map(s => `  • ${s.name}`).join('\n')}\n\n`;
-                }
-                if (healthMatches.length) {
-                    resultMsg += `🩺 Health Checks (${healthMatches.length}):\n${healthMatches.map(h => `  • ${h.label}`).join('\n')}\n\n`;
-                }
-                if (!doctorMatches.length && !specMatches.length && !healthMatches.length) {
-                    resultMsg += 'No results found. Please try a different search term.';
-                }
-
-                alert(resultMsg);
+            let filtered = HEALTH_PACKAGES;
+            if (filter && filter !== 'all') {
+                filtered = HEALTH_PACKAGES.filter(p => p.category === filter);
             }
 
-            if (btn) btn.addEventListener('click', performSearch);
-            if (input) {
-                input.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        performSearch();
-                    }
-                });
-            }
+            grid.innerHTML = filtered.map(p =>
+                `<div class="hc-package-card${p.popular ? ' popular' : ''}">
+                    ${p.popular ? '<span class="badge">⭐ Most Popular</span>' : ''}
+                    <h4>${p.name}</h4>
+                    <div class="price">₹${p.price.toLocaleString('en-IN')}</div>
+                    <div class="note">${p.note}</div>
+                    <ul>${p.items.map(i => `<li>${i}</li>`).join('')}</ul>
+                    <button class="btn" data-book="${p.id}">Book Package</button>
+                </div>`
+            ).join('');
         }
 
         /* ═══════════════════════════════════════════════
-           CHAT WIDGET
+           CHAT WIDGET - Premium Hospital Assistant
            ═══════════════════════════════════════════════ */
         function setupChat() {
             const toggle = document.getElementById('chatToggle');
@@ -1997,52 +2756,58 @@
             const input = document.getElementById('chatInput');
             const send = document.getElementById('chatSend');
             const messages = document.getElementById('chatMessages');
-
-            const botResponses = {
-                'hi': 'Hello 👋\nWelcome to Apollo Hospitals Mumbai.\nHow can we help you today?',
-                'hello': 'Hello 👋\nWelcome to Apollo Hospitals Mumbai.\nHow can we help you today?',
-                'appointment': 'You can book an appointment online through our website, via the Apollo mobile app, or by calling our helpline at 08062972766.',
-                'emergency': '⚠️ Please call our 24/7 emergency helpline immediately at **1066** for immediate assistance.',
-                'doctor': 'Please use the doctor search above to find specialists. You can search by name or specialty.',
-                'doctors': 'Please use the doctor search above to find specialists. You can search by name or specialty.',
-                'health check': 'Our preventive health packages are available for all age groups. Explore our ProHealth program for personalized wellness plans.',
-                'health checks': 'Our preventive health packages are available for all age groups. Explore our ProHealth program for personalized wellness plans.',
-                'insurance': 'We support multiple cashless insurance providers. Please contact our insurance desk for more details about your specific policy.',
-                'contact': 'You can reach us at 08062972766 or visit our hospital at Mumbai location. Our support team is available 24/7.',
-                'help': 'I can help you with:\n• Appointments\n• Emergency services\n• Doctor search\n• Health checks\n• Insurance queries\n\nJust type your question!'
-            };
+            const quickReplies = document.getElementById('chatQuickReplies');
 
             function getBotReply(msg) {
                 const lower = msg.toLowerCase().trim();
-                for (const [key, reply] of Object.entries(botResponses)) {
+                for (const [key, reply] of Object.entries(CHAT_RESPONSES)) {
                     if (lower.includes(key)) return reply;
                 }
                 return 'Sorry, I didn\'t understand your question. Please contact our hospital support team at 08062972766 for immediate assistance.';
             }
 
+            function getTime() {
+                const now = new Date();
+                return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            }
+
             function addMessage(text, sender) {
                 const div = document.createElement('div');
                 div.className = `chat-msg ${sender}`;
-                div.innerHTML = text.replace(/\n/g, '<br>');
+                div.innerHTML = text.replace(/\n/g, '<br>') + `<span class="time">${getTime()}</span>`;
                 messages.appendChild(div);
                 messages.scrollTop = messages.scrollHeight;
             }
 
-            function handleChat() {
-                const text = input.value.trim();
-                if (!text) return;
+            function showTyping() {
+                const div = document.createElement('div');
+                div.className = 'chat-msg typing';
+                div.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+                messages.appendChild(div);
+                messages.scrollTop = messages.scrollHeight;
+                return div;
+            }
+
+            function handleChat(text) {
+                if (!text || !text.trim()) return;
                 addMessage(text, 'user');
                 input.value = '';
+
+                const typing = showTyping();
                 setTimeout(() => {
+                    typing.remove();
                     const reply = getBotReply(text);
                     addMessage(reply, 'bot');
-                }, 400);
+                }, 600 + Math.random() * 400);
             }
 
             if (toggle && widget) {
                 toggle.addEventListener('click', function() {
                     widget.classList.toggle('open');
                     toggle.classList.toggle('hidden');
+                    if (widget.classList.contains('open')) {
+                        messages.scrollTop = messages.scrollHeight;
+                    }
                 });
             }
 
@@ -2053,17 +2818,30 @@
                 });
             }
 
-            if (send) send.addEventListener('click', handleChat);
+            if (send) {
+                send.addEventListener('click', function() {
+                    handleChat(input.value);
+                });
+            }
+
             if (input) {
                 input.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        handleChat();
+                        handleChat(input.value);
                     }
                 });
             }
 
-            // Close chat on Escape
+            if (quickReplies) {
+                quickReplies.addEventListener('click', function(e) {
+                    const btn = e.target.closest('button');
+                    if (btn) {
+                        handleChat(btn.dataset.reply);
+                    }
+                });
+            }
+
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && widget && widget.classList.contains('open')) {
                     widget.classList.remove('open');
@@ -2073,7 +2851,299 @@
         }
 
         /* ═══════════════════════════════════════════════
-           NAVBAR FUNCTIONALITY
+           NAVIGATION
+           ═══════════════════════════════════════════════ */
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('[data-page]');
+            const pages = {
+                home: document.getElementById('page-home'),
+                appointments: document.getElementById('page-appointments'),
+                hospitals: document.getElementById('page-hospitals'),
+                healthchecks: document.getElementById('page-healthchecks'),
+                contact: document.getElementById('page-contact')
+            };
+            const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+
+            function navigateTo(page) {
+                // Hide all pages
+                Object.values(pages).forEach(p => {
+                    if (p) p.classList.remove('active');
+                });
+
+                // Show target page
+                if (pages[page]) pages[page].classList.add('active');
+
+                // Update bottom nav
+                bottomNavItems.forEach(item => {
+                    item.classList.toggle('active', item.dataset.page === page);
+                });
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            bottomNavItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            // Return to home if no hash
+            navigateTo('home');
+        }
+
+        /* ═══════════════════════════════════════════════
+           APPOINTMENT FORM
+           ═══════════════════════════════════════════════ */
+        function setupAppointment() {
+            const form = document.getElementById('apptForm');
+            const deptSelect = document.getElementById('apptDept');
+            const doctorSelect = document.getElementById('apptDoctor');
+            const listWrap = document.getElementById('apptListWrap');
+            const msgEl = document.getElementById('apptMsg');
+
+            // Populate departments
+            const depts = [
+                'Cardiology', 'Oncology', 'Neurology', 'Nephrology',
+                'Orthopaedics', 'Gastroenterology', 'Pulmonology', 'Gynaecology',
+                'Paediatrics', 'Urology', 'Transplants', 'Emergency Medicine'
+            ];
+            deptSelect.innerHTML = '<option value="">Select Department</option>' +
+                depts.map(d => `<option value="${d}">${d}</option>`).join('');
+
+            // Populate doctors
+            const docNames = DOCTORS.map(d => d.name);
+            doctorSelect.innerHTML = '<option value="">No preference</option>' +
+                docNames.map(d => `<option value="${d}">${d}</option>`).join('');
+
+            // Time chips
+            document.getElementById('apptTimeChips').addEventListener('click', function(e) {
+                const chip = e.target.closest('.appt-time-chip');
+                if (chip) {
+                    this.querySelectorAll('.appt-time-chip').forEach(c => c.classList.remove('selected'));
+                    chip.classList.add('selected');
+                }
+            });
+
+            // Set min date
+            document.getElementById('apptDate').min = new Date().toISOString().split('T')[0];
+
+            function renderAppointments() {
+                const list = Store.get('appointments', []);
+                if (!list.length) {
+                    listWrap.innerHTML =
+                        `<div class="vt-empty" style="text-align:center;padding:40px 20px;color:var(--text-muted);">
+                            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                            <p>No appointment requests yet.</p>
+                        </div>`;
+                    return;
+                }
+                listWrap.innerHTML = list.slice().reverse().map(a =>
+                    `<div class="appt-item">
+                        <div class="top">
+                            <span class="id">#${a.id}</span>
+                            <span class="status">${a.status}</span>
+                        </div>
+                        <div class="details">
+                            <strong>${a.name}</strong> · ${a.department}<br>
+                            ${a.date} · ${a.time}${a.doctor ? ' · '+a.doctor : ''}
+                        </div>
+                        <button class="appt-cancel-btn" data-cancel="${a.id}">Cancel request</button>
+                    </div>`
+                ).join('');
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('apptName').value.trim();
+                const phone = document.getElementById('apptPhone').value.trim();
+                const dept = deptSelect.value;
+                const date = document.getElementById('apptDate').value;
+                const timeChip = document.querySelector('.appt-time-chip.selected');
+                const time = timeChip ? timeChip.dataset.time : '';
+
+                if (!name || !phone || !dept || !date || !time) {
+                    msgEl.style.display = 'block';
+                    msgEl.textContent = 'Please fill in all required fields.';
+                    return;
+                }
+
+                const appt = {
+                    id: 'APT-' + Date.now().toString(36).slice(-5).toUpperCase(),
+                    name,
+                    phone,
+                    email: document.getElementById('apptEmail').value.trim(),
+                    department: dept,
+                    doctor: doctorSelect.value || '',
+                    date,
+                    time,
+                    reason: document.getElementById('apptReason').value.trim(),
+                    status: 'Pending Confirmation',
+                    createdAt: new Date().toISOString()
+                };
+
+                const list = Store.get('appointments', []);
+                list.push(appt);
+                Store.set('appointments', list);
+                renderAppointments();
+                form.reset();
+                document.querySelectorAll('.appt-time-chip').forEach(c => c.classList.remove('selected'));
+                msgEl.style.display = 'none';
+                alert('Appointment request submitted! We\'ll confirm within a few hours.');
+            });
+
+            document.getElementById('apptListWrap').addEventListener('click', function(e) {
+                const btn = e.target.closest('.appt-cancel-btn');
+                if (btn) {
+                    let list = Store.get('appointments', []);
+                    list = list.filter(a => a.id !== btn.dataset.cancel);
+                    Store.set('appointments', list);
+                    renderAppointments();
+                }
+            });
+
+            renderAppointments();
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONTACT FORM
+           ═══════════════════════════════════════════════ */
+        function setupContact() {
+            const form = document.getElementById('contactForm');
+            const msgEl = document.getElementById('contactMsg');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('cName').value.trim();
+                const email = document.getElementById('cEmail').value.trim();
+                const message = document.getElementById('cMsg').value.trim();
+
+                if (!name || !email || !message) {
+                    msgEl.style.display = 'block';
+                    msgEl.textContent = 'Please fill in all fields.';
+                    return;
+                }
+
+                const msgs = Store.get('contact_messages', []);
+                msgs.push({ name, email, message, createdAt: new Date().toISOString() });
+                Store.set('contact_messages', msgs);
+
+                msgEl.style.display = 'none';
+                form.reset();
+                alert('Message sent! We\'ll reply within one business day.');
+            });
+        }
+
+        /* ═══════════════════════════════════════════════
+           HEALTH CHECKS PAGE - Filter & Search
+           ═══════════════════════════════════════════════ */
+        function setupHealthChecksPage() {
+            const searchInput = document.getElementById('hcSearch');
+            const filterChips = document.querySelectorAll('#hcFilterChips .filter-chip');
+
+            function filterPackages() {
+                const query = searchInput.value.toLowerCase().trim();
+                const activeFilter = document.querySelector('#hcFilterChips .filter-chip.active');
+                const filter = activeFilter ? activeFilter.dataset.filter : 'all';
+
+                let filtered = HEALTH_PACKAGES;
+                if (filter !== 'all') {
+                    filtered = HEALTH_PACKAGES.filter(p => p.category === filter);
+                }
+                if (query) {
+                    filtered = filtered.filter(p =>
+                        p.name.toLowerCase().includes(query) ||
+                        p.items.some(i => i.toLowerCase().includes(query))
+                    );
+                }
+                renderHealthPackages(filter);
+            }
+
+            searchInput.addEventListener('input', filterPackages);
+
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    filterPackages();
+                });
+            });
+
+            // Book package buttons
+            document.getElementById('hcPackageGrid').addEventListener('click', function(e) {
+                const btn = e.target.closest('[data-book]');
+                if (btn) {
+                    const pkg = HEALTH_PACKAGES.find(p => p.id === btn.dataset.book);
+                    if (pkg) {
+                        alert(`📋 ${pkg.name}\n\nPrice: ₹${pkg.price.toLocaleString('en-IN')}\n\n${pkg.items.join('\n')}\n\nPlease visit our Appointment page to book.`);
+                    }
+                }
+            });
+
+            renderHealthPackages('all');
+        }
+
+        /* ═══════════════════════════════════════════════
+           SPEC BANNER SLIDER
+           ═══════════════════════════════════════════════ */
+        function setupSpecSlider() {
+            const track = document.getElementById('specTrack');
+            const dotsWrap = document.getElementById('specDots');
+            if (!track || !dotsWrap) return;
+            const slides = track.querySelectorAll('.spec-slide-item');
+            const slideCount = slides.length;
+            let current = 0;
+
+            slides.forEach(function(_, i) {
+                const dot = document.createElement('span');
+                if (i === 0) dot.classList.add('active');
+                dotsWrap.appendChild(dot);
+                dot.addEventListener('click', function() { goTo(i); });
+            });
+
+            function goTo(index) {
+                current = index;
+                track.style.transform = 'translateX(-' + (current * 100) + '%)';
+                dotsWrap.querySelectorAll('span').forEach(function(dot, i) {
+                    dot.classList.toggle('active', i === current);
+                });
+            }
+
+            let interval = setInterval(function() { goTo((current + 1) % slideCount); }, 4000);
+            const banner = document.querySelector('.spec-banner');
+            if (banner) {
+                banner.addEventListener('mouseenter', function() { clearInterval(interval); });
+                banner.addEventListener('mouseleave', function() {
+                    interval = setInterval(function() { goTo((current + 1) % slideCount); }, 4000);
+                });
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           FAQ ACCORDION (delegated)
+           ═══════════════════════════════════════════════ */
+        document.addEventListener('click', function(e) {
+            const q = e.target.closest('.vt-faq-q');
+            if (q) {
+                const item = q.closest('.vt-faq-item');
+                const wasOpen = item.classList.contains('is-open');
+                item.parentElement.querySelectorAll('.vt-faq-item').forEach(i => i.classList.remove('is-open'));
+                if (!wasOpen) item.classList.add('is-open');
+            }
+        });
+
+        /* ═══════════════════════════════════════════════
+           NAVBAR
            ═══════════════════════════════════════════════ */
         function setupNavbar() {
             const navbar = document.getElementById('navbar');
@@ -2113,67 +3183,6 @@
         }
 
         /* ═══════════════════════════════════════════════
-           SPECIALITIES BANNER SLIDER
-           ═══════════════════════════════════════════════ */
-        function setupSpecSlider() {
-            const track = document.getElementById('specTrack');
-            const dotsWrap = document.getElementById('specDots');
-            if (!track || !dotsWrap) return;
-            const slides = track.querySelectorAll('.spec-slide-item');
-            const slideCount = slides.length;
-            let current = 0;
-
-            slides.forEach(function(_, i) {
-                const dot = document.createElement('span');
-                if (i === 0) dot.classList.add('active');
-                dotsWrap.appendChild(dot);
-                dot.addEventListener('click', function() { goTo(i); });
-            });
-
-            function goTo(index) {
-                current = index;
-                track.style.transform = 'translateX(-' + (current * 100) + '%)';
-                dotsWrap.querySelectorAll('span').forEach(function(dot, i) {
-                    dot.classList.toggle('active', i === current);
-                });
-            }
-
-            let interval = setInterval(function() { goTo((current + 1) % slideCount); }, 4000);
-            const banner = document.querySelector('.spec-banner');
-            if (banner) {
-                banner.addEventListener('mouseenter', function() { clearInterval(interval); });
-                banner.addEventListener('mouseleave', function() {
-                    interval = setInterval(function() { goTo((current + 1) % slideCount); }, 4000);
-                });
-            }
-        }
-
-        /* ═══════════════════════════════════════════════
-           DOCTOR CAROUSEL
-           ═══════════════════════════════════════════════ */
-        function setupDoctorCarousel() {
-            const scrollEl = document.getElementById('doctorScroll');
-            if (!scrollEl) return;
-
-            function getScrollAmount() {
-                const card = scrollEl.querySelector('.doctor-card');
-                if (!card) return 180;
-                const gap = 16;
-                return card.offsetWidth + gap;
-            }
-
-            function scrollDoctors(dir) {
-                const amt = getScrollAmount();
-                scrollEl.scrollBy({ left: dir * amt, behavior: 'smooth' });
-            }
-
-            const prevBtn = document.getElementById('docPrev');
-            const nextBtn = document.getElementById('docNext');
-            if (prevBtn) prevBtn.addEventListener('click', function() { scrollDoctors(-1); });
-            if (nextBtn) nextBtn.addEventListener('click', function() { scrollDoctors(1); });
-        }
-
-        /* ═══════════════════════════════════════════════
            SCROLL REVEAL
            ═══════════════════════════════════════════════ */
         function setupScrollReveal() {
@@ -2191,93 +3200,66 @@
         }
 
         /* ═══════════════════════════════════════════════
-           COUNT UP ANIMATION
+           SEARCH
            ═══════════════════════════════════════════════ */
-        function setupCountUp() {
-            const counters = document.querySelectorAll('.count-up');
-            if (!counters.length) return;
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = parseFloat(el.dataset.target) || 0;
-                        let current = 0;
-                        const step = target / 40;
-                        const timer = setInterval(function() {
-                            current += step;
-                            if (current >= target) {
-                                current = target;
-                                clearInterval(timer);
-                            }
-                            el.textContent = target >= 10 ? Math.round(current) : current.toFixed(1);
-                        }, 25);
-                        observer.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(function(el) { observer.observe(el); });
-        }
+        function setupSearch() {
+            const input = document.getElementById('searchInput');
+            const btn = document.getElementById('searchBtn');
 
-        /* ═══════════════════════════════════════════════
-           BOTTOM NAVIGATION ACTIVE STATE
-           ═══════════════════════════════════════════════ */
-        function setupBottomNav() {
-            const navItems = document.querySelectorAll('.bottom-nav-item');
-            navItems.forEach(function(item) {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navItems.forEach(function(i) { i.classList.remove('active'); });
-                    item.classList.add('active');
-                    const nav = item.dataset.nav;
-                    if (nav === 'chat') {
-                        const toggle = document.getElementById('chatToggle');
-                        const widget = document.getElementById('chatWidget');
-                        if (toggle && widget) {
-                            widget.classList.toggle('open');
-                            toggle.classList.toggle('hidden');
-                        }
-                    }
-                });
-            });
-        }
+            function performSearch() {
+                const query = input.value.trim();
+                if (!query) { alert('Please enter a search term.'); return; }
 
-        /* ═══════════════════════════════════════════════
-           PROHEALTH DOTS
-           ═══════════════════════════════════════════════ */
-        function setupProhealthDots() {
-            const dotsWrap = document.getElementById('phDots');
-            if (!dotsWrap) return;
-            for (let i = 0; i < 4; i++) {
-                const dot = document.createElement('span');
-                if (i === 0) dot.classList.add('active');
-                dotsWrap.appendChild(dot);
+                const doctorMatches = DOCTORS.filter(d =>
+                    d.name.toLowerCase().includes(query.toLowerCase()) ||
+                    d.specialty.toLowerCase().includes(query.toLowerCase())
+                );
+                const specMatches = SPECIALITIES.filter(s =>
+                    s.name.toLowerCase().includes(query.toLowerCase())
+                );
+                const hcMatches = HEALTH_CHECKS.filter(h =>
+                    h.label.toLowerCase().includes(query.toLowerCase())
+                );
+
+                let resultMsg = `🔍 Search results for "${query}":\n\n`;
+                if (doctorMatches.length) {
+                    resultMsg += `👨‍⚕️ Doctors (${doctorMatches.length}):\n${doctorMatches.map(d => `  • ${d.name} - ${d.specialty}`).join('\n')}\n\n`;
+                }
+                if (specMatches.length) {
+                    resultMsg += `🏥 Specialities (${specMatches.length}):\n${specMatches.map(s => `  • ${s.name}`).join('\n')}\n\n`;
+                }
+                if (hcMatches.length) {
+                    resultMsg += `🩺 Health Checks (${hcMatches.length}):\n${hcMatches.map(h => `  • ${h.label}`).join('\n')}\n\n`;
+                }
+                if (!doctorMatches.length && !specMatches.length && !hcMatches.length) {
+                    resultMsg += 'No results found. Please try a different search term.';
+                }
+                alert(resultMsg);
             }
-            let idx = 0;
-            setInterval(function() {
-                dotsWrap.children[idx].classList.remove('active');
-                idx = (idx + 1) % 4;
-                dotsWrap.children[idx].classList.add('active');
-            }, 3000);
+
+            if (btn) btn.addEventListener('click', performSearch);
+            if (input) {
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') { e.preventDefault();
+                        performSearch(); }
+                });
+            }
         }
 
         /* ═══════════════════════════════════════════════
            INIT
            ═══════════════════════════════════════════════ */
         document.addEventListener('DOMContentLoaded', function() {
-            renderSpecialities();
-            renderProhealth();
-            renderDoctors();
-            renderHealthChecks();
-            renderFaq();
-            setupSearch();
+            renderHome();
+            setupNavigation();
             setupChat();
-            setupNavbar();
+            setupAppointment();
+            setupContact();
+            setupHealthChecksPage();
             setupSpecSlider();
-            setupDoctorCarousel();
+            setupNavbar();
             setupScrollReveal();
-            setupCountUp();
-            setupBottomNav();
-            setupProhealthDots();
+            setupSearch();
         });
     </script>
 
