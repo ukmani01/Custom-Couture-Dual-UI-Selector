@@ -1,1719 +1,1617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vitalis Hospitals — Multi-Speciality Care in Mumbai</title>
-  <meta name="description" content="Vitalis Hospitals, Mumbai — 12 specialities, 60+ consultants and 24/7 emergency care under one roof. Book appointments, explore health packages and find the right specialist." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-  <style>
-    /* ============================================================
-       TOKENS
-       ============================================================ */
-    :root{
-      --ink:#16211d;
-      --teal-900:#0a3f3b;
-      --teal-700:#0f5c56;
-      --teal-600:#157069;
-      --teal-500:#1d8a82;
-      --teal-100:#e3efed;
-      --teal-050:#f2f7f6;
-      --sand-050:#faf8f4;
-      --sand-100:#f2efe6;
-      --line:#e3ded0;
-      --line-strong:#cdc4ac;
-      --gold-700:#8f6323;
-      --gold-600:#b8863a;
-      --gold-400:#d7a862;
-      --gold-100:#f5e9d3;
-      --text-1:#16211d;
-      --text-2:#48544e;
-      --text-3:#7c8780;
-      --white:#ffffff;
-      --success:#2f7d52;
-      --success-bg:#e7f3ec;
-      --error:#b3432f;
-      --error-bg:#fbeae6;
-      --shadow-sm:0 1px 2px rgba(15,40,35,.07), 0 1px 1px rgba(15,40,35,.04);
-      --shadow-md:0 8px 24px rgba(15,40,35,.08);
-      --shadow-lg:0 20px 48px rgba(15,40,35,.14);
-      --r-sm:10px;
-      --r-md:16px;
-      --r-lg:26px;
-      --r-full:999px;
-      --container:1240px;
-      --font-display:'Outfit',sans-serif;
-      --font-body:'Inter',sans-serif;
-      --font-mono:'IBM Plex Mono',monospace;
-      --ease:cubic-bezier(.4,0,.2,1);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Noir — The Autumn Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#faf7f1;
+    --warm-white:#fffdfa;
+    --champagne:#efe4cb;
+    --stone:#ded5c3;
+    --sand:#c9b898;
+    --graphite:#2b2924;
+    --charcoal:#1c1a16;
+    --black:#0d0c0a;
+    --gold:#a3763c;
+    --gold-soft:#c79a5f;
+    --burgundy:#6d2334;
+    --ink-soft:#5c584c;
+    --ink-faint:#a19b88;
+    --line:#e4dcc9;
+    --line-strong:#d3c8ac;
+    --white:#ffffff;
+    --success:#4a6b4f;
+    /* unified elevation scale */
+    --shadow-1:0 1px 3px rgba(28,26,22,0.04);
+    --shadow-2:0 6px 20px rgba(28,26,22,0.06);
+    --shadow-3:0 20px 50px rgba(28,26,22,0.10);
+    --shadow-4:0 40px 90px rgba(28,26,22,0.16);
+    --serif:'Cormorant Garamond', serif;
+    --sans:'Work Sans', sans-serif;
+    --ease:cubic-bezier(.19,1,.22,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--sans);color:var(--charcoal);background:var(--ivory);-webkit-font-smoothing:antialiased;font-weight:300;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;background:none;border:none;}
+  input,select,textarea{font-family:inherit;}
+  ::selection{background:var(--gold);color:#fff;}
+  .container{max-width:1400px;margin:0 auto;padding:0 64px;}
 
-    /* ============================================================
-       RESET
-       ============================================================ */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
-    body{font-family:var(--font-body);color:var(--text-1);background:var(--sand-050);line-height:1.6;overflow-x:hidden;}
-    img{max-width:100%;display:block;}
-    a{text-decoration:none;color:inherit;}
-    button{font-family:inherit;font-size:inherit;border:none;background:none;cursor:pointer;color:inherit;}
-    input,textarea,select{font-family:inherit;font-size:inherit;color:inherit;}
-    ul{list-style:none;}
-    h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;color:var(--text-1);line-height:1.15;}
-    :focus-visible{outline:2px solid var(--teal-600);outline-offset:3px;}
-    @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important;}}
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, .cat-card:focus-visible, .product-card:focus-visible{
+    outline:2px solid var(--gold); outline-offset:3px; border-radius:1px;
+  }
 
-    /* ============================================================
-       UTILITIES
-       ============================================================ */
-    .container{max-width:var(--container);margin:0 auto;padding:0 24px;}
-    .vt-section{padding:88px 0;}
-    .vt-section--tight{padding:56px 0;}
-    .vt-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--teal-600);text-transform:uppercase;margin-bottom:14px;}
-    .vt-eyebrow::before{content:'';width:16px;height:1.5px;background:var(--gold-600);}
-    .vt-heading{font-size:clamp(26px,3.4vw,42px);letter-spacing:-.02em;margin-bottom:16px;max-width:640px;}
-    .vt-heading .hl{color:var(--teal-700);}
-    .vt-lede{font-size:17px;color:var(--text-2);max-width:560px;margin-bottom:32px;line-height:1.7;}
-    .vt-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px;}
-    .vt-head-row .vt-heading,.vt-head-row .vt-lede{margin-bottom:0;}
-    .vt-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
-    .vt-reveal.is-visible{opacity:1;transform:translateY(0);}
-    .vt-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0;color:var(--black);}
+  .eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .eyebrow.on-dark{color:var(--sand);}
 
-    /* Buttons */
-    .vt-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:var(--r-full);font-weight:600;font-size:14.5px;transition:transform .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease),color .18s var(--ease);white-space:nowrap;}
-    .vt-btn--primary{background:var(--teal-700);color:var(--white);box-shadow:var(--shadow-sm);}
-    .vt-btn--primary:hover{background:var(--teal-900);box-shadow:var(--shadow-md);transform:translateY(-1px);}
-    .vt-btn--primary:active{transform:translateY(0) scale(.98);}
-    .vt-btn--gold{background:var(--gold-600);color:var(--white);}
-    .vt-btn--gold:hover{background:var(--gold-700);transform:translateY(-1px);}
-    .vt-btn--outline{border:1.5px solid var(--line-strong);color:var(--text-1);}
-    .vt-btn--outline:hover{border-color:var(--teal-600);color:var(--teal-700);background:var(--teal-050);}
-    .vt-btn--ghost{color:var(--teal-700);padding:10px 4px;}
-    .vt-btn--ghost:hover{color:var(--teal-900);}
-    .vt-btn--sm{padding:9px 18px;font-size:13.5px;}
-    .vt-btn--block{width:100%;}
-    .vt-btn[disabled]{opacity:.5;cursor:not-allowed;}
-    .vt-btn svg{width:16px;height:16px;flex-shrink:0;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 38px;font-size:11.5px;letter-spacing:2.6px;text-transform:uppercase;font-weight:500;border-radius:0;border:1px solid var(--charcoal);transition:all .4s var(--ease);}
+  .btn-dark{background:var(--charcoal);color:var(--ivory);}
+  .btn-dark:hover{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:var(--shadow-2);}
+  .btn-accent{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .btn-accent:hover{background:var(--gold-soft);border-color:var(--gold-soft);}
+  .btn-outline{background:transparent;color:var(--charcoal);}
+  .btn-outline:hover{background:var(--charcoal);color:var(--ivory);}
+  .btn-outline-white{background:transparent;color:#fff;border-color:rgba(255,255,255,.5);}
+  .btn-outline-white:hover{background:#fff;color:var(--charcoal);border-color:#fff;}
+  .btn-block{width:100%;}
+  .btn-sm{padding:12px 22px;font-size:10px;letter-spacing:1.8px;}
+  .btn[disabled]{opacity:.35;pointer-events:none;}
+  .btn-ghost{border-color:var(--line);color:var(--ink-soft);}
+  .btn-ghost:hover{border-color:var(--charcoal);color:var(--charcoal);}
+  .btn-danger{border-color:var(--burgundy);color:var(--burgundy);}
+  .btn-danger:hover{background:var(--burgundy);color:#fff;}
 
-    /* Chips */
-    .vt-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r-full);border:1.5px solid var(--line);background:var(--white);font-size:13.5px;font-weight:600;color:var(--text-2);transition:all .18s var(--ease);}
-    .vt-chip:hover{border-color:var(--teal-500);}
-    .vt-chip.is-active{background:var(--teal-700);border-color:var(--teal-700);color:var(--white);}
+  header.site-header{background:var(--ivory);position:sticky;top:0;z-index:1000;border-bottom:1px solid var(--line);transition:.4s var(--ease);}
+  .header-top{display:flex;align-items:center;justify-content:space-between;height:96px;transition:height .35s var(--ease);}
+  header.site-header.scrolled .header-top{height:72px;box-shadow:var(--shadow-1);}
+  header.site-header.scrolled .logo{font-size:22px;}
+  .icon-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--charcoal);border-radius:50%;transition:.3s;position:relative;font-size:14px;}
+  .icon-btn:hover{color:var(--gold);}
+  .icon-btn.cart-bump{animation:bump .45s var(--ease);}
+  @keyframes bump{0%{transform:scale(1);}35%{transform:scale(1.28);}100%{transform:scale(1);}}
+  .header-left{display:flex;align-items:center;gap:20px;}
+  .logo{font-family:var(--serif);font-size:27px;font-weight:500;letter-spacing:4px;text-transform:uppercase;transition:font-size .35s var(--ease);}
+  .logo em{font-style:italic;color:var(--gold);font-weight:400;letter-spacing:1px;}
+  .header-right{display:flex;align-items:center;gap:2px;}
+  .cart-count{position:absolute;top:-2px;right:-2px;background:var(--gold);color:#fff;font-size:9px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;box-shadow:0 0 0 2px var(--ivory);}
+  .header-nav .container{display:flex;gap:46px;height:54px;align-items:center;justify-content:center;border-top:1px solid var(--line);transition:height .35s var(--ease);}
+  header.site-header.scrolled .header-nav .container{height:42px;}
+  .header-nav a{font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--ink-soft);transition:.35s;position:relative;padding:4px 0;font-weight:500;}
+  .header-nav a::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);}
+  .header-nav a:hover,.header-nav a.active{color:var(--charcoal);}
+  .header-nav a:hover::after,.header-nav a.active::after{transform:scaleX(1);transform-origin:left;}
+  .hamburger{display:none;flex-direction:column;gap:5px;padding:8px;}
+  .hamburger span{width:22px;height:1px;background:var(--charcoal);}
 
-    /* Cards baseline */
-    .vt-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-sm);transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s var(--ease);}
-    .vt-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--line-strong);}
+  .breadcrumb{font-size:11.5px;color:var(--ink-faint);padding:34px 0 0;letter-spacing:.6px;}
+  .breadcrumb span{color:var(--charcoal);font-weight:500;}
+  .breadcrumb a:hover{color:var(--gold);}
 
-    /* ============================================================
-       NAVBAR
-       ============================================================ */
-    .vt-nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .2s;}
-    .vt-nav.is-scrolled{box-shadow:0 4px 20px rgba(15,40,35,.06);}
-    .vt-nav__inner{display:flex;align-items:center;gap:28px;padding:14px 24px;}
-    .vt-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-    .vt-brand__mark{width:38px;height:38px;flex-shrink:0;}
-    .vt-brand__text{display:flex;flex-direction:column;line-height:1.1;}
-    .vt-brand__name{font-family:var(--font-display);font-size:21px;font-weight:800;color:var(--teal-900);letter-spacing:-.02em;}
-    .vt-brand__sub{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;color:var(--gold-700);}
-    .vt-links{display:flex;gap:6px;flex:1;justify-content:center;}
-    .vt-links a{padding:10px 14px;border-radius:var(--r-full);font-size:14px;font-weight:600;color:var(--text-2);transition:all .18s var(--ease);}
-    .vt-links a:hover{color:var(--teal-700);background:var(--teal-050);}
-    .vt-links a.is-active{color:var(--teal-700);background:var(--teal-100);}
-    .vt-nav__actions{display:flex;align-items:center;gap:14px;flex-shrink:0;}
-    .vt-emergency{display:none;flex-direction:column;line-height:1.2;text-align:right;}
-    .vt-emergency__label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);font-weight:700;}
-    .vt-emergency__num{font-family:var(--font-mono);font-size:13.5px;font-weight:600;color:var(--error);}
-    .vt-hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;}
-    .vt-hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s var(--ease),opacity .25s var(--ease);}
-    .vt-hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-    .vt-hamburger.is-open span:nth-child(2){opacity:0;}
-    .vt-hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-    .vt-drawer{display:none;flex-direction:column;border-top:1px solid var(--line);background:var(--sand-050);}
-    .vt-drawer.is-open{display:flex;}
-    .vt-drawer a{padding:16px 24px;font-weight:600;font-size:15px;border-bottom:1px solid var(--line);color:var(--text-2);}
-    .vt-drawer a.is-active{color:var(--teal-700);}
-    @media (min-width:900px){
-      .vt-hamburger{display:none;}
-      .vt-emergency{display:flex;}
-    }
-    @media (max-width:899px){
-      .vt-links{display:none;}
-    }
+  .hero{position:relative;overflow:hidden;background:var(--black);}
+  .hero-grid img{width:100%;height:94vh;min-height:640px;object-fit:cover;filter:brightness(0.76) saturate(0.94);transform:scale(1.02);}
+  .hero-vignette{position:absolute;inset:0;box-shadow:inset 0 0 180px rgba(0,0,0,0.35);z-index:1;pointer-events:none;}
+  .hero-fade{position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(to top, var(--ivory) 0%, transparent 100%);z-index:2;}
+  .hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;z-index:3;padding:0 24px;}
+  .hero-content .eyebrow{margin-bottom:28px;}
+  .hero-content h1{font-size:clamp(56px,8vw,120px);line-height:1;letter-spacing:2px;color:#fff;margin-bottom:30px;font-weight:400;}
+  .hero-content h1 .italic{font-style:italic;font-weight:400;}
+  .hero-content p{font-size:15px;color:#e3ded0;max-width:460px;line-height:1.9;margin:0 auto 40px;letter-spacing:.5px;font-weight:300;}
+  .hero-btn-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .hero-credit{position:absolute;right:28px;bottom:24px;z-index:3;color:rgba(255,255,255,.55);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;}
 
-    /* ============================================================
-       HERO
-       ============================================================ */
-    .vt-hero{background:linear-gradient(180deg,var(--teal-050) 0%, var(--sand-050) 62%);border-bottom:1px solid var(--line);overflow:visible;position:relative;}
-    .vt-hero__grid{display:grid;grid-template-columns:1fr;gap:48px;padding:56px 0 64px;align-items:center;}
-    .vt-hero__title{font-size:clamp(34px,5vw,58px);letter-spacing:-.03em;margin-bottom:20px;}
-    .vt-hero__sub{font-size:17px;color:var(--text-2);max-width:520px;margin-bottom:30px;line-height:1.7;}
-    .vt-hero__actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
-    .vt-hero__facts{display:flex;gap:32px;flex-wrap:wrap;}
-    .vt-hero__facts div{display:flex;flex-direction:column;}
-    .vt-hero__facts dt{font-family:var(--font-mono);font-size:22px;font-weight:600;color:var(--teal-700);}
-    .vt-hero__facts dd{font-size:12.5px;color:var(--text-3);font-weight:600;}
-    .vt-hero__visual{position:relative;}
-    .vt-vitals-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:28px 24px 24px;position:relative;}
-    .vt-vitals-card__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
-    .vt-vitals-card__label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);font-weight:700;}
-    .vt-vitals-card__dot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 4px var(--success-bg);}
-    .vt-pulse-wrap{background:var(--teal-900);border-radius:var(--r-md);padding:18px 6px;overflow:hidden;}
-    .vt-pulse{width:100%;height:64px;display:block;}
-    .vt-pulse path{fill:none;stroke:var(--gold-400);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:340;stroke-dashoffset:340;animation:vt-draw 3.2s var(--ease) infinite;}
-    @keyframes vt-draw{0%{stroke-dashoffset:340;}55%{stroke-dashoffset:0;}100%{stroke-dashoffset:0;}}
-    .vt-vitals-chips{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
-    .vt-vitals-chip{background:var(--sand-100);border-radius:var(--r-sm);padding:10px 12px;flex:1;min-width:130px;}
-    .vt-vitals-chip strong{display:block;font-family:var(--font-mono);font-size:14px;color:var(--teal-800,var(--teal-700));}
-    .vt-vitals-chip span{font-size:11px;color:var(--text-3);font-weight:600;}
-    .vt-float-chip{position:absolute;background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-md);border-radius:var(--r-full);padding:9px 16px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px;}
-    .vt-float-chip--top{top:-18px;right:24px;color:var(--teal-700);}
-    .vt-float-chip--bottom{bottom:-16px;left:20px;color:var(--gold-700);}
-    .vt-float-chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
-    @media (min-width:960px){
-      .vt-hero__grid{grid-template-columns:1.05fr .95fr;}
-    }
-    /* Fix extra space below hero — remove any hidden margins/paddings */
-    .vt-hero + .vt-trust { margin-top: 0; }
+  .story-intro{padding:150px 0 120px;}
+  .story-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+  .story-intro img{width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:var(--shadow-2);}
+  .story-intro .eyebrow{display:block;margin-bottom:20px;}
+  .story-intro h2{font-size:clamp(32px,3.4vw,48px);line-height:1.15;margin-bottom:26px;font-weight:400;}
+  .story-intro p{font-size:15.5px;line-height:2;color:var(--ink-soft);font-weight:300;max-width:440px;}
 
-    /* ============================================================
-       TRUST STRIP
-       ============================================================ */
-    .vt-trust{border-bottom:1px solid var(--line);background:var(--white);}
-    .vt-trust__row{display:grid;grid-template-columns:repeat(2,1fr);gap:0;}
-    .vt-trust__item{display:flex;align-items:center;gap:12px;padding:22px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
-    .vt-trust__item svg{width:26px;height:26px;color:var(--teal-600);flex-shrink:0;}
-    .vt-trust__item strong{display:block;font-size:14px;}
-    .vt-trust__item span{font-size:12px;color:var(--text-3);}
-    @media (min-width:720px){
-      .vt-trust__row{grid-template-columns:repeat(4,1fr);}
-      .vt-trust__item{border-bottom:none;}
-    }
+  section{padding:130px 0;}
+  .section-head{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:70px;gap:16px;}
+  .section-head h2{font-size:clamp(34px,4vw,52px);letter-spacing:.5px;font-weight:400;}
+  .section-head.left-align{align-items:flex-start;text-align:left;flex-direction:row;justify-content:space-between;flex-wrap:wrap;}
+  .section-head.left-align > div{text-align:left;}
+  .view-all{font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;font-weight:500;color:var(--charcoal);border-bottom:1px solid var(--gold);padding-bottom:5px;transition:.35s;}
+  .view-all:hover{color:var(--gold);}
 
-    /* ============================================================
-       GRIDS: departments / doctors / packages
-       ============================================================ */
-    .vt-dept-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-    .vt-dept-card{padding:24px 20px;cursor:pointer;}
-    .vt-dept-card__icon{width:44px;height:44px;border-radius:var(--r-sm);background:var(--teal-100);color:var(--teal-700);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
-    .vt-dept-card__icon svg{width:22px;height:22px;}
-    .vt-dept-card h4{font-size:16px;margin-bottom:6px;}
-    .vt-dept-card p{font-size:13.5px;color:var(--text-3);line-height:1.55;}
-    /* expandable details inside dept card */
-    .vt-dept-details{max-height:0;overflow:hidden;transition:max-height .4s var(--ease), opacity .3s var(--ease), margin .3s var(--ease);opacity:0;margin-top:0;}
-    .vt-dept-card.is-expanded .vt-dept-details{max-height:280px;opacity:1;margin-top:16px;}
-    .vt-dept-details ul{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;padding:0;margin:0 0 8px 0;}
-    .vt-dept-details ul li{font-size:13px;color:var(--text-2);padding:3px 0;border-bottom:1px solid var(--sand-100);}
-    .vt-dept-details ul li strong{color:var(--text-1);font-weight:600;}
-    .vt-dept-details .vt-detail-label{font-size:12px;font-weight:700;color:var(--teal-700);margin-top:10px;display:block;}
-    .vt-dept-details .vt-detail-label:first-of-type{margin-top:0;}
-    .vt-dept-toggle{background:none;border:none;color:var(--teal-600);font-weight:600;font-size:13px;padding:6px 0 0 0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
-    .vt-dept-toggle svg{width:14px;height:14px;transition:transform .3s var(--ease);}
-    .vt-dept-card.is-expanded .vt-dept-toggle svg{transform:rotate(180deg);}
-    @media (min-width:720px){.vt-dept-grid{grid-template-columns:repeat(3,1fr);}}
-    @media (min-width:1180px){.vt-dept-grid{grid-template-columns:repeat(4,1fr);}}
+  .cat-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:2px;background:var(--line);}
+  .cat-grid.row2{grid-template-columns:1fr 1.6fr;margin-top:2px;}
+  .cat-card{position:relative;overflow:hidden;aspect-ratio:3/3.9;cursor:pointer;background:var(--charcoal);}
+  .cat-grid .cat-card:first-child{aspect-ratio:3/4.6;}
+  .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease), filter .6s;filter:saturate(0.9) brightness(0.9);}
+  .cat-card:hover img{transform:scale(1.045);filter:saturate(1) brightness(0.72);}
+  .cat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(13,12,10,0.72) 0%, transparent 50%);z-index:1;}
+  .cat-card .label{position:absolute;left:30px;right:30px;bottom:28px;color:#fff;z-index:2;}
+  .cat-card .label span.eyebrow{color:var(--sand);opacity:0;transform:translateY(6px);transition:.4s var(--ease);display:block;margin-bottom:8px;}
+  .cat-card:hover .label span.eyebrow{opacity:1;transform:translateY(0);}
+  .cat-card .label h3{font-size:28px;font-weight:400;font-style:italic;}
 
-    .vt-doctor-grid{display:grid;grid-template-columns:1fr;gap:18px;}
-    .vt-doctor-card{padding:26px 22px;text-align:left;}
-    .vt-doctor-card__top{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
-    .vt-avatar{width:64px;height:64px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--teal-100);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--teal-700);}
-    .vt-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-    .vt-doctor-card__name{font-size:16px;font-weight:700;}
-    .vt-doctor-card__dept{font-size:13px;color:var(--teal-700);font-weight:600;}
-    .vt-fav-btn{margin-left:auto;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:color .18s;flex-shrink:0;}
-    .vt-fav-btn svg{width:18px;height:18px;}
-    .vt-fav-btn.is-fav{color:var(--error);}
-    .vt-doctor-card__meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
-    .vt-tag{font-size:11.5px;font-weight:600;color:var(--text-2);background:var(--sand-100);padding:5px 10px;border-radius:var(--r-full);}
-    .vt-doctor-card__foot{display:flex;justify-content:space-between;align-items:center;gap:12px;}
-    .vt-avail{font-size:12px;font-family:var(--font-mono);color:var(--success);}
-    @media (min-width:720px){.vt-doctor-grid{grid-template-columns:repeat(2,1fr);}}
-    @media (min-width:1180px){.vt-doctor-grid{grid-template-columns:repeat(3,1fr);}}
+  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:50px 34px;}
+  .product-card{cursor:pointer;}
+  .product-img-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--champagne);margin-bottom:20px;box-shadow:var(--shadow-1);transition:box-shadow .4s var(--ease);}
+  .product-card:hover .product-img-wrap{box-shadow:var(--shadow-3);}
+  .product-img-wrap img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:opacity .7s var(--ease), transform 1s var(--ease);}
+  .product-img-wrap img.img-alt{opacity:0;}
+  .product-card:hover .product-img-wrap img.img-main{opacity:0;}
+  .product-card:hover .product-img-wrap img.img-alt{opacity:1;transform:scale(1.035);}
+  .wishlist-dot{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,253,249,0.92);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;transition:.3s;z-index:2;}
+  .wishlist-dot:hover{color:var(--gold);}
+  .wishlist-dot.active{color:var(--gold);}
+  .sale-tag{position:absolute;top:16px;left:16px;background:var(--burgundy);color:#fff;font-size:9.5px;letter-spacing:1.6px;padding:6px 12px;text-transform:uppercase;font-weight:500;z-index:2;}
+  .quickadd-bar{position:absolute;left:0;right:0;bottom:0;background:rgba(13,12,10,0.9);color:var(--sand);text-align:center;padding:13px;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;transform:translateY(100%);transition:all .4s var(--ease);z-index:2;display:flex;}
+  .quickadd-bar span{flex:1;padding:2px 4px;transition:.25s;}
+  .quickadd-bar span:hover{color:#fff;background:rgba(255,255,255,0.06);}
+  .quickadd-bar span.divider{flex:0;border-left:1px solid rgba(255,255,255,.15);}
+  .product-card:hover .quickadd-bar{transform:translateY(0);}
+  .product-name{font-size:16px;font-weight:400;margin-bottom:5px;letter-spacing:.2px;font-family:var(--serif);font-style:italic;}
+  .product-cat{font-size:9.5px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;letter-spacing:2px;font-weight:600;}
+  .product-price{font-size:13.5px;font-weight:500;letter-spacing:.3px;color:var(--ink-soft);}
+  .product-price .was{color:var(--ink-faint);text-decoration:line-through;font-weight:400;margin-right:10px;font-size:12.5px;}
 
-    .vt-pkg-grid{display:grid;grid-template-columns:1fr;gap:18px;}
-    .vt-pkg-card{padding:28px 24px;display:flex;flex-direction:column;position:relative;}
-    .vt-pkg-card.is-popular{border-color:var(--gold-600);box-shadow:0 0 0 1px var(--gold-600), var(--shadow-md);}
-    .vt-pkg-badge{position:absolute;top:-12px;left:24px;background:var(--gold-600);color:var(--white);font-size:11px;font-weight:700;padding:5px 12px;border-radius:var(--r-full);letter-spacing:.02em;}
-    .vt-pkg-card h4{font-size:18px;margin-bottom:6px;}
-    .vt-pkg-card .vt-pkg-price{font-family:var(--font-mono);font-size:26px;color:var(--teal-700);font-weight:600;margin-bottom:4px;}
-    .vt-pkg-card .vt-pkg-note{font-size:12px;color:var(--text-3);margin-bottom:18px;}
-    .vt-pkg-list{margin-bottom:22px;flex:1;}
-    .vt-pkg-list li{display:flex;gap:8px;font-size:13.5px;color:var(--text-2);padding:6px 0;align-items:flex-start;}
-    .vt-pkg-list svg{width:16px;height:16px;color:var(--teal-600);flex-shrink:0;margin-top:2px;}
-    @media (min-width:720px){.vt-pkg-grid{grid-template-columns:repeat(2,1fr);}}
-    @media (min-width:1180px){.vt-pkg-grid{grid-template-columns:repeat(3,1fr);}}
+  .filters-shell{display:grid;grid-template-columns:250px 1fr;gap:60px;align-items:start;}
+  .filters-shell aside{position:sticky;top:150px;max-height:calc(100vh - 180px);overflow-y:auto;}
+  .filter-group{margin-bottom:36px;padding-bottom:30px;border-bottom:1px solid var(--line);}
+  .filter-group:last-child{border-bottom:none;}
+  .filter-group h4{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;font-weight:600;margin-bottom:20px;color:var(--charcoal);}
+  .filter-opt{display:flex;align-items:center;gap:11px;font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;cursor:pointer;font-weight:300;}
+  .filter-opt input{accent-color:var(--gold);width:15px;height:15px;}
+  .price-inputs{display:flex;gap:10px;align-items:center;}
+  .price-inputs input{width:100%;border:1px solid var(--line);padding:10px 12px;font-size:13px;background:var(--white);}
+  .sort-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;}
+  .sort-bar select{border:1px solid var(--line);padding:11px 20px;font-size:12px;background:var(--white);letter-spacing:.6px;}
+  .results-count{font-size:12.5px;color:var(--ink-faint);letter-spacing:.3px;}
+  .clear-filters-btn{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-decoration:underline;margin-top:6px;display:inline-block;cursor:pointer;}
+  .search-active-pill{display:inline-flex;align-items:center;gap:10px;background:var(--champagne);padding:9px 16px;font-size:12px;margin-bottom:22px;}
+  .search-active-pill button{color:var(--gold);font-weight:700;}
 
-    /* value props */
-    .vt-value-grid{display:grid;grid-template-columns:1fr;gap:16px;}
-    .vt-value-card{padding:26px 22px;border-left:3px solid var(--gold-600);border-radius:var(--r-md);}
-    .vt-value-card svg{width:26px;height:26px;color:var(--teal-700);margin-bottom:14px;}
-    .vt-value-card h4{font-size:15.5px;margin-bottom:6px;}
-    .vt-value-card p{font-size:13.5px;color:var(--text-3);line-height:1.6;}
-    @media (min-width:720px){.vt-value-grid{grid-template-columns:repeat(2,1fr);}}
-    @media (min-width:1180px){.vt-value-grid{grid-template-columns:repeat(4,1fr);}}
+  .empty-state{text-align:center;padding:80px 20px;}
+  .empty-state .glyph{font-size:44px;margin-bottom:20px;opacity:.5;}
+  .empty-state h3{font-size:22px;margin-bottom:10px;font-style:italic;font-weight:400;}
+  .empty-state p{color:var(--ink-soft);font-size:13.5px;margin-bottom:26px;font-weight:300;}
 
-    /* testimonials */
-    .vt-testi-grid{display:grid;grid-template-columns:1fr;gap:18px;}
-    .vt-testi-card{padding:26px 24px;}
-    .vt-testi-stars{display:flex;gap:3px;margin-bottom:14px;}
-    .vt-testi-stars svg{width:15px;height:15px;color:var(--gold-600);}
-    .vt-testi-card p{font-size:14.5px;color:var(--text-2);line-height:1.7;margin-bottom:18px;}
-    .vt-testi-who{display:flex;align-items:center;gap:10px;}
-    .vt-testi-who strong{font-size:13.5px;display:block;}
-    .vt-testi-who span{font-size:12px;color:var(--text-3);}
-    @media (min-width:720px){.vt-testi-grid{grid-template-columns:repeat(3,1fr);}}
+  .promo-banner{background:var(--charcoal);color:#fff;padding:90px 70px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:relative;}
+  .promo-banner h2{font-size:clamp(34px,4vw,54px);color:#fff;margin:20px 0;font-style:italic;font-weight:400;}
+  .promo-banner p{color:#cfc9b8;font-size:14.5px;max-width:440px;margin:0 auto 32px;line-height:1.9;font-weight:300;}
 
-    /* stats */
-    .vt-stats{background:var(--teal-900);border-radius:var(--r-lg);padding:44px 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
-    .vt-stats .vt-stat strong{display:block;font-family:var(--font-mono);font-size:32px;color:var(--white);font-weight:600;}
-    .vt-stats .vt-stat span{font-size:12.5px;color:rgba(255,255,255,.65);font-weight:600;}
-    @media (min-width:720px){.vt-stats{grid-template-columns:repeat(4,1fr);}}
+  .carousel-wrap{position:relative;}
+  .carousel-track{display:flex;gap:36px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scrollbar-width:none;}
+  .carousel-track::-webkit-scrollbar{display:none;}
+  .carousel-track .product-card{flex:0 0 296px;}
+  .carousel-arrow{position:absolute;top:36%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:var(--shadow-3);display:flex;align-items:center;justify-content:center;z-index:5;font-size:15px;transition:.3s;border:1px solid var(--line);}
+  .carousel-arrow:hover{background:var(--charcoal);color:var(--sand);border-color:var(--charcoal);}
+  .carousel-arrow.prev{left:-23px;}
+  .carousel-arrow.next{right:-23px;}
 
-    /* FAQ */
-    .vt-faq-list{max-width:760px;}
-    .vt-faq-item{border-bottom:1px solid var(--line);}
-    .vt-faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 4px;font-weight:600;font-size:15px;text-align:left;}
-    .vt-faq-q svg{width:18px;height:18px;flex-shrink:0;color:var(--text-3);transition:transform .3s var(--ease);}
-    .vt-faq-item.is-open .vt-faq-q svg{transform:rotate(180deg);color:var(--teal-700);}
-    .vt-faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);}
-    .vt-faq-item.is-open .vt-faq-a{max-height:240px;}
-    .vt-faq-a p{font-size:14.5px;color:var(--text-2);padding:0 4px 20px;line-height:1.7;}
+  .skel{background:linear-gradient(100deg, var(--champagne) 20%, #f7f0dd 40%, var(--champagne) 60%);background-size:300% 100%;animation:skel 1.5s ease infinite;}
+  @keyframes skel{0%{background-position:120% 0;}100%{background-position:-20% 0;}}
+  .skel-line{height:12px;margin-bottom:8px;width:70%;}
+  .skel-line.short{width:40%;}
 
-    /* CTA banner */
-    .vt-cta{background:linear-gradient(120deg,var(--teal-700),var(--teal-900));border-radius:var(--r-lg);padding:48px 32px;color:var(--white);display:flex;flex-direction:column;gap:24px;align-items:flex-start;position:relative;overflow:hidden;}
-    .vt-cta h3{color:var(--white);font-size:clamp(22px,3vw,30px);max-width:480px;}
-    .vt-cta p{color:rgba(255,255,255,.75);max-width:460px;font-size:15px;}
-    .vt-cta__actions{display:flex;gap:14px;flex-wrap:wrap;}
-    .vt-cta .vt-btn--outline{border-color:rgba(255,255,255,.4);color:var(--white);}
-    .vt-cta .vt-btn--outline:hover{background:rgba(255,255,255,.1);border-color:var(--white);}
-    @media (min-width:860px){.vt-cta{flex-direction:row;align-items:center;justify-content:space-between;}}
+  .testimonial-quote{max-width:740px;margin:0 auto;text-align:center;}
+  .testimonial-quote .stars{color:var(--gold);font-size:15px;letter-spacing:4px;margin-bottom:26px;}
+  .testimonial-quote p{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3vw,36px);line-height:1.55;color:var(--charcoal);margin-bottom:28px;font-weight:400;}
+  .testimonial-quote .who{font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
 
-    /* ============================================================
-       PAGE HEADERS (non-home views)
-       ============================================================ */
-    .vt-page-head{background:var(--teal-050);border-bottom:1px solid var(--line);padding:52px 0;}
-    .vt-page-head .vt-heading{margin-bottom:12px;}
-    .vt-page-head .vt-lede{margin-bottom:0;max-width:640px;}
+  footer{background:var(--black);color:#b8b2a0;margin-top:0;}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.3fr;gap:40px;padding:90px 0 50px;}
+  .footer-grid h5{color:var(--sand);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;margin:0 0 24px;font-weight:500;}
+  .footer-grid li{font-size:13px;margin-bottom:15px;color:#8f8975;cursor:pointer;transition:.3s;font-weight:300;}
+  .footer-grid li:hover{color:var(--sand);}
+  .footer-logo{font-family:var(--serif);font-size:24px;color:#fff;margin-bottom:18px;letter-spacing:3px;text-transform:uppercase;}
+  .footer-bottom{display:flex;justify-content:space-between;padding:28px 0;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:#655f4d;flex-wrap:wrap;gap:10px;letter-spacing:.3px;}
+  .footer-socials{display:flex;gap:12px;}
+  .footer-socials span{width:32px;height:32px;border-radius:50%;border:1px solid rgba(196,181,147,.25);display:flex;align-items:center;justify-content:center;font-size:12px;transition:.3s;}
+  .footer-socials span:hover{background:var(--gold);border-color:var(--gold);color:#fff;}
 
-    /* Filters bar */
-    .vt-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;align-items:center;}
-    .vt-search{display:flex;align-items:center;gap:10px;background:var(--white);border:1.5px solid var(--line);border-radius:var(--r-full);padding:10px 18px;flex:1;min-width:220px;max-width:340px;}
-    .vt-search svg{width:17px;height:17px;color:var(--text-3);flex-shrink:0;}
-    .vt-search input{border:none;outline:none;background:none;width:100%;font-size:14px;}
-    .vt-empty{text-align:center;padding:60px 20px;color:var(--text-3);}
-    .vt-empty svg{width:40px;height:40px;margin:0 auto 14px;color:var(--line-strong);}
+  .page{display:none;}
+  .page.active{display:block;animation:fadein .5s var(--ease);}
+  @keyframes fadein{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 
-    /* ============================================================
-       APPOINTMENT VIEW
-       ============================================================ */
-    .vt-appt-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start;}
-    .vt-form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-sm);}
-    .vt-form-card h3{font-size:20px;margin-bottom:6px;}
-    .vt-form-card > p{color:var(--text-3);font-size:13.5px;margin-bottom:26px;}
-    .vt-field{margin-bottom:18px;}
-    .vt-field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px;color:var(--text-1);}
-    .vt-field .req{color:var(--error);}
-    .vt-field input[type=text],.vt-field input[type=tel],.vt-field input[type=email],.vt-field input[type=date],.vt-field select,.vt-field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--sand-050);transition:border-color .18s,background .18s;}
-    .vt-field input:focus,.vt-field select:focus,.vt-field textarea:focus{border-color:var(--teal-600);background:var(--white);outline:none;}
-    .vt-field textarea{resize:vertical;min-height:88px;}
-    .vt-field-row{display:grid;grid-template-columns:1fr;gap:14px;}
-    .vt-time-chips{display:flex;gap:8px;flex-wrap:wrap;}
-    .vt-time-chip{flex:1;min-width:100px;text-align:center;padding:10px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-size:13px;font-weight:600;background:var(--sand-050);}
-    .vt-time-chip.is-selected{border-color:var(--teal-700);background:var(--teal-050);color:var(--teal-700);}
-    .vt-pkg-note-pill{display:inline-flex;align-items:center;gap:8px;background:var(--gold-100);color:var(--gold-700);padding:8px 14px;border-radius:var(--r-full);font-size:12.5px;font-weight:700;margin-bottom:18px;}
-    .vt-pkg-note-pill button{color:var(--gold-700);text-decoration:underline;}
-    .vt-form-msg{padding:12px 14px;border-radius:var(--r-sm);font-size:13.5px;margin-bottom:18px;display:none;}
-    .vt-form-msg.is-error{display:block;background:var(--error-bg);color:var(--error);}
-    @media (min-width:640px){.vt-field-row{grid-template-columns:1fr 1fr;}}
-    @media (min-width:980px){.vt-appt-grid{grid-template-columns:1.1fr .9fr;}}
+  .pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;padding:44px 0 60px;}
+  .pd-gallery-main{overflow:hidden;aspect-ratio:4/5;background:var(--champagne);margin-bottom:18px;position:relative;cursor:zoom-in;box-shadow:var(--shadow-2);}
+  .pd-gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease);}
+  .pd-gallery-main:hover img{transform:scale(1.15);}
+  .pd-thumbs{display:flex;gap:14px;}
+  .pd-thumb{width:82px;height:102px;overflow:hidden;cursor:pointer;border:1px solid transparent;opacity:.55;transition:.3s;}
+  .pd-thumb.active{border-color:var(--gold);opacity:1;}
+  .pd-thumb img{width:100%;height:100%;object-fit:cover;}
+  .pd-info .eyebrow{margin-bottom:18px;}
+  .pd-info h1{font-size:clamp(32px,3vw,44px);margin-bottom:18px;letter-spacing:.3px;font-style:italic;font-weight:400;}
+  .pd-price{font-size:20px;font-weight:400;margin-bottom:26px;color:var(--gold);letter-spacing:.4px;font-family:var(--serif);}
+  .pd-desc{font-size:14.5px;color:var(--ink-soft);line-height:2;margin-bottom:36px;font-weight:300;max-width:440px;}
+  .pd-block{margin-bottom:32px;}
+  .pd-block-label{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:2.2px;text-transform:uppercase;font-weight:600;margin-bottom:16px;}
+  .pd-block-label span.link{font-weight:300;text-transform:none;letter-spacing:0;color:var(--ink-faint);text-decoration:underline;cursor:pointer;}
+  .color-row{display:flex;gap:13px;}
+  .color-dot{width:30px;height:30px;border-radius:50%;border:1px solid transparent;cursor:pointer;position:relative;box-shadow:0 0 0 1px var(--line);}
+  .color-dot.active{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);}
+  .size-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .size-box{width:50px;height:46px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12.5px;cursor:pointer;transition:.3s;font-weight:400;background:var(--white);}
+  .size-box:hover{border-color:var(--charcoal);}
+  .size-box.active{background:var(--charcoal);color:var(--ivory);border-color:var(--charcoal);}
+  .size-box.shake{animation:shake .4s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+  .qty-row{display:flex;align-items:center;gap:16px;}
+  .qty-control{display:flex;align-items:center;border:1px solid var(--line);overflow:hidden;}
+  .qty-control button{width:40px;height:42px;font-size:15px;}
+  .qty-control span{width:38px;text-align:center;font-size:13px;font-weight:500;}
+  .pd-actions{display:flex;gap:14px;margin-top:38px;}
+  .pd-actions .btn-dark{flex:1;}
+  .pd-actions .icon-square{width:56px;height:56px;border:1px solid var(--charcoal);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:.3s;border-radius:50%;}
+  .pd-actions .icon-square:hover{background:var(--charcoal);color:var(--ivory);}
+  .pd-actions .icon-square.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .accordion-block{border-top:1px solid var(--line);}
+  .accordion-block:last-child{border-bottom:1px solid var(--line);}
+  .acc-q{display:flex;justify-content:space-between;padding:20px 0;cursor:pointer;font-size:12.5px;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;}
+  .acc-q .plus{transition:transform .4s var(--ease);color:var(--gold);font-size:16px;font-weight:300;}
+  .accordion-block.open .plus{transform:rotate(45deg);}
+  .acc-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease);}
+  .accordion-block.open .acc-a{max-height:200px;padding-bottom:20px;}
+  .acc-a p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.9;font-weight:300;}
 
-    .vt-appt-list-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;}
-    .vt-appt-list-card h3{font-size:16px;margin-bottom:16px;}
-    .vt-appt-item{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin-bottom:12px;}
-    .vt-appt-item__top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
-    .vt-appt-item__id{font-family:var(--font-mono);font-size:11.5px;color:var(--text-3);}
-    .vt-appt-status{font-size:11px;font-weight:700;color:var(--success);background:var(--success-bg);padding:3px 10px;border-radius:var(--r-full);}
-    .vt-appt-item__meta{font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:12px;}
-    .vt-appt-item__meta strong{color:var(--text-1);}
-    .vt-appt-cancel{font-size:12.5px;color:var(--error);font-weight:600;}
+  .related-title{font-size:clamp(28px,3vw,38px);margin-bottom:34px;font-style:italic;text-align:center;font-weight:400;}
+  .recently-viewed-title{font-size:22px;margin-bottom:28px;font-style:italic;text-align:left;font-weight:400;color:var(--ink-soft);}
 
-    /* Toast */
-    #vtToastWrap{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:400;display:flex;flex-direction:column;gap:10px;width:calc(100% - 32px);max-width:380px;pointer-events:none;}
-    .vt-toast{background:var(--ink);color:var(--white);padding:14px 18px;border-radius:var(--r-md);box-shadow:var(--shadow-lg);font-size:13.5px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(10px);transition:opacity .25s var(--ease),transform .25s var(--ease);}
-    .vt-toast.is-visible{opacity:1;transform:translateY(0);}
-    .vt-toast svg{width:17px;height:17px;color:var(--success);flex-shrink:0;}
-    @media (min-width:900px){#vtToastWrap{bottom:32px;}}
+  .sticky-add-bar{position:fixed;left:0;right:0;bottom:0;background:var(--ivory);border-top:1px solid var(--line);padding:14px 20px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:900;box-shadow:0 -10px 30px rgba(28,26,22,0.08);transform:translateY(100%);transition:transform .4s var(--ease);}
+  .sticky-add-bar.show{transform:translateY(0);}
+  .sticky-add-bar .info{display:flex;flex-direction:column;}
+  .sticky-add-bar .info b{font-size:13px;font-family:var(--serif);font-style:italic;}
+  .sticky-add-bar .info span{font-size:12px;color:var(--gold);}
+  .sticky-add-bar .btn{padding:12px 22px;font-size:10.5px;}
 
-    /* ============================================================
-       ABOUT VIEW
-       ============================================================ */
-    .vt-about-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
-    .vt-about-copy p{color:var(--text-2);margin-bottom:16px;line-height:1.75;}
-    .vt-timeline{border-left:2px solid var(--line);padding-left:20px;display:flex;flex-direction:column;gap:20px;}
-    .vt-timeline li strong{display:block;font-family:var(--font-mono);color:var(--teal-700);font-size:13px;}
-    .vt-timeline li span{font-size:13.5px;color:var(--text-2);}
-    @media (min-width:960px){.vt-about-grid{grid-template-columns:1.1fr .9fr;}}
+  .cart-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:60px;align-items:start;padding-bottom:90px;}
+  .cart-item{display:flex;gap:22px;padding:30px 0;border-bottom:1px solid var(--line);align-items:center;transition:opacity .3s, transform .3s;}
+  .cart-item.removing{opacity:0;transform:translateX(20px);}
+  .cart-item img{width:100px;height:124px;object-fit:cover;}
+  .cart-item-info{flex:1;}
+  .cart-item-name{font-size:15px;font-weight:400;margin-bottom:7px;font-family:var(--serif);font-style:italic;}
+  .cart-item-meta{font-size:12px;color:var(--ink-faint);margin-bottom:13px;letter-spacing:.3px;}
+  .cart-item-actions{display:flex;align-items:center;gap:18px;}
+  .remove-link{font-size:11.5px;color:var(--ink-faint);text-decoration:underline;letter-spacing:.3px;}
+  .remove-link:hover{color:var(--gold);}
+  .cart-item-price{font-weight:500;font-size:15px;min-width:76px;text-align:right;}
 
-    /* ============================================================
-       CONTACT VIEW
-       ============================================================ */
-    .vt-contact-grid{display:grid;grid-template-columns:1fr;gap:28px;}
-    .vt-info-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;}
-    .vt-info-card h4{font-size:14px;margin-bottom:12px;}
-    .vt-info-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
-    .vt-info-row:last-child{border-bottom:none;}
-    .vt-info-row svg{width:18px;height:18px;color:var(--teal-600);flex-shrink:0;margin-top:1px;}
-    .vt-map{background:var(--sand-050);border:1px solid var(--line);border-radius:var(--r-lg);height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-3);overflow:hidden;}
-    .vt-map iframe{width:100%;height:100%;border:0;display:block;}
-    .vt-map svg{width:30px;height:30px;color:var(--teal-600);}
-    @media (min-width:980px){.vt-contact-grid{grid-template-columns:1fr 1fr;}}
+  .summary-card{border:1px solid var(--line);padding:36px;background:var(--white);position:sticky;top:160px;}
+  .summary-card h3{font-size:19px;margin-bottom:26px;font-style:italic;font-weight:400;}
+  .summary-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:16px;color:var(--ink-soft);}
+  .summary-row.total{font-weight:600;color:var(--charcoal);font-size:17px;border-top:1px solid var(--line);padding-top:20px;margin-top:8px;}
+  .promo-input{display:flex;gap:8px;margin:22px 0;}
+  .promo-input input{flex:1;border:1px solid var(--line);padding:12px 16px;font-size:13px;}
 
-    /* ============================================================
-       FOOTER + BOTTOM NAV
-       ============================================================ */
-    .vt-footer{background:var(--teal-900);color:rgba(255,255,255,.75);padding:64px 0 100px;}
-    .vt-footer a{color:rgba(255,255,255,.75);}
-    .vt-footer a:hover{color:var(--white);}
-    .vt-footer-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-bottom:40px;}
-    .vt-footer-brand .vt-brand__name{color:var(--white);}
-    .vt-footer-brand p{font-size:13.5px;margin:14px 0 0;max-width:280px;line-height:1.7;}
-    .vt-footer h5{color:var(--white);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;}
-    .vt-footer ul li{margin-bottom:10px;font-size:13.5px;}
-    .vt-footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;flex-direction:column;gap:14px;font-size:12.5px;}
-    .vt-newsletter{display:flex;gap:8px;margin-top:6px;max-width:340px;}
-    .vt-newsletter input{flex:1;padding:10px 14px;border-radius:var(--r-full);border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:var(--white);}
-    .vt-newsletter input::placeholder{color:rgba(255,255,255,.45);}
-    @media (min-width:720px){.vt-footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr;}}
-    @media (min-width:720px){.vt-footer-bottom{flex-direction:row;justify-content:space-between;align-items:center;}}
+  .checkout-steps{display:flex;gap:0;align-items:center;margin-bottom:48px;flex-wrap:wrap;}
+  .checkout-steps .step{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);font-weight:500;}
+  .checkout-steps .step .num{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;transition:.3s;}
+  .checkout-steps .step.active{color:var(--charcoal);font-weight:600;}
+  .checkout-steps .step.active .num{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .checkout-steps .step.done .num{background:var(--charcoal);border-color:var(--charcoal);color:#fff;}
+  .checkout-steps .step.done{color:var(--charcoal);}
+  .checkout-steps .sep{width:50px;height:1px;background:var(--line);margin:0 14px;}
+  .checkout-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:60px;align-items:start;padding-bottom:90px;}
+  .checkout-step-panel{display:none;}
+  .checkout-step-panel.active{display:block;animation:fadein .4s var(--ease);}
+  .form-card{border:1px solid var(--line);padding:36px;background:var(--white);margin-bottom:26px;}
+  .form-card h3{font-size:11.5px;text-transform:uppercase;letter-spacing:2.2px;color:var(--ink-soft);font-family:var(--sans);font-weight:600;margin-bottom:24px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .form-group{display:flex;flex-direction:column;gap:7px;}
+  .form-group label{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
+  .form-group input,.form-group select{border:1px solid var(--line);padding:13px 15px;font-size:13px;outline:none;transition:.3s;background:var(--ivory);font-weight:300;}
+  .form-group input:focus,.form-group select:focus{border-color:var(--gold);background:#fff;}
+  .pay-methods{display:flex;gap:12px;margin-bottom:18px;}
+  .pay-method{flex:1;border:1px solid var(--line);padding:15px;text-align:center;font-size:12px;cursor:pointer;transition:.3s;font-weight:400;letter-spacing:.4px;}
+  .pay-method.active{border-color:var(--gold);background:var(--champagne);color:var(--gold);font-weight:600;}
+  .review-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+  .review-row .lbl{color:var(--ink-faint);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:block;}
+  .checkout-nav{display:flex;justify-content:space-between;gap:14px;margin-top:8px;}
 
-    .vt-bottomnav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:flex-end;padding:8px 4px 10px;z-index:100;box-shadow:0 -4px 20px rgba(15,40,35,.05);}
-    .vt-bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:700;color:var(--text-3);flex:1;padding:4px;}
-    .vt-bottomnav a.is-active{color:var(--teal-700);}
-    .vt-bottomnav a svg{width:21px;height:21px;}
-    .vt-bottomnav a.center{transform:translateY(-12px);}
-    .vt-bottomnav a.center .vt-bn-icon{width:46px;height:46px;border-radius:50%;background:var(--teal-700);color:var(--white);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(15,92,86,.35);}
-    .vt-bottomnav a.center .vt-bn-icon svg{width:20px;height:20px;}
-    @media (min-width:900px){.vt-bottomnav{display:none;}}
-    @media (max-width:899px){.vt-footer{padding-bottom:110px;}}
+  .success-wrap{max-width:560px;margin:110px auto;text-align:center;padding:0 20px;}
+  .success-icon{width:92px;height:92px;border-radius:50%;background:var(--charcoal);color:var(--sand);font-size:36px;display:flex;align-items:center;justify-content:center;margin:0 auto 34px;}
+  .success-wrap h1{font-size:32px;margin-bottom:18px;font-style:italic;font-weight:400;}
+  .success-wrap p{color:var(--ink-soft);font-size:14px;line-height:1.9;margin-bottom:38px;font-weight:300;}
+  .order-ref{background:var(--champagne);padding:22px 26px;font-size:13px;margin-bottom:38px;display:flex;justify-content:space-between;}
 
-    /* view visibility */
-    .vt-view{display:none;}
-    .vt-view.is-active{display:block;}
+  .orders-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);}
+  .orders-table th{background:var(--champagne);text-align:left;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;padding:17px 22px;color:var(--ink-soft);font-weight:600;}
+  .orders-table td{padding:19px 22px;font-size:13px;border-top:1px solid var(--line);font-weight:300;}
+  .orders-table tbody tr{cursor:pointer;transition:.25s;}
+  .orders-table tbody tr:hover{background:var(--champagne);}
+  .status-pill{padding:6px 15px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;}
+  .status-delivered{background:#e6ede4;color:var(--success);}
+  .status-transit{background:#f6ecd8;color:var(--gold);}
+  .status-processing{background:#f2e5e2;color:var(--burgundy);}
 
-    /* ============================================================
-       MOBILE RESPONSIVENESS FIXES (320px–768px)
-       ============================================================ */
-    @media (max-width: 768px) {
-      .container { padding: 0 16px; }
-      .vt-section { padding: 48px 0; }
-      .vt-section--tight { padding: 32px 0; }
-      .vt-heading { font-size: 24px; max-width: 100%; }
-      .vt-lede { font-size: 15px; max-width: 100%; margin-bottom: 24px; }
-      .vt-head-row { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 28px; }
-      .vt-head-row .vt-btn--ghost { padding-left: 0; }
+  .profile-grid{display:grid;grid-template-columns:290px 1fr;gap:60px;padding-bottom:90px;}
+  .profile-side{border:1px solid var(--line);padding:30px;background:var(--white);height:fit-content;}
+  .profile-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;margin-bottom:18px;border:1px solid var(--gold);}
+  .profile-side li{padding:14px 0;font-size:13px;border-top:1px solid var(--line);cursor:pointer;transition:.3s;font-weight:300;}
+  .profile-side li:hover{color:var(--gold);}
+  .profile-side li:first-of-type{border-top:none;}
+  .profile-side li.active{font-weight:600;color:var(--gold);}
 
-      /* Hero */
-      .vt-hero__grid { padding: 32px 0 40px; gap: 32px; }
-      .vt-hero__title { font-size: 28px; }
-      .vt-hero__sub { font-size: 15px; }
-      .vt-hero__actions { gap: 10px; margin-bottom: 24px; }
-      .vt-hero__actions .vt-btn { padding: 11px 20px; font-size: 13px; }
-      .vt-hero__facts { gap: 20px; }
-      .vt-hero__facts dt { font-size: 18px; }
-      .vt-hero__facts dd { font-size: 11px; }
-      .vt-vitals-card { padding: 20px 16px 18px; }
-      .vt-float-chip--top { top: -12px; right: 12px; font-size: 11px; padding: 6px 12px; }
-      .vt-float-chip--bottom { bottom: -12px; left: 12px; font-size: 11px; padding: 6px 12px; }
-      .vt-vitals-chip { min-width: 100px; padding: 8px 10px; }
-      .vt-vitals-chip strong { font-size: 12px; }
-      .vt-pulse { height: 48px; }
+  /* ===== Wishlist page ===== */
+  .wishlist-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 30px;}
 
-      /* Trust strip */
-      .vt-trust__row { grid-template-columns: 1fr 1fr; }
-      .vt-trust__item { padding: 16px 14px; gap: 10px; border-right: none; border-bottom: 1px solid var(--line); }
-      .vt-trust__item:last-child { border-bottom: none; }
-      .vt-trust__item svg { width: 22px; height: 22px; }
-      .vt-trust__item strong { font-size: 13px; }
-      .vt-trust__item span { font-size: 11px; }
+  /* ===== Order Detail page ===== */
+  .order-detail-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:60px;align-items:start;padding-bottom:90px;}
+  .timeline{border:1px solid var(--line);padding:34px;background:var(--white);margin-bottom:26px;}
+  .timeline h3{font-size:11.5px;text-transform:uppercase;letter-spacing:2.2px;color:var(--ink-soft);font-family:var(--sans);font-weight:600;margin-bottom:28px;}
+  .tl-step{display:flex;gap:18px;padding-bottom:28px;position:relative;}
+  .tl-step:last-child{padding-bottom:0;}
+  .tl-step::before{content:'';position:absolute;left:11px;top:26px;bottom:0;width:1px;background:var(--line);}
+  .tl-step:last-child::before{display:none;}
+  .tl-dot{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;z-index:1;}
+  .tl-step.done .tl-dot{background:var(--charcoal);border-color:var(--charcoal);color:var(--sand);}
+  .tl-step.current .tl-dot{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .tl-info b{display:block;font-size:13.5px;font-weight:600;margin-bottom:4px;}
+  .tl-info span{font-size:12px;color:var(--ink-faint);}
+  .order-item-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center;}
+  .order-item-row img{width:64px;height:80px;object-fit:cover;}
+  .order-item-row .info{flex:1;}
+  .order-item-row .name{font-family:var(--serif);font-style:italic;font-size:14px;}
+  .order-item-row .meta{font-size:11.5px;color:var(--ink-faint);}
+  .order-item-row .price{font-weight:500;font-size:13.5px;}
 
-      /* Department grid */
-      .vt-dept-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .vt-dept-card { padding: 18px 14px; }
-      .vt-dept-card h4 { font-size: 14px; }
-      .vt-dept-card p { font-size: 12px; }
-      .vt-dept-card__icon { width: 38px; height: 38px; margin-bottom: 12px; }
-      .vt-dept-card__icon svg { width: 18px; height: 18px; }
-      .vt-dept-details ul { grid-template-columns: 1fr; gap: 2px; }
-      .vt-dept-details ul li { font-size: 12px; }
-      .vt-dept-toggle { font-size: 12px; }
+  /* ===== Addresses page ===== */
+  .address-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .address-card{border:1px solid var(--line);padding:26px;background:var(--white);position:relative;transition:.3s;}
+  .address-card:hover{box-shadow:var(--shadow-2);}
+  .address-card.default{border-color:var(--gold);}
+  .address-default-tag{position:absolute;top:20px;right:20px;font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .address-card .label-name{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:10px;}
+  .address-card h4{font-size:16px;margin-bottom:8px;font-style:italic;}
+  .address-card p{font-size:13px;color:var(--ink-soft);line-height:1.7;margin:0 0 18px;font-weight:300;}
+  .address-actions{display:flex;gap:16px;}
+  .address-actions span{font-size:11.5px;letter-spacing:.5px;text-decoration:underline;color:var(--ink-faint);cursor:pointer;}
+  .address-actions span:hover{color:var(--gold);}
+  .address-card.add-new{display:flex;align-items:center;justify-content:center;flex-direction:column;border-style:dashed;cursor:pointer;color:var(--ink-faint);gap:10px;transition:.3s;}
+  .address-card.add-new:hover{border-color:var(--gold);color:var(--gold);}
+  .address-card.add-new .plus-glyph{font-size:28px;font-weight:200;}
 
-      /* Doctor grid */
-      .vt-doctor-grid { grid-template-columns: 1fr; gap: 14px; }
-      .vt-doctor-card { padding: 18px 16px; }
-      .vt-avatar { width: 52px; height: 52px; font-size: 15px; }
-      .vt-doctor-card__name { font-size: 14px; }
-      .vt-doctor-card__dept { font-size: 12px; }
-      .vt-tag { font-size: 10px; padding: 4px 8px; }
-      .vt-avail { font-size: 11px; }
-      .vt-doctor-card__foot .vt-btn--sm { padding: 7px 14px; font-size: 12px; }
+  .auth-wrap{max-width:450px;margin:90px auto 120px;padding:0 20px;}
+  .auth-wrap .eyebrow{text-align:center;display:block;margin-bottom:16px;}
+  .auth-wrap h1{text-align:center;font-size:34px;margin-bottom:14px;font-style:italic;font-weight:400;}
+  .auth-wrap .sub{text-align:center;color:var(--ink-faint);font-size:13px;margin-bottom:44px;font-weight:300;}
+  .auth-form .form-group{margin-bottom:22px;}
+  .auth-links{display:flex;justify-content:space-between;font-size:12px;margin:18px 0 28px;color:var(--ink-faint);}
+  .auth-links a{text-decoration:underline;}
+  .auth-switch{text-align:center;font-size:13px;color:var(--ink-faint);margin-top:32px;font-weight:300;}
+  .auth-switch a{color:var(--gold);text-decoration:underline;font-weight:500;}
+  .divider-or{display:flex;align-items:center;gap:14px;margin:32px 0;color:var(--ink-faint);font-size:11px;letter-spacing:1px;text-transform:uppercase;}
+  .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--line);}
+  .social-btn{display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line);padding:14px;font-size:12.5px;margin-bottom:12px;transition:.3s;background:var(--white);font-weight:400;letter-spacing:.3px;}
+  .social-btn:hover{border-color:var(--charcoal);}
 
-      /* Value props */
-      .vt-value-grid { grid-template-columns: 1fr; gap: 12px; }
-      .vt-value-card { padding: 20px 16px; }
-      .vt-value-card svg { width: 22px; height: 22px; margin-bottom: 10px; }
-      .vt-value-card h4 { font-size: 14px; }
-      .vt-value-card p { font-size: 12.5px; }
+  .search-overlay{position:fixed;inset:0;background:rgba(13,12,10,0.82);backdrop-filter:blur(4px);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:130px;}
+  .search-overlay.open{display:flex;}
+  .search-box{background:var(--ivory);width:100%;max-width:680px;padding:44px;border-top:2px solid var(--gold);}
+  .search-box input{width:100%;border:none;border-bottom:1px solid var(--line);padding:18px 4px;font-size:26px;font-family:var(--serif);outline:none;font-style:italic;}
+  .search-close{text-align:right;margin-top:20px;font-size:11px;color:var(--ink-faint);cursor:pointer;letter-spacing:1px;text-transform:uppercase;}
+  .search-suggest{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;}
+  .search-suggest span{background:var(--champagne);padding:9px 18px;font-size:11.5px;cursor:pointer;font-weight:400;transition:.3s;letter-spacing:.4px;}
+  .search-suggest span:hover{background:var(--gold);color:#fff;}
 
-      /* Packages */
-      .vt-pkg-grid { grid-template-columns: 1fr; gap: 14px; }
-      .vt-pkg-card { padding: 20px 16px; }
-      .vt-pkg-card h4 { font-size: 16px; }
-      .vt-pkg-price { font-size: 22px; }
-      .vt-pkg-list li { font-size: 12.5px; }
+  .toast{position:fixed;bottom:38px;left:50%;transform:translateX(-50%) translateY(24px);background:var(--charcoal);color:var(--sand);padding:15px 18px 15px 20px;font-size:12.5px;box-shadow:var(--shadow-4);opacity:0;transition:.4s var(--ease);z-index:3000;display:flex;align-items:center;gap:14px;letter-spacing:.4px;max-width:90vw;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast .msg{display:flex;align-items:center;gap:10px;}
+  .toast .undo-btn{color:var(--gold-soft);text-decoration:underline;font-weight:600;letter-spacing:.6px;text-transform:uppercase;font-size:11px;flex-shrink:0;}
 
-      /* Testimonials */
-      .vt-testi-grid { grid-template-columns: 1fr; gap: 14px; }
-      .vt-testi-card { padding: 18px 16px; }
-      .vt-testi-card p { font-size: 13px; }
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease), transform 1s var(--ease);}
+  .reveal.show{opacity:1;transform:translateY(0);}
 
-      /* Stats */
-      .vt-stats { padding: 28px 20px; gap: 20px; grid-template-columns: 1fr 1fr; }
-      .vt-stats .vt-stat strong { font-size: 24px; }
-      .vt-stats .vt-stat span { font-size: 11px; }
+  .mobile-drawer{position:fixed;top:0;right:-320px;width:300px;height:100%;background:var(--charcoal);color:#fff;z-index:1500;transition:right .5s var(--ease);padding:32px;}
+  .mobile-drawer.open{right:0;}
+  .mobile-drawer a{display:block;padding:16px 0;font-size:13px;letter-spacing:2.2px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.08);font-weight:400;color:var(--sand);}
+  .drawer-close{font-size:20px;margin-bottom:24px;display:block;color:var(--sand);}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1400;display:none;}
+  .drawer-backdrop.open{display:block;}
 
-      /* FAQ */
-      .vt-faq-q { padding: 16px 0; font-size: 14px; }
-      .vt-faq-a p { font-size: 13px; padding: 0 0 16px; }
+  .tier-badge{position:fixed;bottom:20px;right:20px;background:var(--charcoal);color:var(--sand);padding:11px 20px;font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;font-weight:500;box-shadow:var(--shadow-3);z-index:500;display:flex;align-items:center;gap:9px;border:1px solid rgba(196,181,147,.3);}
+  .tier-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
 
-      /* CTA */
-      .vt-cta { padding: 32px 20px; }
-      .vt-cta h3 { font-size: 20px; }
-      .vt-cta p { font-size: 14px; }
-      .vt-cta__actions .vt-btn { padding: 11px 18px; font-size: 13px; }
-
-      /* About */
-      .vt-about-grid { gap: 28px; }
-      .vt-about-copy h2 { font-size: 20px !important; }
-      .vt-timeline { padding-left: 16px; gap: 16px; }
-      .vt-timeline li span { font-size: 12.5px; }
-
-      /* Contact */
-      .vt-contact-grid { gap: 20px; }
-      .vt-info-card { padding: 18px 16px; }
-      .vt-info-row { font-size: 12.5px; padding: 8px 0; }
-      .vt-map { height: 180px; }
-
-      /* Appointment */
-      .vt-form-card { padding: 20px 16px; }
-      .vt-form-card h3 { font-size: 18px; }
-      .vt-appt-list-card { padding: 18px 16px; }
-      .vt-time-chip { min-width: 80px; font-size: 12px; padding: 8px; }
-      .vt-field-row { grid-template-columns: 1fr; gap: 10px; }
-
-      /* Footer */
-      .vt-footer { padding: 40px 0 100px; }
-      .vt-footer-grid { gap: 28px; }
-      .vt-footer-brand p { font-size: 12.5px; max-width: 100%; }
-      .vt-footer h5 { font-size: 11px; margin-bottom: 12px; }
-      .vt-footer ul li { font-size: 12px; margin-bottom: 8px; }
-      .vt-footer-bottom { flex-direction: column; gap: 10px; font-size: 11px; text-align: center; }
-      .vt-newsletter { max-width: 100%; }
-      .vt-newsletter input { font-size: 13px; }
-
-      /* Page header */
-      .vt-page-head { padding: 32px 0; }
-      .vt-page-head .vt-heading { font-size: 24px; }
-      .vt-page-head .vt-lede { font-size: 14px; }
-
-      /* Filters */
-      .vt-filters { gap: 8px; margin-bottom: 24px; }
-      .vt-search { min-width: 160px; max-width: 100%; padding: 8px 14px; }
-      .vt-search input { font-size: 13px; }
-      .vt-chip { font-size: 12px; padding: 6px 12px; }
-    }
-
-    @media (max-width: 480px) {
-      .vt-dept-grid { grid-template-columns: 1fr; }
-      .vt-trust__row { grid-template-columns: 1fr 1fr; }
-      .vt-stats { grid-template-columns: 1fr 1fr; gap: 16px; padding: 24px 16px; }
-      .vt-stats .vt-stat strong { font-size: 20px; }
-      .vt-hero__facts { gap: 14px; }
-      .vt-hero__facts dt { font-size: 16px; }
-      .vt-hero__title { font-size: 24px; }
-      .vt-nav__inner { padding: 10px 16px; gap: 14px; }
-      .vt-brand__name { font-size: 18px; }
-      .vt-brand__mark { width: 32px; height: 32px; }
-      .vt-nav__actions .vt-btn--sm { padding: 7px 14px; font-size: 12px; }
-      .vt-vitals-card { padding: 16px 12px 14px; }
-      .vt-vitals-chips { gap: 6px; }
-      .vt-vitals-chip { min-width: 80px; padding: 6px 8px; }
-      .vt-vitals-chip strong { font-size: 11px; }
-      .vt-vitals-chip span { font-size: 10px; }
-      .vt-pulse { height: 40px; }
-    }
-
-    @media (max-width: 360px) {
-      .vt-hero__actions .vt-btn { padding: 9px 14px; font-size: 12px; }
-      .vt-hero__facts { gap: 10px; }
-      .vt-hero__facts dt { font-size: 14px; }
-      .vt-trust__item { padding: 12px 10px; gap: 8px; }
-      .vt-trust__item svg { width: 18px; height: 18px; }
-      .vt-trust__item strong { font-size: 12px; }
-      .vt-trust__item span { font-size: 10px; }
-      .vt-doctor-card__top { gap: 10px; }
-      .vt-avatar { width: 44px; height: 44px; font-size: 13px; }
-      .vt-doctor-card { padding: 14px 12px; }
-      .vt-doctor-card__name { font-size: 13px; }
-      .vt-doctor-card__dept { font-size: 11px; }
-      .vt-doctor-card__meta { gap: 4px; }
-      .vt-tag { font-size: 9px; padding: 3px 6px; }
-      .vt-fav-btn { width: 28px; height: 28px; }
-      .vt-fav-btn svg { width: 15px; height: 15px; }
-    }
-  </style>
+  @media (max-width:1100px){
+    .product-grid,.wishlist-grid{grid-template-columns:repeat(3,1fr);}
+    .cat-grid{grid-template-columns:repeat(3,1fr);}
+    .cat-grid .cat-card:first-child{aspect-ratio:3/3.9;}
+    .cat-grid.row2{grid-template-columns:1fr 1fr;}
+    .pd-grid,.cart-grid,.checkout-grid,.profile-grid,.order-detail-grid{grid-template-columns:1fr;}
+    .filters-shell{grid-template-columns:1fr;}
+    .filters-shell aside{position:static;max-height:none;}
+    .summary-card{position:static;}
+    .footer-grid{grid-template-columns:repeat(3,1fr);}
+    .story-intro-grid{grid-template-columns:1fr;gap:40px;}
+    .container{padding:0 40px;}
+    .address-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:820px){
+    .header-nav{display:none;}
+    .hamburger{display:flex;}
+    .hero-content h1{font-size:48px;}
+    .hero-grid img{height:72vh;}
+    .product-grid,.wishlist-grid{grid-template-columns:repeat(2,1fr);}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .cat-grid .cat-card:first-child{grid-column:span 2;aspect-ratio:16/9;}
+    .container{padding:0 24px;}
+    .footer-grid{grid-template-columns:repeat(2,1fr);}
+    .form-row{grid-template-columns:1fr;}
+    section{padding:80px 0;}
+    .story-intro{padding:80px 0;}
+    .sticky-add-bar{display:flex;}
+    .checkout-steps .sep{width:24px;margin:0 8px;}
+  }
+  @media (max-width:520px){
+    .hero-content{padding:0 20px;}
+    .hero-content h1{font-size:34px;letter-spacing:.5px;}
+    .cat-grid{grid-template-columns:1fr 1fr;}
+    .product-grid,.wishlist-grid{grid-template-columns:repeat(2,1fr);gap:28px 16px;}
+    .footer-grid{grid-template-columns:1fr;}
+    .promo-banner{padding:54px 26px;}
+    .promo-banner h2{font-size:28px;}
+    section{padding:64px 0;}
+    .tier-badge{bottom:80px;right:12px;padding:9px 15px;font-size:9px;}
+    .logo{font-size:20px;letter-spacing:2px;}
+    .checkout-steps .step span.label-text{display:none;}
+  }
+  @media (min-width:1700px){
+    .container{max-width:1560px;}
+  }
+</style>
 </head>
 <body>
 
-<!-- ============================================================
-     NAVBAR
-     ============================================================ -->
-<header class="vt-nav" id="vtNav">
-  <div class="vt-nav__inner container">
-    <a href="#home" class="vt-brand" data-nav="home">
-      <span class="vt-brand__mark">
-        <svg viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="20" r="19" fill="#0a3f3b"/>
-          <path d="M6 21h6l3-9 5 16 4-11 2 4h8" stroke="#d7a862" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </span>
-      <span class="vt-brand__text">
-        <span class="vt-brand__name">Vitalis</span>
-        <span class="vt-brand__sub">HOSPITALS · MUMBAI</span>
-      </span>
-    </a>
-
-    <nav class="vt-links" id="vtLinks">
-      <a data-nav="home">Home</a>
-      <a data-nav="doctors">Doctors</a>
-      <a data-nav="departments">Departments</a>
-      <a data-nav="packages">Health Packages</a>
-      <a data-nav="about">About</a>
-      <a data-nav="contact">Contact</a>
-    </nav>
-
-    <div class="vt-nav__actions">
-      <div class="vt-emergency">
-        <span class="vt-emergency__label">Emergency</span>
-        <span class="vt-emergency__num">1800-266-0000</span>
-      </div>
-      <button class="vt-btn vt-btn--primary vt-btn--sm" data-nav="appointment">Book Appointment</button>
-      <button class="vt-hamburger" id="vtHamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+<header class="site-header" id="siteHeader">
+  <div class="container header-top">
+    <div class="header-left">
+      <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+      <a class="logo" href="#" onclick="goTo('home');return false;">MAISON <em>Noir</em></a>
+    </div>
+    <div class="header-right">
+      <button class="icon-btn" onclick="openSearch()">🔍</button>
+      <button class="icon-btn" id="wishlistIconBtn" onclick="goTo('wishlist')" style="position:relative;">♡<span class="cart-count" id="wishlistCount" style="display:none;">0</span></button>
+      <button class="icon-btn" onclick="goTo('login')">👤</button>
+      <button class="icon-btn" id="cartIconBtn" onclick="goTo('cart')" style="position:relative;">🛍<span class="cart-count" id="cartCount">2</span></button>
     </div>
   </div>
-  <div class="vt-drawer" id="vtDrawer">
-    <a data-nav="home">Home</a>
-    <a data-nav="doctors">Doctors</a>
-    <a data-nav="departments">Departments</a>
-    <a data-nav="packages">Health Packages</a>
-    <a data-nav="appointment">Book Appointment</a>
-    <a data-nav="about">About</a>
-    <a data-nav="contact">Contact</a>
-  </div>
+  <nav class="header-nav">
+    <div class="container">
+      <a href="#" data-nav="home" class="active" onclick="goTo('home');return false;">Home</a>
+      <a href="#" data-nav="products" onclick="goTo('products',{cat:'Women'});return false;">Women</a>
+      <a href="#" data-nav="products2" onclick="goTo('products',{cat:'Men'});return false;">Men</a>
+      <a href="#" data-nav="products3" onclick="goTo('products',{cat:'New In'});return false;">New In</a>
+      <a href="#" data-nav="products4" onclick="goTo('products',{cat:''});return false;">Sale</a>
+    </div>
+  </nav>
 </header>
 
-<main id="vtMain">
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <span class="drawer-close" onclick="closeDrawer()">✕</span>
+  <a href="#" onclick="goTo('home');closeDrawer();return false;">Home</a>
+  <a href="#" onclick="goTo('products',{cat:'Women'});closeDrawer();return false;">Women</a>
+  <a href="#" onclick="goTo('products',{cat:'Men'});closeDrawer();return false;">Men</a>
+  <a href="#" onclick="goTo('products',{cat:'New In'});closeDrawer();return false;">New In</a>
+  <a href="#" onclick="goTo('products',{cat:''});closeDrawer();return false;">Sale</a>
+  <a href="#" onclick="goTo('wishlist');closeDrawer();return false;">Wishlist</a>
+  <a href="#" onclick="goTo('cart');closeDrawer();return false;">Cart</a>
+  <a href="#" onclick="goTo('login');closeDrawer();return false;">Account</a>
+</div>
 
-<!-- ============================================================
-     HOME VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-home">
-
-  <div class="vt-hero">
-    <div class="container vt-hero__grid">
-      <div class="vt-hero__content">
-        <p class="vt-eyebrow">Multi-speciality hospital · Bandra, Mumbai</p>
-        <h1 class="vt-hero__title">Care that keeps up with every vital sign.</h1>
-        <p class="vt-hero__sub">Twelve specialities, 60+ consultants and round-the-clock emergency care, brought together so the next step in your care is never far away.</p>
-        <div class="vt-hero__actions">
-          <button class="vt-btn vt-btn--primary" data-nav="appointment">Book an appointment</button>
-          <a href="tel:18002660000" class="vt-btn vt-btn--outline">Call emergency line</a>
-        </div>
-        <dl class="vt-hero__facts">
-          <div><dt>24/7</dt><dd>Emergency &amp; ICU</dd></div>
-          <div><dt>60+</dt><dd>Specialist consultants</dd></div>
-          <div><dt>12</dt><dd>Centres of care</dd></div>
-        </dl>
-      </div>
-      <div class="vt-hero__visual">
-        <div class="vt-vitals-card">
-          <span class="vt-float-chip vt-float-chip--top"><span class="dot"></span>Next available: Today, 4:30 PM</span>
-          <div class="vt-vitals-card__top">
-            <span class="vt-vitals-card__label">Live department status</span>
-            <span class="vt-vitals-card__dot"></span>
-          </div>
-          <div class="vt-pulse-wrap">
-            <svg class="vt-pulse" viewBox="0 0 300 60" preserveAspectRatio="none">
-              <path d="M0 30 H70 L85 10 L100 50 L115 30 H150 L162 18 L174 42 L186 30 H300" />
-            </svg>
-          </div>
-          <div class="vt-vitals-chips">
-            <div class="vt-vitals-chip"><strong>3 min</strong><span>Avg. ER wait</span></div>
-            <div class="vt-vitals-chip"><strong>12</strong><span>Specialities open</span></div>
-          </div>
-          <span class="vt-float-chip vt-float-chip--bottom"><span class="dot"></span>12 specialities · 60+ consultants</span>
-        </div>
-      </div>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input type="text" placeholder="Search the collection..." id="searchInput" onkeydown="if(event.key==='Enter')doSearch()">
+    <div class="search-suggest">
+      <span onclick="quickSearch('Coat')">Coat</span>
+      <span onclick="quickSearch('Sweater')">Sweater</span>
+      <span onclick="quickSearch('Trouser')">Trouser</span>
+      <span onclick="quickSearch('Blazer')">Blazer</span>
     </div>
+    <div class="search-close" onclick="closeSearch()">Close ✕</div>
   </div>
+</div>
 
-  <div class="vt-trust">
-    <div class="container">
-      <div class="vt-trust__row">
-        <div class="vt-trust__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg>
-          <div><strong>24/7 Emergency</strong><span>Trauma &amp; critical care</span></div>
-        </div>
-        <div class="vt-trust__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-          <div><strong>Cashless insurance</strong><span>50+ partner insurers</span></div>
-        </div>
-        <div class="vt-trust__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
-          <div><strong>300-bed facility</strong><span>Modern diagnostics on-site</span></div>
-        </div>
-        <div class="vt-trust__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-          <div><strong>60+ consultants</strong><span>Across 12 specialities</span></div>
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="page-home">
+  <section class="hero" style="padding:0;">
+    <div class="hero-grid">
+      <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1600&q=80" alt="Autumn coat editorial">
+      <div class="hero-vignette"></div>
+      <div class="hero-fade"></div>
+      <div class="hero-content">
+        <div class="eyebrow on-dark">Maison Noir · Est. 1998</div>
+        <h1>Autumn<br><span class="italic">Essentials</span></h1>
+        <p>A quiet edit of outerwear and knitwear, crafted for those who value restraint. Timeless silhouettes, made to be kept.</p>
+        <div class="hero-btn-row">
+          <button class="btn btn-accent" onclick="goTo('products',{cat:''})">Shop Collection</button>
+          <button class="btn btn-outline-white" onclick="goTo('products',{cat:'New In'})">New In</button>
         </div>
       </div>
-    </div>
-  </div>
-
-  <section class="vt-section vt-reveal">
-    <div class="container">
-      <div class="vt-head-row">
-        <div>
-          <p class="vt-eyebrow">Specialities</p>
-          <h2 class="vt-heading">Care organised around <span class="hl">how you actually feel.</span></h2>
-        </div>
-        <button class="vt-btn vt-btn--ghost" data-nav="departments">View all departments →</button>
-      </div>
-      <div class="vt-dept-grid" id="homeDeptGrid"></div>
+      <div class="hero-credit">Photographed in Paris, 2026</div>
     </div>
   </section>
 
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <div class="vt-head-row">
-        <div>
-          <p class="vt-eyebrow">Our consultants</p>
-          <h2 class="vt-heading">Meet a few of the <span class="hl">specialists</span> you'll see.</h2>
-        </div>
-        <button class="vt-btn vt-btn--ghost" data-nav="doctors">Browse all doctors →</button>
-      </div>
-      <div class="vt-doctor-grid" id="homeDoctorGrid"></div>
-    </div>
-  </section>
-
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <p class="vt-eyebrow">Why Vitalis</p>
-      <h2 class="vt-heading">Four commitments that <span class="hl">don't change.</span></h2>
-      <p class="vt-lede">These aren't taglines — they're what every department is measured against.</p>
-      <div class="vt-value-grid">
-        <div class="vt-value-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
-          <h4>Compassionate first</h4>
-          <p>Every consultation starts with listening — not a checklist.</p>
-        </div>
-        <div class="vt-value-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
-          <h4>Answers, fast</h4>
-          <p>On-site labs and imaging mean fewer days spent waiting to know.</p>
-        </div>
-        <div class="vt-value-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
-          <h4>Transparent pricing</h4>
-          <p>Package costs and inclusions are stated upfront, always.</p>
-        </div>
-        <div class="vt-value-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg>
-          <h4>Never off the clock</h4>
-          <p>Emergency and critical care teams are on-site every hour, every day.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <p class="vt-eyebrow">Health packages</p>
-      <h2 class="vt-heading">Preventive care, <span class="hl">priced upfront.</span></h2>
-      <div class="vt-pkg-grid" id="homePkgGrid"></div>
-    </div>
-  </section>
-
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <p class="vt-eyebrow">Patient stories</p>
-      <h2 class="vt-heading">What bringing your family here <span class="hl">feels like.</span></h2>
-      <div class="vt-testi-grid" id="homeTestiGrid"></div>
-    </div>
-  </section>
-
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <div class="vt-stats" id="homeStats"></div>
-    </div>
-  </section>
-
-  <section class="vt-section vt-reveal">
-    <div class="container">
-      <p class="vt-eyebrow text-center">Questions</p>
-      <h2 class="vt-heading" style="max-width:none;">Frequently asked <span class="hl">questions.</span></h2>
-      <div class="vt-faq-list" id="homeFaqList"></div>
-    </div>
-  </section>
-
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <div class="vt-cta">
-        <div>
-          <h3>Not sure which specialist you need?</h3>
-          <p>Tell us your symptoms when you book — our care coordinators will match you with the right department.</p>
-        </div>
-        <div class="vt-cta__actions">
-          <button class="vt-btn vt-btn--gold" data-nav="appointment">Book an appointment</button>
-          <a href="tel:18002660000" class="vt-btn vt-btn--outline">Call 1800-266-0000</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</section>
-
-<!-- ============================================================
-     DOCTORS VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-doctors">
-  <div class="vt-page-head">
-    <div class="container">
-      <p class="vt-eyebrow">Find a doctor</p>
-      <h1 class="vt-heading">60+ consultants, <span class="hl">one search away.</span></h1>
-      <p class="vt-lede">Filter by speciality or search by name to find the right consultant, then book directly into their next available slot.</p>
-    </div>
-  </div>
-  <section class="vt-section">
-    <div class="container">
-      <div class="vt-filters">
-        <div class="vt-search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-          <input type="text" id="doctorSearch" placeholder="Search doctors by name..." aria-label="Search doctors" />
-        </div>
-        <div class="vt-chip is-active" data-dept-filter="all">All</div>
-        <div id="doctorDeptChips" style="display:contents;"></div>
-      </div>
-      <div class="vt-doctor-grid" id="doctorsFullGrid"></div>
-      <div class="vt-empty" id="doctorsEmpty" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-        <p>No doctors match that search. Try a different name or speciality.</p>
-      </div>
-    </div>
-  </section>
-</section>
-
-<!-- ============================================================
-     DEPARTMENTS VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-departments">
-  <div class="vt-page-head">
-    <div class="container">
-      <p class="vt-eyebrow">Departments</p>
-      <h1 class="vt-heading">Twelve specialities, <span class="hl">under one roof.</span></h1>
-      <p class="vt-lede">Every department shares the same diagnostics, records and care coordinators — so referrals between specialists happen in hours, not weeks.</p>
-    </div>
-  </div>
-  <section class="vt-section">
-    <div class="container">
-      <div class="vt-dept-grid" id="departmentsFullGrid"></div>
-    </div>
-  </section>
-</section>
-
-<!-- ============================================================
-     HEALTH PACKAGES VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-packages">
-  <div class="vt-page-head">
-    <div class="container">
-      <p class="vt-eyebrow">Health packages</p>
-      <h1 class="vt-heading">Screening built around <span class="hl">your stage of life.</span></h1>
-      <p class="vt-lede">Every package includes a physician consultation to walk through results — nothing is just a printout.</p>
-    </div>
-  </div>
-  <section class="vt-section">
-    <div class="container">
-      <div class="vt-pkg-grid" id="packagesFullGrid"></div>
-    </div>
-  </section>
-</section>
-
-<!-- ============================================================
-     APPOINTMENT VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-appointment">
-  <div class="vt-page-head">
-    <div class="container">
-      <p class="vt-eyebrow">Book an appointment</p>
-      <h1 class="vt-heading">Let's find you <span class="hl">the right slot.</span></h1>
-      <p class="vt-lede">Share a few details and our care coordinators will confirm your appointment by phone within a few hours.</p>
-    </div>
-  </div>
-  <section class="vt-section">
-    <div class="container">
-      <div class="vt-appt-grid">
-        <div class="vt-form-card">
-          <h3>Appointment details</h3>
-          <p>Fields marked <span class="req">*</span> are required.</p>
-          <div id="pkgNotePill"></div>
-          <div class="vt-form-msg" id="apptFormMsg"></div>
-          <form id="apptForm" novalidate>
-            <div class="vt-field">
-              <label for="apptName">Full name <span class="req">*</span></label>
-              <input type="text" id="apptName" name="name" autocomplete="name" required />
-            </div>
-            <div class="vt-field-row">
-              <div class="vt-field">
-                <label for="apptPhone">Phone number <span class="req">*</span></label>
-                <input type="tel" id="apptPhone" name="phone" placeholder="10-digit mobile number" autocomplete="tel" required />
-              </div>
-              <div class="vt-field">
-                <label for="apptEmail">Email (optional)</label>
-                <input type="email" id="apptEmail" name="email" autocomplete="email" />
-              </div>
-            </div>
-            <div class="vt-field-row">
-              <div class="vt-field">
-                <label for="apptDept">Department <span class="req">*</span></label>
-                <select id="apptDept" name="department" required></select>
-              </div>
-              <div class="vt-field">
-                <label for="apptDoctor">Preferred doctor</label>
-                <select id="apptDoctor" name="doctor"></select>
-              </div>
-            </div>
-            <div class="vt-field-row">
-              <div class="vt-field">
-                <label for="apptDate">Preferred date <span class="req">*</span></label>
-                <input type="date" id="apptDate" name="date" required />
-              </div>
-              <div class="vt-field">
-                <label>Preferred time <span class="req">*</span></label>
-                <div class="vt-time-chips" id="apptTimeChips">
-                  <div class="vt-time-chip" data-time="Morning (9 AM – 12 PM)">Morning</div>
-                  <div class="vt-time-chip" data-time="Afternoon (12 – 4 PM)">Afternoon</div>
-                  <div class="vt-time-chip" data-time="Evening (4 – 8 PM)">Evening</div>
-                </div>
-              </div>
-            </div>
-            <div class="vt-field">
-              <label for="apptReason">Reason for visit (optional)</label>
-              <textarea id="apptReason" name="reason" placeholder="Briefly describe your symptoms or reason for the visit"></textarea>
-            </div>
-            <button type="submit" class="vt-btn vt-btn--primary vt-btn--block">Confirm appointment request</button>
-          </form>
-        </div>
-
-        <div class="vt-appt-list-card">
-          <h3>Your appointment requests</h3>
-          <div id="apptListWrap"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-
-<!-- ============================================================
-     ABOUT VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-about">
-  <div class="vt-page-head">
-    <div class="container">
-      <p class="vt-eyebrow">About Vitalis</p>
-      <h1 class="vt-heading">Built as a hospital, run like a <span class="hl">promise kept.</span></h1>
-      <p class="vt-lede">Vitalis Hospitals opened in Bandra West with one goal: make specialist care coordinated instead of scattered.</p>
-    </div>
-  </div>
-  <section class="vt-section">
-    <div class="container vt-about-grid">
-      <div class="vt-about-copy">
-        <h2 class="vt-heading" style="font-size:22px;">Our story</h2>
-        <p>Vitalis began as a 120-bed cardiac and orthopaedic centre. Over a decade, it grew into a 300-bed multi-speciality hospital — adding oncology, neurology, nephrology and women's health, while keeping every department on one shared medical record.</p>
-        <p>That's still the idea today: a patient referred from cardiology to nephrology shouldn't have to repeat their history, redo a scan, or wait a week for a second opinion. One hospital, one file, one care team.</p>
-        <p>Today, Vitalis is a fully integrated healthcare campus offering 12 specialities, 60+ consultants, 24/7 emergency and critical care, advanced diagnostic imaging, a state-of-the-art cath lab, and a dedicated intensive care unit. Our NABH accreditation reflects our unwavering commitment to quality and patient safety.</p>
-        <h2 class="vt-heading" style="font-size:22px;margin-top:32px;">Our promise</h2>
-        <p>Clear pricing before treatment. A consultant who explains results in person, not just a report. And an emergency department that never asks you to wait to be seen.</p>
-        <p>We believe in patient-first philosophy: every decision is made with your well-being at the centre. Our research and teaching programmes ensure that we stay at the forefront of medical innovation, while our integrated care model means that your journey across departments is seamless, coordinated, and compassionate.</p>
-      </div>
-      <ul class="vt-timeline">
-        <li><strong>Founded</strong><span>Opened as a 120-bed cardiac &amp; ortho centre in Bandra West</span></li>
-        <li><strong>Expansion</strong><span>Added oncology, neurology and critical care wings</span></li>
-        <li><strong>300 beds</strong><span>Grew into a full multi-speciality campus</span></li>
-        <li><strong>12 specialities</strong><span>Unified under one shared patient record</span></li>
-        <li><strong>Today</strong><span>60+ consultants, 24/7 emergency &amp; critical care</span></li>
-      </ul>
-    </div>
-  </section>
-  <section class="vt-section vt-reveal" style="padding-top:0;">
-    <div class="container">
-      <div class="vt-stats" id="aboutStats"></div>
-    </div>
-  </section>
-</section>
-
-<!-- ============================================================
-     CONTACT VIEW
-     ============================================================ -->
-<section class="vt-view" id="view-contact">
-  <div class="vt-page-head">
-    <div class="container">
-      <p class="vt-eyebrow">Contact &amp; emergency</p>
-      <h1 class="vt-heading">Reach the right team, <span class="hl">right away.</span></h1>
-      <p class="vt-lede">For medical emergencies, please call the emergency line directly rather than using the form below.</p>
-    </div>
-  </div>
-  <section class="vt-section">
-    <div class="container vt-contact-grid">
+  <section class="story-intro">
+    <div class="container story-intro-grid">
+      <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=800&q=80" alt="Studio detail">
       <div>
-        <div class="vt-info-card" style="margin-bottom:20px;">
-          <h4>Emergency &amp; helpline</h4>
-          <div class="vt-info-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.7 2.1 5 5.6 4.2 7.9 3.7 10 4.9 12 7c2-2.1 4.1-3.3 6.4-2.8 3.5.8 4.9 4.5 3.1 8-2.5 4.45-9.5 8.8-9.5 8.8z"/></svg>
-            <div><strong>Emergency line (24/7):</strong> 1800-266-0000</div>
-          </div>
-          <div class="vt-info-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7 12.8 12.8 0 00.7 2.8 2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.5 2.8.7a2 2 0 011.7 2z"/></svg>
-            <div><strong>Appointments desk:</strong> 022-6127-4000</div>
-          </div>
-          <div class="vt-info-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
-            <div><strong>General enquiries:</strong> care@vitalishospitals.example</div>
-          </div>
-        </div>
-        <div class="vt-info-card">
-          <h4>Visit us</h4>
-          <div class="vt-info-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div>142 Turner Road, Bandra West, Mumbai 400050</div>
-          </div>
-          <div class="vt-info-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            <div>OPD: Mon–Sat, 8 AM – 8 PM · Emergency: 24/7</div>
-          </div>
-        </div>
-        <div class="vt-map" style="margin-top:20px;">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.3309764319576!2d72.8258503153847!3d19.05929708708804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9a7b4b4b4b7%3A0x2b4b4b4b4b4b4b4b!2sBandra%20West%2C%20Mumbai%2C%20Maharashtra%20400050!5e0!3m2!1sen!2sin!4v1612345678901!5m2!1sen!2sin" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-
-      <div class="vt-form-card">
-        <h3>Send a message</h3>
-        <p>For non-urgent queries — we typically reply within one business day.</p>
-        <div class="vt-form-msg" id="contactFormMsg"></div>
-        <form id="contactForm" novalidate>
-          <div class="vt-field">
-            <label for="cName">Full name <span class="req">*</span></label>
-            <input type="text" id="cName" required />
-          </div>
-          <div class="vt-field">
-            <label for="cEmail">Email <span class="req">*</span></label>
-            <input type="email" id="cEmail" required />
-          </div>
-          <div class="vt-field">
-            <label for="cMsg">Message <span class="req">*</span></label>
-            <textarea id="cMsg" required placeholder="How can we help?"></textarea>
-          </div>
-          <button type="submit" class="vt-btn vt-btn--primary vt-btn--block">Send message</button>
-        </form>
+        <span class="eyebrow">The Brand Story</span>
+        <h2>Dressing as a long-term relationship, not a passing affair.</h2>
+        <p>This season, we return to the fundamentals — considered tailoring, honest materials, and pieces built to outlast the trend cycle. Every garment in the Autumn Edit has been selected for quiet permanence: the coat you'll wear for a decade, the sweater that softens with age.</p>
       </div>
     </div>
   </section>
-</section>
 
-</main>
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Shop By Category</span>
+        <h2>Curated for Every Wardrobe</h2>
+      </div>
+      <div class="cat-grid reveal">
+        <div class="cat-card" tabindex="0" onclick="goTo('products',{cat:'Women'})">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80">
+          <div class="label"><span class="eyebrow">Discover</span><h3>Women</h3></div>
+        </div>
+        <div class="cat-card" tabindex="0" onclick="goTo('products',{cat:'Men'})">
+          <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80">
+          <div class="label"><span class="eyebrow">Discover</span><h3>Men</h3></div>
+        </div>
+        <div class="cat-card" tabindex="0" onclick="goTo('products',{cat:'New In'})">
+          <img src="https://images.unsplash.com/photo-1551048632-24e444b48a3e?auto=format&fit=crop&w=600&q=80">
+          <div class="label"><span class="eyebrow">Discover</span><h3>New In</h3></div>
+        </div>
+      </div>
+      <div class="cat-grid row2 reveal">
+        <div class="cat-card" tabindex="0" onclick="goTo('products',{cat:'New In'})">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80">
+          <div class="label"><span class="eyebrow">Discover</span><h3>Just Landed</h3></div>
+        </div>
+        <div class="cat-card" tabindex="0" onclick="goTo('products',{cat:'Mango'})">
+          <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=80">
+          <div class="label"><span class="eyebrow">Discover</span><h3>The Layering Edit</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer class="vt-footer">
+  <section>
+    <div class="container">
+      <div class="section-head left-align">
+        <div>
+          <span class="eyebrow">Editor's Picks</span>
+          <h2>Trending Now</h2>
+        </div>
+        <a href="#" class="view-all" onclick="goTo('products',{cat:''});return false;">View All</a>
+      </div>
+      <div class="carousel-wrap">
+        <button class="carousel-arrow prev" onclick="scrollCarousel(-1)" aria-label="Previous">‹</button>
+        <div class="carousel-track" id="trendingTrack"></div>
+        <button class="carousel-arrow next" onclick="scrollCarousel(1)" aria-label="Next">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="testimonial-quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Every piece feels considered — from the weight of the fabric to the finish of the buttons. Maison Noir has become the first place I look each season."</p>
+        <div class="who">Isabelle R. — Verified Client</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="promo-banner reveal">
+        <span class="eyebrow on-dark">Limited Time</span>
+        <h2>End of Season Sale</h2>
+        <p>Up to 40% off selected outerwear and knitwear. Elevate your wardrobe for less, while pieces last.</p>
+        <button class="btn btn-outline-white" onclick="goTo('products',{cat:''})">Shop Sale</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PRODUCTS LISTING PAGE (also serves Search Results) ============ -->
+<div class="page" id="page-products">
   <div class="container">
-    <div class="vt-footer-grid">
-      <div class="vt-footer-brand">
-        <span class="vt-brand__name" style="font-size:22px;">Vitalis</span>
-        <p>A 300-bed multi-speciality hospital in Bandra West, Mumbai, offering coordinated specialist care and 24/7 emergency services.</p>
-        <div class="vt-newsletter">
-          <input type="email" id="newsletterEmail" placeholder="Your email" aria-label="Newsletter email" />
-          <button class="vt-btn vt-btn--gold vt-btn--sm" id="newsletterBtn">Join</button>
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span id="productsCrumb">Products</span></div>
+    <h1 style="font-size:36px;margin:18px 0 20px;font-style:italic;font-weight:400;" id="productsTitle">Products</h1>
+    <div id="searchActivePillWrap" style="display:none;">
+      <div class="search-active-pill">Search: “<span id="searchTermLabel"></span>” <button onclick="clearSearch()">✕ Clear</button></div>
+    </div>
+    <div style="height:16px;"></div>
+
+    <div class="filters-shell">
+      <aside>
+        <div class="filter-group">
+          <h4>Category</h4>
+          <label class="filter-opt"><input type="checkbox" value="Women" onchange="filterProducts()"> Women</label>
+          <label class="filter-opt"><input type="checkbox" value="Men" onchange="filterProducts()"> Men</label>
+          <label class="filter-opt"><input type="checkbox" value="New In" onchange="filterProducts()"> New In</label>
         </div>
-      </div>
+        <div class="filter-group">
+          <h4>Size</h4>
+          <label class="filter-opt"><input type="checkbox" value="S"> S</label>
+          <label class="filter-opt"><input type="checkbox" value="M"> M</label>
+          <label class="filter-opt"><input type="checkbox" value="L"> L</label>
+          <label class="filter-opt"><input type="checkbox" value="XL"> XL</label>
+        </div>
+        <div class="filter-group">
+          <h4>Price</h4>
+          <div class="price-inputs">
+            <input type="text" placeholder="Min">
+            <span>—</span>
+            <input type="text" placeholder="Max">
+          </div>
+        </div>
+        <div class="filter-group">
+          <h4>Color</h4>
+          <div class="color-row">
+            <div class="color-dot" style="background:#1c1a16;"></div>
+            <div class="color-dot" style="background:#8a7a63;"></div>
+            <div class="color-dot" style="background:#efe4cb;"></div>
+            <div class="color-dot" style="background:#a3763c;"></div>
+          </div>
+        </div>
+        <span class="clear-filters-btn" onclick="clearFilters()">Clear All Filters</span>
+      </aside>
       <div>
-        <h5>Explore</h5>
-        <ul>
-          <li><a data-nav="doctors">Find doctors</a></li>
-          <li><a data-nav="departments">Departments</a></li>
-          <li><a data-nav="packages">Health packages</a></li>
-          <li><a data-nav="appointment">Book appointment</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Hospital</h5>
-        <ul>
-          <li><a data-nav="about">About Vitalis</a></li>
-          <li><a data-nav="contact">Contact us</a></li>
-          <li><a href="tel:18002660000">Emergency line</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="#" onclick="return false;">Privacy policy</a></li>
-          <li><a href="#" onclick="return false;">Terms of use</a></li>
-        </ul>
+        <div class="sort-bar">
+          <div class="results-count" id="resultsCount">Showing 8 products</div>
+          <select id="sortSelect" onchange="filterProducts()">
+            <option value="">Sort: Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+          </select>
+        </div>
+        <div class="product-grid reveal" id="productsGrid"></div>
       </div>
     </div>
-    <div class="vt-footer-bottom">
-      <span>© 2026 Vitalis Hospitals. This is a demo hospital website — not a real medical provider.</span>
-      <span>Bandra West, Mumbai · 24/7 Emergency: 1800-266-0000</span>
+  </div>
+  <div style="height:80px;"></div>
+</div>
+
+<!-- ============ PRODUCT DETAIL PAGE ============ -->
+<div class="page" id="page-product">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <a href="#" onclick="goTo('products',{cat:''});return false;">Products</a> / <span id="pdCrumb">Product Details</span></div>
+    <div class="pd-grid">
+      <div>
+        <div class="pd-gallery-main" id="pdGalleryMain" title="Hover to zoom"><img id="pdMainImg" src=""></div>
+        <div class="pd-thumbs" id="pdThumbs"></div>
+      </div>
+      <div class="pd-info" id="pdInfoBlock">
+        <div class="eyebrow" id="pdCat">Category</div>
+        <h1 id="pdName">Product Name</h1>
+        <div class="pd-price" id="pdPrice">$0</div>
+        <p class="pd-desc" id="pdDesc">Description.</p>
+
+        <div class="pd-block">
+          <div class="pd-block-label"><span>Color: <span id="pdColorName" style="font-weight:400;text-transform:none;letter-spacing:0;">—</span></span></div>
+          <div class="color-row" id="pdColors"></div>
+        </div>
+
+        <div class="pd-block">
+          <div class="pd-block-label"><span>Size</span><span class="link">Size Guide</span></div>
+          <div class="size-row" id="pdSizes"></div>
+        </div>
+
+        <div class="pd-block">
+          <div class="pd-block-label"><span>Quantity</span></div>
+          <div class="qty-row">
+            <div class="qty-control">
+              <button onclick="changeQty(-1)" aria-label="Decrease quantity">−</button>
+              <span id="pdQty">1</span>
+              <button onclick="changeQty(1)" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pd-actions">
+          <button class="btn btn-dark" id="pdAddBtn" onclick="addToCartFromPD()">Add to Cart</button>
+          <button class="icon-square" id="pdWishlistBtn" onclick="togglePdWishlist()">♡</button>
+        </div>
+
+        <div style="margin-top:44px;">
+          <div class="accordion-block open">
+            <div class="acc-q" onclick="toggleAcc(this)">Details &amp; Care<span class="plus">+</span></div>
+            <div class="acc-a"><p>100% premium wool blend. Dry clean only. Designed in-house, tailored for a relaxed premium fit.</p></div>
+          </div>
+          <div class="accordion-block">
+            <div class="acc-q" onclick="toggleAcc(this)">Shipping &amp; Returns<span class="plus">+</span></div>
+            <div class="acc-a"><p>Free standard shipping on orders over $150. Returns accepted within 30 days of delivery.</p></div>
+          </div>
+          <div class="accordion-block">
+            <div class="acc-q" onclick="toggleAcc(this)">Size &amp; Fit<span class="plus">+</span></div>
+            <div class="acc-a"><p>Model is 5'10" wearing size M. Fits true to size with a relaxed, oversized silhouette.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-bottom:70px;">
+      <h3 class="related-title">You May Also Like</h3>
+      <div class="product-grid" id="relatedGrid"></div>
+    </div>
+
+    <div id="recentlyViewedWrap" style="padding-bottom:90px;display:none;">
+      <h3 class="recently-viewed-title">Recently Viewed</h3>
+      <div class="product-grid" id="recentlyViewedGrid"></div>
+    </div>
+  </div>
+  <div class="sticky-add-bar" id="stickyAddBar">
+    <div class="info"><b id="stickyName">Product</b><span id="stickyPrice">$0</span></div>
+    <button class="btn btn-dark" onclick="addToCartFromPD()">Add to Cart</button>
+  </div>
+</div>
+
+<!-- ============ WISHLIST PAGE ============ -->
+<div class="page" id="page-wishlist">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Wishlist</span></div>
+    <h1 style="font-size:36px;margin:18px 0 12px;font-style:italic;font-weight:400;">Your Wishlist</h1>
+    <p style="color:var(--ink-faint);font-size:13px;margin-bottom:44px;" id="wishlistSubtitle">Pieces you've set aside.</p>
+    <div class="wishlist-grid reveal" id="wishlistGrid"></div>
+  </div>
+  <div style="height:80px;"></div>
+</div>
+
+<!-- ============ CART PAGE ============ -->
+<div class="page" id="page-cart">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Cart</span></div>
+    <h1 style="font-size:36px;margin:18px 0 38px;font-style:italic;font-weight:400;">Your Cart</h1>
+    <div class="cart-grid">
+      <div id="cartItemsWrap"></div>
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="cartShipping">$0</span></div>
+        <div class="summary-row"><span>Tax</span><span id="cartTax">$0</span></div>
+        <div class="promo-input"><input type="text" placeholder="Promo code"><button class="btn btn-outline btn-sm">Apply</button></div>
+        <div class="summary-row total"><span>Total</span><span id="cartTotal">$0</span></div>
+        <button class="btn btn-dark btn-block" id="cartCheckoutBtn" style="margin-top:26px;" onclick="goTo('checkout')">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CHECKOUT PAGE ============ -->
+<div class="page" id="page-checkout">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <a href="#" onclick="goTo('cart');return false;">Cart</a> / <span>Checkout</span></div>
+    <h1 style="font-size:36px;margin:18px 0 26px;font-style:italic;font-weight:400;">Checkout</h1>
+    <div class="checkout-steps" id="checkoutStepsBar">
+      <div class="step active" data-step="1"><span class="num">1</span><span class="label-text">Shipping</span></div>
+      <div class="sep"></div>
+      <div class="step" data-step="2"><span class="num">2</span><span class="label-text">Payment</span></div>
+      <div class="sep"></div>
+      <div class="step" data-step="3"><span class="num">3</span><span class="label-text">Review</span></div>
+    </div>
+    <div class="checkout-grid">
+      <div>
+        <div class="checkout-step-panel active" id="checkoutStep1">
+          <div class="form-card">
+            <h3>Shipping Address</h3>
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" id="coFirstName"></div>
+              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe" id="coLastName"></div>
+            </div>
+            <div class="form-group" style="margin-bottom:16px;"><label>Street Address</label><input type="text" placeholder="123 Fifth Avenue" id="coAddress"></div>
+            <div class="form-row">
+              <div class="form-group"><label>City</label><input type="text" placeholder="New York" id="coCity"></div>
+              <div class="form-group"><label>Postal Code</label><input type="text" placeholder="10001" id="coZip"></div>
+            </div>
+            <div class="form-group"><label>Country</label>
+              <select id="coCountry"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option></select>
+            </div>
+          </div>
+          <div class="checkout-nav">
+            <span></span>
+            <button class="btn btn-dark" onclick="checkoutGoStep(2)">Continue to Payment</button>
+          </div>
+        </div>
+
+        <div class="checkout-step-panel" id="checkoutStep2">
+          <div class="form-card">
+            <h3>Payment Method</h3>
+            <div class="pay-methods">
+              <div class="pay-method active" onclick="selectPay(this)">Credit Card</div>
+              <div class="pay-method" onclick="selectPay(this)">PayPal</div>
+              <div class="pay-method" onclick="selectPay(this)">Apple Pay</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Card Number</label><input type="text" placeholder="•••• •••• •••• ••••" id="coCard"></div>
+              <div class="form-group"><label>Name on Card</label><input type="text" placeholder="Jane Doe" id="coCardName"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM / YY" id="coExpiry"></div>
+              <div class="form-group"><label>CVV</label><input type="text" placeholder="•••" id="coCvv"></div>
+            </div>
+          </div>
+          <div class="checkout-nav">
+            <button class="btn btn-ghost" onclick="checkoutGoStep(1)">Back</button>
+            <button class="btn btn-dark" onclick="checkoutGoStep(3)">Review Order</button>
+          </div>
+        </div>
+
+        <div class="checkout-step-panel" id="checkoutStep3">
+          <div class="form-card">
+            <h3>Review Your Order</h3>
+            <div class="review-row"><div><span class="lbl">Ship To</span><span id="reviewShipTo">—</span></div><span style="cursor:pointer;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;" onclick="checkoutGoStep(1)">Edit</span></div>
+            <div class="review-row"><div><span class="lbl">Payment</span><span id="reviewPayment">—</span></div><span style="cursor:pointer;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;" onclick="checkoutGoStep(2)">Edit</span></div>
+            <div class="review-row" style="border-bottom:none;"><div><span class="lbl">Items</span><span id="reviewItemCount">—</span></div></div>
+          </div>
+          <div class="checkout-nav">
+            <button class="btn btn-ghost" onclick="checkoutGoStep(2)">Back</button>
+            <button class="btn btn-dark" onclick="placeOrder()">Place Order</button>
+          </div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="coSubtotal">$0</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="coShipping">$0</span></div>
+        <div class="summary-row"><span>Tax</span><span id="coTax">$0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="coTotal">$0</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ORDER SUCCESS PAGE ============ -->
+<div class="page" id="page-success">
+  <div class="container">
+    <div class="success-wrap">
+      <div class="success-icon">✓</div>
+      <h1>Order Confirmed</h1>
+      <p>Thank you for shopping with Maison Noir. Your order has been placed successfully and is being prepared for shipment.</p>
+      <div class="order-ref"><span>Order Number</span><span id="orderRefNum" style="font-weight:700;">#MN-10482</span></div>
+      <div style="display:flex;gap:14px;justify-content:center;">
+        <button class="btn btn-outline" onclick="goTo('orders')">View Orders</button>
+        <button class="btn btn-dark" onclick="goTo('home')">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ORDERS HISTORY PAGE ============ -->
+<div class="page" id="page-orders">
+  <div class="container">
+    <div class="profile-grid">
+      <aside class="profile-side">
+        <img class="profile-avatar" src="https://randomuser.me/api/portraits/women/68.jpg">
+        <div style="font-weight:600;font-size:15px;">Jane Doe</div>
+        <div style="font-size:12px;color:var(--ink-faint);margin-bottom:18px;">jane.doe@email.com</div>
+        <ul>
+          <li onclick="goTo('profile')">Profile</li>
+          <li onclick="goTo('addresses')">Addresses</li>
+          <li class="active">Order History</li>
+          <li onclick="goTo('wishlist')">Wishlist</li>
+          <li onclick="goTo('home')">Sign Out</li>
+        </ul>
+      </aside>
+      <div>
+        <div class="breadcrumb" style="padding-top:0;"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Orders</span></div>
+        <h1 style="font-size:30px;margin:18px 0 30px;font-style:italic;font-weight:400;">Order History</h1>
+        <table class="orders-table">
+          <thead><tr><th>Order</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
+          <tbody id="ordersTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ORDER DETAIL PAGE ============ -->
+<div class="page" id="page-order-detail">
+  <div class="container">
+    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <a href="#" onclick="goTo('orders');return false;">Orders</a> / <span id="odCrumb">Order</span></div>
+    <h1 style="font-size:30px;margin:18px 0 8px;font-style:italic;font-weight:400;" id="odTitle">Order #MN-10482</h1>
+    <p style="color:var(--ink-faint);font-size:13px;margin-bottom:44px;" id="odSub">Placed on Oct 2, 2026</p>
+    <div class="order-detail-grid">
+      <div>
+        <div class="timeline">
+          <h3>Order Status</h3>
+          <div id="odTimeline"></div>
+        </div>
+        <div class="timeline" style="margin-bottom:0;">
+          <h3>Items in This Order</h3>
+          <div id="odItems"></div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="odSubtotal">$0</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="odShipping">$0</span></div>
+        <div class="summary-row"><span>Tax</span><span id="odTax">$0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="odTotal">$0</span></div>
+        <div style="border-top:1px solid var(--line);margin-top:20px;padding-top:20px;">
+          <span class="lbl" style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:8px;">Shipping To</span>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;margin:0;font-weight:300;" id="odShipTo">—</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ADDRESSES PAGE ============ -->
+<div class="page" id="page-addresses">
+  <div class="container">
+    <div class="profile-grid">
+      <aside class="profile-side">
+        <img class="profile-avatar" src="https://randomuser.me/api/portraits/women/68.jpg">
+        <div style="font-weight:600;font-size:15px;">Jane Doe</div>
+        <div style="font-size:12px;color:var(--ink-faint);margin-bottom:18px;">jane.doe@email.com</div>
+        <ul>
+          <li onclick="goTo('profile')">Profile</li>
+          <li class="active">Addresses</li>
+          <li onclick="goTo('orders')">Order History</li>
+          <li onclick="goTo('wishlist')">Wishlist</li>
+          <li onclick="goTo('home')">Sign Out</li>
+        </ul>
+      </aside>
+      <div>
+        <div class="breadcrumb" style="padding-top:0;"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Addresses</span></div>
+        <h1 style="font-size:30px;margin:18px 0 30px;font-style:italic;font-weight:400;">Saved Addresses</h1>
+        <div class="address-grid" id="addressGrid"></div>
+      </div>
+    </div>
+  </div>
+  <div style="height:60px;"></div>
+</div>
+
+<!-- ============ PROFILE PAGE ============ -->
+<div class="page" id="page-profile">
+  <div class="container">
+    <div class="profile-grid">
+      <aside class="profile-side">
+        <img class="profile-avatar" src="https://randomuser.me/api/portraits/women/68.jpg">
+        <div style="font-weight:600;font-size:15px;">Jane Doe</div>
+        <div style="font-size:12px;color:var(--ink-faint);margin-bottom:18px;">jane.doe@email.com</div>
+        <ul>
+          <li class="active">Profile</li>
+          <li onclick="goTo('addresses')">Addresses</li>
+          <li onclick="goTo('orders')">Order History</li>
+          <li onclick="goTo('wishlist')">Wishlist</li>
+          <li onclick="goTo('home')">Sign Out</li>
+        </ul>
+      </aside>
+      <div class="form-card" style="margin-bottom:0;">
+        <h3>Personal Information</h3>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" value="Jane"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" value="Doe"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" value="jane.doe@email.com"></div>
+          <div class="form-group"><label>Phone</label><input type="tel" value="+1 (555) 010-2938"></div>
+        </div>
+        <button class="btn btn-dark" style="margin-top:10px;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LOGIN PAGE ============ -->
+<div class="page" id="page-login">
+  <div class="container">
+    <div class="auth-wrap">
+      <span class="eyebrow">Welcome Back</span>
+      <h1>Login</h1>
+      <div class="sub">Sign in to continue to your account</div>
+      <form class="auth-form" onsubmit="event.preventDefault();goTo('home');">
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••" required></div>
+        <div class="auth-links"><label class="filter-opt" style="margin:0;"><input type="checkbox"> Remember me</label><a href="#" onclick="goTo('forgot');return false;">Forgot password?</a></div>
+        <button class="btn btn-dark btn-block" type="submit">Login</button>
+      </form>
+      <div class="divider-or">or</div>
+      <div class="social-btn">🔵 Continue with Google</div>
+      <div class="social-btn"> Continue with Apple</div>
+      <div class="auth-switch">Don't have an account? <a href="#" onclick="goTo('register');return false;">Register</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REGISTER PAGE ============ -->
+<div class="page" id="page-register">
+  <div class="container">
+    <div class="auth-wrap">
+      <span class="eyebrow">Join Maison Noir</span>
+      <h1>Create Account</h1>
+      <div class="sub">Sign up to start your journey with us</div>
+      <form class="auth-form" onsubmit="event.preventDefault();goTo('home');">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane" required></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe" required></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••" required></div>
+        <button class="btn btn-dark btn-block" type="submit" style="margin-top:8px;">Create Account</button>
+      </form>
+      <div class="auth-switch">Already have an account? <a href="#" onclick="goTo('login');return false;">Login</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FORGOT PASSWORD PAGE ============ -->
+<div class="page" id="page-forgot">
+  <div class="container">
+    <div class="auth-wrap">
+      <span class="eyebrow">Reset Password</span>
+      <h1>Forgot Password</h1>
+      <div class="sub">Enter your email and we'll send you a reset link</div>
+      <form class="auth-form" onsubmit="event.preventDefault();showToast('Reset link sent to your email');goTo('login');">
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <button class="btn btn-dark btn-block" type="submit" style="margin-top:8px;">Send Reset Link</button>
+      </form>
+      <div class="auth-switch">Remembered your password? <a href="#" onclick="goTo('login');return false;">Login</a></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Maison Noir</div>
+        <p style="font-size:13px;line-height:1.9;">Premium essentials for the considered wardrobe. Timeless pieces, thoughtfully made, season after season.</p>
+        <div class="footer-socials" style="margin-top:20px;">
+          <span>f</span><span>ig</span><span>p</span>
+        </div>
+      </div>
+      <div><h5>Shop</h5><ul><li onclick="goTo('products',{cat:'Women'})">Women</li><li onclick="goTo('products',{cat:'Men'})">Men</li><li onclick="goTo('products',{cat:'New In'})">New In</li><li onclick="goTo('products',{cat:''})">Sale</li></ul></div>
+      <div><h5>Help</h5><ul><li>Shipping</li><li>Returns</li><li>Size Guide</li><li>Contact</li></ul></div>
+      <div><h5>Company</h5><ul><li>About Us</li><li>Careers</li><li>Sustainability</li><li>Press</li></ul></div>
+      <div><h5>Newsletter</h5><p style="font-size:13px;margin-bottom:16px;">Subscribe for early access to new arrivals and private sales.</p>
+        <div class="promo-input"><input type="text" placeholder="Email address" style="background:transparent;border-color:rgba(196,181,147,.3);color:#fff;"><button class="btn btn-outline-white btn-sm">Join</button></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Maison Noir. All rights reserved.</div>
+      <div>Privacy Policy · Terms of Service</div>
     </div>
   </div>
 </footer>
 
-<nav class="vt-bottomnav">
-  <a data-nav="appointment">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    <span>Book</span>
-  </a>
-  <a data-nav="departments">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
-    <span>Departments</span>
-  </a>
-  <a data-nav="home" class="center">
-    <span class="vt-bn-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
-    </span>
-  </a>
-  <a data-nav="doctors">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-    <span>Doctors</span>
-  </a>
-  <a href="tel:18002660000">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.5 2.8.7a2 2 0 011.7 2z"/></svg>
-    <span>Call Us</span>
-  </a>
-</nav>
-
-<div id="vtToastWrap" aria-live="polite"></div>
+<div class="toast" id="toast"></div>
+<div class="tier-badge"><span class="dot"></span>Editorial Luxury — Level 8</div>
 
 <script>
-(function(){
-"use strict";
-
-/* ============================================================
-   STORAGE — tries real localStorage, falls back to in-memory
-   (this page can run inside a preview sandbox where localStorage
-   is blocked, so every read/write goes through this wrapper)
-   ============================================================ */
-const Store = (function(){
-  let memory = {};
-  let useLocal = true;
-  try {
-    localStorage.setItem('__vt_test__','1');
-    localStorage.removeItem('__vt_test__');
-  } catch(e){ useLocal = false; }
-
-  return {
-    get(key, fallback){
-      try{
-        if(useLocal){
-          const raw = localStorage.getItem(key);
-          return raw ? JSON.parse(raw) : (fallback !== undefined ? fallback : null);
-        }
-        return memory[key] !== undefined ? JSON.parse(JSON.stringify(memory[key])) : (fallback !== undefined ? fallback : null);
-      }catch(e){ return fallback !== undefined ? fallback : null; }
-    },
-    set(key, value){
-      try{
-        if(useLocal){ localStorage.setItem(key, JSON.stringify(value)); return; }
-      }catch(e){ useLocal = false; }
-      memory[key] = value;
-    }
-  };
-})();
-
-/* ============================================================
-   DATA
-   ============================================================ */
-const ICONS = {
-  cardiology:'<path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/>',
-  orthopaedics:'<line x1="12" y1="3" x2="12" y2="21"/><line x1="7" y1="7" x2="17" y2="7"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="17" x2="17" y2="17"/>',
-  oncology:'<circle cx="12" cy="6" r="2"/><circle cx="6" cy="14" r="2"/><circle cx="18" cy="14" r="2"/><circle cx="12" cy="19" r="2"/><line x1="12" y1="8" x2="7" y2="12.5"/><line x1="12" y1="8" x2="17" y2="12.5"/><line x1="8" y1="15.5" x2="11" y2="17.5"/><line x1="16" y1="15.5" x2="13" y2="17.5"/>',
-  neurology:'<path d="M9 3a4 4 0 00-4 4c0 1 .3 1.7.8 2.3A3 3 0 004 12a3 3 0 001.6 2.6A3.5 3.5 0 008 20a3.5 3.5 0 003.5-3.5V6A3 3 0 009 3z"/><path d="M15 3a4 4 0 014 4c0 1-.3 1.7-.8 2.3A3 3 0 0120 12a3 3 0 01-1.6 2.6A3.5 3.5 0 0116 20a3.5 3.5 0 01-3.5-3.5V6"/>',
-  womens:'<circle cx="12" cy="8" r="5"/><path d="M9 6.3a3 3 0 016 0"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="8.5" y1="17" x2="15.5" y2="17"/>',
-  paediatrics:'<circle cx="12" cy="7" r="4"/><path d="M6 21c0-4 2.5-6 6-6s6 2 6 6"/><path d="M9 21v-2M15 21v-2"/>',
-  nephrology:'<path d="M7 4c-2 0-3.5 2-3.5 5s2 8 3.5 9c1-1 1.5-2 1.5-3.5S8 12 8 9.5 7.5 4 7 4z"/><path d="M17 4c2 0 3.5 2 3.5 5s-2 8-3.5 9c-1-1-1.5-2-1.5-3.5S16 12 16 9.5 16.5 4 17 4z"/><line x1="12" y1="4" x2="12" y2="20"/>',
-  gastro:'<path d="M9 3c-3 0-5 2.5-5 6 0 3 2 4.5 2 7a4 4 0 004 4c2.5 0 4-2 4-4"/><path d="M9 3c2 0 3 1.5 3 3.5S10.5 10 9 10"/><line x1="16" y1="7" x2="20" y2="7"/><line x1="18" y1="5" x2="18" y2="9"/>',
-  pulmonology:'<path d="M12 3v7"/><path d="M12 10c-1.5-2-4-2-5.5 0S5 16 6 19a3 3 0 005.5-1"/><path d="M12 10c1.5-2 4-2 5.5 0S19 16 18 19a3 3 0 01-5.5-1"/>',
-  emergency:'<rect x="4" y="9" width="6" height="6" rx="1"/><rect x="14" y="9" width="6" height="6" rx="1"/><line x1="10" y1="12" x2="14" y2="12"/>',
-  general:'<path d="M9 3H5a2 2 0 00-2 2v4m0 6v4a2 2 0 002 2h4m6 0h4a2 2 0 002-2v-4m0-6V5a2 2 0 00-2-2h-4"/>'
-};
-
-const DEPARTMENTS = [
-  {id:'cardiology',name:'Cardiology',desc:'Heart, vascular and rhythm care with on-site cath lab.',
-   conditions:['Heart Attack','High BP','Arrhythmia','Chest Pain'],
-   procedures:['Angioplasty','ECG','Echo','Cath Lab']},
-  {id:'oncology',name:'Oncology',desc:'Precision cancer care spanning surgery, chemo and radiation.',
-   conditions:['Breast Cancer','Lung Cancer','Colorectal Cancer','Prostate Cancer'],
-   procedures:['Chemotherapy','Radiation Therapy','Surgery','Immunotherapy']},
-  {id:'neurology',name:'Neurology',desc:'Brain, spine and nerve conditions, from migraine to stroke.',
-   conditions:['Stroke','Migraine','Epilepsy','Parkinson\'s'],
-   procedures:['EEG','EMG','MRI Brain','Nerve Conduction']},
-  {id:'orthopaedics',name:'Orthopaedics',desc:'Joint, bone and sports injury care, including replacements.',
-   conditions:['Arthritis','Fractures','Sports Injuries','Back Pain'],
-   procedures:['Joint Replacement','Arthroscopy','Fracture Fixation','Spinal Surgery']},
-  {id:'nephrology',name:'Nephrology',desc:'Kidney care, dialysis and transplant coordination.',
-   conditions:['Chronic Kidney Disease','Kidney Stones','UTI','Glomerulonephritis'],
-   procedures:['Dialysis','Kidney Biopsy','Transplant Evaluation','Lithotripsy']},
-  {id:'gastro',name:'Gastroenterology',desc:'Digestive and liver care, endoscopy and hepatology.',
-   conditions:['Acid Reflux','Ulcer','Liver Disease','IBS'],
-   procedures:['Upper GI Endoscopy','Colonoscopy','Liver Biopsy','ERCP']},
-  {id:'pulmonology',name:'Pulmonology',desc:'Lung and respiratory care, including sleep studies.',
-   conditions:['Asthma','COPD','Pneumonia','Sleep Apnea'],
-   procedures:['Spirometry','Bronchoscopy','Sleep Study','Pulmonary Rehab']},
-  {id:'womens',name:"Women's Health",desc:'Gynaecology, maternity and fertility support.',
-   conditions:['PCOS','Fertility Issues','Menopause','Pregnancy Care'],
-   procedures:['Pap Smear','Ultrasound','Fertility Treatment','Maternity Care']},
-  {id:'paediatrics',name:'Paediatrics',desc:'Child and adolescent care, from newborns to teens.',
-   conditions:['Childhood Infections','Asthma in Children','Allergies','Growth Concerns'],
-   procedures:['Child Vaccination','Well Child Visit','Allergy Testing','Nutrition Counselling']},
-  {id:'emergency',name:'Emergency & Critical Care',desc:'24/7 trauma response and intensive care.',
-   conditions:['Trauma','Stroke','Heart Attack','Poisoning'],
-   procedures:['Emergency Triage','Life Support','Trauma Surgery','Critical Care Monitoring']},
-  {id:'general',name:'General Medicine',desc:'Everyday illness, checkups and referrals to specialists.',
-   conditions:['Fever','Infection','Diabetes','Hypertension'],
-   procedures:['Health Checkup','Immunization','Chronic Disease Management','Referral Services']}
-];
-
-const DOCTORS = [
-  {id:'d1',name:'Dr. Ananya Rao',dept:'cardiology',exp:18,quals:'MBBS, MD, DM (Cardiology)',days:'Mon · Wed · Fri',avail:'Today, 4:30 PM', img:'https://randomuser.me/api/portraits/women/44.jpg'},
-  {id:'d2',name:'Dr. Vikram Oberoi',dept:'orthopaedics',exp:22,quals:'MBBS, MS (Orthopaedics)',days:'Tue · Thu · Sat',avail:'Tomorrow, 11 AM', img:'https://randomuser.me/api/portraits/men/32.jpg'},
-  {id:'d3',name:'Dr. Meera Iyer',dept:'oncology',exp:16,quals:'MBBS, MD, DM (Oncology)',days:'Mon – Fri',avail:'Today, 6 PM', img:'https://randomuser.me/api/portraits/women/68.jpg'},
-  {id:'d4',name:'Dr. Arjun Nair',dept:'neurology',exp:14,quals:'MBBS, DM (Neurology)',days:'Mon · Tue · Thu',avail:'Thu, 10 AM', img:'https://randomuser.me/api/portraits/men/45.jpg'},
-  {id:'d5',name:'Dr. Kavita Desai',dept:'womens',exp:12,quals:'MBBS, MS (OBG)',days:'Mon – Sat',avail:'Today, 2 PM', img:'https://randomuser.me/api/portraits/women/17.jpg'},
-  {id:'d6',name:'Dr. Rohan Shah',dept:'paediatrics',exp:10,quals:'MBBS, MD (Paediatrics)',days:'Mon – Sat',avail:'Tomorrow, 9 AM', img:'https://randomuser.me/api/portraits/men/22.jpg'},
-  {id:'d7',name:'Dr. Farida Khan',dept:'nephrology',exp:20,quals:'MBBS, MD, DM (Nephrology)',days:'Tue · Thu · Fri',avail:'Fri, 3 PM', img:'https://randomuser.me/api/portraits/women/90.jpg'},
-  {id:'d8',name:'Dr. Suresh Pillai',dept:'gastro',exp:15,quals:'MBBS, DM (Gastroenterology)',days:'Mon · Wed · Fri',avail:'Wed, 5 PM', img:'https://randomuser.me/api/portraits/men/52.jpg'},
-  {id:'d9',name:'Dr. Neha Kulkarni',dept:'pulmonology',exp:11,quals:'MBBS, MD (Pulmonology)',days:'Tue · Wed · Sat',avail:'Sat, 11 AM', img:'https://randomuser.me/api/portraits/women/63.jpg'},
-  {id:'d10',name:'Dr. Aditya Menon',dept:'emergency',exp:13,quals:'MBBS, MD (Emergency Medicine)',days:'24/7 rotation',avail:'On-site now', img:'https://randomuser.me/api/portraits/men/88.jpg'}
-];
-
-const PACKAGES = [
-  {id:'p1',name:'Essential Health Checkup',price:2999,note:'~45 minutes · Fasting required',popular:false,
-    items:['Complete blood count & sugar panel','Blood pressure & BMI assessment','Physician consultation & summary']},
-  {id:'p2',name:'Executive Health Checkup',price:7499,note:'2–3 hours · Most booked package',popular:true,
-    items:['Comprehensive blood panel (40+ markers)','ECG and abdominal ultrasound','Physician consultation with report walkthrough']},
-  {id:'p3',name:'Cardiac Care Package',price:9999,note:'~2 hours · Cardiologist-led',popular:false,
-    items:['ECG and 2D echocardiogram','Lipid profile & cardiac risk markers','Consultation with a cardiologist']},
-  {id:'p4',name:"Women's Wellness Package",price:6499,note:'~1.5 hours',popular:false,
-    items:['Pap smear & breast screening','Bone density assessment','Consultation with a gynaecologist']},
-  {id:'p5',name:'Senior Citizen Package (60+)',price:8999,note:'~2 hours',popular:false,
-    items:['Comprehensive geriatric health panel','Bone density, vision & hearing screen','Physician consultation & care plan']}
-];
-
-const TESTIMONIALS = [
-  {name:'Priya M.',area:'Bandra',text:'The cardiology team explained every test result in plain language before deciding on a plan. Never felt rushed.'},
-  {name:'Rohit S.',area:'Andheri',text:'Booked an appointment online and a coordinator called within the hour to confirm. My father was seen the same day.'},
-  {name:'Fatima A.',area:'Khar',text:'The executive checkup was thorough and the pricing was exactly what was listed — no surprises at the counter.'}
-];
-
-const FAQS = [
-  {q:'How do I book an appointment at Vitalis Hospitals?',a:'Use the "Book Appointment" button to submit your details online, or call our appointments desk at 022-6127-4000. A care coordinator confirms every request by phone.'},
-  {q:'Is emergency care available 24/7?',a:'Yes. Our emergency department and critical care unit are staffed around the clock. For emergencies, please call 1800-266-0000 directly rather than booking online.'},
-  {q:'Do you accept cashless insurance?',a:'Vitalis works with 50+ insurance partners for cashless treatment. Bring your policy details to the admissions desk, or check with us in advance for planned procedures.'},
-  {q:'Can I request a specific doctor for a health package?',a:'Yes — when booking a package appointment, you can note a preferred consultant and department in the form, and we\u2019ll do our best to match you.'},
-  {q:'How soon will my appointment be confirmed?',a:'Most requests are confirmed by phone within a few hours during working hours. Urgent requests are prioritised — mention urgency in the reason field.'},
-  {q:'Is the hospital accessible for elderly or wheelchair-using patients?',a:'Yes, the campus is fully wheelchair accessible with dedicated parking, ramps and elevator access to every department.'}
-];
-
-/* ============================================================
-   RENDER HELPERS
-   ============================================================ */
-function deptName(id){ const d = DEPARTMENTS.find(x=>x.id===id); return d ? d.name : id; }
-function iconSvg(id){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[id]||ICONS.general)+'</svg>'; }
-
-function renderDeptCard(d){
-  const conditions = d.conditions || [];
-  const procedures = d.procedures || [];
-  return '<div class="vt-card vt-dept-card" data-nav="departments" role="button" tabindex="0">'+
-    '<div class="vt-dept-card__icon">'+iconSvg(d.id)+'</div>'+
-    '<h4>'+d.name+'</h4><p>'+d.desc+'</p>'+
-    '<div class="vt-dept-details">'+
-      (conditions.length ? '<span class="vt-detail-label">Common Conditions</span><ul>'+conditions.map(c=>'<li>'+c+'</li>').join('')+'</ul>' : '')+
-      (procedures.length ? '<span class="vt-detail-label">Available Procedures</span><ul>'+procedures.map(p=>'<li>'+p+'</li>').join('')+'</ul>' : '')+
-    '</div>'+
-    '<button class="vt-dept-toggle"><span>View Details</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>'+
-    '</div>';
-}
-
-function renderDoctorCard(doc){
-  const favs = Store.get('vt_favourites', []);
-  const isFav = favs.includes(doc.id);
-  return '<div class="vt-card vt-doctor-card" data-doctor-id="'+doc.id+'">'+
-    '<div class="vt-doctor-card__top">'+
-      '<div class="vt-avatar">'+
-        (doc.img ? '<img src="'+doc.img+'" alt="'+doc.name+'" loading="lazy" />' : doc.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()) +
-      '</div>'+
-      '<div>'+
-        '<div class="vt-doctor-card__name">'+doc.name+'</div>'+
-        '<div class="vt-doctor-card__dept">'+deptName(doc.dept)+'</div>'+
-      '</div>'+
-      '<button class="vt-fav-btn'+(isFav?' is-fav':'')+'" data-fav-id="'+doc.id+'" aria-label="Save doctor">'+
-        '<svg viewBox="0 0 24 24" fill="'+(isFav?'currentColor':'none')+'" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>'+
-      '</button>'+
-    '</div>'+
-    '<div class="vt-doctor-card__meta">'+
-      '<span class="vt-tag">'+doc.exp+' yrs experience</span>'+
-      '<span class="vt-tag">'+doc.quals+'</span>'+
-      '<span class="vt-tag">'+doc.days+'</span>'+
-    '</div>'+
-    '<div class="vt-doctor-card__foot">'+
-      '<span class="vt-avail">● '+doc.avail+'</span>'+
-      '<button class="vt-btn vt-btn--primary vt-btn--sm" data-book-doctor="'+doc.id+'">Book</button>'+
-    '</div></div>';
-}
-
-function renderPkgCard(p){
-  return '<div class="vt-card vt-pkg-card'+(p.popular?' is-popular':'')+'">'+
-    (p.popular?'<span class="vt-pkg-badge">Most popular</span>':'')+
-    '<h4>'+p.name+'</h4>'+
-    '<div class="vt-pkg-price">₹'+p.price.toLocaleString('en-IN')+'</div>'+
-    '<div class="vt-pkg-note">'+p.note+'</div>'+
-    '<ul class="vt-pkg-list">'+p.items.map(i=>'<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><span>'+i+'</span></li>').join('')+'</ul>'+
-    '<button class="vt-btn vt-btn--outline vt-btn--block" data-book-package="'+p.id+'">Book this package</button>'+
-    '</div>';
-}
-
-function renderTestiCard(t){
-  const stars = Array(5).fill('<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>').join('');
-  return '<div class="vt-card vt-testi-card">'+
-    '<div class="vt-testi-stars">'+stars+'</div>'+
-    '<p>"'+t.text+'"</p>'+
-    '<div class="vt-testi-who"><div class="vt-avatar" style="width:38px;height:38px;font-size:13px;">'+t.name[0]+'</div>'+
-    '<div><strong>'+t.name+'</strong><span>'+t.area+'</span></div></div></div>';
-}
-
-function renderStats(){
-  const stats = [
-    {n:60,suffix:'+',label:'Specialist consultants'},
-    {n:300,suffix:'',label:'Hospital beds'},
-    {n:12,suffix:'',label:'Centres of care'},
-    {n:98,suffix:'%',label:'Patients who\u2019d refer us'}
+  // ================= DATA =================
+  const products = [
+    {id:1, name:"Oversized Wool Coat", cat:"Women", price:315, was:null, img:"https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=500&q=80", colors:["#1c1a16","#8a7a63"], sizes:["S","M","L","XL"]},
+    {id:2, name:"Structured Blazer", cat:"Men", price:248, was:null, img:"https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=500&q=80", colors:["#1c1a16","#5c5347"], sizes:["S","M","L","XL"]},
+    {id:3, name:"Ribbed Knit Sweater", cat:"New In", price:98, was:128, img:"https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=500&q=80", colors:["#efe4cb","#8a7a63"], sizes:["XS","S","M","L"]},
+    {id:4, name:"Tailored Wide Trouser", cat:"Women", price:145, was:null, img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=500&q=80", colors:["#1c1a16","#5c5347"], sizes:["S","M","L"]},
+    {id:5, name:"Merino Turtleneck", cat:"Men", price:112, was:null, img:"https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=500&q=80", colors:["#1c1a16","#efe4cb"], sizes:["S","M","L","XL"]},
+    {id:6, name:"Belted Trench Coat", cat:"New In", price:288, was:340, img:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=500&q=80", colors:["#8a7a63","#5c5347"], sizes:["S","M","L"]},
+    {id:7, name:"Cotton Poplin Shirt", cat:"Men", price:86, was:null, img:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500&q=80", colors:["#efe4cb","#1c1a16"], sizes:["S","M","L","XL"]},
+    {id:8, name:"Pleated Midi Skirt", cat:"Women", price:132, was:null, img:"https://images.unsplash.com/photo-1583496661160-fb5886a13d77?auto=format&fit=crop&w=500&q=80", img2:"https://images.unsplash.com/photo-1583496661160-fb5886a13d77?auto=format&fit=crop&w=500&q=80", colors:["#1c1a16","#8a7a63"], sizes:["XS","S","M"]}
   ];
-  return stats.map(s=>'<div class="vt-stat"><strong class="vt-count" data-target="'+s.n+'" data-suffix="'+s.suffix+'">0'+s.suffix+'</strong><span>'+s.label+'</span></div>').join('');
-}
 
-function renderFaq(list){
-  return list.map((f,i)=>'<div class="vt-faq-item'+(i===0?' is-open':'')+'">'+
-    '<button class="vt-faq-q"><span>'+f.q+'</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>'+
-    '<div class="vt-faq-a"><p>'+f.a+'</p></div></div>').join('');
-}
+  const ordersData = [
+    {ref:"#MN-10482", date:"Oct 2, 2026", status:"processing", statusLabel:"Processing", items:[{name:"Oversized Wool Coat", size:"M", price:315, img:products[0].img},{name:"Ribbed Knit Sweater", size:"S", price:98, img:products[2].img}], shipTo:"Jane Doe, 123 Fifth Avenue, New York, NY 10001, USA"},
+    {ref:"#MN-10391", date:"Sep 18, 2026", status:"transit", statusLabel:"In Transit", items:[{name:"Merino Turtleneck", size:"M", price:112, img:products[4].img}], shipTo:"Jane Doe, 123 Fifth Avenue, New York, NY 10001, USA"},
+    {ref:"#MN-10287", date:"Aug 30, 2026", status:"delivered", statusLabel:"Delivered", items:[{name:"Belted Trench Coat", size:"S", price:288, img:products[5].img},{name:"Cotton Poplin Shirt", size:"M", price:86, img:products[6].img},{name:"Tailored Wide Trouser", size:"M", price:145, img:products[3].img}], shipTo:"Jane Doe, 44 Lakeshore Rd, Toronto, ON M5B, Canada"},
+    {ref:"#MN-10118", date:"Jul 21, 2026", status:"delivered", statusLabel:"Delivered", items:[{name:"Pleated Midi Skirt", size:"S", price:132, img:products[7].img}], shipTo:"Jane Doe, 123 Fifth Avenue, New York, NY 10001, USA"}
+  ];
 
-/* Populate static content blocks */
-document.getElementById('homeDeptGrid').innerHTML = DEPARTMENTS.slice(0,8).map(renderDeptCard).join('');
-document.getElementById('departmentsFullGrid').innerHTML = DEPARTMENTS.map(renderDeptCard).join('');
-document.getElementById('homeDoctorGrid').innerHTML = DOCTORS.slice(0,3).map(renderDoctorCard).join('');
-document.getElementById('doctorsFullGrid').innerHTML = DOCTORS.map(renderDoctorCard).join('');
-document.getElementById('homePkgGrid').innerHTML = PACKAGES.slice(0,3).map(renderPkgCard).join('');
-document.getElementById('packagesFullGrid').innerHTML = PACKAGES.map(renderPkgCard).join('');
-document.getElementById('homeTestiGrid').innerHTML = TESTIMONIALS.map(renderTestiCard).join('');
-document.getElementById('homeStats').innerHTML = renderStats();
-document.getElementById('aboutStats').innerHTML = renderStats();
-document.getElementById('homeFaqList').innerHTML = renderFaq(FAQS);
+  const addressesData = [
+    {label:"Home", name:"Jane Doe", lines:"123 Fifth Avenue\nNew York, NY 10001\nUnited States", isDefault:true},
+    {label:"Work", name:"Jane Doe", lines:"44 Lakeshore Rd, Suite 300\nToronto, ON M5B 1B8\nCanada", isDefault:false}
+  ];
 
-const deptChipsWrap = document.getElementById('doctorDeptChips');
-const uniqueDoctorDepts = [...new Set(DOCTORS.map(d=>d.dept))];
-deptChipsWrap.innerHTML = uniqueDoctorDepts.map(id=>'<div class="vt-chip" data-dept-filter="'+id+'">'+deptName(id)+'</div>').join('');
+  let cart = [
+    {id:1, name:"Oversized Wool Coat", price:315, qty:1, size:"M", color:"#1c1a16", img:products[0].img},
+    {id:3, name:"Ribbed Knit Sweater", price:98, qty:1, size:"S", color:"#efe4cb", img:products[2].img}
+  ];
+  let wishlist = new Set();
+  let recentlyViewed = [];
+  let currentProduct = null;
+  let pdSelColor = null, pdSelSize = null, pdQtyVal = 1;
+  let checkoutStep = 1;
+  let activeSearchTerm = '';
 
-/* Populate appointment form selects */
-const apptDeptSel = document.getElementById('apptDept');
-apptDeptSel.innerHTML = '<option value="">Select a department</option>'+DEPARTMENTS.map(d=>'<option value="'+d.id+'">'+d.name+'</option>').join('');
-const apptDoctorSel = document.getElementById('apptDoctor');
-function refreshDoctorOptions(deptId){
-  const opts = DOCTORS.filter(d=> !deptId || d.dept===deptId);
-  apptDoctorSel.innerHTML = '<option value="">No preference — any available doctor</option>'+opts.map(d=>'<option value="'+d.id+'">'+d.name+' — '+deptName(d.dept)+'</option>').join('');
-}
-refreshDoctorOptions('');
-apptDeptSel.addEventListener('change', function(){ refreshDoctorOptions(this.value); });
-
-/* min date = today */
-document.getElementById('apptDate').min = new Date().toISOString().split('T')[0];
-
-/* ============================================================
-   VIEW ROUTER
-   ============================================================ */
-const VALID_VIEWS = ['home','doctors','departments','packages','appointment','about','contact'];
-function showView(name){
-  if(!VALID_VIEWS.includes(name)) name = 'home';
-  VALID_VIEWS.forEach(v=>{
-    const el = document.getElementById('view-'+v);
-    if(el) el.classList.toggle('is-active', v===name);
-  });
-  document.querySelectorAll('[data-nav]').forEach(el=>{
-    el.classList.toggle('is-active', el.dataset.nav===name);
-  });
-  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
-  reobserveReveals();
-}
-document.querySelectorAll('[data-nav]').forEach(el=>{
-  el.addEventListener('click', function(e){
-    if(this.tagName === 'A' && this.getAttribute('href')) e.preventDefault();
-    const name = this.dataset.nav;
-    location.hash = name;
-    showView(name);
-    const drawer = document.getElementById('vtDrawer');
-    drawer.classList.remove('is-open');
-    document.getElementById('vtHamburger').classList.remove('is-open');
-  });
-});
-window.addEventListener('hashchange', function(){
-  showView(location.hash.replace('#','') || 'home');
-});
-showView(location.hash.replace('#','') || 'home');
-
-/* ============================================================
-   NAVBAR: scroll shadow + hamburger
-   ============================================================ */
-window.addEventListener('scroll', function(){
-  document.getElementById('vtNav').classList.toggle('is-scrolled', window.scrollY > 8);
-}, {passive:true});
-
-const hamburgerBtn = document.getElementById('vtHamburger');
-const drawer = document.getElementById('vtDrawer');
-hamburgerBtn.addEventListener('click', function(){
-  const open = drawer.classList.toggle('is-open');
-  hamburgerBtn.classList.toggle('is-open', open);
-  hamburgerBtn.setAttribute('aria-expanded', open);
-});
-
-/* ============================================================
-   REVEAL ON SCROLL + COUNTERS
-   ============================================================ */
-document.querySelectorAll('.vt-section').forEach(s=> s.classList.add('vt-reveal'));
-
-let revealObserver;
-function reobserveReveals(){
-  if(revealObserver) revealObserver.disconnect();
-  revealObserver = new IntersectionObserver(function(entries){
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.vt-reveal:not(.is-visible)').forEach(el=>revealObserver.observe(el));
-
-  if(counterObserver) counterObserver.disconnect();
-  counterObserver = new IntersectionObserver(function(entries){
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.4});
-  document.querySelectorAll('.vt-count:not(.is-done)').forEach(el=>counterObserver.observe(el));
-}
-let counterObserver;
-function animateCounter(el){
-  el.classList.add('is-done');
-  const target = parseFloat(el.dataset.target)||0;
-  const suffix = el.dataset.suffix||'';
-  let cur = 0;
-  const step = Math.max(target/40,1);
-  const timer = setInterval(function(){
-    cur += step;
-    if(cur >= target){ cur = target; clearInterval(timer); }
-    el.textContent = Math.round(cur)+suffix;
-  }, 30);
-}
-reobserveReveals();
-
-/* ============================================================
-   FAQ ACCORDION (event delegation, works across views)
-   ============================================================ */
-document.addEventListener('click', function(e){
-  const q = e.target.closest('.vt-faq-q');
-  if(!q) return;
-  const item = q.closest('.vt-faq-item');
-  const wasOpen = item.classList.contains('is-open');
-  item.parentElement.querySelectorAll('.vt-faq-item').forEach(i=>i.classList.remove('is-open'));
-  if(!wasOpen) item.classList.add('is-open');
-});
-
-/* ============================================================
-   DOCTOR SEARCH + FILTER
-   ============================================================ */
-const doctorSearchInput = document.getElementById('doctorSearch');
-let activeDeptFilter = 'all';
-function applyDoctorFilters(){
-  const term = (doctorSearchInput.value||'').trim().toLowerCase();
-  const filtered = DOCTORS.filter(d=>{
-    const matchesDept = activeDeptFilter==='all' || d.dept===activeDeptFilter;
-    const matchesTerm = !term || d.name.toLowerCase().includes(term) || deptName(d.dept).toLowerCase().includes(term);
-    return matchesDept && matchesTerm;
-  });
-  document.getElementById('doctorsFullGrid').innerHTML = filtered.map(renderDoctorCard).join('');
-  document.getElementById('doctorsEmpty').style.display = filtered.length ? 'none' : 'block';
-}
-doctorSearchInput.addEventListener('input', applyDoctorFilters);
-document.querySelector('.vt-filters').addEventListener('click', function(e){
-  const chip = e.target.closest('[data-dept-filter]');
-  if(!chip) return;
-  this.querySelectorAll('[data-dept-filter]').forEach(c=>c.classList.remove('is-active'));
-  chip.classList.add('is-active');
-  activeDeptFilter = chip.dataset.deptFilter;
-  applyDoctorFilters();
-});
-
-/* ============================================================
-   FAVOURITE DOCTORS
-   ============================================================ */
-document.addEventListener('click', function(e){
-  const btn = e.target.closest('[data-fav-id]');
-  if(!btn) return;
-  const id = btn.dataset.favId;
-  let favs = Store.get('vt_favourites', []);
-  if(favs.includes(id)){
-    favs = favs.filter(f=>f!==id);
-    btn.classList.remove('is-fav');
-    btn.querySelector('svg').setAttribute('fill','none');
-    showToast('Removed from saved doctors');
-  } else {
-    favs.push(id);
-    btn.classList.add('is-fav');
-    btn.querySelector('svg').setAttribute('fill','currentColor');
-    showToast('Saved to your doctors');
+  // ================= NAV =================
+  function goTo(page, params){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+page).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    if(page==='products') renderProductsPage(params && params.cat);
+    if(page==='cart') renderCart();
+    if(page==='checkout') { checkoutGoStep(1); renderCheckoutSummary(); }
+    if(page==='wishlist') renderWishlistPage();
+    if(page==='orders') renderOrdersTable();
+    if(page==='addresses') renderAddresses();
+    triggerReveal();
+    closeDrawer();
   }
-  Store.set('vt_favourites', favs);
-});
 
-/* ============================================================
-   DEPARTMENT EXPAND/COLLAPSE (smooth accordion)
-   ============================================================ */
-document.addEventListener('click', function(e){
-  const toggle = e.target.closest('.vt-dept-toggle');
-  if(!toggle) return;
-  const card = toggle.closest('.vt-dept-card');
-  if(!card) return;
-  const wasExpanded = card.classList.contains('is-expanded');
-  // close all other cards in the same grid
-  const grid = card.closest('.vt-dept-grid');
-  if(grid){
-    grid.querySelectorAll('.vt-dept-card.is-expanded').forEach(c=>{
-      if(c !== card) c.classList.remove('is-expanded');
-    });
+  function openDrawer(){document.getElementById('mobileDrawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('open');}
+  function closeDrawer(){document.getElementById('mobileDrawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('open');}
+
+  function openSearch(){document.getElementById('searchOverlay').classList.add('open');document.getElementById('searchInput').focus();}
+  function closeSearch(){document.getElementById('searchOverlay').classList.remove('open');}
+  function quickSearch(term){document.getElementById('searchInput').value=term;doSearch();}
+  function doSearch(){
+    const term = document.getElementById('searchInput').value.trim();
+    closeSearch();
+    activeSearchTerm = term;
+    goTo('products',{cat:''});
+    filterProducts();
   }
-  card.classList.toggle('is-expanded', !wasExpanded);
-});
+  function clearSearch(){
+    activeSearchTerm = '';
+    document.getElementById('searchActivePillWrap').style.display='none';
+    document.getElementById('productsTitle').textContent = 'All Products';
+    filterProducts();
+  }
 
-/* ============================================================
-   BOOK BUTTONS → jump to appointment view, prefill form
-   ============================================================ */
-let pendingPackage = null;
+  // ================= TOAST =================
+  let toastTimer=null;
+  function showToast(msg, undoFn){
+    const t = document.getElementById('toast');
+    t.innerHTML = `<span class="msg">${msg}</span>` + (undoFn ? `<span class="undo-btn" id="toastUndo">Undo</span>` : '');
+    t.classList.add('show');
+    if(undoFn){ document.getElementById('toastUndo').onclick = ()=>{ undoFn(); t.classList.remove('show'); }; }
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+  }
+  function bumpCart(){
+    const btn = document.getElementById('cartIconBtn');
+    btn.classList.remove('cart-bump'); void btn.offsetWidth; btn.classList.add('cart-bump');
+  }
+  function bumpWishlist(){
+    const btn = document.getElementById('wishlistIconBtn');
+    btn.classList.remove('cart-bump'); void btn.offsetWidth; btn.classList.add('cart-bump');
+  }
 
-document.addEventListener('click', function(e){
-  const docBtn = e.target.closest('[data-book-doctor]');
-  const pkgBtn = e.target.closest('[data-book-package]');
-  if(docBtn){
-    const doc = DOCTORS.find(d=>d.id===docBtn.dataset.bookDoctor);
-    if(doc){
-      apptDeptSel.value = doc.dept;
-      refreshDoctorOptions(doc.dept);
-      apptDoctorSel.value = doc.id;
+  window.addEventListener('scroll', ()=>{
+    document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+  },{threshold:0.12});
+  function triggerReveal(){ document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el)); }
+
+  // ================= WISHLIST COUNT =================
+  function updateWishlistCount(){
+    const c = wishlist.size;
+    const el = document.getElementById('wishlistCount');
+    el.textContent = c;
+    el.style.display = c>0 ? 'flex' : 'none';
+  }
+
+  // ================= PRODUCT CARD RENDER =================
+  function productCardHTML(p){
+    const isWish = wishlist.has(p.id);
+    return `
+      <div class="product-card" onclick="openProduct(${p.id})">
+        <div class="product-img-wrap">
+          ${p.was ? '<span class="sale-tag">Sale</span>' : ''}
+          <span class="wishlist-dot ${isWish?'active':''}" onclick="event.stopPropagation();toggleWishlistCard(${p.id}, this)">${isWish?'♥':'♡'}</span>
+          <img class="img-main" src="${p.img}" alt="${p.name}">
+          <img class="img-alt" src="${p.img2}" alt="${p.name} alternate">
+          <div class="quickadd-bar">
+            <span onclick="event.stopPropagation();quickAddToCart(${p.id})">Quick Add</span>
+            <span class="divider"></span>
+            <span onclick="event.stopPropagation();openProduct(${p.id})">View</span>
+          </div>
+        </div>
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.was?'<span class="was">$'+p.was+'</span>':''}$${p.price}</div>
+      </div>
+    `;
+  }
+  function toggleWishlistCard(id, el){
+    if(wishlist.has(id)){
+      wishlist.delete(id); el.classList.remove('active'); el.textContent='♡';
+    } else {
+      wishlist.add(id); el.classList.add('active'); el.textContent='♥'; showToast('Added to wishlist'); bumpWishlist();
     }
-    location.hash='appointment'; showView('appointment');
+    updateWishlistCount();
+    if(document.getElementById('page-wishlist').classList.contains('active')) renderWishlistPage();
   }
-  if(pkgBtn){
-    const pkg = PACKAGES.find(p=>p.id===pkgBtn.dataset.bookPackage);
-    pendingPackage = pkg || null;
-    renderPkgPill();
-    location.hash='appointment'; showView('appointment');
+  function quickAddToCart(id){
+    const p = products.find(x=>x.id===id);
+    if(!p) return;
+    cart.push({id:p.id, name:p.name, price:p.price, qty:1, size:p.sizes[0], color:p.colors[0], img:p.img});
+    updateCartCount(); bumpCart();
+    showToast('Added '+p.name+' to cart (size '+p.sizes[0]+')', ()=>{ cart.pop(); updateCartCount(); });
   }
-});
 
-function renderPkgPill(){
-  const wrap = document.getElementById('pkgNotePill');
-  if(!pendingPackage){ wrap.innerHTML=''; return; }
-  wrap.innerHTML = '<div class="vt-pkg-note-pill">Booking package: '+pendingPackage.name+' &nbsp;<button type="button" id="clearPkgBtn">remove</button></div>';
-  document.getElementById('clearPkgBtn').addEventListener('click', function(){
-    pendingPackage = null; renderPkgPill();
+  // ================= HOME TRENDING =================
+  function renderTrending(){
+    const track = document.getElementById('trendingTrack');
+    track.innerHTML = Array(4).fill(0).map(()=>`
+      <div class="product-card" style="flex:0 0 296px;">
+        <div class="product-img-wrap skel"></div>
+        <div class="skel-line skel"></div>
+        <div class="skel-line short skel"></div>
+      </div>
+    `).join('');
+    setTimeout(()=>{ track.innerHTML = products.map(productCardHTML).join(''); }, 350);
+  }
+  function scrollCarousel(dir){
+    document.getElementById('trendingTrack').scrollBy({left: dir*332, behavior:'smooth'});
+  }
+
+  // ================= PRODUCTS LISTING / SEARCH =================
+  function renderProductsPage(presetCat){
+    if(presetCat!==undefined){
+      document.querySelectorAll('#page-products input[type=checkbox]').forEach(cb=>cb.checked=false);
+      if(presetCat){
+        const cb = document.querySelector('#page-products input[value="'+presetCat+'"]');
+        if(cb) cb.checked = true;
+        document.getElementById('productsTitle').textContent = presetCat;
+        document.getElementById('productsCrumb').textContent = presetCat;
+      } else if(!activeSearchTerm) {
+        document.getElementById('productsTitle').textContent = 'All Products';
+        document.getElementById('productsCrumb').textContent = 'Products';
+      }
+    }
+    if(activeSearchTerm){
+      document.getElementById('productsTitle').textContent = 'Search Results';
+      document.getElementById('productsCrumb').textContent = 'Search';
+      document.getElementById('searchActivePillWrap').style.display = 'block';
+      document.getElementById('searchTermLabel').textContent = activeSearchTerm;
+    } else {
+      document.getElementById('searchActivePillWrap').style.display = 'none';
+    }
+    filterProducts();
+  }
+  function filterProducts(){
+    const checked = Array.from(document.querySelectorAll('#page-products .filter-group input[type=checkbox]:checked')).map(c=>c.value);
+    let list = checked.length ? products.filter(p=>checked.includes(p.cat)) : products;
+    if(activeSearchTerm){
+      const q = activeSearchTerm.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+    }
+    const sort = document.getElementById('sortSelect').value;
+    if(sort==='low') list = [...list].sort((a,b)=>a.price-b.price);
+    if(sort==='high') list = [...list].sort((a,b)=>b.price-a.price);
+    const grid = document.getElementById('productsGrid');
+    if(list.length===0){
+      const msg = activeSearchTerm ? `No results for “${activeSearchTerm}”` : 'No pieces match your filters';
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="glyph">🔍</div><h3>${msg}</h3><p>Try a different search term or clear your filters to browse the full collection.</p><button class="btn btn-outline" onclick="clearFilters()">Clear All Filters</button></div>`;
+    } else {
+      grid.innerHTML = list.map(productCardHTML).join('');
+    }
+    document.getElementById('resultsCount').textContent = 'Showing '+list.length+' product'+(list.length!==1?'s':'');
+  }
+  function clearFilters(){
+    document.querySelectorAll('#page-products input[type=checkbox]').forEach(cb=>cb.checked=false);
+    document.getElementById('sortSelect').value = '';
+    activeSearchTerm = '';
+    document.getElementById('searchActivePillWrap').style.display='none';
+    document.getElementById('productsTitle').textContent = 'All Products';
+    document.getElementById('productsCrumb').textContent = 'Products';
+    filterProducts();
+  }
+
+  // ================= WISHLIST PAGE =================
+  function renderWishlistPage(){
+    const grid = document.getElementById('wishlistGrid');
+    const items = products.filter(p=>wishlist.has(p.id));
+    document.getElementById('wishlistSubtitle').textContent = items.length ? `${items.length} piece${items.length!==1?'s':''} you've set aside.` : "Nothing saved yet.";
+    if(items.length===0){
+      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="glyph">♡</div><h3>Your wishlist is empty</h3><p>Tap the heart on any piece to save it here for later.</p><button class="btn btn-dark" onclick="goTo('products',{cat:''})">Browse the Collection</button></div>`;
+    } else {
+      grid.innerHTML = items.map(productCardHTML).join('');
+    }
+  }
+
+  // ================= PRODUCT DETAIL =================
+  function openProduct(id){
+    currentProduct = products.find(p=>p.id===id);
+    if(!currentProduct) return;
+    pdSelColor = currentProduct.colors[0];
+    pdSelSize = null;
+    pdQtyVal = 1;
+    document.getElementById('pdCat').textContent = currentProduct.cat;
+    document.getElementById('pdName').textContent = currentProduct.name;
+    document.getElementById('pdCrumb').textContent = currentProduct.name;
+    document.getElementById('pdPrice').textContent = '$'+currentProduct.price;
+    document.getElementById('pdDesc').textContent = 'Crafted from premium materials with meticulous attention to detail. A versatile piece designed to layer beautifully across seasons, offering both comfort and a refined silhouette.';
+    document.getElementById('pdMainImg').src = currentProduct.img;
+    document.getElementById('stickyName').textContent = currentProduct.name;
+    document.getElementById('stickyPrice').textContent = '$'+currentProduct.price;
+    document.getElementById('pdThumbs').innerHTML = [currentProduct.img, currentProduct.img2, currentProduct.img].map((im,i)=>`
+      <div class="pd-thumb ${i===0?'active':''}" onclick="setMainImg('${im}', this)"><img src="${im}"></div>
+    `).join('');
+    document.getElementById('pdColors').innerHTML = currentProduct.colors.map(c=>`
+      <div class="color-dot ${c===pdSelColor?'active':''}" style="background:${c};" onclick="selectColor('${c}', this)"></div>
+    `).join('');
+    document.getElementById('pdColorName').textContent = colorName(pdSelColor);
+    document.getElementById('pdSizes').innerHTML = currentProduct.sizes.map(s=>`
+      <div class="size-box" onclick="selectSize('${s}', this)">${s}</div>
+    `).join('');
+    document.getElementById('pdQty').textContent = pdQtyVal;
+    const wbtn = document.getElementById('pdWishlistBtn');
+    if(wishlist.has(id)){wbtn.classList.add('active');wbtn.textContent='♥';}
+    else{wbtn.classList.remove('active');wbtn.textContent='♡';}
+    document.getElementById('relatedGrid').innerHTML = products.filter(p=>p.id!==id).slice(0,4).map(productCardHTML).join('');
+
+    recentlyViewed = recentlyViewed.filter(p=>p.id!==id);
+    recentlyViewed.unshift(currentProduct);
+    recentlyViewed = recentlyViewed.slice(0,4);
+    const rvWrap = document.getElementById('recentlyViewedWrap');
+    const others = recentlyViewed.filter(p=>p.id!==id);
+    if(others.length>0){
+      rvWrap.style.display='block';
+      document.getElementById('recentlyViewedGrid').innerHTML = others.map(productCardHTML).join('');
+    } else { rvWrap.style.display='none'; }
+
+    goTo('product');
+    setupStickyAddBar();
+  }
+  function colorName(hex){
+    const map = {"#1c1a16":"Black","#8a7a63":"Camel","#efe4cb":"Champagne","#5c5347":"Espresso"};
+    return map[hex] || hex;
+  }
+  function setMainImg(src, el){
+    document.getElementById('pdMainImg').src = src;
+    document.querySelectorAll('.pd-thumb').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function selectColor(c, el){
+    pdSelColor = c;
+    document.querySelectorAll('#pdColors .color-dot').forEach(d=>d.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('pdColorName').textContent = colorName(c);
+  }
+  function selectSize(s, el){
+    pdSelSize = s;
+    document.querySelectorAll('#pdSizes .size-box').forEach(d=>d.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function changeQty(delta){
+    pdQtyVal = Math.max(1, pdQtyVal+delta);
+    document.getElementById('pdQty').textContent = pdQtyVal;
+  }
+  function togglePdWishlist(){
+    if(!currentProduct) return;
+    const btn = document.getElementById('pdWishlistBtn');
+    if(wishlist.has(currentProduct.id)){wishlist.delete(currentProduct.id);btn.classList.remove('active');btn.textContent='♡';}
+    else{wishlist.add(currentProduct.id);btn.classList.add('active');btn.textContent='♥';showToast('Added to wishlist');bumpWishlist();}
+    updateWishlistCount();
+  }
+  function addToCartFromPD(){
+    if(!currentProduct) return;
+    if(!pdSelSize){
+      const sizesEl = document.getElementById('pdSizes');
+      sizesEl.classList.add('shake');
+      setTimeout(()=>sizesEl.classList.remove('shake'), 400);
+      showToast('Please select a size');
+      return;
+    }
+    cart.push({id:currentProduct.id, name:currentProduct.name, price:currentProduct.price, qty:pdQtyVal, size:pdSelSize, color:pdSelColor, img:currentProduct.img});
+    updateCartCount(); bumpCart();
+    showToast('Added to cart', ()=>{ cart.pop(); updateCartCount(); });
+  }
+  function toggleAcc(el){
+    const block = el.parentElement;
+    block.classList.toggle('open');
+  }
+  function setupStickyAddBar(){
+    const target = document.getElementById('pdAddBtn');
+    const bar = document.getElementById('stickyAddBar');
+    if(!target) return;
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ bar.classList.toggle('show', !e.isIntersecting && window.innerWidth<=820); });
+    },{threshold:0});
+    obs.observe(target);
+  }
+
+  // ================= CART =================
+  function updateCartCount(){
+    const count = cart.reduce((s,i)=>s+i.qty,0);
+    document.getElementById('cartCount').textContent = count;
+  }
+  function renderCart(){
+    const wrap = document.getElementById('cartItemsWrap');
+    const checkoutBtn = document.getElementById('cartCheckoutBtn');
+    if(cart.length===0){
+      wrap.innerHTML = `<div class="empty-state"><div class="glyph">🛍</div><h3>Your cart is quietly empty</h3><p>Explore the collection and find something worth keeping.</p><button class="btn btn-dark" onclick="goTo('products',{cat:''})">Continue Shopping</button></div>`;
+      if(checkoutBtn) checkoutBtn.setAttribute('disabled','disabled');
+    } else {
+      if(checkoutBtn) checkoutBtn.removeAttribute('disabled');
+      wrap.innerHTML = cart.map((item,idx)=>`
+        <div class="cart-item" id="cartItem${idx}">
+          <img src="${item.img}">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-meta">Size: ${item.size} &nbsp;·&nbsp; Color: <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${item.color};vertical-align:middle;"></span></div>
+            <div class="cart-item-actions">
+              <div class="qty-control">
+                <button onclick="changeCartQty(${idx},-1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="changeCartQty(${idx},1)">+</button>
+              </div>
+              <span class="remove-link" onclick="removeCartItem(${idx})">Remove</span>
+            </div>
+          </div>
+          <div class="cart-item-price">$${(item.price*item.qty).toFixed(0)}</div>
+        </div>
+      `).join('');
+    }
+    calcTotals('cart');
+  }
+  function changeCartQty(idx, delta){
+    cart[idx].qty = Math.max(1, cart[idx].qty+delta);
+    renderCart(); updateCartCount();
+  }
+  function removeCartItem(idx){
+    const removedItem = cart[idx];
+    const el = document.getElementById('cartItem'+idx);
+    if(el) el.classList.add('removing');
+    setTimeout(()=>{
+      cart.splice(idx,1);
+      renderCart(); updateCartCount();
+      showToast('Item removed', ()=>{ cart.splice(idx,0,removedItem); renderCart(); updateCartCount(); });
+    }, 250);
+  }
+  function calcTotals(prefix){
+    const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    const shipping = subtotal>150 || subtotal===0 ? 0 : 12;
+    const tax = subtotal*0.08;
+    const total = subtotal+shipping+tax;
+    const p = prefix==='cart' ? 'cart' : (prefix==='co' ? 'co' : prefix);
+    document.getElementById(p+'Subtotal').textContent = '$'+subtotal.toFixed(0);
+    document.getElementById(p+'Shipping').textContent = shipping===0 ? 'Free' : '$'+shipping.toFixed(0);
+    document.getElementById(p+'Tax').textContent = '$'+tax.toFixed(0);
+    document.getElementById(p+'Total').textContent = '$'+total.toFixed(0);
+  }
+  function renderCheckoutSummary(){ calcTotals('co'); }
+
+  // ================= CHECKOUT =================
+  function checkoutGoStep(step){
+    checkoutStep = step;
+    document.querySelectorAll('.checkout-step-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('checkoutStep'+step).classList.add('active');
+    document.querySelectorAll('#checkoutStepsBar .step').forEach(s=>{
+      const n = parseInt(s.dataset.step,10);
+      s.classList.remove('active','done');
+      if(n===step) s.classList.add('active');
+      else if(n<step) s.classList.add('done');
+    });
+    if(step===3){
+      const first = document.getElementById('coFirstName').value || 'Jane';
+      const last = document.getElementById('coLastName').value || 'Doe';
+      const city = document.getElementById('coCity').value || 'New York';
+      const country = document.getElementById('coCountry').value;
+      const payActive = document.querySelector('.pay-method.active');
+      document.getElementById('reviewShipTo').textContent = `${first} ${last}, ${city}, ${country}`;
+      document.getElementById('reviewPayment').textContent = payActive ? payActive.textContent : 'Credit Card';
+      const count = cart.reduce((s,i)=>s+i.qty,0);
+      document.getElementById('reviewItemCount').textContent = count+' item'+(count!==1?'s':'')+' in your order';
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function selectPay(el){
+    document.querySelectorAll('.pay-method').forEach(p=>p.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function placeOrder(){
+    goTo('success');
+  }
+
+  // ================= ORDERS =================
+  function statusClass(s){
+    return s==='delivered' ? 'status-delivered' : (s==='transit' ? 'status-transit' : 'status-processing');
+  }
+  function renderOrdersTable(){
+    document.getElementById('ordersTableBody').innerHTML = ordersData.map(o=>{
+      const total = o.items.reduce((s,i)=>s+i.price,0);
+      return `
+        <tr onclick="openOrderDetail('${o.ref}')">
+          <td>${o.ref}</td><td>${o.date}</td><td>${o.items.length} item${o.items.length!==1?'s':''}</td>
+          <td>$${total.toFixed(2)}</td><td><span class="status-pill ${statusClass(o.status)}">${o.statusLabel}</span></td>
+        </tr>
+      `;
+    }).join('');
+  }
+  function openOrderDetail(ref){
+    const o = ordersData.find(x=>x.ref===ref);
+    if(!o) return;
+    document.getElementById('odCrumb').textContent = o.ref;
+    document.getElementById('odTitle').textContent = 'Order '+o.ref;
+    document.getElementById('odSub').textContent = 'Placed on '+o.date;
+    document.getElementById('odShipTo').textContent = o.shipTo;
+
+    const steps = [
+      {key:'placed', label:'Order Placed', desc:o.date},
+      {key:'processing', label:'Processing', desc:'Preparing your items'},
+      {key:'transit', label:'In Transit', desc:'On its way to you'},
+      {key:'delivered', label:'Delivered', desc:'Arrived safely'}
+    ];
+    const statusOrder = ['placed','processing','transit','delivered'];
+    const currentIdx = statusOrder.indexOf(o.status==='processing' ? 'processing' : o.status);
+    document.getElementById('odTimeline').innerHTML = steps.map((s,i)=>{
+      let cls = '';
+      if(i < currentIdx || (o.status==='delivered')) cls='done';
+      if(i===currentIdx && o.status!=='delivered') cls='current';
+      if(o.status==='delivered') cls = i<=3 ? 'done' : '';
+      return `
+        <div class="tl-step ${cls}">
+          <div class="tl-dot">${cls==='done'?'✓':(i+1)}</div>
+          <div class="tl-info"><b>${s.label}</b><span>${s.desc}</span></div>
+        </div>
+      `;
+    }).join('');
+
+    document.getElementById('odItems').innerHTML = o.items.map(it=>`
+      <div class="order-item-row">
+        <img src="${it.img}">
+        <div class="info"><div class="name">${it.name}</div><div class="meta">Size ${it.size}</div></div>
+        <div class="price">$${it.price.toFixed(2)}</div>
+      </div>
+    `).join('');
+
+    const subtotal = o.items.reduce((s,i)=>s+i.price,0);
+    const shipping = subtotal>150?0:12;
+    const tax = subtotal*0.08;
+    document.getElementById('odSubtotal').textContent = '$'+subtotal.toFixed(2);
+    document.getElementById('odShipping').textContent = shipping===0?'Free':'$'+shipping.toFixed(2);
+    document.getElementById('odTax').textContent = '$'+tax.toFixed(2);
+    document.getElementById('odTotal').textContent = '$'+(subtotal+shipping+tax).toFixed(2);
+
+    goTo('order-detail');
+  }
+
+  // ================= ADDRESSES =================
+  function renderAddresses(){
+    const grid = document.getElementById('addressGrid');
+    grid.innerHTML = addressesData.map((a,i)=>`
+      <div class="address-card ${a.isDefault?'default':''}">
+        ${a.isDefault?'<span class="address-default-tag">Default</span>':''}
+        <div class="label-name">${a.label}</div>
+        <h4>${a.name}</h4>
+        <p>${a.lines.replace(/\n/g,'<br>')}</p>
+        <div class="address-actions">
+          <span onclick="showToast('Edit address — demo only')">Edit</span>
+          <span onclick="removeAddress(${i})">Remove</span>
+          ${!a.isDefault?`<span onclick="setDefaultAddress(${i})">Set as Default</span>`:''}
+        </div>
+      </div>
+    `).join('') + `
+      <div class="address-card add-new" onclick="showToast('Add address — demo only')">
+        <span class="plus-glyph">+</span>
+        <span>Add New Address</span>
+      </div>
+    `;
+  }
+  function removeAddress(i){
+    addressesData.splice(i,1);
+    renderAddresses();
+    showToast('Address removed');
+  }
+  function setDefaultAddress(i){
+    addressesData.forEach((a,idx)=>a.isDefault = idx===i);
+    renderAddresses();
+    showToast('Default address updated');
+  }
+
+  // ================= INIT =================
+  document.addEventListener('DOMContentLoaded', ()=>{
+    renderTrending();
+    updateCartCount();
+    updateWishlistCount();
+    triggerReveal();
   });
-}
-
-/* ============================================================
-   TIME CHIPS
-   ============================================================ */
-let selectedTime = '';
-document.getElementById('apptTimeChips').addEventListener('click', function(e){
-  const chip = e.target.closest('.vt-time-chip');
-  if(!chip) return;
-  this.querySelectorAll('.vt-time-chip').forEach(c=>c.classList.remove('is-selected'));
-  chip.classList.add('is-selected');
-  selectedTime = chip.dataset.time;
-});
-
-/* ============================================================
-   APPOINTMENT FORM SUBMIT
-   ============================================================ */
-function genId(){
-  return 'VT-'+Date.now().toString(36).slice(-5).toUpperCase()+'-'+Math.floor(100+Math.random()*900);
-}
-function renderAppointments(){
-  const list = Store.get('vt_appointments', []);
-  const wrap = document.getElementById('apptListWrap');
-  if(!list.length){
-    wrap.innerHTML = '<div class="vt-empty" style="padding:24px 10px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><p>No appointment requests yet. Submitted requests will appear here.</p></div>';
-    return;
-  }
-  wrap.innerHTML = list.slice().reverse().map(a=>
-    '<div class="vt-appt-item" data-appt-id="'+a.id+'">'+
-      '<div class="vt-appt-item__top"><span class="vt-appt-item__id">'+a.id+'</span><span class="vt-appt-status">'+a.status+'</span></div>'+
-      '<div class="vt-appt-item__meta">'+
-        '<strong>'+a.name+'</strong> · '+deptName(a.department)+
-        (a.doctor ? ' · '+ (DOCTORS.find(d=>d.id===a.doctor)?.name || '') : ' · Any available doctor')+'<br>'+
-        a.date+' · '+a.time+
-        (a.package ? '<br>Package: '+a.package : '')+
-      '</div>'+
-      '<button class="vt-appt-cancel" data-cancel-id="'+a.id+'">Cancel request</button>'+
-    '</div>'
-  ).join('');
-}
-renderAppointments();
-
-document.getElementById('apptListWrap').addEventListener('click', function(e){
-  const btn = e.target.closest('[data-cancel-id]');
-  if(!btn) return;
-  let list = Store.get('vt_appointments', []);
-  list = list.filter(a=>a.id !== btn.dataset.cancelId);
-  Store.set('vt_appointments', list);
-  renderAppointments();
-  showToast('Appointment request cancelled');
-});
-
-document.getElementById('apptForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const msgEl = document.getElementById('apptFormMsg');
-  const name = document.getElementById('apptName').value.trim();
-  const phone = document.getElementById('apptPhone').value.trim();
-  const department = apptDeptSel.value;
-  const date = document.getElementById('apptDate').value;
-
-  if(!name || !phone || !department || !date || !selectedTime){
-    msgEl.textContent = 'Please fill in your name, phone, department, date and a preferred time.';
-    msgEl.className = 'vt-form-msg is-error';
-    return;
-  }
-  if(!/^[0-9+\-\s]{10,14}$/.test(phone)){
-    msgEl.textContent = 'Please enter a valid phone number.';
-    msgEl.className = 'vt-form-msg is-error';
-    return;
-  }
-
-  const appt = {
-    id: genId(),
-    name, phone,
-    email: document.getElementById('apptEmail').value.trim(),
-    department,
-    doctor: apptDoctorSel.value,
-    date,
-    time: selectedTime,
-    reason: document.getElementById('apptReason').value.trim(),
-    package: pendingPackage ? pendingPackage.name : '',
-    status: 'Pending confirmation',
-    createdAt: new Date().toISOString()
-  };
-  const list = Store.get('vt_appointments', []);
-  list.push(appt);
-  Store.set('vt_appointments', list);
-
-  msgEl.className = 'vt-form-msg';
-  this.reset();
-  selectedTime = '';
-  document.querySelectorAll('.vt-time-chip').forEach(c=>c.classList.remove('is-selected'));
-  pendingPackage = null;
-  renderPkgPill();
-  refreshDoctorOptions('');
-  renderAppointments();
-  showToast('Appointment request '+appt.id+' submitted — we\u2019ll call to confirm.');
-});
-
-/* ============================================================
-   CONTACT FORM
-   ============================================================ */
-document.getElementById('contactForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const msgEl = document.getElementById('contactFormMsg');
-  const name = document.getElementById('cName').value.trim();
-  const email = document.getElementById('cEmail').value.trim();
-  const message = document.getElementById('cMsg').value.trim();
-  if(!name || !email || !message){
-    msgEl.textContent = 'Please fill in all fields.';
-    msgEl.className = 'vt-form-msg is-error';
-    return;
-  }
-  const list = Store.get('vt_messages', []);
-  list.push({name,email,message,createdAt:new Date().toISOString()});
-  Store.set('vt_messages', list);
-  msgEl.className='vt-form-msg';
-  this.reset();
-  showToast('Message sent — we\u2019ll reply within one business day.');
-});
-
-/* ============================================================
-   NEWSLETTER
-   ============================================================ */
-document.getElementById('newsletterBtn').addEventListener('click', function(){
-  const input = document.getElementById('newsletterEmail');
-  const val = input.value.trim();
-  if(!val || !val.includes('@')){ showToast('Please enter a valid email'); return; }
-  const list = Store.get('vt_newsletter', []);
-  list.push(val);
-  Store.set('vt_newsletter', list);
-  input.value='';
-  showToast('Subscribed to Vitalis health updates');
-});
-
-/* ============================================================
-   TOAST
-   ============================================================ */
-function showToast(text){
-  const wrap = document.getElementById('vtToastWrap');
-  const toast = document.createElement('div');
-  toast.className = 'vt-toast';
-  toast.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg><span>'+text+'</span>';
-  wrap.appendChild(toast);
-  requestAnimationFrame(()=> toast.classList.add('is-visible'));
-  setTimeout(function(){
-    toast.classList.remove('is-visible');
-    setTimeout(()=> toast.remove(), 300);
-  }, 3600);
-}
-
-})();
 </script>
+
 </body>
 </html>
