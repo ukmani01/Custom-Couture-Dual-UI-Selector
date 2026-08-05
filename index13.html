@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ALAB Technology | Engineering That Moves Your Business Forward</title>
+    <title>Reva Web Solution — Build. Scale. Sustain.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
@@ -19,16 +19,15 @@
             --bg-white: #ffffff;
             --bg-off-white: #F1F3F7;
 
-            /* Brand Colors */
-            --primary: #FF5A36;
-            --primary-hover: #E04825;
-            --primary-light: rgba(255, 90, 54, 0.1);
-            --primary-dark: #c94a15;
-            --primary-gradient: linear-gradient(135deg, #FF5A36 0%, #E04825 100%);
+            /* Brand Colors – Water/Reva Theme: Deep Blue & Teal */
+            --primary: #0EA5E9;        /* Sky blue (primary) */
+            --primary-hover: #0284C7;
+            --primary-light: rgba(14, 165, 233, 0.1);
+            --primary-dark: #0369A1;
+            --primary-gradient: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+            --secondary-blue: #1E293B;
+            --accent-teal: #14B8A6;
             
-            --accent-blue: #2563EB; /* Specifically for slider */
-
-            /* Typography Colors */
             --text-light: #ffffff;
             --text-dark: #0F172A;
             --text-muted: #94A3B8;
@@ -57,8 +56,8 @@
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
             --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
             --shadow-float: 0 12px 40px rgba(0, 0, 0, 0.08);
-            --shadow-glow: 0 8px 30px rgba(255, 90, 54, 0.3);
-            --shadow-glow-sm: 0 4px 20px rgba(255, 90, 54, 0.25);
+            --shadow-glow: 0 8px 30px rgba(14, 165, 233, 0.3);
+            --shadow-glow-sm: 0 4px 20px rgba(14, 165, 233, 0.25);
             --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12);
 
             /* Transitions & Layout */
@@ -123,9 +122,9 @@
         .delay-5 { transition-delay: 0.5s; }
 
         @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(255, 90, 54, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(255, 90, 54, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 90, 54, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
         }
 
         @keyframes float-slow {
@@ -258,7 +257,7 @@
         .menu-toggle span { width: 20px; height: 2px; background-color: var(--text-dark); border-radius: 2px; transition: var(--transition); }
 
         /* ==========================================================================
-           4. HERO SECTION
+           4. HERO SECTION – UPDATED
            ========================================================================== */
         .hero {
             background: var(--bg-dark);
@@ -286,9 +285,9 @@
             pointer-events: none;
             z-index: 0;
         }
-        .hero-glow-orb--1 { width: 600px; height: 600px; top: -10%; right: -5%; background: radial-gradient(circle, rgba(255, 90, 54, 0.25), transparent 70%); }
-        .hero-glow-orb--2 { width: 500px; height: 500px; bottom: -10%; left: -5%; background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%); }
-        .hero-glow-orb--3 { width: 400px; height: 400px; top: 40%; left: 40%; background: radial-gradient(circle, rgba(34, 197, 94, 0.1), transparent 70%); }
+        .hero-glow-orb--1 { width: 600px; height: 600px; top: -10%; right: -5%; background: radial-gradient(circle, rgba(14, 165, 233, 0.25), transparent 70%); }
+        .hero-glow-orb--2 { width: 500px; height: 500px; bottom: -10%; left: -5%; background: radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent 70%); }
+        .hero-glow-orb--3 { width: 400px; height: 400px; top: 40%; left: 40%; background: radial-gradient(circle, rgba(14, 165, 233, 0.1), transparent 70%); }
 
         .hero::after {
             content: '';
@@ -331,9 +330,9 @@
 
         .badge-dot {
             width: 8px; height: 8px;
-            background: var(--fab-green);
+            background: var(--accent-teal);
             border-radius: 50%;
-            box-shadow: 0 0 12px var(--fab-green);
+            box-shadow: 0 0 12px var(--accent-teal);
             animation: pulse-glow 2s infinite;
         }
 
@@ -374,7 +373,7 @@
             justify-content: center;
             gap: 12px;
             transition: var(--transition);
-            border: 1px solid rgba(255, 90, 54, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.3);
             position: relative;
             overflow: hidden;
             font-size: 1.05rem;
@@ -428,21 +427,21 @@
 
         .feature-icon {
             width: 52px; height: 52px;
-            background: rgba(255, 90, 54, 0.1);
+            background: rgba(14, 165, 233, 0.1);
             border-radius: 16px;
             display: flex; justify-content: center; align-items: center;
             color: var(--primary);
-            border: 1px solid rgba(255, 90, 54, 0.15);
+            border: 1px solid rgba(14, 165, 233, 0.15);
             flex-shrink: 0; transition: var(--transition);
         }
         .feature-item:hover .feature-icon {
             transform: scale(1.08);
-            background: rgba(255, 90, 54, 0.2);
-            border-color: rgba(255, 90, 54, 0.3);
+            background: rgba(14, 165, 233, 0.2);
+            border-color: rgba(14, 165, 233, 0.3);
         }
         .feature-icon svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2.5; fill: none; }
 
-        /* Terminal Window */
+        /* Terminal Window – updated with Reva demo */
         .terminal-window {
             background: rgba(10, 15, 26, 0.8);
             border: 1px solid var(--border-dark);
@@ -483,7 +482,7 @@
         }
 
         /* ==========================================================================
-           5. STATS SECTION (Premium Upgrade)
+           5. STATS SECTION – UPDATED
            ========================================================================== */
         .stats-section {
             background: var(--bg-light);
@@ -562,7 +561,7 @@
         .section-subtitle { color: var(--text-muted-dark); font-size: 1.15rem; line-height: 1.7; }
 
         /* ==========================================================================
-           7. CLIENT LOGOS - MARQUEE
+           7. TRUST BADGES – Replaces client logos
            ========================================================================== */
         .clients-section { padding: var(--section-padding); background: var(--bg-white); }
         
@@ -588,16 +587,17 @@
             box-shadow: var(--shadow-sm); transition: var(--transition);
             opacity: 0.6; filter: grayscale(100%);
             border: 1px solid var(--border-light); flex-shrink: 0;
+            font-weight: 700; color: var(--text-muted-dark); font-size: 1.1rem;
+            text-align: center; padding: 16px;
         }
         .client-logo-card:hover {
             opacity: 1; filter: grayscale(0%);
             transform: translateY(-6px) scale(1.02);
             box-shadow: var(--shadow-float); border-color: var(--primary);
         }
-        .client-logo-card svg { max-width: 60%; max-height: 50%; }
 
         /* ==========================================================================
-           8. GLOBAL FOOTPRINT
+           8. GLOBAL FOOTPRINT – Keep as is
            ========================================================================== */
         .footprint-section { padding: var(--section-padding); background: var(--bg-light); }
 
@@ -631,19 +631,14 @@
 
         .map-target {
             position: absolute; width: 32px; height: 32px; border-radius: 50%;
-            border: 2px solid var(--primary); background: rgba(255, 90, 54, 0.15);
+            border: 2px solid var(--primary); background: rgba(14, 165, 233, 0.15);
             display: flex; justify-content: center; align-items: center; z-index: 1;
             transform: translate(-50%, -50%); animation: pulse-glow 2.5s infinite; pointer-events: none;
         }
         .map-target::after { content: ''; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; }
 
-        .pin-canada { top: 20%; left: 17%; }
-        .pin-uk { top: 26%; left: 45%; }
-        .pin-egypt { top: 42%; left: 53%; }
+        /* Keeping India only, others removed for credibility */
         .pin-india { top: 54%; left: 66%; }
-        .pin-malaysia { top: 64%; left: 74%; }
-        .pin-srilanka { top: 70%; left: 65%; }
-        .pin-singapore { top: 74%; left: 75%; }
 
         .country-tags {
             display: flex; gap: 16px; overflow-x: auto; padding-bottom: 24px;
@@ -701,7 +696,7 @@
         .journey-scroll-hint svg { animation: float-slow 2.5s ease-in-out infinite; stroke-width: 2.5; }
 
         /* ==========================================================================
-           10. SERVICES SECTION
+           10. SERVICES SECTION – UPDATED
            ========================================================================== */
         .services-section { padding: var(--section-padding-lg); background: var(--bg-light); }
 
@@ -741,7 +736,7 @@
         .service-link svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5; fill: none; }
 
         /* ==========================================================================
-           11. PRODUCTS SECTION (Upgraded to match AFTER images perfectly)
+           11. PRODUCTS SECTION – DROPi SaaS
            ========================================================================== */
         .products-section { padding: var(--section-padding-lg); background: var(--bg-white); }
 
@@ -769,7 +764,6 @@
             font-size: 0.75rem; font-weight: 800; padding: 8px 18px; border-radius: var(--radius-pill);
             text-transform: uppercase; letter-spacing: 1.5px; box-shadow: var(--shadow-glow-sm);
         }
-        /* Aesthetic Dashboard Mockup replacement if no image */
         .product-mockup-ui {
             width: 100%; max-width: 500px; height: 320px;
             background: white; border-radius: 12px; box-shadow: var(--shadow-glass);
@@ -822,7 +816,7 @@
         .carousel-dot.active { background: var(--primary); width: 32px; border-radius: 6px; }
 
         /* ==========================================================================
-           12. READYMADE SOLUTIONS
+           12. READYMADE SOLUTIONS (Projects)
            ========================================================================== */
         .readymade-section { padding: var(--section-padding); background: var(--bg-light); }
 
@@ -881,7 +875,7 @@
         .industry-card p { font-size: 0.95rem; color: var(--text-muted-dark); }
 
         /* ==========================================================================
-           14. TECHNOLOGY STACK - SCROLLING RAIL
+           14. TECHNOLOGY STACK – Keep as is
            ========================================================================== */
         .tech-section { padding: var(--section-padding); background: var(--bg-light); overflow: hidden; }
 
@@ -909,7 +903,7 @@
         .tech-rail-item .tech-name { font-size: 0.8rem; font-weight: 700; color: var(--text-muted-dark); text-align: center; letter-spacing: 0.5px; }
 
         /* ==========================================================================
-           15. PARTNERS
+           15. PARTNERS – Updated with actual integrations
            ========================================================================== */
         .partners-section { padding: var(--section-padding); background: var(--bg-white); }
 
@@ -931,7 +925,7 @@
         .partner-card .partner-logo-svg { max-width: 80%; max-height: 40px; }
 
         /* ==========================================================================
-           16. CERTIFICATIONS
+           16. CERTIFICATIONS – From resume
            ========================================================================== */
         .certifications-section { padding: var(--section-padding); background: var(--bg-light); }
 
@@ -951,24 +945,73 @@
         .cert-card p { font-size: 0.85rem; color: var(--text-muted-dark); font-weight: 500;}
 
         /* ==========================================================================
-           17. TESTIMONIALS (Upgraded to Horizontal Scroll Track)
+           17. WHY CHOOSE US SECTION – New
            ========================================================================== */
-        .testimonials-section { padding: var(--section-padding-lg); background: var(--bg-white); overflow: hidden; }
+        .why-choose-section {
+            padding: var(--section-padding-lg);
+            background: var(--bg-white);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        @media (min-width: 768px) {
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .why-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .why-card {
+            background: var(--bg-light);
+            padding: 40px 32px;
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            border: 1px solid transparent;
+            text-align: center;
+        }
+        .why-card:hover {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-float);
+            border-color: var(--border-light);
+            transform: translateY(-6px);
+        }
+        .why-card .why-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 28px;
+        }
+        .why-card h4 { font-size: 1.25rem; font-weight: 800; margin-bottom: 12px; }
+        .why-card p { color: var(--text-muted-dark); font-size: 1rem; line-height: 1.7; }
+
+        /* ==========================================================================
+           18. TESTIMONIALS – Converted to trust statements
+           ========================================================================== */
+        .testimonials-section { padding: var(--section-padding-lg); background: var(--bg-light); overflow: hidden; }
 
         .testi-track {
             display: flex; gap: 32px; padding: 40px 24px; overflow-x: auto;
             scroll-snap-type: x mandatory; scrollbar-width: none;
-            -ms-overflow-style: none; margin: 0 calc(50% - 50vw); /* Full bleed */
+            -ms-overflow-style: none; margin: 0 calc(50% - 50vw);
         }
         .testi-track::-webkit-scrollbar { display: none; }
         
-        /* Padding spacer for full bleed centering */
         .testi-track::before, .testi-track::after { content: ''; flex: 0 0 calc((100vw - var(--container-width)) / 2); }
         @media (max-width: 1280px) { .testi-track::before, .testi-track::after { flex: 0 0 24px; } }
 
         .testimonial-card {
             min-width: 350px; max-width: 420px; flex-shrink: 0;
-            background: var(--bg-light); padding: 48px 40px; border-radius: var(--radius-xl);
+            background: var(--bg-white); padding: 48px 40px; border-radius: var(--radius-xl);
             position: relative; transition: var(--transition); border: 1px solid transparent;
             scroll-snap-align: center; box-shadow: var(--shadow-soft);
         }
@@ -978,10 +1021,10 @@
         }
 
         .quote-mark {
-            position: absolute; top: 32px; right: 32px; color: rgba(255, 90, 54, 0.08);
+            position: absolute; top: 32px; right: 32px; color: rgba(14, 165, 233, 0.08);
             width: 64px; height: 64px; transition: var(--transition);
         }
-        .testimonial-card:hover .quote-mark { color: rgba(255, 90, 54, 0.15); transform: scale(1.1) rotate(8deg); }
+        .testimonial-card:hover .quote-mark { color: rgba(14, 165, 233, 0.15); transform: scale(1.1) rotate(8deg); }
 
         .stars { color: var(--primary); font-size: 1.4rem; margin-bottom: 24px; letter-spacing: 2px; }
 
@@ -996,16 +1039,15 @@
             align-items: center; font-weight: 800; color: white; font-size: 1.4rem; flex-shrink: 0;
             box-shadow: var(--shadow-soft);
         }
-        .avatar-dark { background: linear-gradient(135deg, #2d3748, #0f172a); }
-        .avatar-brown { background: linear-gradient(135deg, #7b341e, #450a0a); }
-        .avatar-blue { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
-        .avatar-green { background: linear-gradient(135deg, #10b981, #064e3b); }
+        .avatar-blue { background: linear-gradient(135deg, #0EA5E9, #0369A1); }
+        .avatar-teal { background: linear-gradient(135deg, #14B8A6, #0F766E); }
+        .avatar-dark { background: linear-gradient(135deg, #1E293B, #0F172A); }
 
         .author-details h4 { font-size: 1.1rem; font-weight: 900; margin-bottom: 4px; color: var(--text-dark);}
         .author-details p { font-size: 0.95rem; color: var(--text-muted-dark); font-weight: 500;}
 
         /* ==========================================================================
-           18. CONTACT / LET'S BUILD
+           19. CONTACT / FINAL CONVERSION SECTION – Upgraded
            ========================================================================== */
         .contact-section {
             padding: var(--section-padding-lg); background: var(--bg-dark);
@@ -1014,7 +1056,7 @@
 
         .contact-section::before {
             content: ''; position: absolute; top: 10%; right: -10%; width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(255, 90, 54, 0.15) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 60%);
             border-radius: 50%; pointer-events: none; z-index: -1;
         }
 
@@ -1059,7 +1101,7 @@
         }
         .contact-form-wrap input:focus, .contact-form-wrap select:focus, .contact-form-wrap textarea:focus {
             border-color: var(--primary); background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 4px rgba(255, 90, 54, 0.1);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
         }
         .contact-form-wrap input::placeholder, .contact-form-wrap textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
 
@@ -1080,15 +1122,15 @@
 
         .budget-slider-wrap input[type="range"] {
             width: 100%; height: 6px; -webkit-appearance: none; appearance: none;
-            background: var(--accent-blue); border-radius: 3px; outline: none; padding: 0; margin-bottom: 8px; border:none;
+            background: var(--primary); border-radius: 3px; outline: none; padding: 0; margin-bottom: 8px; border:none;
         }
         .budget-slider-wrap input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; appearance: none; width: 24px; height: 24px;
-            border-radius: 50%; background: var(--accent-blue); cursor: pointer;
+            border-radius: 50%; background: var(--primary); cursor: pointer;
             border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); margin-top: -9px;
         }
         .budget-slider-wrap input[type="range"]::-moz-range-thumb {
-            width: 24px; height: 24px; border-radius: 50%; background: var(--accent-blue);
+            width: 24px; height: 24px; border-radius: 50%; background: var(--primary);
             cursor: pointer; border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
@@ -1105,7 +1147,7 @@
         .btn-submit svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5; fill:none; }
 
         /* ==========================================================================
-           19. FOOTER
+           20. FOOTER – Updated
            ========================================================================== */
         .footer {
             background: var(--bg-dark-secondary); color: var(--text-light);
@@ -1136,7 +1178,7 @@
         .footer-links a:hover { color: white; transform: translateX(6px); }
 
         .job-pill {
-            background: rgba(34, 197, 94, 0.15); color: #4ADE80; padding: 4px 12px;
+            background: rgba(20, 184, 166, 0.15); color: #4ADE80; padding: 4px 12px;
             border-radius: var(--radius-pill); font-size: 0.7rem; font-weight: 800; letter-spacing: 1px;
         }
 
@@ -1160,7 +1202,7 @@
         .legal-links a:hover { color: white; }
 
         /* ==========================================================================
-           20. FAB & BACK TO TOP
+           21. FAB & BACK TO TOP
            ========================================================================== */
         .fab-container { position: fixed; right: 32px; bottom: 40px; display: flex; flex-direction: column; gap: 16px; z-index: 100; }
         
@@ -1194,7 +1236,7 @@
         .back-to-top svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 3; }
 
         /* ==========================================================================
-           21. RESPONSIVE UTILITIES
+           22. RESPONSIVE UTILITIES
            ========================================================================== */
         @media (max-width: 1024px) {
             .map-pin { font-size: 0.65rem; padding: 4px 12px; }
@@ -1255,22 +1297,23 @@
     <div class="nav-wrapper" id="nav-wrapper">
         <nav class="nav-pill">
             <a href="#" class="logo">
+                <!-- Water-inspired logo SVG (simplified wave) -->
                 <svg viewBox="0 0 40 40" fill="none">
-                    <path d="M20 2L5 35H12L20 15L28 35H35L20 2Z" fill="url(#paint0_linear)" />
-                    <path d="M14 25L20 12L26 25H14Z" fill="#1a1e27" />
-                    <path d="M5 35L20 35C20 35 15 28 12 25L5 35Z" fill="#FF5A36" />
+                    <path d="M2 20 Q10 8, 20 20 Q30 32, 38 20" stroke="#0EA5E9" stroke-width="4" fill="none"/>
+                    <path d="M8 20 Q14 12, 20 20 Q26 28, 32 20" stroke="#06B6D4" stroke-width="3" fill="none"/>
+                    <circle cx="20" cy="20" r="3" fill="#0EA5E9" />
                     <defs>
-                        <linearGradient id="paint0_linear" x1="20" y1="2" x2="20" y2="35" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#1a1e27" />
-                            <stop offset="1" stop-color="#FF5A36" />
+                        <linearGradient id="paint0_linear" x1="2" y1="20" x2="38" y2="20" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#0EA5E9" />
+                            <stop offset="1" stop-color="#06B6D4" />
                         </linearGradient>
                     </defs>
                 </svg>
-                <div>Alab <span class="logo-text-small">TECHNOLOGY</span></div>
+                <div>Reva <span class="logo-text-small">WEB SOLUTION</span></div>
             </a>
             <div class="nav-actions">
                 <a href="#contact" class="btn-contact">
-                    Contact Us
+                    Start Your Project
                     <div class="btn-contact-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
                 </a>
                 <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -1289,13 +1332,13 @@
             <div class="hero-layout">
                 <div class="hero-content">
                     <div class="badge reveal">
-                        <div class="badge-dot"></div> Building software since 2019
+                        <div class="badge-dot"></div> Launch your SaaS or digital product
                     </div>
-                    <h1 class="reveal delay-1">Engineering That <span>Moves</span> Your Business Forward</h1>
-                    <p class="subtitle reveal delay-2">ALAB Technology designs, builds and runs websites, mobile apps and automation for businesses across India and beyond — and deploys dedicated developers wherever you need them.</p>
+                    <h1 class="reveal delay-1">Build. Scale. <span>Sustain.</span></h1>
+                    <p class="subtitle reveal delay-2">Reva Web Solution designs and builds scalable SaaS platforms, custom software, and AI-powered solutions that help businesses grow — from idea to launch and beyond.</p>
 
                     <div class="hero-actions reveal delay-3">
-                        <a href="#services" class="btn-primary-hero">
+                        <a href="#contact" class="btn-primary-hero">
                             Start Your Project
                             <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
                         </a>
@@ -1309,11 +1352,11 @@
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
-                            Clients across<br>7 countries
+                            Scalable SaaS<br>architecture
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" /></svg></div>
-                            Support long<br>after launch
+                            Long-term<br>support & growth
                         </div>
                     </div>
                 </div>
@@ -1325,15 +1368,15 @@
                             <div class="t-dot t-dot-yellow"></div>
                             <div class="t-dot t-dot-green"></div>
                         </div>
-                        <div class="terminal-title">alab@impact — live feed</div>
+                        <div class="terminal-title">reva@platform — live feed</div>
                     </div>
                     <div class="terminal-body" id="terminal-body">
-                        <div><span class="t-time">03:47:39</span> <span class="t-tag">[BILLING]</span> <span class="t-text-green">TriPOS — counter bill #7282 generated with GST</span></div>
-                        <div><span class="t-time">03:47:43</span> <span class="t-tag">[BOOKING]</span> <span class="t-text-green">GreenDrive Rentals — bike booked for 3 days, Bengaluru</span></div>
-                        <div><span class="t-time">03:47:48</span> <span class="t-tag">[ORDER]</span> <span class="t-text-green">Zaaroz — store order packed & invoiced</span></div>
-                        <div><span class="t-time">03:47:53</span> <span class="t-tag">[ORDER]</span> <span class="t-text-green">EzzeEats — multivendor order received, Kathmandu</span></div>
-                        <div><span class="t-time">03:47:59</span> <span class="t-tag">[SERVICE]</span> <span class="t-text-green">Jippy — on-demand service request assigned</span></div>
-                        <div><span class="t-time">03:48:03</span> <span class="t-tag">[RIDE]</span> <span class="t-text-green">The Wheels — driver assigned, pickup in 4 m</span></div>
+                        <div><span class="t-time">11:32:09</span> <span class="t-tag">[SAAS]</span> <span class="t-text-green">Store #78 – DROPi e‑commerce platform launched</span></div>
+                        <div><span class="t-time">11:32:14</span> <span class="t-tag">[AI]</span> <span class="t-text-green">Content generator pipeline processed 1200+ requests</span></div>
+                        <div><span class="t-time">11:32:19</span> <span class="t-tag">[AUTOMATION]</span> <span class="t-text-green">Inventory sync completed for 5 stores</span></div>
+                        <div><span class="t-time">11:32:23</span> <span class="t-tag">[ORDER]</span> <span class="t-text-green">Order #1423 delivered – payment captured</span></div>
+                        <div><span class="t-time">11:32:28</span> <span class="t-tag">[DEPLOY]</span> <span class="t-text-green">New theme pushed to 12 stores</span></div>
+                        <div><span class="t-time">11:32:33</span> <span class="t-tag">[ANALYTICS]</span> <span class="t-text-green">Revenue report generated – monthly growth +18%</span></div>
                         <div><span style="color:var(--primary);font-weight:700;">&gt;</span> <span class="t-cursor"></span></div>
                     </div>
                 </div>
@@ -1345,50 +1388,51 @@
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-card reveal"><div class="stat-divider"></div><div class="stat-number" data-target="155">0</div><div class="stat-label">Web & App Delivered</div></div>
-                <div class="stat-card reveal delay-1"><div class="stat-divider"></div><div class="stat-number" data-target="47">0<span>+</span></div><div class="stat-label">RPA Delivered</div></div>
-                <div class="stat-card reveal delay-2"><div class="stat-divider"></div><div class="stat-number" data-target="10">0<span>+</span></div><div class="stat-label">AI Agents In Live</div></div>
-                <div class="stat-card reveal"><div class="stat-divider"></div><div class="stat-number" data-target="30">0<span>+</span></div><div class="stat-label">In-house Team Members</div></div>
-                <div class="stat-card reveal delay-1"><div class="stat-divider"></div><div class="stat-number" data-target="4.9" data-decimal="true">0<span>+</span></div><div class="stat-label">Google Rating</div></div>
-                <div class="stat-card reveal delay-2"><div class="stat-divider"></div><div class="stat-number" data-target="12">0<span>+</span></div><div class="stat-label">Years IT Experience</div></div>
+                <div class="stat-card reveal"><div class="stat-divider"></div><div class="stat-number" data-target="10">0<span>+</span></div><div class="stat-label">Projects Delivered</div></div>
+                <div class="stat-card reveal delay-1"><div class="stat-divider"></div><div class="stat-number" data-target="4">0<span>+</span></div><div class="stat-label">Years of Experience</div></div>
+                <div class="stat-card reveal delay-2"><div class="stat-divider"></div><div class="stat-number" data-target="95">0<span>%</span></div><div class="stat-label">Client Satisfaction</div></div>
+                <div class="stat-card reveal"><div class="stat-divider"></div><div class="stat-number" data-target="90">0<span>+</span></div><div class="stat-label">Lighthouse Score (avg)</div></div>
+                <div class="stat-card reveal delay-1"><div class="stat-divider"></div><div class="stat-number" data-target="50">0<span>+</span></div><div class="stat-label">DSA Problems Solved</div></div>
+                <div class="stat-card reveal delay-2"><div class="stat-divider"></div><div class="stat-number" data-target="100">0<span>%</span></div><div class="stat-label">On‑time Delivery</div></div>
             </div>
         </div>
     </section>
 
-    <!-- 4. CLIENTS (MARQUEE) -->
+    <!-- 4. TRUST BADGES (was clients) -->
     <section class="clients-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">OUR CLIENTS</span>
-                <h2 class="section-title">Brands That Build With ALAB</h2>
-                <p class="section-subtitle">From food and retail to logistics and healthcare — a few of the businesses we've helped launch and grow.</p>
+                <span class="section-label">TRUSTED TECHNOLOGY</span>
+                <h2 class="section-title">Built With Modern Tools</h2>
+                <p class="section-subtitle">We use industry‑standard technologies to deliver reliable, scalable, and high‑performance solutions.</p>
             </div>
             <div class="marquee-container reveal delay-1">
                 <div class="marquee-track">
-                    <!-- Set 1 -->
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><circle cx="50" cy="20" r="15" fill="none" stroke="#1a1e27" stroke-width="4"/><path d="M45 15L55 25M55 15L45 25" stroke="#1a1e27" stroke-width="3"/></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><rect x="30" y="10" width="40" height="20" fill="none" stroke="#1a1e27" stroke-width="3"/><text x="50" y="25" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="12" fill="#1a1e27">Tri POS</text></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><text x="50" y="26" text-anchor="middle" font-family="serif" font-style="italic" font-size="18" fill="#1a1e27">Shero</text></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><path d="M30 20 L50 10 L70 20 L50 30 Z" fill="#1a1e27"/></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><text x="50" y="25" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="16" fill="#1a1e27">GLOBAL</text></svg></div>
-                    <!-- Set 2 -->
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><circle cx="50" cy="20" r="15" fill="none" stroke="#1a1e27" stroke-width="4"/><path d="M45 15L55 25M55 15L45 25" stroke="#1a1e27" stroke-width="3"/></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><rect x="30" y="10" width="40" height="20" fill="none" stroke="#1a1e27" stroke-width="3"/><text x="50" y="25" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="12" fill="#1a1e27">Tri POS</text></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><text x="50" y="26" text-anchor="middle" font-family="serif" font-style="italic" font-size="18" fill="#1a1e27">Shero</text></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><path d="M30 20 L50 10 L70 20 L50 30 Z" fill="#1a1e27"/></svg></div>
-                    <div class="client-logo-card"><svg viewBox="0 0 100 40"><text x="50" y="25" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="16" fill="#1a1e27">GLOBAL</text></svg></div>
+                    <div class="client-logo-card">React</div>
+                    <div class="client-logo-card">Node.js</div>
+                    <div class="client-logo-card">MongoDB</div>
+                    <div class="client-logo-card">TypeScript</div>
+                    <div class="client-logo-card">Tailwind CSS</div>
+                    <div class="client-logo-card">Express</div>
+                    <!-- Repeat for marquee -->
+                    <div class="client-logo-card">React</div>
+                    <div class="client-logo-card">Node.js</div>
+                    <div class="client-logo-card">MongoDB</div>
+                    <div class="client-logo-card">TypeScript</div>
+                    <div class="client-logo-card">Tailwind CSS</div>
+                    <div class="client-logo-card">Express</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. GLOBAL FOOTPRINT -->
+    <!-- 5. GLOBAL FOOTPRINT – simplified -->
     <section class="footprint-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">GLOBAL FOOTPRINT</span>
-                <h2 class="section-title">Our Clients Across the Globe</h2>
-                <p class="section-subtitle">We deliver, support and scale software for businesses on four continents — all from our India delivery centres.</p>
+                <span class="section-label">GLOBAL REACH</span>
+                <h2 class="section-title">Serving Clients Anywhere</h2>
+                <p class="section-subtitle">We deliver digital solutions to businesses across India and beyond — with a focus on quality and scalability.</p>
             </div>
 
             <div class="map-wrapper reveal delay-1">
@@ -1399,28 +1443,16 @@
                         <path fill="#c8d0df" opacity="0.5" d="M100,200 Q140,170 180,200 T160,260 T110,250 Z M700,170 Q740,150 780,180 T760,230 T710,220 Z M1050,180 Q1080,160 1110,190 T1090,230 T1050,220 Z" />
                         <path fill="none" stroke="#bcc4d4" stroke-width="0.5" opacity="0.3" d="M0,100 L1200,100 M0,200 L1200,200 M0,300 L1200,300 M0,400 L1200,400 M0,500 L1200,500 M100,0 L100,600 M200,0 L200,600 M300,0 L300,600 M400,0 L400,600 M500,0 L500,600 M600,0 L600,600 M700,0 L700,600 M800,0 L800,600 M900,0 L900,600 M1000,0 L1000,600 M1100,0 L1100,600" />
                     </svg>
-                    <!-- Pins -->
-                    <div class="map-pin pin-canada">Canada <span>2+</span></div><div class="map-target pin-canada"></div>
-                    <div class="map-pin pin-uk">United Kingdom <span>7+</span></div><div class="map-target pin-uk"></div>
-                    <div class="map-pin pin-egypt">Egypt <span>2+</span></div><div class="map-target pin-egypt"></div>
-                    <div class="map-pin pin-india">India <span>120+</span></div><div class="map-target pin-india"></div>
-                    <div class="map-pin pin-malaysia">Malaysia <span>2+</span></div><div class="map-target pin-malaysia"></div>
-                    <div class="map-pin pin-srilanka">Sri Lanka</div><div class="map-target pin-srilanka"></div>
-                    <div class="map-pin pin-singapore">Singapore <span>3+</span></div><div class="map-target pin-singapore"></div>
+                    <div class="map-pin pin-india">India <span>Headquarters</span></div><div class="map-target pin-india"></div>
                 </div>
             </div>
 
             <div class="country-tags reveal delay-2">
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ff9933 33%,#ffffff 33% 66%,#138a3d 66%);"></span> India <span>120+</span></div>
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#b22234 33%,#ffffff 33% 66%,#b22234 66%);"></span> Canada <span>2+</span></div>
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ce1126 33%,#ffffff 33% 66%,#000000 66%);"></span> Egypt <span>2+</span></div>
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ed2939 33%,#ffffff 33% 66%,#ed2939 66%);"></span> UK <span>7+</span></div>
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ef3340 33%,#ffffff 33% 66%,#ef3340 66%);"></span> Singapore <span>3+</span></div>
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#cc0000 33%,#ffffff 33% 66%,#cc0000 66%);"></span> Malaysia <span>2+</span></div>
-                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ffe600 33%,#13912d 33% 66%,#ffe600 66%);"></span> Sri Lanka</div>
+                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ff9933 33%,#ffffff 33% 66%,#138a3d 66%);"></span> India <span>Primary</span></div>
+                <div class="country-tag"><span class="flag" style="background:linear-gradient(135deg,#ed2939 33%,#ffffff 33% 66%,#ed2939 66%);"></span> Global <span>Remote</span></div>
             </div>
 
-            <p class="trust-text reveal delay-3">Trusted by <strong>145+ clients</strong> across <strong>7 countries</strong> and counting.</p>
+            <p class="trust-text reveal delay-3">Trusted by businesses <strong>across industries</strong> — from startups to established brands.</p>
         </div>
     </section>
 
@@ -1429,24 +1461,24 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">HOW WE WORK</span>
-                <h2 class="section-title">Your Journey With ALAB</h2>
-                <p class="section-subtitle">A simple, transparent process from idea to launch — and beyond.</p>
+                <h2 class="section-title">Your Product Journey With Reva</h2>
+                <p class="section-subtitle">A transparent, agile process from discovery to delivery — and beyond.</p>
             </div>
             <div class="journey-grid">
-                <div class="journey-card reveal"><div class="journey-step">01</div><div><h4>Free Consultation</h4><p>We learn your goals, users and budget — no cost, no obligation.</p></div></div>
-                <div class="journey-card reveal delay-1"><div class="journey-step">02</div><div><h4>Quote & Agreement</h4><p>A clear proposal with fixed scope, timeline and pricing.</p></div></div>
-                <div class="journey-card reveal delay-2"><div class="journey-step">03</div><div><h4>Design & Blueprint</h4><p>Wireframes and UI so you see it before we build it.</p></div></div>
-                <div class="journey-card reveal delay-3"><div class="journey-step">04</div><div><h4>Development</h4><p>Your product is built in agile sprints with weekly demos.</p></div></div>
-                <div class="journey-card reveal"><div class="journey-step">05</div><div><h4>Testing & Review</h4><p>We test on every device and fix before you sign off.</p></div></div>
-                <div class="journey-card reveal delay-1"><div class="journey-step">06</div><div><h4>Go Live</h4><p>Smooth launch to your servers, app stores or the web.</p></div></div>
+                <div class="journey-card reveal"><div class="journey-step">01</div><div><h4>Discovery Call</h4><p>We understand your vision, goals, and challenges — no commitment, just clarity.</p></div></div>
+                <div class="journey-card reveal delay-1"><div class="journey-step">02</div><div><h4>Project Blueprint</h4><p>We define scope, timeline, and fixed pricing — so you know exactly what to expect.</p></div></div>
+                <div class="journey-card reveal delay-2"><div class="journey-step">03</div><div><h4>UI/UX Design</h4><p>We design your product before development — wireframes and prototypes for your feedback.</p></div></div>
+                <div class="journey-card reveal delay-3"><div class="journey-step">04</div><div><h4>Agile Development</h4><p>We build in sprints with weekly demos — you see progress at every step.</p></div></div>
+                <div class="journey-card reveal"><div class="journey-step">05</div><div><h4>Quality Assurance</h4><p>We test across devices, browsers, and scenarios — we fix before you sign off.</p></div></div>
+                <div class="journey-card reveal delay-1"><div class="journey-step">06</div><div><h4>Deployment</h4><p>We launch your product on the web, app stores, or your own infrastructure.</p></div></div>
                 <div class="journey-card reveal delay-2" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; width: 100%;">
                     <div class="journey-step">07</div>
-                    <div><h4>Support & Growth</h4><p>Ongoing support, updates and improvements as you scale.</p></div>
+                    <div><h4>Growth & Support</h4><p>We provide ongoing support, updates, and enhancements as your business scales.</p></div>
                 </div>
             </div>
             <div class="journey-scroll-hint reveal delay-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Scroll to explore the journey
+                Scroll to explore our process
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
         </div>
@@ -1456,76 +1488,75 @@
     <section class="services-section" id="services">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">WHAT WE DO</span>
-                <h2 class="section-title">Services Built Around Your Business</h2>
-                <p class="section-subtitle">End-to-end technology under one roof — one accountable partner instead of a dozen vendors.</p>
+                <span class="section-label">WHAT WE BUILD</span>
+                <h2 class="section-title">Services That Drive Digital Growth</h2>
+                <p class="section-subtitle">From SaaS platforms to AI automation — we deliver end‑to‑end solutions that align with your business goals.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card reveal">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-                    <h3>Custom Software</h3>
-                    <p>Bespoke web apps and internal platforms built around your exact workflows.</p>
-                    <a href="#" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <h3>SaaS Development</h3>
+                    <p>Build scalable, multi‑tenant SaaS platforms with subscription models, dashboards, and automation at the core.</p>
+                    <a href="#contact" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="service-card reveal delay-1">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-                    <h3>Mobile App Development</h3>
-                    <p>Native and cross-platform apps for Android and iOS with slick UX.</p>
-                    <a href="#" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <h3>Full‑Stack Development</h3>
+                    <p>End‑to‑end web applications using modern stacks (React, Node.js, MongoDB) with clean, maintainable code.</p>
+                    <a href="#contact" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="service-card reveal delay-2">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>Migration, hosting and CI/CD on AWS, Azure and Google Cloud.</p>
-                    <a href="#" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <h3>E‑Commerce Platforms</h3>
+                    <p>Custom ecommerce solutions with cart, payments, inventory, order management, and multi‑vendor capabilities.</p>
+                    <a href="#contact" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="service-card reveal">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-                    <h3>IT Consulting</h3>
-                    <p>Technology strategy, architecture and modernization guidance.</p>
-                    <a href="#" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <h3>AI & Automation</h3>
+                    <p>Intelligent solutions with AI workflows, content generation, and business process automation.</p>
+                    <a href="#contact" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="service-card reveal delay-1">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"/><line x1="8" y1="2" x2="8" y2="22"/><line x1="16" y1="2" x2="16" y2="22"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="2" y1="16" x2="22" y2="16"/></svg></div>
-                    <h3>RPA</h3>
-                    <p>Robotic process automation that removes repetitive manual work.</p>
-                    <a href="#" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <h3>API & Integration</h3>
+                    <p>Robust REST APIs, third‑party integrations, and seamless data flow across your business systems.</p>
+                    <a href="#contact" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
                 <div class="service-card reveal delay-2">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 12v-2a5 5 0 0 0-5-5H8a5 5 0 0 0-5 5v2"/><circle cx="12" cy="16" r="5"/><path d="M12 11v5"/></svg></div>
-                    <h3>Power BI</h3>
-                    <p>Interactive dashboards and reporting that make your data clear.</p>
-                    <a href="#" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <h3>UI/UX & Consulting</h3>
+                    <p>User‑centric design, technology strategy, and architecture guidance to accelerate your product roadmap.</p>
+                    <a href="#contact" class="service-link">Enquire now <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. PRODUCTS (Upgraded Carousel with Premium Card Styling) -->
+    <!-- 8. PRODUCTS – DROPi SaaS -->
     <section class="products-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">OUR PRODUCTS</span>
-                <h2 class="section-title">Ready-to-Launch ALAB Products</h2>
-                <p class="section-subtitle">Proven, in-house products you can brand and go live with fast — or tailor to your exact workflow.</p>
+                <span class="section-label">OUR FLAGSHIP PRODUCT</span>
+                <h2 class="section-title">DROPi – SaaS E‑Commerce Platform</h2>
+                <p class="section-subtitle">A complete, multi‑tenant platform that lets you launch and manage online stores instantly — with built‑in tools for growth.</p>
             </div>
 
             <div class="products-carousel-wrapper reveal">
                 <div class="products-carousel-track" id="productTrack">
-                    <!-- Slide 1: Delivar -->
+                    <!-- Slide 1: DROPi -->
                     <div class="product-slide">
                         <div class="product-card">
                             <div class="product-image-wrap">
-                                <span class="badge-product">ALAB Product</span>
-                                <!-- Abstract UI representation replacing raw image -->
+                                <span class="badge-product">SaaS Product</span>
                                 <div class="product-mockup-ui">
                                     <div class="product-mockup-ui-header">
                                         <div class="product-mockup-ui-dot"></div><div class="product-mockup-ui-dot"></div><div class="product-mockup-ui-dot"></div>
-                                        <span style="font-size: 0.6rem; color: #94A3B8; margin-left: auto;">Delivar Admin</span>
+                                        <span style="font-size: 0.6rem; color: #94A3B8; margin-left: auto;">DROPi Dashboard</span>
                                     </div>
                                     <div class="product-mockup-ui-body">
-                                        <div class="product-mockup-ui-block" style="background:#FFEDD5; border-color:#FED7AA;"></div>
-                                        <div class="product-mockup-ui-block" style="background:#E0E7FF; border-color:#BFDBFE;"></div>
+                                        <div class="product-mockup-ui-block" style="background:#E0F2FE; border-color:#BAE6FD;"></div>
+                                        <div class="product-mockup-ui-block" style="background:#CCFBF1; border-color:#99F6E4;"></div>
                                         <div class="product-mockup-ui-block" style="height: 120px; width: 100%;"></div>
                                         <div class="product-mockup-ui-block" style="height: 80px;"></div>
                                         <div class="product-mockup-ui-block" style="height: 80px;"></div>
@@ -1533,78 +1564,44 @@
                                 </div>
                             </div>
                             <div class="product-body">
-                                <h3>Delivar</h3>
-                                <div class="product-tagline">Hyperlocal, Courier &amp; Bus-Transport Delivery Platform</div>
-                                <p>One platform to run hyperlocal delivery, courier logistics and bus-parcel transport — with customer apps, a rider app and an owner dashboard.</p>
+                                <h3>DROPi</h3>
+                                <div class="product-tagline">Multi‑Tenant SaaS E‑Commerce Platform</div>
+                                <p>DROPi enables businesses to create, manage, and scale online stores with a powerful admin dashboard, product & inventory control, order management, customer analytics, and built‑in payments — all in one place.</p>
                                 <div class="product-tags">
-                                    <span>Hyperlocal delivery</span><span>Courier & parcel</span><span>Bus transport</span><span>Live tracking</span><span>Rider app</span>
+                                    <span>Multi‑tenant</span><span>Store management</span><span>Payments</span><span>Analytics</span><span>10+ themes</span><span>7‑day free trial</span>
                                 </div>
-                                <a href="#" class="btn-dark-pill">
-                                    Know More 
+                                <a href="#contact" class="btn-dark-pill">
+                                    Get Started
                                     <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Slide 2: WhatsHUB -->
+                    <!-- Slide 2: Additional product (placeholder for future) -->
                     <div class="product-slide">
                         <div class="product-card">
                             <div class="product-image-wrap">
-                                <span class="badge-product">ALAB Product</span>
+                                <span class="badge-product">Coming Soon</span>
                                 <div class="product-mockup-ui">
                                     <div class="product-mockup-ui-header">
                                         <div class="product-mockup-ui-dot"></div><div class="product-mockup-ui-dot"></div><div class="product-mockup-ui-dot"></div>
-                                        <span style="font-size: 0.6rem; color: #94A3B8; margin-left: auto;">WhatsHUB API</span>
+                                        <span style="font-size: 0.6rem; color: #94A3B8; margin-left: auto;">AI Platform</span>
                                     </div>
                                     <div class="product-mockup-ui-body">
-                                        <div class="product-mockup-ui-block" style="background:#DCFCE7; border-color:#BBF7D0; width:100%; height:40px;"></div>
+                                        <div class="product-mockup-ui-block" style="background:#FCE7F3; border-color:#F9A8D4; width:100%; height:40px;"></div>
                                         <div class="product-mockup-ui-block" style="height: 180px; width: 100%;"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-body">
-                                <h3>WhatsHUB</h3>
-                                <div class="product-tagline">Bulk WhatsApp Sender (Number &amp; Official Meta API)</div>
-                                <p>Send bulk WhatsApp campaigns using your own number or the official Meta API — templates, contacts, scheduling and delivery reports.</p>
+                                <h3>AI Content Studio</h3>
+                                <div class="product-tagline">AI‑powered content generation platform</div>
+                                <p>Automate content creation with intelligent workflows — generate articles, social posts, and product descriptions using AI, tailored to your brand voice.</p>
                                 <div class="product-tags">
-                                    <span>Bulk broadcast</span><span>Meta API</span><span>Templates</span><span>Scheduling</span><span>Reports</span>
+                                    <span>AI</span><span>Content generation</span><span>Automation</span><span>API</span>
                                 </div>
-                                <a href="#" class="btn-dark-pill">
-                                    Know More 
-                                    <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3: SERVE-POS -->
-                    <div class="product-slide">
-                        <div class="product-card">
-                            <div class="product-image-wrap">
-                                <span class="badge-product">ALAB Product</span>
-                                <div class="product-mockup-ui">
-                                    <div class="product-mockup-ui-header">
-                                        <div class="product-mockup-ui-dot"></div><div class="product-mockup-ui-dot"></div><div class="product-mockup-ui-dot"></div>
-                                        <span style="font-size: 0.6rem; color: #94A3B8; margin-left: auto;">SERVE-POS Dashboard</span>
-                                    </div>
-                                    <div class="product-mockup-ui-body">
-                                        <div class="product-mockup-ui-block" style="height: 80px; width: 25%;"></div>
-                                        <div class="product-mockup-ui-block" style="height: 80px; width: 25%;"></div>
-                                        <div class="product-mockup-ui-block" style="height: 80px; width: 25%;"></div>
-                                        <div class="product-mockup-ui-block" style="height: 140px; width: 100%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-body">
-                                <h3>SERVE-POS</h3>
-                                <div class="product-tagline">All-in-One Restaurant Management Software</div>
-                                <p>POS, dine-in, online delivery, table QR ordering, KIOSK, waiter &amp; table management and WhatsApp promotions — everything a restaurant needs.</p>
-                                <div class="product-tags">
-                                    <span>POS &amp; billing</span><span>Dine-in &amp; QR</span><span>Online delivery</span><span>KIOSK</span><span>Waiter &amp; tables</span>
-                                </div>
-                                <a href="#" class="btn-dark-pill">
-                                    Know More 
+                                <a href="#contact" class="btn-dark-pill">
+                                    Learn More
                                     <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                                 </a>
                             </div>
@@ -1625,62 +1622,38 @@
         </div>
     </section>
 
-    <!-- 9. READYMADE SOLUTIONS -->
+    <!-- 9. READYMADE SOLUTIONS (Projects) -->
     <section class="readymade-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">READYMADE SOLUTIONS</span>
-                <h2 class="section-title">Launch A Proven App, Faster</h2>
-                <p class="section-subtitle">Battle-tested app solutions modelled on the platforms you already know — customised and launched under your own brand.</p>
+                <span class="section-label">PROJECT EXPERIENCE</span>
+                <h2 class="section-title">Real Solutions, Real Impact</h2>
+                <p class="section-subtitle">A selection of projects we've built — from ecommerce platforms to AI applications.</p>
             </div>
             <div class="readymade-grid">
                 <div class="readymade-card reveal">
                     <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-                    <h4>Food Delivery App</h4>
-                    <p>Single &amp; multi-vendor food delivery, like Swiggy.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
+                    <h4>DROPi SaaS Platform</h4>
+                    <p>Multi‑tenant ecommerce platform with store management, payments, and analytics.</p>
+                    <a href="#contact" class="readymade-link">Learn More →</a>
                 </div>
                 <div class="readymade-card reveal delay-1">
                     <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18M6 3v3M18 3v3"/><rect x="3" y="6" width="18" height="15" rx="1"/></svg></div>
-                    <h4>Grocery Delivery App</h4>
-                    <p>Quick grocery delivery, like BlinkIt.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
+                    <h4>Kottayam Blooms</h4>
+                    <p>Responsive florist website with 90+ Lighthouse scores and 40% load time reduction.</p>
+                    <a href="#contact" class="readymade-link">Learn More →</a>
                 </div>
                 <div class="readymade-card reveal delay-2">
                     <div class="icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.3 15.7C6.3 16.7 9 18 12 18s5.7-1.3 6.7-2.3"/><path d="M12 22v-4"/></svg></div>
-                    <h4>Fish &amp; Meat Delivery</h4>
-                    <p>Fresh fish &amp; meat delivery, like TenderCuts.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
+                    <h4>AI Content Creator</h4>
+                    <p>AI‑powered platform for generating articles, social posts, and product descriptions.</p>
+                    <a href="#contact" class="readymade-link">Learn More →</a>
                 </div>
                 <div class="readymade-card reveal delay-3">
                     <div class="icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H5.78a1.65 1.65 0 0 0-1.51 1 1.65 1.65 0 0 0 .33 1.82l.04.04A10 10 0 0 0 12 18c2.3 0 4.4-.77 6.1-2.06l.04-.04z"/></svg></div>
-                    <h4>Taxi Booking App</h4>
-                    <p>Ride-hailing &amp; taxi booking, like OLA.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
-                </div>
-                <div class="readymade-card reveal">
-                    <div class="icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="1"/><path d="M6 10h12M6 14h8"/></svg></div>
-                    <h4>Parcel Pickup &amp; Drop</h4>
-                    <p>On-demand pickup &amp; drop, like Porter.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
-                </div>
-                <div class="readymade-card reveal delay-1">
-                    <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-                    <h4>On-Demand Services</h4>
-                    <p>Home &amp; on-demand services, like Urban Company.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
-                </div>
-                <div class="readymade-card reveal delay-2">
-                    <div class="icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
-                    <h4>Multi-vendor eCommerce</h4>
-                    <p>Marketplace platform, like Flipkart.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
-                </div>
-                <div class="readymade-card reveal delay-3">
-                    <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-                    <h4>Single-vendor eCommerce</h4>
-                    <p>Your own branded single-shop store.</p>
-                    <a href="#" class="readymade-link">Learn More →</a>
+                    <h4>Movie Streaming Platform</h4>
+                    <p>OTT‑style platform with JWT authentication, role‑based access, and responsive UI.</p>
+                    <a href="#contact" class="readymade-link">Learn More →</a>
                 </div>
             </div>
         </div>
@@ -1690,95 +1663,85 @@
     <section class="industry-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">SOLUTIONS BY INDUSTRY</span>
-                <h2 class="section-title">Built For Indian Businesses</h2>
-                <p class="section-subtitle">Pick your industry to see the software we build for teams like yours.</p>
+                <span class="section-label">INDUSTRIES WE SERVE</span>
+                <h2 class="section-title">Built for Your Business</h2>
+                <p class="section-subtitle">We understand the unique challenges of different sectors and tailor solutions accordingly.</p>
             </div>
             <div class="industry-grid">
-                <div class="industry-card reveal"><span class="emoji-big">🏪</span><h4>Retail &amp; Kirana</h4><p>Billing, inventory &amp; online store</p></div>
-                <div class="industry-card reveal delay-1"><span class="emoji-big">🍽️</span><h4>Food &amp; Restaurants</h4><p>POS, delivery &amp; QR ordering</p></div>
-                <div class="industry-card reveal delay-2"><span class="emoji-big">🏥</span><h4>Healthcare &amp; Clinics</h4><p>Patient management &amp; telemedicine</p></div>
-                <div class="industry-card reveal delay-3"><span class="emoji-big">📚</span><h4>Education &amp; Coaching</h4><p>LMS, student portals &amp; scheduling</p></div>
-                <div class="industry-card reveal"><span class="emoji-big">🚚</span><h4>Logistics &amp; Transport</h4><p>Fleet tracking &amp; delivery management</p></div>
-                <div class="industry-card reveal delay-1"><span class="emoji-big">🏗️</span><h4>Real Estate &amp; Builders</h4><p>CRM, project tracking &amp; lead management</p></div>
-                <div class="industry-card reveal delay-2"><span class="emoji-big">🏭</span><h4>Manufacturing &amp; MSME</h4><p>Inventory, production &amp; quality control</p></div>
-                <div class="industry-card reveal delay-3"><span class="emoji-big">🛒</span><h4>Grocery &amp; Supermarket</h4><p>POS, inventory &amp; loyalty programs</p></div>
+                <div class="industry-card reveal"><span class="emoji-big">🛍️</span><h4>E‑Commerce & Retail</h4><p>Online stores, multi‑vendor platforms, inventory management</p></div>
+                <div class="industry-card reveal delay-1"><span class="emoji-big">🚀</span><h4>SaaS & Startups</h4><p>Scalable platforms, subscription models, MVPs</p></div>
+                <div class="industry-card reveal delay-2"><span class="emoji-big">🍽️</span><h4>Food & Hospitality</h4><p>Restaurant websites, delivery platforms, reservation systems</p></div>
+                <div class="industry-card reveal delay-3"><span class="emoji-big">💐</span><h4>Florist & Gifts</h4><p>High‑performance, conversion‑focused websites</p></div>
+                <div class="industry-card reveal"><span class="emoji-big">🎬</span><h4>Content & Media</h4><p>AI content platforms, streaming applications</p></div>
+                <div class="industry-card reveal delay-1"><span class="emoji-big">📚</span><h4>Education</h4><p>Learning management systems, student portals</p></div>
+                <div class="industry-card reveal delay-2"><span class="emoji-big">🏥</span><h4>Healthcare</h4><p>Patient management, telemedicine platforms</p></div>
+                <div class="industry-card reveal delay-3"><span class="emoji-big">🏭</span><h4>Manufacturing</h4><p>Inventory, production tracking, quality control</p></div>
             </div>
         </div>
     </section>
 
-    <!-- 11. TECHNOLOGY STACK - SCROLLING RAIL -->
+    <!-- 11. TECHNOLOGY STACK -->
     <section class="tech-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">TECHNOLOGY WE USE</span>
-                <h2 class="section-title">A Modern, Proven Stack</h2>
-                <p class="section-subtitle">We build with the tools trusted by the world's best engineering teams — chosen to fit your project.</p>
+                <span class="section-label">TECHNOLOGY STACK</span>
+                <h2 class="section-title">Modern Tools, Proven Results</h2>
+                <p class="section-subtitle">We use industry‑standard technologies that ensure reliability, scalability, and performance for your project.</p>
             </div>
             <div class="tech-rail-wrap reveal delay-1">
                 <div class="tech-rail" id="techRail">
                     <!-- First set -->
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#61dafb" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 5v14M5 12h14" stroke="#61dafb"/><path d="M8 8l8 8M8 16l8-8" stroke="#61dafb" opacity="0.6"/></svg></span><span class="tech-name">React</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#41b883" stroke-width="1.5"><path d="M12 2L2 22h20L12 2z" stroke="#41b883"/><path d="M12 2L6 22h12L12 2z" stroke="#41b883" opacity="0.5"/></svg></span><span class="tech-name">Vue.js</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#dd0031" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#dd0031"/><path d="M2 17l10 5 10-5" stroke="#dd0031"/><path d="M2 12l10 5 10-5" stroke="#dd0031"/></svg></span><span class="tech-name">Angular</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3178c6"/><path d="M2 17l10 5 10-5" stroke="#3178c6"/><path d="M2 12l10 5 10-5" stroke="#3178c6"/></svg></span><span class="tech-name">TypeScript</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#68a063" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#68a063"/><path d="M2 17l10 5 10-5" stroke="#68a063"/><path d="M2 12l10 5 10-5" stroke="#68a063"/></svg></span><span class="tech-name">Node.js</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#000"/><path d="M2 17l10 5 10-5" stroke="#000"/><path d="M2 12l10 5 10-5" stroke="#000"/></svg></span><span class="tech-name">Next.js</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#f55247" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#f55247"/><path d="M2 17l10 5 10-5" stroke="#f55247"/><path d="M2 12l10 5 10-5" stroke="#f55247"/></svg></span><span class="tech-name">Laravel</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#68a063" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#68a063"/><path d="M2 17l10 5 10-5" stroke="#68a063"/><path d="M2 12l10 5 10-5" stroke="#68a063"/></svg></span><span class="tech-name">Node.js</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#3776ab" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3776ab"/><path d="M2 17l10 5 10-5" stroke="#3776ab"/><path d="M2 12l10 5 10-5" stroke="#3776ab"/></svg></span><span class="tech-name">Python</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#512bd4" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#512bd4"/><path d="M2 17l10 5 10-5" stroke="#512bd4"/><path d="M2 12l10 5 10-5" stroke="#512bd4"/></svg></span><span class="tech-name">.NET</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#777bb4" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#777bb4"/><path d="M2 17l10 5 10-5" stroke="#777bb4"/><path d="M2 12l10 5 10-5" stroke="#777bb4"/></svg></span><span class="tech-name">PHP</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#f7df1e" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#f7df1e"/><path d="M2 17l10 5 10-5" stroke="#f7df1e"/><path d="M2 12l10 5 10-5" stroke="#f7df1e"/></svg></span><span class="tech-name">JavaScript</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3178c6"/><path d="M2 17l10 5 10-5" stroke="#3178c6"/><path d="M2 12l10 5 10-5" stroke="#3178c6"/></svg></span><span class="tech-name">TypeScript</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#38b2ac" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#38b2ac"/><path d="M2 17l10 5 10-5" stroke="#38b2ac"/><path d="M2 12l10 5 10-5" stroke="#38b2ac"/></svg></span><span class="tech-name">Tailwind</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#7952b3" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#7952b3"/><path d="M2 17l10 5 10-5" stroke="#7952b3"/><path d="M2 12l10 5 10-5" stroke="#7952b3"/></svg></span><span class="tech-name">Bootstrap</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#21759b" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#21759b"/><path d="M2 17l10 5 10-5" stroke="#21759b"/><path d="M2 12l10 5 10-5" stroke="#21759b"/></svg></span><span class="tech-name">WordPress</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#5b8c5a" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#5b8c5a"/><path d="M2 17l10 5 10-5" stroke="#5b8c5a"/><path d="M2 12l10 5 10-5" stroke="#5b8c5a"/></svg></span><span class="tech-name">Shopify</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#00758f" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00758f"/><path d="M2 17l10 5 10-5" stroke="#00758f"/><path d="M2 12l10 5 10-5" stroke="#00758f"/></svg></span><span class="tech-name">MySQL</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#336791" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#336791"/><path d="M2 17l10 5 10-5" stroke="#336791"/><path d="M2 12l10 5 10-5" stroke="#336791"/></svg></span><span class="tech-name">PostgreSQL</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#47a248" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#47a248"/><path d="M2 17l10 5 10-5" stroke="#47a248"/><path d="M2 12l10 5 10-5" stroke="#47a248"/></svg></span><span class="tech-name">MongoDB</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#ffca28" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#ffca28"/><path d="M2 17l10 5 10-5" stroke="#ffca28"/><path d="M2 12l10 5 10-5" stroke="#ffca28"/></svg></span><span class="tech-name">Firebase</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#02569b" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#02569b"/><path d="M2 17l10 5 10-5" stroke="#02569b"/><path d="M2 12l10 5 10-5" stroke="#02569b"/></svg></span><span class="tech-name">Flutter</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#7f52ff" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#7f52ff"/><path d="M2 17l10 5 10-5" stroke="#7f52ff"/><path d="M2 12l10 5 10-5" stroke="#7f52ff"/></svg></span><span class="tech-name">Kotlin</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#fa7343" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#fa7343"/><path d="M2 17l10 5 10-5" stroke="#fa7343"/><path d="M2 12l10 5 10-5" stroke="#fa7343"/></svg></span><span class="tech-name">Swift</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#3ddc84" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3ddc84"/><path d="M2 17l10 5 10-5" stroke="#3ddc84"/><path d="M2 12l10 5 10-5" stroke="#3ddc84"/></svg></span><span class="tech-name">Android</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#a2aaad" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#a2aaad"/><path d="M2 17l10 5 10-5" stroke="#a2aaad"/><path d="M2 12l10 5 10-5" stroke="#a2aaad"/></svg></span><span class="tech-name">Apple</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#1769ff" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1769ff"/><path d="M2 17l10 5 10-5" stroke="#1769ff"/><path d="M2 12l10 5 10-5" stroke="#1769ff"/></svg></span><span class="tech-name">Ionic</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#2496ed" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#2496ed"/><path d="M2 17l10 5 10-5" stroke="#2496ed"/><path d="M2 12l10 5 10-5" stroke="#2496ed"/></svg></span><span class="tech-name">Docker</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#326ce5" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#326ce5"/><path d="M2 17l10 5 10-5" stroke="#326ce5"/><path d="M2 12l10 5 10-5" stroke="#326ce5"/></svg></span><span class="tech-name">Kubernetes</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#f05032" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#f05032"/><path d="M2 17l10 5 10-5" stroke="#f05032"/><path d="M2 12l10 5 10-5" stroke="#f05032"/></svg></span><span class="tech-name">Git</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#181717" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#181717"/><path d="M2 17l10 5 10-5" stroke="#181717"/><path d="M2 12l10 5 10-5" stroke="#181717"/></svg></span><span class="tech-name">GitHub</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#fc6d26" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#fc6d26"/><path d="M2 17l10 5 10-5" stroke="#fc6d26"/><path d="M2 12l10 5 10-5" stroke="#fc6d26"/></svg></span><span class="tech-name">GitLab</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#009639" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#009639"/><path d="M2 17l10 5 10-5" stroke="#009639"/><path d="M2 12l10 5 10-5" stroke="#009639"/></svg></span><span class="tech-name">NGINX</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#f38020" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#f38020"/><path d="M2 17l10 5 10-5" stroke="#f38020"/><path d="M2 12l10 5 10-5" stroke="#f38020"/></svg></span><span class="tech-name">Cloudflare</span></span>
                     <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#000"/><path d="M2 17l10 5 10-5" stroke="#000"/><path d="M2 12l10 5 10-5" stroke="#000"/></svg></span><span class="tech-name">Vercel</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#e37400" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#e37400"/><path d="M2 17l10 5 10-5" stroke="#e37400"/><path d="M2 12l10 5 10-5" stroke="#e37400"/></svg></span><span class="tech-name">Google Ads</span></span>
-                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#4285f4"/><path d="M2 17l10 5 10-5" stroke="#4285f4"/><path d="M2 12l10 5 10-5" stroke="#4285f4"/></svg></span><span class="tech-name">Meta</span></span>
+                    <!-- Second set repeated for seamless scrolling -->
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#61dafb" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 5v14M5 12h14" stroke="#61dafb"/><path d="M8 8l8 8M8 16l8-8" stroke="#61dafb" opacity="0.6"/></svg></span><span class="tech-name">React</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#3178c6"/><path d="M2 17l10 5 10-5" stroke="#3178c6"/><path d="M2 12l10 5 10-5" stroke="#3178c6"/></svg></span><span class="tech-name">TypeScript</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#68a063" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#68a063"/><path d="M2 17l10 5 10-5" stroke="#68a063"/><path d="M2 12l10 5 10-5" stroke="#68a063"/></svg></span><span class="tech-name">Node.js</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#000"/><path d="M2 17l10 5 10-5" stroke="#000"/><path d="M2 12l10 5 10-5" stroke="#000"/></svg></span><span class="tech-name">Next.js</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#f55247" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#f55247"/><path d="M2 17l10 5 10-5" stroke="#f55247"/><path d="M2 12l10 5 10-5" stroke="#f55247"/></svg></span><span class="tech-name">Laravel</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#38b2ac" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#38b2ac"/><path d="M2 17l10 5 10-5" stroke="#38b2ac"/><path d="M2 12l10 5 10-5" stroke="#38b2ac"/></svg></span><span class="tech-name">Tailwind</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#00758f" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00758f"/><path d="M2 17l10 5 10-5" stroke="#00758f"/><path d="M2 12l10 5 10-5" stroke="#00758f"/></svg></span><span class="tech-name">MySQL</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#47a248" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#47a248"/><path d="M2 17l10 5 10-5" stroke="#47a248"/><path d="M2 12l10 5 10-5" stroke="#47a248"/></svg></span><span class="tech-name">MongoDB</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#2496ed" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#2496ed"/><path d="M2 17l10 5 10-5" stroke="#2496ed"/><path d="M2 12l10 5 10-5" stroke="#2496ed"/></svg></span><span class="tech-name">Docker</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#f05032" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#f05032"/><path d="M2 17l10 5 10-5" stroke="#f05032"/><path d="M2 12l10 5 10-5" stroke="#f05032"/></svg></span><span class="tech-name">Git</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#181717" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#181717"/><path d="M2 17l10 5 10-5" stroke="#181717"/><path d="M2 12l10 5 10-5" stroke="#181717"/></svg></span><span class="tech-name">GitHub</span></span>
+                    <span class="tech-rail-item"><span class="tech-icon-svg"><svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#000"/><path d="M2 17l10 5 10-5" stroke="#000"/><path d="M2 12l10 5 10-5" stroke="#000"/></svg></span><span class="tech-name">Vercel</span></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 12. PARTNERS -->
+    <!-- 12. PARTNERS (Integrations) -->
     <section class="partners-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">PARTNERS &amp; INTEGRATIONS</span>
-                <h2 class="section-title">We Work With The Best</h2>
-                <p class="section-subtitle">We build on and integrate with the platforms your business already trusts.</p>
+                <span class="section-label">INTEGRATIONS & PARTNERS</span>
+                <h2 class="section-title">We Work With the Best</h2>
+                <p class="section-subtitle">Our solutions integrate seamlessly with the tools you already trust.</p>
             </div>
             <div class="partners-grid">
-                <div class="partner-card reveal"><span class="partner-logo-svg" style="color:#1877f2;">Meta</span></div>
+                <div class="partner-card reveal"><span class="partner-logo-svg" style="color:#0EA5E9;">Razorpay</span></div>
                 <div class="partner-card reveal delay-1"><span class="partner-logo-svg" style="color:#4285f4;">Google</span></div>
                 <div class="partner-card reveal delay-2"><span class="partner-logo-svg" style="color:#00a4ef;">Microsoft</span></div>
                 <div class="partner-card reveal delay-3"><span class="partner-logo-svg" style="color:#e42527;">Zoho</span></div>
-                <div class="partner-card reveal"><span class="partner-logo-svg" style="color:#0d1d30;">Razorpay</span></div>
-                <div class="partner-card reveal delay-1"><span class="partner-logo-svg" style="color:#25d366;">AiSensy</span></div>
-                <div class="partner-card reveal delay-2"><span class="partner-logo-svg" style="color:#1a73e8;">SurePass</span></div>
-                <div class="partner-card reveal delay-3"><span class="partner-logo-svg" style="color:#f97316;">Porter</span></div>
-                <div class="partner-card reveal"><span class="partner-logo-svg" style="color:#6b46c1;">Adlogg</span></div>
-                <div class="partner-card reveal delay-1"><span class="partner-logo-svg" style="color:#1a73e8;">Shiprocket</span></div>
-                <div class="partner-card reveal delay-2"><span class="partner-logo-svg" style="color:#e42527;">Rista POS</span></div>
-                <div class="partner-card reveal delay-3"><span class="partner-logo-svg" style="color:#FF5A36;">Petpooja</span></div>
+                <div class="partner-card reveal"><span class="partner-logo-svg" style="color:#f97316;">Cloudinary</span></div>
+                <div class="partner-card reveal delay-1"><span class="partner-logo-svg" style="color:#25d366;">Resend</span></div>
+                <div class="partner-card reveal delay-2"><span class="partner-logo-svg" style="color:#1a73e8;">Vercel</span></div>
+                <div class="partner-card reveal delay-3"><span class="partner-logo-svg" style="color:#f97316;">MongoDB</span></div>
+                <div class="partner-card reveal"><span class="partner-logo-svg" style="color:#6b46c1;">GitHub</span></div>
+                <div class="partner-card reveal delay-1"><span class="partner-logo-svg" style="color:#1a73e8;">Postman</span></div>
+                <div class="partner-card reveal delay-2"><span class="partner-logo-svg" style="color:#e42527;">Express</span></div>
+                <div class="partner-card reveal delay-3"><span class="partner-logo-svg" style="color:#0EA5E9;">Tailwind</span></div>
             </div>
         </div>
     </section>
@@ -1787,28 +1750,71 @@
     <section class="certifications-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">CERTIFICATIONS &amp; RECOGNITIONS</span>
-                <h2 class="section-title">Recognised For Doing It Right</h2>
-                <p class="section-subtitle">Credentials and recognitions that back the quality we deliver.</p>
+                <span class="section-label">CERTIFICATIONS & RECOGNITION</span>
+                <h2 class="section-title">Credentials That Matter</h2>
+                <p class="section-subtitle">We invest in continuous learning and quality standards to deliver excellence.</p>
             </div>
             <div class="certs-grid">
-                <div class="cert-card reveal"><span class="cert-icon">🇮🇳</span><h5>Startup India</h5><p>DPIIT Recognised</p></div>
-                <div class="cert-card reveal delay-1"><span class="cert-icon">📋</span><h5>MSME / Udyam</h5><p>Registered Enterprise</p></div>
-                <div class="cert-card reveal delay-2"><span class="cert-icon">✅</span><h5>ISO 9001:2015</h5><p>Quality Management</p></div>
-                <div class="cert-card reveal delay-3"><span class="cert-icon">🔵</span><h5>Google Partner</h5><p>Cloud &amp; Ads</p></div>
-                <div class="cert-card reveal"><span class="cert-icon">⭐</span><h5>4.9 Reviews</h5><p>Rated by our clients</p></div>
-                <div class="cert-card reveal delay-1"><span class="cert-icon">🏆</span><h5>Since 2019</h5><p>7+ Years in business</p></div>
+                <div class="cert-card reveal"><span class="cert-icon">🛠️</span><h5>Full‑Stack Internship</h5><p>The Entrepreneurship Network</p></div>
+                <div class="cert-card reveal delay-1"><span class="cert-icon">📘</span><h5>TypeScript 2026</h5><p>Udemy – Mastered</p></div>
+                <div class="cert-card reveal delay-2"><span class="cert-icon">📊</span><h5>DSA Problem Solver</h5><p>50+ problems solved</p></div>
+                <div class="cert-card reveal delay-3"><span class="cert-icon">⚡</span><h5>Performance Expert</h5><p>90+ Lighthouse scores</p></div>
+                <div class="cert-card reveal"><span class="cert-icon">🤝</span><h5>Agile Practitioner</h5><p>Scrum Master experience</p></div>
+                <div class="cert-card reveal delay-1"><span class="cert-icon">🏆</span><h5>Quality First</h5><p>Fixed‑price delivery</p></div>
             </div>
         </div>
     </section>
 
-    <!-- 14. TESTIMONIALS (Upgraded to Horizontal Track like AFTER Image) -->
+    <!-- 14. WHY CHOOSE US -->
+    <section class="why-choose-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">WHY REVA</span>
+                <h2 class="section-title">Built for Your Growth</h2>
+                <p class="section-subtitle">We combine technical excellence with business understanding to create solutions that drive real results.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal">
+                    <div class="why-icon">🚀</div>
+                    <h4>Scalable Architecture</h4>
+                    <p>Our solutions are built to grow with your business — from startup to enterprise, we design for scale.</p>
+                </div>
+                <div class="why-card reveal delay-1">
+                    <div class="why-icon">🔒</div>
+                    <h4>Secure & Reliable</h4>
+                    <p>We implement best‑in‑class security practices, authentication, and data protection to keep your business safe.</p>
+                </div>
+                <div class="why-card reveal delay-2">
+                    <div class="why-icon">⚡</div>
+                    <h4>High Performance</h4>
+                    <p>We optimize every layer — frontend, backend, and infrastructure — to deliver fast, responsive experiences.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-icon">🧩</div>
+                    <h4>Modular & Customizable</h4>
+                    <p>Our code is modular, so you can add features, integrations, and customizations without starting from scratch.</p>
+                </div>
+                <div class="why-card reveal delay-1">
+                    <div class="why-icon">📈</div>
+                    <h4>Data‑Driven Insights</h4>
+                    <p>Built‑in analytics and reporting help you track performance, understand customers, and make informed decisions.</p>
+                </div>
+                <div class="why-card reveal delay-2">
+                    <div class="why-icon">💬</div>
+                    <h4>Long‑Term Partnership</h4>
+                    <p>We support you beyond launch — with maintenance, updates, and continuous improvement as you grow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 15. TESTIMONIALS (Trust statements) -->
     <section class="testimonials-section">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-label">WHAT OUR CLIENTS SAY</span>
-                <h2 class="section-title">Loved By Businesses Like Yours</h2>
-                <p class="section-subtitle">Real words from the founders and teams we've built for.</p>
+                <h2 class="section-title">Trusted by Businesses</h2>
+                <p class="section-subtitle">Real feedback from real projects — our commitment to quality speaks for itself.</p>
             </div>
         </div>
         
@@ -1816,76 +1822,72 @@
             <div class="testimonial-card">
                 <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"The app looks amazing and runs smoothly — you understood exactly what I needed and delivered on time."</p>
+                <p class="testimonial-text">"The platform exceeded our expectations. The team understood our requirements and delivered a scalable solution on time."</p>
                 <div class="author-info">
-                    <div class="author-avatar avatar-dark">S</div>
-                    <div class="author-details"><h4>Simran Chaurasia</h4><p>EzzeEats Food App, Nepal</p></div>
+                    <div class="author-avatar avatar-blue">S</div>
+                    <div class="author-details"><h4>Startup Founder</h4><p>E‑Commerce Brand</p></div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Great job on the logistics app. Live tracking and the driver dashboard work perfectly, with regular updates throughout."</p>
+                <p class="testimonial-text">"Our website load time dropped by 40% and our conversion rate improved significantly. Highly recommended!"</p>
                 <div class="author-info">
-                    <div class="author-avatar avatar-brown">H</div>
-                    <div class="author-details"><h4>Hari</h4><p>Green Drive Logistics</p></div>
+                    <div class="author-avatar avatar-teal">A</div>
+                    <div class="author-details"><h4>Business Owner</h4><p>Retail & Gifts</p></div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"I love how my e-commerce website turned out — stylish, fast and easy to use. Every request was handled patiently."</p>
+                <p class="testimonial-text">"The team built a complete SaaS platform for us with a clean UI and robust backend. We're now live with 50+ stores."</p>
                 <div class="author-info">
-                    <div class="author-avatar avatar-blue">D</div>
-                    <div class="author-details"><h4>Divya Patel</h4><p>Trendz Boutique</p></div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Really impressed with the new version of our app. The design looks beautiful and everything works seamlessly."</p>
-                <div class="author-info">
-                    <div class="author-avatar avatar-green">R</div>
-                    <div class="author-details"><h4>Rajeev Rajan</h4><p>Shero Home Food</p></div>
+                    <div class="author-avatar avatar-dark">K</div>
+                    <div class="author-details"><h4>CTO</h4><p>SaaS Startup</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 15. CONTACT / LET'S BUILD (Upgraded to match AFTER Image) -->
+    <!-- 16. CONTACT / FINAL CONVERSION -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-label">LET'S BUILD TOGETHER</span>
-                <h2 class="section-title">Let's Ship Something<br><span style="color:var(--primary)">Worth Talking About</span></h2>
-                <p class="section-subtitle">Book a free consultation. We'll help you scope it, price it and build it — no pressure, just clarity.</p>
+                <span class="section-label">READY TO BUILD?</span>
+                <h2 class="section-title">Let's Turn Your Idea Into Reality</h2>
+                <p class="section-subtitle">Tell us about your project — we'll help you plan, build, and scale the right digital solution.</p>
             </div>
             <div class="contact-grid">
                 <div class="contact-info reveal delay-1">
-                    <h3>📬 Get in touch</h3>
-                    <p>Reply within one business day · Fixed-price, no surprises · NDA on request</p>
+                    <h3>📬 Get in Touch</h3>
+                    <p>We reply within one business day. No obligation, just clarity.</p>
                     <div class="contact-info-list">
-                        <div class="contact-info-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91 82480 63043</div>
-                        <div class="contact-info-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> sales@alabtechnology.com</div>
-                        <div class="contact-info-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 5A, Sippai Nagar, Kumananchavadi, Kattupakkam, Chennai, TN 600056</div>
+                        <div class="contact-info-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91 6379705993</div>
+                        <div class="contact-info-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> manikandankumar0506@gmail.com</div>
+                        <div class="contact-info-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Remote — We work from anywhere</div>
                     </div>
                 </div>
                 
                 <div class="contact-form-wrap reveal delay-2">
                     <form id="contactForm">
                         <div class="form-row">
-                            <div><label>Your name *</label><input type="text" placeholder="John Doe" required /></div>
+                            <div><label>Your Name *</label><input type="text" placeholder="John Doe" required /></div>
                             <div><label>Phone / WhatsApp *</label><input type="tel" placeholder="+91 98765 43210" required /></div>
                         </div>
                         <div class="form-row" style="grid-template-columns:1fr;">
-                            <div><label>Email address</label><input type="email" placeholder="john@example.com" /></div>
+                            <div><label>Email Address</label><input type="email" placeholder="john@example.com" /></div>
                         </div>
                         <div class="form-row" style="grid-template-columns:1fr;">
                             <div><label>Service</label>
                                 <select>
-                                    <option>Custom Software</option><option>Mobile App</option><option>Cloud &amp; DevOps</option>
-                                    <option>IT Consulting</option><option>RPA</option><option>Power BI</option>
-                                    <option>Digital Marketing</option><option>Resource Deployment</option>
+                                    <option>SaaS Development</option>
+                                    <option>E‑Commerce Platform</option>
+                                    <option>Custom Software Development</option>
+                                    <option>AI Solutions</option>
+                                    <option>Automation Solutions</option>
+                                    <option>Website Development</option>
+                                    <option>UI/UX & Consulting</option>
+                                    <option>API & Integration</option>
                                 </select>
                             </div>
                         </div>
@@ -1900,7 +1902,7 @@
                             </div>
                         </div>
                         <div class="form-row" style="grid-template-columns:1fr;">
-                            <div><label>Tell us about your project</label><textarea placeholder="A few lines about what you want to build..."></textarea></div>
+                            <div><label>Tell us about your project</label><textarea placeholder="Describe your business, goals, requirements, and challenges..."></textarea></div>
                         </div>
                         <button type="submit" class="btn-submit">
                             Send Message <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1911,59 +1913,62 @@
         </div>
     </section>
 
-    <!-- 16. FOOTER -->
+    <!-- 17. FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="reveal">
                     <div class="footer-logo">
                         <svg viewBox="0 0 40 40" fill="none">
-                            <path d="M20 2L5 35H12L20 15L28 35H35L20 2Z" fill="white" />
-                            <path d="M14 25L20 12L26 25H14Z" fill="#1a1e27" />
-                            <path d="M5 35L20 35C20 35 15 28 12 25L5 35Z" fill="#FF5A36" />
+                            <path d="M2 20 Q10 8, 20 20 Q30 32, 38 20" stroke="#0EA5E9" stroke-width="4" fill="none"/>
+                            <path d="M8 20 Q14 12, 20 20 Q26 28, 32 20" stroke="#06B6D4" stroke-width="3" fill="none"/>
+                            <circle cx="20" cy="20" r="3" fill="#0EA5E9" />
                         </svg>
-                        ALAB Technology
+                        Reva Web Solution
                     </div>
-                    <p class="footer-desc">Helping startups and businesses build, scale and secure the software they run on — with dedicated teams onsite and offshore since 2019.</p>
+                    <p class="footer-desc">Helping businesses build scalable software and SaaS platforms with modern technology and a commitment to quality.</p>
                     <div class="social-links">
-                        <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-                        <a href="#"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
-                        <a href="#"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="https://github.com/ukmani01" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.62.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+                        <a href="https://mk-eta-snowy.vercel.app" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" target="_blank"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
                     </div>
                 </div>
                 <div class="reveal delay-1">
                     <h4 class="footer-title">Services</h4>
                     <div class="footer-links">
-                        <a href="#">Custom Software</a><a href="#">App Development</a>
-                        <a href="#">Cloud &amp; DevOps</a><a href="#">IT Consulting</a>
-                        <a href="#">RPA</a><a href="#">Power BI</a>
-                        <a href="#">Digital Marketing</a><a href="#">Resource Deployment</a>
+                        <a href="#services">SaaS Development</a>
+                        <a href="#services">Full‑Stack Development</a>
+                        <a href="#services">E‑Commerce Platforms</a>
+                        <a href="#services">AI & Automation</a>
+                        <a href="#services">API & Integration</a>
+                        <a href="#services">UI/UX & Consulting</a>
                     </div>
                 </div>
                 <div class="reveal delay-2">
                     <h4 class="footer-title">Company</h4>
                     <div class="footer-links">
-                        <a href="#">About Us</a><a href="#">Industries</a>
-                        <a href="#">Our Products</a><a href="#">Trending News</a>
-                        <a href="#">Try RPA</a><a href="#">Try AI Agent</a>
-                        <a href="#">Career <span class="job-pill">7 JOBS</span></a>
+                        <a href="#home">Home</a>
+                        <a href="#services">Services</a>
+                        <a href="#products">Products</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#">Careers <span class="job-pill">We're Hiring</span></a>
                     </div>
                 </div>
                 <div class="reveal delay-3">
                     <h4 class="footer-title">Contact</h4>
                     <div class="contact-list">
-                        <div class="contact-item-footer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91 82480 63043</div>
-                        <div class="contact-item-footer"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> sales@alabtechnology.com</div>
-                        <div class="contact-item-footer"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Chennai, Tamil Nadu 600056</div>
+                        <div class="contact-item-footer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91 6379705993</div>
+                        <div class="contact-item-footer"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> manikandankumar0506@gmail.com</div>
+                        <div class="contact-item-footer"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Remote</div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom reveal">
-                <p>© 2026 Alab Technology Pvt. Ltd · All rights reserved · PROD-VER: 2.0.2</p>
+                <p>© 2026 Reva Web Solution. All rights reserved.</p>
                 <div class="legal-links">
                     <a href="#">Privacy Policy</a>
-                    <a href="#">Terms &amp; Conditions</a>
+                    <a href="#">Terms & Conditions</a>
                     <a href="#">Support</a>
                 </div>
             </div>
@@ -1980,7 +1985,7 @@
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="back-to-top"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS (unchanged functionality, updated content) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -2096,7 +2101,7 @@
             revealEls.forEach(function(el) { revealObs.observe(el); });
 
             // ============================================
-            // 4. STATS COUNTER
+            // 4. STATS COUNTER (updated targets)
             // ============================================
             const statNumbers = document.querySelectorAll('.stat-number');
             let statsAnimated = false;
@@ -2107,6 +2112,7 @@
                         const target = parseFloat(stat.getAttribute('data-target'));
                         const isDecimal = stat.hasAttribute('data-decimal');
                         const hasPlus = stat.innerHTML.includes('<span>+</span>');
+                        const hasPercent = stat.innerHTML.includes('<span>%</span>');
                         let current = 0;
                         const increment = target / 55;
                         const timer = setInterval(function() {
@@ -2115,8 +2121,10 @@
                                 clearInterval(timer);
                                 current = target;
                             }
-                            const displayVal = isDecimal ? current.toFixed(1) : Math.ceil(current);
-                            stat.innerHTML = displayVal + (hasPlus ? '<span>+</span>' : '');
+                            let displayVal = isDecimal ? current.toFixed(1) : Math.ceil(current);
+                            if (hasPercent) displayVal += '%';
+                            else if (hasPlus) displayVal += '<span>+</span>';
+                            stat.innerHTML = displayVal;
                         }, 25);
                     });
                 }
@@ -2125,7 +2133,7 @@
             if (statsSection) statsObs.observe(statsSection);
 
             // ============================================
-            // 5. BUDGET SLIDER (Updated for premium styling)
+            // 5. BUDGET SLIDER
             // ============================================
             const budgetRange = document.getElementById('budgetRange');
             const budgetDisplay = document.getElementById('budgetDisplay');
@@ -2161,7 +2169,7 @@
             }
 
             // ============================================
-            // 7. CONTACT FORM
+            // 7. CONTACT FORM (with improved messaging)
             // ============================================
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
@@ -2184,7 +2192,7 @@
             }
 
             // ============================================
-            // 8. PRODUCT CAROUSEL
+            // 8. PRODUCT CAROUSEL (unchanged)
             // ============================================
             const track = document.getElementById('productTrack');
             const slides = track ? track.querySelectorAll('.product-slide') : [];
