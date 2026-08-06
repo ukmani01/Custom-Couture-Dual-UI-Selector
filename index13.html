@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MultiTenant — Scroll Storytelling</title>
+<title>MultiTenant — Scroll-Locked Storytelling</title>
 <style>
 /* ============================================================
    RESET & BASE
    ============================================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -18,6 +21,7 @@ body {
   background: #ffffff;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -72,296 +76,303 @@ button { font-family: inherit; cursor: pointer; }
 .btn-whatsapp:hover { box-shadow: 0 6px 20px rgba(37, 211, 102, .4); }
 
 /* ============================================================
-   FEATURED STORIES — STRIPE-LIKE SCROLL
+   SECTION SPACER — Creates scroll room for storytelling
    ============================================================ */
-.featured-stories {
-  padding: 80px 0 120px;
+.story-spacer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #fafafc;
-  position: relative;
+  border-bottom: 1px solid #eceef2;
 }
-
-.stories-header {
+.story-spacer .spacer-content {
   text-align: center;
-  margin-bottom: 60px;
+  max-width: 600px;
 }
-.stories-eyebrow {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #5a45e8;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: #f0eeff;
-  padding: 6px 18px;
-  border-radius: 20px;
+.story-spacer .spacer-content .icon {
+  font-size: 48px;
   margin-bottom: 16px;
 }
-.stories-header .section-title {
-  margin-bottom: 12px;
+.story-spacer .spacer-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
-.stories-sub {
-  font-size: 17px;
+.story-spacer .spacer-content p {
   color: #6b6b7a;
-  max-width: 520px;
-  margin: 0 auto;
+  font-size: 16px;
 }
 
 /* ============================================================
-   SCROLL CONTAINER — CSS GRID
+   SCROLL-LOCKED STORYTELLING SECTION
    ============================================================ */
-.stories-scroll-container {
+.storytelling-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #fafafc;
+  border-bottom: 1px solid #eceef2;
+}
+
+/* The actual sticky container */
+.storytelling-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ============================================================
+   STORY CONTENT — The "TV Screen"
+   ============================================================ */
+.story-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 48px;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 60px;
-  align-items: start;
+  align-items: center;
   position: relative;
-}
-
-/* ============================================================
-   STICKY PREVIEW — PINNED CARD
-   ============================================================ */
-.sticky-story-container {
-  position: sticky;
-  top: 100px;
-  height: 560px;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 20px 60px rgba(0,0,0,.08);
-  border: 1px solid #eceef2;
-  transition: box-shadow 0.4s ease;
-}
-
-.sticky-story-container:hover {
-  box-shadow: 0 30px 80px rgba(88, 65, 216, .12);
-}
-
-.story-preview {
-  width: 100%;
   height: 100%;
-  padding: 40px 44px;
+}
+
+/* Story Preview (Left side) */
+.story-preview {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 20px 0;
 }
 
-/* Subtle gradient overlay for depth */
-.story-preview::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.story-preview > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Preview Image */
-.preview-image-wrap {
-  width: 100%;
-  height: 180px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  background: #f4f4f8;
-  position: relative;
-}
-
-.preview-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.sticky-story-container:hover .preview-image-wrap img {
-  transform: scale(1.02);
-}
-
-/* Badge */
-.preview-badge {
+.story-preview .story-badge {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #5a45e8;
   background: #f0eeff;
-  padding: 4px 14px;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
   align-self: flex-start;
-  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-/* Title */
-.preview-title {
-  font-size: 28px;
+.story-preview .story-title {
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
-  line-height: 1.2;
+  margin-bottom: 12px;
+  line-height: 1.15;
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-/* Description */
-.preview-desc {
-  font-size: 15px;
+.story-preview .story-desc {
+  font-size: 16px;
   color: #6b6b7a;
-  line-height: 1.6;
-  margin-bottom: 16px;
+  line-height: 1.7;
+  margin-bottom: 18px;
   max-width: 90%;
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-/* Features */
-.preview-features {
+.story-preview .story-features {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(12px);
 }
-.preview-features span {
+.story-preview .story-features span {
   background: #f4f4f8;
-  padding: 3px 14px;
+  padding: 4px 14px;
   border-radius: 12px;
   font-size: 12px;
   color: #555;
   font-weight: 500;
-  transition: all 0.3s ease;
-}
-.preview-features span:hover {
-  background: #e8e6ff;
-  color: #5a45e8;
 }
 
-/* Price */
-.preview-price {
-  font-size: 24px;
+.story-preview .story-price {
+  font-size: 26px;
   font-weight: 700;
   color: #5a45e8;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(12px);
 }
-.preview-price span {
+.story-preview .story-price span {
   font-size: 15px;
   font-weight: 400;
   color: #6b6b7a;
 }
 
-/* Actions */
-.preview-actions {
+.story-preview .story-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-/* ============================================================
-   TIMELINE — SCROLL TRIGGERS
-   ============================================================ */
-.story-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 20px;
-}
-
-.story-trigger {
-  padding: 18px 24px;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  border: 1px solid transparent;
-  background: transparent;
+/* Story Image (Right side) */
+.story-image {
   display: flex;
   align-items: center;
-  gap: 18px;
+  justify-content: center;
   position: relative;
 }
 
-/* Progress line on the left */
-.story-trigger::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 3px;
-  height: 0;
-  background: linear-gradient(180deg, #5a45e8, #8a75ff);
-  border-radius: 2px;
-  transform: translateY(-50%);
-  transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.story-trigger.active::before {
-  height: 60%;
-}
-
-.story-trigger:hover {
+.story-image .image-wrap {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.1);
   background: #f4f4f8;
-  border-color: #eceef2;
+  aspect-ratio: 4/3;
+  opacity: 0;
+  transform: scale(0.92);
 }
 
-.story-trigger.active {
-  background: #ffffff;
-  border-color: #5a45e8;
-  box-shadow: 0 8px 30px rgba(88, 65, 216, .1);
-  transform: translateX(8px);
-}
-
-.story-trigger-number {
-  font-size: 13px;
-  font-weight: 700;
-  color: #b0b0c0;
-  font-variant-numeric: tabular-nums;
-  min-width: 32px;
-  transition: color 0.4s ease;
-}
-.story-trigger.active .story-trigger-number {
-  color: #5a45e8;
-}
-
-.story-trigger-content h4 {
-  font-size: 16px;
-  font-weight: 600;
-  transition: color 0.4s ease;
-}
-.story-trigger.active .story-trigger-content h4 {
-  color: #5a45e8;
-}
-.story-trigger-content p {
-  font-size: 13px;
-  color: #8a8a99;
-  margin-top: 2px;
+.story-image .image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ============================================================
-   ANIMATION CLASSES — STRIPE-LIKE TRANSITIONS
+   STORY PROGRESS INDICATOR
    ============================================================ */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.story-progress {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
 }
 
-@keyframes fadeSlideDown {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.94);
-  }
+.story-progress .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d8dae0;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.story-progress .dot.active {
+  background: #5a45e8;
+  transform: scale(1.4);
+  box-shadow: 0 0 20px rgba(88, 65, 216, .3);
+}
+
+.story-progress .dot .label {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a45e8;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  background: #fff;
+  padding: 2px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.story-progress .dot.active .label {
+  opacity: 1;
+}
+
+/* ============================================================
+   STORY COUNTER
+   ============================================================ */
+.story-counter {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #b0b0c0;
+  letter-spacing: 0.04em;
+}
+.story-counter .current {
+  color: #5a45e8;
+  font-size: 20px;
+}
+
+/* ============================================================
+   ANIMATION STATES
+   ============================================================ */
+/* Enter animation (staggered) */
+.story-enter .story-badge {
+  animation: fadeUp 0.5s 0.05s forwards;
+}
+.story-enter .story-title {
+  animation: fadeUp 0.5s 0.15s forwards;
+}
+.story-enter .story-desc {
+  animation: fadeUp 0.5s 0.25s forwards;
+}
+.story-enter .story-features {
+  animation: fadeUp 0.5s 0.35s forwards;
+}
+.story-enter .story-price {
+  animation: fadeUp 0.5s 0.45s forwards;
+}
+.story-enter .story-actions {
+  animation: fadeUp 0.5s 0.55s forwards;
+}
+.story-enter .image-wrap {
+  animation: scaleIn 0.6s 0.2s forwards;
+}
+
+/* Exit animation */
+.story-exit .story-badge,
+.story-exit .story-title,
+.story-exit .story-desc,
+.story-exit .story-features,
+.story-exit .story-price,
+.story-exit .story-actions {
+  animation: fadeDown 0.4s forwards;
+}
+.story-exit .story-badge { animation-delay: 0s; }
+.story-exit .story-title { animation-delay: 0.05s; }
+.story-exit .story-desc { animation-delay: 0.1s; }
+.story-exit .story-features { animation-delay: 0.15s; }
+.story-exit .story-price { animation-delay: 0.2s; }
+.story-exit .story-actions { animation-delay: 0.25s; }
+.story-exit .image-wrap {
+  animation: scaleOut 0.4s 0.1s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-16px); }
 }
 
 @keyframes scaleIn {
@@ -369,152 +380,83 @@ button { font-family: inherit; cursor: pointer; }
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Exit animation */
-.preview-exit {
-  animation: fadeSlideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Enter animation */
-.preview-enter {
-  animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Staggered child animations */
-.stagger-enter .preview-badge {
-  animation: fadeIn 0.5s 0.05s forwards;
-  opacity: 0;
-}
-.stagger-enter .preview-image-wrap {
-  animation: scaleIn 0.6s 0.15s forwards;
-  opacity: 0;
-}
-.stagger-enter .preview-title {
-  animation: fadeIn 0.5s 0.25s forwards;
-  opacity: 0;
-}
-.stagger-enter .preview-desc {
-  animation: fadeIn 0.5s 0.35s forwards;
-  opacity: 0;
-}
-.stagger-enter .preview-features {
-  animation: fadeIn 0.5s 0.45s forwards;
-  opacity: 0;
-}
-.stagger-enter .preview-price {
-  animation: fadeIn 0.5s 0.55s forwards;
-  opacity: 0;
-}
-.stagger-enter .preview-actions {
-  animation: fadeIn 0.5s 0.65s forwards;
-  opacity: 0;
+@keyframes scaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.92); }
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
-  .stories-scroll-container {
+  .story-content {
     grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .sticky-story-container {
-    position: relative;
-    top: 0;
-    height: auto;
-    min-height: 420px;
-    width: 100%;
-  }
-
-  .story-preview {
+    gap: 24px;
     padding: 32px 36px;
+    overflow-y: auto;
   }
-  .preview-image-wrap {
-    height: 140px;
+  .story-preview .story-title {
+    font-size: 28px;
   }
-
-  .story-timeline {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 0;
+  .story-image .image-wrap {
+    max-width: 100%;
+    max-height: 240px;
   }
-  .story-trigger {
-    flex: 1;
-    min-width: 200px;
-    max-width: 280px;
-    padding: 14px 20px;
+  .story-progress {
+    right: 16px;
   }
-  .story-trigger.active {
-    transform: translateX(0);
-  }
-  .story-trigger::before {
+  .story-progress .dot .label {
     display: none;
+  }
+  .story-counter {
+    bottom: 16px;
+    right: 16px;
   }
 }
 
 @media (max-width: 680px) {
-  .featured-stories { padding: 48px 0 64px; }
-  .stories-header { margin-bottom: 32px; }
-  .stories-header .section-title { font-size: 26px; }
-  .stories-sub { font-size: 15px; }
-
-  .story-preview {
+  .story-content {
     padding: 24px 20px;
-    min-height: 380px;
+    gap: 16px;
   }
-  .preview-image-wrap {
-    height: 100px;
-  }
-  .preview-title {
+  .story-preview .story-title {
     font-size: 22px;
   }
-  .preview-desc {
+  .story-preview .story-desc {
     font-size: 14px;
     max-width: 100%;
   }
-  .preview-price {
+  .story-preview .story-price {
     font-size: 20px;
   }
-  .preview-actions {
+  .story-actions {
     flex-direction: column;
     width: 100%;
   }
-  .preview-actions .btn {
+  .story-actions .btn {
     width: 100%;
     justify-content: center;
   }
-
-  .story-timeline {
-    flex-direction: column;
-    gap: 4px;
+  .story-image .image-wrap {
+    max-height: 180px;
   }
-  .story-trigger {
-    min-width: 100%;
-    max-width: 100%;
-    padding: 12px 16px;
-  }
-  .story-trigger.active {
-    transform: translateX(0);
-  }
-  .story-trigger-number {
-    min-width: 24px;
-    font-size: 11px;
-  }
-  .story-trigger-content h4 {
-    font-size: 14px;
-  }
-  .story-trigger::before {
+  .story-progress {
     display: none;
   }
+  .story-counter {
+    bottom: 12px;
+    right: 12px;
+    font-size: 12px;
+  }
+  .story-counter .current {
+    font-size: 16px;
+  }
 
-  .sticky-story-container {
-    min-height: 320px;
+  .story-spacer .spacer-content h2 {
+    font-size: 22px;
+  }
+  .story-spacer .spacer-content .icon {
+    font-size: 36px;
   }
 }
 
@@ -530,28 +472,30 @@ button { font-family: inherit; cursor: pointer; }
     transition-duration: 0.01ms !important;
   }
 
-  .story-preview {
-    transition: none !important;
-  }
-  .story-trigger {
-    transition: none !important;
-  }
-  .preview-exit,
-  .preview-enter {
+  .story-enter .story-badge,
+  .story-enter .story-title,
+  .story-enter .story-desc,
+  .story-enter .story-features,
+  .story-enter .story-price,
+  .story-enter .story-actions,
+  .story-enter .image-wrap {
     animation: none !important;
-  }
-  .stagger-enter .preview-badge,
-  .stagger-enter .preview-image-wrap,
-  .stagger-enter .preview-title,
-  .stagger-enter .preview-desc,
-  .stagger-enter .preview-features,
-  .stagger-enter .preview-price,
-  .stagger-enter .preview-actions {
     opacity: 1 !important;
     transform: none !important;
-    animation: none !important;
   }
-  .preview-image-wrap img {
+
+  .story-exit .story-badge,
+  .story-exit .story-title,
+  .story-exit .story-desc,
+  .story-exit .story-features,
+  .story-exit .story-price,
+  .story-exit .story-actions,
+  .story-exit .image-wrap {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .story-progress .dot.active {
     transform: none !important;
   }
 }
@@ -560,94 +504,135 @@ button { font-family: inherit; cursor: pointer; }
 <body>
 
 <!-- ============================================================
-   FEATURED STORIES — STRIPE-LIKE SCROLL
+   SPACER — Before storytelling
    ============================================================ -->
-<section class="featured-stories" id="stories">
-  <div class="container">
-    <div class="stories-header">
-      <span class="stories-eyebrow">✦ Featured Products</span>
-      <h2 class="section-title">Premium Commerce <br>Solutions</h2>
-      <p class="stories-sub">Scroll to explore our complete suite of e-commerce products and themes.</p>
-    </div>
+<div class="story-spacer">
+  <div class="spacer-content">
+    <div class="icon">📖</div>
+    <h2>Explore Our Products</h2>
+    <p>Scroll down to discover our complete suite of premium commerce solutions. Each scroll reveals a new story.</p>
+    <p style="margin-top:12px; font-size:14px; color:#b0b0c0;">↓ Scroll to begin</p>
+  </div>
+</div>
 
-    <div class="stories-scroll-container">
-      <!-- Sticky Story Container -->
-      <div class="sticky-story-container">
-        <div class="story-preview" id="storyPreview">
-          <!-- Dynamic content inserted by JavaScript -->
+<!-- ============================================================
+   SCROLL-LOCKED STORYTELLING SECTION
+   ============================================================ -->
+<section class="storytelling-section" id="storytellingSection">
+  <div class="storytelling-container">
+    <div class="story-content" id="storyContent">
+      <!-- Left: Preview -->
+      <div class="story-preview" id="storyPreview">
+        <span class="story-badge" id="storyBadge">✨ Premium Theme</span>
+        <h2 class="story-title" id="storyTitle">MAARA Luxury Indian Wear</h2>
+        <p class="story-desc" id="storyDesc">High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.</p>
+        <div class="story-features" id="storyFeatures">
+          <span>Cart</span>
+          <span>Wishlist</span>
+          <span>Checkout</span>
+          <span>Order Simulation</span>
+        </div>
+        <div class="story-price" id="storyPrice">₹7,000 <span>one-time</span></div>
+        <div class="story-actions" id="storyActions">
+          <a href="#" target="_blank" class="btn btn-outline" id="previewBtn">Preview <span class="arrow">&rsaquo;</span></a>
+          <a href="https://wa.me/916379705593" target="_blank" class="btn btn-whatsapp" id="whatsappBtn">💬 Buy Now <span class="arrow">&rsaquo;</span></a>
         </div>
       </div>
 
-      <!-- Scroll Timeline -->
-      <div class="story-timeline" id="storyTimeline">
-        <!-- Story triggers generated by JavaScript -->
+      <!-- Right: Image -->
+      <div class="story-image" id="storyImage">
+        <div class="image-wrap">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop" alt="Product" id="storyImg">
+        </div>
+      </div>
+
+      <!-- Progress Dots -->
+      <div class="story-progress" id="storyProgress">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Counter -->
+      <div class="story-counter">
+        <span class="current" id="currentIndex">01</span> / <span id="totalStories">05</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ============================================================
+   SPACER — After storytelling
+   ============================================================ -->
+<div class="story-spacer" style="border-top: 1px solid #eceef2;">
+  <div class="spacer-content">
+    <div class="icon">🚀</div>
+    <h2>Ready to Launch?</h2>
+    <p>You've explored all our products. Continue scrolling to see more or contact us to get started.</p>
+    <p style="margin-top:12px; font-size:14px; color:#b0b0c0;">↓ Continue scrolling</p>
+  </div>
+</div>
+
 <script>
 // ============================================================
 // DATA
 // ============================================================
-const stories = [
+const storyData = [
   {
     id: 0,
-    title: 'MAARA Luxury Indian Wear',
     badge: '✨ Premium Theme',
-    description: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop',
+    title: 'MAARA Luxury Indian Wear',
+    desc: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
     features: ['Cart', 'Wishlist', 'Checkout', 'Order Simulation'],
     price: '₹7,000',
     priceLabel: 'one-time',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop',
     previewUrl: 'https://maara-luxury-indian-wear-demo-cart.vercel.app/',
     whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20MAARA%20Luxury%20Indian%20Wear%20theme%20for%20₹7000.%20Please%20share%20payment%20details.'
   },
   {
     id: 1,
-    title: 'Custom Couture Dual UI',
     badge: '🎨 Design Studio',
-    description: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop',
+    title: 'Custom Couture Dual UI',
+    desc: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
     features: ['Dual UI', 'Clean Builder', 'Luxury Atelier', 'Workflow'],
     price: '₹5,000',
     priceLabel: 'one-time',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=450&fit=crop',
     previewUrl: 'https://custom-couture-dual-ui-selector.vercel.app/index8.html',
     whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Custom%20Couture%20Dual%20UI%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
   },
   {
     id: 2,
-    title: 'Premium E-Commerce',
     badge: '🔥 Production Ready',
-    description: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard. Includes 20-day free trial.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
+    title: 'Premium E-Commerce',
+    desc: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard. Includes 20-day free trial.',
     features: ['Cloudinary', 'Cart', 'Orders', 'Admin Dashboard', '20-day Trial'],
     price: '₹5,000',
     priceLabel: 'one-time',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=450&fit=crop',
     previewUrl: 'https://premium-ecommerce-six.vercel.app/',
     whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Premium%20E-Commerce%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
   },
   {
     id: 3,
-    title: 'MERN E-Commerce App',
     badge: '⚛️ Full Stack',
-    description: 'Complete full-stack e-commerce platform with JWT authentication, product filters, cart, checkout, admin panel, and REST API.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+    title: 'MERN E-Commerce App',
+    desc: 'Complete full-stack e-commerce platform with JWT authentication, product filters, cart, checkout, admin panel, and REST API.',
     features: ['JWT Auth', 'Product Filters', 'Cart', 'Checkout', 'Admin Panel', 'REST API'],
     price: '₹25,000',
     priceLabel: 'whole app',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=450&fit=crop',
     previewUrl: 'https://ecommerce-app-rho-three-69.vercel.app/',
     whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20MERN%20E-Commerce%20App.%20Please%20share%20pricing%20details%20for%20the%20whole%20app%20(%E2%82%B925%2C000)%20and%20other%20options.'
   },
   {
     id: 4,
-    title: 'Premium E-Commerce SaaS',
     badge: '🚀 SaaS Platform',
-    description: 'Production-ready commerce SaaS platform with Cloudinary, cart & orders, admin dashboard, subscription system, and 20-day trial.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop',
+    title: 'Premium E-Commerce SaaS',
+    desc: 'Production-ready commerce SaaS platform with Cloudinary, cart & orders, admin dashboard, subscription system, and 20-day trial.',
     features: ['Cloudinary', 'Cart & Orders', 'Admin Dashboard', 'Subscription', '20-day Trial'],
     price: '₹15,000',
     priceLabel: 'whole app',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
     previewUrl: 'https://premium-ecommerce-six.vercel.app/',
     whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20Premium%20E-Commerce%20SaaS%20(%E2%82%B9300%2Fmonth%20or%20%E2%82%B915%2C000%20one-time).%20Please%20share%20more%20details.'
   }
@@ -656,184 +641,273 @@ const stories = [
 // ============================================================
 // DOM REFS
 // ============================================================
+const section = document.getElementById('storytellingSection');
+const content = document.getElementById('storyContent');
 const previewEl = document.getElementById('storyPreview');
-const timelineEl = document.getElementById('storyTimeline');
-let activeIndex = 0;
+const badgeEl = document.getElementById('storyBadge');
+const titleEl = document.getElementById('storyTitle');
+const descEl = document.getElementById('storyDesc');
+const featuresEl = document.getElementById('storyFeatures');
+const priceEl = document.getElementById('storyPrice');
+const actionsEl = document.getElementById('storyActions');
+const imgEl = document.getElementById('storyImg');
+const previewBtn = document.getElementById('previewBtn');
+const whatsappBtn = document.getElementById('whatsappBtn');
+const progressEl = document.getElementById('storyProgress');
+const currentIndexEl = document.getElementById('currentIndex');
+const totalStoriesEl = document.getElementById('totalStories');
+
+let currentIndex = 0;
 let isTransitioning = false;
+let isStoryComplete = false;
 
 // ============================================================
-// RENDER TIMELINE
+// RENDER PROGRESS DOTS
 // ============================================================
-function renderTimeline() {
-  timelineEl.innerHTML = stories.map((story, index) => `
-    <div class="story-trigger ${index === 0 ? 'active' : ''}" data-story="${index}">
-      <span class="story-trigger-number">${String(index + 1).padStart(2, '0')}</span>
-      <div class="story-trigger-content">
-        <h4>${story.title}</h4>
-        <p>${story.badge}</p>
-      </div>
+function renderDots() {
+  progressEl.innerHTML = storyData.map((_, i) => `
+    <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}">
+      <span class="label">${storyData[i].title}</span>
     </div>
   `).join('');
 
-  document.querySelectorAll('.story-trigger').forEach(el => {
-    el.addEventListener('click', () => {
-      const idx = parseInt(el.dataset.story);
-      if (idx !== activeIndex && !isTransitioning) {
-        setActiveStory(idx);
+  progressEl.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.index);
+      if (idx !== currentIndex && !isTransitioning) {
+        goToStory(idx);
       }
     });
   });
+
+  totalStoriesEl.textContent = String(storyData.length).padStart(2, '0');
 }
 
 // ============================================================
-// RENDER PREVIEW — with stagger class
+// UPDATE STORY — with exit/enter animations
 // ============================================================
-function renderPreview(story, isEntering = true) {
-  const html = `
-    <span class="preview-badge">${story.badge}</span>
-    <div class="preview-image-wrap">
-      <img src="${story.image}" alt="${story.title}" loading="lazy">
-    </div>
-    <h3 class="preview-title">${story.title}</h3>
-    <p class="preview-desc">${story.description}</p>
-    <div class="preview-features">
-      ${story.features.map(f => `<span>${f}</span>`).join('')}
-    </div>
-    <div class="preview-price">${story.price} <span>${story.priceLabel}</span></div>
-    <div class="preview-actions">
-      <a href="${story.previewUrl}" target="_blank" class="btn btn-outline">
-        Preview <span class="arrow">&rsaquo;</span>
-      </a>
-      <a href="https://wa.me/916379705593?text=${story.whatsappMsg}" target="_blank" class="btn btn-whatsapp">
-        💬 Buy Now <span class="arrow">&rsaquo;</span>
-      </a>
-    </div>
-  `;
+function goToStory(index, fromScroll = false) {
+  if (isTransitioning || index === currentIndex) return;
+  if (index < 0 || index >= storyData.length) return;
 
-  previewEl.innerHTML = html;
-
-  if (isEntering) {
-    // Add stagger class for sequential animations
-    previewEl.classList.add('stagger-enter');
-    // Remove class after animation completes
-    setTimeout(() => {
-      previewEl.classList.remove('stagger-enter');
-    }, 800);
-  }
-}
-
-// ============================================================
-// SET ACTIVE STORY — STRIPE-LIKE MERGE TRANSITION
-// ============================================================
-function setActiveStory(index, fromScroll = false) {
-  if (isTransitioning || index === activeIndex) return;
   isTransitioning = true;
+  const story = storyData[index];
 
-  // Update timeline
-  document.querySelectorAll('.story-trigger').forEach((el, i) => {
-    el.classList.toggle('active', i === index);
-  });
-
-  // Exit: current card slides down
-  previewEl.classList.add('preview-exit');
+  // Exit animation
+  content.classList.add('story-exit');
 
   setTimeout(() => {
-    // Remove exit class and render new content
-    previewEl.classList.remove('preview-exit');
-    renderPreview(stories[index], true);
-    // Enter: new card slides up and merges
-    previewEl.classList.add('preview-enter');
+    // Update content
+    badgeEl.textContent = story.badge;
+    titleEl.textContent = story.title;
+    descEl.textContent = story.desc;
+    featuresEl.innerHTML = story.features.map(f => `<span>${f}</span>`).join('');
+    priceEl.innerHTML = `${story.price} <span>${story.priceLabel}</span>`;
+    imgEl.src = story.image;
+    imgEl.alt = story.title;
+    previewBtn.href = story.previewUrl;
+    whatsappBtn.href = `https://wa.me/916379705593?text=${story.whatsappMsg}`;
+
+    // Update dots
+    progressEl.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+
+    // Update counter
+    currentIndexEl.textContent = String(index + 1).padStart(2, '0');
+
+    // Remove exit, add enter
+    content.classList.remove('story-exit');
+    content.classList.add('story-enter');
+
+    currentIndex = index;
 
     setTimeout(() => {
-      previewEl.classList.remove('preview-enter');
-      activeIndex = index;
+      content.classList.remove('story-enter');
       isTransitioning = false;
-
-      if (!fromScroll) {
-        const trigger = document.querySelector(`.story-trigger[data-story="${index}"]`);
-        if (trigger) {
-          trigger.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }
     }, 700);
-  }, 600);
+  }, 450);
 }
 
 // ============================================================
-// INTERSECTION OBSERVER — SCROLL TRIGGER
+// SCROLL CONTROLLER
 // ============================================================
-function setupScrollTrigger() {
-  const triggers = document.querySelectorAll('.story-trigger');
+function setupScrollController() {
+  let scrollTimeout = false;
+  let lastScrollY = window.scrollY;
+  let scrollDirection = 0;
+  let accumulatedScroll = 0;
+  const threshold = 150; // px per story step
+
+  // Get the section position
+  const sectionTop = section.offsetTop;
+  const sectionHeight = section.offsetHeight;
+
+  window.addEventListener('scroll', () => {
+    if (scrollTimeout) return;
+
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+    const isScrollingDown = delta > 0;
+
+    // Only track when within the section
+    const scrollInSection = currentScrollY - sectionTop;
+
+    if (scrollInSection >= 0 && scrollInSection <= sectionHeight) {
+      // We're inside the storytelling section
+      accumulatedScroll += Math.abs(delta);
+
+      if (accumulatedScroll >= threshold) {
+        accumulatedScroll = 0;
+        const direction = isScrollingDown ? 1 : -1;
+        const nextIndex = currentIndex + direction;
+
+        if (nextIndex >= 0 && nextIndex < storyData.length) {
+          goToStory(nextIndex, true);
+        } else if (nextIndex >= storyData.length) {
+          // Reached end, allow release
+          isStoryComplete = true;
+        }
+      }
+    } else {
+      // Reset accumulator when outside
+      accumulatedScroll = 0;
+    }
+
+    lastScrollY = currentScrollY;
+
+    // Throttle
+    scrollTimeout = true;
+    requestAnimationFrame(() => {
+      scrollTimeout = false;
+    });
+  }, { passive: true });
+}
+
+// ============================================================
+// INTERSECTION OBSERVER — Lock/Unlock section
+// ============================================================
+function setupIntersectionObserver() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const idx = parseInt(entry.target.dataset.story);
-        if (idx !== activeIndex && !isTransitioning) {
-          setActiveStory(idx, true);
-        }
+        // Section is visible
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
+      } else {
+        // Section is out of view
+        document.body.style.overflow = '';
+        document.body.style.height = '';
       }
     });
   }, {
     root: null,
-    rootMargin: '-20% 0px -30% 0px',
     threshold: 0.3
   });
 
-  triggers.forEach(el => observer.observe(el));
-  return observer;
+  observer.observe(section);
 }
 
 // ============================================================
-// SCROLL PROGRESS TRACKING
+// WHEEL EVENT — For smoother scroll control
 // ============================================================
-function setupProgressTracking() {
-  const triggers = document.querySelectorAll('.story-trigger');
-  let ticking = false;
+function setupWheelControl() {
+  let wheelTimeout = false;
+  const wheelThreshold = 60;
 
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        let maxRatio = 0;
-        let bestIdx = 0;
-        triggers.forEach((el, i) => {
-          const rect = el.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          const visible = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-          const ratio = visible / rect.height;
-          if (ratio > maxRatio) {
-            maxRatio = ratio;
-            bestIdx = i;
-          }
-        });
-        if (bestIdx !== activeIndex && maxRatio > 0.2 && !isTransitioning) {
-          setActiveStory(bestIdx, true);
-        }
-        ticking = false;
-      });
-      ticking = true;
+  section.addEventListener('wheel', (e) => {
+    if (wheelTimeout) return;
+    if (isTransitioning) return;
+
+    const delta = e.deltaY;
+    const direction = delta > 0 ? 1 : -1;
+    const nextIndex = currentIndex + direction;
+
+    if (nextIndex >= 0 && nextIndex < storyData.length) {
+      e.preventDefault();
+      goToStory(nextIndex, true);
+      wheelTimeout = true;
+      setTimeout(() => {
+        wheelTimeout = false;
+      }, 600);
+    } else if (nextIndex >= storyData.length) {
+      // Allow scroll to pass through at the end
+      isStoryComplete = true;
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    }
+  }, { passive: false });
+}
+
+// ============================================================
+// KEYBOARD SUPPORT
+// ============================================================
+function setupKeyboardSupport() {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      const nextIndex = currentIndex + 1;
+      if (nextIndex < storyData.length && !isTransitioning) {
+        e.preventDefault();
+        goToStory(nextIndex, true);
+      }
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      const prevIndex = currentIndex - 1;
+      if (prevIndex >= 0 && !isTransitioning) {
+        e.preventDefault();
+        goToStory(prevIndex, true);
+      }
     }
   });
 }
 
 // ============================================================
-// INIT
+// REDUCED MOTION
 // ============================================================
-function init() {
-  renderTimeline();
-  renderPreview(stories[0], true);
-  setupScrollTrigger();
-  setupProgressTracking();
-
-  // Reduced motion
+function checkReducedMotion() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (prefersReducedMotion.matches) {
-    document.querySelectorAll('.preview-badge, .preview-image-wrap, .preview-title, .preview-desc, .preview-features, .preview-price, .preview-actions')
+    document.querySelectorAll('.story-badge, .story-title, .story-desc, .story-features, .story-price, .story-actions, .image-wrap')
       .forEach(el => {
         el.style.opacity = '1';
         el.style.transform = 'none';
         el.style.animation = 'none';
       });
   }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  renderDots();
+  checkReducedMotion();
+
+  // Set initial story
+  const initialStory = storyData[0];
+  badgeEl.textContent = initialStory.badge;
+  titleEl.textContent = initialStory.title;
+  descEl.textContent = initialStory.desc;
+  featuresEl.innerHTML = initialStory.features.map(f => `<span>${f}</span>`).join('');
+  priceEl.innerHTML = `${initialStory.price} <span>${initialStory.priceLabel}</span>`;
+  imgEl.src = initialStory.image;
+  imgEl.alt = initialStory.title;
+  previewBtn.href = initialStory.previewUrl;
+  whatsappBtn.href = `https://wa.me/916379705593?text=${initialStory.whatsappMsg}`;
+  currentIndexEl.textContent = '01';
+
+  // Enable animations after initial render
+  requestAnimationFrame(() => {
+    content.classList.add('story-enter');
+    setTimeout(() => {
+      content.classList.remove('story-enter');
+    }, 700);
+  });
+
+  // Setup controllers
+  setupScrollController();
+  setupIntersectionObserver();
+  setupWheelControl();
+  setupKeyboardSupport();
 }
 
 // Run on DOM ready
@@ -843,7 +917,7 @@ if (document.readyState === 'loading') {
   init();
 }
 
-console.log('🚀 Stripe-like scroll storytelling initialized!');
+console.log('🚀 Scroll-Locked Storytelling initialized!');
 </script>
 
 </body>
