@@ -1,50 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- ============================================================
+     ENTERPRISE SEO — Production Ready
+     ============================================================ -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MultiTenant — Next-Generation Commerce SaaS Platform</title>
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<!-- Primary SEO -->
+<title>MultiTenant — Premium E-Commerce & SaaS Development Platform</title>
+<meta name="description" content="Build, launch, and scale your online store with MultiTenant — a complete multi-tenant e-commerce and SaaS development platform. Custom solutions for fashion, retail, D2C brands, and enterprise businesses.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://multitenant.dev/">
 
-<style>
-/* ============ RESET / BASE ============ */
-:root {
-  --primary: #0A2540;
-  --secondary: #F6F9FC;
-  --accent-start: #635BFF;
-  --accent-end: #8C84FF;
-  --text-body: #425466;
-  --border-light: #E6E8EB;
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="MultiTenant — Premium E-Commerce & SaaS Development Platform">
+<meta property="og:description" content="Launch your online store with a complete multi-tenant commerce platform. Custom SaaS solutions built with MERN stack for fashion, retail, D2C brands, and enterprises.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop">
+<meta property="og:url" content="https://multitenant.dev/">
+<meta property="og:site_name" content="MultiTenant">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MultiTenant — Premium E-Commerce & SaaS Development">
+<meta name="twitter:description" content="Build, launch, and scale your online store with a complete multi-tenant commerce platform. Custom SaaS solutions for modern businesses.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop">
+
+<!-- Favicon Recommendations -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+
+<!-- ============================================================
+     JSON-LD SCHEMA — Software / Service Business
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MultiTenant",
+  "applicationCategory": "ECommerceApplication",
+  "operatingSystem": "Web",
+  "description": "MultiTenant is a premium multi-tenant e-commerce and SaaS development platform. Build, launch, and scale online stores with custom solutions for fashion, retail, D2C brands, and enterprises.",
+  "offers": {
+    "@type": "Offer",
+    "price": "300",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Reva Web Solution",
+    "url": "https://riva-liart.vercel.app/"
+  }
 }
+</script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Reva Web Solution",
+  "description": "Premium E-Commerce and SaaS Development Company. Building scalable, multi-tenant platforms with MERN stack.",
+  "url": "https://riva-liart.vercel.app/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-6379705593",
+    "contactType": "Sales",
+    "availableLanguage": ["English", "Tamil"]
+  },
+  "sameAs": [
+    "https://github.com/ukmani01"
+  ]
+}
+</script>
+
+<!-- ============================================================
+     STYLES — Polished & Production Ready
+     ============================================================ -->
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  color: var(--text-body);
-  background: #ffffff;
-  line-height: 1.6;
-  font-size: 18px;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
-  color: var(--primary);
-  margin-bottom: 0.5em;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #0a0a1a;
+  background: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
 ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
+/* ============================================================
+   UTILITY
+   ============================================================ */
 .container {
   max-width: 1216px;
   margin: 0 auto;
@@ -52,95 +114,125 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .section-title {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0a0a1a;
+  line-height: 1.15;
 }
 
-/* ============ BUTTONS ============ */
+.section-subtitle {
+  font-size: 18px;
+  color: #6b6b7a;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  gap: 8px;
+  font-size: 15px;
   font-weight: 600;
-  padding: 16px 24px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  padding: 14px 28px;
+  border-radius: 10px;
+  transition: all .3s cubic-bezier(0.22, 1, 0.36, 1);
   border: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity .3s ease;
+  background: rgba(255,255,255,0.1);
+}
+
+.btn:hover::after { opacity: 1; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.arrow {
+  font-size: 16px;
+  line-height: 1;
+  transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn:hover .arrow { transform: translateX(4px); }
 
 .btn-primary {
-  background: var(--primary);
+  background: linear-gradient(135deg, #6a5cf0, #5a45e8);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.15);
+  box-shadow: 0 4px 20px rgba(88, 65, 216, .3);
 }
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(10, 37, 64, 0.25);
-  background: #113355;
-}
-
-.btn-white {
-  background: #ffffff;
-  color: var(--primary);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-.btn-white:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 28px rgba(88, 65, 216, .4);
 }
 
 .btn-outline {
-  border: 1px solid var(--border-light);
-  color: var(--primary);
+  border: 1.5px solid #d8dae0;
+  color: #4b3ee0;
   background: transparent;
 }
 .btn-outline:hover {
-  border-color: var(--primary);
-  background: var(--secondary);
+  background: #f5f4ff;
+  border-color: #4b3ee0;
+  box-shadow: 0 4px 16px rgba(75, 62, 224, .1);
 }
 
 .btn-whatsapp {
   background: #25D366;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, .3);
 }
 .btn-whatsapp:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, .4);
 }
 
-/* ============ HEADER ============ */
+/* ============================================================
+   HEADER — Branded
+   ============================================================ */
 .site-header {
-  border-bottom: 1px solid var(--border-light);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(236, 238, 242, 0.6);
+  transition: box-shadow .3s ease;
 }
+
+.site-header.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,.06);
+}
+
 .header-inner {
   max-width: 1216px;
   margin: 0 auto;
   padding: 0 32px;
-  height: 80px;
+  height: 68px;
   display: flex;
   align-items: center;
   gap: 48px;
 }
+
 .logo {
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--primary);
+  letter-spacing: -0.01em;
+  color: #0a0a1a;
 }
-.logo span { color: var(--accent-start); }
+.logo span { color: #5a45e8; }
 
 .main-nav {
   display: flex;
@@ -148,13 +240,25 @@ button { font-family: inherit; cursor: pointer; }
   flex: 1;
 }
 .main-nav a {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #3a3a4a;
   transition: color .2s ease;
+  position: relative;
 }
-.main-nav a:hover { color: var(--primary); }
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #5a45e8;
+  transform: scaleX(0);
+  transition: transform .25s ease;
+}
+.main-nav a:hover { color: #5a45e8; }
+.main-nav a:hover::after { transform: scaleX(1); }
 
 .hamburger {
   margin-left: auto;
@@ -162,624 +266,1164 @@ button { font-family: inherit; cursor: pointer; }
   border: none;
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   padding: 8px;
 }
 .hamburger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background: var(--primary);
+  background: #5a45e8;
+  transition: all .25s ease;
+  border-radius: 2px;
 }
+.hamburger.is-active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; }
+.hamburger.is-active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
 @media (min-width: 981px) {
   .hamburger { display: none; }
 }
 
-/* ============ HERO ============ */
+@media (max-width: 980px) {
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 24px 32px;
+    flex-direction: column;
+    gap: 16px;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  }
+  .main-nav.nav-open { display: flex; }
+  .hamburger { display: flex; }
+}
+
+/* ============================================================
+   HERO — Conversion Optimized
+   ============================================================ */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, #F6F9FC 0%, #E8F0F8 100%);
+  background: linear-gradient(120deg,
+      #c7d6f6 0%,
+      #cdeaf6 16%,
+      #b9c2f2 30%,
+      #d79fe0 44%,
+      #f0709a 54%,
+      #f5883f 66%,
+      #f7a24a 76%,
+      #fdca5d 100%);
   padding-top: 120px;
-  padding-bottom: 64px;
+  padding-bottom: 72px;
   overflow: hidden;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
+
 .hero-inner {
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
+  text-align: center;
   padding: 0 24px;
 }
+
 .hero-eyebrow {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--accent-start);
-  background: rgba(99, 91, 255, 0.1);
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #3a3a4a;
+  margin-bottom: 20px;
 }
+.hero-eyebrow strong { color: #5a45e8; font-weight: 700; }
+
 .hero-title {
-  font-size: 48px;
+  font-size: clamp(36px, 6vw, 60px);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.08;
   letter-spacing: -0.03em;
-  margin-bottom: 24px;
+  color: #0a0a1a;
+  margin-bottom: 20px;
 }
+
+.hero-title .highlight {
+  background: linear-gradient(135deg, #5a45e8, #8a75ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .hero-sub {
-  font-size: 18px;
-  max-width: 720px;
-  margin: 0 auto 40px;
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: #3a3a4a;
+  margin-bottom: 36px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
 }
+
 .hero-actions {
   display: flex;
   gap: 16px;
   justify-content: center;
-  margin-bottom: 64px;
+  flex-wrap: wrap;
 }
+
 .hero-badges {
+  width: 100%;
+  margin-top: 48px;
+  padding: 24px 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 40px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
   flex-wrap: wrap;
-  opacity: 0.8;
 }
+
 .badge-item {
-  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: var(--primary);
+  color: #1a1a1a;
   display: flex;
   align-items: center;
   gap: 8px;
 }
+.badge-item .icon { color: #5a45e8; font-size: 18px; }
 
-/* ============ MARQUEE (NEW) ============ */
-.marquee-container {
-  width: 100%;
-  overflow: hidden;
-  background: #ffffff;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-}
-.marquee-track {
-  display: flex;
-  gap: 64px;
-  white-space: nowrap;
-  animation: scrollMarquee 40s linear infinite;
-  padding-right: 64px;
-}
-.marquee-item {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #A0ABC0;
-  letter-spacing: -0.01em;
-}
-@keyframes scrollMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ============ SOLUTIONS ============ */
-.solutions {
-  padding: 96px 0;
-  background: #fff;
-}
-.solutions-title-desktop { text-align: center; margin-bottom: 16px; }
-.solutions-sub-desktop {
-  text-align: center;
-  font-size: 18px;
-  margin: 0 auto 64px;
-  max-width: 720px;
-}
-.solutions-title-mobile { display: none; }
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
-.card {
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  transition: box-shadow .3s ease, transform .3s ease;
-}
-.card:hover {
-  box-shadow: 0 12px 32px rgba(10, 37, 64, 0.08);
-  transform: translateY(-4px);
-}
-.card-head {
-  padding: 24px 24px 0;
-}
-.card-head h3 {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--primary);
-}
-.card-body { padding: 24px; }
-.card-body h4 {
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-.card-body p {
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.card-visual {
-  margin: 16px 24px 0;
-  height: 200px;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  background: var(--secondary);
-}
-
-/* Keep existing visual specifics minimal but cleaner */
-.visual-tenant { background: linear-gradient(135deg, #F6F9FC 0%, #E6E8EB 100%); display: flex; align-items: center; justify-content: center; gap: 16px; }
-.tenant-icon { width: 64px; height: 64px; border-radius: 12px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.05); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--accent-start); }
-
-/* ============ OFFER BANNER ============ */
-.offer-banner {
+/* ============================================================
+   SPACER SECTIONS
+   ============================================================ */
+.story-spacer {
+  height: 100vh;
+  min-height: 560px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
-  padding: 64px;
-  margin: 48px 0 96px;
-  background: linear-gradient(135deg, var(--primary) 0%, #113355 100%);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 24px 48px rgba(10, 37, 64, 0.2);
+  justify-content: center;
+  background: #fafafc;
+  border-bottom: 1px solid rgba(236, 238, 242, 0.6);
+  padding: 40px 24px;
+  text-align: center;
 }
-.offer-text { position: relative; z-index: 1; max-width: 600px; }
-.offer-badge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 16px;
-  backdrop-filter: blur(4px);
-}
-.offer-text h2 {
-  color: #fff;
-  font-size: 32px;
-  margin-bottom: 16px;
-}
-.offer-desc { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
-.offer-price .current { color: #fff; font-size: 40px; font-weight: 700; margin-right: 12px; }
-.offer-price .original { color: rgba(255,255,255,0.5); text-decoration: line-through; margin-right: 12px; }
 
-/* ============ STATS ============ */
-.stats-section { padding-bottom: 96px; text-align: center; }
-.stats-section .section-title { margin-bottom: 64px; }
-.stats-grid {
+.story-spacer .spacer-content {
+  max-width: 560px;
+  animation: spacerFade 1s ease forwards;
+}
+
+@keyframes spacerFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.story-spacer .spacer-content .icon {
+  font-size: 52px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.story-spacer .spacer-content h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.story-spacer .spacer-content p {
+  color: #6b6b7a;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.story-spacer .spacer-content .hint {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #b0b0c0;
+  letter-spacing: 0.04em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ============================================================
+   STORYTELLING SECTION
+   ============================================================ */
+.storytelling-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #fafafc;
+  border-bottom: 1px solid rgba(236, 238, 242, 0.6);
+}
+
+.storytelling-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.story-content {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 48px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.story-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.story-preview .story-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5a45e8;
+  background: #f0eeff;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+  align-self: flex-start;
+}
+
+.story-preview .story-title {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.story-preview .story-desc {
+  font-size: 16px;
+  color: #6b6b7a;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  max-width: 92%;
+}
+
+.story-preview .story-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.story-preview .story-features span {
+  background: #f5f5f8;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #555;
+  font-weight: 500;
+  transition: all .2s ease;
+}
+.story-preview .story-features span:hover {
+  background: #e8e6ff;
+  color: #5a45e8;
+}
+
+.story-preview .story-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5a45e8;
+  margin-bottom: 22px;
+}
+.story-preview .story-price span {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6b6b7a;
+  margin-left: 4px;
+}
+
+.story-preview .story-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.story-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.story-image .image-wrap {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,.08);
+  background: #f5f5f8;
+  aspect-ratio: 4/3;
+  transition: box-shadow .4s ease;
+}
+
+.story-image .image-wrap:hover {
+  box-shadow: 0 32px 80px rgba(88, 65, 216, .12);
+}
+
+.story-image .image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-image .image-wrap:hover img {
+  transform: scale(1.03);
+}
+
+.story-progress {
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.story-progress .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e0e2e8;
+  transition: all .5s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.story-progress .dot.active {
+  background: #5a45e8;
+  transform: scale(1.3);
+  box-shadow: 0 0 24px rgba(88, 65, 216, .25);
+}
+
+.story-progress .dot .label {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a45e8;
+  opacity: 0;
+  transition: all .3s ease;
+  white-space: nowrap;
+  background: #fff;
+  padding: 4px 14px;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+  pointer-events: none;
+}
+
+.story-progress .dot.active .label {
+  opacity: 1;
+}
+
+.story-counter {
+  position: absolute;
+  bottom: 36px;
+  right: 36px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #c0c2ca;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+.story-counter .current {
+  color: #5a45e8;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-18px); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.92); }
+}
+
+.story-enter .story-badge { animation: fadeUp 0.5s 0.05s forwards; }
+.story-enter .story-title { animation: fadeUp 0.5s 0.15s forwards; }
+.story-enter .story-desc { animation: fadeUp 0.5s 0.25s forwards; }
+.story-enter .story-features { animation: fadeUp 0.5s 0.35s forwards; }
+.story-enter .story-price { animation: fadeUp 0.5s 0.45s forwards; }
+.story-enter .story-actions { animation: fadeUp 0.5s 0.55s forwards; }
+.story-enter .image-wrap { animation: scaleIn 0.6s 0.2s forwards; }
+
+.story-exit .story-badge,
+.story-exit .story-title,
+.story-exit .story-desc,
+.story-exit .story-features,
+.story-exit .story-price,
+.story-exit .story-actions {
+  animation: fadeDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.story-exit .story-badge { animation-delay: 0s; }
+.story-exit .story-title { animation-delay: 0.05s; }
+.story-exit .story-desc { animation-delay: 0.1s; }
+.story-exit .story-features { animation-delay: 0.15s; }
+.story-exit .story-price { animation-delay: 0.2s; }
+.story-exit .story-actions { animation-delay: 0.25s; }
+.story-exit .image-wrap {
+  animation: scaleOut 0.4s 0.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ============================================================
+   TRUST SECTION
+   ============================================================ */
+.trust-section {
+  padding: 80px 0;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(236, 238, 242, 0.6);
+}
+
+.trust-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
+  text-align: center;
 }
-.stat-number { font-size: 48px; font-family: 'Inter', sans-serif; color: var(--primary); margin-bottom: 8px; }
-.stat-label { font-size: 16px; }
 
-/* ============ SCROLL STORYTELLING ============ */
-.featured-stories {
-  padding: 96px 0;
-  background: var(--secondary);
+.trust-item .trust-number {
+  font-size: 38px;
+  font-weight: 700;
+  color: #5a45e8;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
-.stories-header { text-align: center; margin-bottom: 64px; }
-.stories-eyebrow {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
+.trust-item .trust-label {
   font-size: 14px;
-  font-weight: 600;
-  color: var(--accent-start);
-  background: rgba(99, 91, 255, 0.1);
-  padding: 6px 16px;
+  color: #6b6b7a;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   WHATSAPP / CONTACT
+   ============================================================ */
+.whatsapp-section {
+  padding: 80px 0;
+  background: #fafafc;
+  border-top: 1px solid rgba(236, 238, 242, 0.6);
+}
+
+.whatsapp-card {
+  background: #ffffff;
   border-radius: 20px;
-  margin-bottom: 16px;
-}
-
-.stories-scroll-container {
+  padding: 48px 56px;
   display: flex;
-  gap: 64px;
-  align-items: flex-start;
-}
-.sticky-story-container {
-  flex: 1.2;
-  position: sticky;
-  top: 120px;
-  height: 600px;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 24px 48px rgba(10, 37, 64, 0.08);
-  border: 1px solid var(--border-light);
-  overflow: hidden;
-}
-.story-preview { padding: 48px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-.preview-image { width: 100%; height: 220px; border-radius: 8px; object-fit: cover; margin-bottom: 24px; }
-.preview-title { font-size: 28px; margin-bottom: 12px; }
-.preview-desc { font-size: 16px; margin-bottom: 24px; }
-.preview-features { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-.preview-features span { background: var(--secondary); padding: 4px 12px; border-radius: 16px; font-size: 14px; font-weight: 500; }
-.preview-price { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
-.preview-price span { font-size: 16px; font-weight: 400; color: var(--text-body); }
-.preview-actions { display: flex; gap: 16px; }
-
-.story-timeline { flex: 0.8; display: flex; flex-direction: column; gap: 16px; padding-top: 24px; }
-.story-trigger {
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  gap: 24px;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+  border: 1px solid #eceef2;
+  box-shadow: 0 8px 32px rgba(0,0,0,.04);
 }
-.story-trigger:hover { background: rgba(255,255,255,0.5); }
-.story-trigger.active {
-  background: #ffffff;
-  border-color: var(--border-light);
-  box-shadow: 0 12px 24px rgba(10, 37, 64, 0.05);
-  transform: translateX(16px);
+
+.whatsapp-content {
+  max-width: 520px;
 }
-.story-trigger-number { font-size: 16px; font-family: 'Inter'; font-weight: 600; color: #A0ABC0; }
-.story-trigger.active .story-trigger-number { color: var(--accent-start); }
+.whatsapp-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.whatsapp-content p {
+  color: #6b6b7a;
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
 
-/* ============ FAQ (NEW) ============ */
-.faq-section { padding: 96px 32px; background: #fff; }
-.faq-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
-.faq-item { border-bottom: 1px solid var(--border-light); padding-bottom: 24px; }
-.faq-item h4 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.whatsapp-qr-placeholder {
+  width: 140px;
+  height: 140px;
+  border: 2px dashed #d8dae0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 13px;
+  text-align: center;
+  background: #fafafc;
+  flex-shrink: 0;
+}
 
-/* ============ FOOTER ============ */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .site-footer {
-  background: var(--secondary);
-  padding: 80px 0 40px;
-  border-top: 1px solid var(--border-light);
+  background: #0a0a1a;
+  color: rgba(255,255,255,0.7);
+  padding: 56px 0 28px;
 }
+
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr) 1.6fr;
   gap: 32px;
-  padding-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-col h5 { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 24px; }
-.footer-col a { display: block; font-size: 15px; margin-bottom: 16px; }
+
+.footer-col h5 {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+  transition: color .2s ease;
+}
+.footer-col a:hover { color: #ffffff; }
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid var(--border-light);
-  padding-top: 32px;
-  font-size: 14px;
+  align-items: center;
+  padding-top: 24px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom .brand { color: #ffffff; font-weight: 600; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .story-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 36px 40px;
+    overflow-y: auto;
+  }
+  .story-preview .story-title { font-size: clamp(24px, 3vw, 32px); }
+  .story-preview .story-desc { max-width: 100%; }
+  .story-image .image-wrap { max-height: 260px; }
+  .story-progress { right: 20px; }
+  .story-progress .dot .label { display: none; }
+  .story-counter { bottom: 20px; right: 20px; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-col-company { grid-column: span 3; }
 }
 
-/* ============ RESPONSIVE ============ */
-@media (max-width: 1024px) {
-  .hero-title { font-size: 40px; }
-  .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .stories-scroll-container { flex-direction: column; }
-  .sticky-story-container { position: relative; top: 0; width: 100%; height: auto; }
-  .story-timeline { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-  .story-trigger { flex: 1; min-width: 250px; }
-  .story-trigger.active { transform: translateX(0) translateY(-8px); }
-  .offer-banner { flex-direction: column; padding: 48px 32px; text-align: center; }
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  .header-inner { padding: 0 20px; height: 60px; gap: 24px; }
+
+  .hero { padding-top: 100px; padding-bottom: 40px; min-height: auto; }
+  .hero-title { font-size: clamp(28px, 8vw, 36px); }
+  .hero-sub { font-size: 15px; }
+  .hero-badges { gap: 16px; padding: 16px 20px; flex-wrap: wrap; }
+  .badge-item { font-size: 12px; }
+
+  .story-content { padding: 24px 20px; gap: 20px; }
+  .story-preview .story-title { font-size: 22px; }
+  .story-preview .story-desc { font-size: 15px; }
+  .story-preview .story-price { font-size: 22px; }
+  .story-actions { flex-direction: column; width: 100%; }
+  .story-actions .btn { width: 100%; justify-content: center; padding: 14px 20px; }
+  .story-image .image-wrap { max-height: 180px; }
+  .story-progress { display: none; }
+  .story-counter { bottom: 16px; right: 16px; font-size: 12px; }
+  .story-counter .current { font-size: 16px; }
+
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .trust-item .trust-number { font-size: 28px; }
+
+  .whatsapp-card { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+  .whatsapp-content h2 { font-size: 22px; }
+  .whatsapp-qr-placeholder { width: 120px; height: 120px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer-col-company { grid-column: span 2; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .story-spacer { min-height: 400px; }
+  .story-spacer .spacer-content p { font-size: 15px; }
 }
-@media (max-width: 768px) {
-  .hero { padding-top: 80px; }
-  .hero-title { font-size: 32px; }
-  .hero-actions { flex-direction: column; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .marquee-track { gap: 32px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .story-enter .story-badge,
+  .story-enter .story-title,
+  .story-enter .story-desc,
+  .story-enter .story-features,
+  .story-enter .story-price,
+  .story-enter .story-actions,
+  .story-enter .image-wrap {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .story-exit .story-badge,
+  .story-exit .story-title,
+  .story-exit .story-desc,
+  .story-exit .story-features,
+  .story-exit .story-price,
+  .story-exit .story-actions,
+  .story-exit .image-wrap {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .story-progress .dot.active { transform: none !important; }
 }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f5f5f8; }
+::-webkit-scrollbar-thumb { background: #d0d2da; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b0b2ba; }
 </style>
 </head>
 <body>
 
-<header class="site-header">
+<!-- ============================================================
+   HEADER
+   ============================================================ -->
+<header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#" class="logo" id="homeLink">Multi<span>Tenant</span></a>
-    <nav class="main-nav">
-      <a href="#solutions">Platform</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#stories">Stories</a>
-      <a href="#portfolio">Portfolio</a>
+    <a href="#" class="logo">Multi<span>Tenant</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#stories">Solutions</a>
+      <a href="#trust">Why Us</a>
+      <a href="#stories">Showcase</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
+<!-- ============================================================
+   HERO — Conversion Optimized
+   ============================================================ -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <span class="hero-eyebrow">🚀 Launch Special: 70% Off Today</span>
-    <h1 class="hero-title">Launch Your Store.<br>Scale Your Business.</h1>
-    <p class="hero-sub">Every business gets a dedicated storefront, independent dashboard, and complete commerce management — all inside a secure, scalable ecosystem.</p>
+    <p class="hero-eyebrow">🚀 <strong>Launch Special:</strong> 70% off • ₹300/month • 20‑Day Free Trial</p>
+    <h1 class="hero-title">
+      Build, Launch &amp; Scale<br>
+      Your <span class="highlight">E-Commerce</span> Store
+    </h1>
+    <p class="hero-sub">
+      Complete multi-tenant commerce platform for fashion, retail, D2C brands, and enterprises. 
+      Get your own dedicated online store with products, customers, orders, and a powerful dashboard — all in one ecosystem.
+    </p>
     <div class="hero-actions">
-      <a href="#pricing" class="btn btn-primary">Start Your Project</a>
-      <a href="#solutions" class="btn btn-outline">Explore Services</a>
+      <a href="#contact" class="btn btn-primary">Start Your Store <span class="arrow">&rsaquo;</span></a>
+      <a href="#stories" class="btn btn-outline">Explore Solutions <span class="arrow">&rsaquo;</span></a>
     </div>
     <div class="hero-badges">
-      <span class="badge-item">🏢 Multi-Tenant</span>
-      <span class="badge-item">🔒 Store Isolation</span>
-      <span class="badge-item">📈 Highly Scalable</span>
-      <span class="badge-item">🛡️ Secure Ecosystem</span>
+      <span class="badge-item"><span class="icon">🏢</span> Multi‑Tenant SaaS</span>
+      <span class="badge-item"><span class="icon">🔒</span> Secure &amp; Scalable</span>
+      <span class="badge-item"><span class="icon">⚡</span> MERN Stack</span>
+      <span class="badge-item"><span class="icon">🤖</span> AI‑Ready</span>
     </div>
   </div>
 </section>
 
-<!-- NEW: Auto-scroll Marquee -->
-<div class="marquee-container" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">SaaS Architecture</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">Node.js Ecosystem</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">Enterprise Scale</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">React & TypeScript</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">AI Integrations</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">High Conversion</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">MongoDB</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">SaaS Architecture</span>
-    <span class="marquee-item">✦</span>
-    <span class="marquee-item">Node.js Ecosystem</span>
+<!-- ============================================================
+   TRUST SECTION
+   ============================================================ -->
+<section class="trust-section" id="trust">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <h2 class="section-title">Built for Modern Commerce</h2>
+      <p class="section-subtitle" style="margin:0 auto;">Enterprise-grade solutions trusted by businesses across industries.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-number">100+</div>
+        <div class="trust-label">Active Stores Powered</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">50k+</div>
+        <div class="trust-label">Products Managed</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">99.9%</div>
+        <div class="trust-label">Platform Uptime</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">10+</div>
+        <div class="trust-label">Premium Themes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   STORYTELLING — Product Showcase
+   ============================================================ -->
+<section class="storytelling-section" id="stories">
+  <div class="storytelling-container">
+    <div class="story-content" id="storyContent">
+      <!-- Preview -->
+      <div class="story-preview" id="storyPreview">
+        <span class="story-badge" id="storyBadge">✨ Premium Theme</span>
+        <h2 class="story-title" id="storyTitle">MAARA Luxury Indian Wear</h2>
+        <p class="story-desc" id="storyDesc">High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.</p>
+        <div class="story-features" id="storyFeatures">
+          <span>Cart</span>
+          <span>Wishlist</span>
+          <span>Checkout</span>
+          <span>Order Simulation</span>
+        </div>
+        <div class="story-price" id="storyPrice">₹7,000 <span>one-time</span></div>
+        <div class="story-actions" id="storyActions">
+          <a href="#" target="_blank" class="btn btn-outline" id="previewBtn">Preview <span class="arrow">&rsaquo;</span></a>
+          <a href="https://wa.me/916379705593" target="_blank" class="btn btn-whatsapp" id="whatsappBtn">💬 Buy Now <span class="arrow">&rsaquo;</span></a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="story-image" id="storyImage">
+        <div class="image-wrap">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop" alt="Product" id="storyImg">
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="story-progress" id="storyProgress"></div>
+
+      <!-- Counter -->
+      <div class="story-counter">
+        <span class="current" id="currentIndex">01</span> / <span id="totalStories">05</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   SPACER — After Storytelling
+   ============================================================ -->
+<div class="story-spacer" style="border-top: 1px solid rgba(236, 238, 242, 0.6);">
+  <div class="spacer-content">
+    <span class="icon">🚀</span>
+    <h2>Ready to Launch Your Store?</h2>
+    <p>You've explored our solutions. Get in touch to start building your custom e-commerce platform today.</p>
+    <p class="hint">↓ Continue to contact</p>
   </div>
 </div>
 
-<section class="solutions" id="solutions">
+<!-- ============================================================
+   WHATSAPP / CONTACT
+   ============================================================ -->
+<section class="whatsapp-section" id="contact">
   <div class="container">
-    <h2 class="section-title solutions-title-desktop">Complete Commerce Infrastructure</h2>
-    <p class="solutions-sub-desktop">Every business gets a dedicated website, storefront, products, customers, and dashboard — all in one powerful platform.</p>
-    
-    <div class="cards-grid">
-      <article class="card">
-        <div class="card-head"><h3>Multi-Tenant Architecture</h3></div>
-        <div class="card-visual visual-tenant"><div class="tenant-icon">🏢</div></div>
-        <div class="card-body">
-          <h4>Secure Environments</h4>
-          <p>Each business operates in a completely isolated environment with their own data, customers, and storefront.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><h3>Store Management</h3></div>
-        <div class="card-visual visual-tenant"><div class="tenant-icon">🛒</div></div>
-        <div class="card-body">
-          <h4>Complete Control</h4>
-          <p>Manage products, track orders, and engage customers seamlessly from your dedicated owner dashboard.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><h3>Enterprise Dashboard</h3></div>
-        <div class="card-visual visual-tenant"><div class="tenant-icon">📊</div></div>
-        <div class="card-body">
-          <h4>Real-time Analytics</h4>
-          <p>Revenue tracking and business intelligence at a glance. Make data-driven decisions confidently.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="container stats-section">
-  <h2 class="section-title">Trusted by businesses scaling globally</h2>
-  <div class="stats-grid">
-    <div class="stat"><div class="stat-number">100+</div><div class="stat-label">Active Stores</div></div>
-    <div class="stat"><div class="stat-number">50k+</div><div class="stat-label">Products Managed</div></div>
-    <div class="stat"><div class="stat-number">99.9%</div><div class="stat-label">Platform Uptime</div></div>
-    <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Premium Themes</div></div>
-  </div>
-</section>
-
-<section class="featured-stories" id="stories">
-  <div class="container">
-    <div class="stories-header">
-      <span class="stories-eyebrow">✦ Premium Solutions</span>
-      <h2 class="section-title">Explore Our Commerce Suite</h2>
-    </div>
-
-    <div class="stories-scroll-container">
-      <div class="sticky-story-container">
-        <div class="story-preview" id="storyPreview">
-          <!-- Handled by JS -->
-        </div>
+    <div class="whatsapp-card">
+      <div class="whatsapp-content">
+        <h2>📱 Let's Build Your Store</h2>
+        <p>
+          Get a custom e-commerce solution tailored to your business. 
+          From fashion to retail, D2C to enterprise — we build platforms that scale.
+        </p>
+        <a href="https://wa.me/916379705593?text=Hi%2C%20I%27m%20interested%20in%20building%20an%20e-commerce%20store%20with%20MultiTenant.%20Please%20share%20more%20details." 
+           class="btn btn-whatsapp" target="_blank">
+          💬 Chat on WhatsApp <span class="arrow">&rsaquo;</span>
+        </a>
+        <p style="margin-top:12px; font-size:14px; color:#999;">📞 +91 6379705593</p>
       </div>
-      <div class="story-timeline" id="storyTimeline">
-        <!-- Handled by JS -->
+      <div class="whatsapp-qr-placeholder">
+        <span class="qr-text">📱 QR Code<br><span style="font-size:11px; color:#ccc;">(coming soon)</span></span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="container" id="pricing">
-  <div class="offer-banner">
-    <div class="offer-text">
-      <div class="offer-badge">🔥 Limited Time Setup</div>
-      <h2>Start your store today from just ₹300/month</h2>
-      <p class="offer-desc">Enterprise capabilities at a fraction of the cost. Get a 20-day free trial on activation.</p>
-      <div class="offer-price">
-        <span class="current">₹300</span>
-        <span class="original">₹4,000</span>
-      </div>
-      <div style="margin-top: 24px;">
-        <a href="#contact" class="btn btn-white">Claim This Offer</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEW: FAQ Section -->
-<section class="faq-section">
-  <div class="container">
-    <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">Frequently Asked Questions</h2>
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h4>How long does setup take?</h4>
-        <p>Your isolated tenant environment is deployed instantly upon subscription activation without any technical delays.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Is my store data secure?</h4>
-        <p>Yes. Our true multi-tenant architecture ensures complete data isolation and maximum privacy for every business.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Can I scale my business later?</h4>
-        <p>Absolutely. The platform is designed to effortlessly handle your growth from 10 products to 10,000 products.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- ============================================================
+   FOOTER
+   ============================================================ -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
         <h5>Platform</h5>
-        <a href="#solutions">Multi-Tenant</a>
-        <a href="#stories">Premium Themes</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#stories">Multi‑Tenant</a>
+        <a href="#trust">Features</a>
+        <a href="#stories">Themes</a>
+        <a href="#contact">Pricing</a>
       </div>
       <div class="footer-col">
         <h5>Solutions</h5>
-        <a href="#portfolio">Custom Development</a>
-        <a href="#contact">API Integration</a>
+        <a href="#stories">E‑Commerce</a>
+        <a href="#stories">SaaS Platforms</a>
+        <a href="#stories">Custom Development</a>
+        <a href="#stories">AI Integration</a>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <a href="#">About Us</a>
-        <a href="#contact">Contact Support</a>
+        <a href="https://riva-liart.vercel.app/" target="_blank">Reva Web Solution</a>
+        <a href="#stories">Portfolio</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact">Support</a>
       </div>
       <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="#">Documentation</a>
+        <a href="#">API</a>
+        <a href="#">Blog</a>
+        <a href="#">Community</a>
+      </div>
+      <div class="footer-col footer-col-company">
         <h5>Connect</h5>
-        <a href="#">Twitter</a>
-        <a href="#">LinkedIn</a>
+        <div style="display:flex; gap:16px; margin-bottom:20px;">
+          <a href="#" style="color:rgba(255,255,255,0.6); font-size:20px;">f</a>
+          <a href="#" style="color:rgba(255,255,255,0.6); font-size:20px;">◎</a>
+          <a href="#" style="color:rgba(255,255,255,0.6); font-size:20px;">in</a>
+          <a href="#" style="color:rgba(255,255,255,0.6); font-size:20px;">✕</a>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 MultiTenant — Built by Reva Web Solution</p>
-      <p>Secure. Fast. Scalable.</p>
+      <p>© 2026 <span class="brand">MultiTenant</span> — Built by <a href="https://riva-liart.vercel.app/" target="_blank" style="color:#8a75ff; font-weight:600;">Reva Web Solution</a></p>
+      <p>Enterprise E‑Commerce &amp; SaaS Development</p>
     </div>
   </div>
 </footer>
 
+<!-- ============================================================
+   JAVASCRIPT — Storytelling + Interactions
+   ============================================================ -->
 <script>
 // ============================================================
-// DATA — All Stories for Scroll Storytelling
+// DATA
 // ============================================================
-const stories = [
+const storyData = [
   {
     id: 0,
-    title: 'MAARA Luxury Indian Wear',
     badge: '✨ Premium Theme',
-    description: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop',
-    features: ['Cart', 'Wishlist', 'Checkout'],
+    title: 'MAARA Luxury Indian Wear',
+    desc: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
+    features: ['Cart', 'Wishlist', 'Checkout', 'Order Simulation'],
     price: '₹7,000',
     priceLabel: 'one-time',
-    previewUrl: '#',
-    whatsappMsg: 'Hello'
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=450&fit=crop',
+    previewUrl: 'https://maara-luxury-indian-wear-demo-cart.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20MAARA%20Luxury%20Indian%20Wear%20theme%20for%20₹7000.%20Please%20share%20payment%20details.'
   },
   {
     id: 1,
-    title: 'Custom Couture Dual UI',
     badge: '🎨 Design Studio',
-    description: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop',
-    features: ['Dual UI', 'Clean Builder'],
+    title: 'Custom Couture Dual UI',
+    desc: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
+    features: ['Dual UI', 'Clean Builder', 'Luxury Atelier', 'Workflow'],
     price: '₹5,000',
     priceLabel: 'one-time',
-    previewUrl: '#',
-    whatsappMsg: 'Hello'
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=450&fit=crop',
+    previewUrl: 'https://custom-couture-dual-ui-selector.vercel.app/index8.html',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Custom%20Couture%20Dual%20UI%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
   },
   {
     id: 2,
-    title: 'Premium E-Commerce',
     badge: '🔥 Production Ready',
-    description: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
-    features: ['Cloudinary', 'Orders Dashboard'],
+    title: 'Premium E-Commerce',
+    desc: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard. Includes 20-day free trial.',
+    features: ['Cloudinary', 'Cart', 'Orders', 'Admin Dashboard', '20-day Trial'],
     price: '₹5,000',
     priceLabel: 'one-time',
-    previewUrl: '#',
-    whatsappMsg: 'Hello'
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=450&fit=crop',
+    previewUrl: 'https://premium-ecommerce-six.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Premium%20E-Commerce%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
+  },
+  {
+    id: 3,
+    badge: '⚛️ Full Stack',
+    title: 'MERN E-Commerce App',
+    desc: 'Complete full-stack e-commerce platform with JWT authentication, product filters, cart, checkout, admin panel, and REST API.',
+    features: ['JWT Auth', 'Product Filters', 'Cart', 'Checkout', 'Admin Panel', 'REST API'],
+    price: '₹25,000',
+    priceLabel: 'whole app',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=450&fit=crop',
+    previewUrl: 'https://ecommerce-app-rho-three-69.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20MERN%20E-Commerce%20App.%20Please%20share%20pricing%20details%20for%20the%20whole%20app%20(%E2%82%B925%2C000)%20and%20other%20options.'
+  },
+  {
+    id: 4,
+    badge: '🚀 SaaS Platform',
+    title: 'Premium E-Commerce SaaS',
+    desc: 'Production-ready commerce SaaS platform with Cloudinary, cart & orders, admin dashboard, subscription system, and 20-day trial.',
+    features: ['Cloudinary', 'Cart & Orders', 'Admin Dashboard', 'Subscription', '20-day Trial'],
+    price: '₹15,000',
+    priceLabel: 'whole app',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
+    previewUrl: 'https://premium-ecommerce-six.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20Premium%20E-Commerce%20SaaS%20(%E2%82%B9300%2Fmonth%20or%20%E2%82%B915%2C000%20one-time).%20Please%20share%20more%20details.'
   }
 ];
 
-const previewEl = document.getElementById('storyPreview');
-const timelineEl = document.getElementById('storyTimeline');
-let activeIndex = 0;
+// ============================================================
+// DOM REFS
+// ============================================================
+const content = document.getElementById('storyContent');
+const badgeEl = document.getElementById('storyBadge');
+const titleEl = document.getElementById('storyTitle');
+const descEl = document.getElementById('storyDesc');
+const featuresEl = document.getElementById('storyFeatures');
+const priceEl = document.getElementById('storyPrice');
+const actionsEl = document.getElementById('storyActions');
+const imgEl = document.getElementById('storyImg');
+const previewBtn = document.getElementById('previewBtn');
+const whatsappBtn = document.getElementById('whatsappBtn');
+const progressEl = document.getElementById('storyProgress');
+const currentIndexEl = document.getElementById('currentIndex');
+const totalStoriesEl = document.getElementById('totalStories');
 
-function renderTimeline() {
-  timelineEl.innerHTML = stories.map((story, index) => `
-    <div class="story-trigger ${index === 0 ? 'active' : ''}" data-story="${index}">
-      <span class="story-trigger-number">${String(index + 1).padStart(2, '0')}</span>
-      <div class="story-trigger-content">
-        <h4 style="font-size:18px; margin-bottom:4px;">${story.title}</h4>
-        <p style="font-size:14px;">${story.badge}</p>
-      </div>
+let currentIndex = 0;
+let isTransitioning = false;
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderDots() {
+  progressEl.innerHTML = storyData.map((story, i) => `
+    <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}">
+      <span class="label">${story.title}</span>
     </div>
   `).join('');
 
-  document.querySelectorAll('.story-trigger').forEach(el => {
-    el.addEventListener('click', () => {
-      const idx = parseInt(el.dataset.story);
-      if (idx !== activeIndex) setActiveStory(idx);
+  progressEl.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.index);
+      if (idx !== currentIndex && !isTransitioning) goToStory(idx);
+    });
+  });
+
+  totalStoriesEl.textContent = String(storyData.length).padStart(2, '0');
+}
+
+function goToStory(index) {
+  if (isTransitioning || index === currentIndex) return;
+  if (index < 0 || index >= storyData.length) return;
+
+  isTransitioning = true;
+  const story = storyData[index];
+
+  content.classList.add('story-exit');
+
+  setTimeout(() => {
+    badgeEl.textContent = story.badge;
+    titleEl.textContent = story.title;
+    descEl.textContent = story.desc;
+    featuresEl.innerHTML = story.features.map(f => `<span>${f}</span>`).join('');
+    priceEl.innerHTML = `${story.price} <span>${story.priceLabel}</span>`;
+    imgEl.src = story.image;
+    imgEl.alt = story.title;
+    previewBtn.href = story.previewUrl;
+    whatsappBtn.href = `https://wa.me/916379705593?text=${story.whatsappMsg}`;
+
+    progressEl.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+
+    currentIndexEl.textContent = String(index + 1).padStart(2, '0');
+
+    content.classList.remove('story-exit');
+    content.classList.add('story-enter');
+    currentIndex = index;
+
+    setTimeout(() => {
+      content.classList.remove('story-enter');
+      isTransitioning = false;
+    }, 700);
+  }, 450);
+}
+
+// ============================================================
+// SCROLL CONTROLLER
+// ============================================================
+function setupScrollController() {
+  const section = document.getElementById('stories');
+  let scrollTimeout = false;
+  let lastScrollY = window.scrollY;
+  let accumulatedScroll = 0;
+  const threshold = 120;
+
+  window.addEventListener('scroll', () => {
+    if (scrollTimeout) return;
+
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+    const isScrollingDown = delta > 0;
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const scrollInSection = currentScrollY - sectionTop;
+
+    if (scrollInSection >= 0 && scrollInSection <= sectionHeight) {
+      accumulatedScroll += Math.abs(delta);
+      if (accumulatedScroll >= threshold) {
+        accumulatedScroll = 0;
+        const direction = isScrollingDown ? 1 : -1;
+        const nextIndex = currentIndex + direction;
+        if (nextIndex >= 0 && nextIndex < storyData.length) {
+          goToStory(nextIndex);
+        }
+      }
+    } else {
+      accumulatedScroll = 0;
+    }
+
+    lastScrollY = currentScrollY;
+    scrollTimeout = true;
+    requestAnimationFrame(() => { scrollTimeout = false; });
+  }, { passive: true });
+}
+
+// ============================================================
+// WHEEL CONTROL
+// ============================================================
+function setupWheelControl() {
+  const section = document.getElementById('stories');
+  let wheelTimeout = false;
+
+  section.addEventListener('wheel', (e) => {
+    if (wheelTimeout || isTransitioning) return;
+    const delta = e.deltaY;
+    const direction = delta > 0 ? 1 : -1;
+    const nextIndex = currentIndex + direction;
+
+    if (nextIndex >= 0 && nextIndex < storyData.length) {
+      e.preventDefault();
+      goToStory(nextIndex);
+      wheelTimeout = true;
+      setTimeout(() => { wheelTimeout = false; }, 600);
+    }
+  }, { passive: false });
+}
+
+// ============================================================
+// HEADER SCROLL EFFECT
+// ============================================================
+function setupHeaderEffect() {
+  const header = document.getElementById('siteHeader');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    lastScroll = currentScroll;
+  }, { passive: true });
+}
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+function setupMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('mainNav');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('nav-open');
+    hamburger.classList.toggle('is-active');
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      hamburger.classList.remove('is-active');
     });
   });
 }
 
-function renderPreview(story) {
-  previewEl.innerHTML = `
-    <span class="stories-eyebrow" style="align-self:flex-start;">${story.badge}</span>
-    <img class="preview-image" src="${story.image}" alt="${story.title}">
-    <h3 class="preview-title">${story.title}</h3>
-    <p class="preview-desc">${story.description}</p>
-    <div class="preview-features">
-      ${story.features.map(f => `<span>${f}</span>`).join('')}
-    </div>
-    <div class="preview-price">${story.price} <span>${story.priceLabel}</span></div>
-    <div class="preview-actions">
-      <a href="#" class="btn btn-outline">Preview</a>
-      <a href="#" class="btn btn-primary">Buy Now</a>
-    </div>
-  `;
-}
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  renderDots();
 
-function setActiveStory(index) {
-  activeIndex = index;
-  document.querySelectorAll('.story-trigger').forEach((el, i) => {
-    el.classList.toggle('active', i === index);
+  const initialStory = storyData[0];
+  badgeEl.textContent = initialStory.badge;
+  titleEl.textContent = initialStory.title;
+  descEl.textContent = initialStory.desc;
+  featuresEl.innerHTML = initialStory.features.map(f => `<span>${f}</span>`).join('');
+  priceEl.innerHTML = `${initialStory.price} <span>${initialStory.priceLabel}</span>`;
+  imgEl.src = initialStory.image;
+  imgEl.alt = initialStory.title;
+  previewBtn.href = initialStory.previewUrl;
+  whatsappBtn.href = `https://wa.me/916379705593?text=${initialStory.whatsappMsg}`;
+  currentIndexEl.textContent = '01';
+
+  requestAnimationFrame(() => {
+    content.classList.add('story-enter');
+    setTimeout(() => { content.classList.remove('story-enter'); }, 700);
   });
-  renderPreview(stories[index]);
+
+  setupScrollController();
+  setupWheelControl();
+  setupHeaderEffect();
+  setupMobileMenu();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderTimeline();
-  renderPreview(stories[0]);
-});
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+console.log('🚀 MultiTenant — Enterprise SEO & Conversion Optimized');
 </script>
 </body>
 </html>
