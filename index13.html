@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reva Web Solutions — Enterprise Digital Architecture</title>
-<meta name="description" content="Premium SaaS platforms, custom software, and AI solutions.">
+<title>MultiTenant — Next-Generation Commerce SaaS Platform</title>
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,555 +11,775 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-/* ============ DESIGN SYSTEM & VARIABLES ============ */
+/* ============ RESET / BASE ============ */
 :root {
-  /* Colors */
-  --c-primary: #0A2540;      /* Deep Blue */
-  --c-secondary: #425466;    /* Slate Gray for text */
-  --c-bg-light: #F6F9FC;     /* Light Gray */
-  --c-white: #FFFFFF;
-  --c-accent: #635BFF;       /* Stripe Blurple */
-  --c-accent-hover: #0A2540;
-  
-  /* Gradients */
-  --gradient-brand: linear-gradient(135deg, #635BFF 0%, #00D4FF 100%);
-  --gradient-dark: linear-gradient(135deg, #0A2540 0%, #1A365D 100%);
-
-  /* Typography */
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Roboto', sans-serif;
-  
-  /* Spacing */
-  --space-minor: 64px;
-  --space-major: 96px;
-  
-  /* UI Elements */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
-  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --primary: #0A2540;
+  --secondary: #F6F9FC;
+  --accent-start: #635BFF;
+  --accent-end: #8C84FF;
+  --text-body: #425466;
+  --border-light: #E6E8EB;
 }
 
-/* ============ RESET & ACCESSIBILITY ============ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 100%; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font-body);
-  font-size: 18px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--text-body);
+  background: #ffffff;
   line-height: 1.6;
-  color: var(--c-secondary);
-  background-color: var(--c-white);
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-:focus-visible {
-  outline: 3px solid var(--c-accent);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* ============ TYPOGRAPHY ============ */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--c-primary);
+  font-family: 'Inter', sans-serif;
+  color: var(--primary);
   margin-bottom: 0.5em;
 }
-h1 { font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
-h2 { font-size: 32px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
-h3 { font-size: 24px; font-weight: 600; line-height: 1.4; }
-.text-small { font-size: 14px; line-height: 1.6; color: var(--c-secondary); }
-p { margin-bottom: 32px; }
 
-/* ============ LAYOUT & GRID (12-Column) ============ */
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; }
+
 .container {
-  max-width: 1140px;
+  max-width: 1216px;
   margin: 0 auto;
-  padding: 0 24px;
-  width: 100%;
-}
-.section { padding: var(--space-major) 0; }
-.section-minor { padding: var(--space-minor) 0; }
-.bg-light { background-color: var(--c-bg-light); }
-
-.grid-12 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 32px;
+  padding: 0 32px;
 }
 
-/* ============ BUTTONS & CTAS ============ */
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* ============ BUTTONS ============ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-family: var(--font-heading);
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  padding: 16px 28px;
-  border-radius: var(--radius-md);
-  text-decoration: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: none;
   cursor: pointer;
-  transition: var(--transition-smooth);
-  border: 2px solid transparent;
-}
-.btn-primary {
-  background: var(--c-accent);
-  color: var(--c-white);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-.btn-primary:hover {
-  background: var(--c-accent-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  color: var(--c-white);
-}
-.btn-secondary {
-  background: transparent;
-  color: var(--c-primary);
-  border-color: var(--c-primary);
-}
-.btn-secondary:hover {
-  background: var(--c-primary);
-  color: var(--c-white);
-  transform: translateY(-2px);
 }
 
-/* ============ HEADER (STICKY) ============ */
-.header {
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.15);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(10, 37, 64, 0.25);
+  background: #113355;
+}
+
+.btn-white {
+  background: #ffffff;
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.btn-white:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.btn-outline {
+  border: 1px solid var(--border-light);
+  color: var(--primary);
+  background: transparent;
+}
+.btn-outline:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+.btn-whatsapp:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+}
+
+/* ============ HEADER ============ */
+.site-header {
+  border-bottom: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  padding: 20px 0;
 }
-.header .container {
+.header-inner {
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 48px;
 }
 .logo {
-  font-family: var(--font-heading);
-  font-size: 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--c-primary);
-  text-decoration: none;
+  letter-spacing: -0.02em;
+  color: var(--primary);
 }
-.logo span { color: var(--c-accent); }
-.nav-links {
+.logo span { color: var(--accent-start); }
+
+.main-nav {
   display: flex;
   gap: 32px;
-  align-items: center;
+  flex: 1;
 }
-.nav-links a {
-  font-family: var(--font-heading);
+.main-nav a {
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   font-weight: 600;
-  color: var(--c-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: var(--text-body);
+  transition: color .2s ease;
 }
-.nav-links a:hover { color: var(--c-accent); }
+.main-nav a:hover { color: var(--primary); }
 
-/* ============ HERO SECTION ============ */
+.hamburger {
+  margin-left: auto;
+  background: none;
+  border: none;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--primary);
+}
+
+@media (min-width: 981px) {
+  .hamburger { display: none; }
+}
+
+/* ============ HERO ============ */
 .hero {
   position: relative;
-  padding: 120px 0 80px;
+  background: linear-gradient(135deg, #F6F9FC 0%, #E8F0F8 100%);
+  padding-top: 120px;
+  padding-bottom: 64px;
   overflow: hidden;
-  background: var(--c-bg-light);
+  text-align: center;
 }
-/* Glassmorphism abstract blob */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -20%; right: -10%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(99,91,255,0.15) 0%, rgba(255,255,255,0) 70%);
-  border-radius: 50%;
-  z-index: 0;
+.hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
-.hero-content {
-  position: relative;
-  z-index: 1;
-  grid-column: span 8;
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-start);
+  background: rgba(99, 91, 255, 0.1);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
 }
-.hero p {
-  font-size: 20px;
-  max-width: 600px;
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+.hero-sub {
+  font-size: 18px;
+  max-width: 720px;
+  margin: 0 auto 40px;
 }
 .hero-actions {
   display: flex;
   gap: 16px;
-  margin-top: 32px;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+.hero-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  opacity: 0.8;
+}
+.badge-item {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ============ INFINITE MARQUEE ============ */
-.marquee-wrapper {
+/* ============ MARQUEE (NEW) ============ */
+.marquee-container {
   width: 100%;
-  background: var(--c-primary);
-  padding: 16px 0;
   overflow: hidden;
-  white-space: nowrap;
+  background: #ffffff;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-light);
   display: flex;
 }
 .marquee-track {
   display: flex;
-  animation: scrollMarquee 30s linear infinite;
+  gap: 64px;
+  white-space: nowrap;
+  animation: scrollMarquee 40s linear infinite;
+  padding-right: 64px;
 }
 .marquee-item {
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 32px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.marquee-item::before {
-  content: '✦';
-  color: var(--c-accent);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #A0ABC0;
+  letter-spacing: -0.01em;
 }
 @keyframes scrollMarquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-/* ============ TRUST & LOGOS ============ */
-.trust-section {
+/* ============ SOLUTIONS ============ */
+.solutions {
+  padding: 96px 0;
+  background: #fff;
+}
+.solutions-title-desktop { text-align: center; margin-bottom: 16px; }
+.solutions-sub-desktop {
   text-align: center;
-  padding: 48px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 18px;
+  margin: 0 auto 64px;
+  max-width: 720px;
 }
-.trust-section p {
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #8898AA;
-  margin-bottom: 24px;
-}
-.logo-grid {
-  display: flex;
-  justify-content: center;
-  gap: 64px;
-  flex-wrap: wrap;
-  opacity: 0.6;
-  filter: grayscale(100%);
-}
-.logo-grid img { height: 32px; }
+.solutions-title-mobile { display: none; }
 
-/* ============ FEATURE CARDS (UX/UI Polish) ============ */
-.features-grid {
+.cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
-.feature-card {
-  background: var(--c-white);
-  border-radius: var(--radius-lg);
-  padding: 40px 32px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(0,0,0,0.05);
-  transition: var(--transition-smooth);
+
+.card {
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+.card:hover {
+  box-shadow: 0 12px 32px rgba(10, 37, 64, 0.08);
+  transform: translateY(-4px);
+}
+.card-head {
+  padding: 24px 24px 0;
+}
+.card-head h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--primary);
+}
+.card-body { padding: 24px; }
+.card-body h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.card-body p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card-visual {
+  margin: 16px 24px 0;
+  height: 200px;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-}
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--c-bg-light);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  margin-bottom: 24px;
-  color: var(--c-accent);
+  background: var(--secondary);
 }
 
-/* ============ FAQ SECTION ============ */
-.faq-item {
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  padding: 24px 0;
-}
-.faq-question {
-  font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--c-primary);
-  cursor: pointer;
+/* Keep existing visual specifics minimal but cleaner */
+.visual-tenant { background: linear-gradient(135deg, #F6F9FC 0%, #E6E8EB 100%); display: flex; align-items: center; justify-content: center; gap: 16px; }
+.tenant-icon { width: 64px; height: 64px; border-radius: 12px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.05); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--accent-start); }
+
+/* ============ OFFER BANNER ============ */
+.offer-banner {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  border-radius: 16px;
+  padding: 64px;
+  margin: 48px 0 96px;
+  background: linear-gradient(135deg, var(--primary) 0%, #113355 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(10, 37, 64, 0.2);
+}
+.offer-text { position: relative; z-index: 1; max-width: 600px; }
+.offer-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(4px);
+}
+.offer-text h2 {
+  color: #fff;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+.offer-desc { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.offer-price .current { color: #fff; font-size: 40px; font-weight: 700; margin-right: 12px; }
+.offer-price .original { color: rgba(255,255,255,0.5); text-decoration: line-through; margin-right: 12px; }
+
+/* ============ STATS ============ */
+.stats-section { padding-bottom: 96px; text-align: center; }
+.stats-section .section-title { margin-bottom: 64px; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.stat-number { font-size: 48px; font-family: 'Inter', sans-serif; color: var(--primary); margin-bottom: 8px; }
+.stat-label { font-size: 16px; }
+
+/* ============ SCROLL STORYTELLING ============ */
+.featured-stories {
+  padding: 96px 0;
+  background: var(--secondary);
+}
+.stories-header { text-align: center; margin-bottom: 64px; }
+.stories-eyebrow {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-start);
+  background: rgba(99, 91, 255, 0.1);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.stories-scroll-container {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+}
+.sticky-story-container {
+  flex: 1.2;
+  position: sticky;
+  top: 120px;
+  height: 600px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(10, 37, 64, 0.08);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+.story-preview { padding: 48px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.preview-image { width: 100%; height: 220px; border-radius: 8px; object-fit: cover; margin-bottom: 24px; }
+.preview-title { font-size: 28px; margin-bottom: 12px; }
+.preview-desc { font-size: 16px; margin-bottom: 24px; }
+.preview-features { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.preview-features span { background: var(--secondary); padding: 4px 12px; border-radius: 16px; font-size: 14px; font-weight: 500; }
+.preview-price { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+.preview-price span { font-size: 16px; font-weight: 400; color: var(--text-body); }
+.preview-actions { display: flex; gap: 16px; }
+
+.story-timeline { flex: 0.8; display: flex; flex-direction: column; gap: 16px; padding-top: 24px; }
+.story-trigger {
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 24px;
   align-items: center;
 }
-.faq-answer {
-  margin-top: 16px;
-  color: var(--c-secondary);
-  display: none;
+.story-trigger:hover { background: rgba(255,255,255,0.5); }
+.story-trigger.active {
+  background: #ffffff;
+  border-color: var(--border-light);
+  box-shadow: 0 12px 24px rgba(10, 37, 64, 0.05);
+  transform: translateX(16px);
 }
-.faq-item.active .faq-answer { display: block; }
+.story-trigger-number { font-size: 16px; font-family: 'Inter'; font-weight: 600; color: #A0ABC0; }
+.story-trigger.active .story-trigger-number { color: var(--accent-start); }
+
+/* ============ FAQ (NEW) ============ */
+.faq-section { padding: 96px 32px; background: #fff; }
+.faq-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+.faq-item { border-bottom: 1px solid var(--border-light); padding-bottom: 24px; }
+.faq-item h4 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
 
 /* ============ FOOTER ============ */
-.footer {
-  background: var(--c-primary);
-  color: var(--c-white);
+.site-footer {
+  background: var(--secondary);
   padding: 80px 0 40px;
+  border-top: 1px solid var(--border-light);
 }
-.footer h4 { color: var(--c-white); margin-bottom: 24px; }
-.footer a {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 12px;
-  transition: color 0.2s;
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 1.6fr;
+  gap: 32px;
+  padding-bottom: 48px;
 }
-.footer a:hover { color: var(--c-white); }
+.footer-col h5 { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 24px; }
+.footer-col a { display: block; font-size: 15px; margin-bottom: 16px; }
 .footer-bottom {
-  margin-top: 64px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-light);
+  padding-top: 32px;
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
 }
 
-/* ============ RESPONSIVE MEDIA QUERIES ============ */
-@media (max-width: 1024px) { /* Tablet - 6 cols equivalent */
-  h1 { font-size: 40px; }
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-content { grid-column: span 12; }
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .hero-title { font-size: 40px; }
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .stories-scroll-container { flex-direction: column; }
+  .sticky-story-container { position: relative; top: 0; width: 100%; height: auto; }
+  .story-timeline { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .story-trigger { flex: 1; min-width: 250px; }
+  .story-trigger.active { transform: translateX(0) translateY(-8px); }
+  .offer-banner { flex-direction: column; padding: 48px 32px; text-align: center; }
 }
-
-@media (max-width: 768px) { /* Mobile - 4 cols equivalent */
-  h1 { font-size: 32px; }
-  h2 { font-size: 28px; }
-  body { font-size: 16px; }
-  .grid-12 { display: flex; flex-direction: column; }
-  .features-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; width: 100%; }
-  .btn { width: 100%; justify-content: center; }
-  .nav-links { display: none; /* Add mobile menu logic here */ }
-  .logo-grid { gap: 32px; }
+@media (max-width: 768px) {
+  .hero { padding-top: 80px; }
+  .hero-title { font-size: 32px; }
+  .hero-actions { flex-direction: column; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 48px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .marquee-track { gap: 32px; }
 }
-
-/* Animations */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
-}
-.reveal-up.is-visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header" role="banner">
-  <div class="container">
-    <a href="/" class="logo" aria-label="Reva Web Solutions Home">Reva<span>Web</span></a>
-    <nav class="nav-links" aria-label="Main Navigation">
-      <a href="#services">Architecture</a>
-      <a href="#solutions">Products</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Start Project</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo" id="homeLink">Multi<span>Tenant</span></a>
+    <nav class="main-nav">
+      <a href="#solutions">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#stories">Stories</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero section">
-  <div class="container grid-12">
-    <div class="hero-content reveal-up">
-      <h1>Scalable digital infrastructure for growing businesses.</h1>
-      <p>We engineer premium SaaS platforms, complete e-commerce ecosystems, and bespoke React JS applications designed for performance, security, and conversion.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary" aria-label="Start your project with Reva Web Solutions">Start Your Project &rsaquo;</a>
-        <a href="#services" class="btn btn-secondary" aria-label="Explore our technical services">Explore Services</a>
-      </div>
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">🚀 Launch Special: 70% Off Today</span>
+    <h1 class="hero-title">Launch Your Store.<br>Scale Your Business.</h1>
+    <p class="hero-sub">Every business gets a dedicated storefront, independent dashboard, and complete commerce management — all inside a secure, scalable ecosystem.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn btn-primary">Start Your Project</a>
+      <a href="#solutions" class="btn btn-outline">Explore Services</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge-item">🏢 Multi-Tenant</span>
+      <span class="badge-item">🔒 Store Isolation</span>
+      <span class="badge-item">📈 Highly Scalable</span>
+      <span class="badge-item">🛡️ Secure Ecosystem</span>
     </div>
   </div>
 </section>
 
-<!-- INFINITE MARQUEE -->
-<div class="marquee-wrapper" aria-hidden="true">
+<!-- NEW: Auto-scroll Marquee -->
+<div class="marquee-container" aria-hidden="true">
   <div class="marquee-track">
-    <!-- Duplicate sets to create seamless infinite scroll -->
-    <div class="marquee-item">SaaS Architecture</div>
-    <div class="marquee-item">Product Development</div>
-    <div class="marquee-item">AI Solutions</div>
-    <div class="marquee-item">React JS</div>
-    <div class="marquee-item">Node.js</div>
-    <div class="marquee-item">Express</div>
-    <div class="marquee-item">MongoDB</div>
-    <div class="marquee-item">TypeScript</div>
-    
-    <div class="marquee-item">SaaS Architecture</div>
-    <div class="marquee-item">Product Development</div>
-    <div class="marquee-item">AI Solutions</div>
-    <div class="marquee-item">React JS</div>
-    <div class="marquee-item">Node.js</div>
-    <div class="marquee-item">Express</div>
-    <div class="marquee-item">MongoDB</div>
-    <div class="marquee-item">TypeScript</div>
+    <span class="marquee-item">SaaS Architecture</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Node.js Ecosystem</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Enterprise Scale</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">React & TypeScript</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">AI Integrations</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">High Conversion</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">MongoDB</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">SaaS Architecture</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Node.js Ecosystem</span>
   </div>
 </div>
 
-<!-- TRUST SIGNALS -->
-<section class="trust-section bg-light">
-  <div class="container reveal-up">
-    <p>Powering next-generation digital experiences</p>
-    <div class="logo-grid">
-      <!-- Placeholder images mapped to look like enterprise logos -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Partner">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard Integration">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe Architecture">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React Platform">
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES (CORE ARCHITECTURE) -->
-<section id="services" class="section">
+<section class="solutions" id="solutions">
   <div class="container">
-    <div class="reveal-up" style="max-width: 600px; margin-bottom: 64px;">
-      <h2>A complete toolkit for digital growth.</h2>
-      <p>We don't just build websites; we engineer complete platforms equipped with dashboards, isolated environments, and production-ready APIs.</p>
-    </div>
+    <h2 class="section-title solutions-title-desktop">Complete Commerce Infrastructure</h2>
+    <p class="solutions-sub-desktop">Every business gets a dedicated website, storefront, products, customers, and dashboard — all in one powerful platform.</p>
     
-    <div class="features-grid">
-      <article class="feature-card reveal-up">
-        <div class="feature-icon" aria-hidden="true">🏢</div>
-        <h3>Multi‑Tenant SaaS</h3>
-        <p class="text-small">Secure, isolated environments for individual businesses. Centralized owner dashboard, subscription management, and complete platform control.</p>
+    <div class="cards-grid">
+      <article class="card">
+        <div class="card-head"><h3>Multi-Tenant Architecture</h3></div>
+        <div class="card-visual visual-tenant"><div class="tenant-icon">🏢</div></div>
+        <div class="card-body">
+          <h4>Secure Environments</h4>
+          <p>Each business operates in a completely isolated environment with their own data, customers, and storefront.</p>
+        </div>
       </article>
-      
-      <article class="feature-card reveal-up" style="transition-delay: 100ms;">
-        <div class="feature-icon" aria-hidden="true">⚛️</div>
-        <h3>Full‑Stack Mastery</h3>
-        <p class="text-small">End-to-end web applications built on modern stacks. Specializing in high-performance React JS frontends paired with robust Node.js backends.</p>
+
+      <article class="card">
+        <div class="card-head"><h3>Store Management</h3></div>
+        <div class="card-visual visual-tenant"><div class="tenant-icon">🛒</div></div>
+        <div class="card-body">
+          <h4>Complete Control</h4>
+          <p>Manage products, track orders, and engage customers seamlessly from your dedicated owner dashboard.</p>
+        </div>
       </article>
-      
-      <article class="feature-card reveal-up" style="transition-delay: 200ms;">
-        <div class="feature-icon" aria-hidden="true">🛒</div>
-        <h3>E‑Commerce Engines</h3>
-        <p class="text-small">Custom commerce solutions with optimized checkout flows, Razorpay integration, JWT authentication, and advanced inventory tracking.</p>
+
+      <article class="card">
+        <div class="card-head"><h3>Enterprise Dashboard</h3></div>
+        <div class="card-visual visual-tenant"><div class="tenant-icon">📊</div></div>
+        <div class="card-body">
+          <h4>Real-time Analytics</h4>
+          <p>Revenue tracking and business intelligence at a glance. Make data-driven decisions confidently.</p>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- CTA BANNER -->
-<section class="section bg-light text-center">
-  <div class="container reveal-up" style="max-width: 700px;">
-    <h2>Ready to transform your ideas into reality?</h2>
-    <p>Partner with a senior architect to build scalable, high-converting platforms tailored precisely to your business logic.</p>
-    <a href="#contact" class="btn btn-primary">Start Your Project Now &rsaquo;</a>
+<section class="container stats-section">
+  <h2 class="section-title">Trusted by businesses scaling globally</h2>
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-number">100+</div><div class="stat-label">Active Stores</div></div>
+    <div class="stat"><div class="stat-number">50k+</div><div class="stat-label">Products Managed</div></div>
+    <div class="stat"><div class="stat-number">99.9%</div><div class="stat-label">Platform Uptime</div></div>
+    <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Premium Themes</div></div>
   </div>
 </section>
 
-<!-- FAQ SECTION -->
-<section id="faq" class="section">
-  <div class="container grid-12">
-    <div style="grid-column: span 4;" class="reveal-up">
-      <h2>Frequently asked questions</h2>
-      <p class="text-small">Everything you need to know about the development process, stack, and delivery.</p>
-    </div>
-    <div style="grid-column: span 8;" class="reveal-up">
-      <div class="faq-item active">
-        <div class="faq-question">What technology stack do you use? <span>+</span></div>
-        <div class="faq-answer">I specialize in full-stack JavaScript environments, utilizing React JS for dynamic front-ends, and Node.js/Express with MongoDB for scalable, secure back-end architecture.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Do you offer UI/UX design services? <span>+</span></div>
-        <div class="faq-answer">Yes, every project includes premium, conversion-rate-optimized (CRO) UI/UX design focusing on accessibility, responsive grids, and enterprise-grade aesthetics.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Are the e-commerce platforms production ready? <span>+</span></div>
-        <div class="faq-answer">Absolutely. Our platforms feature JWT authentication, cart management, order tracking, admin panels, and scalable infrastructure ready for live deployment.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer" id="contact" role="contentinfo">
-  <div class="container grid-12">
-    <div style="grid-column: span 4;">
-      <h3 style="color: var(--c-white);">Reva Web Solutions</h3>
-      <p class="text-small" style="color: rgba(255,255,255,0.7); max-width: 250px;">Architecting the next generation of scalable commerce and SaaS applications.</p>
-    </div>
-    <div style="grid-column: span 2;">
-      <h4>Solutions</h4>
-      <a href="#">SaaS Platforms</a>
-      <a href="#">E-Commerce</a>
-      <a href="#">AI Integrations</a>
-    </div>
-    <div style="grid-column: span 2;">
-      <h4>Company</h4>
-      <a href="#">Portfolio</a>
-      <a href="#">About Manikandan</a>
-      <a href="#">Careers</a>
-    </div>
-    <div style="grid-column: span 4;">
-      <h4>Contact</h4>
-      <a href="mailto:websolutionsriva@gmail.com">websolutionsriva@gmail.com</a>
-      <a href="https://wa.me/916379705593" target="_blank">Chat on WhatsApp</a>
-    </div>
-  </div>
+<section class="featured-stories" id="stories">
   <div class="container">
+    <div class="stories-header">
+      <span class="stories-eyebrow">✦ Premium Solutions</span>
+      <h2 class="section-title">Explore Our Commerce Suite</h2>
+    </div>
+
+    <div class="stories-scroll-container">
+      <div class="sticky-story-container">
+        <div class="story-preview" id="storyPreview">
+          <!-- Handled by JS -->
+        </div>
+      </div>
+      <div class="story-timeline" id="storyTimeline">
+        <!-- Handled by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="pricing">
+  <div class="offer-banner">
+    <div class="offer-text">
+      <div class="offer-badge">🔥 Limited Time Setup</div>
+      <h2>Start your store today from just ₹300/month</h2>
+      <p class="offer-desc">Enterprise capabilities at a fraction of the cost. Get a 20-day free trial on activation.</p>
+      <div class="offer-price">
+        <span class="current">₹300</span>
+        <span class="original">₹4,000</span>
+      </div>
+      <div style="margin-top: 24px;">
+        <a href="#contact" class="btn btn-white">Claim This Offer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>How long does setup take?</h4>
+        <p>Your isolated tenant environment is deployed instantly upon subscription activation without any technical delays.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is my store data secure?</h4>
+        <p>Yes. Our true multi-tenant architecture ensures complete data isolation and maximum privacy for every business.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I scale my business later?</h4>
+        <p>Absolutely. The platform is designed to effortlessly handle your growth from 10 products to 10,000 products.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <a href="#solutions">Multi-Tenant</a>
+        <a href="#stories">Premium Themes</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <a href="#portfolio">Custom Development</a>
+        <a href="#contact">API Integration</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About Us</a>
+        <a href="#contact">Contact Support</a>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
     <div class="footer-bottom">
-      &copy; 2026 Reva Web Solutions. All rights reserved. Built for performance and conversion.
+      <p>© 2026 MultiTenant — Built by Reva Web Solution</p>
+      <p>Secure. Fast. Scalable.</p>
     </div>
   </div>
 </footer>
 
 <script>
-// Scroll Reveal Micro-interaction
+// ============================================================
+// DATA — All Stories for Scroll Storytelling
+// ============================================================
+const stories = [
+  {
+    id: 0,
+    title: 'MAARA Luxury Indian Wear',
+    badge: '✨ Premium Theme',
+    description: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop',
+    features: ['Cart', 'Wishlist', 'Checkout'],
+    price: '₹7,000',
+    priceLabel: 'one-time',
+    previewUrl: '#',
+    whatsappMsg: 'Hello'
+  },
+  {
+    id: 1,
+    title: 'Custom Couture Dual UI',
+    badge: '🎨 Design Studio',
+    description: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop',
+    features: ['Dual UI', 'Clean Builder'],
+    price: '₹5,000',
+    priceLabel: 'one-time',
+    previewUrl: '#',
+    whatsappMsg: 'Hello'
+  },
+  {
+    id: 2,
+    title: 'Premium E-Commerce',
+    badge: '🔥 Production Ready',
+    description: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
+    features: ['Cloudinary', 'Orders Dashboard'],
+    price: '₹5,000',
+    priceLabel: 'one-time',
+    previewUrl: '#',
+    whatsappMsg: 'Hello'
+  }
+];
+
+const previewEl = document.getElementById('storyPreview');
+const timelineEl = document.getElementById('storyTimeline');
+let activeIndex = 0;
+
+function renderTimeline() {
+  timelineEl.innerHTML = stories.map((story, index) => `
+    <div class="story-trigger ${index === 0 ? 'active' : ''}" data-story="${index}">
+      <span class="story-trigger-number">${String(index + 1).padStart(2, '0')}</span>
+      <div class="story-trigger-content">
+        <h4 style="font-size:18px; margin-bottom:4px;">${story.title}</h4>
+        <p style="font-size:14px;">${story.badge}</p>
+      </div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.story-trigger').forEach(el => {
+    el.addEventListener('click', () => {
+      const idx = parseInt(el.dataset.story);
+      if (idx !== activeIndex) setActiveStory(idx);
+    });
+  });
+}
+
+function renderPreview(story) {
+  previewEl.innerHTML = `
+    <span class="stories-eyebrow" style="align-self:flex-start;">${story.badge}</span>
+    <img class="preview-image" src="${story.image}" alt="${story.title}">
+    <h3 class="preview-title">${story.title}</h3>
+    <p class="preview-desc">${story.description}</p>
+    <div class="preview-features">
+      ${story.features.map(f => `<span>${f}</span>`).join('')}
+    </div>
+    <div class="preview-price">${story.price} <span>${story.priceLabel}</span></div>
+    <div class="preview-actions">
+      <a href="#" class="btn btn-outline">Preview</a>
+      <a href="#" class="btn btn-primary">Buy Now</a>
+    </div>
+  `;
+}
+
+function setActiveStory(index) {
+  activeIndex = index;
+  document.querySelectorAll('.story-trigger').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+  });
+  renderPreview(stories[index]);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  const revealElements = document.querySelectorAll('.reveal-up');
-  
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); 
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px 0px -10% 0px',
-    threshold: 0
-  });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  // Simple FAQ Accordion Logic
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-      // Close others
-      faqItems.forEach(i => { if(i !== item) i.classList.remove('active'); });
-      // Toggle current
-      item.classList.toggle('active');
-    });
-  });
+  renderTimeline();
+  renderPreview(stories[0]);
 });
 </script>
-
 </body>
 </html>
