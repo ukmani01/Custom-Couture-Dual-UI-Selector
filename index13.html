@@ -36,6 +36,23 @@ button { font-family: inherit; cursor: pointer; }
   color: #0a0a1a;
 }
 
+/* ============ SCROLL REVEAL (VIDEO REPLICATION) ============ */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
 /* ============ BUTTONS ============ */
 .btn {
   display: inline-flex;
@@ -1264,6 +1281,11 @@ button { font-family: inherit; cursor: pointer; }
     transform: none !important;
     animation: none !important;
   }
+  .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 </style>
 </head>
@@ -1272,8 +1294,8 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="#" class="logo" id="homeLink">Multi<span>Tenant</span></a>
-    <nav class="main-nav">
+    <a href="#" class="logo reveal-up" id="homeLink">Multi<span>Tenant</span></a>
+    <nav class="main-nav reveal-up delay-100">
       <a href="#" id="navOverview">Overview</a>
       <a href="#solutions">Platform</a>
       <a href="#pricing">Pricing</a>
@@ -1290,11 +1312,13 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">🚀 <strong>Launch Special:</strong> 70% off • ₹300/month • 20‑Day Free Trial</p>
-    <h1 class="hero-title">Launch Your Store.<br>Scale Your Business.</h1>
-    <p class="hero-sub">Every business gets a dedicated storefront, independent dashboard, and complete commerce management — all inside a secure, scalable ecosystem. Built by <strong>Reva Web Solution</strong>.</p>
-    <a href="#contact" class="btn btn-primary">Start Your Store <span class="arrow">&rsaquo;</span></a>
-    <div class="hero-badges">
+    <p class="hero-eyebrow reveal-up">🚀 <strong>Launch Special:</strong> 70% off • ₹300/month • 20‑Day Free Trial</p>
+    <h1 class="hero-title reveal-up delay-100">Launch Your Store.<br>Scale Your Business.</h1>
+    <p class="hero-sub reveal-up delay-200">Every business gets a dedicated storefront, independent dashboard, and complete commerce management — all inside a secure, scalable ecosystem. Built by <strong>Reva Web Solution</strong>.</p>
+    <div class="reveal-up delay-300">
+      <a href="#contact" class="btn btn-primary">Start Your Store <span class="arrow">&rsaquo;</span></a>
+    </div>
+    <div class="hero-badges reveal-up delay-400">
       <span class="badge-item"><span class="icon">🏢</span> Multi‑Tenant</span>
       <span class="badge-item"><span class="icon">🔒</span> Store Isolation</span>
       <span class="badge-item"><span class="icon">📈</span> Scalable</span>
@@ -1307,14 +1331,14 @@ button { font-family: inherit; cursor: pointer; }
 <section class="overview-section" id="overview">
   <div class="container">
     <div class="overview-grid">
-      <div class="overview-image">
+      <div class="overview-image reveal-up">
         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="Modern digital commerce dashboard">
       </div>
       <div class="overview-content">
-        <h2>Your Complete Commerce Ecosystem</h2>
-        <p><strong>MultiTenant</strong> is a next‑generation commerce platform that gives every business its own complete digital storefront — with products, customers, orders, and a powerful dashboard — all in one secure ecosystem.</p>
-        <p>No more juggling multiple tools. No more worrying about data security or scalability. You get everything you need to sell online, manage operations, and grow your revenue.</p>
-        <ul>
+        <h2 class="reveal-up">Your Complete Commerce Ecosystem</h2>
+        <p class="reveal-up delay-100"><strong>MultiTenant</strong> is a next‑generation commerce platform that gives every business its own complete digital storefront — with products, customers, orders, and a powerful dashboard — all in one secure ecosystem.</p>
+        <p class="reveal-up delay-200">No more juggling multiple tools. No more worrying about data security or scalability. You get everything you need to sell online, manage operations, and grow your revenue.</p>
+        <ul class="reveal-up delay-300">
           <li><span class="check">✓</span> Your own branded online store</li>
           <li><span class="check">✓</span> Independent customer &amp; order management</li>
           <li><span class="check">✓</span> Real‑time analytics and insights</li>
@@ -1324,17 +1348,17 @@ button { font-family: inherit; cursor: pointer; }
     </div>
 
     <div class="overview-features">
-      <div class="overview-feature">
+      <div class="overview-feature reveal-up delay-100">
         <div class="icon">🚀</div>
         <h4>Launch in Minutes</h4>
         <p>No technical skills needed. Get your store live instantly with our intuitive setup.</p>
       </div>
-      <div class="overview-feature">
+      <div class="overview-feature reveal-up delay-200">
         <div class="icon">💎</div>
         <h4>Premium Experience</h4>
         <p>Stunning themes, smooth checkout, and a professional brand presence — out of the box.</p>
       </div>
-      <div class="overview-feature">
+      <div class="overview-feature reveal-up delay-300">
         <div class="icon">📊</div>
         <h4>Data‑Driven Growth</h4>
         <p>Know your best‑sellers, track customer behavior, and make smarter business decisions.</p>
@@ -1346,16 +1370,16 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ============ PLATFORM SOLUTIONS ============ -->
 <section class="solutions" id="solutions">
   <div class="container">
-    <h2 class="section-title solutions-title-desktop">Your complete commerce infrastructure</h2>
-    <p class="solutions-sub-desktop">Every business gets their own dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
-    <div class="solutions-title-mobile">
+    <h2 class="section-title solutions-title-desktop reveal-up">Your complete commerce infrastructure</h2>
+    <p class="solutions-sub-desktop reveal-up delay-100">Every business gets their own dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
+    <div class="solutions-title-mobile reveal-up">
       <h2 class="section-title">Your complete commerce infrastructure</h2>
       <p class="section-sub"><strong>Everything you need to sell online:</strong> dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
     </div>
 
     <div class="cards-grid">
 
-      <article class="card">
+      <article class="card reveal-up delay-100">
         <div class="card-head">
           <h3>Every business gets a secure, independent digital environment</h3>
         </div>
@@ -1373,7 +1397,7 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <article class="card">
+      <article class="card reveal-up delay-200">
         <div class="card-head">
           <h3>Complete store management — products, orders, customers</h3>
         </div>
@@ -1400,7 +1424,7 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <article class="card">
+      <article class="card reveal-up delay-300">
         <div class="card-head">
           <h3>AI‑powered commerce — coming soon</h3>
           <span class="expand-icon">✦</span>
@@ -1417,7 +1441,7 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <article class="card">
+      <article class="card reveal-up delay-100">
         <div class="card-head">
           <h3>Enterprise‑grade dashboard with real‑time analytics</h3>
         </div>
@@ -1441,7 +1465,7 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <article class="card">
+      <article class="card reveal-up delay-200">
         <div class="card-head">
           <h3>Everything you need to sell — products, carts, checkout</h3>
         </div>
@@ -1468,7 +1492,7 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <article class="card">
+      <article class="card reveal-up delay-300">
         <div class="card-head">
           <h3>Grow from one store to hundreds — all managed centrally</h3>
           <span class="expand-icon">✦</span>
@@ -1509,7 +1533,7 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ============ LAUNCH OFFER BANNER ============ -->
 <section class="container" id="pricing">
-  <a href="#contact" class="offer-banner" style="cursor:pointer;">
+  <a href="#contact" class="offer-banner reveal-up" style="cursor:pointer;">
     <div class="offer-text">
       <div class="offer-badge">🔥 LIMITED TIME</div>
       <p class="offer-eyebrow"><strong>Launch Special:</strong> 70% off for early adopters</p>
@@ -1535,21 +1559,21 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ============ STATS ============ -->
 <section class="container stats-section">
-  <h2 class="section-title">Trusted by businesses<br>building their digital future</h2>
+  <h2 class="section-title reveal-up">Trusted by businesses<br>building their digital future</h2>
   <div class="stats-grid">
-    <div class="stat">
+    <div class="stat reveal-up delay-100">
       <div class="stat-number">100+</div>
       <div class="stat-label">Active stores powered by the platform</div>
     </div>
-    <div class="stat">
+    <div class="stat reveal-up delay-200">
       <div class="stat-number">50k+</div>
       <div class="stat-label">Products managed across stores</div>
     </div>
-    <div class="stat">
+    <div class="stat reveal-up delay-300">
       <div class="stat-number">99.9%</div>
       <div class="stat-label">Platform uptime reliability</div>
     </div>
-    <div class="stat">
+    <div class="stat reveal-up delay-400">
       <div class="stat-number">10+</div>
       <div class="stat-label">Beautiful store themes to choose from</div>
     </div>
@@ -1559,7 +1583,7 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ============ FEATURED STORIES — SCROLL STORYTELLING ============ -->
 <section class="featured-stories" id="stories">
   <div class="container">
-    <div class="stories-header">
+    <div class="stories-header reveal-up">
       <span class="stories-eyebrow">✦ Featured Products</span>
       <h2 class="section-title">Premium Commerce <br>Solutions</h2>
       <p class="stories-sub">Scroll to explore our complete suite of e-commerce products and themes.</p>
@@ -1567,14 +1591,14 @@ button { font-family: inherit; cursor: pointer; }
 
     <div class="stories-scroll-container">
       <!-- Sticky Story Container -->
-      <div class="sticky-story-container">
+      <div class="sticky-story-container reveal-up delay-100">
         <div class="story-preview" id="storyPreview">
           <!-- Dynamic content inserted by JavaScript -->
         </div>
       </div>
 
       <!-- Scroll Timeline -->
-      <div class="story-timeline" id="storyTimeline">
+      <div class="story-timeline reveal-up delay-200" id="storyTimeline">
         <!-- Story triggers will be generated by JavaScript -->
       </div>
     </div>
@@ -1583,11 +1607,11 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ============ PORTFOLIO / COMPANY ============ -->
 <section class="container testimonials-section" id="portfolio">
-  <h2 class="section-title">Built by <span style="color:#5a45e8;">Reva Web Solution</span></h2>
-  <p style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">We design and build scalable SaaS platforms, custom software, and AI‑powered solutions that help businesses grow — from idea to launch and beyond.</p>
+  <h2 class="section-title reveal-up">Built by <span style="color:#5a45e8;">Reva Web Solution</span></h2>
+  <p class="reveal-up delay-100" style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">We design and build scalable SaaS platforms, custom software, and AI‑powered solutions that help businesses grow — from idea to launch and beyond.</p>
   <div class="testimonials-grid">
 
-    <article class="testimonial">
+    <article class="testimonial reveal-up delay-100">
       <div class="testimonial-brand">
         <span class="testimonial-badge badge-purple">D</span>
         <p>DROPi — Multi‑Tenant SaaS E‑Commerce Platform</p>
@@ -1598,7 +1622,7 @@ button { font-family: inherit; cursor: pointer; }
       <a href="https://riva-liart.vercel.app/" target="_blank" class="btn btn-outline">Learn More <span class="arrow">&rsaquo;</span></a>
     </article>
 
-    <article class="testimonial">
+    <article class="testimonial reveal-up delay-200">
       <div class="testimonial-brand">
         <span class="testimonial-badge badge-gold">K</span>
         <p>Kottayam Blooms — Premium Florist Website</p>
@@ -1609,7 +1633,7 @@ button { font-family: inherit; cursor: pointer; }
       <a href="#" class="btn btn-outline">View Project <span class="arrow">&rsaquo;</span></a>
     </article>
 
-    <article class="testimonial">
+    <article class="testimonial reveal-up delay-300">
       <div class="testimonial-brand">
         <span class="testimonial-badge badge-pink">A</span>
         <p>AI Content Studio — AI‑Powered Content Platform</p>
@@ -1625,21 +1649,21 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ============ SERVICES SECTION ============ -->
 <section class="container" style="padding-bottom:80px;">
-  <h2 class="section-title">Services That Drive Digital Growth</h2>
-  <p style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">From SaaS platforms to AI automation — we deliver end‑to‑end solutions that align with your business goals.</p>
+  <h2 class="section-title reveal-up">Services That Drive Digital Growth</h2>
+  <p class="reveal-up delay-100" style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">From SaaS platforms to AI automation — we deliver end‑to‑end solutions that align with your business goals.</p>
   <div class="cards-grid">
-    <div class="card"><div class="card-body"><h4>🚀 SaaS Development</h4><p>Build scalable, multi‑tenant SaaS platforms with subscription models, dashboards, and automation at the core.</p></div></div>
-    <div class="card"><div class="card-body"><h4>⚛️ Full‑Stack Development</h4><p>End‑to‑end web applications using modern stacks (React, Node.js, MongoDB) with clean, maintainable code.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🛒 E‑Commerce Platforms</h4><p>Custom ecommerce solutions with cart, payments, inventory, order management, and multi‑vendor capabilities.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🤖 AI &amp; Automation</h4><p>Intelligent solutions with AI workflows, content generation, and business process automation.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🔗 API &amp; Integration</h4><p>Robust REST APIs, third‑party integrations, and seamless data flow across your business systems.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🎨 UI/UX &amp; Consulting</h4><p>User‑centric design, technology strategy, and architecture guidance to accelerate your product roadmap.</p></div></div>
+    <div class="card reveal-up delay-100"><div class="card-body"><h4>🚀 SaaS Development</h4><p>Build scalable, multi‑tenant SaaS platforms with subscription models, dashboards, and automation at the core.</p></div></div>
+    <div class="card reveal-up delay-200"><div class="card-body"><h4>⚛️ Full‑Stack Development</h4><p>End‑to‑end web applications using modern stacks (React, Node.js, MongoDB) with clean, maintainable code.</p></div></div>
+    <div class="card reveal-up delay-300"><div class="card-body"><h4>🛒 E‑Commerce Platforms</h4><p>Custom ecommerce solutions with cart, payments, inventory, order management, and multi‑vendor capabilities.</p></div></div>
+    <div class="card reveal-up delay-100"><div class="card-body"><h4>🤖 AI &amp; Automation</h4><p>Intelligent solutions with AI workflows, content generation, and business process automation.</p></div></div>
+    <div class="card reveal-up delay-200"><div class="card-body"><h4>🔗 API &amp; Integration</h4><p>Robust REST APIs, third‑party integrations, and seamless data flow across your business systems.</p></div></div>
+    <div class="card reveal-up delay-300"><div class="card-body"><h4>🎨 UI/UX &amp; Consulting</h4><p>User‑centric design, technology strategy, and architecture guidance to accelerate your product roadmap.</p></div></div>
   </div>
 </section>
 
 <!-- ============ WHATSAPP CONTACT ============ -->
 <section class="container whatsapp-section" id="contact">
-  <div class="whatsapp-card">
+  <div class="whatsapp-card reveal-up">
     <div class="whatsapp-content">
       <h2>📱 Ready to launch your store?</h2>
       <p>Contact us on WhatsApp to discuss pricing, custom requirements, or to claim your 70% launch discount. We'll help you get started in minutes.</p>
@@ -1657,7 +1681,7 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
-  <div class="container">
+  <div class="container reveal-up">
     <div class="footer-grid">
       <div class="footer-col">
         <h5>Platform</h5>
@@ -1790,6 +1814,27 @@ const previewEl = document.getElementById('storyPreview');
 const timelineEl = document.getElementById('storyTimeline');
 let activeIndex = 0;
 let isTransitioning = false;
+
+// ============================================================
+// SCROLL REVEAL (GENERAL PAGE ANIMATION)
+// ============================================================
+function setupScrollReveal() {
+  const revealElements = document.querySelectorAll('.reveal-up');
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+}
 
 // ============================================================
 // RENDER TIMELINE
@@ -1950,6 +1995,7 @@ function init() {
   renderPreview(stories[0], true);
   setupScrollTrigger();
   setupProgressTracking();
+  setupScrollReveal();
 
   // Reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
