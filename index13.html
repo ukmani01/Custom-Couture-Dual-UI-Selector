@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MultiTenant — Next-Generation Commerce SaaS Platform</title>
+<title>MultiTenant — Scroll Storytelling</title>
 <style>
-/* ============ RESET / BASE ============ */
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -36,623 +38,41 @@ button { font-family: inherit; cursor: pointer; }
   color: #0a0a1a;
 }
 
-/* ============ BUTTONS ============ */
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 13px 22px;
+  padding: 11px 20px;
   border-radius: 8px;
-  transition: opacity .15s ease, transform .15s ease;
+  transition: all .25s ease;
   border: none;
+  cursor: pointer;
 }
-.btn:hover { opacity: .88; }
-.arrow { font-size: 18px; line-height: 1; }
-
-.btn-primary {
-  background: linear-gradient(180deg, #6a5cf0 0%, #5a45e8 100%);
-  color: #ffffff;
-  box-shadow: 0 6px 16px rgba(88, 65, 216, .35);
-}
-
-.btn-white {
-  background: #ffffff;
-  color: #4b3ee0;
-}
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+.arrow { font-size: 16px; line-height: 1; transition: transform .25s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
 
 .btn-outline {
   border: 1px solid #d8dae0;
   color: #4b3ee0;
-  font-size: 14px;
-  padding: 10px 18px;
   background: transparent;
 }
+.btn-outline:hover { background: #f0eeff; border-color: #4b3ee0; }
 
 .btn-whatsapp {
   background: #25D366;
   color: #ffffff;
-  box-shadow: 0 6px 16px rgba(37, 211, 102, .35);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, .3);
 }
-.btn-whatsapp:hover { opacity: .88; }
-
-/* ============ HEADER ============ */
-.site-header {
-  border-bottom: 1px solid #eee;
-  background: #fff;
-  position: relative;
-  z-index: 20;
-}
-.header-inner {
-  max-width: 1216px;
-  margin: 0 auto;
-  padding: 0 32px;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  gap: 44px;
-}
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #0a0a1a;
-}
-.logo span { color: #5a45e8; }
-.main-nav {
-  display: flex;
-  gap: 32px;
-  flex: 1;
-}
-.main-nav a {
-  font-size: 15px;
-  font-weight: 500;
-  color: #2a2a35;
-  transition: color .15s ease;
-}
-.main-nav a:hover { color: #635bff; }
-
-.hamburger {
-  margin-left: auto;
-  background: none;
-  border: none;
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px;
-}
-.hamburger span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #5a45e8;
-}
-
-@media (min-width: 981px) {
-  .hamburger { display: none; }
-}
-
-/* ============ HERO ============ */
-.hero {
-  position: relative;
-  background: linear-gradient(120deg,
-      #c7d6f6 0%,
-      #cdeaf6 16%,
-      #b9c2f2 30%,
-      #d79fe0 44%,
-      #f0709a 54%,
-      #f5883f 66%,
-      #f7a24a 76%,
-      #fdca5d 100%);
-  padding-top: 96px;
-  padding-bottom: 56px;
-  overflow: hidden;
-}
-.hero-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 24px;
-}
-.hero-eyebrow {
-  font-size: 14px;
-  color: #3a3a4a;
-  margin-bottom: 18px;
-}
-.hero-eyebrow strong { color: #5a45e8; font-weight: 700; }
-.hero-title {
-  font-size: 52px;
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #17172a;
-  margin-bottom: 18px;
-}
-.hero-sub {
-  font-size: 18px;
-  color: #3a3a4a;
-  margin-bottom: 32px;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.hero-badges {
-  width: 100%;
-  margin-top: 48px;
-  padding: 26px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  flex-wrap: wrap;
-}
-.badge-item {
-  font-weight: 700;
-  font-size: 15px;
-  color: #1a1a1a;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.badge-item .icon { color: #5a45e8; font-size: 18px; }
-
-/* ============ OVERVIEW SECTION ============ */
-.overview-section {
-  padding: 64px 0 80px;
-  background: #fff;
-  display: none;
-}
-.overview-section.active { display: block; }
-
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-.overview-image img {
-  border-radius: 16px;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 12px 40px rgba(0,0,0,.08);
-}
-.overview-content h2 {
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.overview-content p {
-  font-size: 16px;
-  color: #6b6b7a;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.overview-content ul {
-  list-style: none;
-  margin-top: 12px;
-}
-.overview-content ul li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f4f4f8;
-}
-.overview-content ul li:last-child { border-bottom: none; }
-.overview-content ul li .check {
-  color: #4cae6e;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.overview-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  margin-top: 48px;
-}
-.overview-feature {
-  background: #f6f7fa;
-  padding: 24px 20px;
-  border-radius: 12px;
-  text-align: center;
-}
-.overview-feature .icon { font-size: 28px; margin-bottom: 10px; }
-.overview-feature h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-.overview-feature p { font-size: 13px; color: #6b6b7a; }
-
-/* ============ SOLUTIONS ============ */
-.solutions {
-  padding: 64px 0 80px;
-  background: #fff;
-}
-.solutions-title-desktop { margin-bottom: 12px; }
-.solutions-sub-desktop {
-  font-size: 16px;
-  color: #6b6b7a;
-  margin-bottom: 32px;
-  max-width: 640px;
-}
-.solutions-title-mobile { display: none; }
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.card {
-  border: 1px solid #eceef2;
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  transition: box-shadow .2s ease;
-}
-.card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.06); }
-.card-head {
-  padding: 20px 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-}
-.card-head h3 {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.35;
-  color: #0a0a1a;
-}
-.expand-icon {
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
-  background: #f4f4f8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #8a8a99;
-}
-.card-body { padding: 16px 20px 24px; }
-.card-body h4 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.card-body p {
-  font-size: 13.5px;
-  color: #6b6b7a;
-  line-height: 1.5;
-}
-
-.card-visual {
-  margin: 16px 20px 0;
-  height: 190px;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  background: #f7f7fa;
-}
-
-/* --- card visuals --- */
-.visual-tenant {
-  background: linear-gradient(135deg, #fff 40%, #b79af0 70%, #6a5cf0 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 14px;
-}
-.tenant-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 700;
-  color: #5a45e8;
-}
-.tenant-text { color: #fff; font-size: 12px; font-weight: 600; line-height: 1.4; }
-.tenant-text span { display: block; font-weight: 400; font-size: 10px; opacity: .8; }
-
-.visual-store {
-  background: linear-gradient(200deg, #fdd9a0 0%, #f2a5e0 40%, #a99af5 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 14px;
-}
-.mini-store-card {
-  width: 100%;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0,0,0,.08);
-  padding: 10px 12px;
-}
-.mini-store-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.mini-store-dot { width: 18px; height: 18px; border-radius: 50%; background: #5a45e8; flex-shrink: 0; }
-.mini-store-title { font-size: 11px; font-weight: 700; }
-.mini-store-sub { font-size: 9px; color: #999; }
-.mini-store-bar { height: 5px; border-radius: 3px; background: linear-gradient(90deg,#5a45e8,#f5883f); margin-top: 4px; }
-.mini-store-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 4px;
-  width: 100%;
-}
-.mini-store-grid span {
-  background: #fff;
-  border-radius: 4px;
-  padding: 4px 6px;
-  font-size: 7px;
-  text-align: center;
-  color: #555;
-  font-weight: 600;
-}
-
-.visual-ai {
-  background: linear-gradient(160deg, #fff 30%, #fbe3ef 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px;
-}
-.ai-ring {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 2px dotted #f3c6da;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  animation: spin 20s linear infinite;
-}
-@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
-.ai-chat {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.06);
-  font-size: 9px;
-  color: #555;
-  padding: 8px 10px;
-  max-width: 140px;
-  position: relative;
-  z-index: 1;
-}
-.ai-chat-1 { margin-bottom: 10px; }
-.ai-chat-2 { margin-bottom: 10px; font-size: 8px; color: #999; }
-.ai-chat-3 { align-self: flex-end; font-weight: 700; color: #5a45e8; }
-
-.visual-dashboard {
-  background: linear-gradient(160deg, #e9d6f5 0%, #f7cfe0 60%, #fbe6d8 100%);
-  padding: 20px 14px 0;
-}
-.dash-card {
-  position: absolute;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(0,0,0,.1);
-}
-.dash-card-back {
-  width: 78%; height: 70%;
-  top: 12px; right: 8px;
-  padding: 10px;
-}
-.dash-back-lines span {
-  display: block;
-  height: 6px;
-  border-radius: 3px;
-  background: #eee;
-  margin-bottom: 8px;
-}
-.dash-card-front {
-  width: 72%; height: 78%;
-  left: 8px; top: 26px;
-  padding: 12px;
-  font-size: 9px;
-}
-.dash-avatar { width: 20px; height: 20px; border-radius: 50%; background: #cbbcf7; margin-bottom: 6px; }
-.dash-name { font-weight: 700; font-size: 11px; margin-bottom: 10px; }
-.dash-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #888; }
-.dash-row span:last-child { color: #222; font-weight: 600; }
-.dash-chip { display: inline-block; width: 22px; height: 12px; background: #5a45e8; border-radius: 2px; }
-
-.visual-suite {
-  height: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0;
-}
-.suite-copy { font-size: 11px; color: #999; padding: 0 4px; }
-.suite-items { display: flex; gap: 10px; }
-.suite-item {
-  flex: 1;
-  background: #f4f4f7;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-}
-.suite-icon { width: 100%; height: 50px; border-radius: 6px; background: #5a45e8; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
-.suite-icon.green { background: #4cae6e; }
-.suite-icon.orange { background: #f5883f; }
-.suite-label { font-size: 9px; font-weight: 600; line-height: 1.6; }
-.suite-label span { font-weight: 400; color: #999; }
-
-.visual-ecosystem {
-  background: linear-gradient(160deg, #e4e0fb 0%, #fff 60%);
-  padding: 14px;
-}
-.eco-tab-bar { display: flex; gap: 4px; margin-bottom: 8px; }
-.eco-tab-bar span { width: 5px; height: 5px; border-radius: 50%; background: #ccc; }
-.eco-panels { display: flex; gap: 8px; height: 140px; }
-.eco-panel-left, .eco-panel-right {
-  flex: 1;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0,0,0,.06);
-  padding: 10px;
-  font-size: 9px;
-}
-.eco-brand { font-weight: 700; font-size: 9px; color: #5a45e8; margin-bottom: 8px; }
-.eco-avatar { width: 16px; height: 16px; border-radius: 50%; background: #cbbcf7; margin-bottom: 6px; }
-.eco-title { font-weight: 700; margin-bottom: 8px; }
-.eco-line { height: 5px; background: #eee; border-radius: 3px; margin-bottom: 6px; }
-.eco-line.short { width: 60%; }
-.eco-right-title { font-weight: 700; margin-bottom: 8px; }
-.eco-list li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
-  color: #555;
-  font-size: 8px;
-}
-.eco-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-}
-.eco-dot-blue{background:#5a45e8}.eco-dot-yellow{background:#f5c542}
-.eco-dot-orange{background:#f5883f}.eco-dot-pink{background:#f0709a}
-.eco-dot-purple{background:#a99af5}.eco-dot-green{background:#4cae6e}
-
-/* ============ OFFER BANNER ============ */
-.offer-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
-  padding: 44px 48px;
-  margin: 8px 0 72px;
-  background: linear-gradient(115deg, #14163f 0%, #2a2570 45%, #6259d6 100%);
-  overflow: hidden;
-  position: relative;
-  min-height: 240px;
-}
-.offer-text { position: relative; z-index: 1; max-width: 520px; }
-.offer-eyebrow {
-  color: #cfc9ff;
-  font-size: 15px;
-  margin-bottom: 12px;
-}
-.offer-eyebrow strong { color: #fdca5d; font-weight: 700; }
-.offer-text h2 {
-  color: #fff;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
-}
-.offer-desc {
-  color: rgba(255,255,255,0.8);
-  font-size: 15px;
-  margin-bottom: 12px;
-}
-.offer-price {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-.offer-price .current {
-  color: #fdca5d;
-  font-size: 32px;
-  font-weight: 700;
-}
-.offer-price .original {
-  color: rgba(255,255,255,0.5);
-  font-size: 18px;
-  text-decoration: line-through;
-}
-.offer-price .label {
-  color: rgba(255,255,255,0.7);
-  font-size: 14px;
-}
-.offer-price .label strong { color: #fff; }
-.offer-badge {
-  display: inline-block;
-  background: #fdca5d;
-  color: #14163f;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-.offer-globe {
-  position: absolute;
-  right: -40px;
-  bottom: -60px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(from 0deg, rgba(255,255,255,.1) 0deg 1.2deg, transparent 1.2deg 9deg);
-  mask: radial-gradient(circle, #000 60%, transparent 72%);
-  -webkit-mask: radial-gradient(circle, #000 60%, transparent 72%);
-}
-
-.photo-plans {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-.photo-plan {
-  background: rgba(255,255,255,0.1);
-  padding: 10px 18px;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  backdrop-filter: blur(4px);
-}
-.photo-plan .price { font-size: 18px; font-weight: 700; color: #fdca5d; }
-.photo-plan .label { font-size: 12px; opacity: 0.8; }
-
-/* ============ STATS ============ */
-.stats-section { padding-bottom: 80px; }
-.stats-section .section-title { margin-bottom: 40px; }
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  text-align: center;
-}
-.stat-number {
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
-}
-.stat-label {
-  font-size: 13px;
-  color: #6b6b7a;
-  line-height: 1.5;
-}
+.btn-whatsapp:hover { box-shadow: 0 6px 20px rgba(37, 211, 102, .4); }
 
 /* ============================================================
-   FEATURED STORIES — SCROLL STORYTELLING
+   FEATURED STORIES — STRIPE-LIKE SCROLL
    ============================================================ */
 .featured-stories {
   padding: 80px 0 120px;
@@ -686,16 +106,21 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0 auto;
 }
 
+/* ============================================================
+   SCROLL CONTAINER — CSS GRID
+   ============================================================ */
 .stories-scroll-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 60px;
-  align-items: flex-start;
+  align-items: start;
   position: relative;
 }
 
-/* Sticky Preview */
+/* ============================================================
+   STICKY PREVIEW — PINNED CARD
+   ============================================================ */
 .sticky-story-container {
-  flex: 1.2;
   position: sticky;
   top: 100px;
   height: 560px;
@@ -704,6 +129,11 @@ button { font-family: inherit; cursor: pointer; }
   background: #ffffff;
   box-shadow: 0 20px 60px rgba(0,0,0,.08);
   border: 1px solid #eceef2;
+  transition: box-shadow 0.4s ease;
+}
+
+.sticky-story-container:hover {
+  box-shadow: 0 30px 80px rgba(88, 65, 216, .12);
 }
 
 .story-preview {
@@ -713,19 +143,18 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.story-preview::before {
+/* Subtle gradient overlay for depth */
+.story-preview::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.06;
-  background-size: cover;
-  background-position: center;
-  transition: opacity 0.8s ease;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
+  pointer-events: none;
   z-index: 0;
 }
 
@@ -734,6 +163,29 @@ button { font-family: inherit; cursor: pointer; }
   z-index: 1;
 }
 
+/* Preview Image */
+.preview-image-wrap {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: #f4f4f8;
+  position: relative;
+}
+
+.preview-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.sticky-story-container:hover .preview-image-wrap img {
+  transform: scale(1.02);
+}
+
+/* Badge */
 .preview-badge {
   display: inline-block;
   font-size: 11px;
@@ -746,52 +198,33 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 12px;
   margin-bottom: 16px;
   align-self: flex-start;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeUp 0.6s 0.1s forwards;
+  transition: all 0.3s ease;
 }
 
-.preview-image {
-  width: 100%;
-  height: 180px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 20px;
-  background: #f4f4f8;
-  opacity: 0;
-  transform: scale(0.96);
-  animation: scaleIn 0.7s 0.2s forwards;
-}
-
+/* Title */
 .preview-title {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp 0.6s 0.15s forwards;
+  line-height: 1.2;
 }
 
+/* Description */
 .preview-desc {
   font-size: 15px;
   color: #6b6b7a;
   line-height: 1.6;
   margin-bottom: 16px;
   max-width: 90%;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp 0.6s 0.25s forwards;
 }
 
+/* Features */
 .preview-features {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 18px;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp 0.6s 0.35s forwards;
 }
 .preview-features span {
   background: #f4f4f8;
@@ -800,16 +233,19 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 12px;
   color: #555;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+.preview-features span:hover {
+  background: #e8e6ff;
+  color: #5a45e8;
 }
 
+/* Price */
 .preview-price {
   font-size: 24px;
   font-weight: 700;
   color: #5a45e8;
   margin-bottom: 18px;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp 0.6s 0.45s forwards;
 }
 .preview-price span {
   font-size: 15px;
@@ -817,41 +253,17 @@ button { font-family: inherit; cursor: pointer; }
   color: #6b6b7a;
 }
 
+/* Actions */
 .preview-actions {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeUp 0.6s 0.55s forwards;
 }
 
-/* Animations */
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes scaleIn {
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes slideOut {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-20px) scale(0.96); }
-}
-
-.preview-exit {
-  animation: slideOut 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-.preview-enter {
-  animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Timeline */
+/* ============================================================
+   TIMELINE — SCROLL TRIGGERS
+   ============================================================ */
 .story-timeline {
-  flex: 0.8;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -868,6 +280,25 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 18px;
+  position: relative;
+}
+
+/* Progress line on the left */
+.story-trigger::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, #5a45e8, #8a75ff);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-trigger.active::before {
+  height: 60%;
 }
 
 .story-trigger:hover {
@@ -908,158 +339,90 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: 2px;
 }
 
-/* ============ TESTIMONIALS / PORTFOLIO ============ */
-.testimonials-section { padding-bottom: 80px; }
-.testimonials-section .section-title { margin-bottom: 32px; }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+/* ============================================================
+   ANIMATION CLASSES — STRIPE-LIKE TRANSITIONS
+   ============================================================ */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-.testimonial-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 16px;
-}
-.testimonial-badge {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-.badge-purple { background: #5a45e8; color: #fff; }
-.badge-dark { background: #1a1a1a; color: #fff; }
-.badge-green { background: #e3f3e5; color: #4cae6e; }
-.badge-gold { background: #fdca5d; color: #1a1a1a; }
-.badge-pink { background: #f0709a; color: #fff; }
-.testimonial-brand p { font-size: 13.5px; font-weight: 600; line-height: 1.35; }
-.testimonial-img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 18px;
-}
-.testimonial h3 { font-size: 17px; font-weight: 700; line-height: 1.35; margin-bottom: 10px; }
-.testimonial-copy { font-size: 13px; color: #6b6b7a; line-height: 1.55; margin-bottom: 18px; }
 
-/* ============ WHATSAPP SECTION ============ */
-.whatsapp-section {
-  padding-bottom: 80px;
+@keyframes fadeSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.94);
+  }
 }
-.whatsapp-card {
-  background: #f6f7fa;
-  border-radius: 16px;
-  padding: 40px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-  border: 1px solid #eceef2;
-}
-.whatsapp-content { max-width: 500px; }
-.whatsapp-content h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.whatsapp-content p {
-  color: #6b6b7a;
-  font-size: 15px;
-  margin-bottom: 16px;
-}
-.whatsapp-qr-placeholder {
-  width: 140px;
-  height: 140px;
-  border: 2px dashed #d8dae0;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: 13px;
-  text-align: center;
-  background: #fff;
-}
-.whatsapp-qr-placeholder .qr-text { max-width: 100px; }
 
-/* ============ FOOTER ============ */
-.site-footer {
-  background: #f6f7fa;
-  padding: 56px 0 28px;
-  border-top: 1px solid #eceef2;
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr) 1.6fr;
-  gap: 24px;
-  padding-bottom: 40px;
-}
-.footer-col h5 {
-  font-size: 13.5px;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.footer-col a {
-  display: block;
-  font-size: 13px;
-  color: #55555f;
-  margin-bottom: 12px;
-  transition: color .15s ease;
-}
-.footer-col a:hover { color: #4b3ee0; }
-.social-row { display: flex; gap: 12px; margin-bottom: 24px; }
-.social-row a {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  border: 1px solid #d8dae0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
-  transition: all .15s ease;
-}
-.social-row a:hover { background: #5a45e8; color: #fff; border-color: #5a45e8; }
-.legal-cols { display: flex; gap: 24px; }
 
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid #e2e4ea;
-  padding-top: 22px;
-  font-size: 12.5px;
-  color: #7a7a86;
-  flex-wrap: wrap;
-  gap: 8px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.footer-bottom .brand { color: #5a45e8; font-weight: 700; }
 
-/* ==================================================================
-   TABLET
-   ================================================================== */
+/* Exit animation */
+.preview-exit {
+  animation: fadeSlideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Enter animation */
+.preview-enter {
+  animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Staggered child animations */
+.stagger-enter .preview-badge {
+  animation: fadeIn 0.5s 0.05s forwards;
+  opacity: 0;
+}
+.stagger-enter .preview-image-wrap {
+  animation: scaleIn 0.6s 0.15s forwards;
+  opacity: 0;
+}
+.stagger-enter .preview-title {
+  animation: fadeIn 0.5s 0.25s forwards;
+  opacity: 0;
+}
+.stagger-enter .preview-desc {
+  animation: fadeIn 0.5s 0.35s forwards;
+  opacity: 0;
+}
+.stagger-enter .preview-features {
+  animation: fadeIn 0.5s 0.45s forwards;
+  opacity: 0;
+}
+.stagger-enter .preview-price {
+  animation: fadeIn 0.5s 0.55s forwards;
+  opacity: 0;
+}
+.stagger-enter .preview-actions {
+  animation: fadeIn 0.5s 0.65s forwards;
+  opacity: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 1024px) {
-  .hero-title { font-size: 42px; }
-  .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
-  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-col-company { grid-column: span 3; margin-top: 8px; }
-  .legal-cols { max-width: 320px; justify-content: space-between; }
-  .overview-grid { grid-template-columns: 1fr; gap: 32px; }
-  .overview-features { grid-template-columns: 1fr 1fr; }
-
   .stories-scroll-container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .sticky-story-container {
     position: relative;
     top: 0;
@@ -1067,18 +430,19 @@ button { font-family: inherit; cursor: pointer; }
     min-height: 420px;
     width: 100%;
   }
+
   .story-preview {
     padding: 32px 36px;
   }
-  .preview-image {
+  .preview-image-wrap {
     height: 140px;
   }
+
   .story-timeline {
-    flex: 1;
-    padding-top: 0;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    padding-top: 0;
   }
   .story-trigger {
     flex: 1;
@@ -1089,95 +453,12 @@ button { font-family: inherit; cursor: pointer; }
   .story-trigger.active {
     transform: translateX(0);
   }
+  .story-trigger::before {
+    display: none;
+  }
 }
 
-/* ==================================================================
-   MOBILE
-   ================================================================== */
 @media (max-width: 680px) {
-  .container { padding: 0 20px; }
-
-  .header-inner { padding: 0 20px; height: 60px; position: relative; }
-  .main-nav { display: none; }
-  .main-nav.nav-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 16px 20px;
-    gap: 16px;
-    box-shadow: 0 8px 16px rgba(0,0,0,.06);
-  }
-  .hamburger { display: flex; margin-left: auto; }
-
-  .hero { padding-top: 40px; padding-bottom: 32px; }
-  .hero-inner { text-align: left; padding: 0 20px; }
-  .hero-eyebrow { font-size: 11px; }
-  .hero-title { font-size: 28px; margin-bottom: 14px; }
-  .hero-sub { font-size: 15px; }
-  .btn-primary { display: flex; justify-content: center; }
-  .hero-badges {
-    margin-top: 28px;
-    gap: 16px;
-    padding: 18px 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .badge-item { font-size: 12px; }
-
-  .solutions { padding: 40px 0 48px; }
-  .solutions-title-desktop { display: none; }
-  .solutions-title-mobile {
-    display: block;
-    margin-bottom: 24px;
-  }
-  .solutions-title-mobile .section-title { font-size: 26px; margin-bottom: 12px; }
-  .section-sub { font-size: 14px; color: #55555f; line-height: 1.55; }
-
-  .cards-grid { grid-template-columns: 1fr; gap: 20px; }
-
-  .offer-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 32px 24px;
-    margin-bottom: 48px;
-    min-height: unset;
-  }
-  .offer-text { max-width: 100%; }
-  .offer-text h2 { font-size: 24px; }
-  .offer-price .current { font-size: 26px; }
-  .offer-globe { width: 220px; height: 220px; right: -60px; bottom: -80px; }
-  .photo-plans { gap: 10px; }
-  .photo-plan { padding: 8px 14px; }
-
-  .stats-section { padding-bottom: 48px; }
-  .section-title { font-size: 26px; }
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
-  .stat-number { font-size: 26px; }
-
-  .testimonials-section { padding-bottom: 48px; }
-  .testimonials-grid { grid-template-columns: 1fr; gap: 36px; }
-
-  .whatsapp-section { padding-bottom: 48px; }
-  .whatsapp-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 28px 20px;
-  }
-  .whatsapp-qr-placeholder { width: 120px; height: 120px; }
-
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
-  .footer-col-company { grid-column: span 2; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
-
-  .overview-section { padding: 40px 0 48px; }
-  .overview-content h2 { font-size: 26px; }
-  .overview-features { grid-template-columns: 1fr; }
-
   .featured-stories { padding: 48px 0 64px; }
   .stories-header { margin-bottom: 32px; }
   .stories-header .section-title { font-size: 26px; }
@@ -1187,7 +468,7 @@ button { font-family: inherit; cursor: pointer; }
     padding: 24px 20px;
     min-height: 380px;
   }
-  .preview-image {
+  .preview-image-wrap {
     height: 100px;
   }
   .preview-title {
@@ -1228,13 +509,18 @@ button { font-family: inherit; cursor: pointer; }
   .story-trigger-content h4 {
     font-size: 14px;
   }
+  .story-trigger::before {
+    display: none;
+  }
 
   .sticky-story-container {
     min-height: 320px;
   }
 }
 
-/* Reduced Motion */
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1243,6 +529,7 @@ button { font-family: inherit; cursor: pointer; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
   .story-preview {
     transition: none !important;
   }
@@ -1253,310 +540,28 @@ button { font-family: inherit; cursor: pointer; }
   .preview-enter {
     animation: none !important;
   }
-  .preview-badge,
-  .preview-image,
-  .preview-title,
-  .preview-desc,
-  .preview-features,
-  .preview-price,
-  .preview-actions {
+  .stagger-enter .preview-badge,
+  .stagger-enter .preview-image-wrap,
+  .stagger-enter .preview-title,
+  .stagger-enter .preview-desc,
+  .stagger-enter .preview-features,
+  .stagger-enter .preview-price,
+  .stagger-enter .preview-actions {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+  .preview-image-wrap img {
+    transform: none !important;
   }
 }
 </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="#" class="logo" id="homeLink">Multi<span>Tenant</span></a>
-    <nav class="main-nav">
-      <a href="#" id="navOverview">Overview</a>
-      <a href="#solutions">Platform</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#stories">Stories</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="hero-inner">
-    <p class="hero-eyebrow">🚀 <strong>Launch Special:</strong> 70% off • ₹300/month • 20‑Day Free Trial</p>
-    <h1 class="hero-title">Launch Your Store.<br>Scale Your Business.</h1>
-    <p class="hero-sub">Every business gets a dedicated storefront, independent dashboard, and complete commerce management — all inside a secure, scalable ecosystem. Built by <strong>Reva Web Solution</strong>.</p>
-    <a href="#contact" class="btn btn-primary">Start Your Store <span class="arrow">&rsaquo;</span></a>
-    <div class="hero-badges">
-      <span class="badge-item"><span class="icon">🏢</span> Multi‑Tenant</span>
-      <span class="badge-item"><span class="icon">🔒</span> Store Isolation</span>
-      <span class="badge-item"><span class="icon">📈</span> Scalable</span>
-      <span class="badge-item"><span class="icon">🛡️</span> Secure</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ OVERVIEW SECTION ============ -->
-<section class="overview-section" id="overview">
-  <div class="container">
-    <div class="overview-grid">
-      <div class="overview-image">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="Modern digital commerce dashboard">
-      </div>
-      <div class="overview-content">
-        <h2>Your Complete Commerce Ecosystem</h2>
-        <p><strong>MultiTenant</strong> is a next‑generation commerce platform that gives every business its own complete digital storefront — with products, customers, orders, and a powerful dashboard — all in one secure ecosystem.</p>
-        <p>No more juggling multiple tools. No more worrying about data security or scalability. You get everything you need to sell online, manage operations, and grow your revenue.</p>
-        <ul>
-          <li><span class="check">✓</span> Your own branded online store</li>
-          <li><span class="check">✓</span> Independent customer &amp; order management</li>
-          <li><span class="check">✓</span> Real‑time analytics and insights</li>
-          <li><span class="check">✓</span> Secure, isolated data environment</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="overview-features">
-      <div class="overview-feature">
-        <div class="icon">🚀</div>
-        <h4>Launch in Minutes</h4>
-        <p>No technical skills needed. Get your store live instantly with our intuitive setup.</p>
-      </div>
-      <div class="overview-feature">
-        <div class="icon">💎</div>
-        <h4>Premium Experience</h4>
-        <p>Stunning themes, smooth checkout, and a professional brand presence — out of the box.</p>
-      </div>
-      <div class="overview-feature">
-        <div class="icon">📊</div>
-        <h4>Data‑Driven Growth</h4>
-        <p>Know your best‑sellers, track customer behavior, and make smarter business decisions.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PLATFORM SOLUTIONS ============ -->
-<section class="solutions" id="solutions">
-  <div class="container">
-    <h2 class="section-title solutions-title-desktop">Your complete commerce infrastructure</h2>
-    <p class="solutions-sub-desktop">Every business gets their own dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
-    <div class="solutions-title-mobile">
-      <h2 class="section-title">Your complete commerce infrastructure</h2>
-      <p class="section-sub"><strong>Everything you need to sell online:</strong> dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
-    </div>
-
-    <div class="cards-grid">
-
-      <article class="card">
-        <div class="card-head">
-          <h3>Every business gets a secure, independent digital environment</h3>
-        </div>
-        <div class="card-visual visual-tenant">
-          <div class="tenant-icon">🏢</div>
-          <div class="tenant-text">
-            Store #1
-            <span>Isolated · Secure</span>
-          </div>
-          <div class="tenant-icon" style="background:#5a45e8; color:#fff;">#2</div>
-        </div>
-        <div class="card-body">
-          <h4>Multi‑Tenant Architecture</h4>
-          <p>Each business operates in a completely isolated environment with their own data, customers, and storefront — secure, independent, and always private.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <h3>Complete store management — products, orders, customers</h3>
-        </div>
-        <div class="card-visual visual-store">
-          <div class="mini-store-card">
-            <div class="mini-store-row">
-              <span class="mini-store-dot"></span>
-              <div>
-                <div class="mini-store-title">Your Store</div>
-                <div class="mini-store-sub">Dashboard · Active</div>
-              </div>
-            </div>
-            <div class="mini-store-bar"></div>
-          </div>
-          <div class="mini-store-grid">
-            <span>📦 Products</span>
-            <span>🛒 Orders</span>
-            <span>👤 Customers</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Store Management</h4>
-          <p>Manage products, track orders, and engage customers — all from your dedicated dashboard. Full control with variants, categories, and SEO built in.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <h3>AI‑powered commerce — coming soon</h3>
-          <span class="expand-icon">✦</span>
-        </div>
-        <div class="card-visual visual-ai">
-          <div class="ai-ring"></div>
-          <div class="ai-chat ai-chat-1">🤖 Find products for my customers</div>
-          <div class="ai-chat ai-chat-2">✨ AI recommendations loading...</div>
-          <div class="ai-chat ai-chat-3">🚀 Future ready</div>
-        </div>
-        <div class="card-body">
-          <h4>AI Future Roadmap</h4>
-          <p>Coming soon: AI business assistants, smart recommendations, intelligent analytics, and automated commerce solutions to supercharge your store.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <h3>Enterprise‑grade dashboard with real‑time analytics</h3>
-        </div>
-        <div class="card-visual visual-dashboard">
-          <div class="dash-card dash-card-back">
-            <div class="dash-back-lines">
-              <span></span><span></span><span></span><span></span>
-            </div>
-          </div>
-          <div class="dash-card dash-card-front">
-            <div class="dash-avatar"></div>
-            <div class="dash-name">Revenue Overview</div>
-            <div class="dash-row"><span>Today's Sales</span><span>₹12,450</span></div>
-            <div class="dash-row"><span>Orders</span><span>48</span></div>
-            <div class="dash-row"><span>Customers</span><span>127</span></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Enterprise Dashboard</h4>
-          <p>Real‑time analytics, revenue tracking, and business intelligence. Know your store performance at a glance and make data‑driven decisions.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <h3>Everything you need to sell — products, carts, checkout</h3>
-        </div>
-        <div class="card-visual visual-suite">
-          <p class="suite-copy">Full commerce toolkit with everything built in</p>
-          <div class="suite-items">
-            <div class="suite-item">
-              <div class="suite-icon">🛍️</div>
-              <div class="suite-label">Products<br><span>with variants</span></div>
-            </div>
-            <div class="suite-item">
-              <div class="suite-icon green">🛒</div>
-              <div class="suite-label">Cart &amp; Checkout<br><span>Razorpay + COD</span></div>
-            </div>
-            <div class="suite-item">
-              <div class="suite-icon orange">📦</div>
-              <div class="suite-label">Order Flow<br><span>Full tracking</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Complete Commerce Suite</h4>
-          <p>Products with variants, shopping cart, seamless checkout, and full order management — everything your store needs to sell with confidence.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <h3>Grow from one store to hundreds — all managed centrally</h3>
-          <span class="expand-icon">✦</span>
-        </div>
-        <div class="card-visual visual-ecosystem">
-          <div class="eco-tab-bar"><span></span><span></span><span></span></div>
-          <div class="eco-panels">
-            <div class="eco-panel-left">
-              <div class="eco-brand">Owner Panel</div>
-              <div class="eco-avatar"></div>
-              <div class="eco-title">All Stores Overview</div>
-              <div class="eco-line"></div>
-              <div class="eco-line short"></div>
-              <div class="eco-line"></div>
-            </div>
-            <div class="eco-panel-right">
-              <div class="eco-right-title">Platform Capabilities</div>
-              <ul class="eco-list">
-                <li><span class="eco-dot eco-dot-blue"></span>Multi‑Store Management</li>
-                <li><span class="eco-dot eco-dot-yellow"></span>Subscription Plans</li>
-                <li><span class="eco-dot eco-dot-orange"></span>Theme Marketplace</li>
-                <li><span class="eco-dot eco-dot-pink"></span>Analytics</li>
-                <li><span class="eco-dot eco-dot-purple"></span>Broadcast Messages</li>
-                <li><span class="eco-dot eco-dot-green"></span>Revenue Dashboard</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Scalable Ecosystem</h4>
-          <p>Start with one store and scale to hundreds. Manage everything from a central owner dashboard with full control and complete visibility.</p>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ LAUNCH OFFER BANNER ============ -->
-<section class="container" id="pricing">
-  <a href="#contact" class="offer-banner" style="cursor:pointer;">
-    <div class="offer-text">
-      <div class="offer-badge">🔥 LIMITED TIME</div>
-      <p class="offer-eyebrow"><strong>Launch Special:</strong> 70% off for early adopters</p>
-      <h2>Start your store today from just ₹300/month</h2>
-      <p class="offer-desc">₹4,000 value — now at 70% off. Initial setup fee ₹500 only.</p>
-      <div class="offer-price">
-        <span class="current">₹300</span>
-        <span class="original">₹4,000</span>
-        <span class="label"><strong>/month</strong> • 20‑day free trial</span>
-      </div>
-      <div class="photo-plans">
-        <div class="photo-plan"><span class="price">₹200</span><br><span class="label">20 photos</span></div>
-        <div class="photo-plan"><span class="price">₹400</span><br><span class="label">40 photos</span></div>
-        <div class="photo-plan"><span class="price">₹600</span><br><span class="label">Unlimited photos</span></div>
-      </div>
-      <div style="margin-top:12px;">
-        <span class="btn btn-white">Claim This Offer <span class="arrow">&rsaquo;</span></span>
-      </div>
-    </div>
-    <div class="offer-globe" aria-hidden="true"></div>
-  </a>
-</section>
-
-<!-- ============ STATS ============ -->
-<section class="container stats-section">
-  <h2 class="section-title">Trusted by businesses<br>building their digital future</h2>
-  <div class="stats-grid">
-    <div class="stat">
-      <div class="stat-number">100+</div>
-      <div class="stat-label">Active stores powered by the platform</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">50k+</div>
-      <div class="stat-label">Products managed across stores</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">99.9%</div>
-      <div class="stat-label">Platform uptime reliability</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">10+</div>
-      <div class="stat-label">Beautiful store themes to choose from</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURED STORIES — SCROLL STORYTELLING ============ -->
+<!-- ============================================================
+   FEATURED STORIES — STRIPE-LIKE SCROLL
+   ============================================================ -->
 <section class="featured-stories" id="stories">
   <div class="container">
     <div class="stories-header">
@@ -1575,150 +580,15 @@ button { font-family: inherit; cursor: pointer; }
 
       <!-- Scroll Timeline -->
       <div class="story-timeline" id="storyTimeline">
-        <!-- Story triggers will be generated by JavaScript -->
+        <!-- Story triggers generated by JavaScript -->
       </div>
     </div>
   </div>
 </section>
-
-<!-- ============ PORTFOLIO / COMPANY ============ -->
-<section class="container testimonials-section" id="portfolio">
-  <h2 class="section-title">Built by <span style="color:#5a45e8;">Reva Web Solution</span></h2>
-  <p style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">We design and build scalable SaaS platforms, custom software, and AI‑powered solutions that help businesses grow — from idea to launch and beyond.</p>
-  <div class="testimonials-grid">
-
-    <article class="testimonial">
-      <div class="testimonial-brand">
-        <span class="testimonial-badge badge-purple">D</span>
-        <p>DROPi — Multi‑Tenant SaaS E‑Commerce Platform</p>
-      </div>
-      <img class="testimonial-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="DROPi platform dashboard">
-      <h3>Launch and manage online stores instantly</h3>
-      <p class="testimonial-copy">DROPi enables businesses to create, manage, and scale online stores with a powerful admin dashboard, product &amp; inventory control, order management, customer analytics, and built‑in payments — all in one place.</p>
-      <a href="https://riva-liart.vercel.app/" target="_blank" class="btn btn-outline">Learn More <span class="arrow">&rsaquo;</span></a>
-    </article>
-
-    <article class="testimonial">
-      <div class="testimonial-brand">
-        <span class="testimonial-badge badge-gold">K</span>
-        <p>Kottayam Blooms — Premium Florist Website</p>
-      </div>
-      <img class="testimonial-img" src="https://i.pinimg.com/736x/ee/fe/8a/eefe8a5dedd2c00d984750ad82e3324e.jpg" alt="Kottayam Blooms flowers">
-      <h3>Responsive website with 90+ Lighthouse scores</h3>
-      <p class="testimonial-copy">High‑performance florist website with WhatsApp ordering, 40% load time reduction, and conversion‑focused design. Built for speed and sales.</p>
-      <a href="#" class="btn btn-outline">View Project <span class="arrow">&rsaquo;</span></a>
-    </article>
-
-    <article class="testimonial">
-      <div class="testimonial-brand">
-        <span class="testimonial-badge badge-pink">A</span>
-        <p>AI Content Studio — AI‑Powered Content Platform</p>
-      </div>
-      <img class="testimonial-img" src="https://i.pinimg.com/1200x/df/62/de/df62de4b52fcdde3bb5a8bc4c3b674df.jpg" alt="AI Content Studio">
-      <h3>Automate content creation with AI workflows</h3>
-      <p class="testimonial-copy">Generate articles, social posts, and product descriptions using AI, tailored to your brand voice. Intelligent content generation at scale.</p>
-      <a href="#" class="btn btn-outline">Learn More <span class="arrow">&rsaquo;</span></a>
-    </article>
-
-  </div>
-</section>
-
-<!-- ============ SERVICES SECTION ============ -->
-<section class="container" style="padding-bottom:80px;">
-  <h2 class="section-title">Services That Drive Digital Growth</h2>
-  <p style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">From SaaS platforms to AI automation — we deliver end‑to‑end solutions that align with your business goals.</p>
-  <div class="cards-grid">
-    <div class="card"><div class="card-body"><h4>🚀 SaaS Development</h4><p>Build scalable, multi‑tenant SaaS platforms with subscription models, dashboards, and automation at the core.</p></div></div>
-    <div class="card"><div class="card-body"><h4>⚛️ Full‑Stack Development</h4><p>End‑to‑end web applications using modern stacks (React, Node.js, MongoDB) with clean, maintainable code.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🛒 E‑Commerce Platforms</h4><p>Custom ecommerce solutions with cart, payments, inventory, order management, and multi‑vendor capabilities.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🤖 AI &amp; Automation</h4><p>Intelligent solutions with AI workflows, content generation, and business process automation.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🔗 API &amp; Integration</h4><p>Robust REST APIs, third‑party integrations, and seamless data flow across your business systems.</p></div></div>
-    <div class="card"><div class="card-body"><h4>🎨 UI/UX &amp; Consulting</h4><p>User‑centric design, technology strategy, and architecture guidance to accelerate your product roadmap.</p></div></div>
-  </div>
-</section>
-
-<!-- ============ WHATSAPP CONTACT ============ -->
-<section class="container whatsapp-section" id="contact">
-  <div class="whatsapp-card">
-    <div class="whatsapp-content">
-      <h2>📱 Ready to launch your store?</h2>
-      <p>Contact us on WhatsApp to discuss pricing, custom requirements, or to claim your 70% launch discount. We'll help you get started in minutes.</p>
-      <a href="https://wa.me/916379705593?text=Hi%2C%20I%27m%20interested%20in%20the%20Multi-Tenant%20SaaS%20platform.%20Please%20share%20more%20details." 
-         class="btn btn-whatsapp" target="_blank">
-        💬 Chat on WhatsApp <span class="arrow">&rsaquo;</span>
-      </a>
-      <p style="margin-top:10px; font-size:13px; color:#999;">📞 +91 6379705593</p>
-    </div>
-    <div class="whatsapp-qr-placeholder">
-      <span class="qr-text">📱 QR Code<br><span style="font-size:11px; color:#ccc;">(coming soon)</span></span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h5>Platform</h5>
-        <a href="#" id="footerOverview">Overview</a>
-        <a href="#solutions">Multi‑Tenant</a>
-        <a href="#stories">Stories</a>
-        <a href="#pricing">Pricing</a>
-      </div>
-      <div class="footer-col">
-        <h5>Solutions</h5>
-        <a href="#portfolio">DROPi Platform</a>
-        <a href="#stories">Premium Themes</a>
-        <a href="#portfolio">Custom Development</a>
-        <a href="#contact">API Integration</a>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <a href="https://riva-liart.vercel.app/" target="_blank">Reva Web Solution</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact">Support</a>
-      </div>
-      <div class="footer-col">
-        <h5>Resources</h5>
-        <a href="#">Documentation</a>
-        <a href="#">API Reference</a>
-        <a href="#">Blog</a>
-        <a href="#">Community</a>
-      </div>
-      <div class="footer-col footer-col-company">
-        <h5>Connect</h5>
-        <div class="social-row">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="X">✕</a>
-        </div>
-        <div class="legal-cols">
-          <div class="legal-col">
-            <h5>Legal</h5>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-          </div>
-          <div class="legal-col">
-            <h5>Contact</h5>
-            <a href="https://wa.me/916379705593" target="_blank">WhatsApp</a>
-            <a href="mailto:manikandankumar0506@gmail.com">Email</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 <span class="brand">MultiTenant</span> — Built by <a href="https://riva-liart.vercel.app/" target="_blank" style="color:#5a45e8; font-weight:600;">Reva Web Solution</a></p>
-      <p class="footer-links">Built with ❤️ for the future of commerce</p>
-    </div>
-  </div>
-</footer>
 
 <script>
 // ============================================================
-// DATA — All Stories for Scroll Storytelling
+// DATA
 // ============================================================
 const stories = [
   {
@@ -1816,12 +686,14 @@ function renderTimeline() {
 }
 
 // ============================================================
-// RENDER PREVIEW
+// RENDER PREVIEW — with stagger class
 // ============================================================
 function renderPreview(story, isEntering = true) {
   const html = `
     <span class="preview-badge">${story.badge}</span>
-    <img class="preview-image" src="${story.image}" alt="${story.title}" loading="lazy">
+    <div class="preview-image-wrap">
+      <img src="${story.image}" alt="${story.title}" loading="lazy">
+    </div>
     <h3 class="preview-title">${story.title}</h3>
     <p class="preview-desc">${story.description}</p>
     <div class="preview-features">
@@ -1838,37 +710,38 @@ function renderPreview(story, isEntering = true) {
     </div>
   `;
 
+  previewEl.innerHTML = html;
+
   if (isEntering) {
-    previewEl.innerHTML = html;
-    requestAnimationFrame(() => {
-      previewEl.querySelectorAll('.preview-badge, .preview-image, .preview-title, .preview-desc, .preview-features, .preview-price, .preview-actions')
-        .forEach(el => {
-          el.style.animation = 'none';
-          el.offsetHeight;
-          el.style.animation = '';
-        });
-    });
-  } else {
-    previewEl.innerHTML = html;
+    // Add stagger class for sequential animations
+    previewEl.classList.add('stagger-enter');
+    // Remove class after animation completes
+    setTimeout(() => {
+      previewEl.classList.remove('stagger-enter');
+    }, 800);
   }
 }
 
 // ============================================================
-// SET ACTIVE STORY
+// SET ACTIVE STORY — STRIPE-LIKE MERGE TRANSITION
 // ============================================================
 function setActiveStory(index, fromScroll = false) {
   if (isTransitioning || index === activeIndex) return;
   isTransitioning = true;
 
+  // Update timeline
   document.querySelectorAll('.story-trigger').forEach((el, i) => {
     el.classList.toggle('active', i === index);
   });
 
+  // Exit: current card slides down
   previewEl.classList.add('preview-exit');
 
   setTimeout(() => {
+    // Remove exit class and render new content
     previewEl.classList.remove('preview-exit');
     renderPreview(stories[index], true);
+    // Enter: new card slides up and merges
     previewEl.classList.add('preview-enter');
 
     setTimeout(() => {
@@ -1882,12 +755,12 @@ function setActiveStory(index, fromScroll = false) {
           trigger.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       }
-    }, 600);
-  }, 500);
+    }, 700);
+  }, 600);
 }
 
 // ============================================================
-// INTERSECTION OBSERVER
+// INTERSECTION OBSERVER — SCROLL TRIGGER
 // ============================================================
 function setupScrollTrigger() {
   const triggers = document.querySelectorAll('.story-trigger');
@@ -1911,7 +784,7 @@ function setupScrollTrigger() {
 }
 
 // ============================================================
-// SCROLL PROGRESS
+// SCROLL PROGRESS TRACKING
 // ============================================================
 function setupProgressTracking() {
   const triggers = document.querySelectorAll('.story-trigger');
@@ -1954,7 +827,7 @@ function init() {
   // Reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (prefersReducedMotion.matches) {
-    document.querySelectorAll('.preview-badge, .preview-image, .preview-title, .preview-desc, .preview-features, .preview-price, .preview-actions')
+    document.querySelectorAll('.preview-badge, .preview-image-wrap, .preview-title, .preview-desc, .preview-features, .preview-price, .preview-actions')
       .forEach(el => {
         el.style.opacity = '1';
         el.style.transform = 'none';
@@ -1963,108 +836,14 @@ function init() {
   }
 }
 
-// ============================================================
-// NAVIGATION TOGGLES
-// ============================================================
-document.addEventListener('DOMContentLoaded', function () {
-  // Mobile menu
-  var hamburger = document.getElementById('hamburger');
-  var nav = document.querySelector('.main-nav');
-
-  if (hamburger && nav) {
-    hamburger.addEventListener('click', function () {
-      nav.classList.toggle('nav-open');
-      hamburger.classList.toggle('is-active');
-    });
-  }
-
-  // Overview toggle
-  var overviewSection = document.getElementById('overview');
-  var homeLink = document.getElementById('homeLink');
-  var navOverview = document.getElementById('navOverview');
-  var footerOverview = document.getElementById('footerOverview');
-  var heroSection = document.getElementById('hero');
-
-  function showOverview(e) {
-    if (e) e.preventDefault();
-    overviewSection.classList.add('active');
-    heroSection.style.display = 'none';
-    setTimeout(function() {
-      overviewSection.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-    if (nav) nav.classList.remove('nav-open');
-  }
-
-  function showHome(e) {
-    if (e) e.preventDefault();
-    overviewSection.classList.remove('active');
-    heroSection.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (nav) nav.classList.remove('nav-open');
-  }
-
-  if (navOverview) navOverview.addEventListener('click', showOverview);
-  if (footerOverview) footerOverview.addEventListener('click', showOverview);
-  if (homeLink) homeLink.addEventListener('click', showHome);
-
-  document.querySelectorAll('.main-nav a:not(#navOverview)').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        overviewSection.classList.remove('active');
-        heroSection.style.display = 'block';
-        if (nav) nav.classList.remove('nav-open');
-      }
-    });
-  });
-
-  document.querySelectorAll('.footer-col a:not(#footerOverview)').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        overviewSection.classList.remove('active');
-        heroSection.style.display = 'block';
-      }
-    });
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href === "#") return;
-      if (href === "#contact" || href === "#solutions" || href === "#pricing" || href === "#stories" || href === "#portfolio") {
-        e.preventDefault();
-        overviewSection.classList.remove('active');
-        heroSection.style.display = 'block';
-        var target = document.querySelector(href);
-        if (target) {
-          setTimeout(function() {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
-        }
-        if (nav) nav.classList.remove('nav-open');
-      }
-    });
-  });
-
-  var offerBanner = document.querySelector('.offer-banner');
-  if (offerBanner) {
-    offerBanner.addEventListener('click', function(e) {
-      if (!e.target.closest('.btn')) {
-        e.preventDefault();
-        var contactSection = document.getElementById('contact');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  }
-
-  // Init scroll stories
+// Run on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
   init();
-});
+}
 
-console.log('🚀 MultiTenant — Premium Scroll Storytelling Active');
+console.log('🚀 Stripe-like scroll storytelling initialized!');
 </script>
 
 </body>
