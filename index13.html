@@ -651,85 +651,261 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.5;
 }
 
-/* ============ THEMES SECTION ============ */
-.themes-section { padding-bottom: 80px; }
-.themes-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+/* ============================================================
+   FEATURED STORIES — SCROLL STORYTELLING
+   ============================================================ */
+.featured-stories {
+  padding: 80px 0 120px;
+  background: #fafafc;
+  position: relative;
 }
-.theme-card {
-  border: 1px solid #eceef2;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-  transition: box-shadow .2s ease;
-}
-.theme-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.08); }
-.theme-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-.theme-card-body { padding: 20px; }
-.theme-card-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-.theme-card-body p { font-size: 13px; color: #6b6b7a; line-height: 1.5; margin-bottom: 12px; }
-.theme-price { font-size: 20px; font-weight: 700; color: #5a45e8; }
-.theme-price span { font-size: 14px; font-weight: 400; color: #6b6b7a; }
 
-/* ============ APPS SECTION ============ */
-.apps-section { padding-bottom: 80px; }
-.apps-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+.stories-header {
+  text-align: center;
+  margin-bottom: 60px;
 }
-.app-card {
-  border: 1px solid #eceef2;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-  transition: box-shadow .2s ease;
-}
-.app-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.08); }
-.app-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-.app-card-body { padding: 20px; }
-.app-card-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-.app-card-body p { font-size: 13px; color: #6b6b7a; line-height: 1.5; margin-bottom: 12px; }
-.app-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.app-features span {
-  background: #f4f4f8;
-  padding: 2px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  color: #555;
-}
-.app-pricing {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.stories-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5a45e8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #f0eeff;
+  padding: 6px 18px;
+  border-radius: 20px;
   margin-bottom: 16px;
 }
-.app-pricing .price-item {
-  background: #f6f7fa;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 13px;
+.stories-header .section-title {
+  margin-bottom: 12px;
 }
-.app-pricing .price-item strong { color: #5a45e8; }
-.app-card-body .btn-group {
+.stories-sub {
+  font-size: 17px;
+  color: #6b6b7a;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.stories-scroll-container {
   display: flex;
-  gap: 10px;
+  gap: 60px;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Sticky Preview */
+.sticky-story-container {
+  flex: 1.2;
+  position: sticky;
+  top: 100px;
+  height: 560px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+  border: 1px solid #eceef2;
+}
+
+.story-preview {
+  width: 100%;
+  height: 100%;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.story-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.8s ease;
+  z-index: 0;
+}
+
+.story-preview > * {
+  position: relative;
+  z-index: 1;
+}
+
+.preview-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5a45e8;
+  background: #f0eeff;
+  padding: 4px 14px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  align-self: flex-start;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.6s 0.1s forwards;
+}
+
+.preview-image {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  background: #f4f4f8;
+  opacity: 0;
+  transform: scale(0.96);
+  animation: scaleIn 0.7s 0.2s forwards;
+}
+
+.preview-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s 0.15s forwards;
+}
+
+.preview-desc {
+  font-size: 15px;
+  color: #6b6b7a;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 90%;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s 0.25s forwards;
+}
+
+.preview-features {
+  display: flex;
   flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s 0.35s forwards;
+}
+.preview-features span {
+  background: #f4f4f8;
+  padding: 3px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #555;
+  font-weight: 500;
+}
+
+.preview-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #5a45e8;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s 0.45s forwards;
+}
+.preview-price span {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6b6b7a;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s 0.55s forwards;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slideOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-20px) scale(0.96); }
+}
+
+.preview-exit {
+  animation: slideOut 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.preview-enter {
+  animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Timeline */
+.story-timeline {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 20px;
+}
+
+.story-trigger {
+  padding: 18px 24px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 1px solid transparent;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.story-trigger:hover {
+  background: #f4f4f8;
+  border-color: #eceef2;
+}
+
+.story-trigger.active {
+  background: #ffffff;
+  border-color: #5a45e8;
+  box-shadow: 0 8px 30px rgba(88, 65, 216, .1);
+  transform: translateX(8px);
+}
+
+.story-trigger-number {
+  font-size: 13px;
+  font-weight: 700;
+  color: #b0b0c0;
+  font-variant-numeric: tabular-nums;
+  min-width: 32px;
+  transition: color 0.4s ease;
+}
+.story-trigger.active .story-trigger-number {
+  color: #5a45e8;
+}
+
+.story-trigger-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.4s ease;
+}
+.story-trigger.active .story-trigger-content h4 {
+  color: #5a45e8;
+}
+.story-trigger-content p {
+  font-size: 13px;
+  color: #8a8a99;
+  margin-top: 2px;
 }
 
 /* ============ TESTIMONIALS / PORTFOLIO ============ */
@@ -763,6 +939,7 @@ button { font-family: inherit; cursor: pointer; }
 .badge-dark { background: #1a1a1a; color: #fff; }
 .badge-green { background: #e3f3e5; color: #4cae6e; }
 .badge-gold { background: #fdca5d; color: #1a1a1a; }
+.badge-pink { background: #f0709a; color: #fff; }
 .testimonial-brand p { font-size: 13.5px; font-weight: 600; line-height: 1.35; }
 .testimonial-img {
   width: 100%;
@@ -873,13 +1050,45 @@ button { font-family: inherit; cursor: pointer; }
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-  .themes-grid { grid-template-columns: repeat(2, 1fr); }
-  .apps-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-col-company { grid-column: span 3; margin-top: 8px; }
   .legal-cols { max-width: 320px; justify-content: space-between; }
   .overview-grid { grid-template-columns: 1fr; gap: 32px; }
   .overview-features { grid-template-columns: 1fr 1fr; }
+
+  .stories-scroll-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .sticky-story-container {
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: 420px;
+    width: 100%;
+  }
+  .story-preview {
+    padding: 32px 36px;
+  }
+  .preview-image {
+    height: 140px;
+  }
+  .story-timeline {
+    flex: 1;
+    padding-top: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .story-trigger {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    padding: 14px 20px;
+  }
+  .story-trigger.active {
+    transform: translateX(0);
+  }
 }
 
 /* ==================================================================
@@ -953,12 +1162,6 @@ button { font-family: inherit; cursor: pointer; }
   .testimonials-section { padding-bottom: 48px; }
   .testimonials-grid { grid-template-columns: 1fr; gap: 36px; }
 
-  .themes-section { padding-bottom: 48px; }
-  .themes-grid { grid-template-columns: 1fr; gap: 24px; }
-
-  .apps-section { padding-bottom: 48px; }
-  .apps-grid { grid-template-columns: 1fr; gap: 24px; }
-
   .whatsapp-section { padding-bottom: 48px; }
   .whatsapp-card {
     flex-direction: column;
@@ -974,6 +1177,93 @@ button { font-family: inherit; cursor: pointer; }
   .overview-section { padding: 40px 0 48px; }
   .overview-content h2 { font-size: 26px; }
   .overview-features { grid-template-columns: 1fr; }
+
+  .featured-stories { padding: 48px 0 64px; }
+  .stories-header { margin-bottom: 32px; }
+  .stories-header .section-title { font-size: 26px; }
+  .stories-sub { font-size: 15px; }
+
+  .story-preview {
+    padding: 24px 20px;
+    min-height: 380px;
+  }
+  .preview-image {
+    height: 100px;
+  }
+  .preview-title {
+    font-size: 22px;
+  }
+  .preview-desc {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .preview-price {
+    font-size: 20px;
+  }
+  .preview-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .preview-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .story-timeline {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .story-trigger {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+  }
+  .story-trigger.active {
+    transform: translateX(0);
+  }
+  .story-trigger-number {
+    min-width: 24px;
+    font-size: 11px;
+  }
+  .story-trigger-content h4 {
+    font-size: 14px;
+  }
+
+  .sticky-story-container {
+    min-height: 320px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .story-preview {
+    transition: none !important;
+  }
+  .story-trigger {
+    transition: none !important;
+  }
+  .preview-exit,
+  .preview-enter {
+    animation: none !important;
+  }
+  .preview-badge,
+  .preview-image,
+  .preview-title,
+  .preview-desc,
+  .preview-features,
+  .preview-price,
+  .preview-actions {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }
 </style>
 </head>
@@ -987,8 +1277,7 @@ button { font-family: inherit; cursor: pointer; }
       <a href="#" id="navOverview">Overview</a>
       <a href="#solutions">Platform</a>
       <a href="#pricing">Pricing</a>
-      <a href="#themes">Themes</a>
-      <a href="#apps">Apps</a>
+      <a href="#stories">Stories</a>
       <a href="#portfolio">Portfolio</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -1066,7 +1355,6 @@ button { font-family: inherit; cursor: pointer; }
 
     <div class="cards-grid">
 
-      <!-- Card 1: Multi-Tenant -->
       <article class="card">
         <div class="card-head">
           <h3>Every business gets a secure, independent digital environment</h3>
@@ -1085,7 +1373,6 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <!-- Card 2: Store Management -->
       <article class="card">
         <div class="card-head">
           <h3>Complete store management — products, orders, customers</h3>
@@ -1113,7 +1400,6 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <!-- Card 3: AI Future -->
       <article class="card">
         <div class="card-head">
           <h3>AI‑powered commerce — coming soon</h3>
@@ -1131,7 +1417,6 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <!-- Card 4: Dashboard -->
       <article class="card">
         <div class="card-head">
           <h3>Enterprise‑grade dashboard with real‑time analytics</h3>
@@ -1156,7 +1441,6 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <!-- Card 5: Commerce Suite -->
       <article class="card">
         <div class="card-head">
           <h3>Everything you need to sell — products, carts, checkout</h3>
@@ -1184,7 +1468,6 @@ button { font-family: inherit; cursor: pointer; }
         </div>
       </article>
 
-      <!-- Card 6: Ecosystem -->
       <article class="card">
         <div class="card-head">
           <h3>Grow from one store to hundreds — all managed centrally</h3>
@@ -1273,107 +1556,28 @@ button { font-family: inherit; cursor: pointer; }
   </div>
 </section>
 
-<!-- ============ THEMES SECTION ============ -->
-<section class="container themes-section" id="themes">
-  <h2 class="section-title">Premium E‑Commerce Themes</h2>
-  <p style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">Ready‑made, stunning storefronts — choose your style and launch instantly.</p>
-  <div class="themes-grid">
-
-    <div class="theme-card">
-      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="MAARA Luxury Indian Wear">
-      <div class="theme-card-body">
-        <h3>MAARA Luxury Indian Wear</h3>
-        <p>High‑end fashion storefront with cart, wishlist, checkout &amp; order simulation. Premium UI/UX with Tailwind CSS.</p>
-        <div class="theme-price">₹7,000 <span>one‑time</span></div>
-        <a href="https://maara-luxury-indian-wear-demo-cart.vercel.app/" target="_blank" class="btn btn-outline" style="margin-top:12px;">Preview <span class="arrow">&rsaquo;</span></a>
-        <a href="https://wa.me/916379705593?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20MAARA%20Luxury%20Indian%20Wear%20theme%20for%20₹7000.%20Please%20share%20payment%20details." target="_blank" class="btn btn-whatsapp" style="margin-top:8px;">Buy Now <span class="arrow">&rsaquo;</span></a>
-      </div>
+<!-- ============ FEATURED STORIES — SCROLL STORYTELLING ============ -->
+<section class="featured-stories" id="stories">
+  <div class="container">
+    <div class="stories-header">
+      <span class="stories-eyebrow">✦ Featured Products</span>
+      <h2 class="section-title">Premium Commerce <br>Solutions</h2>
+      <p class="stories-sub">Scroll to explore our complete suite of e-commerce products and themes.</p>
     </div>
 
-    <div class="theme-card">
-      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" alt="Custom Couture Dual UI">
-      <div class="theme-card-body">
-        <h3>Custom Couture Dual UI</h3>
-        <p>Dual UI selector for fashion design studios — clean builder + luxury atelier. Modern, elegant, and conversion‑focused.</p>
-        <div class="theme-price">₹5,000 <span>one‑time</span></div>
-        <a href="https://custom-couture-dual-ui-selector.vercel.app/index8.html" target="_blank" class="btn btn-outline" style="margin-top:12px;">Preview <span class="arrow">&rsaquo;</span></a>
-        <a href="https://wa.me/916379705593?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20Custom%20Couture%20Dual%20UI%20theme%20for%20₹5000.%20Please%20share%20payment%20details." target="_blank" class="btn btn-whatsapp" style="margin-top:8px;">Buy Now <span class="arrow">&rsaquo;</span></a>
-      </div>
-    </div>
-
-    <div class="theme-card">
-      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Premium E-Commerce">
-      <div class="theme-card-body">
-        <h3>Premium E‑Commerce</h3>
-        <p>Production‑ready fashion/lifestyle store with Cloudinary, cart, orders, and admin dashboard. 20‑day free trial included.</p>
-        <div class="theme-price">₹5,000 <span>one‑time</span></div>
-        <a href="https://premium-ecommerce-six.vercel.app/" target="_blank" class="btn btn-outline" style="margin-top:12px;">Preview <span class="arrow">&rsaquo;</span></a>
-        <a href="https://wa.me/916379705593?text=Hello%2C%20I%20am%20interested%20in%20purchasing%20Premium%20E-Commerce%20theme%20for%20₹5000.%20Please%20share%20payment%20details." target="_blank" class="btn btn-whatsapp" style="margin-top:8px;">Buy Now <span class="arrow">&rsaquo;</span></a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ APPS SECTION ============ -->
-<section class="container apps-section" id="apps">
-  <h2 class="section-title">Complete E‑Commerce Solutions</h2>
-  <p style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">Full‑featured applications ready for deployment — choose the package that fits your business.</p>
-  <div class="apps-grid">
-
-    <!-- MERN E-Commerce App -->
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="MERN E-Commerce App">
-      <div class="app-card-body">
-        <h3>MERN E‑Commerce App</h3>
-        <p>Full‑stack e‑commerce platform built with React, Node.js, Express, MongoDB, and JWT authentication. Mobile‑first, feature‑rich, and ready to scale.</p>
-        <div class="app-features">
-          <span>Auth (JWT)</span>
-          <span>Product Filters</span>
-          <span>Cart</span>
-          <span>Checkout</span>
-          <span>Admin Panel</span>
-          <span>REST API</span>
-        </div>
-        <div class="app-pricing">
-          <span class="price-item"><strong>₹25,000</strong> Whole App</span>
-          <span class="price-item"><strong>₹15,000</strong> Template</span>
-          <span class="price-item"><strong>₹5,000</strong> Extra Theme</span>
-          <span class="price-item"><strong>₹200</strong> / 20 photos</span>
-          <span class="price-item"><strong>₹400</strong> / 40 photos</span>
-        </div>
-        <div class="btn-group">
-          <a href="https://ecommerce-app-rho-three-69.vercel.app/" target="_blank" class="btn btn-outline">Preview <span class="arrow">&rsaquo;</span></a>
-          <a href="https://wa.me/916379705593?text=Hello%2C%20I%20am%20interested%20in%20the%20MERN%20E-Commerce%20App.%20Please%20share%20pricing%20details%20for%20the%20whole%20app%20(%E2%82%B925%2C000)%20and%20other%20options." target="_blank" class="btn btn-whatsapp">Buy Now <span class="arrow">&rsaquo;</span></a>
+    <div class="stories-scroll-container">
+      <!-- Sticky Story Container -->
+      <div class="sticky-story-container">
+        <div class="story-preview" id="storyPreview">
+          <!-- Dynamic content inserted by JavaScript -->
         </div>
       </div>
-    </div>
 
-    <!-- Premium E-Commerce SaaS -->
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="Premium E-Commerce SaaS">
-      <div class="app-card-body">
-        <h3>Premium E‑Commerce SaaS</h3>
-        <p>Production‑ready SaaS with Cloudinary, cart, orders, and admin panel. 20‑day free trial, 35% launch discount, and ₹300/month subscription.</p>
-        <div class="app-features">
-          <span>Cloudinary</span>
-          <span>Cart & Orders</span>
-          <span>Admin Dashboard</span>
-          <span>Subscription</span>
-          <span>20‑day Trial</span>
-        </div>
-        <div class="app-pricing">
-          <span class="price-item"><strong>₹15,000</strong> Whole App</span>
-          <span class="price-item"><strong>₹5,000</strong> Theme Modification</span>
-          <span class="price-item"><strong>₹300</strong> / month</span>
-        </div>
-        <div class="btn-group">
-          <a href="https://premium-ecommerce-six.vercel.app/" target="_blank" class="btn btn-outline">Preview <span class="arrow">&rsaquo;</span></a>
-          <a href="https://wa.me/916379705593?text=Hello%2C%20I%20am%20interested%20in%20the%20Premium%20E-Commerce%20SaaS%20(%E2%82%B9300%2Fmonth%20or%20%E2%82%B915%2C000%20one-time).%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp">Buy Now <span class="arrow">&rsaquo;</span></a>
-        </div>
+      <!-- Scroll Timeline -->
+      <div class="story-timeline" id="storyTimeline">
+        <!-- Story triggers will be generated by JavaScript -->
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1399,7 +1603,7 @@ button { font-family: inherit; cursor: pointer; }
         <span class="testimonial-badge badge-gold">K</span>
         <p>Kottayam Blooms — Premium Florist Website</p>
       </div>
-      <img class="testimonial-img" src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600&h=400&fit=crop" alt="Kottayam Blooms flowers">
+      <img class="testimonial-img" src="https://i.pinimg.com/736x/ee/fe/8a/eefe8a5dedd2c00d984750ad82e3324e.jpg" alt="Kottayam Blooms flowers">
       <h3>Responsive website with 90+ Lighthouse scores</h3>
       <p class="testimonial-copy">High‑performance florist website with WhatsApp ordering, 40% load time reduction, and conversion‑focused design. Built for speed and sales.</p>
       <a href="#" class="btn btn-outline">View Project <span class="arrow">&rsaquo;</span></a>
@@ -1407,10 +1611,10 @@ button { font-family: inherit; cursor: pointer; }
 
     <article class="testimonial">
       <div class="testimonial-brand">
-        <span class="testimonial-badge badge-dark">A</span>
+        <span class="testimonial-badge badge-pink">A</span>
         <p>AI Content Studio — AI‑Powered Content Platform</p>
       </div>
-      <img class="testimonial-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" alt="AI Content Studio">
+      <img class="testimonial-img" src="https://i.pinimg.com/1200x/df/62/de/df62de4b52fcdde3bb5a8bc4c3b674df.jpg" alt="AI Content Studio">
       <h3>Automate content creation with AI workflows</h3>
       <p class="testimonial-copy">Generate articles, social posts, and product descriptions using AI, tailored to your brand voice. Intelligent content generation at scale.</p>
       <a href="#" class="btn btn-outline">Learn More <span class="arrow">&rsaquo;</span></a>
@@ -1459,15 +1663,14 @@ button { font-family: inherit; cursor: pointer; }
         <h5>Platform</h5>
         <a href="#" id="footerOverview">Overview</a>
         <a href="#solutions">Multi‑Tenant</a>
-        <a href="#themes">Themes</a>
-        <a href="#apps">Apps</a>
+        <a href="#stories">Stories</a>
         <a href="#pricing">Pricing</a>
       </div>
       <div class="footer-col">
         <h5>Solutions</h5>
         <a href="#portfolio">DROPi Platform</a>
-        <a href="#apps">MERN App</a>
-        <a href="#themes">Theme Marketplace</a>
+        <a href="#stories">Premium Themes</a>
+        <a href="#portfolio">Custom Development</a>
         <a href="#contact">API Integration</a>
       </div>
       <div class="footer-col">
@@ -1514,8 +1717,257 @@ button { font-family: inherit; cursor: pointer; }
 </footer>
 
 <script>
-// Toggle mobile navigation
+// ============================================================
+// DATA — All Stories for Scroll Storytelling
+// ============================================================
+const stories = [
+  {
+    id: 0,
+    title: 'MAARA Luxury Indian Wear',
+    badge: '✨ Premium Theme',
+    description: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop',
+    features: ['Cart', 'Wishlist', 'Checkout', 'Order Simulation'],
+    price: '₹7,000',
+    priceLabel: 'one-time',
+    previewUrl: 'https://maara-luxury-indian-wear-demo-cart.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20MAARA%20Luxury%20Indian%20Wear%20theme%20for%20₹7000.%20Please%20share%20payment%20details.'
+  },
+  {
+    id: 1,
+    title: 'Custom Couture Dual UI',
+    badge: '🎨 Design Studio',
+    description: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop',
+    features: ['Dual UI', 'Clean Builder', 'Luxury Atelier', 'Workflow'],
+    price: '₹5,000',
+    priceLabel: 'one-time',
+    previewUrl: 'https://custom-couture-dual-ui-selector.vercel.app/index8.html',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Custom%20Couture%20Dual%20UI%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
+  },
+  {
+    id: 2,
+    title: 'Premium E-Commerce',
+    badge: '🔥 Production Ready',
+    description: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard. Includes 20-day free trial.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
+    features: ['Cloudinary', 'Cart', 'Orders', 'Admin Dashboard', '20-day Trial'],
+    price: '₹5,000',
+    priceLabel: 'one-time',
+    previewUrl: 'https://premium-ecommerce-six.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Premium%20E-Commerce%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
+  },
+  {
+    id: 3,
+    title: 'MERN E-Commerce App',
+    badge: '⚛️ Full Stack',
+    description: 'Complete full-stack e-commerce platform with JWT authentication, product filters, cart, checkout, admin panel, and REST API.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+    features: ['JWT Auth', 'Product Filters', 'Cart', 'Checkout', 'Admin Panel', 'REST API'],
+    price: '₹25,000',
+    priceLabel: 'whole app',
+    previewUrl: 'https://ecommerce-app-rho-three-69.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20MERN%20E-Commerce%20App.%20Please%20share%20pricing%20details%20for%20the%20whole%20app%20(%E2%82%B925%2C000)%20and%20other%20options.'
+  },
+  {
+    id: 4,
+    title: 'Premium E-Commerce SaaS',
+    badge: '🚀 SaaS Platform',
+    description: 'Production-ready commerce SaaS platform with Cloudinary, cart & orders, admin dashboard, subscription system, and 20-day trial.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop',
+    features: ['Cloudinary', 'Cart & Orders', 'Admin Dashboard', 'Subscription', '20-day Trial'],
+    price: '₹15,000',
+    priceLabel: 'whole app',
+    previewUrl: 'https://premium-ecommerce-six.vercel.app/',
+    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20Premium%20E-Commerce%20SaaS%20(%E2%82%B9300%2Fmonth%20or%20%E2%82%B915%2C000%20one-time).%20Please%20share%20more%20details.'
+  }
+];
+
+// ============================================================
+// DOM REFS
+// ============================================================
+const previewEl = document.getElementById('storyPreview');
+const timelineEl = document.getElementById('storyTimeline');
+let activeIndex = 0;
+let isTransitioning = false;
+
+// ============================================================
+// RENDER TIMELINE
+// ============================================================
+function renderTimeline() {
+  timelineEl.innerHTML = stories.map((story, index) => `
+    <div class="story-trigger ${index === 0 ? 'active' : ''}" data-story="${index}">
+      <span class="story-trigger-number">${String(index + 1).padStart(2, '0')}</span>
+      <div class="story-trigger-content">
+        <h4>${story.title}</h4>
+        <p>${story.badge}</p>
+      </div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.story-trigger').forEach(el => {
+    el.addEventListener('click', () => {
+      const idx = parseInt(el.dataset.story);
+      if (idx !== activeIndex && !isTransitioning) {
+        setActiveStory(idx);
+      }
+    });
+  });
+}
+
+// ============================================================
+// RENDER PREVIEW
+// ============================================================
+function renderPreview(story, isEntering = true) {
+  const html = `
+    <span class="preview-badge">${story.badge}</span>
+    <img class="preview-image" src="${story.image}" alt="${story.title}" loading="lazy">
+    <h3 class="preview-title">${story.title}</h3>
+    <p class="preview-desc">${story.description}</p>
+    <div class="preview-features">
+      ${story.features.map(f => `<span>${f}</span>`).join('')}
+    </div>
+    <div class="preview-price">${story.price} <span>${story.priceLabel}</span></div>
+    <div class="preview-actions">
+      <a href="${story.previewUrl}" target="_blank" class="btn btn-outline">
+        Preview <span class="arrow">&rsaquo;</span>
+      </a>
+      <a href="https://wa.me/916379705593?text=${story.whatsappMsg}" target="_blank" class="btn btn-whatsapp">
+        💬 Buy Now <span class="arrow">&rsaquo;</span>
+      </a>
+    </div>
+  `;
+
+  if (isEntering) {
+    previewEl.innerHTML = html;
+    requestAnimationFrame(() => {
+      previewEl.querySelectorAll('.preview-badge, .preview-image, .preview-title, .preview-desc, .preview-features, .preview-price, .preview-actions')
+        .forEach(el => {
+          el.style.animation = 'none';
+          el.offsetHeight;
+          el.style.animation = '';
+        });
+    });
+  } else {
+    previewEl.innerHTML = html;
+  }
+}
+
+// ============================================================
+// SET ACTIVE STORY
+// ============================================================
+function setActiveStory(index, fromScroll = false) {
+  if (isTransitioning || index === activeIndex) return;
+  isTransitioning = true;
+
+  document.querySelectorAll('.story-trigger').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+  });
+
+  previewEl.classList.add('preview-exit');
+
+  setTimeout(() => {
+    previewEl.classList.remove('preview-exit');
+    renderPreview(stories[index], true);
+    previewEl.classList.add('preview-enter');
+
+    setTimeout(() => {
+      previewEl.classList.remove('preview-enter');
+      activeIndex = index;
+      isTransitioning = false;
+
+      if (!fromScroll) {
+        const trigger = document.querySelector(`.story-trigger[data-story="${index}"]`);
+        if (trigger) {
+          trigger.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    }, 600);
+  }, 500);
+}
+
+// ============================================================
+// INTERSECTION OBSERVER
+// ============================================================
+function setupScrollTrigger() {
+  const triggers = document.querySelectorAll('.story-trigger');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = parseInt(entry.target.dataset.story);
+        if (idx !== activeIndex && !isTransitioning) {
+          setActiveStory(idx, true);
+        }
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-20% 0px -30% 0px',
+    threshold: 0.3
+  });
+
+  triggers.forEach(el => observer.observe(el));
+  return observer;
+}
+
+// ============================================================
+// SCROLL PROGRESS
+// ============================================================
+function setupProgressTracking() {
+  const triggers = document.querySelectorAll('.story-trigger');
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        let maxRatio = 0;
+        let bestIdx = 0;
+        triggers.forEach((el, i) => {
+          const rect = el.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          const visible = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+          const ratio = visible / rect.height;
+          if (ratio > maxRatio) {
+            maxRatio = ratio;
+            bestIdx = i;
+          }
+        });
+        if (bestIdx !== activeIndex && maxRatio > 0.2 && !isTransitioning) {
+          setActiveStory(bestIdx, true);
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  renderTimeline();
+  renderPreview(stories[0], true);
+  setupScrollTrigger();
+  setupProgressTracking();
+
+  // Reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (prefersReducedMotion.matches) {
+    document.querySelectorAll('.preview-badge, .preview-image, .preview-title, .preview-desc, .preview-features, .preview-price, .preview-actions')
+      .forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.animation = 'none';
+      });
+  }
+}
+
+// ============================================================
+// NAVIGATION TOGGLES
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
+  // Mobile menu
   var hamburger = document.getElementById('hamburger');
   var nav = document.querySelector('.main-nav');
 
@@ -1555,7 +2007,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (footerOverview) footerOverview.addEventListener('click', showOverview);
   if (homeLink) homeLink.addEventListener('click', showHome);
 
-  // Show home when clicking other nav links
   document.querySelectorAll('.main-nav a:not(#navOverview)').forEach(function(link) {
     link.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
@@ -1567,7 +2018,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Show home when clicking footer links (except overview)
   document.querySelectorAll('.footer-col a:not(#footerOverview)').forEach(function(link) {
     link.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
@@ -1578,12 +2028,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
       if (href === "#") return;
-      if (href === "#contact" || href === "#solutions" || href === "#pricing" || href === "#themes" || href === "#apps" || href === "#portfolio") {
+      if (href === "#contact" || href === "#solutions" || href === "#pricing" || href === "#stories" || href === "#portfolio") {
         e.preventDefault();
         overviewSection.classList.remove('active');
         heroSection.style.display = 'block';
@@ -1598,7 +2047,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Handle offer banner click
   var offerBanner = document.querySelector('.offer-banner');
   if (offerBanner) {
     offerBanner.addEventListener('click', function(e) {
@@ -1611,7 +2059,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
+  // Init scroll stories
+  init();
 });
+
+console.log('🚀 MultiTenant — Premium Scroll Storytelling Active');
 </script>
+
 </body>
 </html>
