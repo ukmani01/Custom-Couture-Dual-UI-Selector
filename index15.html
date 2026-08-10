@@ -6,13 +6,15 @@
     <title>Medigo - Medical Healthcare & Clinic Website</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" font-display="swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* DEMO ONLY: This frontend uses localStorage to simulate backend persistence. Do not store real patient/medical/PHI data in localStorage. */
         :root {
             --primary-blue: #0b69ff;
             --primary-dark: #0f172a;
             --accent-cyan: #06b6d4;
+            --accent-gold: #f59e0b;
             --bg-light: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #1e293b;
@@ -51,6 +53,13 @@
             font-family: inherit;
         }
 
+        /* Accessibility Focus Rings */
+        *:focus-visible {
+            outline: 3px solid var(--primary-blue);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
         /* Scroll Reveal Utility Classes */
         .reveal-on-scroll {
             opacity: 0;
@@ -62,6 +71,48 @@
         .reveal-on-scroll.revealed {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .toast {
+            background: var(--primary-dark);
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            animation: slideInToast 0.3s ease-out forwards;
+        }
+
+        .toast.success { background: #10b981; }
+        .toast.error { background: #ef4444; }
+
+        @keyframes slideInToast {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Top Bar */
@@ -152,7 +203,7 @@
             width: 40px;
             height: 40px;
             background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -195,7 +246,7 @@
             left: 0;
             background-color: #ffffff;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 16px;
             padding: 12px 0;
             min-width: 200px;
             opacity: 0;
@@ -203,6 +254,13 @@
             transform: translateY(10px);
             transition: var(--transition);
             z-index: 10;
+        }
+
+        /* Touch device click dropdown support */
+        .nav-item.dropdown-open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .nav-item:hover .dropdown-menu {
@@ -217,6 +275,7 @@
             font-weight: 500;
             display: block;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .dropdown-item:hover {
@@ -263,13 +322,126 @@
             transition: transform 0.3s ease;
         }
 
+        /* Slide-in Mobile Menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background: #ffffff;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 24px;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-link {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--primary-blue);
+            padding-left: 6px;
+        }
+
         .mobile-toggle {
             display: none;
             font-size: 24px;
             color: var(--text-main);
+            cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Sticky Mobile CTA & Back to Top */
+        .mobile-sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 12px 20px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            display: none;
+            z-index: 999;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: var(--primary-blue);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(11,105,255,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 1500;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #0052cc;
+            transform: translateY(-3px);
+        }
+
+        /* Hero Section with Gradient Overlay */
         .hero {
             padding: 60px 5% 80px;
             background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
@@ -414,7 +586,7 @@
             color: var(--primary-dark);
         }
 
-        /* Hero Image Composition */
+        /* Hero Image Composition with Gradient Overlay */
         .hero-image-wrapper {
             position: relative;
             display: flex;
@@ -430,6 +602,14 @@
             box-shadow: 0 25px 50px -12px rgba(11, 105, 255, 0.25);
             position: relative;
             border: 6px solid #ffffff;
+        }
+
+        .hero-main-img-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11,105,255,0.1) 0%, rgba(15,23,42,0.3) 100%);
+            pointer-events: none;
         }
 
         .hero-main-img-container img {
@@ -464,21 +644,17 @@
             position: absolute;
             bottom: 30px;
             left: -20px;
-            background: #ffffff;
             padding: 16px;
             border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
             display: flex;
             align-items: center;
             gap: 16px;
-            border: 1px solid var(--border-color);
             max-width: 260px;
             transition: var(--transition);
         }
 
         .floating-doctor-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
 
         .floating-doctor-avatar {
@@ -508,6 +684,48 @@
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+        }
+
+        /* Trust Badge Strip & Emotional Branding */
+        .trust-strip {
+            background: #ffffff;
+            padding: 40px 5%;
+            border-bottom: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .trust-item i {
+            font-size: 32px;
+            color: var(--accent-gold);
+        }
+
+        .trust-item h4 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .trust-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
         }
 
         /* About Section */
@@ -950,6 +1168,143 @@
             color: #10b981;
         }
 
+        /* Testimonials / Emotional Branding */
+        .testimonials-section {
+            padding: 100px 5%;
+            background-color: var(--bg-light);
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            padding: 36px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-rating {
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .testimonial-text {
+            color: var(--text-muted);
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h5 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .testimonial-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section with Inline Validation */
+        .contact-section {
+            padding: 100px 5%;
+            background-color: #ffffff;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-form .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-light);
+            color: var(--text-main);
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(11,105,255,0.1);
+        }
+
+        .form-group input.valid { border-color: #10b981; }
+        .form-group input.invalid { border-color: #ef4444; }
+
+        .validation-message {
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .form-group input.valid + .validation-message { color: #10b981; }
+        .form-group input.invalid + .validation-message { color: #ef4444; }
+
         /* Footer */
         .footer {
             background-color: var(--primary-dark);
@@ -990,6 +1345,7 @@
             color: #94a3b8;
             transition: var(--transition);
             font-size: 15px;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -1025,6 +1381,165 @@
             font-size: 14px;
         }
 
+        /* Modal Overlays with ARIA Support */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Multi-Step Appointment Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary-blue);
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        /* Owner Dashboard Styles & Skeleton Loaders */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .stat-card h3 {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+
+        .dashboard-table-box {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .dashboard-table th, .dashboard-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dashboard-table th {
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: var(--bg-light);
+        }
+
+        /* Skeleton Shimmer Loader */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: var(--border-color);
+            margin-bottom: 16px;
+        }
+
         /* Reduced Motion Support */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1051,11 +1566,17 @@
             .hero-description, .about-content p {
                 margin: 0 auto 32px;
             }
-            .services-grid, .pricing-grid {
+            .services-grid, .pricing-grid, .testimonials-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+            .contact-form .form-group.full {
+                grid-column: span 1;
             }
         }
 
@@ -1066,7 +1587,10 @@
             .mobile-toggle {
                 display: block;
             }
-            .services-grid, .pricing-grid, .footer-container {
+            .mobile-sticky-cta {
+                display: flex;
+            }
+            .services-grid, .pricing-grid, .testimonials-grid, .footer-container, .dashboard-stats {
                 grid-template-columns: 1fr;
             }
             .hero-title {
@@ -1075,445 +1599,1176 @@
             .section-title {
                 font-size: 30px;
             }
+            body {
+                padding-bottom: 70px; /* Space for sticky CTA */
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Toast Container -->
+    <div id="toast-container" aria-live="polite"></div>
+
     <!-- Top Bar -->
-    <div class="top-bar">
+    <div class="top-bar" role="region" aria-label="Contact Information">
         <div class="top-bar-container">
             <div class="top-bar-left">
                 <div class="top-bar-item">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                     <span>Excellence Healthcare, UK</span>
                 </div>
                 <div class="top-bar-item">
-                    <i class="fa-solid fa-clock"></i>
+                    <i class="fa-solid fa-clock" aria-hidden="true"></i>
                     <span>Mon - Sat: 8:00 AM - 8:00 PM</span>
                 </div>
             </div>
             <div class="top-bar-right">
                 <div class="top-bar-item">
-                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     <span>info@medigo.com</span>
                 </div>
-                <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <div class="social-icons" aria-label="Social Media Links">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Header / Navbar -->
-    <header class="header">
+    <header class="header" id="home" role="banner">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="#home" class="logo" aria-label="Medigo Healthcare Home">
                 <div class="logo-icon">
-                    <i class="fa-solid fa-heart-pulse"></i>
+                    <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
                 </div>
                 Medigo
             </a>
-            <nav class="nav-menu">
-                <div class="nav-item">
-                    <a href="#" class="nav-link active">Home <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Home Style 1</a>
-                        <a href="#" class="dropdown-item">Home Style 2</a>
+            <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
+                <div class="nav-item" onclick="toggleDropdown(this)">
+                    <a href="#home" class="nav-link active" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size: 10px;" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="#home" class="dropdown-item" role="menuitem">Home Style 1</a>
+                        <a href="#home" class="dropdown-item" role="menuitem">Home Style 2</a>
                     </div>
                 </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">Pages <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">About Us</a>
-                        <a href="#" class="dropdown-item">Our Doctors</a>
-                        <a href="#" class="dropdown-item">Testimonials</a>
+                <div class="nav-item" onclick="toggleDropdown(this)">
+                    <a href="#about" class="nav-link" aria-expanded="false">Pages <i class="fa-solid fa-chevron-down" style="font-size: 10px;" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="#about" class="dropdown-item" role="menuitem">About Us</a>
+                        <a href="#testimonials" class="dropdown-item" role="menuitem">Testimonials</a>
                     </div>
                 </div>
-                <div class="nav-item">
-                    <a href="#" class="nav-link">Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Cardiology</a>
-                        <a href="#" class="dropdown-item">Neurology</a>
-                        <a href="#" class="dropdown-item">Dental Care</a>
+                <div class="nav-item" onclick="toggleDropdown(this)">
+                    <a href="#services" class="nav-link" aria-expanded="false">Services <i class="fa-solid fa-chevron-down" style="font-size: 10px;" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="#services" class="dropdown-item" role="menuitem">Cardiology</a>
+                        <a href="#services" class="dropdown-item" role="menuitem">Neurology</a>
+                        <a href="#services" class="dropdown-item" role="menuitem">Dental Care</a>
                     </div>
                 </div>
-                <div class="nav-item"><a href="#" class="nav-link">Projects</a></div>
-                <div class="nav-item"><a href="#" class="nav-link">Blog</a></div>
-                <div class="nav-item"><a href="#" class="nav-link">Shop</a></div>
+                <div class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></div>
+                <div class="nav-item"><a href="#contact" class="nav-link">Contact</a></div>
+                <div class="nav-item"><a href="#" class="nav-link" onclick="openOwnerLoginModal(); return false;">Owner Portal</a></div>
             </nav>
             <div class="nav-actions">
-                <button class="btn btn-primary" onclick="openAppointmentModal()">Book Appointment</button>
-                <button class="mobile-toggle" aria-label="Toggle Menu"><i class="fa-solid fa-bars"></i></button>
+                <button class="btn btn-primary" onclick="openAppointmentModal()" aria-label="Book Appointment">Book Appointment</button>
+                <div class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Open Mobile Menu" role="button" tabindex="0"><i class="fa-solid fa-bars" aria-hidden="true"></i></div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content reveal-on-scroll">
-                <div class="hero-badge">
-                    <i class="fa-solid fa-shield-heart"></i> We try to give the best
-                </div>
-                <h1 class="hero-title">Making Expert <span>Healthcare</span> for All</h1>
-                <p class="hero-description">Our mission is to make healthcare affordable & accessible for every patient care with specialized clinical support.</p>
-                
-                <div class="hero-cta-group">
-                    <a href="#" class="btn btn-primary" onclick="openAppointmentModal(); return false;">Book An Appointment <i class="fa-solid fa-arrow-right"></i></a>
-                    <div class="emergency-pill">
-                        <div class="emergency-icon">
-                            <i class="fa-solid fa-phone-volume"></i>
+    <!-- Slide-in Mobile Menu Overlay & Drawer -->
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileDrawer" role="dialog" aria-label="Mobile Navigation Drawer">
+        <div class="mobile-menu-header">
+            <a href="#home" class="logo" onclick="toggleMobileMenu()">
+                <div class="logo-icon"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></div>
+                Medigo
+            </a>
+            <div class="modal-close" onclick="toggleMobileMenu()" aria-label="Close Mobile Menu" role="button" tabindex="0"><i class="fa-solid fa-xmark" aria-hidden="true"></i></div>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+            <a href="#about" class="mobile-nav-link" onclick="toggleMobileMenu()">About Us</a>
+            <a href="#services" class="mobile-nav-link" onclick="toggleMobileMenu()">Services</a>
+            <a href="#pricing" class="mobile-nav-link" onclick="toggleMobileMenu()">Pricing & Appointments</a>
+            <a href="#testimonials" class="mobile-nav-link" onclick="toggleMobileMenu()">Testimonials</a>
+            <a href="#contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
+            <a href="#" class="mobile-nav-link" onclick="toggleMobileMenu(); openOwnerLoginModal();">Owner Portal</a>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="toggleMobileMenu(); openAppointmentModal();">Book Appointment</button>
+    </div>
+
+    <!-- Main Content Wrapper or Owner Dashboard View -->
+    <div id="main-content-view">
+        <!-- Hero Section -->
+        <section class="hero" role="region" aria-label="Hero Section">
+            <div class="hero-container">
+                <div class="hero-content reveal-on-scroll">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-shield-heart" aria-hidden="true"></i> We try to give the best
+                    </div>
+                    <h1 class="hero-title">Making Expert <span>Healthcare</span> for All</h1>
+                    <p class="hero-description">Our mission is to make healthcare affordable & accessible for every patient care with specialized clinical support.</p>
+                    
+                    <div class="hero-cta-group">
+                        <a href="#pricing" class="btn btn-primary" onclick="openAppointmentModal(); return false;" aria-label="Book An Appointment">Book An Appointment <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                        <div class="emergency-pill">
+                            <div class="emergency-icon">
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
+                            </div>
+                            <div class="emergency-info">
+                                <span>Emergency Call</span>
+                                <strong>224 456 6789</strong>
+                            </div>
                         </div>
-                        <div class="emergency-info">
-                            <span>Emergency Call</span>
-                            <strong>224 456 6789</strong>
+                    </div>
+
+                    <div class="hero-features-grid">
+                        <div class="hero-feature-item" onclick="openFeatureInfo('Find a Doctor')" role="button" tabindex="0">
+                            <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                            <h4>Find a Doctor</h4>
+                        </div>
+                        <div class="hero-feature-item" onclick="openFeatureInfo('Send Inquiry')" role="button" tabindex="0">
+                            <i class="fa-solid fa-file-medical" aria-hidden="true"></i>
+                            <h4>Send Inquiry</h4>
+                        </div>
+                        <div class="hero-feature-item" onclick="openAppointmentModal()" role="button" tabindex="0">
+                            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                            <h4>Book Visit</h4>
+                        </div>
+                        <div class="hero-feature-item" onclick="openFeatureInfo('Anywhere Care')" role="button" tabindex="0">
+                            <i class="fa-solid fa-hospital" aria-hidden="true"></i>
+                            <h4>Anywhere Care</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="hero-features-grid">
-                    <div class="hero-feature-item" onclick="openFeatureInfo('Find a Doctor')">
-                        <i class="fa-solid fa-user-doctor"></i>
-                        <h4>Find a Doctor</h4>
+                <div class="hero-image-wrapper reveal-on-scroll">
+                    <div class="hero-main-img-container">
+                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80" alt="Doctor and Patient Care" loading="lazy" width="420" height="480">
                     </div>
-                    <div class="hero-feature-item" onclick="openFeatureInfo('Send Inquiry')">
-                        <i class="fa-solid fa-file-medical"></i>
-                        <h4>Send Inquiry</h4>
+                    <div class="floating-badge-blue">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
                     </div>
-                    <div class="hero-feature-item" onclick="openAppointmentModal()">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        <h4>Book Visit</h4>
+                    <div class="floating-doctor-card glass-card">
+                        <div class="floating-doctor-avatar">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80" alt="Dr. Sarah Jenkins Avatar" loading="lazy" width="50" height="50">
+                        </div>
+                        <div class="floating-doctor-info">
+                            <h5>Dr. Sarah Jenkins</h5>
+                            <p>Senior Specialist</p>
+                        </div>
                     </div>
-                    <div class="hero-feature-item" onclick="openFeatureInfo('Anywhere Care')">
-                        <i class="fa-solid fa-hospital"></i>
-                        <h4>Anywhere Care</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badge Strip / Emotional Branding -->
+        <div class="trust-strip" role="region" aria-label="Trust Indicators">
+            <div class="trust-container">
+                <div class="trust-item">
+                    <i class="fa-solid fa-award" aria-hidden="true"></i>
+                    <div>
+                        <h4>4.9 / 5 Rating</h4>
+                        <p>Trusted by 10,000+ patients</p>
                     </div>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                    <div>
+                        <h4>Certified Experts</h4>
+                        <p>Board-certified specialists</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+                    <div>
+                        <h4>24/7 Availability</h4>
+                        <p>Round-the-clock support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section class="about-section" id="about" role="region" aria-label="About Us">
+            <div class="about-container">
+                <div class="about-image-wrapper reveal-on-scroll">
+                    <div class="about-img-box">
+                        <img src="https://images.unsplash.com/photo-1594824813567-9323f46f849b?auto=format&fit=crop&w=800&q=80" alt="Medical Professional consulting patient" loading="lazy" width="380" height="450">
+                    </div>
+                    <div class="about-experience-badge">
+                        <h3>24/7</h3>
+                        <p>Services</p>
+                    </div>
+                </div>
+                <div class="about-content reveal-on-scroll">
+                    <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> We are Medigo Healthcare</div>
+                    <h2 class="section-title">Welcome to Medigo Private Medical Clinic</h2>
+                    <p>Welcome to Medigo Private Medical Clinic, a Private Medical Centre with locations in Bahamas and London. Our main aim is to provide high-quality affordable healthcare services to our patients.</p>
+                    
+                    <div class="about-features-list">
+                        <div class="about-feature-row">
+                            <i class="fa-solid fa-check" aria-hidden="true"></i> Extensive opening times
+                        </div>
+                        <div class="about-feature-row">
+                            <i class="fa-solid fa-check" aria-hidden="true"></i> Dedicated support team
+                        </div>
+                        <div class="about-feature-row">
+                            <i class="fa-solid fa-check" aria-hidden="true"></i> Quick access and same day appointments
+                        </div>
+                        <div class="about-feature-row">
+                            <i class="fa-solid fa-check" aria-hidden="true"></i> Access to mental health support
+                        </div>
+                    </div>
+
+                    <a href="#about" class="btn btn-primary" onclick="openFeatureInfo('About Medigo Clinic'); return false;" aria-label="About Medigo Clinic">About Medigo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section" id="services" role="region" aria-label="Medical Services">
+            <div class="section-header-center reveal-on-scroll">
+                <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Specialised Care</div>
+                <h2 class="section-title">Our Medical Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal-on-scroll">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="Orthopaedics Center" loading="lazy" width="400" height="220">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon-badge"><i class="fa-solid fa-bone" aria-hidden="true"></i></div>
+                        <h3>Orthopaedics Center</h3>
+                        <p>Orthopaedics Center provides a complete range of diagnostic and treatment services.</p>
+                        <a href="#" class="service-link" onclick="openServiceDetail('Orthopaedics Center'); return false;" aria-label="Read more about Orthopaedics Center">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce6395?auto=format&fit=crop&w=600&q=80" alt="Dental Services" loading="lazy" width="400" height="220">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon-badge"><i class="fa-solid fa-tooth" aria-hidden="true"></i></div>
+                        <h3>Dental Services</h3>
+                        <p>Dental Services provide a complete range of diagnostic and treatment services.</p>
+                        <a href="#" class="service-link" onclick="openServiceDetail('Dental Services'); return false;" aria-label="Read more about Dental Services">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal-on-scroll">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80" alt="Neurology Services" loading="lazy" width="400" height="220">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon-badge"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+                        <h3>Neurology Services</h3>
+                        <p>Neurology Services provide a complete range of diagnostic and treatment services.</p>
+                        <a href="#" class="service-link" onclick="openServiceDetail('Neurology Services'); return false;" aria-label="Read more about Neurology Services">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Techno Easement Section -->
+        <section class="techno-section" role="region" aria-label="Techno Easement Partnership">
+            <div class="techno-container">
+                <div class="about-content reveal-on-scroll">
+                    <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> We are Medigo Healthcare</div>
+                    <h2 class="section-title">Joining Hands With Techno Easement</h2>
+                    <p>Welcome to Medigo Private Medical Clinic, a Private Medical Centre in Bahamas and London. Our main aim is to provide high-quality, affordable healthcare services to patients.</p>
+                    
+                    <div class="techno-stats-row">
+                        <div class="techno-stat-item">
+                            <h4>$25</h4>
+                            <p>From Only</p>
+                        </div>
+                        <div class="techno-stat-item">
+                            <h4>Many</h4>
+                            <p>Branches</p>
+                        </div>
+                        <div class="techno-stat-item">
+                            <h4>Same Day</h4>
+                            <p>Appointments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="techno-image-wrapper reveal-on-scroll">
+                    <div class="techno-img-box">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Techno Easement Medical Team" loading="lazy" width="420" height="480">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support & Working Hours Section -->
+        <section class="support-section" role="region" aria-label="Working Hours">
+            <div class="support-container">
+                <div class="hours-table reveal-on-scroll">
+                    <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Medigo Opening Time</div>
+                    <h2 class="section-title" style="font-size: 32px; margin-bottom: 20px;">Medigo gives You full support 24/7</h2>
+                    
+                    <div class="hours-row">
+                        <span>MONDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>TUESDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>WEDNESDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>THURSDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>FRIDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>SATURDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>SUNDAY</span>
+                        <span>24 Hours</span>
+                    </div>
+                </div>
+                <div class="support-img-wrapper reveal-on-scroll">
+                    <div class="support-img-box">
+                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=800&q=80" alt="Support Team" loading="lazy" width="420" height="480">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section / Appointment -->
+        <section class="pricing-section" id="pricing" role="region" aria-label="Pricing and Plans">
+            <div class="section-header-center reveal-on-scroll">
+                <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Affordable Plans</div>
+                <h2 class="section-title">Schedule Your Appointment Online</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal-on-scroll">
+                    <h3>General Consultation</h3>
+                    <div class="price-tag">$25 <span>/ visit</span></div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Basic Health Check</div>
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Consultation with GP</div>
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Prescription Included</div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openAppointmentModal()" aria-label="Book General Consultation">Book Now</button>
+                </div>
+                <div class="pricing-card reveal-on-scroll" style="border-color: var(--primary-blue); box-shadow: 0 20px 40px rgba(11, 105, 255, 0.15);">
+                    <h3>Specialist Visit</h3>
+                    <div class="price-tag">$48 <span>/ visit</span></div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Advanced Diagnostics</div>
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Specialist Doctor Review</div>
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Follow-up Consultation</div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openAppointmentModal()" aria-label="Book Specialist Visit">Book Now</button>
+                </div>
+                <div class="pricing-card reveal-on-scroll">
+                    <h3>Full Health Package</h3>
+                    <div class="price-tag">$80 <span>/ visit</span></div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Comprehensive Testing</div>
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Multi-Specialist Access</div>
+                        <div class="pricing-feature-item"><i class="fa-solid fa-check" aria-hidden="true"></i> Priority 24/7 Support</div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openAppointmentModal()" aria-label="Book Full Health Package">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (Emotional Branding) -->
+        <section class="testimonials-section" id="testimonials" role="region" aria-label="Patient Testimonials">
+            <div class="section-header-center reveal-on-scroll">
+                <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Patient Stories</div>
+                <h2 class="section-title">What Our Patients Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal-on-scroll">
+                    <div>
+                        <div class="testimonial-rating">
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p class="testimonial-text">"The care and attention I received at Medigo was extraordinary. The doctors listened carefully and provided a clear recovery path."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Emily Watson Avatar" loading="lazy" width="48" height="48">
+                        </div>
+                        <div class="testimonial-info">
+                            <h5>Emily Watson</h5>
+                            <p>Cardiology Patient</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal-on-scroll">
+                    <div>
+                        <div class="testimonial-rating">
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p class="testimonial-text">"Booking an appointment online was effortless, and the staff made sure my visit was comfortable from start to finish."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Michael Brown Avatar" loading="lazy" width="48" height="48">
+                        </div>
+                        <div class="testimonial-info">
+                            <h5>Michael Brown</h5>
+                            <p>Orthopedic Patient</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal-on-scroll">
+                    <div>
+                        <div class="testimonial-rating">
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p class="testimonial-text">"Top-tier private healthcare. The 24/7 support gave me complete peace of mind during an emergency."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Sophia Martinez Avatar" loading="lazy" width="48" height="48">
+                        </div>
+                        <div class="testimonial-info">
+                            <h5>Sophia Martinez</h5>
+                            <p>General Care Patient</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact" role="region" aria-label="Contact Us">
+            <div class="section-header-center reveal-on-scroll">
+                <div class="section-tag"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> Get in Touch</div>
+                <h2 class="section-title">Send Us a Message</h2>
+            </div>
+            <div class="contact-container reveal-on-scroll">
+                <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)" novalidate>
+                    <div class="form-group">
+                        <label for="contact-name">Full Name</label>
+                        <input type="text" id="contact-name" placeholder="John Doe" required aria-required="true">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" placeholder="john@example.com" required aria-required="true">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">Phone Number</label>
+                        <input type="tel" id="contact-phone" placeholder="224 456 6789" required aria-required="true">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Subject</label>
+                        <select id="contact-subject" aria-label="Message Subject">
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Appointment Question">Appointment Question</option>
+                            <option value="Billing Support">Billing Support</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" rows="4" placeholder="How can we help you?" required aria-required="true"></textarea>
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group full" style="text-align: right;">
+                        <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+                <div id="contactSuccessMsg" style="display:none; text-align:center; padding: 20px; color: #10b981; font-weight:700;">
+                    ✓ Message received. Thank you for contacting Medigo Healthcare.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Owner Dashboard Container (Hidden by Default) -->
+    <div id="owner-dashboard-view" style="display: none;" role="region" aria-label="Owner Admin Dashboard">
+        <div class="dashboard-container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 class="section-title" style="margin-bottom: 0;">Owner Admin Dashboard</h2>
+                <button class="btn btn-primary" onclick="handleOwnerLogout()" style="background: #ef4444;" aria-label="Logout">Logout</button>
+            </div>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Total Subscribers</h3>
+                    <div class="number" id="stat-subscribers">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Appointment Requests</h3>
+                    <div class="number" id="stat-appointments">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Contact Requests</h3>
+                    <div class="number" id="stat-contacts">0</div>
                 </div>
             </div>
 
-            <div class="hero-image-wrapper reveal-on-scroll">
-                <div class="hero-main-img-container">
-                    <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80" alt="Doctor and Patient Care" loading="lazy">
-                </div>
-                <div class="floating-badge-blue">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                <div class="floating-doctor-card">
-                    <div class="floating-doctor-avatar">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80" alt="Doctor" loading="lazy">
-                    </div>
-                    <div class="floating-doctor-info">
-                        <h5>Dr. Sarah Jenkins</h5>
-                        <p>Senior Specialist</p>
-                    </div>
+            <div class="dashboard-table-box">
+                <h3 style="margin-bottom: 16px; color: var(--primary-dark);">Recent Appointments</h3>
+                <div id="apptTableContainer">
+                    <table class="dashboard-table" aria-label="Recent Appointments Table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Doctor & Specialty</th>
+                                <th>Location</th>
+                                <th>Date & Time</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-appointments-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="about-container">
-            <div class="about-image-wrapper reveal-on-scroll">
-                <div class="about-img-box">
-                    <img src="https://images.unsplash.com/photo-1594824813567-9323f46f849b?auto=format&fit=crop&w=800&q=80" alt="Medical Professional" loading="lazy">
-                </div>
-                <div class="about-experience-badge">
-                    <h3>24/7</h3>
-                    <p>Services</p>
-                </div>
-            </div>
-            <div class="about-content reveal-on-scroll">
-                <div class="section-tag"><i class="fa-solid fa-circle-plus"></i> We are Medigo Healthcare</div>
-                <h2 class="section-title">Welcome to Medigo Private Medical Clinic</h2>
-                <p>Welcome to Medigo Private Medical Clinic, a Private Medical Centre with locations in Bahamas and London. Our main aim is to provide high-quality affordable healthcare services to our patients.</p>
-                
-                <div class="about-features-list">
-                    <div class="about-feature-row">
-                        <i class="fa-solid fa-check"></i> Extensive opening times
-                    </div>
-                    <div class="about-feature-row">
-                        <i class="fa-solid fa-check"></i> Dedicated support team
-                    </div>
-                    <div class="about-feature-row">
-                        <i class="fa-solid fa-check"></i> Quick access and same day appointments
-                    </div>
-                    <div class="about-feature-row">
-                        <i class="fa-solid fa-check"></i> Access to mental health support
-                    </div>
-                </div>
-
-                <a href="#" class="btn btn-primary" onclick="openFeatureInfo('About Medigo Clinic'); return false;">About Medigo</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section">
-        <div class="section-header-center reveal-on-scroll">
-            <div class="section-tag"><i class="fa-solid fa-circle-plus"></i> Specialised Care</div>
-            <h2 class="section-title">Our Medical Services</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card reveal-on-scroll">
-                <div class="service-img">
-                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="Orthopaedics Center" loading="lazy">
-                </div>
-                <div class="service-content">
-                    <div class="service-icon-badge"><i class="fa-solid fa-bone"></i></div>
-                    <h3>Orthopaedics Center</h3>
-                    <p>Orthopaedics Center provides a complete range of diagnostic and treatment services.</p>
-                    <a href="#" class="service-link" onclick="openServiceDetail('Orthopaedics Center'); return false;">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="service-card reveal-on-scroll">
-                <div class="service-img">
-                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce6395?auto=format&fit=crop&w=600&q=80" alt="Dental Services" loading="lazy">
-                </div>
-                <div class="service-content">
-                    <div class="service-icon-badge"><i class="fa-solid fa-tooth"></i></div>
-                    <h3>Dental Services</h3>
-                    <p>Dental Services provide a complete range of diagnostic and treatment services.</p>
-                    <a href="#" class="service-link" onclick="openServiceDetail('Dental Services'); return false;">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="service-card reveal-on-scroll">
-                <div class="service-img">
-                    <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=600&q=80" alt="Neurology Services" loading="lazy">
-                </div>
-                <div class="service-content">
-                    <div class="service-icon-badge"><i class="fa-solid fa-brain"></i></div>
-                    <h3>Neurology Services</h3>
-                    <p>Neurology Services provide a complete range of diagnostic and treatment services.</p>
-                    <a href="#" class="service-link" onclick="openServiceDetail('Neurology Services'); return false;">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="dashboard-table-box">
+                <h3 style="margin-bottom: 16px; color: var(--primary-dark);">Newsletter Subscribers</h3>
+                <div id="subTableContainer">
+                    <table class="dashboard-table" aria-label="Newsletter Subscribers Table">
+                        <thead>
+                            <tr>
+                                <th>Email Address</th>
+                                <th>Subscribed Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-subscribers-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Techno Easement Section -->
-    <section class="techno-section">
-        <div class="techno-container">
-            <div class="about-content reveal-on-scroll">
-                <div class="section-tag"><i class="fa-solid fa-circle-plus"></i> We are Medigo Healthcare</div>
-                <h2 class="section-title">Joining Hands With Techno Easement</h2>
-                <p>Welcome to Medigo Private Medical Clinic, a Private Medical Centre in Bahamas and London. Our main aim is to provide high-quality, affordable healthcare services to patients.</p>
-                
-                <div class="techno-stats-row">
-                    <div class="techno-stat-item">
-                        <h4>$25</h4>
-                        <p>From Only</p>
-                    </div>
-                    <div class="techno-stat-item">
-                        <h4>Many</h4>
-                        <p>Branches</p>
-                    </div>
-                    <div class="techno-stat-item">
-                        <h4>Same Day</h4>
-                        <p>Appointments</p>
-                    </div>
-                </div>
-            </div>
-            <div class="techno-image-wrapper reveal-on-scroll">
-                <div class="techno-img-box">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Techno Easement Medical Team" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Support & Working Hours Section -->
-    <section class="support-section">
-        <div class="support-container">
-            <div class="hours-table reveal-on-scroll">
-                <div class="section-tag"><i class="fa-solid fa-circle-plus"></i> Medigo Opening Time</div>
-                <h2 class="section-title" style="font-size: 32px; margin-bottom: 20px;">Medigo gives You full support 24/7</h2>
-                
-                <div class="hours-row">
-                    <span>MONDAY</span>
-                    <span>24 Hours</span>
-                </div>
-                <div class="hours-row">
-                    <span>TUESDAY</span>
-                    <span>24 Hours</span>
-                </div>
-                <div class="hours-row">
-                    <span>WEDNESDAY</span>
-                    <span>24 Hours</span>
-                </div>
-                <div class="hours-row">
-                    <span>THURSDAY</span>
-                    <span>24 Hours</span>
-                </div>
-                <div class="hours-row">
-                    <span>FRIDAY</span>
-                    <span>24 Hours</span>
-                </div>
-                <div class="hours-row">
-                    <span>SATURDAY</span>
-                    <span>24 Hours</span>
-                </div>
-                <div class="hours-row">
-                    <span>SUNDAY</span>
-                    <span>24 Hours</span>
-                </div>
-            </div>
-            <div class="support-img-wrapper reveal-on-scroll">
-                <div class="support-img-box">
-                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=800&q=80" alt="Support Team" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing-section">
-        <div class="section-header-center reveal-on-scroll">
-            <div class="section-tag"><i class="fa-solid fa-circle-plus"></i> Affordable Plans</div>
-            <h2 class="section-title">Schedule Your Appointment Online</h2>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card reveal-on-scroll">
-                <h3>General Consultation</h3>
-                <div class="price-tag">$25 <span>/ visit</span></div>
-                <div class="pricing-features">
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Basic Health Check</div>
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Consultation with GP</div>
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Prescription Included</div>
-                </div>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openAppointmentModal()">Book Now</button>
-            </div>
-            <div class="pricing-card reveal-on-scroll" style="border-color: var(--primary-blue); box-shadow: 0 20px 40px rgba(11, 105, 255, 0.15);">
-                <h3>Specialist Visit</h3>
-                <div class="price-tag">$48 <span>/ visit</span></div>
-                <div class="pricing-features">
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Advanced Diagnostics</div>
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Specialist Doctor Review</div>
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Follow-up Consultation</div>
-                </div>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openAppointmentModal()">Book Now</button>
-            </div>
-            <div class="pricing-card reveal-on-scroll">
-                <h3>Full Health Package</h3>
-                <div class="price-tag">$80 <span>/ visit</span></div>
-                <div class="pricing-features">
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Comprehensive Testing</div>
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Multi-Specialist Access</div>
-                    <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Priority 24/7 Support</div>
-                </div>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="openAppointmentModal()">Book Now</button>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="footer" role="contentinfo">
         <div class="footer-container">
             <div class="footer-col">
-                <a href="#" class="logo" style="color: #ffffff; margin-bottom: 20px; display: inline-flex;">
-                    <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <a href="#home" class="logo" style="color: #ffffff; margin-bottom: 20px; display: inline-flex;" aria-label="Medigo Healthcare Home">
+                    <div class="logo-icon"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></div>
                     Medigo
                 </a>
                 <p>Providing top-notch private healthcare and clinical support globally with 24/7 availability and specialized teams.</p>
-                <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <div class="social-icons" aria-label="Footer Social Links">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
                 <div class="footer-links">
-                    <a href="#">About Us</a>
-                    <a href="#">Our Services</a>
-                    <a href="#">Projects</a>
-                    <a href="#">Contact Us</a>
+                    <a onclick="openStaticPageModal('About Us', 'Medigo Private Medical Centre is an elite healthcare provider with locations in Bahamas and London, offering specialized medical care 24/7.')">About Us</a>
+                    <a href="#services">Our Services</a>
+                    <a href="#pricing">Book Appointment</a>
+                    <a href="#contact">Contact Us</a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Services</h4>
                 <div class="footer-links">
-                    <a href="#">Cardiology</a>
-                    <a href="#">Neurology</a>
-                    <a href="#">Dental Care</a>
-                    <a href="#">Orthopaedics</a>
+                    <a onclick="openServiceDetail('Cardiology')">Cardiology</a>
+                    <a onclick="openServiceDetail('Neurology')">Neurology</a>
+                    <a onclick="openServiceDetail('Dental Care')">Dental Care</a>
+                    <a onclick="openServiceDetail('Orthopaedics')">Orthopaedics</a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Newsletter</h4>
                 <p>Subscribe to our newsletter for latest updates and health tips.</p>
                 <div class="footer-newsletter">
-                    <input type="email" id="newsletter-email" placeholder="Enter your email">
-                    <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="subscribeNewsletter()">Subscribe</button>
+                    <input type="email" id="newsletter-email" placeholder="Enter your email" aria-label="Newsletter Email Address">
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="subscribeNewsletter()" aria-label="Subscribe to Newsletter">Subscribe</button>
+                </div>
+                <div id="newsletterSuccessMsg" style="display:none; color: #10b981; font-size:13px; margin-top:8px; font-weight:600;">
+                    ✓ You are subscribed. Thank you!
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Medigo Healthcare. All rights reserved.</p>
-            <p>Designed with precision fidelity & smooth animations.</p>
+            <p>
+                <a onclick="openStaticPageModal('Privacy Policy', 'We value your privacy. As a frontend demo simulation, no medical or personal data is transmitted externally.')" style="margin-right: 15px; cursor: pointer;">Privacy</a>
+                <a onclick="openStaticPageModal('Terms of Service', 'Use of this portal is governed by standard healthcare demonstration protocols and frontend simulation guidelines.')" style="cursor: pointer;">Terms</a>
+            </p>
         </div>
     </footer>
 
+    <!-- Sticky Mobile CTA & Back to Top -->
+    <div class="mobile-sticky-cta">
+        <div>
+            <span style="font-size: 11px; color: var(--text-muted); display: block; text-transform: uppercase; font-weight: 700;">Need a doctor?</span>
+            <strong style="font-size: 14px; color: var(--primary-dark);">224 456 6789</strong>
+        </div>
+        <button class="btn btn-primary" style="padding: 8px 16px; font-size: 13px;" onclick="openAppointmentModal()" aria-label="Book Appointment">Book Visit</button>
+    </div>
+
+    <button class="back-to-top" id="backToTopBtn" onclick="scrollToTop()" aria-label="Back to Top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+
+    <!-- Universal Modal for General Information & Static Pages with ARIA -->
+    <div class="modal-overlay" id="staticModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content glass-card">
+            <div class="modal-close" onclick="closeModal('staticModal')" aria-label="Close Modal" role="button" tabindex="0"><i class="fa-solid fa-xmark" aria-hidden="true"></i></div>
+            <h3 id="modalTitle" style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary-dark); margin-bottom: 16px;"></h3>
+            <p id="modalBody" style="color: var(--text-muted); font-size: 16px; line-height: 1.6;"></p>
+        </div>
+    </div>
+
+    <!-- Owner Login Modal with ARIA -->
+    <div class="modal-overlay" id="ownerLoginModal" role="dialog" aria-modal="true" aria-labelledby="ownerLoginTitle">
+        <div class="modal-content glass-card">
+            <div class="modal-close" onclick="closeModal('ownerLoginModal')" aria-label="Close Modal" role="button" tabindex="0"><i class="fa-solid fa-xmark" aria-hidden="true"></i></div>
+            <h3 id="ownerLoginTitle" style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary-dark); margin-bottom: 16px;">Owner Login Portal</h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Enter demo owner credentials to access the administrative dashboard.</p>
+            <form onsubmit="handleOwnerLogin(event)">
+                <div class="form-group" style="margin-bottom: 16px;">
+                    <label for="ownerEmail">Email Address</label>
+                    <input type="email" id="ownerEmail" value="owner@northstarhealth.com" required aria-required="true">
+                </div>
+                <div class="form-group" style="margin-bottom: 24px;">
+                    <label for="ownerPassword">Password</label>
+                    <input type="password" id="ownerPassword" value="NorthstarDemo123" required aria-required="true">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" aria-label="Access Dashboard">Access Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Multi-Step Interactive Appointment Booking Modal with ARIA -->
+    <div class="modal-overlay" id="appointmentModal" role="dialog" aria-modal="true" aria-labelledby="apptModalTitle">
+        <div class="modal-content glass-card" style="max-width: 700px;">
+            <div class="modal-close" onclick="closeAppointmentModal()" aria-label="Close Modal" role="button" tabindex="0"><i class="fa-solid fa-xmark" aria-hidden="true"></i></div>
+            <h3 id="apptModalTitle" style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary-dark); margin-bottom: 8px;">Schedule Appointment</h3>
+            <p id="apptStepIndicator" style="color: var(--primary-blue); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px;">Step 1 of 4: Select Care & Doctor</p>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="appBarFill"></div>
+            </div>
+
+            <div id="apptStepContent">
+                <!-- Dynamically injected step content -->
+            </div>
+
+            <div id="apptNavigationButtons" style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                <button type="button" id="apptBackBtn" class="btn" style="background: var(--bg-light); color: var(--text-main); display: none;" onclick="prevAppointmentStep()" aria-label="Previous Step">Back</button>
+                <button type="button" id="apptNextBtn" class="btn btn-primary" onclick="nextAppointmentStep()" aria-label="Continue to Next Step">Continue</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Interactivity & LocalStorage Management -->
     <script>
-        // State & LocalStorage Management
-        function openAppointmentModal() {
-            const specialty = prompt("Enter required medical specialty (e.g. Cardiology, Neurology, Dental):", "General Care");
-            if(specialty) {
-                const appointments = JSON.parse(localStorage.getItem('medigo_appointments') || '[]');
-                const newAppointment = { specialty, date: new Date().toISOString() };
-                appointments.push(newAppointment);
-                localStorage.setItem('medigo_appointments', JSON.stringify(appointments));
-                alert("Appointment request successfully recorded for " + specialty + "! We will contact you shortly.");
+        // DEMO ONLY: This frontend uses localStorage to simulate backend persistence. Do not store real patient/medical/PHI data in localStorage.
+
+        // Global State for Multi-Step Appointment
+        let apptState = {
+            careType: 'Primary Care',
+            doctor: 'Dr. Sarah Jenkins - Senior Specialist',
+            location: 'London Central Clinic',
+            date: new Date().toISOString().split('T')[0],
+            time: '09:30 AM',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            dob: '',
+            reason: ''
+        };
+
+        let currentApptStep = 1;
+
+        // LocalStorage Abstraction Functions
+        function getStorage(key, defaultVal) {
+            try {
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : defaultVal;
+            } catch (e) {
+                console.error("Storage error:", e);
+                return defaultVal;
             }
         }
 
+        function setStorage(key, val) {
+            try {
+                localStorage.setItem(key, JSON.stringify(val));
+            } catch (e) {
+                console.error("Storage error:", e);
+            }
+        }
+
+        // Initialize default storage collections if missing
+        if (!localStorage.getItem('northstar_subscribers')) setStorage('northstar_subscribers', []);
+        if (!localStorage.getItem('northstar_appointments')) setStorage('northstar_appointments', []);
+        if (!localStorage.getItem('northstar_contact_requests')) setStorage('northstar_contact_requests', []);
+        if (!localStorage.getItem('northstar_session')) setStorage('northstar_session', { loggedIn: false });
+
+        // Check owner session on load & Setup scroll listeners
+        window.addEventListener('DOMContentLoaded', () => {
+            const session = getStorage('northstar_session', { loggedIn: false });
+            if (session.loggedIn) {
+                showOwnerDashboard();
+            }
+
+            // Stagger animations for service cards
+            const servicesGrid = document.querySelector('.services-grid');
+            if(servicesGrid) {
+                const items = servicesGrid.querySelectorAll('.service-card');
+                items.forEach((el, i) => {
+                    el.style.transitionDelay = `${i * 0.08}s`;
+                });
+            }
+
+            // Real-time Inline Validation listeners
+            const emailInput = document.getElementById('contact-email');
+            if(emailInput) {
+                emailInput.addEventListener('input', function() {
+                    const isValid = this.validity.valid && this.value.includes('@');
+                    this.classList.toggle('valid', isValid);
+                    this.classList.toggle('invalid', !isValid);
+                    this.nextElementSibling.textContent = isValid ? '✓ Valid email' : '✗ Please enter a valid email';
+                });
+            }
+        });
+
+        // Scroll listener for Back-to-Top button
+        window.addEventListener('scroll', () => {
+            const btt = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                btt.classList.add('visible');
+            } else {
+                btt.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}" aria-hidden="true"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Touch-friendly Dropdown toggle
+        function toggleDropdown(element) {
+            if(window.innerWidth <= 768) {
+                const isOpen = element.classList.contains('dropdown-open');
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('dropdown-open'));
+                if(!isOpen) {
+                    element.classList.add('dropdown-open');
+                }
+            }
+        }
+
+        // Mobile Menu Drawer Toggle
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('mobileOverlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        // Static / Info Modals
+        function openStaticPageModal(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = text;
+            document.getElementById('staticModal').classList.add('active');
+        }
+
         function openFeatureInfo(featureName) {
-            alert("Information: " + featureName + " is available 24/7 at Medigo Healthcare. Call 224 456 6789 for immediate assistance.");
+            openStaticPageModal(featureName, featureName + " is fully integrated within Medigo Healthcare's 24/7 care network. You can book an appointment online or contact our emergency line at 224 456 6789.");
         }
 
         function openServiceDetail(serviceName) {
-            alert("Opening detailed information for " + serviceName + ". Our specialist team is ready to assist you.");
+            openStaticPageModal(serviceName + " Services", "Our " + serviceName + " department features board-certified specialists, state-of-the-art diagnostic equipment, and tailored recovery plans to ensure optimal patient outcomes.");
         }
 
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Contact Form Submission with validation & Toast feedback
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const phone = document.getElementById('contact-phone').value.trim();
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value.trim();
+
+            if(!name || !email || !phone || !message) {
+                showToast("Please fill in all required contact fields.", "error");
+                return;
+            }
+
+            const contacts = getStorage('northstar_contact_requests', []);
+            contacts.push({ name, email, phone, subject, message, date: new Date().toLocaleDateString() });
+            setStorage('northstar_contact_requests', contacts);
+
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('contactSuccessMsg').style.display = 'block';
+            showToast("Message sent successfully!", "success");
+        }
+
+        // Newsletter Subscription with Toast feedback
         function subscribeNewsletter() {
             const emailInput = document.getElementById('newsletter-email');
             const email = emailInput.value.trim();
             if(email && email.includes('@')) {
-                const subscribers = JSON.parse(localStorage.getItem('medigo_subscribers') || '[]');
-                subscribers.push(email);
-                localStorage.setItem('medigo_subscribers', JSON.stringify(subscribers));
-                alert("Thank you for subscribing to Medigo Healthcare!");
+                const subscribers = getStorage('northstar_subscribers', []);
+                if(!subscribers.some(sub => sub.email === email)) {
+                    subscribers.push({ email, date: new Date().toLocaleDateString() });
+                    setStorage('northstar_subscribers', subscribers);
+                }
+                document.getElementById('newsletterSuccessMsg').style.display = 'block';
                 emailInput.value = '';
+                showToast("Successfully subscribed to newsletter!", "success");
             } else {
-                alert("Please enter a valid email address.");
+                showToast("Please enter a valid email address.", "error");
             }
         }
 
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-toggle').addEventListener('click', () => {
-            const navMenu = document.querySelector('.nav-menu');
-            if(navMenu.style.display === 'flex') {
-                navMenu.style.display = 'none';
-            } else {
-                navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '100%';
-                navMenu.style.left = '0';
-                navMenu.style.width = '100%';
-                navMenu.style.background = '#ffffff';
-                navMenu.style.padding = '20px';
-                navMenu.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-            }
-        });
+        // Multi-Step Appointment Flow with Progress Bar
+        function openAppointmentModal() {
+            currentApptStep = 1;
+            renderAppointmentStep();
+            document.getElementById('appointmentModal').classList.add('active');
+        }
 
-        // Intersection Observer for Smooth Scroll Reveals
+        function closeAppointmentModal() {
+            document.getElementById('appointmentModal').classList.remove('active');
+        }
+
+        function renderAppointmentStep() {
+            const content = document.getElementById('apptStepContent');
+            const indicator = document.getElementById('apptStepIndicator');
+            const backBtn = document.getElementById('apptBackBtn');
+            const nextBtn = document.getElementById('apptNextBtn');
+            const barFill = document.getElementById('appBarFill');
+
+            backBtn.style.display = currentApptStep > 1 ? 'inline-flex' : 'none';
+            nextBtn.innerText = currentApptStep === 4 ? 'Confirm Appointment' : 'Continue';
+            barFill.style.width = `${currentApptStep * 25}%`;
+
+            if (currentApptStep === 1) {
+                indicator.innerText = "Step 1 of 4: Select Care Type & Doctor";
+                content.innerHTML = `
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Care Specialty</label>
+                        <select id="apptCareType" onchange="apptState.careType = this.value">
+                            <option ${apptState.careType === 'Primary Care' ? 'selected' : ''}>Primary Care</option>
+                            <option ${apptState.careType === 'Urgent Care' ? 'selected' : ''}>Urgent Care</option>
+                            <option ${apptState.careType === 'Cardiology' ? 'selected' : ''}>Cardiology</option>
+                            <option ${apptState.careType === 'Orthopedics' ? 'selected' : ''}>Orthopedics</option>
+                            <option ${apptState.careType === 'Neurology' ? 'selected' : ''}>Neurology</option>
+                            <option ${apptState.careType === 'Dental Care' ? 'selected' : ''}>Dental Care</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Doctor</label>
+                        <select id="apptDoctor" onchange="apptState.doctor = this.value">
+                            <option ${apptState.doctor.includes('Jenkins') ? 'selected' : ''}>Dr. Sarah Jenkins - Senior Specialist</option>
+                            <option ${apptState.doctor.includes('Miller') ? 'selected' : ''}>Dr. Robert Miller - Orthopedic Surgeon</option>
+                            <option ${apptState.doctor.includes('Patel') ? 'selected' : ''}>Dr. Ananya Patel - Cardiologist</option>
+                            <option ${apptState.doctor.includes('Wong') ? 'selected' : ''}>Dr. David Wong - Neurologist</option>
+                        </select>
+                    </div>
+                `;
+            } else if (currentApptStep === 2) {
+                indicator.innerText = "Step 2 of 4: Location, Date & Time";
+                content.innerHTML = `
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Clinic Location</label>
+                        <select id="apptLocation" onchange="apptState.location = this.value">
+                            <option ${apptState.location === 'London Central Clinic' ? 'selected' : ''}>London Central Clinic</option>
+                            <option ${apptState.location === 'Bahamas Medical Center' ? 'selected' : ''}>Bahamas Medical Center</option>
+                            <option ${apptState.location === 'Boston Regional Hub' ? 'selected' : ''}>Boston Regional Hub</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Appointment Date</label>
+                        <input type="date" id="apptDate" value="${apptState.date}" onchange="apptState.date = this.value">
+                    </div>
+                    <div class="form-group">
+                        <label>Time Slot</label>
+                        <select id="apptTime" onchange="apptState.time = this.value">
+                            <option ${apptState.time === '09:00 AM' ? 'selected' : ''}>09:00 AM</option>
+                            <option ${apptState.time === '09:30 AM' ? 'selected' : ''}>09:30 AM</option>
+                            <option ${apptState.time === '10:00 AM' ? 'selected' : ''}>10:00 AM</option>
+                            <option ${apptState.time === '02:00 PM' ? 'selected' : ''}>02:00 PM</option>
+                            <option ${apptState.time === '03:30 PM' ? 'selected' : ''}>03:30 PM</option>
+                        </select>
+                    </div>
+                `;
+            } else if (currentApptStep === 3) {
+                indicator.innerText = "Step 3 of 4: Patient Information";
+                content.innerHTML = `
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="apptFirstName" value="${apptState.firstName}" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="apptLastName" value="${apptState.lastName}" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="apptEmail" value="${apptState.email}" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="apptPhone" value="${apptState.phone}" placeholder="224 456 6789" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason for Visit</label>
+                        <input type="text" id="apptReason" value="${apptState.reason}" placeholder="Routine checkup / Consultation" required>
+                    </div>
+                `;
+            } else if (currentApptStep === 4) {
+                indicator.innerText = "Step 4 of 4: Review & Confirm";
+                content.innerHTML = `
+                    <div style="background: var(--bg-light); padding: 24px; border-radius: 16px; border: 1px solid var(--border-color);">
+                        <p style="margin-bottom: 8px;"><strong>Care Specialty:</strong> ${apptState.careType}</p>
+                        <p style="margin-bottom: 8px;"><strong>Doctor:</strong> ${apptState.doctor}</p>
+                        <p style="margin-bottom: 8px;"><strong>Location:</strong> ${apptState.location}</p>
+                        <p style="margin-bottom: 8px;"><strong>Date & Time:</strong> ${apptState.date} at ${apptState.time}</p>
+                        <p style="margin-bottom: 8px;"><strong>Patient:</strong> ${apptState.firstName} ${apptState.lastName} (${apptState.phone})</p>
+                        <p><strong>Reason:</strong> ${apptState.reason}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function nextAppointmentStep() {
+            if (currentApptStep === 3) {
+                apptState.firstName = document.getElementById('apptFirstName').value.trim();
+                apptState.lastName = document.getElementById('apptLastName').value.trim();
+                apptState.email = document.getElementById('apptEmail').value.trim();
+                apptState.phone = document.getElementById('apptPhone').value.trim();
+                apptState.reason = document.getElementById('apptReason').value.trim();
+
+                if (!apptState.firstName || !apptState.lastName || !apptState.email || !apptState.phone) {
+                    showToast("Please fill in all required patient information fields.", "error");
+                    return;
+                }
+            }
+
+            if (currentApptStep < 4) {
+                currentApptStep++;
+                renderAppointmentStep();
+            } else {
+                // Save appointment to localStorage
+                const appointments = getStorage('northstar_appointments', []);
+                const newAppt = {
+                    id: 'MED-' + Math.floor(100000 + Math.random() * 900000),
+                    patient: apptState.firstName + ' ' + apptState.lastName,
+                    email: apptState.email,
+                    phone: apptState.phone,
+                    doctor: apptState.doctor,
+                    careType: apptState.careType,
+                    location: apptState.location,
+                    date: apptState.date,
+                    time: apptState.time,
+                    reason: apptState.reason,
+                    status: 'Requested'
+                };
+                appointments.push(newAppt);
+                setStorage('northstar_appointments', appointments);
+
+                // Success confirmation screen
+                document.getElementById('apptStepIndicator').innerText = "Appointment Confirmed!";
+                document.getElementById('apptStepContent').innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 48px; color: #10b981; margin-bottom: 16px;"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div>
+                        <h4 style="font-size: 20px; color: var(--primary-dark); margin-bottom: 8px;">Your appointment request has been saved!</h4>
+                        <p style="color: var(--text-muted); margin-bottom: 16px;">Appointment ID: <strong>${newAppt.id}</strong></p>
+                        <p style="color: var(--text-muted); font-size: 14px;">We have logged your request into our demo system. Our clinic staff will review your preferred slot.</p>
+                    </div>
+                `;
+                document.getElementById('apptNavigationButtons').style.display = 'none';
+                showToast("Appointment successfully booked!", "success");
+            }
+        }
+
+        function prevAppointmentStep() {
+            if (currentApptStep > 1) {
+                currentApptStep--;
+                renderAppointmentStep();
+            }
+        }
+
+        // Owner Portal & Dashboard Functions with Skeleton Loaders & Empty States
+        function openOwnerLoginModal() {
+            const session = getStorage('northstar_session', { loggedIn: false });
+            if (session.loggedIn) {
+                showOwnerDashboard();
+            } else {
+                document.getElementById('ownerLoginModal').classList.add('active');
+            }
+        }
+
+        function handleOwnerLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('ownerEmail').value.trim();
+            const pass = document.getElementById('ownerPassword').value.trim();
+
+            if (email === 'owner@northstarhealth.com' && pass === 'NorthstarDemo123') {
+                setStorage('northstar_session', { loggedIn: true, email });
+                closeModal('ownerLoginModal');
+                showOwnerDashboard();
+                showToast("Welcome to Owner Dashboard", "success");
+            } else {
+                showToast("Invalid owner credentials. Use owner@northstarhealth.com / NorthstarDemo123", "error");
+            }
+        }
+
+        function handleOwnerLogout() {
+            setStorage('northstar_session', { loggedIn: false });
+            document.getElementById('owner-dashboard-view').style.display = 'none';
+            document.getElementById('main-content-view').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast("Logged out successfully", "success");
+        }
+
+        function showOwnerDashboard() {
+            document.getElementById('main-content-view').style.display = 'none';
+            document.getElementById('owner-dashboard-view').style.display = 'block';
+
+            // Show skeleton loaders temporarily for async simulation
+            const apptTbody = document.getElementById('admin-appointments-tbody');
+            const subTbody = document.getElementById('admin-subscribers-tbody');
+            
+            apptTbody.innerHTML = `<tr><td colspan="6"><div class="skeleton"></div><div class="skeleton"></div></td></tr>`;
+            subTbody.innerHTML = `<tr><td colspan="3"><div class="skeleton"></div></td></tr>`;
+
+            setTimeout(() => {
+                const subs = getStorage('northstar_subscribers', []);
+                const appts = getStorage('northstar_appointments', []);
+                const contacts = getStorage('northstar_contact_requests', []);
+
+                document.getElementById('stat-subscribers').innerText = subs.length;
+                document.getElementById('stat-appointments').innerText = appts.length;
+                document.getElementById('stat-contacts').innerText = contacts.length;
+
+                // Populate Appointments Table or Empty State
+                if (appts.length === 0) {
+                    apptTbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fa-solid fa-calendar-xmark" aria-hidden="true"></i><p>No appointments yet. Book one now!</p></div></td></tr>`;
+                } else {
+                    apptTbody.innerHTML = '';
+                    appts.forEach((appt, index) => {
+                        apptTbody.innerHTML += `
+                            <tr>
+                                <td><strong>${appt.patient}</strong><br><small>${appt.phone}</small></td>
+                                <td>${appt.doctor}<br><small>${appt.careType}</small></td>
+                                <td>${appt.location}</td>
+                                <td>${appt.date} (${appt.time})</td>
+                                <td><span style="padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight:700; background: ${appt.status === 'Confirmed' ? '#d1fae5; color: #065f46;' : '#fef3c7; color: #92400e;'}">${appt.status}</span></td>
+                                <td>
+                                    <button onclick="toggleApptStatus(${index})" style="color: var(--primary-blue); font-weight:600; font-size:13px; margin-right:8px;" aria-label="Toggle Status">Toggle</button>
+                                    <button onclick="deleteAppointment(${index})" style="color: #ef4444; font-weight:600; font-size:13px;" aria-label="Delete Appointment"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+
+                // Populate Subscribers Table or Empty State
+                if (subs.length === 0) {
+                    subTbody.innerHTML = `<tr><td colspan="3"><div class="empty-state"><i class="fa-solid fa-envelope-open" aria-hidden="true"></i><p>No subscribers yet.</p></div></td></tr>`;
+                } else {
+                    subTbody.innerHTML = '';
+                    subs.forEach((sub, index) => {
+                        subTbody.innerHTML += `
+                            <tr>
+                                <td>${sub.email}</td>
+                                <td>${sub.date || 'N/A'}</td>
+                                <td>
+                                    <button onclick="deleteSubscriber(${index})" style="color: #ef4444; font-weight:600; font-size:13px;" aria-label="Delete Subscriber"><i class="fa-solid fa-trash" aria-hidden="true"></i> Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+            }, 400);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleApptStatus(index) {
+            const appts = getStorage('northstar_appointments', []);
+            appts[index].status = appts[index].status === 'Requested' ? 'Confirmed' : 'Requested';
+            setStorage('northstar_appointments', appts);
+            showOwnerDashboard();
+            showToast("Appointment status updated", "success");
+        }
+
+        function deleteAppointment(index) {
+            if(confirm("Are you sure you want to delete this appointment request?")) {
+                const appts = getStorage('northstar_appointments', []);
+                appts.splice(index, 1);
+                setStorage('northstar_appointments', appts);
+                showOwnerDashboard();
+                showToast("Appointment deleted", "success");
+            }
+        }
+
+        function deleteSubscriber(index) {
+            if(confirm("Are you sure you want to delete this subscriber?")) {
+                const subs = getStorage('northstar_subscribers', []);
+                subs.splice(index, 1);
+                setStorage('northstar_subscribers', subs);
+                showOwnerDashboard();
+                showToast("Subscriber removed", "success");
+            }
+        }
+
+        // Intersection Observer for Smooth Scroll Reveals with Staggering
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
