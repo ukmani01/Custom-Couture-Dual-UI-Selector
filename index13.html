@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js & Event-Driven Programming - IT3501 Exam Preparation</title>
+    <title>MVC Architecture - IT3501 Exam Preparation</title>
     <style>
         /* ==================================================
            GLOBAL & THEME VARIABLES
@@ -14,18 +14,18 @@
             --surface-color: #ffffff;
             --text-color: #1e293b;
             --text-light: #64748b;
-            --primary-color: #22c55e; /* Node.js Green */
-            --primary-hover: #16a34a;
-            --secondary-color: #f0fdf4;
-            --accent-color: #4ade80;
-            --border-color: #bbf7d0;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --border-color: #cbd5e1;
             --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
             --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             --spacing-unit: 1rem;
             --border-radius: 8px;
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --transition: all 0.3s ease;
-            --hero-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            --hero-bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
         }
 
         /* Level 1: Beginner Theme */
@@ -51,15 +51,15 @@
             --surface-color: #1e293b;
             --text-color: #f8fafc;
             --text-light: #94a3b8;
-            --primary-color: #22c55e;
-            --primary-hover: #4ade80;
-            --secondary-color: #14532d;
-            --accent-color: #86efac;
-            --border-color: #166534;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --secondary-color: #334155;
+            --accent-color: #818cf8;
+            --border-color: #475569;
             --font-main: 'Inter', system-ui, -apple-system, sans-serif;
             --border-radius: 4px;
             --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
-            --hero-bg: linear-gradient(135deg, #14532d 0%, #064e3b 100%);
+            --hero-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         }
 
         /* Level 4: Professional Theme */
@@ -172,12 +172,11 @@
         .hero-content { flex: 1; }
         .hero-visual { flex: 1; background: var(--surface-color); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
         
-        /* Architecture Visual - Event Loop */
-        .event-loop-container { display: flex; align-items: center; justify-content: center; position: relative; height: 250px; }
-        .loop-circle { width: 150px; height: 150px; border: 4px dashed var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; text-align: center; animation: spin 10s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        .loop-text { position: absolute; font-weight: bold; font-size: 1.1rem; }
-        .arch-box { background: var(--secondary-color); border: 2px solid var(--border-color); padding: 10px; border-radius: var(--border-radius); font-weight: bold; text-align: center; z-index: 2; position: absolute;}
+        /* Architecture Visual */
+        .arch-map { display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: var(--font-code); }
+        .arch-box { background: var(--secondary-color); border: 2px solid var(--border-color); padding: 15px; border-radius: var(--border-radius); text-align: center; width: 200px; font-weight: bold; }
+        .arch-arrow { color: var(--primary-color); font-size: 1.5rem; font-weight: bold; }
+        .arch-label { font-size: 0.8rem; color: var(--text-light); }
         
         /* Code Blocks */
         pre, code {
@@ -208,7 +207,7 @@
         /* Quiz */
         .quiz-question { background: var(--surface-color); padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); margin-bottom: 1.5rem; }
         .quiz-options { display: grid; gap: 10px; margin-top: 1rem; }
-        .quiz-btn { padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; text-align: left; color: var(--text-color); font-family: var(--font-main); }
+        .quiz-btn { padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; text-align: left; color: var(--text-color); }
         .quiz-btn:hover { background: var(--primary-color); color: #fff; }
         .quiz-explanation { margin-top: 10px; padding: 10px; border-radius: 4px; display: none; }
         .quiz-btn.correct { background: #22c55e; color: #fff; border-color: #16a34a; }
@@ -217,14 +216,10 @@
         /* Highlight box */
         .exam-tip { border-left: 4px solid var(--primary-color); background: var(--secondary-color); padding: 15px; margin: 15px 0; border-radius: 0 var(--border-radius) var(--border-radius) 0; }
         
-        /* Citation formatting */
-        .cite { font-size: 0.75rem; vertical-align: super; color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: help; }
-
         /* Responsive */
         @media (max-width: 768px) {
             .hero-container { flex-direction: column; }
-            .hero-visual { width: 100%; overflow: hidden; }
-            .status-bar { flex-direction: column; gap: 10px; }
+            .hero-visual { width: 100%; }
         }
     </style>
 </head>
@@ -234,9 +229,9 @@
     <header>
         <div class="container nav">
             <div class="logo">
-                IT3501 <span class="badge">Part 3: Node.js & Events</span>
+                IT3501 <span class="badge">MVC Architecture</span>
             </div>
-            <nav style="gap: 15px; display: flex; flex-wrap: wrap;">
+            <nav style="gap: 15px; display: flex;">
                 <a href="#learning-overview">Overview</a>
                 <a href="#theory">Theory</a>
                 <a href="#real-life-example">Tamil Example</a>
@@ -251,19 +246,32 @@
         <section id="hero" class="hero">
             <div class="container hero-container">
                 <div class="hero-content">
-                    <h1>Node.js & Event-Driven Architecture</h1>
-                    <p>Master the event-driven programming model in Node.js <span class="cite" title="Source 1">[cite: 1]</span>. Learn how Events, EventEmitters, Listeners, and the non-blocking Event Loop power scalable, real-time backend applications <span class="cite" title="Source 1, 5">[cite: 1, 5]</span>.</p>
+                    <h1>MVC Architecture</h1>
+                    <p>Understand Model, View, and Controller through real-world applications, architecture, data flow, and exam-focused learning.</p>
                     <div style="display: flex; gap: 15px; margin-top: 20px;">
                         <a href="#level-selector" class="btn">Start Learning</a>
-                        <a href="#programming-connection" class="btn btn-outline">View Node.js Code</a>
+                        <a href="#architecture" class="btn btn-outline">View Architecture</a>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="event-loop-container">
-                        <div class="arch-box" style="top: 10px; left: 10px;">Incoming Event<br>(HTTP Request)</div>
-                        <div class="loop-circle"></div>
-                        <div class="loop-text">Event Loop</div>
-                        <div class="arch-box" style="bottom: 10px; right: 10px; background: var(--primary-color); color: white;">Execute Listener<br>(Callback)</div>
+                    <div class="arch-map">
+                        <div class="arch-box">User Request</div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-box" style="background: var(--primary-color); color: #fff;">Controller</div>
+                        <div style="display: flex; gap: 20px;">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="arch-arrow">↙</div>
+                                <div class="arch-box">Model</div>
+                                <div class="arch-arrow">↕</div>
+                                <div class="arch-box">Database</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div class="arch-arrow">↘</div>
+                                <div class="arch-box">View</div>
+                                <div class="arch-arrow">↓</div>
+                                <div class="arch-box">User Output</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -271,23 +279,23 @@
 
         <!-- WHAT YOU WILL LEARN -->
         <section id="learning-overview" class="container">
-            <h2>What You Will Learn (Part 3)</h2>
+            <h2>What You Will Learn</h2>
             <div class="card-grid">
                 <div class="card">
-                    <h3>🔄 Event-Driven Model</h3>
-                    <p>How Node.js handles thousands of requests on a single thread without blocking <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <h3>📚 Theory</h3>
+                    <p>Core concepts of Model, View, and Controller explained simply.</p>
                 </div>
                 <div class="card">
-                    <h3>📡 Events & Listeners</h3>
-                    <p>Understanding the <code>EventEmitter</code> class, custom events, and callback functions <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <h3>☕ Real-Life Example</h3>
+                    <p>A practical Hotel Ordering System example explained in Tamil.</p>
                 </div>
                 <div class="card">
-                    <h3>📦 NPM & Packages</h3>
-                    <p>Managing external packages using Node Package Manager to extend functionality <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                    <h3>🗺️ Architecture & Flow</h3>
+                    <p>Visual diagrams mapping the Request and Response data flow.</p>
                 </div>
                 <div class="card">
-                    <h3>📂 I/O & HTTP Services</h3>
-                    <p>Handling File I/O operations and creating built-in HTTP servers in Node.js <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                    <h3>📝 Exam Preparation</h3>
+                    <p>2-mark, 5-mark, and 15-mark answers for university exams.</p>
                 </div>
             </div>
         </section>
@@ -295,26 +303,26 @@
         <!-- LEVEL SELECTOR -->
         <section id="level-selector" class="container">
             <h2>Choose Your Learning Level</h2>
-            <p>Select a level below to adapt the content and language to your understanding.</p>
+            <p>Select a level below. The entire website experience (content, language, and design) will adapt to your choice.</p>
             <div class="card-grid">
                 <div class="card" style="cursor:pointer;" onclick="setLevel('beginner')">
                     <h3>🌱 Beginner</h3>
-                    <p>Simple English, visual analogies like a fast-food waiter. Easy to understand.</p>
+                    <p>7th-standard comprehension. Very simple English, visual, and friendly.</p>
                     <button class="btn" style="margin-top: 10px; width: 100%;">Select Beginner</button>
                 </div>
                 <div class="card" style="cursor:pointer; border-color: var(--primary-color);" onclick="setLevel('intermediate')">
                     <h3>🎓 Intermediate</h3>
-                    <p>Academic structured learning. Directly aligns with the IT3501 university syllabus.</p>
+                    <p>2nd-year college level. Academic structured learning for university exams.</p>
                     <button class="btn" style="margin-top: 10px; width: 100%;">Select Intermediate</button>
                 </div>
                 <div class="card" style="cursor:pointer;" onclick="setLevel('advanced')">
                     <h3>🚀 Advanced</h3>
-                    <p>Technical details for final-year students preparing for backend placements.</p>
+                    <p>Final-year placement prep. Technical details and software design focus.</p>
                     <button class="btn" style="margin-top: 10px; width: 100%;">Select Advanced</button>
                 </div>
                 <div class="card" style="cursor:pointer;" onclick="setLevel('professional')">
                     <h3>💼 Professional</h3>
-                    <p>Industry-level reference covering the thread pool, libuv, and scaling techniques.</p>
+                    <p>Industry-level reference. Architecture boundaries and scaling concepts.</p>
                     <button class="btn" style="margin-top: 10px; width: 100%;">Select Professional</button>
                 </div>
             </div>
@@ -329,26 +337,29 @@
                     <span>Current Level: 🌱 Beginner</span>
                     <span>Step 1: Theory</span>
                 </div>
-                <h2>The Waiter Analogy (Node.js)</h2>
-                <p>Imagine a very busy restaurant. In old systems (like Java or PHP), every time a customer arrived, the restaurant hired a new waiter (a new thread). If there were 100 customers, they needed 100 waiters!</p>
+                <h2>What is MVC?</h2>
+                <p>Imagine you are building a website. If you put all your code in one big box, it gets very messy! MVC is a way to organize your work into three clean boxes.</p>
                 
                 <div class="card-grid">
                     <div class="card">
-                        <h3 style="font-size: 1.5rem;">The Super Waiter (Single Thread)</h3>
-                        <p>Node.js is different. It uses only <strong>ONE Super Waiter</strong> for all customers <span class="cite" title="Source 1">[cite: 1]</span>. How is this possible?</p>
+                        <h3 style="font-size: 2rem;">🖼️ View</h3>
+                        <p><strong>What the user SEES.</strong></p>
+                        <p>It is the screen, the buttons, and the colors. It does not do any hard thinking. It just shows things to you.</p>
                     </div>
                     <div class="card">
-                        <h3 style="font-size: 1.5rem;">Non-Blocking (No Waiting)</h3>
-                        <p>When you order food, the Super Waiter doesn't stand in the kitchen waiting for the chef to cook <span class="cite" title="Source 1">[cite: 1]</span>. He gives the order to the kitchen and immediately goes to the next table to take another order!</p>
+                        <h3 style="font-size: 2rem;">🧠 Controller</h3>
+                        <p><strong>The Traffic Cop.</strong></p>
+                        <p>When you click a button, the Controller receives the click. It decides what to do next. It talks to the Model and the View.</p>
                     </div>
                     <div class="card">
-                        <h3 style="font-size: 1.5rem;">Events & Callbacks</h3>
-                        <p>When the food is ready, the kitchen rings a bell (an <strong>Event</strong>). The waiter hears the bell, picks up the food, and delivers it to you (executing the <strong>Callback / Listener</strong>) <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                        <h3 style="font-size: 2rem;">📦 Model</h3>
+                        <p><strong>The Data Box.</strong></p>
+                        <p>It holds all the important information. If you need to save something or fetch data, the Model handles it.</p>
                     </div>
                 </div>
                 
                 <div class="exam-tip">
-                    <strong>Simple terms:</strong> An <strong>Event</strong> is a signal that something happened <span class="cite" title="Source 1">[cite: 1]</span>. A <strong>Listener</strong> is the function that reacts to that event <span class="cite" title="Source 1">[cite: 1]</span>.
+                    <strong>Did you know?</strong> Breaking things into these three parts makes it super easy to fix problems later!
                 </div>
             </article>
 
@@ -358,23 +369,18 @@
                     <span>Current Level: 🎓 Intermediate</span>
                     <span>Theory & Concepts</span>
                 </div>
-                <h2>Event-Driven Programming in Node.js</h2>
-                <p>Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>. Instead of creating a new thread to handle each operation, Node.js registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                <h2>Theory: MVC Architecture</h2>
+                <p>MVC (Model-View-Controller) is a software architectural pattern commonly used for developing user interfaces that divides the related program logic into three interconnected elements.</p>
                 
-                <h3>How It Works (The Flow):</h3>
-                <ol>
-                    <li>An asynchronous operation (e.g., reading a file) is initiated <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li>Node.js delegates the operation to the system and continues executing other code without waiting <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li>Once the operation completes, an <strong>event</strong> is emitted <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li>A central <strong>event loop</strong> continuously monitors for events, picks up the event, and invokes the registered <strong>callback/listener</strong> function <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                </ol>
-
-                <h3>Key Components:</h3>
+                <h3>Component Responsibilities:</h3>
                 <ul>
-                    <li><strong>Events:</strong> A signal indicating that something specific has happened (e.g., a 'data' event or 'connection' event) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li><strong>EventEmitter:</strong> A core class from the built-in 'events' module that implements the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. It provides methods like <code>emit()</code> to trigger events and <code>on()</code> to listen for them <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li><strong>Listeners:</strong> The callback function registered against a specific event. When the event is emitted, the event loop invokes all listeners registered for it <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Model:</strong> Represents the application's data and business logic. It responds to requests for information and processes rules for updating the data. It communicates with the database.</li>
+                    <li><strong>View:</strong> The user interface. It renders the data from the Model into a form suitable for interaction (like HTML pages).</li>
+                    <li><strong>Controller:</strong> Handles the user request. It acts as an interface between View and Model. It interprets the user input, informs the Model to update, and selects the appropriate View to display.</li>
                 </ul>
+
+                <h3>Why do we use MVC?</h3>
+                <p>MVC provides a "Separation of Concerns". By separating the data (Model) from the UI (View), multiple developers can work on the web application simultaneously without interfering with each other.</p>
             </article>
 
             <!-- Advanced Content -->
@@ -383,30 +389,34 @@
                     <span>Current Level: 🚀 Advanced</span>
                     <span>Architecture & Placements</span>
                 </div>
-                <h2>The Event Loop & Libuv Architecture</h2>
-                <p>To succeed in technical interviews, you must understand that while Node.js's main execution thread is single-threaded, the I/O operations are actually multi-threaded behind the scenes, handled by a C++ library called <strong>libuv</strong> <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                <h2>MVC Deep Dive & Separation of Concerns</h2>
+                <p>In modern web development, MVC enforces a strict separation of concerns, ensuring that presentation layers do not contain business logic, and data layers do not worry about HTTP requests.</p>
                 
                 <table style="margin-top: 20px;">
                     <tr>
-                        <th>Concept</th>
-                        <th>Technical Detail</th>
+                        <th>Component</th>
+                        <th>Technical Responsibility</th>
+                        <th>Common Implementations</th>
                     </tr>
                     <tr>
-                        <td><strong>Event Loop</strong></td>
-                        <td>The infinite loop in the main thread that checks the Callback Queue. If the call stack is empty, it pushes the first callback from the queue to the call stack to be executed <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                        <td><strong>Model</strong></td>
+                        <td>Domain logic, data state management, DB queries, validation.</td>
+                        <td>Mongoose Schemas (Node), Entity Classes (Java)</td>
                     </tr>
                     <tr>
-                        <td><strong>Libuv Thread Pool</strong></td>
-                        <td>When Node.js encounters an async I/O task (like File System read/write), it delegates it to the libuv thread pool (default 4 threads) so the main thread doesn't block <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                        <td><strong>View</strong></td>
+                        <td>Stateless UI rendering, consuming data payloads.</td>
+                        <td>React Components, EJS/Pug templates</td>
                     </tr>
                     <tr>
-                        <td><strong>EventEmitter API</strong></td>
-                        <td>Methods include <code>emit(eventName, [...args])</code> to trigger, <code>on(eventName, listener)</code> to listen continuously, and <code>once(eventName, listener)</code> to listen for only the first occurrence <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                        <td><strong>Controller</strong></td>
+                        <td>Routing HTTP requests, parsing parameters, orchestrating Model calls, generating HTTP responses.</td>
+                        <td>Express Route Handlers, Spring Controllers</td>
                     </tr>
                 </table>
 
-                <h3>Why is this suitable for Real-Time Apps?</h3>
-                <p>Because threads are expensive in terms of memory. By using a single thread and callbacks, Node.js can keep tens of thousands of concurrent connections open simultaneously, making it ideal for chat applications and streaming services <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                <h3>Scalability & Testability</h3>
+                <p>MVC greatly enhances <strong>testability</strong>. Because the Model is decoupled from the Controller, you can write unit tests for your business logic without needing to mock HTTP request/response objects.</p>
             </article>
 
             <!-- Professional Content -->
@@ -415,21 +425,22 @@
                     <span>Current Level: 💼 Professional</span>
                     <span>Architecture & Engineering Design</span>
                 </div>
-                <h2>Production Node.js: Event Architecture Pitfalls</h2>
-                <p>While the event-driven model is highly performant, it introduces specific architectural challenges in production environments.</p>
+                <h2>MVC in Production: Boundaries & Anti-Patterns</h2>
+                <p>While MVC is fundamentally simple, maintaining correct architectural boundaries in production is complex. The most common architectural decay occurs when responsibilities bleed across layers.</p>
                 
                 <div class="card-grid">
                     <div class="card">
-                        <h3><span class="badge">Additional Industry Context</span> Memory Leaks in EventEmitters</h3>
-                        <p>Registering too many listeners on a single EventEmitter without removing them (using <code>removeListener()</code> or <code>off()</code> <span class="cite" title="Source 1">[cite: 1]</span>) causes memory leaks. Node.js warns developers when more than 10 listeners are attached to a single event by default.</p>
+                        <h3>The "Fat Controller" Anti-pattern</h3>
+                        <p>Occurs when Controllers contain business logic, data formatting, and direct DB queries. <strong>Solution:</strong> Controllers should only parse HTTP transport, delegate to services/models, and return standard DTOs/Views.</p>
                     </div>
                     <div class="card">
-                        <h3><span class="badge">Additional Industry Context</span> CPU Intensive Tasks Block the Loop</h3>
-                        <p>Because the Event Loop runs on a single thread, executing a heavy mathematical computation directly in a callback will freeze the entire server. Solution: Use Node's <code>worker_threads</code> module to offload CPU-bound tasks, keeping the main event loop free for I/O routing.</p>
+                        <h3>The "Anemic Domain Model"</h3>
+                        <p>Occurs when Models are merely dumb data containers (getters/setters) and all logic lives in external services. <strong>Solution:</strong> Encapsulate domain-specific behavior within the Model itself.</p>
                     </div>
                 </div>
 
-                <p style="margin-top: 15px;"><strong>Node Package Manager (NPM):</strong> In enterprise environments, managing dependencies via `package.json` requires strict version pinning to avoid supply chain attacks and ensure reproducible builds across CI/CD pipelines <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                <h3><span class="badge">Additional Industry Context</span> API Layer Relationship</h3>
+                <p>In modern decoupled architectures (like Single Page Applications), the "View" is entirely detached from the backend. The backend MVC becomes purely MC (Model-Controller), where the Controller returns JSON payloads rather than HTML templates. The View is handled by a frontend framework (React JS), establishing an API boundary.</p>
             </article>
 
         </section>
@@ -437,65 +448,117 @@
         <!-- REAL LIFE TAMIL EXAMPLE -->
         <section id="real-life-example" style="background: var(--secondary-color);">
             <div class="container">
-                <h2>Real-Life Example: WhatsApp Messaging</h2>
+                <h2>Real-Life Example: Hotel Ordering System</h2>
                 <p><em>(Explained in simple Tamil for clear understanding)</em></p>
                 
                 <div class="card" style="margin-bottom: 20px;">
-                    <p>ஒருவர் WhatsApp-ல் message அனுப்புகிறார் என்று வைத்துக்கொள்வோம்.</p>
+                    <p>ஒரு customer hotel-க்கு வருகிறார்.<br>
+                    அவர் menu-ஐ பார்க்கிறார்.<br>
+                    <strong>"Fresh Orange Juice"</strong> select செய்கிறார்.<br>
+                    "Order" button click செய்கிறார்.</p>
                     
                     <ul style="margin-top: 15px; list-style: none; margin-left: 0;">
-                        <li>🚀 <strong>Initiation:</strong> User message-ஐ type செய்து send செய்கிறார் (Async operation initiated) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                        <li>🏃‍♂️ <strong>Non-Blocking:</strong> Server அந்த message-ஐ receive செய்துவிட்டு, அது deliver ஆகும் வரை wait பண்ணாது. Server அடுத்த user-ன் message-ஐ வாங்க போய்விடும் (continues executing other code without waiting) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                        <li>🔔 <strong>Event Emitted:</strong> Message வெற்றிகரமாக நண்பருக்கு சென்று சேர்ந்ததும், "Delivered" என்ற ஒரு சிக்னல் (Event) உருவாகும் <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                        <li>✅ <strong>Listener / Callback:</strong> Event Loop அந்த சிக்னலை பார்த்துவிட்டு, உடனே உங்களுக்கு "Double Tick" (✔️✔️) காட்டும் (Listener invoked) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>👁️ <strong>View</strong> = customer பார்க்கும் menu / order screen.</li>
+                        <li>🚦 <strong>Controller</strong> = customer request-ஐ receive செய்து அடுத்த action-ஐ coordinate செய்கிறது (Waiter போல).</li>
+                        <li>📦 <strong>Model</strong> = order data மற்றும் business logic-ஐ handle செய்கிறது (Kitchen/Chef போல).</li>
+                        <li>💾 <strong>Database</strong> = order information-ஐ store செய்கிறது (Bill / Record book போல).</li>
                     </ul>
-                    <p style="margin-top: 15px;">இதனால்தான் Node.js-ஆல் ஒரே நேரத்தில் லட்சக்கணக்கான messages-ஐ எவ்வித தாமதமும் இல்லாமல் (scalable, non-blocking I/O) handle செய்ய முடிகிறது <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+
+                <h3>Data Flow (Request & Response)</h3>
+                <div class="arch-map" style="background: var(--surface-color); padding: 20px; border-radius: var(--border-radius);">
+                    <div class="arch-box">Customer clicks Order</div>
+                    <div class="arch-arrow">↓ request</div>
+                    <div class="arch-box">VIEW (Menu Screen)</div>
+                    <div class="arch-arrow">↓ forwards request</div>
+                    <div class="arch-box">CONTROLLER (Order Handler)</div>
+                    <div class="arch-arrow">↓ asks to process</div>
+                    <div class="arch-box">MODEL (Order Logic)</div>
+                    <div class="arch-arrow">↕ saves to</div>
+                    <div class="arch-box">DATABASE</div>
+                    <div class="arch-arrow">↓ returns success status</div>
+                    <div class="arch-box">CONTROLLER</div>
+                    <div class="arch-arrow">↓ sends display data</div>
+                    <div class="arch-box">VIEW</div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-box" style="background: #22c55e; color: white;">"Order Confirmed - Fresh Orange Juice"</div>
                 </div>
             </div>
         </section>
 
         <!-- PROGRAMMING CONNECTION -->
         <section id="programming-connection" class="container">
-            <h2>From Theory to Code (EventEmitter)</h2>
-            <p>Here is exactly how you create and listen to events in Node.js <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+            <h2>From Architecture to Code</h2>
+            <p>How does MVC look in a real software project folder structure?</p>
             
             <div style="background: #1e1e1e; padding: 20px; border-radius: var(--border-radius); color: #d4d4d4; font-family: var(--font-code);">
-                <span style="color: #6a9955;">// 1. Import the built-in 'events' module</span><br>
-                <span style="color: #569cd6;">const</span> EventEmitter = <span style="color: #dcdcaa;">require</span>(<span style="color: #ce9178;">'events'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
-                <br>
-                <span style="color: #6a9955;">// 2. Create an instance of EventEmitter</span><br>
-                <span style="color: #569cd6;">const</span> myEmitter = <span style="color: #569cd6;">new</span> <span style="color: #4ec9b0;">EventEmitter</span>(); <span class="cite" title="Source 1">[cite: 1]</span><br>
-                <br>
-                <span style="color: #6a9955;">// 3. Register a listener for the 'greet' event using .on()</span><br>
-                myEmitter.<span style="color: #dcdcaa;">on</span>(<span style="color: #ce9178;">'greet'</span>, <span style="color: #569cd6;">function</span>(name) { <span class="cite" title="Source 1">[cite: 1]</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4ec9b0;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Hello, '</span> + name + <span style="color: #ce9178;">'! Welcome.'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
-                });<br>
-                <br>
-                <span style="color: #6a9955;">// 4. Emit (trigger) the 'greet' event, passing data to the listener</span><br>
-                myEmitter.<span style="color: #dcdcaa;">emit</span>(<span style="color: #ce9178;">'greet'</span>, <span style="color: #ce9178;">'Student'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
-                <br>
-                <span style="color: #6a9955;">/* Output:<br>
-                Hello, Student! Welcome.<br>
-                */</span>
-            </div>
-            
-            <div class="exam-tip" style="margin-top: 20px;">
-                <strong>Extra Methods:</strong> You can use <code>myEmitter.once('eventName', listener)</code> if you want the event to trigger only the first time it happens, and then automatically be removed <span class="cite" title="Source 1">[cite: 1]</span>.
+                📁 project_folder/<br>
+                ├── 📁 <strong>models/</strong> <span style="color: #6a9955;">// Handles data and logic</span><br>
+                │   └── userModel.js<br>
+                ├── 📁 <strong>views/</strong> <span style="color: #6a9955;">// UI Templates (HTML/UI)</span><br>
+                │   └── dashboard.html<br>
+                ├── 📁 <strong>controllers/</strong> <span style="color: #6a9955;">// Handles requests/responses</span><br>
+                │   └── userController.js<br>
+                └── server.js
             </div>
         </section>
 
-        <!-- COMMON MISTAKES -->
+        <!-- COMMON MISTAKES & MEMORY TRICKS -->
         <section id="mistakes-tricks" class="container">
             <div class="card-grid">
                 <div class="card">
                     <h3>❌ Common Student Confusions</h3>
                     <ul>
-                        <li><strong>Wrong:</strong> Node.js creates a new thread for every user request.<br>
-                        <strong>Correct:</strong> Node.js is <em>single-threaded</em> and uses an Event Loop to handle many requests concurrently without blocking <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                        <li><strong>Wrong:</strong> Events and Listeners are the same thing.<br>
-                        <strong>Correct:</strong> An <em>Event</em> is the signal (e.g., 'data received'). A <em>Listener</em> is the callback function that executes when the event happens <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li><strong>Wrong:</strong> Model is just the database.<br>
+                        <strong>Correct:</strong> Model handles business logic + data structures. Database is just storage.</li>
+                        <li><strong>Wrong:</strong> Controller contains all logic.<br>
+                        <strong>Correct:</strong> Controller just coordinates flow; logic goes in Model.</li>
+                        <li><strong>Wrong:</strong> View stores logic.<br>
+                        <strong>Correct:</strong> View only displays what it is given.</li>
                     </ul>
                 </div>
+                <div class="card">
+                    <h3>💡 Memory Tricks</h3>
+                    <p>Remember this simple breakdown:</p>
+                    <ul>
+                        <li><strong>VIEW</strong> = What user <strong>SEES</strong></li>
+                        <li><strong>CONTROLLER</strong> = What <strong>DECIDES / COORDINATES</strong></li>
+                        <li><strong>MODEL</strong> = <strong>DATA + BUSINESS RULES</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEGINNER -> PROFESSIONAL COMPARISON TABLE -->
+        <section id="comparison-table" class="container">
+            <h2>Component Responsibility by Level</h2>
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Beginner Concept</th>
+                        <th>Intermediate Concept</th>
+                        <th>Advanced / Pro Concept</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Model</strong></td>
+                        <td>Works with data.</td>
+                        <td>Handles application data and related DB logic.</td>
+                        <td>Maintains domain boundaries; encapsulates business rules without bleeding into DB transport logic.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Controller</strong></td>
+                        <td>The traffic cop.</td>
+                        <td>Receives HTTP request, calls Model, returns View.</td>
+                        <td>Purely maps HTTP transport to domain use-cases. Should remain thin and stateless.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>View</strong></td>
+                        <td>The screen layout.</td>
+                        <td>Renders the UI based on Controller data.</td>
+                        <td>A purely presentational layer (can be a decoupled frontend framework consuming APIs).</td>
+                    </tr>
+                </table>
             </div>
         </section>
 
@@ -506,59 +569,65 @@
 
             <h3>A. 2-Mark Questions</h3>
             <div class="accordion">
-                <button class="accordion-header" onclick="toggleAccordion(this)">1. What is an Event in Node.js? <span>▼</span></button>
+                <button class="accordion-header" onclick="toggleAccordion(this)">1. What is MVC? <span>▼</span></button>
                 <div class="accordion-content">
-                    <p>An event is a signal indicating that something specific has happened in the application <span class="cite" title="Source 1">[cite: 1]</span>. For example, a 'data' event when a stream receives data, or a 'connection' event when a new client connects <span class="cite" title="Source 1">[cite: 1]</span>. They form the basis of asynchronous communication <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p>MVC stands for Model-View-Controller. It is an architectural pattern that separates an application into three main logical components: the model (data), the view (user interface), and the controller (request handler). This provides separation of concerns.</p>
                 </div>
             </div>
             <div class="accordion">
-                <button class="accordion-header" onclick="toggleAccordion(this)">2. List the key methods of the EventEmitter class. <span>▼</span></button>
+                <button class="accordion-header" onclick="toggleAccordion(this)">2. What is the role of the Controller? <span>▼</span></button>
                 <div class="accordion-content">
-                    <p>The key methods are <span class="cite" title="Source 1">[cite: 1]</span>:<br>
-                    1. <code>emit(eventName, [...args])</code>: Triggers the event.<br>
-                    2. <code>on(eventName, listener)</code>: Registers a listener.<br>
-                    3. <code>once(eventName, listener)</code>: Registers a one-time listener.<br>
-                    4. <code>removeListener(eventName, listener)</code> or <code>off()</code>: Removes a listener.</p>
+                    <p>The Controller acts as an interface between the View and Model. It receives user requests from the View, processes them (often interacting with the Model), and returns the appropriate View as a response.</p>
                 </div>
             </div>
 
             <h3 style="margin-top: 2rem;">B. 5-Mark Questions</h3>
             <div class="accordion">
-                <button class="accordion-header" onclick="toggleAccordion(this)">Discuss Events, EventEmitter, and Listeners in Node.js. <span>▼</span></button>
+                <button class="accordion-header" onclick="toggleAccordion(this)">Explain the components of MVC Architecture. <span>▼</span></button>
                 <div class="accordion-content">
-                    <p><strong>Events:</strong> An event is a signal indicating that something has happened (e.g., 'data' or 'connection') <span class="cite" title="Source 1">[cite: 1]</span>. Events form the basis of communication in an asynchronous way <span class="cite" title="Source 1">[cite: 1]</span>.</p>
-                    <p><strong>EventEmitter:</strong> It is a core class provided by Node.js from the built-in 'events' module implementing the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. It provides methods like <code>emit()</code> to fire events and <code>on()</code> to register listeners <span class="cite" title="Source 1">[cite: 1]</span>.</p>
-                    <p><strong>Listeners:</strong> A listener is the callback function registered against a specific event using methods like <code>.on()</code> <span class="cite" title="Source 1">[cite: 1]</span>. Whenever the event is emitted, the event loop invokes all registered listeners in the order they were added <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>Definition:</strong> MVC is a design pattern used to decouple user interface (view), data (model), and application logic (controller).<br><br>
+                    <strong>Components:</strong><br>
+                    1. <strong>Model:</strong> Represents business logic and data. It directly manages the data, logic, and rules of the application.<br>
+                    2. <strong>View:</strong> Represents the UI. It displays data provided by the model in a specific format.<br>
+                    3. <strong>Controller:</strong> Accepts input and converts it to commands for the model or view.<br><br>
+                    <strong>Example:</strong> In a hotel ordering system, the View is the menu, the Controller is the waiter taking the order, and the Model is the kitchen processing the food and updating the inventory.</p>
+                    <div class="exam-tip">Exam Tip: Always draw a basic block diagram showing arrows between User -> Controller -> Model -> View for full marks!</div>
                 </div>
             </div>
 
             <h3 style="margin-top: 2rem;">C. 15-Mark Questions</h3>
             <div class="accordion">
-                <button class="accordion-header" onclick="toggleAccordion(this)">Explain the event-driven programming model in Node.js. Discuss Events, EventEmitter, and Listeners with an example. <span>▼</span></button>
+                <button class="accordion-header" onclick="toggleAccordion(this)">Explain MVC Architecture with its components, working/data flow, and a real-world example. <span>▼</span></button>
                 <div class="accordion-content">
-                    <p><strong>1. Event-Driven Programming Model:</strong><br>
-                    Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>. Instead of creating a new thread to handle each operation, Node.js registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>. A central event loop monitors for events (incoming HTTP request, file read, timer) and invokes the corresponding callback once that event occurs <span class="cite" title="Source 1">[cite: 1]</span>. This allows Node.js to efficiently handle concurrent I/O operations <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>1. Introduction & Definition:</strong><br>
+                    MVC (Model-View-Controller) is a fundamental software design pattern used for developing web applications. It divides program logic into three interconnected elements to separate internal representations of information from the ways information is presented to the user.</p>
                     
-                    <p><strong>2. How it works (Flow):</strong><br>
-                    An asynchronous operation is initiated → Node.js delegates the operation (to libuv thread pool) and continues executing other code without waiting → once the operation completes, an event is emitted → the event loop picks up the event and invokes the registered listener function → the callback executes, handling the result <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>2. Need for MVC (Separation of Concerns):</strong><br>
+                    Without MVC, code becomes a tangled mess of database queries and HTML logic. MVC allows specialized developers (frontend and backend) to work simultaneously, making the code maintainable, scalable, and testable.</p>
 
-                    <p><strong>3. Events, EventEmitter, and Listeners:</strong><br>
-                    - <strong>Events:</strong> Signals that something specific has happened <span class="cite" title="Source 1">[cite: 1]</span>.<br>
-                    - <strong>EventEmitter:</strong> A core class from the 'events' module that implements the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. Key methods are <code>emit()</code>, <code>on()</code>, <code>once()</code>, and <code>removeListener()</code> <span class="cite" title="Source 1">[cite: 1]</span>.<br>
-                    - <strong>Listeners:</strong> Callback functions registered to events. The event loop invokes them when the event fires <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>3. Architecture & Components:</strong><br>
+                    - <strong>Model:</strong> Central component of the pattern. It is the application's dynamic data structure, independent of the UI. It directly manages data, logic, and database interactions.<br>
+                    - <strong>View:</strong> Any representation of information such as a web page or UI chart. Multiple views of the same information are possible.<br>
+                    - <strong>Controller:</strong> Accepts input and converts it to commands for the model or view. It manages the request-response lifecycle.</p>
 
-                    <p><strong>4. Example Program:</strong><br>
-                    <code>
-                    const EventEmitter = require('events');<br>
-                    const myEmitter = new EventEmitter();<br>
-                    myEmitter.on('greet', function(name) {<br>
-                    &nbsp;&nbsp;console.log('Hello, ' + name + '! Welcome.');<br>
-                    });<br>
-                    myEmitter.emit('greet', 'Student');<br>
-                    </code> <span class="cite" title="Source 1">[cite: 1]</span></p>
+                    <p><strong>4. Data Flow (Request / Response):</strong><br>
+                    User -> View (clicks button) -> Controller (receives request) -> Model (processes business logic/DB) -> Controller (gets result) -> View (updates UI) -> User (sees result).</p>
 
-                    <p><strong>5. Significance:</strong><br>
-                    This model allows Node.js applications to react to asynchronous occurrences efficiently, enabling scalable, non-blocking I/O <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>5. Real-Life Example (Hotel Ordering):</strong><br>
+                    When a customer orders "Orange Juice":<br>
+                    - View: The customer interacts with the Menu.<br>
+                    - Controller: Takes the order request and routes it to the kitchen.<br>
+                    - Model: The kitchen checks inventory (database), prepares the juice, and returns it.<br>
+                    - Controller/View: Delivers the confirmed order back to the customer's table.</p>
+
+                    <p><strong>6. Advantages:</strong><br>
+                    - Faster development process.<br>
+                    - Ability to provide multiple views.<br>
+                    - Modification does not affect the entire model.<br>
+                    - SEO-friendly development capability.</p>
+
+                    <p><strong>7. Conclusion:</strong><br>
+                    MVC remains the gold standard for full-stack web development frameworks, ensuring robust and clean software architecture.</p>
                 </div>
             </div>
         </section>
@@ -570,50 +639,47 @@
 
             <!-- Q1 -->
             <div class="quiz-question">
-                <p><strong>1. (Beginner) What happens when an event is "emitted" in Node.js?</strong></p>
+                <p><strong>1. (Beginner) What does MVC stand for?</strong></p>
                 <div class="quiz-options">
-                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">A. The server shuts down.</button>
-                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q1-exp')">B. A signal is sent, and any registered callback (listener) for that event is executed.</button>
-                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">C. A new database is created.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">A. Multiple View Controller</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q1-exp')">B. Model View Controller</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">C. Main Visual Control</button>
                 </div>
-                <div id="q1-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Emitting an event triggers the listener callback functions associated with it <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+                <div id="q1-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> MVC stands for Model-View-Controller.</div>
             </div>
 
-            <!-- Q2 -->
+            <!-- Q4 -->
             <div class="quiz-question">
-                <p><strong>2. (Intermediate) Which method is used to register a listener that runs only the VERY FIRST time an event occurs?</strong></p>
+                <p><strong>2. (Intermediate) Which component is responsible for directly communicating with the Database?</strong></p>
                 <div class="quiz-options">
-                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">A. .on()</button>
-                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">B. .addListener()</button>
-                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q2-exp')">C. .once()</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">A. View</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">B. Controller</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q2-exp')">C. Model</button>
                 </div>
-                <div id="q2-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> <code>once(eventName, listener)</code> registers a listener that is invoked only the first time the event is emitted, then automatically removed <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+                <div id="q2-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> The Model handles all data and database interactions.</div>
             </div>
 
-            <!-- Q3 -->
+            <!-- Q8 -->
             <div class="quiz-question">
-                <p><strong>3. (Advanced) Why is Node.js well-suited for I/O-heavy applications like streaming services?</strong></p>
+                <p><strong>3. (Advanced) What is the "Fat Controller" problem?</strong></p>
                 <div class="quiz-options">
-                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">A. Because it creates a new thread for every connection.</button>
-                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q3-exp')">B. Because it uses a single-threaded, non-blocking event loop to handle many concurrent operations without waiting.</button>
-                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">C. Because it natively uses multi-threaded relational databases.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q3-exp')">A. Putting too much business and database logic inside the Controller instead of the Model.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">B. When the View loads too many CSS files.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">C. When the database has too many tables.</button>
                 </div>
-                <div id="q3-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Its non-blocking, event-driven architecture handles many concurrent I/O operations efficiently on a single thread <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+                <div id="q3-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> A Controller should be thin (only handling HTTP routing), while the Model contains the heavy business logic.</div>
             </div>
         </section>
 
         <!-- 1 MINUTE REVISION -->
         <section id="revision" class="container" style="text-align: center;">
             <h2>⏱️ 1-Minute Final Revision</h2>
-            <div class="arch-box" style="margin: 0 auto 20px auto; width: auto; display: inline-block; padding: 20px; text-align: left; position: relative; z-index: 1;">
-                <h3 style="margin-bottom: 10px; text-align: center;">Event-Driven Basics</h3>
-                <ul style="list-style-type: square; margin-bottom: 0;">
-                    <li><strong>Architecture:</strong> Single-threaded, Non-blocking I/O <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li><strong>Event:</strong> A signal that something happened <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li><strong>Listener:</strong> The callback function that runs when the event happens <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li><strong>EventEmitter:</strong> The class used to <code>emit()</code> and listen <code>on()</code> to events <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                    <li><strong>The Flow:</strong> Initiate Async Task → Don't Wait → Task Completes → Event Emitted → Event Loop Triggers Listener <span class="cite" title="Source 1">[cite: 1]</span>.</li>
-                </ul>
+            <div class="arch-box" style="margin: 0 auto 20px auto; width: auto; display: inline-block; padding: 20px;">
+                <h3 style="margin-bottom: 10px;">MVC = Model + View + Controller</h3>
+                <p><strong>View</strong> → User Interface</p>
+                <p><strong>Controller</strong> → Handles Request / Coordinates</p>
+                <p><strong>Model</strong> → Data + Business Logic</p>
+                <p><strong>Database</strong> → Stores Data</p>
             </div>
         </section>
     </main>
@@ -622,7 +688,7 @@
     <footer>
         <div class="container" style="text-align: center; padding: 2rem 0; color: var(--text-light);">
             <p><strong>IT3501 – Full Stack Web Development</strong></p>
-            <p>Part 3: Node.js & Event-Driven Programming | Exam Preparation Learning Portal</p>
+            <p>MVC Architecture | Exam Preparation Learning Portal</p>
         </div>
     </footer>
 
