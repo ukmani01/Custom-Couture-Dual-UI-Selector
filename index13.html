@@ -1,1814 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MultiTenant — Next-Generation Commerce SaaS Platform</title>
-<style>
-/* ============ RESET / BASE ============ */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #0a0a1a;
-  background: #ffffff;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
-ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; }
-
-.container {
-  max-width: 1216px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-.section-title {
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #0a0a1a;
-}
-
-/* ============ SCROLL REVEAL (GENERAL PAGE) ============ */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
-}
-.reveal-up.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
-
-/* ============ BUTTONS ============ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 13px 22px;
-  border-radius: 8px;
-  transition: opacity .15s ease, transform .15s ease;
-  border: none;
-}
-.btn:hover { opacity: .88; }
-.arrow { font-size: 18px; line-height: 1; }
-
-.btn-primary {
-  background: linear-gradient(180deg, #6a5cf0 0%, #5a45e8 100%);
-  color: #ffffff;
-  box-shadow: 0 6px 16px rgba(88, 65, 216, .35);
-}
-
-.btn-white {
-  background: #ffffff;
-  color: #4b3ee0;
-}
-
-.btn-outline {
-  border: 1px solid #d8dae0;
-  color: #4b3ee0;
-  font-size: 14px;
-  padding: 10px 18px;
-  background: transparent;
-}
-
-.btn-whatsapp {
-  background: #25D366;
-  color: #ffffff;
-  box-shadow: 0 6px 16px rgba(37, 211, 102, .35);
-}
-.btn-whatsapp:hover { opacity: .88; }
-
-/* ============ HEADER ============ */
-.site-header {
-  border-bottom: 1px solid #eee;
-  background: #fff;
-  position: relative;
-  z-index: 20;
-}
-.header-inner {
-  max-width: 1216px;
-  margin: 0 auto;
-  padding: 0 32px;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  gap: 44px;
-}
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #0a0a1a;
-}
-.logo span { color: #5a45e8; }
-.main-nav {
-  display: flex;
-  gap: 32px;
-  flex: 1;
-}
-.main-nav a {
-  font-size: 15px;
-  font-weight: 500;
-  color: #2a2a35;
-  transition: color .15s ease;
-}
-.main-nav a:hover { color: #635bff; }
-
-.hamburger {
-  margin-left: auto;
-  background: none;
-  border: none;
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px;
-}
-.hamburger span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #5a45e8;
-}
-
-@media (min-width: 981px) {
-  .hamburger { display: none; }
-}
-
-/* ============ HERO ============ */
-.hero {
-  position: relative;
-  background: linear-gradient(120deg,
-      #c7d6f6 0%,
-      #cdeaf6 16%,
-      #b9c2f2 30%,
-      #d79fe0 44%,
-      #f0709a 54%,
-      #f5883f 66%,
-      #f7a24a 76%,
-      #fdca5d 100%);
-  padding-top: 96px;
-  padding-bottom: 56px;
-  overflow: hidden;
-}
-.hero-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 24px;
-}
-.hero-eyebrow {
-  font-size: 14px;
-  color: #3a3a4a;
-  margin-bottom: 18px;
-}
-.hero-eyebrow strong { color: #5a45e8; font-weight: 700; }
-.hero-title {
-  font-size: 52px;
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #17172a;
-  margin-bottom: 18px;
-}
-.hero-sub {
-  font-size: 18px;
-  color: #3a3a4a;
-  margin-bottom: 32px;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.hero-badges {
-  width: 100%;
-  margin-top: 48px;
-  padding: 26px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  flex-wrap: wrap;
-}
-.badge-item {
-  font-weight: 700;
-  font-size: 15px;
-  color: #1a1a1a;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.badge-item .icon { color: #5a45e8; font-size: 18px; }
-
-/* ============ OVERVIEW SECTION ============ */
-.overview-section {
-  padding: 64px 0 80px;
-  background: #fff;
-  display: none;
-}
-.overview-section.active { display: block; }
-
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-.overview-image img {
-  border-radius: 16px;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 12px 40px rgba(0,0,0,.08);
-}
-.overview-content h2 {
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.overview-content p {
-  font-size: 16px;
-  color: #6b6b7a;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.overview-content ul {
-  list-style: none;
-  margin-top: 12px;
-}
-.overview-content ul li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f4f4f8;
-}
-.overview-content ul li:last-child { border-bottom: none; }
-.overview-content ul li .check {
-  color: #4cae6e;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.overview-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  margin-top: 48px;
-}
-.overview-feature {
-  background: #f6f7fa;
-  padding: 24px 20px;
-  border-radius: 12px;
-  text-align: center;
-}
-.overview-feature .icon { font-size: 28px; margin-bottom: 10px; }
-.overview-feature h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-.overview-feature p { font-size: 13px; color: #6b6b7a; }
-
-/* ============ SOLUTIONS ============ */
-.solutions {
-  padding: 64px 0 80px;
-  background: #fff;
-}
-.solutions-title-desktop { margin-bottom: 12px; }
-.solutions-sub-desktop {
-  font-size: 16px;
-  color: #6b6b7a;
-  margin-bottom: 32px;
-  max-width: 640px;
-}
-.solutions-title-mobile { display: none; }
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.card {
-  border: 1px solid #eceef2;
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  transition: box-shadow .2s ease;
-}
-.card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.06); }
-.card-head {
-  padding: 20px 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-}
-.card-head h3 {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.35;
-  color: #0a0a1a;
-}
-.expand-icon {
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
-  background: #f4f4f8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #8a8a99;
-}
-.card-body { padding: 16px 20px 24px; }
-.card-body h4 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.card-body p {
-  font-size: 13.5px;
-  color: #6b6b7a;
-  line-height: 1.5;
-}
-
-.card-visual {
-  margin: 16px 20px 0;
-  height: 190px;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  background: #f7f7fa;
-}
-
-/* --- card visuals --- */
-.visual-tenant {
-  background: linear-gradient(135deg, #fff 40%, #b79af0 70%, #6a5cf0 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 14px;
-}
-.tenant-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 700;
-  color: #5a45e8;
-}
-.tenant-text { color: #fff; font-size: 12px; font-weight: 600; line-height: 1.4; }
-.tenant-text span { display: block; font-weight: 400; font-size: 10px; opacity: .8; }
-
-.visual-store {
-  background: linear-gradient(200deg, #fdd9a0 0%, #f2a5e0 40%, #a99af5 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 14px;
-}
-.mini-store-card {
-  width: 100%;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0,0,0,.08);
-  padding: 10px 12px;
-}
-.mini-store-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.mini-store-dot { width: 18px; height: 18px; border-radius: 50%; background: #5a45e8; flex-shrink: 0; }
-.mini-store-title { font-size: 11px; font-weight: 700; }
-.mini-store-sub { font-size: 9px; color: #999; }
-.mini-store-bar { height: 5px; border-radius: 3px; background: linear-gradient(90deg,#5a45e8,#f5883f); margin-top: 4px; }
-.mini-store-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 4px;
-  width: 100%;
-}
-.mini-store-grid span {
-  background: #fff;
-  border-radius: 4px;
-  padding: 4px 6px;
-  font-size: 7px;
-  text-align: center;
-  color: #555;
-  font-weight: 600;
-}
-
-.visual-ai {
-  background: linear-gradient(160deg, #fff 30%, #fbe3ef 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px;
-}
-.ai-ring {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 2px dotted #f3c6da;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  animation: spin 20s linear infinite;
-}
-@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
-.ai-chat {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.06);
-  font-size: 9px;
-  color: #555;
-  padding: 8px 10px;
-  max-width: 140px;
-  position: relative;
-  z-index: 1;
-}
-.ai-chat-1 { margin-bottom: 10px; }
-.ai-chat-2 { margin-bottom: 10px; font-size: 8px; color: #999; }
-.ai-chat-3 { align-self: flex-end; font-weight: 700; color: #5a45e8; }
-
-.visual-dashboard {
-  background: linear-gradient(160deg, #e9d6f5 0%, #f7cfe0 60%, #fbe6d8 100%);
-  padding: 20px 14px 0;
-}
-.dash-card {
-  position: absolute;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(0,0,0,.1);
-}
-.dash-card-back {
-  width: 78%; height: 70%;
-  top: 12px; right: 8px;
-  padding: 10px;
-}
-.dash-back-lines span {
-  display: block;
-  height: 6px;
-  border-radius: 3px;
-  background: #eee;
-  margin-bottom: 8px;
-}
-.dash-card-front {
-  width: 72%; height: 78%;
-  left: 8px; top: 26px;
-  padding: 12px;
-  font-size: 9px;
-}
-.dash-avatar { width: 20px; height: 20px; border-radius: 50%; background: #cbbcf7; margin-bottom: 6px; }
-.dash-name { font-weight: 700; font-size: 11px; margin-bottom: 10px; }
-.dash-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #888; }
-.dash-row span:last-child { color: #222; font-weight: 600; }
-.dash-chip { display: inline-block; width: 22px; height: 12px; background: #5a45e8; border-radius: 2px; }
-
-.visual-suite {
-  height: auto;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0;
-}
-.suite-copy { font-size: 11px; color: #999; padding: 0 4px; }
-.suite-items { display: flex; gap: 10px; }
-.suite-item {
-  flex: 1;
-  background: #f4f4f7;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-}
-.suite-icon { width: 100%; height: 50px; border-radius: 6px; background: #5a45e8; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
-.suite-icon.green { background: #4cae6e; }
-.suite-icon.orange { background: #f5883f; }
-.suite-label { font-size: 9px; font-weight: 600; line-height: 1.6; }
-.suite-label span { font-weight: 400; color: #999; }
-
-.visual-ecosystem {
-  background: linear-gradient(160deg, #e4e0fb 0%, #fff 60%);
-  padding: 14px;
-}
-.eco-tab-bar { display: flex; gap: 4px; margin-bottom: 8px; }
-.eco-tab-bar span { width: 5px; height: 5px; border-radius: 50%; background: #ccc; }
-.eco-panels { display: flex; gap: 8px; height: 140px; }
-.eco-panel-left, .eco-panel-right {
-  flex: 1;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0,0,0,.06);
-  padding: 10px;
-  font-size: 9px;
-}
-.eco-brand { font-weight: 700; font-size: 9px; color: #5a45e8; margin-bottom: 8px; }
-.eco-avatar { width: 16px; height: 16px; border-radius: 50%; background: #cbbcf7; margin-bottom: 6px; }
-.eco-title { font-weight: 700; margin-bottom: 8px; }
-.eco-line { height: 5px; background: #eee; border-radius: 3px; margin-bottom: 6px; }
-.eco-line.short { width: 60%; }
-.eco-right-title { font-weight: 700; margin-bottom: 8px; }
-.eco-list li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
-  color: #555;
-  font-size: 8px;
-}
-.eco-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-}
-.eco-dot-blue{background:#5a45e8}.eco-dot-yellow{background:#f5c542}
-.eco-dot-orange{background:#f5883f}.eco-dot-pink{background:#f0709a}
-.eco-dot-purple{background:#a99af5}.eco-dot-green{background:#4cae6e}
-
-/* ============ OFFER BANNER ============ */
-.offer-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
-  padding: 44px 48px;
-  margin: 8px 0 72px;
-  background: linear-gradient(115deg, #14163f 0%, #2a2570 45%, #6259d6 100%);
-  overflow: hidden;
-  position: relative;
-  min-height: 240px;
-}
-.offer-text { position: relative; z-index: 1; max-width: 520px; }
-.offer-eyebrow {
-  color: #cfc9ff;
-  font-size: 15px;
-  margin-bottom: 12px;
-}
-.offer-eyebrow strong { color: #fdca5d; font-weight: 700; }
-.offer-text h2 {
-  color: #fff;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
-}
-.offer-desc {
-  color: rgba(255,255,255,0.8);
-  font-size: 15px;
-  margin-bottom: 12px;
-}
-.offer-price {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-.offer-price .current {
-  color: #fdca5d;
-  font-size: 32px;
-  font-weight: 700;
-}
-.offer-price .original {
-  color: rgba(255,255,255,0.5);
-  font-size: 18px;
-  text-decoration: line-through;
-}
-.offer-price .label {
-  color: rgba(255,255,255,0.7);
-  font-size: 14px;
-}
-.offer-price .label strong { color: #fff; }
-.offer-badge {
-  display: inline-block;
-  background: #fdca5d;
-  color: #14163f;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-.offer-globe {
-  position: absolute;
-  right: -40px;
-  bottom: -60px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(from 0deg, rgba(255,255,255,.1) 0deg 1.2deg, transparent 1.2deg 9deg);
-  mask: radial-gradient(circle, #000 60%, transparent 72%);
-  -webkit-mask: radial-gradient(circle, #000 60%, transparent 72%);
-}
-
-.photo-plans {
-  display: flex;
-  gap: 16px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-.photo-plan {
-  background: rgba(255,255,255,0.1);
-  padding: 10px 18px;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  backdrop-filter: blur(4px);
-}
-.photo-plan .price { font-size: 18px; font-weight: 700; color: #fdca5d; }
-.photo-plan .label { font-size: 12px; opacity: 0.8; }
-
-/* ============ STATS ============ */
-.stats-section { padding-bottom: 80px; }
-.stats-section .section-title { margin-bottom: 40px; }
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  text-align: center;
-}
-.stat-number {
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
-}
-.stat-label {
-  font-size: 13px;
-  color: #6b6b7a;
-  line-height: 1.5;
-}
-
-/* ============================================================
-   FEATURED STORIES — VERTICAL SCROLL FEED (VIDEO REPLICATION)
-   ============================================================ */
-.featured-stories {
-  padding: 80px 0 120px;
-  background: #fafafc;
-}
-
-.stories-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-.stories-eyebrow {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #5a45e8;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: #f0eeff;
-  padding: 6px 18px;
-  border-radius: 20px;
-  margin-bottom: 16px;
-}
-.stories-header .section-title {
-  margin-bottom: 12px;
-}
-.stories-sub {
-  font-size: 17px;
-  color: #6b6b7a;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.stories-feed {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.story-card {
-  width: 100%;
-  padding: 44px 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 16px 48px rgba(0,0,0,.06);
-  border: 1px solid #eceef2;
-  position: relative;
-  overflow: hidden;
-  
-  /* Initial Reveal State */
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
-}
-
-.story-card.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered internal element reveals (matches the premium scroll effect) */
-.story-card > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.story-card.is-visible > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-.story-card.is-visible .preview-badge { transition-delay: 0.1s; }
-.story-card.is-visible .preview-image { transition-delay: 0.2s; }
-.story-card.is-visible .preview-title { transition-delay: 0.3s; }
-.story-card.is-visible .preview-desc { transition-delay: 0.4s; }
-.story-card.is-visible .preview-features { transition-delay: 0.5s; }
-.story-card.is-visible .preview-price { transition-delay: 0.6s; }
-.story-card.is-visible .preview-actions { transition-delay: 0.7s; }
-
-
-.preview-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #5a45e8;
-  background: #f0eeff;
-  padding: 4px 14px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  align-self: flex-start;
-}
-
-.preview-image {
-  width: 100%;
-  height: 280px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 24px;
-  background: #f4f4f8;
-}
-
-.preview-title {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  color: #0a0a1a;
-}
-
-.preview-desc {
-  font-size: 16px;
-  color: #6b6b7a;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  max-width: 90%;
-}
-
-.preview-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-.preview-features span {
-  background: #f4f4f8;
-  padding: 4px 14px;
-  border-radius: 12px;
-  font-size: 13px;
-  color: #555;
-  font-weight: 500;
-}
-
-.preview-price {
-  font-size: 24px;
-  font-weight: 700;
-  color: #5a45e8;
-  margin-bottom: 20px;
-}
-.preview-price span {
-  font-size: 15px;
-  font-weight: 400;
-  color: #6b6b7a;
-}
-
-.preview-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-/* ============ TESTIMONIALS / PORTFOLIO ============ */
-.testimonials-section { padding-bottom: 80px; }
-.testimonials-section .section-title { margin-bottom: 32px; }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.testimonial-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 16px;
-}
-.testimonial-badge {
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-.badge-purple { background: #5a45e8; color: #fff; }
-.badge-dark { background: #1a1a1a; color: #fff; }
-.badge-green { background: #e3f3e5; color: #4cae6e; }
-.badge-gold { background: #fdca5d; color: #1a1a1a; }
-.badge-pink { background: #f0709a; color: #fff; }
-.testimonial-brand p { font-size: 13.5px; font-weight: 600; line-height: 1.35; }
-.testimonial-img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 18px;
-}
-.testimonial h3 { font-size: 17px; font-weight: 700; line-height: 1.35; margin-bottom: 10px; }
-.testimonial-copy { font-size: 13px; color: #6b6b7a; line-height: 1.55; margin-bottom: 18px; }
-
-/* ============ WHATSAPP SECTION ============ */
-.whatsapp-section {
-  padding-bottom: 80px;
-}
-.whatsapp-card {
-  background: #f6f7fa;
-  border-radius: 16px;
-  padding: 40px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-  border: 1px solid #eceef2;
-}
-.whatsapp-content { max-width: 500px; }
-.whatsapp-content h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.whatsapp-content p {
-  color: #6b6b7a;
-  font-size: 15px;
-  margin-bottom: 16px;
-}
-.whatsapp-qr-placeholder {
-  width: 140px;
-  height: 140px;
-  border: 2px dashed #d8dae0;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: 13px;
-  text-align: center;
-  background: #fff;
-}
-.whatsapp-qr-placeholder .qr-text { max-width: 100px; }
-
-/* ============ FOOTER ============ */
-.site-footer {
-  background: #f6f7fa;
-  padding: 56px 0 28px;
-  border-top: 1px solid #eceef2;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr) 1.6fr;
-  gap: 24px;
-  padding-bottom: 40px;
-}
-.footer-col h5 {
-  font-size: 13.5px;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.footer-col a {
-  display: block;
-  font-size: 13px;
-  color: #55555f;
-  margin-bottom: 12px;
-  transition: color .15s ease;
-}
-.footer-col a:hover { color: #4b3ee0; }
-.social-row { display: flex; gap: 12px; margin-bottom: 24px; }
-.social-row a {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  border: 1px solid #d8dae0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
-  transition: all .15s ease;
-}
-.social-row a:hover { background: #5a45e8; color: #fff; border-color: #5a45e8; }
-.legal-cols { display: flex; gap: 24px; }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid #e2e4ea;
-  padding-top: 22px;
-  font-size: 12.5px;
-  color: #7a7a86;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.footer-bottom .brand { color: #5a45e8; font-weight: 700; }
-
-/* ==================================================================
-   TABLET
-   ================================================================== */
-@media (max-width: 1024px) {
-  .hero-title { font-size: 42px; }
-  .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
-  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-col-company { grid-column: span 3; margin-top: 8px; }
-  .legal-cols { max-width: 320px; justify-content: space-between; }
-  .overview-grid { grid-template-columns: 1fr; gap: 32px; }
-  .overview-features { grid-template-columns: 1fr 1fr; }
-}
-
-/* ==================================================================
-   MOBILE
-   ================================================================== */
-@media (max-width: 680px) {
-  .container { padding: 0 20px; }
-
-  .header-inner { padding: 0 20px; height: 60px; position: relative; }
-  .main-nav { display: none; }
-  .main-nav.nav-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 16px 20px;
-    gap: 16px;
-    box-shadow: 0 8px 16px rgba(0,0,0,.06);
-  }
-  .hamburger { display: flex; margin-left: auto; }
-
-  .hero { padding-top: 40px; padding-bottom: 32px; }
-  .hero-inner { text-align: left; padding: 0 20px; }
-  .hero-eyebrow { font-size: 11px; }
-  .hero-title { font-size: 28px; margin-bottom: 14px; }
-  .hero-sub { font-size: 15px; }
-  .btn-primary { display: flex; justify-content: center; }
-  .hero-badges {
-    margin-top: 28px;
-    gap: 16px;
-    padding: 18px 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .badge-item { font-size: 12px; }
-
-  .solutions { padding: 40px 0 48px; }
-  .solutions-title-desktop { display: none; }
-  .solutions-title-mobile {
-    display: block;
-    margin-bottom: 24px;
-  }
-  .solutions-title-mobile .section-title { font-size: 26px; margin-bottom: 12px; }
-  .section-sub { font-size: 14px; color: #55555f; line-height: 1.55; }
-
-  .cards-grid { grid-template-columns: 1fr; gap: 20px; }
-
-  .offer-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 32px 24px;
-    margin-bottom: 48px;
-    min-height: unset;
-  }
-  .offer-text { max-width: 100%; }
-  .offer-text h2 { font-size: 24px; }
-  .offer-price .current { font-size: 26px; }
-  .offer-globe { width: 220px; height: 220px; right: -60px; bottom: -80px; }
-  .photo-plans { gap: 10px; }
-  .photo-plan { padding: 8px 14px; }
-
-  .stats-section { padding-bottom: 48px; }
-  .section-title { font-size: 26px; }
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
-  .stat-number { font-size: 26px; }
-
-  .testimonials-section { padding-bottom: 48px; }
-  .testimonials-grid { grid-template-columns: 1fr; gap: 36px; }
-
-  .whatsapp-section { padding-bottom: 48px; }
-  .whatsapp-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 28px 20px;
-  }
-  .whatsapp-qr-placeholder { width: 120px; height: 120px; }
-
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
-  .footer-col-company { grid-column: span 2; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
-
-  .overview-section { padding: 40px 0 48px; }
-  .overview-content h2 { font-size: 26px; }
-  .overview-features { grid-template-columns: 1fr; }
-
-  .featured-stories { padding: 48px 0 64px; }
-  .stories-header { margin-bottom: 32px; }
-  .stories-header .section-title { font-size: 26px; }
-  .stories-sub { font-size: 15px; }
-
-  .story-card {
-    padding: 24px 20px;
-  }
-  .preview-image {
-    height: 180px;
-  }
-  .preview-title {
-    font-size: 22px;
-  }
-  .preview-desc {
-    font-size: 14px;
-    max-width: 100%;
-  }
-  .preview-price {
-    font-size: 20px;
-  }
-  .preview-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-  .preview-actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  .reveal-up, .story-card, .story-card > * {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js & Event-Driven Programming - IT3501 Exam Preparation</title>
+    <style>
+        /* ==================================================
+           GLOBAL & THEME VARIABLES
+           ================================================== */
+        :root {
+            /* Default / Intermediate Theme */
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --primary-color: #22c55e; /* Node.js Green */
+            --primary-hover: #16a34a;
+            --secondary-color: #f0fdf4;
+            --accent-color: #4ade80;
+            --border-color: #bbf7d0;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --spacing-unit: 1rem;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s ease;
+            --hero-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        /* Level 1: Beginner Theme */
+        body.theme-beginner {
+            --bg-color: #fffbeb;
+            --surface-color: #ffffff;
+            --text-color: #451a03;
+            --text-light: #78350f;
+            --primary-color: #f59e0b;
+            --primary-hover: #d97706;
+            --secondary-color: #fef3c7;
+            --accent-color: #fbbf24;
+            --border-color: #fcd34d;
+            --font-main: 'Comic Sans MS', 'Quicksand', 'Nunito', system-ui, sans-serif;
+            --border-radius: 24px;
+            --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --hero-bg: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        /* Level 3: Advanced Theme */
+        body.theme-advanced {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --text-light: #94a3b8;
+            --primary-color: #22c55e;
+            --primary-hover: #4ade80;
+            --secondary-color: #14532d;
+            --accent-color: #86efac;
+            --border-color: #166534;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --border-radius: 4px;
+            --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            --hero-bg: linear-gradient(135deg, #14532d 0%, #064e3b 100%);
+        }
+
+        /* Level 4: Professional Theme */
+        body.theme-professional {
+            --bg-color: #fafafa;
+            --surface-color: #ffffff;
+            --text-color: #171717;
+            --text-light: #525252;
+            --primary-color: #171717;
+            --primary-hover: #404040;
+            --secondary-color: #f5f5f5;
+            --accent-color: #525252;
+            --border-color: #e5e5e5;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --border-radius: 0px;
+            --shadow: none;
+            --hero-bg: #f5f5f5;
+        }
+
+        /* ==================================================
+           RESET & TYPOGRAPHY
+           ================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { margin-bottom: var(--spacing-unit); line-height: 1.2; }
+        p { margin-bottom: var(--spacing-unit); }
+        a { color: var(--primary-color); text-decoration: none; }
+        ul, ol { margin-left: 1.5rem; margin-bottom: var(--spacing-unit); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ==================================================
+           LAYOUT & COMPONENTS
+           ================================================== */
+        /* Header */
+        header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .badge { background: var(--primary-color); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-family: var(--font-main); }
+        
+        /* Sections */
+        section { padding: 4rem 0; border-bottom: 1px solid var(--border-color); }
+        section:last-child { border-bottom: none; }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-outline:hover { background-color: var(--primary-color); color: #fff; }
+        
+        /* Cards */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* Level Content Toggle */
+        .level-content { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .level-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Status Bar */
+        .status-bar {
+            background-color: var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero { background: var(--hero-bg); display: flex; align-items: center; min-height: 60vh; }
+        .hero-container { display: flex; gap: 2rem; align-items: center; }
+        .hero-content { flex: 1; }
+        .hero-visual { flex: 1; background: var(--surface-color); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        
+        /* Architecture Visual - Event Loop */
+        .event-loop-container { display: flex; align-items: center; justify-content: center; position: relative; height: 250px; }
+        .loop-circle { width: 150px; height: 150px; border: 4px dashed var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; text-align: center; animation: spin 10s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .loop-text { position: absolute; font-weight: bold; font-size: 1.1rem; }
+        .arch-box { background: var(--secondary-color); border: 2px solid var(--border-color); padding: 10px; border-radius: var(--border-radius); font-weight: bold; text-align: center; z-index: 2; position: absolute;}
+        
+        /* Code Blocks */
+        pre, code {
+            font-family: var(--font-code);
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre { padding: 1rem; overflow-x: auto; margin-bottom: 1rem; border-radius: var(--border-radius); }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; background: var(--surface-color); }
+        th, td { padding: 12px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--secondary-color); font-weight: bold; }
+        
+        /* Accordions (Exam Prep) */
+        .accordion { margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); overflow: hidden; }
+        .accordion-header {
+            width: 100%; padding: 15px; background: var(--surface-color); border: none;
+            text-align: left; font-weight: bold; cursor: pointer; color: var(--text-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .accordion-content { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: var(--surface-color); }
+        .accordion-content p { padding: 15px 0; }
+        
+        /* Quiz */
+        .quiz-question { background: var(--surface-color); padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); margin-bottom: 1.5rem; }
+        .quiz-options { display: grid; gap: 10px; margin-top: 1rem; }
+        .quiz-btn { padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; text-align: left; color: var(--text-color); font-family: var(--font-main); }
+        .quiz-btn:hover { background: var(--primary-color); color: #fff; }
+        .quiz-explanation { margin-top: 10px; padding: 10px; border-radius: 4px; display: none; }
+        .quiz-btn.correct { background: #22c55e; color: #fff; border-color: #16a34a; }
+        .quiz-btn.wrong { background: #ef4444; color: #fff; border-color: #dc2626; }
+        
+        /* Highlight box */
+        .exam-tip { border-left: 4px solid var(--primary-color); background: var(--secondary-color); padding: 15px; margin: 15px 0; border-radius: 0 var(--border-radius) var(--border-radius) 0; }
+        
+        /* Citation formatting */
+        .cite { font-size: 0.75rem; vertical-align: super; color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: help; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column; }
+            .hero-visual { width: 100%; overflow: hidden; }
+            .status-bar { flex-direction: column; gap: 10px; }
+        }
+    </style>
 </head>
-<body>
+<body class="theme-intermediate">
 
-<!-- ============ HEADER ============ -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="#" class="logo reveal-up" id="homeLink">Multi<span>Tenant</span></a>
-    <nav class="main-nav reveal-up delay-100">
-      <a href="#" id="navOverview">Overview</a>
-      <a href="#solutions">Platform</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#stories">Stories</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="hero-inner">
-    <p class="hero-eyebrow reveal-up">🚀 <strong>Launch Special:</strong> 70% off • ₹300/month • 20‑Day Free Trial</p>
-    <h1 class="hero-title reveal-up delay-100">Launch Your Store.<br>Scale Your Business.</h1>
-    <p class="hero-sub reveal-up delay-200">Every business gets a dedicated storefront, independent dashboard, and complete commerce management — all inside a secure, scalable ecosystem. Built by <strong>Reva Web Solution</strong>.</p>
-    <div class="reveal-up delay-300">
-      <a href="#contact" class="btn btn-primary">Start Your Store <span class="arrow">&rsaquo;</span></a>
-    </div>
-    <div class="hero-badges reveal-up delay-400">
-      <span class="badge-item"><span class="icon">🏢</span> Multi‑Tenant</span>
-      <span class="badge-item"><span class="icon">🔒</span> Store Isolation</span>
-      <span class="badge-item"><span class="icon">📈</span> Scalable</span>
-      <span class="badge-item"><span class="icon">🛡️</span> Secure</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ OVERVIEW SECTION ============ -->
-<section class="overview-section" id="overview">
-  <div class="container">
-    <div class="overview-grid">
-      <div class="overview-image reveal-up">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="Modern digital commerce dashboard">
-      </div>
-      <div class="overview-content">
-        <h2 class="reveal-up">Your Complete Commerce Ecosystem</h2>
-        <p class="reveal-up delay-100"><strong>MultiTenant</strong> is a next‑generation commerce platform that gives every business its own complete digital storefront — with products, customers, orders, and a powerful dashboard — all in one secure ecosystem.</p>
-        <p class="reveal-up delay-200">No more juggling multiple tools. No more worrying about data security or scalability. You get everything you need to sell online, manage operations, and grow your revenue.</p>
-        <ul class="reveal-up delay-300">
-          <li><span class="check">✓</span> Your own branded online store</li>
-          <li><span class="check">✓</span> Independent customer &amp; order management</li>
-          <li><span class="check">✓</span> Real‑time analytics and insights</li>
-          <li><span class="check">✓</span> Secure, isolated data environment</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="overview-features">
-      <div class="overview-feature reveal-up delay-100">
-        <div class="icon">🚀</div>
-        <h4>Launch in Minutes</h4>
-        <p>No technical skills needed. Get your store live instantly with our intuitive setup.</p>
-      </div>
-      <div class="overview-feature reveal-up delay-200">
-        <div class="icon">💎</div>
-        <h4>Premium Experience</h4>
-        <p>Stunning themes, smooth checkout, and a professional brand presence — out of the box.</p>
-      </div>
-      <div class="overview-feature reveal-up delay-300">
-        <div class="icon">📊</div>
-        <h4>Data‑Driven Growth</h4>
-        <p>Know your best‑sellers, track customer behavior, and make smarter business decisions.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PLATFORM SOLUTIONS ============ -->
-<section class="solutions" id="solutions">
-  <div class="container">
-    <h2 class="section-title solutions-title-desktop reveal-up">Your complete commerce infrastructure</h2>
-    <p class="solutions-sub-desktop reveal-up delay-100">Every business gets their own dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
-    <div class="solutions-title-mobile reveal-up">
-      <h2 class="section-title">Your complete commerce infrastructure</h2>
-      <p class="section-sub"><strong>Everything you need to sell online:</strong> dedicated website, storefront, products, customers, orders, and dashboard — all in one powerful platform.</p>
-    </div>
-
-    <div class="cards-grid">
-
-      <article class="card reveal-up delay-100">
-        <div class="card-head">
-          <h3>Every business gets a secure, independent digital environment</h3>
-        </div>
-        <div class="card-visual visual-tenant">
-          <div class="tenant-icon">🏢</div>
-          <div class="tenant-text">
-            Store #1
-            <span>Isolated · Secure</span>
-          </div>
-          <div class="tenant-icon" style="background:#5a45e8; color:#fff;">#2</div>
-        </div>
-        <div class="card-body">
-          <h4>Multi‑Tenant Architecture</h4>
-          <p>Each business operates in a completely isolated environment with their own data, customers, and storefront — secure, independent, and always private.</p>
-        </div>
-      </article>
-
-      <article class="card reveal-up delay-200">
-        <div class="card-head">
-          <h3>Complete store management — products, orders, customers</h3>
-        </div>
-        <div class="card-visual visual-store">
-          <div class="mini-store-card">
-            <div class="mini-store-row">
-              <span class="mini-store-dot"></span>
-              <div>
-                <div class="mini-store-title">Your Store</div>
-                <div class="mini-store-sub">Dashboard · Active</div>
-              </div>
+    <!-- HEADER -->
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                IT3501 <span class="badge">Part 3: Node.js & Events</span>
             </div>
-            <div class="mini-store-bar"></div>
-          </div>
-          <div class="mini-store-grid">
-            <span>📦 Products</span>
-            <span>🛒 Orders</span>
-            <span>👤 Customers</span>
-          </div>
+            <nav style="gap: 15px; display: flex; flex-wrap: wrap;">
+                <a href="#learning-overview">Overview</a>
+                <a href="#theory">Theory</a>
+                <a href="#real-life-example">Tamil Example</a>
+                <a href="#exam-preparation">Exam Prep</a>
+                <a href="#quiz">Quiz</a>
+            </nav>
         </div>
-        <div class="card-body">
-          <h4>Store Management</h4>
-          <p>Manage products, track orders, and engage customers — all from your dedicated dashboard. Full control with variants, categories, and SEO built in.</p>
-        </div>
-      </article>
+    </header>
 
-      <article class="card reveal-up delay-300">
-        <div class="card-head">
-          <h3>AI‑powered commerce — coming soon</h3>
-          <span class="expand-icon">✦</span>
-        </div>
-        <div class="card-visual visual-ai">
-          <div class="ai-ring"></div>
-          <div class="ai-chat ai-chat-1">🤖 Find products for my customers</div>
-          <div class="ai-chat ai-chat-2">✨ AI recommendations loading...</div>
-          <div class="ai-chat ai-chat-3">🚀 Future ready</div>
-        </div>
-        <div class="card-body">
-          <h4>AI Future Roadmap</h4>
-          <p>Coming soon: AI business assistants, smart recommendations, intelligent analytics, and automated commerce solutions to supercharge your store.</p>
-        </div>
-      </article>
-
-      <article class="card reveal-up delay-100">
-        <div class="card-head">
-          <h3>Enterprise‑grade dashboard with real‑time analytics</h3>
-        </div>
-        <div class="card-visual visual-dashboard">
-          <div class="dash-card dash-card-back">
-            <div class="dash-back-lines">
-              <span></span><span></span><span></span><span></span>
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>Node.js & Event-Driven Architecture</h1>
+                    <p>Master the event-driven programming model in Node.js <span class="cite" title="Source 1">[cite: 1]</span>. Learn how Events, EventEmitters, Listeners, and the non-blocking Event Loop power scalable, real-time backend applications <span class="cite" title="Source 1, 5">[cite: 1, 5]</span>.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="#level-selector" class="btn">Start Learning</a>
+                        <a href="#programming-connection" class="btn btn-outline">View Node.js Code</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="event-loop-container">
+                        <div class="arch-box" style="top: 10px; left: 10px;">Incoming Event<br>(HTTP Request)</div>
+                        <div class="loop-circle"></div>
+                        <div class="loop-text">Event Loop</div>
+                        <div class="arch-box" style="bottom: 10px; right: 10px; background: var(--primary-color); color: white;">Execute Listener<br>(Callback)</div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="dash-card dash-card-front">
-            <div class="dash-avatar"></div>
-            <div class="dash-name">Revenue Overview</div>
-            <div class="dash-row"><span>Today's Sales</span><span>₹12,450</span></div>
-            <div class="dash-row"><span>Orders</span><span>48</span></div>
-            <div class="dash-row"><span>Customers</span><span>127</span></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Enterprise Dashboard</h4>
-          <p>Real‑time analytics, revenue tracking, and business intelligence. Know your store performance at a glance and make data‑driven decisions.</p>
-        </div>
-      </article>
+        </section>
 
-      <article class="card reveal-up delay-200">
-        <div class="card-head">
-          <h3>Everything you need to sell — products, carts, checkout</h3>
-        </div>
-        <div class="card-visual visual-suite">
-          <p class="suite-copy">Full commerce toolkit with everything built in</p>
-          <div class="suite-items">
-            <div class="suite-item">
-              <div class="suite-icon">🛍️</div>
-              <div class="suite-label">Products<br><span>with variants</span></div>
+        <!-- WHAT YOU WILL LEARN -->
+        <section id="learning-overview" class="container">
+            <h2>What You Will Learn (Part 3)</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🔄 Event-Driven Model</h3>
+                    <p>How Node.js handles thousands of requests on a single thread without blocking <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>📡 Events & Listeners</h3>
+                    <p>Understanding the <code>EventEmitter</code> class, custom events, and callback functions <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>📦 NPM & Packages</h3>
+                    <p>Managing external packages using Node Package Manager to extend functionality <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>📂 I/O & HTTP Services</h3>
+                    <p>Handling File I/O operations and creating built-in HTTP servers in Node.js <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                </div>
             </div>
-            <div class="suite-item">
-              <div class="suite-icon green">🛒</div>
-              <div class="suite-label">Cart &amp; Checkout<br><span>Razorpay + COD</span></div>
+        </section>
+
+        <!-- LEVEL SELECTOR -->
+        <section id="level-selector" class="container">
+            <h2>Choose Your Learning Level</h2>
+            <p>Select a level below to adapt the content and language to your understanding.</p>
+            <div class="card-grid">
+                <div class="card" style="cursor:pointer;" onclick="setLevel('beginner')">
+                    <h3>🌱 Beginner</h3>
+                    <p>Simple English, visual analogies like a fast-food waiter. Easy to understand.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Beginner</button>
+                </div>
+                <div class="card" style="cursor:pointer; border-color: var(--primary-color);" onclick="setLevel('intermediate')">
+                    <h3>🎓 Intermediate</h3>
+                    <p>Academic structured learning. Directly aligns with the IT3501 university syllabus.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Intermediate</button>
+                </div>
+                <div class="card" style="cursor:pointer;" onclick="setLevel('advanced')">
+                    <h3>🚀 Advanced</h3>
+                    <p>Technical details for final-year students preparing for backend placements.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Advanced</button>
+                </div>
+                <div class="card" style="cursor:pointer;" onclick="setLevel('professional')">
+                    <h3>💼 Professional</h3>
+                    <p>Industry-level reference covering the thread pool, libuv, and scaling techniques.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Professional</button>
+                </div>
             </div>
-            <div class="suite-item">
-              <div class="suite-icon orange">📦</div>
-              <div class="suite-label">Order Flow<br><span>Full tracking</span></div>
+        </section>
+
+        <!-- DYNAMIC THEORY SECTION -->
+        <section id="theory" class="container">
+            
+            <!-- Beginner Content -->
+            <article id="content-beginner" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 🌱 Beginner</span>
+                    <span>Step 1: Theory</span>
+                </div>
+                <h2>The Waiter Analogy (Node.js)</h2>
+                <p>Imagine a very busy restaurant. In old systems (like Java or PHP), every time a customer arrived, the restaurant hired a new waiter (a new thread). If there were 100 customers, they needed 100 waiters!</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3 style="font-size: 1.5rem;">The Super Waiter (Single Thread)</h3>
+                        <p>Node.js is different. It uses only <strong>ONE Super Waiter</strong> for all customers <span class="cite" title="Source 1">[cite: 1]</span>. How is this possible?</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-size: 1.5rem;">Non-Blocking (No Waiting)</h3>
+                        <p>When you order food, the Super Waiter doesn't stand in the kitchen waiting for the chef to cook <span class="cite" title="Source 1">[cite: 1]</span>. He gives the order to the kitchen and immediately goes to the next table to take another order!</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-size: 1.5rem;">Events & Callbacks</h3>
+                        <p>When the food is ready, the kitchen rings a bell (an <strong>Event</strong>). The waiter hears the bell, picks up the food, and delivers it to you (executing the <strong>Callback / Listener</strong>) <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    </div>
+                </div>
+                
+                <div class="exam-tip">
+                    <strong>Simple terms:</strong> An <strong>Event</strong> is a signal that something happened <span class="cite" title="Source 1">[cite: 1]</span>. A <strong>Listener</strong> is the function that reacts to that event <span class="cite" title="Source 1">[cite: 1]</span>.
+                </div>
+            </article>
+
+            <!-- Intermediate Content (Default active) -->
+            <article id="content-intermediate" class="level-content active">
+                <div class="status-bar">
+                    <span>Current Level: 🎓 Intermediate</span>
+                    <span>Theory & Concepts</span>
+                </div>
+                <h2>Event-Driven Programming in Node.js</h2>
+                <p>Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>. Instead of creating a new thread to handle each operation, Node.js registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                
+                <h3>How It Works (The Flow):</h3>
+                <ol>
+                    <li>An asynchronous operation (e.g., reading a file) is initiated <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li>Node.js delegates the operation to the system and continues executing other code without waiting <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li>Once the operation completes, an <strong>event</strong> is emitted <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li>A central <strong>event loop</strong> continuously monitors for events, picks up the event, and invokes the registered <strong>callback/listener</strong> function <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                </ol>
+
+                <h3>Key Components:</h3>
+                <ul>
+                    <li><strong>Events:</strong> A signal indicating that something specific has happened (e.g., a 'data' event or 'connection' event) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>EventEmitter:</strong> A core class from the built-in 'events' module that implements the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. It provides methods like <code>emit()</code> to trigger events and <code>on()</code> to listen for them <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Listeners:</strong> The callback function registered against a specific event. When the event is emitted, the event loop invokes all listeners registered for it <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                </ul>
+            </article>
+
+            <!-- Advanced Content -->
+            <article id="content-advanced" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 🚀 Advanced</span>
+                    <span>Architecture & Placements</span>
+                </div>
+                <h2>The Event Loop & Libuv Architecture</h2>
+                <p>To succeed in technical interviews, you must understand that while Node.js's main execution thread is single-threaded, the I/O operations are actually multi-threaded behind the scenes, handled by a C++ library called <strong>libuv</strong> <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <th>Concept</th>
+                        <th>Technical Detail</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Event Loop</strong></td>
+                        <td>The infinite loop in the main thread that checks the Callback Queue. If the call stack is empty, it pushes the first callback from the queue to the call stack to be executed <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Libuv Thread Pool</strong></td>
+                        <td>When Node.js encounters an async I/O task (like File System read/write), it delegates it to the libuv thread pool (default 4 threads) so the main thread doesn't block <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EventEmitter API</strong></td>
+                        <td>Methods include <code>emit(eventName, [...args])</code> to trigger, <code>on(eventName, listener)</code> to listen continuously, and <code>once(eventName, listener)</code> to listen for only the first occurrence <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                </table>
+
+                <h3>Why is this suitable for Real-Time Apps?</h3>
+                <p>Because threads are expensive in terms of memory. By using a single thread and callbacks, Node.js can keep tens of thousands of concurrent connections open simultaneously, making it ideal for chat applications and streaming services <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+            </article>
+
+            <!-- Professional Content -->
+            <article id="content-professional" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 💼 Professional</span>
+                    <span>Architecture & Engineering Design</span>
+                </div>
+                <h2>Production Node.js: Event Architecture Pitfalls</h2>
+                <p>While the event-driven model is highly performant, it introduces specific architectural challenges in production environments.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3><span class="badge">Additional Industry Context</span> Memory Leaks in EventEmitters</h3>
+                        <p>Registering too many listeners on a single EventEmitter without removing them (using <code>removeListener()</code> or <code>off()</code> <span class="cite" title="Source 1">[cite: 1]</span>) causes memory leaks. Node.js warns developers when more than 10 listeners are attached to a single event by default.</p>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge">Additional Industry Context</span> CPU Intensive Tasks Block the Loop</h3>
+                        <p>Because the Event Loop runs on a single thread, executing a heavy mathematical computation directly in a callback will freeze the entire server. Solution: Use Node's <code>worker_threads</code> module to offload CPU-bound tasks, keeping the main event loop free for I/O routing.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Node Package Manager (NPM):</strong> In enterprise environments, managing dependencies via `package.json` requires strict version pinning to avoid supply chain attacks and ensure reproducible builds across CI/CD pipelines <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+            </article>
+
+        </section>
+
+        <!-- REAL LIFE TAMIL EXAMPLE -->
+        <section id="real-life-example" style="background: var(--secondary-color);">
+            <div class="container">
+                <h2>Real-Life Example: WhatsApp Messaging</h2>
+                <p><em>(Explained in simple Tamil for clear understanding)</em></p>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <p>ஒருவர் WhatsApp-ல் message அனுப்புகிறார் என்று வைத்துக்கொள்வோம்.</p>
+                    
+                    <ul style="margin-top: 15px; list-style: none; margin-left: 0;">
+                        <li>🚀 <strong>Initiation:</strong> User message-ஐ type செய்து send செய்கிறார் (Async operation initiated) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>🏃‍♂️ <strong>Non-Blocking:</strong> Server அந்த message-ஐ receive செய்துவிட்டு, அது deliver ஆகும் வரை wait பண்ணாது. Server அடுத்த user-ன் message-ஐ வாங்க போய்விடும் (continues executing other code without waiting) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>🔔 <strong>Event Emitted:</strong> Message வெற்றிகரமாக நண்பருக்கு சென்று சேர்ந்ததும், "Delivered" என்ற ஒரு சிக்னல் (Event) உருவாகும் <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>✅ <strong>Listener / Callback:</strong> Event Loop அந்த சிக்னலை பார்த்துவிட்டு, உடனே உங்களுக்கு "Double Tick" (✔️✔️) காட்டும் (Listener invoked) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    </ul>
+                    <p style="margin-top: 15px;">இதனால்தான் Node.js-ஆல் ஒரே நேரத்தில் லட்சக்கணக்கான messages-ஐ எவ்வித தாமதமும் இல்லாமல் (scalable, non-blocking I/O) handle செய்ய முடிகிறது <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <h4>Complete Commerce Suite</h4>
-          <p>Products with variants, shopping cart, seamless checkout, and full order management — everything your store needs to sell with confidence.</p>
-        </div>
-      </article>
+        </section>
 
-      <article class="card reveal-up delay-300">
-        <div class="card-head">
-          <h3>Grow from one store to hundreds — all managed centrally</h3>
-          <span class="expand-icon">✦</span>
-        </div>
-        <div class="card-visual visual-ecosystem">
-          <div class="eco-tab-bar"><span></span><span></span><span></span></div>
-          <div class="eco-panels">
-            <div class="eco-panel-left">
-              <div class="eco-brand">Owner Panel</div>
-              <div class="eco-avatar"></div>
-              <div class="eco-title">All Stores Overview</div>
-              <div class="eco-line"></div>
-              <div class="eco-line short"></div>
-              <div class="eco-line"></div>
+        <!-- PROGRAMMING CONNECTION -->
+        <section id="programming-connection" class="container">
+            <h2>From Theory to Code (EventEmitter)</h2>
+            <p>Here is exactly how you create and listen to events in Node.js <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+            
+            <div style="background: #1e1e1e; padding: 20px; border-radius: var(--border-radius); color: #d4d4d4; font-family: var(--font-code);">
+                <span style="color: #6a9955;">// 1. Import the built-in 'events' module</span><br>
+                <span style="color: #569cd6;">const</span> EventEmitter = <span style="color: #dcdcaa;">require</span>(<span style="color: #ce9178;">'events'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                <br>
+                <span style="color: #6a9955;">// 2. Create an instance of EventEmitter</span><br>
+                <span style="color: #569cd6;">const</span> myEmitter = <span style="color: #569cd6;">new</span> <span style="color: #4ec9b0;">EventEmitter</span>(); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                <br>
+                <span style="color: #6a9955;">// 3. Register a listener for the 'greet' event using .on()</span><br>
+                myEmitter.<span style="color: #dcdcaa;">on</span>(<span style="color: #ce9178;">'greet'</span>, <span style="color: #569cd6;">function</span>(name) { <span class="cite" title="Source 1">[cite: 1]</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4ec9b0;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Hello, '</span> + name + <span style="color: #ce9178;">'! Welcome.'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                });<br>
+                <br>
+                <span style="color: #6a9955;">// 4. Emit (trigger) the 'greet' event, passing data to the listener</span><br>
+                myEmitter.<span style="color: #dcdcaa;">emit</span>(<span style="color: #ce9178;">'greet'</span>, <span style="color: #ce9178;">'Student'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                <br>
+                <span style="color: #6a9955;">/* Output:<br>
+                Hello, Student! Welcome.<br>
+                */</span>
             </div>
-            <div class="eco-panel-right">
-              <div class="eco-right-title">Platform Capabilities</div>
-              <ul class="eco-list">
-                <li><span class="eco-dot eco-dot-blue"></span>Multi‑Store Management</li>
-                <li><span class="eco-dot eco-dot-yellow"></span>Subscription Plans</li>
-                <li><span class="eco-dot eco-dot-orange"></span>Theme Marketplace</li>
-                <li><span class="eco-dot eco-dot-pink"></span>Analytics</li>
-                <li><span class="eco-dot eco-dot-purple"></span>Broadcast Messages</li>
-                <li><span class="eco-dot eco-dot-green"></span>Revenue Dashboard</li>
-              </ul>
+            
+            <div class="exam-tip" style="margin-top: 20px;">
+                <strong>Extra Methods:</strong> You can use <code>myEmitter.once('eventName', listener)</code> if you want the event to trigger only the first time it happens, and then automatically be removed <span class="cite" title="Source 1">[cite: 1]</span>.
             </div>
-          </div>
+        </section>
+
+        <!-- COMMON MISTAKES -->
+        <section id="mistakes-tricks" class="container">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>❌ Common Student Confusions</h3>
+                    <ul>
+                        <li><strong>Wrong:</strong> Node.js creates a new thread for every user request.<br>
+                        <strong>Correct:</strong> Node.js is <em>single-threaded</em> and uses an Event Loop to handle many requests concurrently without blocking <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li><strong>Wrong:</strong> Events and Listeners are the same thing.<br>
+                        <strong>Correct:</strong> An <em>Event</em> is the signal (e.g., 'data received'). A <em>Listener</em> is the callback function that executes when the event happens <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAM PREPARATION -->
+        <section id="exam-preparation" class="container" style="background: var(--secondary-color); padding: 2rem; border-radius: var(--border-radius);">
+            <h2>📝 University Exam Preparation</h2>
+            <p>Click the questions to reveal the answers formatted for exams.</p>
+
+            <h3>A. 2-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">1. What is an Event in Node.js? <span>▼</span></button>
+                <div class="accordion-content">
+                    <p>An event is a signal indicating that something specific has happened in the application <span class="cite" title="Source 1">[cite: 1]</span>. For example, a 'data' event when a stream receives data, or a 'connection' event when a new client connects <span class="cite" title="Source 1">[cite: 1]</span>. They form the basis of asynchronous communication <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">2. List the key methods of the EventEmitter class. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p>The key methods are <span class="cite" title="Source 1">[cite: 1]</span>:<br>
+                    1. <code>emit(eventName, [...args])</code>: Triggers the event.<br>
+                    2. <code>on(eventName, listener)</code>: Registers a listener.<br>
+                    3. <code>once(eventName, listener)</code>: Registers a one-time listener.<br>
+                    4. <code>removeListener(eventName, listener)</code> or <code>off()</code>: Removes a listener.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">B. 5-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Discuss Events, EventEmitter, and Listeners in Node.js. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p><strong>Events:</strong> An event is a signal indicating that something has happened (e.g., 'data' or 'connection') <span class="cite" title="Source 1">[cite: 1]</span>. Events form the basis of communication in an asynchronous way <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>EventEmitter:</strong> It is a core class provided by Node.js from the built-in 'events' module implementing the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. It provides methods like <code>emit()</code> to fire events and <code>on()</code> to register listeners <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>Listeners:</strong> A listener is the callback function registered against a specific event using methods like <code>.on()</code> <span class="cite" title="Source 1">[cite: 1]</span>. Whenever the event is emitted, the event loop invokes all registered listeners in the order they were added <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">C. 15-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Explain the event-driven programming model in Node.js. Discuss Events, EventEmitter, and Listeners with an example. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p><strong>1. Event-Driven Programming Model:</strong><br>
+                    Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>. Instead of creating a new thread to handle each operation, Node.js registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>. A central event loop monitors for events (incoming HTTP request, file read, timer) and invokes the corresponding callback once that event occurs <span class="cite" title="Source 1">[cite: 1]</span>. This allows Node.js to efficiently handle concurrent I/O operations <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    
+                    <p><strong>2. How it works (Flow):</strong><br>
+                    An asynchronous operation is initiated → Node.js delegates the operation (to libuv thread pool) and continues executing other code without waiting → once the operation completes, an event is emitted → the event loop picks up the event and invokes the registered listener function → the callback executes, handling the result <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+
+                    <p><strong>3. Events, EventEmitter, and Listeners:</strong><br>
+                    - <strong>Events:</strong> Signals that something specific has happened <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - <strong>EventEmitter:</strong> A core class from the 'events' module that implements the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. Key methods are <code>emit()</code>, <code>on()</code>, <code>once()</code>, and <code>removeListener()</code> <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - <strong>Listeners:</strong> Callback functions registered to events. The event loop invokes them when the event fires <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+
+                    <p><strong>4. Example Program:</strong><br>
+                    <code>
+                    const EventEmitter = require('events');<br>
+                    const myEmitter = new EventEmitter();<br>
+                    myEmitter.on('greet', function(name) {<br>
+                    &nbsp;&nbsp;console.log('Hello, ' + name + '! Welcome.');<br>
+                    });<br>
+                    myEmitter.emit('greet', 'Student');<br>
+                    </code> <span class="cite" title="Source 1">[cite: 1]</span></p>
+
+                    <p><strong>5. Significance:</strong><br>
+                    This model allows Node.js applications to react to asynchronous occurrences efficiently, enabling scalable, non-blocking I/O <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="container">
+            <h2>Self-Test Quiz</h2>
+            <p>Test your knowledge across different difficulty levels.</p>
+
+            <!-- Q1 -->
+            <div class="quiz-question">
+                <p><strong>1. (Beginner) What happens when an event is "emitted" in Node.js?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">A. The server shuts down.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q1-exp')">B. A signal is sent, and any registered callback (listener) for that event is executed.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">C. A new database is created.</button>
+                </div>
+                <div id="q1-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Emitting an event triggers the listener callback functions associated with it <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question">
+                <p><strong>2. (Intermediate) Which method is used to register a listener that runs only the VERY FIRST time an event occurs?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">A. .on()</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">B. .addListener()</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q2-exp')">C. .once()</button>
+                </div>
+                <div id="q2-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> <code>once(eventName, listener)</code> registers a listener that is invoked only the first time the event is emitted, then automatically removed <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question">
+                <p><strong>3. (Advanced) Why is Node.js well-suited for I/O-heavy applications like streaming services?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">A. Because it creates a new thread for every connection.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q3-exp')">B. Because it uses a single-threaded, non-blocking event loop to handle many concurrent operations without waiting.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">C. Because it natively uses multi-threaded relational databases.</button>
+                </div>
+                <div id="q3-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Its non-blocking, event-driven architecture handles many concurrent I/O operations efficiently on a single thread <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+        </section>
+
+        <!-- 1 MINUTE REVISION -->
+        <section id="revision" class="container" style="text-align: center;">
+            <h2>⏱️ 1-Minute Final Revision</h2>
+            <div class="arch-box" style="margin: 0 auto 20px auto; width: auto; display: inline-block; padding: 20px; text-align: left; position: relative; z-index: 1;">
+                <h3 style="margin-bottom: 10px; text-align: center;">Event-Driven Basics</h3>
+                <ul style="list-style-type: square; margin-bottom: 0;">
+                    <li><strong>Architecture:</strong> Single-threaded, Non-blocking I/O <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Event:</strong> A signal that something happened <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Listener:</strong> The callback function that runs when the event happens <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>EventEmitter:</strong> The class used to <code>emit()</code> and listen <code>on()</code> to events <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>The Flow:</strong> Initiate Async Task → Don't Wait → Task Completes → Event Emitted → Event Loop Triggers Listener <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container" style="text-align: center; padding: 2rem 0; color: var(--text-light);">
+            <p><strong>IT3501 – Full Stack Web Development</strong></p>
+            <p>Part 3: Node.js & Event-Driven Programming | Exam Preparation Learning Portal</p>
         </div>
-        <div class="card-body">
-          <h4>Scalable Ecosystem</h4>
-          <p>Start with one store and scale to hundreds. Manage everything from a central owner dashboard with full control and complete visibility.</p>
-        </div>
-      </article>
+    </footer>
 
-    </div>
-  </div>
-</section>
+    <!-- JAVASCRIPT -->
+    <script>
+        // Level Selection Logic
+        function setLevel(level) {
+            // Update Body Theme Class
+            document.body.className = '';
+            document.body.classList.add('theme-' + level);
 
-<!-- ============ LAUNCH OFFER BANNER ============ -->
-<section class="container" id="pricing">
-  <a href="#contact" class="offer-banner reveal-up" style="cursor:pointer;">
-    <div class="offer-text">
-      <div class="offer-badge">🔥 LIMITED TIME</div>
-      <p class="offer-eyebrow"><strong>Launch Special:</strong> 70% off for early adopters</p>
-      <h2>Start your store today from just ₹300/month</h2>
-      <p class="offer-desc">₹4,000 value — now at 70% off. Initial setup fee ₹500 only.</p>
-      <div class="offer-price">
-        <span class="current">₹300</span>
-        <span class="original">₹4,000</span>
-        <span class="label"><strong>/month</strong> • 20‑day free trial</span>
-      </div>
-      <div class="photo-plans">
-        <div class="photo-plan"><span class="price">₹200</span><br><span class="label">20 photos</span></div>
-        <div class="photo-plan"><span class="price">₹400</span><br><span class="label">40 photos</span></div>
-        <div class="photo-plan"><span class="price">₹600</span><br><span class="label">Unlimited photos</span></div>
-      </div>
-      <div style="margin-top:12px;">
-        <span class="btn btn-white">Claim This Offer <span class="arrow">&rsaquo;</span></span>
-      </div>
-    </div>
-    <div class="offer-globe" aria-hidden="true"></div>
-  </a>
-</section>
+            // Hide all level content
+            const contents = document.querySelectorAll('.level-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-<!-- ============ STATS ============ -->
-<section class="container stats-section">
-  <h2 class="section-title reveal-up">Trusted by businesses<br>building their digital future</h2>
-  <div class="stats-grid">
-    <div class="stat reveal-up delay-100">
-      <div class="stat-number">100+</div>
-      <div class="stat-label">Active stores powered by the platform</div>
-    </div>
-    <div class="stat reveal-up delay-200">
-      <div class="stat-number">50k+</div>
-      <div class="stat-label">Products managed across stores</div>
-    </div>
-    <div class="stat reveal-up delay-300">
-      <div class="stat-number">99.9%</div>
-      <div class="stat-label">Platform uptime reliability</div>
-    </div>
-    <div class="stat reveal-up delay-400">
-      <div class="stat-number">10+</div>
-      <div class="stat-label">Beautiful store themes to choose from</div>
-    </div>
-  </div>
-</section>
+            // Show selected level content
+            const selectedContent = document.getElementById('content-' + level);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
 
-<!-- ============ FEATURED STORIES — VIDEO-STYLE VERTICAL FEED ============ -->
-<section class="featured-stories" id="stories">
-  <div class="container">
-    <div class="stories-header reveal-up">
-      <span class="stories-eyebrow">✦ Featured Products</span>
-      <h2 class="section-title">Premium Commerce <br>Solutions</h2>
-      <p class="stories-sub">Scroll to explore our complete suite of e-commerce products and themes.</p>
-    </div>
-
-    <!-- This container is dynamically injected with the story-cards via JavaScript -->
-    <div class="stories-feed" id="storiesFeed">
-      <!-- Story Cards populated here -->
-    </div>
-  </div>
-</section>
-
-<!-- ============ PORTFOLIO / COMPANY ============ -->
-<section class="container testimonials-section" id="portfolio">
-  <h2 class="section-title reveal-up">Built by <span style="color:#5a45e8;">Reva Web Solution</span></h2>
-  <p class="reveal-up delay-100" style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">We design and build scalable SaaS platforms, custom software, and AI‑powered solutions that help businesses grow — from idea to launch and beyond.</p>
-  <div class="testimonials-grid">
-
-    <article class="testimonial reveal-up delay-100">
-      <div class="testimonial-brand">
-        <span class="testimonial-badge badge-purple">D</span>
-        <p>DROPi — Multi‑Tenant SaaS E‑Commerce Platform</p>
-      </div>
-      <img class="testimonial-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="DROPi platform dashboard">
-      <h3>Launch and manage online stores instantly</h3>
-      <p class="testimonial-copy">DROPi enables businesses to create, manage, and scale online stores with a powerful admin dashboard, product &amp; inventory control, order management, customer analytics, and built‑in payments — all in one place.</p>
-      <a href="https://riva-liart.vercel.app/" target="_blank" class="btn btn-outline">Learn More <span class="arrow">&rsaquo;</span></a>
-    </article>
-
-    <article class="testimonial reveal-up delay-200">
-      <div class="testimonial-brand">
-        <span class="testimonial-badge badge-gold">K</span>
-        <p>Kottayam Blooms — Premium Florist Website</p>
-      </div>
-      <img class="testimonial-img" src="https://i.pinimg.com/736x/ee/fe/8a/eefe8a5dedd2c00d984750ad82e3324e.jpg" alt="Kottayam Blooms flowers">
-      <h3>Responsive website with 90+ Lighthouse scores</h3>
-      <p class="testimonial-copy">High‑performance florist website with WhatsApp ordering, 40% load time reduction, and conversion‑focused design. Built for speed and sales.</p>
-      <a href="#" class="btn btn-outline">View Project <span class="arrow">&rsaquo;</span></a>
-    </article>
-
-    <article class="testimonial reveal-up delay-300">
-      <div class="testimonial-brand">
-        <span class="testimonial-badge badge-pink">A</span>
-        <p>AI Content Studio — AI‑Powered Content Platform</p>
-      </div>
-      <img class="testimonial-img" src="https://i.pinimg.com/1200x/df/62/de/df62de4b52fcdde3bb5a8bc4c3b674df.jpg" alt="AI Content Studio">
-      <h3>Automate content creation with AI workflows</h3>
-      <p class="testimonial-copy">Generate articles, social posts, and product descriptions using AI, tailored to your brand voice. Intelligent content generation at scale.</p>
-      <a href="#" class="btn btn-outline">Learn More <span class="arrow">&rsaquo;</span></a>
-    </article>
-
-  </div>
-</section>
-
-<!-- ============ SERVICES SECTION ============ -->
-<section class="container" style="padding-bottom:80px;">
-  <h2 class="section-title reveal-up">Services That Drive Digital Growth</h2>
-  <p class="reveal-up delay-100" style="font-size:16px; color:#6b6b7a; margin-bottom:32px;">From SaaS platforms to AI automation — we deliver end‑to‑end solutions that align with your business goals.</p>
-  <div class="cards-grid">
-    <div class="card reveal-up delay-100"><div class="card-body"><h4>🚀 SaaS Development</h4><p>Build scalable, multi‑tenant SaaS platforms with subscription models, dashboards, and automation at the core.</p></div></div>
-    <div class="card reveal-up delay-200"><div class="card-body"><h4>⚛️ Full‑Stack Development</h4><p>End‑to‑end web applications using modern stacks (React, Node.js, MongoDB) with clean, maintainable code.</p></div></div>
-    <div class="card reveal-up delay-300"><div class="card-body"><h4>🛒 E‑Commerce Platforms</h4><p>Custom ecommerce solutions with cart, payments, inventory, order management, and multi‑vendor capabilities.</p></div></div>
-    <div class="card reveal-up delay-100"><div class="card-body"><h4>🤖 AI &amp; Automation</h4><p>Intelligent solutions with AI workflows, content generation, and business process automation.</p></div></div>
-    <div class="card reveal-up delay-200"><div class="card-body"><h4>🔗 API &amp; Integration</h4><p>Robust REST APIs, third‑party integrations, and seamless data flow across your business systems.</p></div></div>
-    <div class="card reveal-up delay-300"><div class="card-body"><h4>🎨 UI/UX &amp; Consulting</h4><p>User‑centric design, technology strategy, and architecture guidance to accelerate your product roadmap.</p></div></div>
-  </div>
-</section>
-
-<!-- ============ WHATSAPP CONTACT ============ -->
-<section class="container whatsapp-section" id="contact">
-  <div class="whatsapp-card reveal-up">
-    <div class="whatsapp-content">
-      <h2>📱 Ready to launch your store?</h2>
-      <p>Contact us on WhatsApp to discuss pricing, custom requirements, or to claim your 70% launch discount. We'll help you get started in minutes.</p>
-      <a href="https://wa.me/916379705593?text=Hi%2C%20I%27m%20interested%20in%20the%20Multi-Tenant%20SaaS%20platform.%20Please%20share%20more%20details." 
-         class="btn btn-whatsapp" target="_blank">
-        💬 Chat on WhatsApp <span class="arrow">&rsaquo;</span>
-      </a>
-      <p style="margin-top:10px; font-size:13px; color:#999;">📞 +91 6379705593</p>
-    </div>
-    <div class="whatsapp-qr-placeholder">
-      <span class="qr-text">📱 QR Code<br><span style="font-size:11px; color:#ccc;">(coming soon)</span></span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container reveal-up">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h5>Platform</h5>
-        <a href="#" id="footerOverview">Overview</a>
-        <a href="#solutions">Multi‑Tenant</a>
-        <a href="#stories">Stories</a>
-        <a href="#pricing">Pricing</a>
-      </div>
-      <div class="footer-col">
-        <h5>Solutions</h5>
-        <a href="#portfolio">DROPi Platform</a>
-        <a href="#stories">Premium Themes</a>
-        <a href="#portfolio">Custom Development</a>
-        <a href="#contact">API Integration</a>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <a href="https://riva-liart.vercel.app/" target="_blank">Reva Web Solution</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact">Support</a>
-      </div>
-      <div class="footer-col">
-        <h5>Resources</h5>
-        <a href="#">Documentation</a>
-        <a href="#">API Reference</a>
-        <a href="#">Blog</a>
-        <a href="#">Community</a>
-      </div>
-      <div class="footer-col footer-col-company">
-        <h5>Connect</h5>
-        <div class="social-row">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="X">✕</a>
-        </div>
-        <div class="legal-cols">
-          <div class="legal-col">
-            <h5>Legal</h5>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-          </div>
-          <div class="legal-col">
-            <h5>Contact</h5>
-            <a href="https://wa.me/916379705593" target="_blank">WhatsApp</a>
-            <a href="mailto:manikandankumar0506@gmail.com">Email</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 <span class="brand">MultiTenant</span> — Built by <a href="https://riva-liart.vercel.app/" target="_blank" style="color:#5a45e8; font-weight:600;">Reva Web Solution</a></p>
-      <p class="footer-links">Built with ❤️ for the future of commerce</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-// ============================================================
-// DATA — All Stories (Locked to Original Content)
-// ============================================================
-const stories = [
-  {
-    id: 0,
-    title: 'MAARA Luxury Indian Wear',
-    badge: '✨ Premium Theme',
-    description: 'High-end fashion storefront with cart, wishlist, checkout, and order simulation. Premium UI/UX experience built for luxury fashion brands.',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop',
-    features: ['Cart', 'Wishlist', 'Checkout', 'Order Simulation'],
-    price: '₹7,000',
-    priceLabel: 'one-time',
-    previewUrl: 'https://maara-luxury-indian-wear-demo-cart.vercel.app/',
-    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20MAARA%20Luxury%20Indian%20Wear%20theme%20for%20₹7000.%20Please%20share%20payment%20details.'
-  },
-  {
-    id: 1,
-    title: 'Custom Couture Dual UI',
-    badge: '🎨 Design Studio',
-    description: 'Dual UI experience for fashion design studios. Combines clean business workflows with luxury atelier presentation.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop',
-    features: ['Dual UI', 'Clean Builder', 'Luxury Atelier', 'Workflow'],
-    price: '₹5,000',
-    priceLabel: 'one-time',
-    previewUrl: 'https://custom-couture-dual-ui-selector.vercel.app/index8.html',
-    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Custom%20Couture%20Dual%20UI%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
-  },
-  {
-    id: 2,
-    title: 'Premium E-Commerce',
-    badge: '🔥 Production Ready',
-    description: 'Production-ready fashion/lifestyle store with Cloudinary integration, cart, orders, and admin dashboard. Includes 20-day free trial.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
-    features: ['Cloudinary', 'Cart', 'Orders', 'Admin Dashboard', '20-day Trial'],
-    price: '₹5,000',
-    priceLabel: 'one-time',
-    previewUrl: 'https://premium-ecommerce-six.vercel.app/',
-    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20purchasing%20Premium%20E-Commerce%20theme%20for%20₹5000.%20Please%20share%20payment%20details.'
-  },
-  {
-    id: 3,
-    title: 'React JS E-Commerce App',
-    badge: '⚛️ Full Stack',
-    description: 'Complete full-stack e-commerce platform with JWT authentication, product filters, cart, checkout, admin panel, and REST API.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
-    features: ['JWT Auth', 'Product Filters', 'Cart', 'Checkout', 'Admin Panel', 'REST API'],
-    price: '₹25,000',
-    priceLabel: 'whole app',
-    previewUrl: 'https://ecommerce-app-rho-three-69.vercel.app/',
-    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20React%20JS%20E-Commerce%20App.%20Please%20share%20pricing%20details%20for%20the%20whole%20app%20(%E2%82%B925%2C000)%20and%20other%20options.'
-  },
-  {
-    id: 4,
-    title: 'Premium E-Commerce SaaS',
-    badge: '🚀 SaaS Platform',
-    description: 'Production-ready commerce SaaS platform with Cloudinary, cart & orders, admin dashboard, subscription system, and 20-day trial.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop',
-    features: ['Cloudinary', 'Cart & Orders', 'Admin Dashboard', 'Subscription', '20-day Trial'],
-    price: '₹15,000',
-    priceLabel: 'whole app',
-    previewUrl: 'https://premium-ecommerce-six.vercel.app/',
-    whatsappMsg: 'Hello%2C%20I%20am%20interested%20in%20the%20Premium%20E-Commerce%20SaaS%20(%E2%82%B9300%2Fmonth%20or%20%E2%82%B915%2C000%20one-time).%20Please%20share%20more%20details.'
-  }
-];
-
-// ============================================================
-// SCROLL REVEAL (GENERAL PAGE ANIMATION)
-// ============================================================
-function setupScrollReveal() {
-  const revealElements = document.querySelectorAll('.reveal-up');
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); 
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px 0px -10% 0px',
-    threshold: 0
-  });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-}
-
-// ============================================================
-// RENDER VERTICAL FEED (MATCHING THE VIDEO BEHAVIOR)
-// ============================================================
-function renderStoriesFeed() {
-  const feedEl = document.getElementById('storiesFeed');
-  if (!feedEl) return;
-
-  feedEl.innerHTML = stories.map((story) => `
-    <div class="story-card">
-      <span class="preview-badge">${story.badge}</span>
-      <img class="preview-image" src="${story.image}" alt="${story.title}" loading="lazy">
-      <h3 class="preview-title">${story.title}</h3>
-      <p class="preview-desc">${story.description}</p>
-      <div class="preview-features">
-        ${story.features.map(f => `<span>${f}</span>`).join('')}
-      </div>
-      <div class="preview-price">${story.price} <span>${story.priceLabel}</span></div>
-      <div class="preview-actions">
-        <a href="${story.previewUrl}" target="_blank" class="btn btn-outline">
-          Preview <span class="arrow">&rsaquo;</span>
-        </a>
-        <a href="https://wa.me/916379705593?text=${story.whatsappMsg}" target="_blank" class="btn btn-whatsapp">
-          💬 Buy Now <span class="arrow">&rsaquo;</span>
-        </a>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ============================================================
-// INTERSECTION OBSERVER FOR STORY CARDS (VIDEO ANIMATION)
-// ============================================================
-function setupFeedReveal() {
-  const cards = document.querySelectorAll('.story-card');
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px 0px -15% 0px',
-    threshold: 0.15
-  });
-
-  cards.forEach(card => observer.observe(card));
-}
-
-// ============================================================
-// INIT
-// ============================================================
-function init() {
-  // Render new vertical feed & replace old sticky animation
-  renderStoriesFeed();
-  setupFeedReveal();
-  setupScrollReveal();
-
-  // Reduced motion support
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (prefersReducedMotion.matches) {
-    document.querySelectorAll('.reveal-up, .story-card, .story-card > *')
-      .forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.style.animation = 'none';
-      });
-  }
-}
-
-// ============================================================
-// NAVIGATION TOGGLES
-// ============================================================
-document.addEventListener('DOMContentLoaded', function () {
-  var hamburger = document.getElementById('hamburger');
-  var nav = document.querySelector('.main-nav');
-
-  if (hamburger && nav) {
-    hamburger.addEventListener('click', function () {
-      nav.classList.toggle('nav-open');
-      hamburger.classList.toggle('is-active');
-    });
-  }
-
-  var overviewSection = document.getElementById('overview');
-  var homeLink = document.getElementById('homeLink');
-  var navOverview = document.getElementById('navOverview');
-  var footerOverview = document.getElementById('footerOverview');
-  var heroSection = document.getElementById('hero');
-
-  function showOverview(e) {
-    if (e) e.preventDefault();
-    overviewSection.classList.add('active');
-    heroSection.style.display = 'none';
-    setTimeout(function() {
-      overviewSection.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-    if (nav) nav.classList.remove('nav-open');
-  }
-
-  function showHome(e) {
-    if (e) e.preventDefault();
-    overviewSection.classList.remove('active');
-    heroSection.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (nav) nav.classList.remove('nav-open');
-  }
-
-  if (navOverview) navOverview.addEventListener('click', showOverview);
-  if (footerOverview) footerOverview.addEventListener('click', showOverview);
-  if (homeLink) homeLink.addEventListener('click', showHome);
-
-  document.querySelectorAll('.main-nav a:not(#navOverview)').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        overviewSection.classList.remove('active');
-        heroSection.style.display = 'block';
-        if (nav) nav.classList.remove('nav-open');
-      }
-    });
-  });
-
-  document.querySelectorAll('.footer-col a:not(#footerOverview)').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        overviewSection.classList.remove('active');
-        heroSection.style.display = 'block';
-      }
-    });
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href === "#") return;
-      if (href === "#contact" || href === "#solutions" || href === "#pricing" || href === "#stories" || href === "#portfolio") {
-        e.preventDefault();
-        overviewSection.classList.remove('active');
-        heroSection.style.display = 'block';
-        var target = document.querySelector(href);
-        if (target) {
-          setTimeout(function() {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
+            // Smooth scroll to theory section
+            document.getElementById('theory').scrollIntoView({ behavior: 'smooth' });
         }
-        if (nav) nav.classList.remove('nav-open');
-      }
-    });
-  });
 
-  var offerBanner = document.querySelector('.offer-banner');
-  if (offerBanner) {
-    offerBanner.addEventListener('click', function(e) {
-      if (!e.target.closest('.btn')) {
-        e.preventDefault();
-        var contactSection = document.getElementById('contact');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
+        // Accordion Logic (Exam Prep)
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const span = button.querySelector('span');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                span.innerHTML = '▼';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                span.innerHTML = '▲';
+            }
         }
-      }
-    });
-  }
 
-  init();
-});
-</script>
+        // Quiz Logic
+        function checkQuiz(button, isCorrect, expId) {
+            // Get parent container
+            const optionsContainer = button.parentElement;
+            
+            // Disable all buttons in this group
+            const buttons = optionsContainer.querySelectorAll('.quiz-btn');
+            buttons.forEach(btn => btn.disabled = true);
 
+            // Apply classes
+            if (isCorrect) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                // Find and highlight correct answer
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('onclick').includes('true')) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+
+            // Show explanation
+            const explanation = document.getElementById(expId);
+            explanation.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
