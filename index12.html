@@ -1,852 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GlobalPath — Study Abroad Consultants</title>
-<style>
-  :root{
-    --primary:#1857f5;
-    --primary-dark:#0f3fcf;
-    --primary-light:#eaf0ff;
-    --navy:#0c1638;
-    --navy-2:#111d45;
-    --text-dark:#111827;
-    --text-gray:#6b7280;
-    --text-light:#9aa3b5;
-    --bg-light:#f7f8fb;
-    --border:#e7e9f0;
-    --orange:#f59e0b;
-    --white:#ffffff;
-    --radius-s:8px;
-    --radius-m:14px;
-    --radius-l:22px;
-    --shadow-s:0 2px 8px rgba(17,24,39,0.06);
-    --shadow-m:0 8px 24px rgba(17,24,39,0.08);
-    --shadow-l:0 20px 50px rgba(17,24,39,0.12);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
-    color:var(--text-dark);
-    background:var(--white);
-    -webkit-font-smoothing:antialiased;
-  }
-  a{text-decoration:none;color:inherit;}
-  ul{list-style:none;margin:0;padding:0;}
-  img{max-width:100%;display:block;}
-  button{font-family:inherit;cursor:pointer;}
-  input,select,textarea{font-family:inherit;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Full Stack Ecosystem - IT3501 Exam Preparation</title>
+    <style>
+        /* ==================================================
+           GLOBAL & THEME VARIABLES
+           ================================================== */
+        :root {
+            /* Default / Intermediate Theme */
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --border-color: #cbd5e1;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --spacing-unit: 1rem;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s ease;
+            --hero-bg: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+        }
 
-  .container{max-width:1240px;margin:0 auto;padding:0 32px;}
+        /* Level 1: Beginner Theme */
+        body.theme-beginner {
+            --bg-color: #fffbeb;
+            --surface-color: #ffffff;
+            --text-color: #451a03;
+            --text-light: #78350f;
+            --primary-color: #f59e0b;
+            --primary-hover: #d97706;
+            --secondary-color: #fef3c7;
+            --accent-color: #fbbf24;
+            --border-color: #fcd34d;
+            --font-main: 'Comic Sans MS', 'Quicksand', 'Nunito', system-ui, sans-serif;
+            --border-radius: 24px;
+            --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --hero-bg: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
 
-  /* ===== Buttons ===== */
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:13px 26px;border-radius:10px;font-size:14.5px;font-weight:600;
-    border:1px solid transparent; transition:all .2s ease; white-space:nowrap;
-  }
-  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 6px 16px rgba(24,87,245,0.25);}
-  .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 10px 22px rgba(24,87,245,0.32);}
-  .btn-outline{background:#fff;color:var(--primary);border-color:var(--primary);}
-  .btn-outline:hover{background:var(--primary-light);transform:translateY(-2px);}
-  .btn-outline-white{background:transparent;color:#fff;border-color:rgba(255,255,255,0.6);}
-  .btn-outline-white:hover{background:rgba(255,255,255,0.12);}
-  .btn-sm{padding:9px 18px;font-size:13.5px;border-radius:8px;}
-  .btn-block{width:100%;}
+        /* Level 3: Advanced Theme */
+        body.theme-advanced {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --text-light: #94a3b8;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --secondary-color: #334155;
+            --accent-color: #818cf8;
+            --border-color: #475569;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --border-radius: 4px;
+            --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            --hero-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
 
-  /* ===== Header ===== */
-  header.site-header{
-    position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--border);
-  }
-  .nav-wrap{display:flex;align-items:center;justify-content:space-between;height:78px;}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--text-dark);}
-  .logo-icon{
-    width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--primary),#4d7dff);
-    display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0;
-  }
-  .logo-text{display:flex;flex-direction:column;line-height:1.15;}
-  .logo-sub{font-size:10.5px;font-weight:500;color:var(--text-gray);letter-spacing:.2px;}
-  nav.main-nav{display:flex;align-items:center;gap:36px;}
-  nav.main-nav a{font-size:14.5px;font-weight:500;color:#374151;position:relative;padding:6px 0;transition:color .2s;}
-  nav.main-nav a:hover{color:var(--primary);}
-  nav.main-nav a.active{color:var(--primary);font-weight:600;}
-  nav.main-nav a.active::after{
-    content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--primary);border-radius:2px;
-  }
-  .header-actions{display:flex;align-items:center;gap:18px;}
-  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px;}
-  .hamburger span{width:24px;height:2px;background:var(--text-dark);border-radius:2px;}
-  .mobile-nav{display:none;flex-direction:column;gap:2px;padding:10px 32px 20px;border-top:1px solid var(--border);}
-  .mobile-nav a{padding:12px 0;font-size:15px;font-weight:500;color:#374151;border-bottom:1px solid #f1f2f6;}
-  .mobile-nav.open{display:flex;}
+        /* Level 4: Professional Theme */
+        body.theme-professional {
+            --bg-color: #fafafa;
+            --surface-color: #ffffff;
+            --text-color: #171717;
+            --text-light: #525252;
+            --primary-color: #171717;
+            --primary-hover: #404040;
+            --secondary-color: #f5f5f5;
+            --accent-color: #525252;
+            --border-color: #e5e5e5;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --border-radius: 0px;
+            --shadow: none;
+            --hero-bg: #f5f5f5;
+        }
 
-  .breadcrumb{font-size:13px;color:var(--text-gray);padding:22px 0 0;}
-  .breadcrumb span{color:var(--primary);font-weight:600;}
+        /* ==================================================
+           RESET & TYPOGRAPHY
+           ================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { margin-bottom: var(--spacing-unit); line-height: 1.2; }
+        p { margin-bottom: var(--spacing-unit); }
+        a { color: var(--primary-color); text-decoration: none; }
+        ul, ol { margin-left: 1.5rem; margin-bottom: var(--spacing-unit); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ==================================================
+           LAYOUT & COMPONENTS
+           ================================================== */
+        /* Header */
+        header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .badge { background: var(--primary-color); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-family: var(--font-main); }
+        
+        /* Sections */
+        section { padding: 4rem 0; border-bottom: 1px solid var(--border-color); }
+        section:last-child { border-bottom: none; }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-outline:hover { background-color: var(--primary-color); color: #fff; }
+        
+        /* Cards */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* Level Content Toggle */
+        .level-content { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .level-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ===== Hero ===== */
-  .hero{padding:56px 0 40px;}
-  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
-  .eyebrow{color:var(--primary);font-weight:700;font-size:14.5px;margin-bottom:14px;}
-  .hero h1{font-size:46px;line-height:1.15;font-weight:800;margin:0 0 18px;color:var(--text-dark);}
-  .hero p{font-size:16px;color:var(--text-gray);line-height:1.6;margin:0 0 30px;max-width:460px;}
-  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
-  .hero-img-wrap{border-radius:var(--radius-l);overflow:hidden;box-shadow:var(--shadow-l);}
-  .hero-img-wrap img{width:100%;height:400px;object-fit:cover;}
+        /* Status Bar */
+        .status-bar {
+            background-color: var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
 
-  /* ===== Stats ===== */
-  .stats-bar{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
-    background:#fff;border:1px solid var(--border);border-radius:var(--radius-m);
-    box-shadow:var(--shadow-s); padding:28px 20px; margin-top:44px;
-  }
-  .stat-item{display:flex;align-items:center;gap:14px;}
-  .stat-icon{
-    width:46px;height:46px;border-radius:11px;background:var(--primary-light);color:var(--primary);
-    display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
-  }
-  .stat-num{font-size:23px;font-weight:800;color:var(--text-dark);line-height:1.2;}
-  .stat-label{font-size:13px;color:var(--text-gray);}
+        /* Hero Section */
+        .hero { background: var(--hero-bg); display: flex; align-items: center; min-height: 60vh; }
+        .hero-container { display: flex; gap: 2rem; align-items: center; }
+        .hero-content { flex: 1; }
+        .hero-visual { flex: 1; background: var(--surface-color); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        
+        /* Architecture Visual */
+        .arch-map { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-family: var(--font-code); }
+        .arch-box { background: var(--surface-color); border: 2px solid var(--border-color); padding: 15px; border-radius: var(--border-radius); text-align: center; width: 180px; font-weight: bold; box-shadow: var(--shadow); }
+        .arch-arrow { color: var(--primary-color); font-size: 2rem; font-weight: bold; display: flex; align-items: center; }
+        
+        /* Code Blocks */
+        pre, code {
+            font-family: var(--font-code);
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre { padding: 1rem; overflow-x: auto; margin-bottom: 1rem; border-radius: var(--border-radius); }
 
-  /* ===== Sections generic ===== */
-  section{padding:64px 0;}
-  .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px;flex-wrap:wrap;gap:14px;}
-  .section-head h2{font-size:28px;font-weight:800;margin:0;color:var(--text-dark);}
-  .section-head p{color:var(--text-gray);font-size:14.5px;margin:6px 0 0;}
-  .view-all{color:var(--primary);font-weight:600;font-size:14px;}
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; background: var(--surface-color); }
+        th, td { padding: 12px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--secondary-color); font-weight: bold; }
+        
+        /* Accordions (Exam Prep) */
+        .accordion { margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); overflow: hidden; }
+        .accordion-header {
+            width: 100%; padding: 15px; background: var(--surface-color); border: none;
+            text-align: left; font-weight: bold; cursor: pointer; color: var(--text-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .accordion-content { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: var(--surface-color); }
+        .accordion-content p { padding: 15px 0; }
+        
+        /* Quiz */
+        .quiz-question { background: var(--surface-color); padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); margin-bottom: 1.5rem; }
+        .quiz-options { display: grid; gap: 10px; margin-top: 1rem; }
+        .quiz-btn { padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; text-align: left; color: var(--text-color); font-family: var(--font-main); }
+        .quiz-btn:hover { background: var(--primary-color); color: #fff; }
+        .quiz-explanation { margin-top: 10px; padding: 10px; border-radius: 4px; display: none; }
+        .quiz-btn.correct { background: #22c55e; color: #fff; border-color: #16a34a; }
+        .quiz-btn.wrong { background: #ef4444; color: #fff; border-color: #dc2626; }
+        
+        /* Highlight box */
+        .exam-tip { border-left: 4px solid var(--primary-color); background: var(--secondary-color); padding: 15px; margin: 15px 0; border-radius: 0 var(--border-radius) var(--border-radius) 0; }
+        
+        /* Citation formatting */
+        .cite { font-size: 0.75rem; vertical-align: super; color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: help; }
 
-  /* ===== Uni logos ===== */
-  .logo-row{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
-  .logo-card{
-    border:1px solid var(--border);border-radius:var(--radius-m);padding:26px 10px;
-    display:flex;align-items:center;justify-content:center;font-weight:700;color:#374151;font-size:15px;
-    transition:all .25s ease;background:#fff;
-  }
-  .logo-card:hover{box-shadow:var(--shadow-m);transform:translateY(-3px);border-color:var(--primary);}
-
-  /* ===== Services ===== */
-  .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
-  .service-card{
-    border:1px solid var(--border);border-radius:var(--radius-m);padding:26px 20px;background:#fff;
-    transition:all .25s ease;
-  }
-  .service-card:hover{box-shadow:var(--shadow-m);transform:translateY(-4px);border-color:var(--primary);}
-  .service-icon{
-    width:46px;height:46px;border-radius:11px;background:var(--primary-light);color:var(--primary);
-    display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;
-  }
-  .service-card h3{font-size:15.5px;margin:0 0 6px;font-weight:700;}
-  .service-card p{font-size:13px;color:var(--text-gray);margin:0;line-height:1.5;}
-
-  /* ===== Journey steps ===== */
-  .journey-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;}
-  .journey-step{text-align:left;position:relative;}
-  .step-num{
-    width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;margin-bottom:14px;
-  }
-  .journey-step h4{font-size:15px;margin:0 0 6px;font-weight:700;}
-  .journey-step p{font-size:13px;color:var(--text-gray);margin:0;line-height:1.5;}
-
-  /* ===== Testimonials ===== */
-  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .testi-card{border:1px solid var(--border);border-radius:var(--radius-m);padding:26px;background:#fff;}
-  .testi-stars{color:var(--orange);font-size:14px;margin-bottom:14px;}
-  .testi-card p.quote{font-size:14px;color:#374151;line-height:1.6;margin:0 0 20px;}
-  .testi-person{display:flex;align-items:center;gap:12px;}
-  .testi-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#ddd;}
-  .testi-name{font-weight:700;font-size:14px;}
-  .testi-role{font-size:12px;color:var(--text-gray);}
-
-  /* ===== CTA banner ===== */
-  .cta-banner{
-    background:linear-gradient(120deg,var(--primary-dark),var(--primary));
-    border-radius:var(--radius-l); padding:48px; display:flex; align-items:center; justify-content:space-between;
-    color:#fff; overflow:hidden; position:relative; gap:24px; flex-wrap:wrap;
-  }
-  .cta-banner h2{font-size:28px;margin:0 0 10px;font-weight:800;}
-  .cta-banner p{margin:0 0 22px;opacity:.9;font-size:14.5px;max-width:420px;}
-  .cta-img{width:280px;height:170px;border-radius:var(--radius-m);object-fit:cover;box-shadow:var(--shadow-l);}
-
-  /* ===== Footer ===== */
-  footer{background:var(--navy);color:#c7cbe0;padding:60px 0 0;margin-top:0;}
-  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.2fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08);}
-  .footer-grid h4{color:#fff;font-size:14.5px;margin:0 0 18px;font-weight:700;}
-  .footer-grid p{font-size:13px;line-height:1.7;color:#9ba1c0;}
-  .footer-grid li{font-size:13.5px;margin-bottom:11px;color:#b6bad4;}
-  .footer-grid li a:hover{color:#fff;}
-  .footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;}
-  .socials{display:flex;gap:10px;margin-top:16px;}
-  .socials a{
-    width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;
-    justify-content:center;font-size:13px;color:#fff;transition:.2s;
-  }
-  .socials a:hover{background:var(--primary);}
-  .footer-bottom{display:flex;justify-content:space-between;padding:22px 0;font-size:12.5px;color:#8489a8;flex-wrap:wrap;gap:10px;}
-  .footer-bottom a{margin-left:18px;color:#8489a8;}
-  .footer-bottom a:hover{color:#fff;}
-
-  /* ===== Universities Page ===== */
-  .page-title{font-size:30px;font-weight:800;margin:6px 0 26px;}
-  .filters-bar{
-    display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--border);
-    border-radius:var(--radius-m);padding:14px 18px;margin-bottom:30px;flex-wrap:wrap;box-shadow:var(--shadow-s);
-  }
-  .filters-bar input[type="text"]{
-    flex:1;min-width:200px;border:none;outline:none;font-size:14px;padding:8px 4px;
-  }
-  .filters-bar select{
-    border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13.5px;color:#374151;background:#fff;
-  }
-  .filters-bar .clear-all{color:var(--primary);font-weight:600;font-size:13.5px;white-space:nowrap;}
-
-  .uni-count{font-size:13.5px;color:var(--text-gray);margin-bottom:18px;}
-  .uni-list{display:flex;flex-direction:column;gap:16px;}
-  .uni-card{
-    display:flex;gap:20px;align-items:center;border:1px solid var(--border);border-radius:var(--radius-m);
-    padding:16px;background:#fff;transition:all .2s ease;
-  }
-  .uni-card:hover{box-shadow:var(--shadow-m);border-color:#d7ddf5;transform:translateY(-2px);}
-  .uni-img{width:130px;height:90px;border-radius:10px;object-fit:cover;flex-shrink:0;}
-  .uni-info{flex:1;min-width:0;}
-  .uni-name{font-size:16.5px;font-weight:700;margin:0 0 4px;}
-  .uni-loc{font-size:13px;color:var(--text-gray);margin:0 0 8px;}
-  .uni-badges{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
-  .badge-rank{font-size:12px;font-weight:700;color:var(--primary);}
-  .badge-scholarship{
-    font-size:11.5px;font-weight:600;color:var(--orange);background:#fff7e6;padding:3px 9px;border-radius:20px;
-  }
-  .uni-price{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
-  .uni-tuition{font-weight:800;font-size:16px;}
-  .uni-tuition-label{font-size:11px;color:var(--text-gray);font-weight:400;}
-  .heart-btn{
-    width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:#fff;
-    display:flex;align-items:center;justify-content:center;color:#9aa3b5;transition:.2s;flex-shrink:0;
-  }
-  .heart-btn:hover{color:#ef4444;border-color:#ef4444;}
-  .heart-btn.active{color:#ef4444;border-color:#ef4444;}
-  .uni-top-row{display:flex;justify-content:space-between;gap:16px;}
-
-  /* ===== Countries Page ===== */
-  .countries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
-  .country-card{border-radius:var(--radius-m);overflow:hidden;position:relative;box-shadow:var(--shadow-s);transition:.3s;cursor:pointer;}
-  .country-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-l);}
-  .country-card img{height:220px;width:100%;object-fit:cover;}
-  .country-overlay{
-    position:absolute;bottom:0;left:0;right:0;padding:16px;
-    background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);color:#fff;
-    display:flex;align-items:center;gap:8px;
-  }
-  .flag-dot{width:20px;height:20px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,.5);}
-  .flag-dot img{width:100%;height:100%;object-fit:cover;}
-  .country-name{font-weight:700;font-size:15px;}
-
-  /* ===== Contact Page ===== */
-  .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:26px;align-items:start;}
-  .contact-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-m);padding:30px;box-shadow:var(--shadow-s);}
-  .contact-card h3{margin:0 0 20px;font-size:18px;font-weight:800;}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-  .form-group{display:flex;flex-direction:column;gap:6px;}
-  .form-group label{font-size:13px;font-weight:600;color:#374151;}
-  .form-group input,.form-group select,.form-group textarea{
-    border:1px solid var(--border);border-radius:9px;padding:11px 13px;font-size:14px;outline:none;transition:.2s;
-    background:var(--bg-light);
-  }
-  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);background:#fff;}
-  .form-group textarea{resize:vertical;min-height:90px;}
-
-  .office-item{display:flex;gap:12px;margin-bottom:22px;}
-  .office-icon{
-    width:38px;height:38px;border-radius:9px;background:var(--primary-light);color:var(--primary);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;
-  }
-  .office-item h5{margin:0 0 4px;font-size:14.5px;font-weight:700;}
-  .office-item p{margin:0;font-size:13px;color:var(--text-gray);line-height:1.5;}
-
-  .map-box{
-    margin-top:26px;border-radius:var(--radius-m);overflow:hidden;height:260px;border:1px solid var(--border);
-    background:linear-gradient(135deg,#e9edfb,#f4f6fd);display:flex;align-items:center;justify-content:center;color:var(--text-gray);font-size:13px;position:relative;
-  }
-  .map-pin{
-    width:34px;height:34px;border-radius:50% 50% 50% 0;background:#ef4444;transform:rotate(-45deg);
-    position:absolute;top:44%;left:52%;box-shadow:0 4px 10px rgba(0,0,0,.25);
-  }
-
-  .faq-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px;}
-  .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:#fff;}
-  .faq-q{
-    display:flex;justify-content:space-between;align-items:center;padding:16px 18px;cursor:pointer;font-weight:600;font-size:14.5px;
-  }
-  .faq-q .plus{font-size:18px;color:var(--primary);transition:transform .25s;flex-shrink:0;}
-  .faq-item.open .plus{transform:rotate(45deg);}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 18px;}
-  .faq-item.open .faq-a{max-height:200px;padding:0 18px 16px;}
-  .faq-a p{margin:0;font-size:13.5px;color:var(--text-gray);line-height:1.6;}
-
-  .book-panel{
-    border-radius:var(--radius-m);overflow:hidden;position:relative;min-height:280px;
-    background:linear-gradient(120deg,var(--primary-dark),var(--primary));color:#fff;padding:30px;
-    display:flex;flex-direction:column;justify-content:flex-end;
-  }
-  .book-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;}
-  .book-panel .content{position:relative;z-index:2;}
-  .book-panel h3{font-size:20px;margin:0 0 8px;font-weight:800;}
-  .book-panel p{font-size:13.5px;margin:0 0 18px;opacity:.9;max-width:320px;}
-
-  /* ===== Page switching ===== */
-  .page{display:none;}
-  .page.active{display:block;animation:fadein .4s ease;}
-  @keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-  /* ===== Reveal on scroll ===== */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
-  .reveal.show{opacity:1;transform:translateY(0);}
-
-  /* ===== Responsive ===== */
-  @media (max-width:1100px){
-    .services-grid,.journey-grid{grid-template-columns:repeat(3,1fr);}
-    .countries-grid{grid-template-columns:repeat(3,1fr);}
-    .logo-row{grid-template-columns:repeat(3,1fr);}
-  }
-  @media (max-width:900px){
-    nav.main-nav{display:none;}
-    .hamburger{display:flex;}
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-img-wrap img{height:280px;}
-    .stats-bar{grid-template-columns:repeat(2,1fr);}
-    .testi-grid{grid-template-columns:1fr;}
-    .contact-grid{grid-template-columns:1fr;}
-    .faq-cta-grid{grid-template-columns:1fr;}
-    .form-row{grid-template-columns:1fr;}
-    .footer-grid{grid-template-columns:repeat(2,1fr);}
-    .uni-card{flex-wrap:wrap;}
-    .uni-price{width:100%;flex-direction:row;justify-content:space-between;align-items:center;}
-  }
-  @media (max-width:640px){
-    .container{padding:0 18px;}
-    .hero h1{font-size:32px;}
-    .services-grid,.journey-grid{grid-template-columns:repeat(2,1fr);}
-    .countries-grid{grid-template-columns:repeat(2,1fr);}
-    .logo-row{grid-template-columns:repeat(2,1fr);}
-    .stats-bar{grid-template-columns:1fr 1fr;padding:20px 14px;}
-    .cta-banner{flex-direction:column;text-align:center;padding:32px 22px;}
-    .cta-banner .cta-text{display:flex;flex-direction:column;align-items:center;}
-    .footer-grid{grid-template-columns:1fr;}
-    .filters-bar{flex-direction:column;align-items:stretch;}
-    .filters-bar select{width:100%;}
-    .uni-top-row{flex-direction:column;gap:8px;}
-    .section-head{flex-direction:column;align-items:flex-start;}
-  }
-  @media (min-width:1600px){
-    .container{max-width:1400px;}
-    .hero h1{font-size:52px;}
-  }
-</style>
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column; }
+            .hero-visual { width: 100%; }
+            .status-bar { flex-direction: column; gap: 10px; }
+            .arch-map { flex-direction: column; align-items: center; }
+            .arch-arrow { transform: rotate(90deg); }
+        }
+    </style>
 </head>
-<body>
+<body class="theme-intermediate">
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a href="#" class="logo" onclick="goTo('home');return false;">
-      <span class="logo-icon">🌐</span>
-      <span class="logo-text">GlobalPath<span class="logo-sub">Study Abroad Consultants</span></span>
-    </a>
-    <nav class="main-nav" id="mainNav">
-      <a href="#" data-page="home" class="active" onclick="goTo('home');return false;">Home</a>
-      <a href="#" data-page="universities" onclick="goTo('universities');return false;">Universities</a>
-      <a href="#" data-page="countries" onclick="goTo('countries');return false;">Countries</a>
-      <a href="#" data-page="services" onclick="goTo('home');return false;">Services</a>
-      <a href="#" data-page="about" onclick="goTo('home');return false;">About Us</a>
-      <a href="#" data-page="contact" onclick="goTo('contact');return false;">Contact</a>
-    </nav>
-    <div class="header-actions">
-      <button class="btn btn-primary" onclick="goTo('contact')">Book Consultation</button>
-      <button class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#" onclick="goTo('home');closeMobileNav();return false;">Home</a>
-    <a href="#" onclick="goTo('universities');closeMobileNav();return false;">Universities</a>
-    <a href="#" onclick="goTo('countries');closeMobileNav();return false;">Countries</a>
-    <a href="#" onclick="goTo('home');closeMobileNav();return false;">Services</a>
-    <a href="#" onclick="goTo('home');closeMobileNav();return false;">About Us</a>
-    <a href="#" onclick="goTo('contact');closeMobileNav();return false;">Contact</a>
-  </div>
-</header>
-
-<!-- ============ HOME PAGE ============ -->
-<div class="page active" id="page-home">
-
-  <section class="hero" style="padding-top:44px;">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">Your Future. Our Guidance.</div>
-        <h1>Study Abroad.<br>Build a Global Future.</h1>
-        <p>Personalized guidance for your global education journey. From shortlisting to visa — we're with you, every step.</p>
-        <div class="hero-btns">
-          <button class="btn btn-primary" onclick="goTo('universities')">Explore Universities</button>
-          <button class="btn btn-outline" onclick="goTo('contact')">Book Free Consultation</button>
-        </div>
-      </div>
-      <div class="hero-img-wrap">
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80" alt="Students walking on campus">
-      </div>
-    </div>
-    <div class="container">
-      <div class="stats-bar reveal">
-        <div class="stat-item">
-          <div class="stat-icon">🎓</div>
-          <div><div class="stat-num" data-count="10" data-suffix="+">0</div><div class="stat-label">Years of Excellence</div></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">👥</div>
-          <div><div class="stat-num" data-count="25000" data-suffix="+" data-format="k">0</div><div class="stat-label">Students Guided</div></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">🏛️</div>
-          <div><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">Partner Universities</div></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">✅</div>
-          <div><div class="stat-num" data-count="95" data-suffix="%">0</div><div class="stat-label">Visa Success Rate</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <h2>Top Universities We Work With</h2>
-        <a href="#" class="view-all" onclick="goTo('universities');return false;">View all →</a>
-      </div>
-      <div class="logo-row reveal">
-        <div class="logo-card">MIT</div>
-        <div class="logo-card">Stanford</div>
-        <div class="logo-card">Berkeley</div>
-        <div class="logo-card">Melbourne</div>
-        <div class="logo-card">NUS</div>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:var(--bg-light);">
-    <div class="container">
-      <div class="section-head"><h2>Our Services</h2></div>
-      <div class="services-grid reveal">
-        <div class="service-card"><div class="service-icon">🧭</div><h3>University Shortlisting</h3><p>Find the right fit in universities based on your profile.</p></div>
-        <div class="service-card"><div class="service-icon">📝</div><h3>Application Support</h3><p>End-to-end guidance on your application process.</p></div>
-        <div class="service-card"><div class="service-icon">🛂</div><h3>Visa Assistance</h3><p>Expert visa filing support with high success rates.</p></div>
-        <div class="service-card"><div class="service-icon">💰</div><h3>Scholarship Guidance</h3><p>Maximize your funding opportunities abroad.</p></div>
-        <div class="service-card"><div class="service-icon">✈️</div><h3>Pre-Departure Support</h3><p>Smooth transition abroad, every step covered.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="section-head"><h2>Your Journey, Simplified</h2></div>
-      <div class="journey-grid reveal">
-        <div class="journey-step"><div class="step-num">1</div><h4>Counseling</h4><p>We understand your goals.</p></div>
-        <div class="journey-step"><div class="step-num">2</div><h4>Shortlist</h4><p>Curate your best-fit options.</p></div>
-        <div class="journey-step"><div class="step-num">3</div><h4>Apply</h4><p>We help you apply, seamlessly.</p></div>
-        <div class="journey-step"><div class="step-num">4</div><h4>Visa</h4><p>We assist your visa filing.</p></div>
-        <div class="journey-step"><div class="step-num">5</div><h4>Depart</h4><p>Begin your global journey.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:var(--bg-light);">
-    <div class="container">
-      <div class="section-head">
-        <h2>What Students Say</h2>
-        <a href="#" class="view-all">View all testimonials →</a>
-      </div>
-      <div class="testi-grid reveal">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="quote">GlobalPath made my dream of studying in Canada a reality. Their guidance was spot on at every step.</p>
-          <div class="testi-person">
-            <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg">
-            <div><div class="testi-name">Arjun Mehta</div><div class="testi-role">University of Toronto</div></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="quote">From shortlisting to visa, everything was so well managed. Highly recommended to every aspiring student.</p>
-          <div class="testi-person">
-            <img class="testi-avatar" src="https://randomuser.me/api/portraits/women/44.jpg">
-            <div><div class="testi-name">Meera Patel</div><div class="testi-role">University of Melbourne</div></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="quote">The team is very professional and supportive. Got my visa without any hassle at all.</p>
-          <div class="testi-person">
-            <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/65.jpg">
-            <div><div class="testi-name">Rohan Singh</div><div class="testi-role">NUS, Singapore</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="cta-banner reveal">
-        <div class="cta-text">
-          <h2>Ready to Start Your Journey?</h2>
-          <p>Book a free consultation with expert counsellors and take the first step abroad.</p>
-          <button class="btn btn-outline-white" onclick="goTo('contact')">Book Free Consultation</button>
-        </div>
-        <img class="cta-img" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" alt="Students consultation">
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- ============ UNIVERSITIES PAGE ============ -->
-<div class="page" id="page-universities">
-  <div class="container">
-    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Universities</span></div>
-    <h1 class="page-title">Find Your Dream University</h1>
-
-    <div class="filters-bar">
-      <input type="text" placeholder="Search universities by name or country..." id="uniSearch" oninput="filterUnis()">
-      <select id="uniCountry" onchange="filterUnis()">
-        <option value="">Country</option>
-        <option>USA</option><option>UK</option><option>Australia</option><option>Canada</option><option>Singapore</option>
-      </select>
-      <select id="uniSort" onchange="filterUnis()">
-        <option value="">QS Ranking</option>
-        <option value="rank">Rank: Low to High</option>
-        <option value="tuition">Tuition: Low to High</option>
-      </select>
-      <select><option>Tuition Range</option></select>
-      <span class="clear-all" onclick="clearUniFilters()">Clear All</span>
-    </div>
-
-    <div class="uni-count" id="uniCount">Showing 6 universities</div>
-
-    <div class="uni-list reveal" id="uniList">
-      <!-- filled by JS -->
-    </div>
-  </div>
-  <div style="height:60px;"></div>
-</div>
-
-<!-- ============ COUNTRIES PAGE ============ -->
-<div class="page" id="page-countries">
-  <div class="container">
-    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Countries</span></div>
-    <h1 class="page-title">Explore Top Study Destinations</h1>
-    <p style="color:var(--text-gray);margin-top:-16px;margin-bottom:30px;">Choose the perfect destination for your global education journey.</p>
-
-    <div class="countries-grid reveal">
-      <div class="country-card" onclick="goTo('universities')">
-        <img src="https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&w=500&q=80">
-        <div class="country-overlay">
-          <div class="flag-dot"><img src="https://flagcdn.com/w80/us.png"></div>
-          <div class="country-name">USA</div>
-        </div>
-      </div>
-      <div class="country-card" onclick="goTo('universities')">
-        <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=500&q=80">
-        <div class="country-overlay">
-          <div class="flag-dot"><img src="https://flagcdn.com/w80/ca.png"></div>
-          <div class="country-name">Canada</div>
-        </div>
-      </div>
-      <div class="country-card" onclick="goTo('universities')">
-        <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=500&q=80">
-        <div class="country-overlay">
-          <div class="flag-dot"><img src="https://flagcdn.com/w80/gb.png"></div>
-          <div class="country-name">UK</div>
-        </div>
-      </div>
-      <div class="country-card" onclick="goTo('universities')">
-        <img src="https://images.unsplash.com/photo-1524293581917-878a6d017c71?auto=format&fit=crop&w=500&q=80">
-        <div class="country-overlay">
-          <div class="flag-dot"><img src="https://flagcdn.com/w80/au.png"></div>
-          <div class="country-name">Australia</div>
-        </div>
-      </div>
-      <div class="country-card" onclick="goTo('universities')">
-        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=500&q=80">
-        <div class="country-overlay">
-          <div class="flag-dot"><img src="https://flagcdn.com/w80/de.png"></div>
-          <div class="country-name">Germany</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="height:60px;"></div>
-</div>
-
-<!-- ============ CONTACT PAGE ============ -->
-<div class="page" id="page-contact">
-  <div class="container">
-    <div class="breadcrumb"><a href="#" onclick="goTo('home');return false;">Home</a> / <span>Contact</span></div>
-    <h1 class="page-title">Get In Touch</h1>
-    <p style="color:var(--text-gray);margin-top:-16px;margin-bottom:30px;max-width:520px;">We're here to help you achieve your study abroad dreams.</p>
-
-    <div class="contact-grid reveal">
-      <div class="contact-card">
-        <h3>Send Us a Message</h3>
-        <form id="contactForm" onsubmit="submitContact(event)">
-          <div class="form-row">
-            <div class="form-group"><label>Full Name</label><input type="text" placeholder="Enter your full name" required></div>
-            <div class="form-group"><label>Email Address</label><input type="email" placeholder="Enter your email" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="Enter your phone number"></div>
-            <div class="form-group"><label>Preferred Destination</label>
-              <select><option>Select a country</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Germany</option></select>
+    <!-- HEADER -->
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                IT3501 <span class="badge">Part 2: Full Stack Ecosystem</span>
             </div>
-          </div>
-          <div class="form-group" style="margin-bottom:20px;"><label>Your Message</label><textarea placeholder="Write your message..."></textarea></div>
-          <button class="btn btn-primary btn-block" type="submit">Send Message</button>
-        </form>
-      </div>
-
-      <div class="contact-card">
-        <h3>Our Offices</h3>
-        <div class="office-item">
-          <div class="office-icon">📍</div>
-          <div><h5>New York, USA</h5><p>120 Education Way, Suite 200<br>New York, NY 10001<br>+1 (555) 123-4567<br>usa@globalpath.com</p></div>
+            <nav style="gap: 15px; display: flex; flex-wrap: wrap;">
+                <a href="#learning-overview">Overview</a>
+                <a href="#theory">Theory</a>
+                <a href="#real-life-example">Tamil Example</a>
+                <a href="#exam-preparation">Exam Prep</a>
+                <a href="#quiz">Quiz</a>
+            </nav>
         </div>
-        <div class="office-item">
-          <div class="office-icon">📍</div>
-          <div><h5>Toronto, Canada</h5><p>458 University Ave, Suite 300<br>Toronto, ON M5B 1B8<br>+1 (647) 123-4567<br>canada@globalpath.com</p></div>
-        </div>
-        <div class="office-item">
-          <div class="office-icon">📍</div>
-          <div><h5>London, UK</h5><p>78 College Road, Suite 100<br>London, EC1V 0DR<br>+44 20 7946 0958<br>uk@globalpath.com</p></div>
-        </div>
-      </div>
-    </div>
+    </header>
 
-    <div class="map-box reveal"><div class="map-pin"></div>Map preview</div>
-
-    <div class="faq-cta-grid reveal">
-      <div>
-        <h3 style="margin:0 0 18px;font-size:19px;font-weight:800;">Frequently Asked Questions</h3>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">How can GlobalPath help me?<span class="plus">+</span></div>
-          <div class="faq-a"><p>We guide you through every step of studying abroad — from shortlisting universities to visa filing and departure.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">What services do you offer?<span class="plus">+</span></div>
-          <div class="faq-a"><p>University shortlisting, application support, visa assistance, scholarship guidance, and pre-departure support.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">How much do your services cost?<span class="plus">+</span></div>
-          <div class="faq-a"><p>Pricing depends on the package you choose. Book a free consultation to get a personalized quote.</p></div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">How long does the application process take?<span class="plus">+</span></div>
-          <div class="faq-a"><p>It varies by country and university, typically between 3 to 9 months from shortlisting to visa approval.</p></div>
-        </div>
-      </div>
-      <div class="book-panel">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="">
-        <div class="content">
-          <h3>Book a Free Consultation</h3>
-          <p>Schedule a one-on-one session with our expert counsellors and take the first step.</p>
-          <button class="btn btn-outline-white">Book Now</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="height:60px;"></div>
-</div>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo"><span class="logo-icon">🌐</span> GlobalPath</div>
-        <p>Empowering students to achieve their study abroad dreams with expert guidance and personalized support.</p>
-        <div class="socials"><a href="#">f</a><a href="#">t</a><a href="#">in</a><a href="#">ig</a></div>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#" onclick="goTo('home');return false;">Home</a></li>
-          <li><a href="#" onclick="goTo('universities');return false;">Universities</a></li>
-          <li><a href="#" onclick="goTo('countries');return false;">Countries</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">About Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Popular Destinations</h4>
-        <ul><li>USA</li><li>Canada</li><li>UK</li><li>Australia</li><li>Germany</li><li>Singapore</li></ul>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <ul><li>University Shortlisting</li><li>Application Support</li><li>Visa Assistance</li><li>Scholarship Guidance</li><li>Pre-Departure Support</li></ul>
-      </div>
-      <div>
-        <h4>Contact Us</h4>
-        <ul>
-          <li>📞 +1 (555) 123-4567</li>
-          <li>✉️ hello@globalpath.com</li>
-          <li>📍 120 Education Way,<br>New York, NY 10001</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2024 GlobalPath Consultants. All rights reserved.</div>
-      <div><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // ---------- Page navigation ----------
-  function goTo(page){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById('page-'+page).classList.add('active');
-    document.querySelectorAll('nav.main-nav a').forEach(a=>a.classList.remove('active'));
-    const navLink = document.querySelector('nav.main-nav a[data-page="'+page+'"]');
-    if(navLink) navLink.classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-    if(page==='universities') renderUnis();
-    triggerReveal();
-  }
-
-  function toggleMobileNav(){
-    document.getElementById('mobileNav').classList.toggle('open');
-  }
-  function closeMobileNav(){
-    document.getElementById('mobileNav').classList.remove('open');
-  }
-
-  // ---------- FAQ accordion ----------
-  function toggleFaq(el){
-    const item = el.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
-    if(!wasOpen) item.classList.add('open');
-  }
-
-  // ---------- Contact form ----------
-  function submitContact(e){
-    e.preventDefault();
-    alert('Thank you! Your message has been sent. Our team will reach out shortly.');
-    e.target.reset();
-  }
-
-  // ---------- Count-up animation ----------
-  function animateCount(el){
-    const target = parseInt(el.getAttribute('data-count'),10);
-    const suffix = el.getAttribute('data-suffix')||'';
-    const isK = el.getAttribute('data-format')==='k';
-    const duration = 1400;
-    const start = performance.now();
-    function tick(now){
-      const progress = Math.min((now-start)/duration,1);
-      const eased = 1 - Math.pow(1-progress,3);
-      const val = Math.floor(eased*target);
-      el.textContent = (isK ? Math.floor(val/1000)+'K' : val) + suffix;
-      if(progress<1) requestAnimationFrame(tick);
-      else el.textContent = (isK ? Math.floor(target/1000)+'K' : target) + suffix;
-    }
-    requestAnimationFrame(tick);
-  }
-  let countedOnce=false;
-  const statObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting && !countedOnce){
-        countedOnce=true;
-        document.querySelectorAll('.stat-num').forEach(animateCount);
-      }
-    });
-  },{threshold:0.4});
-  document.addEventListener('DOMContentLoaded',()=>{
-    const bar = document.querySelector('.stats-bar');
-    if(bar) statObserver.observe(bar);
-  });
-
-  // ---------- Scroll reveal ----------
-  const revealObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting) entry.target.classList.add('show');
-    });
-  },{threshold:0.15});
-  function triggerReveal(){
-    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
-  }
-  document.addEventListener('DOMContentLoaded',triggerReveal);
-
-  // ---------- Universities data + render ----------
-  const universities = [
-    {name:"Massachusetts Institute of Technology", loc:"Cambridge, USA", country:"USA", rank:1, tuition:61850, scholarship:true, img:"https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=300&q=80"},
-    {name:"Stanford University", loc:"Stanford, USA", country:"USA", rank:5, tuition:62484, scholarship:true, img:"https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=300&q=80"},
-    {name:"University of Oxford", loc:"Oxford, UK", country:"UK", rank:3, tuition:41060, scholarship:true, img:"https://images.unsplash.com/photo-1548484352-ea579e5233a8?auto=format&fit=crop&w=300&q=80"},
-    {name:"The University of Melbourne", loc:"Melbourne, Australia", country:"Australia", rank:14, tuition:38400, scholarship:true, img:"https://images.unsplash.com/photo-1595113230185-b7ca19bee933?auto=format&fit=crop&w=300&q=80"},
-    {name:"National University of Singapore", loc:"Singapore", country:"Singapore", rank:8, tuition:31650, scholarship:true, img:"https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=300&q=80"},
-    {name:"University of Toronto", loc:"Toronto, Canada", country:"Canada", rank:21, tuition:29714, scholarship:false, img:"https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=300&q=80"}
-  ];
-
-  function renderUnis(list){
-    const data = list || universities;
-    const container = document.getElementById('uniList');
-    container.innerHTML = data.map((u,i)=>`
-      <div class="uni-card">
-        <img class="uni-img" src="${u.img}" alt="${u.name}">
-        <div class="uni-info">
-          <div class="uni-top-row">
-            <div>
-              <div class="uni-name">${u.name}</div>
-              <div class="uni-loc">📍 ${u.loc}</div>
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>The Full Stack Ecosystem</h1>
+                    <p>Dive deep into the individual technologies that power modern applications. Understand the specific roles of Node.js, Express, MongoDB, React, and Angular <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="#level-selector" class="btn">Start Learning</a>
+                        <a href="#real-life-example" class="btn btn-outline">View MERN Flow</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="arch-map">
+                        <div class="arch-box" style="border-color: #61dafb;">
+                            <h3 style="color: #61dafb; margin-bottom: 5px;">R</h3>
+                            <p style="font-size: 0.9em; margin:0;">React (UI)</p>
+                        </div>
+                        <div class="arch-arrow">↔</div>
+                        <div class="arch-box" style="border-color: #000000;">
+                            <h3 style="color: #000000; margin-bottom: 5px;">E</h3>
+                            <p style="font-size: 0.9em; margin:0;">Express (Router)</p>
+                        </div>
+                        <div class="arch-arrow">↔</div>
+                        <div class="arch-box" style="border-color: #83cd29;">
+                            <h3 style="color: #83cd29; margin-bottom: 5px;">N</h3>
+                            <p style="font-size: 0.9em; margin:0;">Node.js (Server)</p>
+                        </div>
+                        <div class="arch-arrow">↔</div>
+                        <div class="arch-box" style="border-color: #47a248;">
+                            <h3 style="color: #47a248; margin-bottom: 5px;">M</h3>
+                            <p style="font-size: 0.9em; margin:0;">MongoDB (DB)</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="uni-badges">
-            <span class="badge-rank">#${u.rank} QS World Ranking</span>
-            ${u.scholarship ? '<span class="badge-scholarship">🏅 Scholarship Available</span>':''}
-          </div>
+        </section>
+
+        <!-- WHAT YOU WILL LEARN -->
+        <section id="learning-overview" class="container">
+            <h2>What You Will Learn (Part 2)</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🟢 Node.js</h3>
+                    <p>A JavaScript runtime that executes code on the server, handling many requests simultaneously <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>🚂 Express.js</h3>
+                    <p>A lightweight framework that defines routes and handles API requests/responses <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>🍃 MongoDB</h3>
+                    <p>A flexible NoSQL database that stores data as JSON-like documents instead of rigid tables <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>⚛️ React & 🅰️ Angular</h3>
+                    <p>Component-based front-end frameworks used for building dynamic, interactive user interfaces <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEVEL SELECTOR -->
+        <section id="level-selector" class="container">
+            <h2>Choose Your Learning Level</h2>
+            <p>Select a level below to adapt the content to your understanding.</p>
+            <div class="card-grid">
+                <div class="card" style="cursor:pointer;" onclick="setLevel('beginner')">
+                    <h3>🌱 Beginner</h3>
+                    <p>Simple English, visual analogies. Perfect for absolute beginners.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Beginner</button>
+                </div>
+                <div class="card" style="cursor:pointer; border-color: var(--primary-color);" onclick="setLevel('intermediate')">
+                    <h3>🎓 Intermediate</h3>
+                    <p>Academic structured learning. Directly aligns with your university syllabus.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Intermediate</button>
+                </div>
+                <div class="card" style="cursor:pointer;" onclick="setLevel('advanced')">
+                    <h3>🚀 Advanced</h3>
+                    <p>Technical details for final-year students preparing for placements.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Advanced</button>
+                </div>
+                <div class="card" style="cursor:pointer;" onclick="setLevel('professional')">
+                    <h3>💼 Professional</h3>
+                    <p>Industry-level reference covering REST boundaries and scalable architectures.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Professional</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- DYNAMIC THEORY SECTION -->
+        <section id="theory" class="container">
+            
+            <!-- Beginner Content -->
+            <article id="content-beginner" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 🌱 Beginner</span>
+                    <span>Step 1: Theory</span>
+                </div>
+                <h2>The Tools of Web Development</h2>
+                <p>Think of building a website like building a house. You need different tools for different jobs.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>🟢 Node.js (The Engine)</h3>
+                        <p>It lets the server run JavaScript <span class="cite" title="Source 3">[cite: 3]</span>. Think of it as the engine of a car. Without it, your backend code cannot move.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🚂 Express (The Traffic Cop)</h3>
+                        <p>It directs traffic <span class="cite" title="Source 3">[cite: 3]</span>. When a user asks for "/login", Express points them to the login code. When they ask for "/home", it points them home.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🍃 MongoDB (The Filing Cabinet)</h3>
+                        <p>It is a database that stores user data <span class="cite" title="Source 3">[cite: 3]</span>. Instead of strict Excel-like tables, it uses flexible folders (documents) that are easy to update.</p>
+                    </div>
+                    <div class="card">
+                        <h3>⚛️ React / Angular (The Paint & Decor)</h3>
+                        <p>These build what the user sees on the screen (buttons, forms, feeds) <span class="cite" title="Source 3">[cite: 3]</span>. They make the website look beautiful and interactive without reloading the page.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Intermediate Content (Default active) -->
+            <article id="content-intermediate" class="level-content active">
+                <div class="status-bar">
+                    <span>Current Level: 🎓 Intermediate</span>
+                    <span>Theory & Concepts</span>
+                </div>
+                <h2>Roles in the Full Stack Ecosystem</h2>
+                <p>The MERN and MEAN stacks are composed of specific technologies that handle different layers of a web application <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                
+                <h3>1. Node.js (Runtime Environment)</h3>
+                <p>A JavaScript runtime that lets developers run JS on the server <span class="cite" title="Source 3">[cite: 3]</span>. It is event-driven and non-blocking, meaning it can handle many requests at once without waiting <span class="cite" title="Source 3">[cite: 3]</span>. It uses NPM (Node Package Manager) to install reusable code <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                <h3>2. Express.js (Web Framework)</h3>
+                <p>A lightweight framework that runs on Node.js to build server-side routing and APIs <span class="cite" title="Source 3">[cite: 3]</span>. It defines routes (matching URLs to server code), handles Request & Response objects, and uses middleware <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                <h3>3. MongoDB (NoSQL Database)</h3>
+                <p>A NoSQL database that stores data as flexible, JSON-like documents inside collections <span class="cite" title="Source 3">[cite: 3]</span>. It does not use fixed schemas, making it ideal for evolving applications <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                <h3>4. React & Angular (Frontend)</h3>
+                <ul>
+                    <li><strong>Angular:</strong> A TypeScript-based frontend framework <span class="cite" title="Source 3">[cite: 3]</span>. It organizes UI into reusable components, uses two-way data binding, and built-in directives <span class="cite" title="Source 3, 5">[cite: 3, 5]</span>.</li>
+                    <li><strong>React:</strong> A JavaScript library for building fast, component-based UIs <span class="cite" title="Source 3">[cite: 3]</span>. It uses React State to track changing data and re-renders only what changed <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                </ul>
+            </article>
+
+            <!-- Advanced Content -->
+            <article id="content-advanced" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 🚀 Advanced</span>
+                    <span>Technical & Placement Prep</span>
+                </div>
+                <h2>Deep Dive: Technology Characteristics</h2>
+                <p>Understanding *why* these technologies are chosen is crucial for placement interviews.</p>
+                
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <th>Technology</th>
+                        <th>Core Characteristic</th>
+                        <th>Why it's used?</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Node.js</strong></td>
+                        <td>Asynchronous, Event-Driven, Single-Threaded Event Loop <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                        <td>Highly scalable for I/O heavy operations (like chatting or streaming) because it doesn't block threads <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Express.js</strong></td>
+                        <td>Middleware chaining & Routing <span class="cite" title="Source 3">[cite: 3]</span>.</td>
+                        <td>Simplifies Node.js HTTP server creation, abstracting request/response manipulation to easily build REST APIs <span class="cite" title="Source 3">[cite: 3]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MongoDB</strong></td>
+                        <td>BSON Document Storage, Schema-less <span class="cite" title="Source 3">[cite: 3]</span>.</td>
+                        <td>Allows storing objects exactly as they appear in JavaScript, eliminating the need for complex ORM mapping <span class="cite" title="Source 3">[cite: 3]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>React / Angular</strong></td>
+                        <td>Component Lifecycle & State Management <span class="cite" title="Source 3">[cite: 3]</span>.</td>
+                        <td>Allows creating Single Page Applications (SPAs) where only parts of the DOM update without full page reloads, improving UX <span class="cite" title="Source 3">[cite: 3]</span>.</td>
+                    </tr>
+                </table>
+            </article>
+
+            <!-- Professional Content -->
+            <article id="content-professional" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 💼 Professional</span>
+                    <span>Architecture & Engineering Design</span>
+                </div>
+                <h2>Ecosystem Synergy and Performance</h2>
+                <p>The true power of the MERN/MEAN stack is the unified language paradigm (JavaScript/TypeScript) across the entire stack, which drastically reduces context switching for developers.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Node.js Libuv & Event Loop</h3>
+                        <p>Node.js relies on the V8 engine and `libuv` for asynchronous I/O <span class="cite" title="Source 1">[cite: 1]</span>. When Express receives an HTTP request, Node delegates file/DB operations to the system and continues processing other requests, executing callbacks via the event loop upon completion <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    </div>
+                    <div class="card">
+                        <h3>MongoDB BSON Efficiency</h3>
+                        <p>Because MongoDB stores BSON (Binary JSON), the data retrieved by Node/Express can be sent directly to a React frontend over HTTP as JSON, requiring zero transformation. This contrasts heavily with traditional SQL/Java stacks requiring DTO mapping.</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- REAL LIFE TAMIL EXAMPLE -->
+        <section id="real-life-example" style="background: var(--secondary-color);">
+            <div class="container">
+                <h2>Real-Life Example: Flipkart / Amazon Cart (MERN Flow)</h2>
+                <p><em>(Explained in simple Tamil for clear understanding)</em></p>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <p>ஒரு customer Flipkart-ல் ஒரு பொருளைப் பார்த்து <strong>"Buy Now"</strong> button-ஐ click செய்கிறார் <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                    
+                    <ul style="margin-top: 15px; list-style: none; margin-left: 0;">
+                        <li>⚛️ <strong>1. React (Front-end):</strong> User interface-ல் உள்ள cart icon-ஐ மட்டும் update செய்துவிட்டு, "பொருளை வாங்கு" என்ற request-ஐ Express Server-க்கு அனுப்புகிறது <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                        <li>🚂 <strong>2. Express.js (Router):</strong> அந்த `/checkout` request-ஐ receive செய்து, சரியான backend logic-க்கு வழிநடத்துகிறது <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                        <li>🟢 <strong>3. Node.js (Server Engine):</strong> பொருளின் stock இருக்கிறதா என்பதை செக் செய்து, total amount-ஐ calculate செய்கிறது (Backend Logic) <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                        <li>🍃 <strong>4. MongoDB (Database):</strong> ஆர்டர் உறுதியானதும், ஆர்டர் விபரங்களை (order details) database-ல் நிரந்தரமாக store செய்கிறது <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                    </ul>
+                    <p style="margin-top: 15px;">இந்த முழு process-ம் நடந்து, Confirmation response மீண்டும் React-க்கு வந்து சேரும் <span class="cite" title="Source 3">[cite: 3]</span>. இதற்கிடையில் முழு page-ம் reload ஆகாது!</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROGRAMMING CONNECTION -->
+        <section id="programming-connection" class="container">
+            <h2>From Theory to Code (MERN Stack snippet)</h2>
+            <p>Here is how Express acts as the middleman between React and MongoDB.</p>
+            
+            <div style="background: #1e1e1e; padding: 20px; border-radius: var(--border-radius); color: #d4d4d4; font-family: var(--font-code);">
+                <span style="color: #6a9955;">// Express.js Backend Route (Node.js)</span><br>
+                <span style="color: #569cd6;">const</span> express = <span style="color: #dcdcaa;">require</span>(<span style="color: #ce9178;">'express'</span>);<br>
+                <span style="color: #569cd6;">const</span> app = <span style="color: #dcdcaa;">express</span>();<br>
+                <span style="color: #569cd6;">const</span> OrderModel = <span style="color: #dcdcaa;">require</span>(<span style="color: #ce9178;">'./models/Order'</span>); <span style="color: #6a9955;">// MongoDB Connection</span><br>
+                <br>
+                <span style="color: #6a9955;">// Express defines the route "/checkout"</span><br>
+                app.<span style="color: #dcdcaa;">post</span>(<span style="color: #ce9178;">'/checkout'</span>, <span style="color: #569cd6;">async</span> (req, res) => {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">try</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #6a9955;">// Node.js processes the logic & MongoDB stores the document</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">const</span> newOrder = <span style="color: #569cd6;">new</span> <span style="color: #4ec9b0;">OrderModel</span>(req.body);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #569cd6;">await</span> newOrder.<span style="color: #dcdcaa;">save</span>(); <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #6a9955;">// Express sends response back to React</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.<span style="color: #dcdcaa;">json</span>({ status: <span style="color: #ce9178;">'Order Confirmed!'</span> });<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;} <span style="color: #569cd6;">catch</span> (err) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.<span style="color: #dcdcaa;">status</span>(500).<span style="color: #dcdcaa;">send</span>(err);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                });
+            </div>
+        </section>
+
+        <!-- EXAM PREPARATION -->
+        <section id="exam-preparation" class="container" style="background: var(--secondary-color); padding: 2rem; border-radius: var(--border-radius);">
+            <h2>📝 University Exam Preparation</h2>
+            <p>Click the questions to reveal the answers formatted for exams.</p>
+
+            <h3>A. 2-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">1. What is the role of Express.js? <span>▼</span></button>
+                <div class="accordion-content">
+                    <p>Express.js is a lightweight framework that runs on Node.js to build server-side routing and APIs <span class="cite" title="Source 3">[cite: 3]</span>. It defines routes, handles request/response objects, and uses middleware <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">2. What is MongoDB? <span>▼</span></button>
+                <div class="accordion-content">
+                    <p>MongoDB is a NoSQL database that stores data as flexible, JSON-like documents inside collections rather than rigid tables <span class="cite" title="Source 3">[cite: 3]</span>. It has no fixed schema, making it highly scalable <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">B. 5-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Explain the event-driven programming model in Node.js. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p><strong>Event-driven Architecture:</strong><br>
+                    - Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - Instead of creating a new thread for each operation, it registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - A central event loop continuously monitors for events (like HTTP requests or file reads) and invokes the callback once the event occurs <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - This allows Node.js to efficiently handle many concurrent I/O operations without blocking execution <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - It uses the EventEmitter class to emit and listen for custom events <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">C. 15-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Explain the roles of MongoDB, Express, Angular/React, and Node.js in the Full Stack Ecosystem. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p><strong>1. Introduction:</strong><br>
+                    The MERN/MEAN stack is a combination of powerful JavaScript technologies used to build scalable, full-stack web applications <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    
+                    <p><strong>2. Role of Node.js (Runtime):</strong><br>
+                    - It is a JavaScript runtime that allows developers to run JS on the server <span class="cite" title="Source 3">[cite: 3]</span>.<br>
+                    - It is event-driven and non-blocking, handling many requests simultaneously without waiting <span class="cite" title="Source 3">[cite: 3]</span>.<br>
+                    - Uses NPM to install reusable packages <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                    <p><strong>3. Role of Express.js (Backend Framework):</strong><br>
+                    - A lightweight framework running on Node.js to build APIs and handle routing <span class="cite" title="Source 3">[cite: 3]</span>.<br>
+                    - It parses incoming requests, utilizes middleware, and simplifies building REST APIs <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                    <p><strong>4. Role of MongoDB (Database):</strong><br>
+                    - A NoSQL database that stores data as JSON-like documents (BSON) <span class="cite" title="Source 3">[cite: 3]</span>.<br>
+                    - It uses a flexible schema (collections instead of tables), making it easy to adapt to application changes <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                    <p><strong>5. Role of React / Angular (Frontend):</strong><br>
+                    - <strong>React:</strong> A JS library that breaks the UI into reusable components <span class="cite" title="Source 3">[cite: 3]</span>. Uses React State to track data and re-renders only what changed <span class="cite" title="Source 3">[cite: 3]</span>.<br>
+                    - <strong>Angular:</strong> A TypeScript-based framework using components, two-way data binding, and built-in directives <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+
+                    <p><strong>6. Conclusion (The Flow):</strong><br>
+                    A user clicks a button in React, React sends an HTTP request to Express, Express uses Node.js logic to query MongoDB, and the response flows back to update the React UI <span class="cite" title="Source 3">[cite: 3]</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="container">
+            <h2>Self-Test Quiz</h2>
+            <p>Test your knowledge across different difficulty levels.</p>
+
+            <!-- Q1 -->
+            <div class="quiz-question">
+                <p><strong>1. (Beginner) Which technology is used to define server routes and APIs?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q1-exp')">A. Express.js</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">B. React</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">C. MongoDB</button>
+                </div>
+                <div id="q1-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Express.js defines routes and matches URLs to specific server code <span class="cite" title="Source 3">[cite: 3]</span>.</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question">
+                <p><strong>2. (Intermediate) How does MongoDB store data?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">A. In rigid SQL tables</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q2-exp')">B. As flexible, JSON-like documents inside collections</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">C. As client-side cookies</button>
+                </div>
+                <div id="q2-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> MongoDB is a NoSQL database that stores data as JSON-like documents <span class="cite" title="Source 3">[cite: 3]</span>.</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question">
+                <p><strong>3. (Advanced) What makes Node.js highly efficient for real-time applications?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">A. It uses a new thread for every single HTTP request.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">B. It renders HTML directly in the database.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q3-exp')">C. It is event-driven and non-blocking, using a single-threaded event loop.</button>
+                </div>
+                <div id="q3-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Node.js uses a non-blocking, event-driven architecture, registering callbacks for async operations <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+        </section>
+
+        <!-- 1 MINUTE REVISION -->
+        <section id="revision" class="container" style="text-align: center;">
+            <h2>⏱️ 1-Minute Final Revision</h2>
+            <div class="arch-box" style="margin: 0 auto 20px auto; width: auto; display: inline-block; padding: 20px; text-align: left;">
+                <h3 style="margin-bottom: 10px; text-align: center;">MERN Stack Summary</h3>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>🍃 <strong>M - MongoDB:</strong> NoSQL database storing JSON documents <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                    <li>🚂 <strong>E - Express.js:</strong> Framework for Routing and APIs <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                    <li>⚛️ <strong>R - React:</strong> Component-based UI library managing state <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                    <li>🟢 <strong>N - Node.js:</strong> Async JavaScript runtime on the server <span class="cite" title="Source 3">[cite: 3]</span>.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container" style="text-align: center; padding: 2rem 0; color: var(--text-light);">
+            <p><strong>IT3501 – Full Stack Web Development</strong></p>
+            <p>Part 2: The Full Stack Ecosystem | Exam Preparation Learning Portal</p>
         </div>
-        <div class="uni-price">
-          <button class="heart-btn" onclick="this.classList.toggle('active')">♥</button>
-          <div>
-            <div class="uni-tuition">$${u.tuition.toLocaleString()}</div>
-            <div class="uni-tuition-label">Annual Tuition</div>
-          </div>
-          <button class="btn btn-primary btn-sm">Apply Now</button>
-        </div>
-      </div>
-    `).join('');
-    document.getElementById('uniCount').textContent = 'Showing '+data.length+' universities';
-  }
+    </footer>
 
-  function filterUnis(){
-    const q = document.getElementById('uniSearch').value.toLowerCase();
-    const country = document.getElementById('uniCountry').value;
-    const sort = document.getElementById('uniSort').value;
-    let filtered = universities.filter(u=>{
-      const matchesQ = u.name.toLowerCase().includes(q) || u.country.toLowerCase().includes(q);
-      const matchesCountry = !country || u.country===country;
-      return matchesQ && matchesCountry;
-    });
-    if(sort==='rank') filtered.sort((a,b)=>a.rank-b.rank);
-    if(sort==='tuition') filtered.sort((a,b)=>a.tuition-b.tuition);
-    renderUnis(filtered);
-  }
+    <!-- JAVASCRIPT -->
+    <script>
+        // Level Selection Logic
+        function setLevel(level) {
+            // Update Body Theme Class
+            document.body.className = '';
+            document.body.classList.add('theme-' + level);
 
-  function clearUniFilters(){
-    document.getElementById('uniSearch').value='';
-    document.getElementById('uniCountry').value='';
-    document.getElementById('uniSort').value='';
-    renderUnis();
-  }
+            // Hide all level content
+            const contents = document.querySelectorAll('.level-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-  renderUnis();
-</script>
+            // Show selected level content
+            const selectedContent = document.getElementById('content-' + level);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
 
+            // Smooth scroll to theory section
+            document.getElementById('theory').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Accordion Logic (Exam Prep)
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const span = button.querySelector('span');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                span.innerHTML = '▼';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                span.innerHTML = '▲';
+            }
+        }
+
+        // Quiz Logic
+        function checkQuiz(button, isCorrect, expId) {
+            // Get parent container
+            const optionsContainer = button.parentElement;
+            
+            // Disable all buttons in this group
+            const buttons = optionsContainer.querySelectorAll('.quiz-btn');
+            buttons.forEach(btn => btn.disabled = true);
+
+            // Apply classes
+            if (isCorrect) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                // Find and highlight correct answer
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('onclick').includes('true')) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+
+            // Show explanation
+            const explanation = document.getElementById(expId);
+            explanation.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
