@@ -3,1342 +3,691 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyScholar - Study Abroad Experts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Node.js & Event-Driven Programming - IT3501 Exam Preparation</title>
     <style>
+        /* ==================================================
+           GLOBAL & THEME VARIABLES
+           ================================================== */
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary: #0f172a;
-            --text-main: #334155;
+            /* Default / Intermediate Theme */
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
             --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --border: #e2e8f0;
-            --success: #10b981;
-            --error: #ef4444;
-            --radius: 8px;
+            --primary-color: #22c55e; /* Node.js Green */
+            --primary-hover: #16a34a;
+            --secondary-color: #f0fdf4;
+            --accent-color: #4ade80;
+            --border-color: #bbf7d0;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --spacing-unit: 1rem;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --transition: all 0.3s ease;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --hero-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Level 1: Beginner Theme */
+        body.theme-beginner {
+            --bg-color: #fffbeb;
+            --surface-color: #ffffff;
+            --text-color: #451a03;
+            --text-light: #78350f;
+            --primary-color: #f59e0b;
+            --primary-hover: #d97706;
+            --secondary-color: #fef3c7;
+            --accent-color: #fbbf24;
+            --border-color: #fcd34d;
+            --font-main: 'Comic Sans MS', 'Quicksand', 'Nunito', system-ui, sans-serif;
+            --border-radius: 24px;
+            --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --hero-bg: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
         }
 
+        /* Level 3: Advanced Theme */
+        body.theme-advanced {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --text-light: #94a3b8;
+            --primary-color: #22c55e;
+            --primary-hover: #4ade80;
+            --secondary-color: #14532d;
+            --accent-color: #86efac;
+            --border-color: #166534;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --border-radius: 4px;
+            --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            --hero-bg: linear-gradient(135deg, #14532d 0%, #064e3b 100%);
+        }
+
+        /* Level 4: Professional Theme */
+        body.theme-professional {
+            --bg-color: #fafafa;
+            --surface-color: #ffffff;
+            --text-color: #171717;
+            --text-light: #525252;
+            --primary-color: #171717;
+            --primary-hover: #404040;
+            --secondary-color: #f5f5f5;
+            --accent-color: #525252;
+            --border-color: #e5e5e5;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --border-radius: 0px;
+            --shadow: none;
+            --hero-bg: #f5f5f5;
+        }
+
+        /* ==================================================
+           RESET & TYPOGRAPHY
+           ================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-light);
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: var(--transition);
             overflow-x: hidden;
         }
-
-        a {
-            text-decoration: none;
-            color: inherit;
+        h1, h2, h3, h4 { margin-bottom: var(--spacing-unit); line-height: 1.2; }
+        p { margin-bottom: var(--spacing-unit); }
+        a { color: var(--primary-color); text-decoration: none; }
+        ul, ol { margin-left: 1.5rem; margin-bottom: var(--spacing-unit); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ==================================================
+           LAYOUT & COMPONENTS
+           ================================================== */
+        /* Header */
+        header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+            transition: var(--transition);
         }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            color: var(--secondary);
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .badge { background: var(--primary-color); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-family: var(--font-main); }
+        
+        /* Sections */
+        section { padding: 4rem 0; border-bottom: 1px solid var(--border-color); }
+        section:last-child { border-bottom: none; }
+        
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
             border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
             font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
             text-align: center;
         }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
-        /* Navigation */
-        header {
-            background-color: var(--white);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-outline:hover { background-color: var(--primary-color); color: #fff; }
+        
+        /* Cards */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* Level Content Toggle */
+        .level-content { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .level-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        nav {
+        /* Status Bar */
+        .status-bar {
+            background-color: var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--secondary);
-            background: none;
-            border: none;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
 
         /* Hero Section */
-        .hero {
-            padding: 160px 0 100px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 4rem 0;
-            background-color: var(--white);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            font-weight: 500;
-            color: var(--text-light);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        /* Countries Section */
-        .countries {
-            padding: 6rem 0;
-            background-color: var(--white);
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-5px);
-        }
-
-        .card-header {
-            padding: 1.5rem;
-            background: var(--bg-light);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .card-header img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .card-body p {
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .card-body strong {
-            color: var(--secondary);
-        }
-
-        /* Universities Section */
-        .universities {
-            padding: 6rem 0;
-        }
-
-        .controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .search-bar, .filter-select {
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            min-width: 250px;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 6rem 0;
-            background-color: var(--white);
-        }
-
-        .accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .accordion-item {
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            width: 100%;
-            padding: 1.5rem;
-            text-align: left;
-            background: var(--white);
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--secondary);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .accordion-content {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background: var(--bg-light);
-        }
-
-        .accordion-item.active .accordion-content {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-
-        .accordion-item.active .accordion-header i {
-            transform: rotate(180deg);
-        }
-
-        /* Inquiry Section */
-        .inquiry {
-            padding: 6rem 0;
-        }
-
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--secondary);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .form-control.error {
-            border-color: var(--error);
-        }
-
-        .error-text {
-            color: var(--error);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .form-status {
-            padding: 1rem;
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            display: none;
-        }
-
-        .form-status.success {
-            display: block;
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #34d399;
-        }
-
-        .form-status.error {
-            display: block;
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #f87171;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: var(--white);
-            padding: 4rem 0 2rem;
-            text-align: center;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Admin Dashboard Overlay */
-        #admin-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-light);
-            z-index: 9999;
-            display: none;
-            overflow-y: auto;
-        }
-
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .admin-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .tab-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            background: var(--white);
-            border-radius: var(--radius);
-            cursor: pointer;
-            font-weight: 600;
-            border: 1px solid var(--border);
-        }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        th {
-            background: var(--bg-light);
-            font-weight: 600;
-        }
-
-        .action-btn {
-            padding: 0.25rem 0.5rem;
-            border: none;
+        .hero { background: var(--hero-bg); display: flex; align-items: center; min-height: 60vh; }
+        .hero-container { display: flex; gap: 2rem; align-items: center; }
+        .hero-content { flex: 1; }
+        .hero-visual { flex: 1; background: var(--surface-color); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        
+        /* Architecture Visual - Event Loop */
+        .event-loop-container { display: flex; align-items: center; justify-content: center; position: relative; height: 250px; }
+        .loop-circle { width: 150px; height: 150px; border: 4px dashed var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; text-align: center; animation: spin 10s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .loop-text { position: absolute; font-weight: bold; font-size: 1.1rem; }
+        .arch-box { background: var(--secondary-color); border: 2px solid var(--border-color); padding: 10px; border-radius: var(--border-radius); font-weight: bold; text-align: center; z-index: 2; position: absolute;}
+        
+        /* Code Blocks */
+        pre, code {
+            font-family: var(--font-code);
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 2px 4px;
             border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 0.9em;
         }
+        pre { padding: 1rem; overflow-x: auto; margin-bottom: 1rem; border-radius: var(--border-radius); }
 
-        .btn-delete {
-            background: var(--error);
-            color: var(--white);
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; background: var(--surface-color); }
+        th, td { padding: 12px; text-align: left; border: 1px solid var(--border-color); }
+        th { background-color: var(--secondary-color); font-weight: bold; }
+        
+        /* Accordions (Exam Prep) */
+        .accordion { margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); overflow: hidden; }
+        .accordion-header {
+            width: 100%; padding: 15px; background: var(--surface-color); border: none;
+            text-align: left; font-weight: bold; cursor: pointer; color: var(--text-color);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .btn-update {
-            background: var(--success);
-            color: var(--white);
-        }
-
-        #login-form-container {
-            max-width: 400px;
-            margin: 100px auto;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
+        .accordion-content { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: var(--surface-color); }
+        .accordion-content p { padding: 15px 0; }
+        
+        /* Quiz */
+        .quiz-question { background: var(--surface-color); padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); margin-bottom: 1.5rem; }
+        .quiz-options { display: grid; gap: 10px; margin-top: 1rem; }
+        .quiz-btn { padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; text-align: left; color: var(--text-color); font-family: var(--font-main); }
+        .quiz-btn:hover { background: var(--primary-color); color: #fff; }
+        .quiz-explanation { margin-top: 10px; padding: 10px; border-radius: 4px; display: none; }
+        .quiz-btn.correct { background: #22c55e; color: #fff; border-color: #16a34a; }
+        .quiz-btn.wrong { background: #ef4444; color: #fff; border-color: #dc2626; }
+        
+        /* Highlight box */
+        .exam-tip { border-left: 4px solid var(--primary-color); background: var(--secondary-color); padding: 15px; margin: 15px 0; border-radius: 0 var(--border-radius) var(--border-radius) 0; }
+        
+        /* Citation formatting */
+        .cite { font-size: 0.75rem; vertical-align: super; color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: help; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--white);
-                flex-direction: column;
-                justify-content: center;
-                transition: var(--transition);
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
+            .hero-container { flex-direction: column; }
+            .hero-visual { width: 100%; overflow: hidden; }
+            .status-bar { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
-<body>
+<body class="theme-intermediate">
 
-    <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <i class="fa-solid fa-plane-departure"></i> SkyScholar
-                </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#countries">Countries</a></li>
-                    <li><a href="#universities">Universities</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><button onclick="openAdmin()" class="btn btn-outline" style="padding: 0.5rem 1rem;">Admin</button></li>
-                </ul>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+    <!-- HEADER -->
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                IT3501 <span class="badge">Part 3: Node.js & Events</span>
+            </div>
+            <nav style="gap: 15px; display: flex; flex-wrap: wrap;">
+                <a href="#learning-overview">Overview</a>
+                <a href="#theory">Theory</a>
+                <a href="#real-life-example">Tamil Example</a>
+                <a href="#exam-preparation">Exam Prep</a>
+                <a href="#quiz">Quiz</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section id="home" class="hero fade-in">
-        <div class="container">
-            <h1>Your Journey to Global Education Starts Here</h1>
-            <p>Expert guidance for admissions, visas, and scholarships to top universities worldwide.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn btn-primary">Book Consultation</a>
-                <a href="#universities" class="btn btn-outline">Explore Universities</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid fade-in">
-                <div class="stat-item">
-                    <h3 class="counter" data-target="98">0</h3>
-                    <p>% Visa Success</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="counter" data-target="500">0</h3>
-                    <p>Universities</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="counter" data-target="15">0</h3>
-                    <p>Countries</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="counter" data-target="10000">0</h3>
-                    <p>Students Placed</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services bg-light">
-        <div class="container">
-            <h2 class="section-title fade-in">Our Services</h2>
-            <p class="section-subtitle fade-in">Comprehensive support for your study abroad journey.</p>
-            
-            <div class="services-grid fade-in">
-                <div class="service-card">
-                    <i class="fa-solid fa-university service-icon"></i>
-                    <h3>University Selection</h3>
-                    <p>We help you find the best fit university based on your profile and career goals.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-file-signature service-icon"></i>
-                    <h3>Application Support</h3>
-                    <p>Assistance with SOPs, LORs, and seamless application submission.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-passport service-icon"></i>
-                    <h3>Visa Guidance</h3>
-                    <p>Step-by-step guidance for visa interviews and documentation.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fa-solid fa-award service-icon"></i>
-                    <h3>Scholarships</h3>
-                    <p>Identify and apply for global scholarships to fund your education.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Countries -->
-    <section id="countries" class="countries">
-        <div class="container">
-            <h2 class="section-title fade-in">Top Study Destinations</h2>
-            <p class="section-subtitle fade-in">Explore the most popular countries for international students.</p>
-            
-            <div id="countriesGrid" class="grid-cards fade-in">
-                <!-- Injected via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Universities -->
-    <section id="universities" class="universities bg-light">
-        <div class="container">
-            <h2 class="section-title fade-in">Featured Universities</h2>
-            <p class="section-subtitle fade-in">Discover top-ranked institutions.</p>
-            
-            <div class="controls fade-in">
-                <input type="text" id="uniSearch" class="search-bar" placeholder="Search universities or courses..." aria-label="Search universities">
-                <select id="countryFilter" class="filter-select" aria-label="Filter by country">
-                    <option value="all">All Countries</option>
-                    <!-- Injected via JS -->
-                </select>
-            </div>
-
-            <div id="universitiesGrid" class="grid-cards fade-in">
-                <!-- Injected via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
-            <p class="section-subtitle fade-in">Got questions? We have answers.</p>
-            
-            <div class="accordion fade-in">
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                        When should I start my application process?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p>It is recommended to start your application process at least 9-12 months before the intake begins. This gives you ample time for standardized tests, document preparation, and visa processing.</p>
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>Node.js & Event-Driven Architecture</h1>
+                    <p>Master the event-driven programming model in Node.js <span class="cite" title="Source 1">[cite: 1]</span>. Learn how Events, EventEmitters, Listeners, and the non-blocking Event Loop power scalable, real-time backend applications <span class="cite" title="Source 1, 5">[cite: 1, 5]</span>.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="#level-selector" class="btn">Start Learning</a>
+                        <a href="#programming-connection" class="btn btn-outline">View Node.js Code</a>
                     </div>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                        Do I need to take IELTS/TOEFL?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Most universities require an English proficiency test for international students from non-English speaking countries. However, some universities offer waivers based on your previous education medium.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                        Are scholarships available for international students?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Yes, many universities and governments offer merit-based and need-based scholarships. Our team will help you identify and apply for eligible scholarships to reduce your financial burden.</p>
+                <div class="hero-visual">
+                    <div class="event-loop-container">
+                        <div class="arch-box" style="top: 10px; left: 10px;">Incoming Event<br>(HTTP Request)</div>
+                        <div class="loop-circle"></div>
+                        <div class="loop-text">Event Loop</div>
+                        <div class="arch-box" style="bottom: 10px; right: 10px; background: var(--primary-color); color: white;">Execute Listener<br>(Callback)</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Inquiry / Contact -->
-    <section id="contact" class="inquiry bg-light">
-        <div class="container">
-            <h2 class="section-title fade-in">Get in Touch</h2>
-            <p class="section-subtitle fade-in">Schedule a free counseling session today.</p>
+        <!-- WHAT YOU WILL LEARN -->
+        <section id="learning-overview" class="container">
+            <h2>What You Will Learn (Part 3)</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🔄 Event-Driven Model</h3>
+                    <p>How Node.js handles thousands of requests on a single thread without blocking <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>📡 Events & Listeners</h3>
+                    <p>Understanding the <code>EventEmitter</code> class, custom events, and callback functions <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>📦 NPM & Packages</h3>
+                    <p>Managing external packages using Node Package Manager to extend functionality <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                </div>
+                <div class="card">
+                    <h3>📂 I/O & HTTP Services</h3>
+                    <p>Handling File I/O operations and creating built-in HTTP servers in Node.js <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+                </div>
+            </div>
+        </section>
 
-            <div class="form-container fade-in">
-                <div id="formStatus" class="form-status"></div>
+        <!-- LEVEL SELECTOR -->
+        <section id="level-selector" class="container">
+            <h2>Choose Your Learning Level</h2>
+            <p>Select a level below to adapt the content and language to your understanding.</p>
+            <div class="card-grid">
+                <div class="card" style="cursor:pointer;" onclick="setLevel('beginner')">
+                    <h3>🌱 Beginner</h3>
+                    <p>Simple English, visual analogies like a fast-food waiter. Easy to understand.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Beginner</button>
+                </div>
+                <div class="card" style="cursor:pointer; border-color: var(--primary-color);" onclick="setLevel('intermediate')">
+                    <h3>🎓 Intermediate</h3>
+                    <p>Academic structured learning. Directly aligns with the IT3501 university syllabus.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Intermediate</button>
+                </div>
+                <div class="card" style="cursor:pointer;" onclick="setLevel('advanced')">
+                    <h3>🚀 Advanced</h3>
+                    <p>Technical details for final-year students preparing for backend placements.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Advanced</button>
+                </div>
+                <div class="card" style="cursor:pointer;" onclick="setLevel('professional')">
+                    <h3>💼 Professional</h3>
+                    <p>Industry-level reference covering the thread pool, libuv, and scaling techniques.</p>
+                    <button class="btn" style="margin-top: 10px; width: 100%;">Select Professional</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- DYNAMIC THEORY SECTION -->
+        <section id="theory" class="container">
+            
+            <!-- Beginner Content -->
+            <article id="content-beginner" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 🌱 Beginner</span>
+                    <span>Step 1: Theory</span>
+                </div>
+                <h2>The Waiter Analogy (Node.js)</h2>
+                <p>Imagine a very busy restaurant. In old systems (like Java or PHP), every time a customer arrived, the restaurant hired a new waiter (a new thread). If there were 100 customers, they needed 100 waiters!</p>
                 
-                <form id="inquiryForm" novalidate>
-                    <div class="form-group">
-                        <label for="name" class="form-label">Full Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                        <span class="error-text">Please enter your full name.</span>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3 style="font-size: 1.5rem;">The Super Waiter (Single Thread)</h3>
+                        <p>Node.js is different. It uses only <strong>ONE Super Waiter</strong> for all customers <span class="cite" title="Source 1">[cite: 1]</span>. How is this possible?</p>
                     </div>
+                    <div class="card">
+                        <h3 style="font-size: 1.5rem;">Non-Blocking (No Waiting)</h3>
+                        <p>When you order food, the Super Waiter doesn't stand in the kitchen waiting for the chef to cook <span class="cite" title="Source 1">[cite: 1]</span>. He gives the order to the kitchen and immediately goes to the next table to take another order!</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-size: 1.5rem;">Events & Callbacks</h3>
+                        <p>When the food is ready, the kitchen rings a bell (an <strong>Event</strong>). The waiter hears the bell, picks up the food, and delivers it to you (executing the <strong>Callback / Listener</strong>) <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    </div>
+                </div>
+                
+                <div class="exam-tip">
+                    <strong>Simple terms:</strong> An <strong>Event</strong> is a signal that something happened <span class="cite" title="Source 1">[cite: 1]</span>. A <strong>Listener</strong> is the function that reacts to that event <span class="cite" title="Source 1">[cite: 1]</span>.
+                </div>
+            </article>
+
+            <!-- Intermediate Content (Default active) -->
+            <article id="content-intermediate" class="level-content active">
+                <div class="status-bar">
+                    <span>Current Level: 🎓 Intermediate</span>
+                    <span>Theory & Concepts</span>
+                </div>
+                <h2>Event-Driven Programming in Node.js</h2>
+                <p>Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>. Instead of creating a new thread to handle each operation, Node.js registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                
+                <h3>How It Works (The Flow):</h3>
+                <ol>
+                    <li>An asynchronous operation (e.g., reading a file) is initiated <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li>Node.js delegates the operation to the system and continues executing other code without waiting <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li>Once the operation completes, an <strong>event</strong> is emitted <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li>A central <strong>event loop</strong> continuously monitors for events, picks up the event, and invokes the registered <strong>callback/listener</strong> function <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                </ol>
+
+                <h3>Key Components:</h3>
+                <ul>
+                    <li><strong>Events:</strong> A signal indicating that something specific has happened (e.g., a 'data' event or 'connection' event) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>EventEmitter:</strong> A core class from the built-in 'events' module that implements the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. It provides methods like <code>emit()</code> to trigger events and <code>on()</code> to listen for them <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Listeners:</strong> The callback function registered against a specific event. When the event is emitted, the event loop invokes all listeners registered for it <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                </ul>
+            </article>
+
+            <!-- Advanced Content -->
+            <article id="content-advanced" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 🚀 Advanced</span>
+                    <span>Architecture & Placements</span>
+                </div>
+                <h2>The Event Loop & Libuv Architecture</h2>
+                <p>To succeed in technical interviews, you must understand that while Node.js's main execution thread is single-threaded, the I/O operations are actually multi-threaded behind the scenes, handled by a C++ library called <strong>libuv</strong> <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <th>Concept</th>
+                        <th>Technical Detail</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Event Loop</strong></td>
+                        <td>The infinite loop in the main thread that checks the Callback Queue. If the call stack is empty, it pushes the first callback from the queue to the call stack to be executed <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Libuv Thread Pool</strong></td>
+                        <td>When Node.js encounters an async I/O task (like File System read/write), it delegates it to the libuv thread pool (default 4 threads) so the main thread doesn't block <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EventEmitter API</strong></td>
+                        <td>Methods include <code>emit(eventName, [...args])</code> to trigger, <code>on(eventName, listener)</code> to listen continuously, and <code>once(eventName, listener)</code> to listen for only the first occurrence <span class="cite" title="Source 1">[cite: 1]</span>.</td>
+                    </tr>
+                </table>
+
+                <h3>Why is this suitable for Real-Time Apps?</h3>
+                <p>Because threads are expensive in terms of memory. By using a single thread and callbacks, Node.js can keep tens of thousands of concurrent connections open simultaneously, making it ideal for chat applications and streaming services <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+            </article>
+
+            <!-- Professional Content -->
+            <article id="content-professional" class="level-content">
+                <div class="status-bar">
+                    <span>Current Level: 💼 Professional</span>
+                    <span>Architecture & Engineering Design</span>
+                </div>
+                <h2>Production Node.js: Event Architecture Pitfalls</h2>
+                <p>While the event-driven model is highly performant, it introduces specific architectural challenges in production environments.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3><span class="badge">Additional Industry Context</span> Memory Leaks in EventEmitters</h3>
+                        <p>Registering too many listeners on a single EventEmitter without removing them (using <code>removeListener()</code> or <code>off()</code> <span class="cite" title="Source 1">[cite: 1]</span>) causes memory leaks. Node.js warns developers when more than 10 listeners are attached to a single event by default.</p>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge">Additional Industry Context</span> CPU Intensive Tasks Block the Loop</h3>
+                        <p>Because the Event Loop runs on a single thread, executing a heavy mathematical computation directly in a callback will freeze the entire server. Solution: Use Node's <code>worker_threads</code> module to offload CPU-bound tasks, keeping the main event loop free for I/O routing.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Node Package Manager (NPM):</strong> In enterprise environments, managing dependencies via `package.json` requires strict version pinning to avoid supply chain attacks and ensure reproducible builds across CI/CD pipelines <span class="cite" title="Source 5">[cite: 5]</span>.</p>
+            </article>
+
+        </section>
+
+        <!-- REAL LIFE TAMIL EXAMPLE -->
+        <section id="real-life-example" style="background: var(--secondary-color);">
+            <div class="container">
+                <h2>Real-Life Example: WhatsApp Messaging</h2>
+                <p><em>(Explained in simple Tamil for clear understanding)</em></p>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <p>ஒருவர் WhatsApp-ல் message அனுப்புகிறார் என்று வைத்துக்கொள்வோம்.</p>
                     
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                        <span class="error-text">Please enter a valid email address.</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" required>
-                        <span class="error-text">Please enter your phone number.</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="prefCountry" class="form-label">Preferred Country</label>
-                        <select id="prefCountry" name="preferredCountry" class="form-control" required>
-                            <option value="">Select a country</option>
-                            <!-- Injected via JS -->
-                        </select>
-                        <span class="error-text">Please select a preferred country.</span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" class="form-label">Additional Message (Optional)</label>
-                        <textarea id="message" name="message" class="form-control" rows="4"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
-                </form>
+                    <ul style="margin-top: 15px; list-style: none; margin-left: 0;">
+                        <li>🚀 <strong>Initiation:</strong> User message-ஐ type செய்து send செய்கிறார் (Async operation initiated) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>🏃‍♂️ <strong>Non-Blocking:</strong> Server அந்த message-ஐ receive செய்துவிட்டு, அது deliver ஆகும் வரை wait பண்ணாது. Server அடுத்த user-ன் message-ஐ வாங்க போய்விடும் (continues executing other code without waiting) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>🔔 <strong>Event Emitted:</strong> Message வெற்றிகரமாக நண்பருக்கு சென்று சேர்ந்ததும், "Delivered" என்ற ஒரு சிக்னல் (Event) உருவாகும் <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li>✅ <strong>Listener / Callback:</strong> Event Loop அந்த சிக்னலை பார்த்துவிட்டு, உடனே உங்களுக்கு "Double Tick" (✔️✔️) காட்டும் (Listener invoked) <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    </ul>
+                    <p style="margin-top: 15px;">இதனால்தான் Node.js-ஆல் ஒரே நேரத்தில் லட்சக்கணக்கான messages-ஐ எவ்வித தாமதமும் இல்லாமல் (scalable, non-blocking I/O) handle செய்ய முடிகிறது <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!-- PROGRAMMING CONNECTION -->
+        <section id="programming-connection" class="container">
+            <h2>From Theory to Code (EventEmitter)</h2>
+            <p>Here is exactly how you create and listen to events in Node.js <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+            
+            <div style="background: #1e1e1e; padding: 20px; border-radius: var(--border-radius); color: #d4d4d4; font-family: var(--font-code);">
+                <span style="color: #6a9955;">// 1. Import the built-in 'events' module</span><br>
+                <span style="color: #569cd6;">const</span> EventEmitter = <span style="color: #dcdcaa;">require</span>(<span style="color: #ce9178;">'events'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                <br>
+                <span style="color: #6a9955;">// 2. Create an instance of EventEmitter</span><br>
+                <span style="color: #569cd6;">const</span> myEmitter = <span style="color: #569cd6;">new</span> <span style="color: #4ec9b0;">EventEmitter</span>(); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                <br>
+                <span style="color: #6a9955;">// 3. Register a listener for the 'greet' event using .on()</span><br>
+                myEmitter.<span style="color: #dcdcaa;">on</span>(<span style="color: #ce9178;">'greet'</span>, <span style="color: #569cd6;">function</span>(name) { <span class="cite" title="Source 1">[cite: 1]</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4ec9b0;">console</span>.<span style="color: #dcdcaa;">log</span>(<span style="color: #ce9178;">'Hello, '</span> + name + <span style="color: #ce9178;">'! Welcome.'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                });<br>
+                <br>
+                <span style="color: #6a9955;">// 4. Emit (trigger) the 'greet' event, passing data to the listener</span><br>
+                myEmitter.<span style="color: #dcdcaa;">emit</span>(<span style="color: #ce9178;">'greet'</span>, <span style="color: #ce9178;">'Student'</span>); <span class="cite" title="Source 1">[cite: 1]</span><br>
+                <br>
+                <span style="color: #6a9955;">/* Output:<br>
+                Hello, Student! Welcome.<br>
+                */</span>
+            </div>
+            
+            <div class="exam-tip" style="margin-top: 20px;">
+                <strong>Extra Methods:</strong> You can use <code>myEmitter.once('eventName', listener)</code> if you want the event to trigger only the first time it happens, and then automatically be removed <span class="cite" title="Source 1">[cite: 1]</span>.
+            </div>
+        </section>
+
+        <!-- COMMON MISTAKES -->
+        <section id="mistakes-tricks" class="container">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>❌ Common Student Confusions</h3>
+                    <ul>
+                        <li><strong>Wrong:</strong> Node.js creates a new thread for every user request.<br>
+                        <strong>Correct:</strong> Node.js is <em>single-threaded</em> and uses an Event Loop to handle many requests concurrently without blocking <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                        <li><strong>Wrong:</strong> Events and Listeners are the same thing.<br>
+                        <strong>Correct:</strong> An <em>Event</em> is the signal (e.g., 'data received'). A <em>Listener</em> is the callback function that executes when the event happens <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAM PREPARATION -->
+        <section id="exam-preparation" class="container" style="background: var(--secondary-color); padding: 2rem; border-radius: var(--border-radius);">
+            <h2>📝 University Exam Preparation</h2>
+            <p>Click the questions to reveal the answers formatted for exams.</p>
+
+            <h3>A. 2-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">1. What is an Event in Node.js? <span>▼</span></button>
+                <div class="accordion-content">
+                    <p>An event is a signal indicating that something specific has happened in the application <span class="cite" title="Source 1">[cite: 1]</span>. For example, a 'data' event when a stream receives data, or a 'connection' event when a new client connects <span class="cite" title="Source 1">[cite: 1]</span>. They form the basis of asynchronous communication <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">2. List the key methods of the EventEmitter class. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p>The key methods are <span class="cite" title="Source 1">[cite: 1]</span>:<br>
+                    1. <code>emit(eventName, [...args])</code>: Triggers the event.<br>
+                    2. <code>on(eventName, listener)</code>: Registers a listener.<br>
+                    3. <code>once(eventName, listener)</code>: Registers a one-time listener.<br>
+                    4. <code>removeListener(eventName, listener)</code> or <code>off()</code>: Removes a listener.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">B. 5-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Discuss Events, EventEmitter, and Listeners in Node.js. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p><strong>Events:</strong> An event is a signal indicating that something has happened (e.g., 'data' or 'connection') <span class="cite" title="Source 1">[cite: 1]</span>. Events form the basis of communication in an asynchronous way <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>EventEmitter:</strong> It is a core class provided by Node.js from the built-in 'events' module implementing the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. It provides methods like <code>emit()</code> to fire events and <code>on()</code> to register listeners <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    <p><strong>Listeners:</strong> A listener is the callback function registered against a specific event using methods like <code>.on()</code> <span class="cite" title="Source 1">[cite: 1]</span>. Whenever the event is emitted, the event loop invokes all registered listeners in the order they were added <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">C. 15-Mark Questions</h3>
+            <div class="accordion">
+                <button class="accordion-header" onclick="toggleAccordion(this)">Explain the event-driven programming model in Node.js. Discuss Events, EventEmitter, and Listeners with an example. <span>▼</span></button>
+                <div class="accordion-content">
+                    <p><strong>1. Event-Driven Programming Model:</strong><br>
+                    Node.js is built on a single-threaded, non-blocking, event-driven architecture <span class="cite" title="Source 1">[cite: 1]</span>. Instead of creating a new thread to handle each operation, Node.js registers callback functions (listeners) for specific events <span class="cite" title="Source 1">[cite: 1]</span>. A central event loop monitors for events (incoming HTTP request, file read, timer) and invokes the corresponding callback once that event occurs <span class="cite" title="Source 1">[cite: 1]</span>. This allows Node.js to efficiently handle concurrent I/O operations <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                    
+                    <p><strong>2. How it works (Flow):</strong><br>
+                    An asynchronous operation is initiated → Node.js delegates the operation (to libuv thread pool) and continues executing other code without waiting → once the operation completes, an event is emitted → the event loop picks up the event and invokes the registered listener function → the callback executes, handling the result <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+
+                    <p><strong>3. Events, EventEmitter, and Listeners:</strong><br>
+                    - <strong>Events:</strong> Signals that something specific has happened <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - <strong>EventEmitter:</strong> A core class from the 'events' module that implements the observer pattern <span class="cite" title="Source 1">[cite: 1]</span>. Key methods are <code>emit()</code>, <code>on()</code>, <code>once()</code>, and <code>removeListener()</code> <span class="cite" title="Source 1">[cite: 1]</span>.<br>
+                    - <strong>Listeners:</strong> Callback functions registered to events. The event loop invokes them when the event fires <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+
+                    <p><strong>4. Example Program:</strong><br>
+                    <code>
+                    const EventEmitter = require('events');<br>
+                    const myEmitter = new EventEmitter();<br>
+                    myEmitter.on('greet', function(name) {<br>
+                    &nbsp;&nbsp;console.log('Hello, ' + name + '! Welcome.');<br>
+                    });<br>
+                    myEmitter.emit('greet', 'Student');<br>
+                    </code> <span class="cite" title="Source 1">[cite: 1]</span></p>
+
+                    <p><strong>5. Significance:</strong><br>
+                    This model allows Node.js applications to react to asynchronous occurrences efficiently, enabling scalable, non-blocking I/O <span class="cite" title="Source 1">[cite: 1]</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="container">
+            <h2>Self-Test Quiz</h2>
+            <p>Test your knowledge across different difficulty levels.</p>
+
+            <!-- Q1 -->
+            <div class="quiz-question">
+                <p><strong>1. (Beginner) What happens when an event is "emitted" in Node.js?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">A. The server shuts down.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q1-exp')">B. A signal is sent, and any registered callback (listener) for that event is executed.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q1-exp')">C. A new database is created.</button>
+                </div>
+                <div id="q1-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Emitting an event triggers the listener callback functions associated with it <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question">
+                <p><strong>2. (Intermediate) Which method is used to register a listener that runs only the VERY FIRST time an event occurs?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">A. .on()</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q2-exp')">B. .addListener()</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q2-exp')">C. .once()</button>
+                </div>
+                <div id="q2-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> <code>once(eventName, listener)</code> registers a listener that is invoked only the first time the event is emitted, then automatically removed <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question">
+                <p><strong>3. (Advanced) Why is Node.js well-suited for I/O-heavy applications like streaming services?</strong></p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">A. Because it creates a new thread for every connection.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, true, 'q3-exp')">B. Because it uses a single-threaded, non-blocking event loop to handle many concurrent operations without waiting.</button>
+                    <button class="quiz-btn" onclick="checkQuiz(this, false, 'q3-exp')">C. Because it natively uses multi-threaded relational databases.</button>
+                </div>
+                <div id="q3-exp" class="quiz-explanation bg-gray-100"><strong>Correct!</strong> Its non-blocking, event-driven architecture handles many concurrent I/O operations efficiently on a single thread <span class="cite" title="Source 1">[cite: 1]</span>.</div>
+            </div>
+        </section>
+
+        <!-- 1 MINUTE REVISION -->
+        <section id="revision" class="container" style="text-align: center;">
+            <h2>⏱️ 1-Minute Final Revision</h2>
+            <div class="arch-box" style="margin: 0 auto 20px auto; width: auto; display: inline-block; padding: 20px; text-align: left; position: relative; z-index: 1;">
+                <h3 style="margin-bottom: 10px; text-align: center;">Event-Driven Basics</h3>
+                <ul style="list-style-type: square; margin-bottom: 0;">
+                    <li><strong>Architecture:</strong> Single-threaded, Non-blocking I/O <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Event:</strong> A signal that something happened <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>Listener:</strong> The callback function that runs when the event happens <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>EventEmitter:</strong> The class used to <code>emit()</code> and listen <code>on()</code> to events <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                    <li><strong>The Flow:</strong> Initiate Async Task → Don't Wait → Task Completes → Event Emitted → Event Loop Triggers Listener <span class="cite" title="Source 1">[cite: 1]</span>.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 SkyScholar. All Rights Reserved.</p>
+        <div class="container" style="text-align: center; padding: 2rem 0; color: var(--text-light);">
+            <p><strong>IT3501 – Full Stack Web Development</strong></p>
+            <p>Part 3: Node.js & Event-Driven Programming | Exam Preparation Learning Portal</p>
         </div>
     </footer>
 
-    <!-- Admin Overlay -->
-    <div id="admin-overlay">
-        
-        <!-- Login Form -->
-        <div id="login-form-container">
-            <h2 style="margin-bottom: 1.5rem; text-align: center;">Admin Login</h2>
-            <div id="loginError" class="error-text" style="text-align: center; margin-bottom: 1rem;">Invalid credentials</div>
-            <form id="adminLoginForm">
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" id="adminEmail" class="form-control" required value="admin@skyscholar.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" id="adminPassword" class="form-control" required value="admin123">
-                </div>
-                <div style="display: flex; gap: 1rem;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Login</button>
-                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="closeAdmin()">Cancel</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Dashboard -->
-        <div id="admin-dashboard" class="admin-container" style="display: none;">
-            <div class="admin-header">
-                <h2>Admin Dashboard</h2>
-                <button class="btn btn-outline" onclick="logoutAdmin()">Logout</button>
-            </div>
-
-            <div class="admin-tabs">
-                <button class="tab-btn active" data-tab="inquiriesTab">Inquiries</button>
-                <button class="tab-btn" data-tab="countriesTab">Countries</button>
-                <button class="tab-btn" data-tab="universitiesTab">Universities</button>
-            </div>
-
-            <!-- Inquiries Tab -->
-            <div id="inquiriesTab" class="tab-content active">
-                <h3>Recent Inquiries</h3>
-                <div style="overflow-x: auto; margin-top: 1rem;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Country</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminInquiriesList"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Countries Tab -->
-            <div id="countriesTab" class="tab-content">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3>Manage Countries</h3>
-                </div>
-                <div style="overflow-x: auto; margin-top: 1rem;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Tuition (Avg)</th>
-                                <th>Visa Success</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminCountriesList"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Universities Tab -->
-            <div id="universitiesTab" class="tab-content">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3>Manage Universities</h3>
-                </div>
-                <div style="overflow-x: auto; margin-top: 1rem;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Country</th>
-                                <th>Tuition Fee</th>
-                                <th>Ranking</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminUniversitiesList"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
+    <!-- JAVASCRIPT -->
     <script>
-        const DB_KEY = 'skyscholar_db';
+        // Level Selection Logic
+        function setLevel(level) {
+            // Update Body Theme Class
+            document.body.className = '';
+            document.body.classList.add('theme-' + level);
 
-        const initialData = {
-            countries: [
-                { id: 'c1', name: 'Canada', flag: 'ca', averageTuition: 25000, averageSalary: 55000, visaSuccess: 92, processingTime: '4-6 weeks', scholarships: true },
-                { id: 'c2', name: 'United Kingdom', flag: 'gb', averageTuition: 22000, averageSalary: 50000, visaSuccess: 88, processingTime: '3-5 weeks', scholarships: true },
-                { id: 'c3', name: 'Australia', flag: 'au', averageTuition: 28000, averageSalary: 60000, visaSuccess: 90, processingTime: '4-8 weeks', scholarships: true },
-                { id: 'c4', name: 'Germany', flag: 'de', averageTuition: 12000, averageSalary: 58000, visaSuccess: 85, processingTime: '6-10 weeks', scholarships: false },
-                { id: 'c5', name: 'USA', flag: 'us', averageTuition: 35000, averageSalary: 65000, visaSuccess: 80, processingTime: '8-12 weeks', scholarships: true },
-            ],
-            universities: [
-                { id: 'u1', name: 'University of Toronto', countryId: 'c1', logo: 'https://picsum.photos/seed/utoronto/64', tuitionFee: 30000, intake: 'Sep, Jan', courseCount: 120, ranking: 18, acceptanceRate: 43 },
-                { id: 'u2', name: 'University of Oxford', countryId: 'c2', logo: 'https://picsum.photos/seed/oxford/64', tuitionFee: 28000, intake: 'Oct', courseCount: 100, ranking: 5, acceptanceRate: 17 },
-                { id: 'u3', name: 'University of Melbourne', countryId: 'c3', logo: 'https://picsum.photos/seed/melbourne/64', tuitionFee: 32000, intake: 'Feb, Jul', courseCount: 90, ranking: 33, acceptanceRate: 70 },
-                { id: 'u4', name: 'Technical University of Munich', countryId: 'c4', logo: 'https://picsum.photos/seed/tum/64', tuitionFee: 15000, intake: 'Oct, Apr', courseCount: 60, ranking: 50, acceptanceRate: 30 },
-                { id: 'u5', name: 'Harvard University', countryId: 'c5', logo: 'https://picsum.photos/seed/harvard/64', tuitionFee: 45000, intake: 'Sep', courseCount: 150, ranking: 1, acceptanceRate: 4 },
-            ],
-            inquiries: []
-        };
+            // Hide all level content
+            const contents = document.querySelectorAll('.level-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-        function getDB() {
-            const stored = localStorage.getItem(DB_KEY);
-            if (!stored) {
-                localStorage.setItem(DB_KEY, JSON.stringify(initialData));
-                return JSON.parse(JSON.stringify(initialData));
-            }
-            try {
-                return JSON.parse(stored);
-            } catch (err) {
-                localStorage.setItem(DB_KEY, JSON.stringify(initialData));
-                return JSON.parse(JSON.stringify(initialData));
-            }
-        }
-
-        function saveDB(data) {
-            localStorage.setItem(DB_KEY, JSON.stringify(data));
-        }
-
-        const db = getDB();
-
-        function renderCountries() {
-            const grid = document.getElementById('countriesGrid');
-            const select = document.getElementById('prefCountry');
-            const filterSelect = document.getElementById('countryFilter');
-
-            grid.innerHTML = '';
-            select.innerHTML = '<option value="">Select a country</option>';
-            filterSelect.innerHTML = '<option value="all">All Countries</option>';
-
-            db.countries.forEach(country => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <img src="https://flagcdn.com/w40/${country.flag}.png" alt="${country.name} Flag">
-                        <h3>${country.name}</h3>
-                    </div>
-                    <div class="card-body">
-                        <p><span>Avg. Tuition:</span> <strong>$${country.averageTuition.toLocaleString()}</strong></p>
-                        <p><span>Visa Success:</span> <strong>${country.visaSuccess}%</strong></p>
-                        <p><span>Processing:</span> <strong>${country.processingTime}</strong></p>
-                        <p><span>Scholarships:</span> <strong>${country.scholarships ? 'Yes' : 'No'}</strong></p>
-                    </div>
-                `;
-                grid.appendChild(card);
-
-                const option = document.createElement('option');
-                option.value = country.id;
-                option.textContent = country.name;
-                select.appendChild(option);
-
-                const filterOption = option.cloneNode(true);
-                filterSelect.appendChild(filterOption);
-            });
-        }
-
-        function renderUniversities(filterText = '', filterCountry = 'all') {
-            const grid = document.getElementById('universitiesGrid');
-            grid.innerHTML = '';
-
-            const searchTerm = filterText.trim().toLowerCase();
-            const filtered = db.universities.filter(uni => {
-                const matchesText = uni.name.toLowerCase().includes(searchTerm);
-                const matchesCountry = filterCountry === 'all' || uni.countryId === filterCountry;
-                return matchesText && matchesCountry;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">No universities found.</p>';
-                return;
+            // Show selected level content
+            const selectedContent = document.getElementById('content-' + level);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
             }
 
-            filtered.forEach(uni => {
-                const country = db.countries.find(c => c.id === uni.countryId);
-                const countryName = country ? country.name : 'Unknown';
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <img src="${uni.logo}" alt="${uni.name} Logo">
-                        <div>
-                            <h3 style="font-size: 1.1rem;">${uni.name}</h3>
-                            <small style="color: var(--text-light);"><i class="fa-solid fa-location-dot"></i> ${countryName}</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p><span>Global Rank:</span> <strong>#${uni.ranking}</strong></p>
-                        <p><span>Tuition Fee:</span> <strong>$${uni.tuitionFee.toLocaleString()}/yr</strong></p>
-                        <p><span>Acceptance Rate:</span> <strong>${uni.acceptanceRate}%</strong></p>
-                        <p><span>Intakes:</span> <strong>${uni.intake}</strong></p>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+            // Smooth scroll to theory section
+            document.getElementById('theory').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function renderAdminLists() {
-            const inquiriesBody = document.getElementById('adminInquiriesList');
-            const countriesBody = document.getElementById('adminCountriesList');
-            const universitiesBody = document.getElementById('adminUniversitiesList');
-
-            inquiriesBody.innerHTML = '';
-            countriesBody.innerHTML = '';
-            universitiesBody.innerHTML = '';
-
-            if (db.inquiries.length === 0) {
-                inquiriesBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 1rem;">No inquiries yet.</td></tr>';
+        // Accordion Logic (Exam Prep)
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const span = button.querySelector('span');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                span.innerHTML = '▼';
             } else {
-                db.inquiries.forEach(inquiry => {
-                    const country = db.countries.find(c => c.id === inquiry.countryId);
-                    const countryName = country ? country.name : 'Unknown';
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${inquiry.name}</td>
-                        <td>${inquiry.email}</td>
-                        <td>${inquiry.phone}</td>
-                        <td>${countryName}</td>
-                        <td>${inquiry.status}</td>
-                        <td><button class="action-btn btn-delete" type="button">Delete</button></td>
-                    `;
-                    row.querySelector('button').addEventListener('click', () => deleteInquiry(inquiry.id));
-                    inquiriesBody.appendChild(row);
-                });
-            }
-
-            db.countries.forEach(country => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${country.name}</td>
-                    <td>$${country.averageTuition.toLocaleString()}</td>
-                    <td>${country.visaSuccess}%</td>
-                    <td><button class="action-btn btn-update" type="button" disabled>View</button></td>
-                `;
-                countriesBody.appendChild(row);
-            });
-
-            db.universities.forEach(uni => {
-                const country = db.countries.find(c => c.id === uni.countryId);
-                const countryName = country ? country.name : 'Unknown';
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${uni.name}</td>
-                    <td>${countryName}</td>
-                    <td>$${uni.tuitionFee.toLocaleString()}</td>
-                    <td>#${uni.ranking}</td>
-                    <td><button class="action-btn btn-update" type="button" disabled>View</button></td>
-                `;
-                universitiesBody.appendChild(row);
-            });
-        }
-
-        function deleteInquiry(id) {
-            db.inquiries = db.inquiries.filter(item => item.id !== id);
-            saveDB(db);
-            renderAdminLists();
-        }
-
-        function showFormStatus(message, type = 'success') {
-            const statusEl = document.getElementById('formStatus');
-            statusEl.textContent = message;
-            statusEl.className = `form-status ${type}`;
-            statusEl.style.display = message ? 'block' : 'none';
-            if (message) {
-                setTimeout(() => {
-                    statusEl.style.display = 'none';
-                }, 4000);
+                content.style.maxHeight = content.scrollHeight + "px";
+                span.innerHTML = '▲';
             }
         }
 
-        function clearFieldError(field) {
-            field.classList.remove('error');
-            const errorText = field.nextElementSibling;
-            if (errorText && errorText.classList.contains('error-text')) {
-                errorText.style.display = 'none';
-            }
-        }
+        // Quiz Logic
+        function checkQuiz(button, isCorrect, expId) {
+            // Get parent container
+            const optionsContainer = button.parentElement;
+            
+            // Disable all buttons in this group
+            const buttons = optionsContainer.querySelectorAll('.quiz-btn');
+            buttons.forEach(btn => btn.disabled = true);
 
-        function setFieldError(field, message) {
-            field.classList.add('error');
-            const errorText = field.nextElementSibling;
-            if (errorText && errorText.classList.contains('error-text')) {
-                errorText.textContent = message;
-                errorText.style.display = 'block';
-            }
-        }
-
-        function validateEmail(value) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-        }
-
-        function validatePhone(value) {
-            return /^\+?[0-9\s-]{7,15}$/.test(value);
-        }
-
-        function clearAllErrors(form) {
-            form.querySelectorAll('.form-control').forEach(input => clearFieldError(input));
-        }
-
-        function handleInquirySubmit(event) {
-            event.preventDefault();
-            clearAllErrors(inquiryForm);
-            showFormStatus('', 'success');
-
-            const nameField = document.getElementById('name');
-            const emailField = document.getElementById('email');
-            const phoneField = document.getElementById('phone');
-            const prefCountryField = document.getElementById('prefCountry');
-            const messageField = document.getElementById('message');
-
-            let hasError = false;
-
-            if (!nameField.value.trim()) {
-                setFieldError(nameField, 'Please enter your full name.');
-                hasError = true;
-            }
-            if (!validateEmail(emailField.value.trim())) {
-                setFieldError(emailField, 'Please enter a valid email address.');
-                hasError = true;
-            }
-            if (!validatePhone(phoneField.value.trim())) {
-                setFieldError(phoneField, 'Please enter a valid phone number.');
-                hasError = true;
-            }
-            if (!prefCountryField.value) {
-                setFieldError(prefCountryField, 'Please select a preferred country.');
-                hasError = true;
-            }
-
-            if (hasError) {
-                showFormStatus('Please fix the highlighted fields before submitting.', 'error');
-                return;
-            }
-
-            const newInquiry = {
-                id: Date.now().toString(),
-                name: nameField.value.trim(),
-                email: emailField.value.trim(),
-                phone: phoneField.value.trim(),
-                countryId: prefCountryField.value,
-                message: messageField.value.trim(),
-                status: 'New',
-                createdAt: new Date().toISOString()
-            };
-
-            db.inquiries.unshift(newInquiry);
-            saveDB(db);
-            renderAdminLists();
-            inquiryForm.reset();
-            showFormStatus('Your inquiry has been submitted successfully.', 'success');
-        }
-
-        function handleSearchAndFilter() {
-            const searchTerm = document.getElementById('uniSearch').value;
-            const countryValue = document.getElementById('countryFilter').value;
-            renderUniversities(searchTerm, countryValue);
-        }
-
-        function openAdmin() {
-            document.getElementById('admin-overlay').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            document.getElementById('login-form-container').style.display = 'block';
-            document.getElementById('admin-dashboard').style.display = 'none';
-            document.getElementById('loginError').style.display = 'none';
-        }
-
-        function closeAdmin() {
-            document.getElementById('admin-overlay').style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
-        function logoutAdmin() {
-            closeAdmin();
-        }
-
-        function handleAdminLogin(event) {
-            event.preventDefault();
-            const email = document.getElementById('adminEmail').value.trim();
-            const password = document.getElementById('adminPassword').value.trim();
-            const loginError = document.getElementById('loginError');
-
-            if (email === 'admin@skyscholar.com' && password === 'admin123') {
-                loginError.style.display = 'none';
-                document.getElementById('login-form-container').style.display = 'none';
-                document.getElementById('admin-dashboard').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                renderAdminLists();
-                setActiveTab('inquiriesTab');
+            // Apply classes
+            if (isCorrect) {
+                button.classList.add('correct');
             } else {
-                loginError.textContent = 'Invalid admin credentials.';
-                loginError.style.display = 'block';
-            }
-        }
-
-        function setActiveTab(tabId) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.tab === tabId);
-            });
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.toggle('active', content.id === tabId);
-            });
-        }
-
-        function handleTabClick(event) {
-            setActiveTab(event.currentTarget.dataset.tab);
-        }
-
-        function toggleAccordion(event) {
-            const item = event.currentTarget.closest('.accordion-item');
-            const expanded = event.currentTarget.getAttribute('aria-expanded') === 'true';
-            item.classList.toggle('active');
-            event.currentTarget.setAttribute('aria-expanded', String(!expanded));
-        }
-
-        function animateCounters(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.querySelectorAll('.counter').forEach(counter => {
-                    const targetValue = Number(counter.dataset.target);
-                    const duration = 1500;
-                    const startTime = performance.now();
-
-                    const updateCounter = (currentTime) => {
-                        const elapsed = Math.min((currentTime - startTime) / duration, 1);
-                        counter.textContent = Math.floor(elapsed * targetValue).toLocaleString();
-                        if (elapsed < 1) {
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            counter.textContent = targetValue.toLocaleString();
-                        }
-                    };
-
-                    requestAnimationFrame(updateCounter);
-                });
-                observer.unobserve(entry.target);
-            });
-        }
-
-        function initIntersectionObservers() {
-            const fadeItems = document.querySelectorAll('.fade-in');
-            const fadeObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
+                button.classList.add('wrong');
+                // Find and highlight correct answer
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('onclick').includes('true')) {
+                        btn.classList.add('correct');
                     }
                 });
-            }, { threshold: 0.1 });
-            fadeItems.forEach(item => fadeObserver.observe(item));
-
-            const statsSection = document.querySelector('.stats-grid');
-            if (statsSection) {
-                const counterObserver = new IntersectionObserver(animateCounters, { threshold: 0.4 });
-                counterObserver.observe(statsSection);
             }
+
+            // Show explanation
+            const explanation = document.getElementById(expId);
+            explanation.style.display = 'block';
         }
-
-        function init() {
-            renderCountries();
-            renderUniversities();
-            renderAdminLists();
-            initIntersectionObservers();
-
-            document.getElementById('uniSearch').addEventListener('input', handleSearchAndFilter);
-            document.getElementById('countryFilter').addEventListener('change', handleSearchAndFilter);
-            document.getElementById('inquiryForm').addEventListener('submit', handleInquirySubmit);
-            document.getElementById('adminLoginForm').addEventListener('submit', handleAdminLogin);
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', handleTabClick));
-            document.querySelectorAll('.accordion-header').forEach(header => header.addEventListener('click', toggleAccordion));
-
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navLinks = document.getElementById('navLinks');
-            mobileToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                const icon = mobileToggle.querySelector('i');
-                if (navLinks.classList.contains('active')) {
-                    icon.classList.replace('fa-bars', 'fa-times');
-                } else {
-                    icon.classList.replace('fa-times', 'fa-bars');
-                }
-            });
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    const icon = mobileToggle.querySelector('i');
-                    icon.classList.replace('fa-times', 'fa-bars');
-                });
-            });
-        }
-
-        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
