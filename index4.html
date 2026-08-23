@@ -1,2200 +1,1883 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Couture — Project Overview</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-  <style>
-    /* ===== RESET & BASE ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #ffffff;
-      color: #1a1a2e;
-      line-height: 1.6;
-      padding: 0 20px;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    a {
-      color: #4f46e5;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build - Construction Company</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    /* ===== TYPOGRAPHY ===== */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-top: 0;
-    }
-    h2 {
-      font-size: 2rem;
-      border-bottom: 2px solid #eaeef2;
-      padding-bottom: 0.5rem;
-      margin-top: 3rem;
-    }
-    h3 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-    }
-    h4 {
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
-    }
-    p {
-      margin-bottom: 1.2rem;
-      color: #2d3748;
-    }
-    .subtitle {
-      font-size: 1.2rem;
-      color: #4a5568;
-      font-weight: 400;
-      margin-top: -0.5rem;
-      margin-bottom: 2rem;
-    }
+    <style>
+        :root {
+            --primary: #f6b211;
+            --secondary: #1a1a1a;
+            --text-dark: #333333;
+            --text-gray: #777777;
+            --bg-light: #f5f5f5;
+            --white: #ffffff;
+            --border-color: #dddddd;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --comb-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="30"><rect x="0" y="0" width="1" height="15" fill="%23d0d0d0"/><rect x="4" y="0" width="1" height="25" fill="%23d0d0d0"/></svg>');
+        }
 
-    /* ===== HERO ===== */
-    .hero {
-      padding: 60px 0 40px;
-      text-align: left;
-      border-bottom: 1px solid #eaeef2;
-    }
-    .hero .badge {
-      display: inline-block;
-      background: #eef2ff;
-      color: #4f46e5;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 1rem;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      line-height: 1.1;
-    }
-    .hero .tagline {
-      font-size: 1.25rem;
-      color: #4a5568;
-      max-width: 600px;
-      margin-top: 0.5rem;
-    }
+        /* Reset & Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ===== CARDS & SECTIONS ===== */
-    .section-card {
-      background: #f8fafc;
-      border-radius: 16px;
-      padding: 24px 28px;
-      margin: 32px 0;
-      border: 1px solid #e9edf2;
-      transition: box-shadow 0.2s;
-    }
-    .section-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    }
+        body {
+            font-family: var(--font-body);
+            color: var(--text-gray);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    @media (max-width: 768px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
 
-    /* ===== TABLES ===== */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      margin: 20px 0;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    th {
-      background: #f1f4f9;
-      font-weight: 600;
-      text-align: left;
-      padding: 12px 16px;
-      border-bottom: 2px solid #dde3ea;
-    }
-    td {
-      padding: 10px 16px;
-      border-bottom: 1px solid #edf2f7;
-    }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    .table-wrap {
-      overflow-x: auto;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-    /* ===== CODE BLOCKS ===== */
-    pre {
-      background: #1e293b;
-      color: #e2e8f0;
-      padding: 20px 24px;
-      border-radius: 12px;
-      overflow-x: auto;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      margin: 20px 0;
-    }
-    code {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.9rem;
-    }
-    .inline-code {
-      background: #f0f2f5;
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      color: #1a202c;
-    }
+        ul {
+            list-style: none;
+        }
 
-    /* ===== FLOW DIAGRAMS ===== */
-    .flow {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 30px 0;
-    }
-    .flow-step {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 14px 28px;
-      min-width: 200px;
-      text-align: center;
-      font-weight: 500;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-    }
-    .flow-arrow {
-      font-size: 1.5rem;
-      color: #94a3b8;
-      margin: 4px 0;
-      line-height: 1;
-    }
-    .flow-arrow::before {
-      content: "↓";
-    }
-    .flow-label {
-      font-size: 0.8rem;
-      color: #64748b;
-      margin-top: 2px;
-    }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-    /* ===== NOTES & WARNINGS ===== */
-    .note {
-      background: #f0f7ff;
-      border-left: 4px solid #3b82f6;
-      padding: 14px 20px;
-      border-radius: 6px;
-      margin: 20px 0;
-    }
-    .warning {
-      background: #fef3c7;
-      border-left: 4px solid #f59e0b;
-      padding: 14px 20px;
-      border-radius: 6px;
-      margin: 20px 0;
-    }
-    .tip {
-      background: #ecfdf5;
-      border-left: 4px solid #10b981;
-      padding: 14px 20px;
-      border-radius: 6px;
-      margin: 20px 0;
-    }
+        /* Utilities */
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+            }
+        }
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 640px) {
-      body { padding: 0 12px; }
-      .container { padding: 20px 12px; }
-      h1 { font-size: 2.2rem; }
-      h2 { font-size: 1.6rem; }
-      .hero h1 { font-size: 2.4rem; }
-      .section-card { padding: 16px; }
-    }
+        .text-center {
+            text-align: center;
+        }
+        .text-primary {
+            color: var(--primary);
+        }
+        .text-white {
+            color: var(--white);
+        }
+        .bg-primary {
+            background-color: var(--primary);
+        }
+        .bg-secondary {
+            background-color: var(--secondary);
+        }
+        .bg-light {
+            background-color: var(--bg-light);
+        }
 
-    /* ===== SCROLL ANIMATION (fade-up) ===== */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+        .section-padding {
+            padding: 50px 0;
+        }
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 80px 0;
+            }
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section-title h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .title-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .title-divider::before,
+        .title-divider::after {
+            content: '';
+            height: 2px;
+            width: 40px;
+            background-color: var(--primary);
+        }
+        .title-divider .square {
+            width: 8px;
+            height: 8px;
+            border: 2px solid var(--secondary);
+            background: transparent;
+        }
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Comb Divider */
+        .comb-divider {
+            height: 30px;
+            width: 100%;
+            background: var(--comb-pattern) repeat-x;
+            background-position: top center;
+            margin: 10px 0;
+            opacity: 0.7;
+        }
+
+        /* Floating Elements */
+        .floating-gear {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-left: none;
+            padding: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        .floating-gear i {
+            color: var(--secondary);
+            font-size: 20px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            z-index: 999;
+            cursor: pointer;
+            border: 2px solid var(--secondary);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top i {
+            font-size: 18px;
+            margin-bottom: -2px;
+            margin-top: 4px;
+        }
+        .back-to-top span {
+            font-size: 10px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary);
+            padding: 10px 0;
+            font-size: 13px;
+            color: var(--white);
+        }
+        .top-bar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .top-info,
+        .top-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .top-bar a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-bar i {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px;
+            border-radius: 3px;
+        }
+        @media (min-width: 768px) {
+            .top-bar-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        /* Header Logo */
+        .header-logo {
+            padding: 20px 0;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon {
+            display: flex;
+            align-items: flex-end;
+            height: 35px;
+            gap: 2px;
+        }
+        .logo-icon .bar {
+            width: 12px;
+        }
+        .logo-icon .bar-1 {
+            height: 20px;
+            background: var(--secondary);
+        }
+        .logo-icon .bar-2 {
+            height: 28px;
+            background: var(--primary);
+        }
+        .logo-icon .bar-3 {
+            height: 35px;
+            background: var(--primary);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--secondary);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            padding: 0 15px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-icon-box {
+            background: var(--white);
+            width: 50px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 20px;
+        }
+        .nav-cart {
+            width: 50px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            position: relative;
+        }
+        .nav-cart i {
+            font-size: 24px;
+        }
+        .nav-cart .cart-count {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--white);
+        }
+        .nav-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-gray);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .nav-toggle i {
+            color: var(--white);
+            font-size: 24px;
+        }
+        .desktop-menu {
+            display: none;
+        }
+        @media (min-width: 992px) {
+            .nav-toggle {
+                display: none;
+            }
+            .desktop-menu {
+                display: flex;
+                height: 100%;
+            }
+            .desktop-menu li {
+                height: 100%;
+            }
+            .desktop-menu a {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                padding: 0 20px;
+                color: var(--white);
+                font-family: var(--font-heading);
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+            .desktop-menu a:hover {
+                background: var(--primary);
+                color: var(--secondary);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            padding: 80px 0;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 15px;
+        }
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 10px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        .hero-title .text-primary {
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+            .hero-title .text-primary {
+                display: inline;
+            }
+        }
+        .hero-text {
+            color: #ddd;
+            font-size: 12px;
+            max-width: 500px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--secondary);
+            font-family: var(--font-heading);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: var(--white);
+        }
+        .hero-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-arrows i {
+            pointer-events: auto;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.3);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .hero-arrows i:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .service-card {
+            position: relative;
+        }
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-content {
+            background: var(--white);
+            padding: 20px 0 10px;
+        }
+        .service-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .service-content p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .service-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .service-nav.prev {
+            left: 0;
+        }
+        .service-nav.next {
+            right: 0;
+        }
+
+        /* Why Choose Us */
+        .bg-light-section {
+            background-color: #fafafa;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .feature-card {
+            background: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        .feature-icon img {
+            width: 60px;
+            margin: 0 auto 20px;
+        }
+        .feature-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .feature-text {
+            font-size: 14px;
+        }
+
+        /* Stats Area */
+        .stats-area {
+            background-color: var(--primary);
+            padding: 50px 0;
+            color: var(--secondary);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media (min-width: 576px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 20px;
+            text-align: right;
+            padding: 10px 20px;
+        }
+        @media (min-width: 992px) {
+            .stat-item {
+                justify-content: center;
+                padding: 10px 0;
+            }
+        }
+        .stat-info h3 {
+            font-size: 28px;
+            margin-bottom: 0;
+            line-height: 1;
+            font-weight: 800;
+        }
+        .stat-info p {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin: 0;
+        }
+        .stat-icon {
+            background: var(--secondary);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Latest Projects */
+        .portfolio-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .portfolio-filter button {
+            background: none;
+            border: none;
+            font-family: var(--font-heading);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-gray);
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .portfolio-filter button.active {
+            color: var(--primary);
+        }
+        .portfolio-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        @media (min-width: 768px) {
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .portfolio-item {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* About Company */
+        .about-image {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        /* FAQ / Construction */
+        .dark-section {
+            background: var(--secondary) url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            position: relative;
+            color: var(--white);
+            padding: 80px 0;
+        }
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(17, 17, 17, 0.9);
+        }
+        .dark-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+        @media (min-width: 992px) {
+            .dark-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .accordion-item {
+            margin-bottom: 10px;
+        }
+        .accordion-header {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 15px 20px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .accordion-item.active .accordion-header {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+        .accordion-body {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .accordion-item.active .accordion-body {
+            padding: 20px;
+            max-height: 500px;
+        }
+        .accordion-body p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .construction-info h2 {
+            color: var(--white);
+            font-size: 30px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .construction-info h3 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .construction-info p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #ddd;
+        }
+        .check-list li i {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--secondary);
+            background: var(--primary);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        /* Team */
+        .team-card {
+            text-align: center;
+            background: var(--white);
+            padding-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            margin: 0 auto 30px;
+            max-width: 400px;
+        }
+        .team-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .team-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .team-role {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            color: var(--text-gray);
+            font-size: 12px;
+        }
+        .social-icons a:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+
+        /* Blog Snippet & Testimonials */
+        .blog-snippet {
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+        .blog-snippet h3 {
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .blog-meta {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        .blog-meta i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        .blog-meta span {
+            color: #aaa;
+            margin: 0 5px;
+        }
+
+        .testimonial-area {
+            text-align: center;
+            padding: 60px 15px;
+        }
+        .client-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #eee;
+            padding: 3px;
+        }
+        .client-img img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .client-name {
+            font-size: 16px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+        .client-name span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .client-text {
+            font-size: 14px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            cursor: pointer;
+        }
+        .dot.active {
+            background: var(--primary);
+        }
+
+        /* CTA Footer Top */
+        .cta-logos {
+            background: var(--primary) url('https://www.transparenttextures.com/patterns/cubes.png');
+            padding: 40px 15px;
+            text-align: center;
+        }
+        .logos-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .logos-wrap img {
+            height: 30px;
+            opacity: 0.8;
+        }
+        .cta-text h2 {
+            color: var(--white);
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .cta-text p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: #aaa;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .footer-title {
+            color: var(--white);
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+        }
+        .footer-title::before {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            border: 2px solid var(--white);
+            background: var(--secondary);
+            z-index: 2;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+        .footer-logo .logo-text {
+            color: var(--white);
+            font-size: 28px;
+        }
+        .footer p {
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .recent-post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .recent-post-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .post-date {
+            background: #222;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            line-height: 1.2;
+            border-radius: 3px;
+        }
+        .post-date span {
+            font-size: 10px;
+            color: #888;
+            font-weight: 400;
+        }
+        .post-info h4 {
+            color: var(--white);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .post-meta {
+            font-size: 12px;
+            display: flex;
+            gap: 10px;
+        }
+        .post-meta i {
+            color: #666;
+        }
+
+        .useful-links li {
+            border-bottom: 1px dashed #333;
+            padding: 10px 0;
+        }
+        .useful-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        .useful-links a::before {
+            content: '\f101';
+            font-family: 'FontAwesome';
+            color: #666;
+        }
+        .useful-links a:hover {
+            color: var(--primary);
+        }
+
+        .icon-svg {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+        }
+
+        /* --- Laptop / Desktop Responsive Fixes --- */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+                padding: 0 30px;
+            }
+
+            .hero {
+                padding: 120px 0;
+                min-height: 500px;
+            }
+            .hero-title {
+                font-size: 58px;
+            }
+            .hero-text {
+                font-size: 14px;
+                max-width: 550px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .services-grid {
+                max-width: 900px;
+                gap: 40px;
+            }
+            .service-card .service-img {
+                height: 240px;
+            }
+
+            .stats-grid {
+                gap: 30px;
+            }
+            .stat-item {
+                padding: 10px 20px;
+            }
+            .stat-info h3 {
+                font-size: 34px;
+            }
+
+            .portfolio-item {
+                height: 280px;
+            }
+
+            .dark-content {
+                gap: 70px;
+            }
+
+            .footer-grid {
+                gap: 60px;
+            }
+
+            .testimonial-area {
+                padding: 80px 0;
+            }
+            .client-text {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+                padding: 0 40px;
+            }
+
+            .hero {
+                padding: 150px 0;
+                min-height: 600px;
+            }
+            .hero-title {
+                font-size: 68px;
+            }
+
+            .services-grid {
+                max-width: 1000px;
+                gap: 50px;
+            }
+            .service-card .service-img {
+                height: 280px;
+            }
+
+            .stats-grid {
+                gap: 40px;
+            }
+            .stat-info h3 {
+                font-size: 40px;
+            }
+
+            .portfolio-item {
+                height: 320px;
+            }
+        }
+
+        /* Fix for laptop screens where content might be too cramped or spaced out */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .container {
+                max-width: 960px;
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 90px 0;
+                min-height: 440px;
+            }
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .services-grid {
+                max-width: 750px;
+                gap: 30px;
+            }
+            .service-card .service-img {
+                height: 200px;
+            }
+
+            .stats-grid {
+                gap: 15px;
+            }
+            .stat-item {
+                padding: 10px 10px;
+                gap: 15px;
+            }
+            .stat-info h3 {
+                font-size: 26px;
+            }
+            .stat-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+
+            .portfolio-item {
+                height: 220px;
+            }
+
+            .dark-content {
+                gap: 40px;
+            }
+
+            .footer-grid {
+                gap: 30px;
+            }
+        }
+
+        /* Fix for smaller laptops / 13-inch screens */
+        @media (min-width: 992px) and (max-width: 1099px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            .stat-info h3 {
+                font-size: 22px;
+            }
+            .stat-info p {
+                font-size: 10px;
+            }
+            .stat-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+            .stat-item {
+                gap: 12px;
+                padding: 8px 6px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-
-  <!-- ===== HERO ===== -->
-  <header class="hero">
-    <div class="badge">📘 Criterion C · System Overview</div>
-    <h1>Custom Couture Web Application</h1>
-    <p class="tagline">A complete architecture &amp; implementation overview — from folder structure to data flow, designed for clarity.</p>
-  </header>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 1: Overall System Architecture                       -->
-  <!-- ============================================================ -->
-  <section id="architecture">
-    <h2>1. Overall System Architecture</h2>
-    <p>This section provides a comprehensive overview of the Custom Couture Web Application's system architecture. It covers the folder structure, file communication patterns, and detailed explanations of the major Python files that form the backbone of the application.</p>
-
-    <!-- 1.1 Folder Structure -->
-    <h3>1.1 Folder Structure Overview</h3>
-    <pre>
-Project/
-├── app.py                      # Main application entry point (500+ lines)
-├── models.py                   # Database models (User, Order, Measurement, Inventory, Recommendation)
-├── utils.py                    # Helper functions (price calculation, recommendations, inventory)
-├── create_db.py                # Database creation and seeding script
-├── database.db                 # SQLite database file (auto-generated)
-├── requirements.txt            # Python dependencies list
-├── templates/
-│   ├── base.html               # Base template with navigation
-│   ├── index.html              # Landing page
-│   ├── login.html              # User login page
-│   ├── register.html           # User registration page
-│   ├── dashboard.html          # User dashboard
-│   ├── builder.html            # Design studio / customization
-│   ├── profile.html            # User measurements/profile
-│   ├── admin.html              # Admin panel
-│   └── recommendations.html    # AI suggestions
-├── static/
-│   ├── css/
-│   │   └── style.css           # All stylesheets
-│   └── js/
-│       └── script.js           # Main JavaScript
-└── instance/                   # Instance-specific files
-    </pre>
-    <div class="note">Note: The <code>instance/</code> folder is auto-generated by Flask and contains runtime-specific files. The <code>database.db</code> file is created automatically when the application runs for the first time.</div>
-
-    <!-- 1.2 File Communication -->
-    <h3>1.2 File Communication and Responsibilities</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>File</th><th>Responsibility</th><th>Key Functions</th><th>Communicates With</th></tr></thead>
-        <tbody>
-          <tr><td><code>app.py</code></td><td>Main application entry point, route definitions, API endpoints, and business logic orchestration</td><td><code>index()</code>, <code>login()</code>, <code>register()</code>, <code>dashboard()</code>, <code>builder()</code>, <code>profile()</code>, <code>submit_order()</code>, <code>admin()</code>, <code>update_status()</code>, <code>update_inventory()</code>, API routes</td><td>Templates, Database, Session, <code>utils.py</code></td></tr>
-          <tr><td><code>models.py</code></td><td>Database schema definitions with relationships</td><td>User, Order, Measurement, Inventory, Recommendation classes</td><td><code>app.py</code>, <code>utils.py</code></td></tr>
-          <tr><td><code>utils.py</code></td><td>Helper functions for business logic</td><td><code>calculate_price()</code>, <code>get_recommendations()</code>, <code>update_inventory()</code></td><td><code>app.py</code></td></tr>
-          <tr><td><code>create_db.py</code></td><td>Database initialization and seeding</td><td>Creates all tables, seeds inventory, creates admin user</td><td><code>models.py</code></td></tr>
-          <tr><td><code>static/css/style.css</code></td><td>Complete styling system with design tokens</td><td>CSS custom properties, responsive breakpoints, animations</td><td>All templates</td></tr>
-          <tr><td><code>static/js/script.js</code></td><td>Client-side interactivity</td><td>Navigation toggle, flash dismissal, scroll animations, <code>applyPreset()</code></td><td>HTML DOM</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 1.3 Major Python File Explanations -->
-    <h3>1.3 Major Python File Explanations</h3>
-    <h4>app.py</h4>
-    <p>This is the single entry point and controller for the entire application. It follows the Flask application factory pattern with all routes, models, and configuration centralized in one file.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Component</th><th>Responsibility</th></tr></thead>
-        <tbody>
-          <tr><td>Flask App Initialization</td><td>Creates Flask instance, sets secret key, configures SQLAlchemy</td></tr>
-          <tr><td>Custom Jinja Filter</td><td><code>toLocaleString</code> filter adds thousand separators to numbers</td></tr>
-          <tr><td>SQLAlchemy Setup</td><td>Configures SQLite URI, disables tracking for performance</td></tr>
-          <tr><td>Model Imports</td><td>Imports all models from <code>models.py</code></td></tr>
-          <tr><td>Utility Imports</td><td>Imports <code>calculate_price</code> and <code>get_recommendations</code> from <code>utils.py</code></td></tr>
-          <tr><td>Database Initialization</td><td>Creates tables, seeds inventory (5 fabrics with 50 units each), creates admin user</td></tr>
-          <tr><td>Context Processor</td><td>Injects <code>current_user</code> into all templates for navigation state</td></tr>
-          <tr><td>Authentication Routes</td><td><code>/login</code>, <code>/register</code>, <code>/logout</code> handle session management</td></tr>
-          <tr><td>Protected Routes</td><td><code>/dashboard</code>, <code>/builder</code>, <code>/profile</code>, <code>/recommendations</code> require authentication</td></tr>
-          <tr><td>Admin Routes</td><td><code>/admin</code>, <code>/update_status/<order_id></code>, <code>/update_inventory/<item_id></code> with email-based authorization</td></tr>
-          <tr><td>Order Submission</td><td><code>/submit_order</code> validates fields, calculates price, creates order</td></tr>
-          <tr><td>API Routes</td><td>RESTful endpoints for <code>/api/login</code>, <code>/api/logout</code>, <code>/api/submit_order</code>, <code>/api/update_status</code>, <code>/api/measurements</code>, <code>/api/admin_data</code>, <code>/api/reassign</code>, <code>/api/delete_order</code>, <code>/api/update_inventory</code>, <code>/api/calculate_price</code></td></tr>
-          <tr><td>Price API</td><td><code>/api/calculate_price</code> provides live price updates for client-side preview</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>models.py</h4>
-    <p>Contains all database models with relationships.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Model</th><th>Table Name</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td>User</td><td><code>users</code></td><td>Customer accounts with name, email, password, phone, <code>created_at</code></td></tr>
-          <tr><td>Order</td><td><code>orders</code></td><td>Custom outfit orders with all design parameters, status, priority, handler</td></tr>
-          <tr><td>Measurement</td><td><code>measurements</code></td><td>User body measurements (one-to-one with User)</td></tr>
-          <tr><td>Inventory</td><td><code>inventory</code></td><td>Fabric stock levels with availability status</td></tr>
-          <tr><td>Recommendation</td><td><code>recommendations</code></td><td>Pre-defined outfit recommendations</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p><strong>Key Relationships:</strong></p>
-    <ul>
-      <li><strong>User → Order:</strong> One-to-Many (user.orders)</li>
-      <li><strong>User → Measurement:</strong> One-to-One (user.measurements)</li>
-      <li><strong>Order → User:</strong> Many-to-One (order.user)</li>
-    </ul>
-
-    <h4>utils.py</h4>
-    <p>Contains business logic functions.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Function</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>calculate_price()</code></td><td>Computes total cost based on fabric, sleeve, embroidery selections using dictionary lookups</td></tr>
-          <tr><td><code>get_recommendations()</code></td><td>Generates personalized recommendations based on user's last order or provides defaults</td></tr>
-          <tr><td><code>update_inventory()</code></td><td>Updates fabric stock levels after order placement</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>create_db.py</h4>
-    <p>Database initialization script:</p>
-    <ul>
-      <li>Drops all existing tables</li>
-      <li>Creates all tables using SQLAlchemy</li>
-      <li>Seeds inventory with initial stock (Silk, Satin, Velvet, Cotton, Lace)</li>
-      <li>Creates admin user (<code>admin@admin.com</code> / <code>admin123</code>)</li>
-    </ul>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 2: Navigation Flow                                    -->
-  <!-- ============================================================ -->
-  <section id="navigation">
-    <h2>2. Navigation Flow</h2>
-    <p>This section illustrates how users and administrators navigate through the Custom Couture Web Application.</p>
-
-    <h3>2.1 Customer Flow Diagram</h3>
-    <div class="flow">
-      <div class="flow-step">User Opens Application</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Landing Page</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Login</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Dashboard</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Design Studio</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Submit Order</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Dashboard (Updated)</div>
-    </div>
-    <p><em>Explanation:</em> The customer journey follows a simple linear path: Opening the application leads to the Landing Page. From there, users log in to access their Dashboard, which provides access to the Design Studio for outfit customization. After submitting an order, users return to the Dashboard to see their updated order list. Each step requires proper authentication.</p>
-
-    <h3>2.2 Admin Flow Diagram</h3>
-    <div class="flow">
-      <div class="flow-step">Admin Login</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Admin Panel</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Update Status</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Update Inventory</div>
-    </div>
-    <p><em>Explanation:</em> Administrators log in with special credentials to access the Admin Panel. From here, they can update order statuses and manage inventory levels. All admin actions are protected by authorization checks to ensure only authorized users can perform these operations.</p>
-
-    <h3>2.3 Route-Handler-Database Mapping</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Page</th><th>Route</th><th>Handler</th><th>Template</th><th>Database Tables Accessed</th></tr></thead>
-        <tbody>
-          <tr><td>Landing</td><td><code>/</code></td><td><code>index()</code></td><td><code>index.html</code></td><td>None</td></tr>
-          <tr><td>Login</td><td><code>/login</code></td><td><code>login()</code></td><td><code>login.html</code></td><td>User (SELECT)</td></tr>
-          <tr><td>Register</td><td><code>/register</code></td><td><code>register()</code></td><td><code>register.html</code></td><td>User (INSERT)</td></tr>
-          <tr><td>Dashboard</td><td><code>/dashboard</code></td><td><code>dashboard()</code></td><td><code>dashboard.html</code></td><td>User, Order, Measurement (SELECT)</td></tr>
-          <tr><td>Design Studio</td><td><code>/builder</code></td><td><code>builder()</code></td><td><code>builder.html</code></td><td>Inventory (SELECT)</td></tr>
-          <tr><td>Profile/Measurements</td><td><code>/profile</code></td><td><code>profile()</code></td><td><code>profile.html</code></td><td>User, Measurement (SELECT/UPDATE/INSERT)</td></tr>
-          <tr><td>Submit Order</td><td><code>/submit_order</code></td><td><code>submit_order()</code></td><td>Redirects to dashboard</td><td>Order (INSERT)</td></tr>
-          <tr><td>Admin</td><td><code>/admin</code></td><td><code>admin()</code></td><td><code>admin.html</code></td><td>Order, User, Inventory (SELECT with JOIN)</td></tr>
-          <tr><td>Update Status</td><td><code>/update_status/<id></code></td><td><code>update_status()</code></td><td>Redirects to admin</td><td>Order (UPDATE)</td></tr>
-          <tr><td>Update Inventory</td><td><code>/update_inventory/<id></code></td><td><code>update_inventory()</code></td><td>Redirects to admin</td><td>Inventory (UPDATE)</td></tr>
-          <tr><td>API Login</td><td><code>/api/login</code></td><td><code>api_login()</code></td><td>JSON response</td><td>User (SELECT)</td></tr>
-          <tr><td>API Submit</td><td><code>/api/submit_order</code></td><td><code>api_submit_order()</code></td><td>JSON response</td><td>Order (INSERT)</td></tr>
-          <tr><td>API Price</td><td><code>/api/calculate_price</code></td><td><code>api_calculate_price()</code></td><td>JSON response</td><td>None</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 3: User Interfaces                                    -->
-  <!-- ============================================================ -->
-  <section id="ui">
-    <h2>3. User Interfaces</h2>
-    <p>This section documents all user-facing pages of the Custom Couture Web Application.</p>
-
-    <h3>3.1 Landing Page (<code>index.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>First impression, brand introduction, call to action</td></tr>
-          <tr><td>Inputs</td><td>None (static page)</td></tr>
-          <tr><td>Buttons</td><td>"Enter Design Studio", "Initialize Account" (conditional)</td></tr>
-          <tr><td>Outputs</td><td>Hero section with fashion image, curated recommendation showcase, feature cards, journey steps</td></tr>
-          <tr><td>Validation</td><td>None</td></tr>
-          <tr><td>Navigation</td><td>Links to <code>/builder</code>, <code>/register</code>, <code>/login</code> via navbar</td></tr>
-          <tr><td>Data Sent</td><td>None</td></tr>
-          <tr><td>Data Received</td><td><code>current_user</code> from context processor</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>3.2 Login Page (<code>login.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>Authenticate existing users</td></tr>
-          <tr><td>Inputs</td><td>Email (required), Password (required)</td></tr>
-          <tr><td>Buttons</td><td>"Authenticate"</td></tr>
-          <tr><td>Outputs</td><td>Flash message on success/failure, redirect to dashboard</td></tr>
-          <tr><td>Validation</td><td>Server-side: checks email/password match in database</td></tr>
-          <tr><td>Navigation</td><td>Links to <code>/register</code></td></tr>
-          <tr><td>Data Sent</td><td>POST: email, password</td></tr>
-          <tr><td>Data Received</td><td>User record from database</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>3.3 Registration Page (<code>register.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>Create new user account</td></tr>
-          <tr><td>Inputs</td><td>Name (required), Email (required), Phone (optional), Password (required, min 4 chars)</td></tr>
-          <tr><td>Buttons</td><td>"Create Identity"</td></tr>
-          <tr><td>Outputs</td><td>Flash message, auto-login, redirect to dashboard</td></tr>
-          <tr><td>Validation</td><td>Checks duplicate email in database, required fields, password length</td></tr>
-          <tr><td>Navigation</td><td>Links to <code>/login</code></td></tr>
-          <tr><td>Data Sent</td><td>POST: name, email, phone, password</td></tr>
-          <tr><td>Data Received</td><td>None (INSERT into User table)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>3.4 Dashboard (<code>dashboard.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>User's central hub showing orders and recommendations</td></tr>
-          <tr><td>Inputs</td><td>None</td></tr>
-          <tr><td>Buttons</td><td>"Initiate New Commission" → <code>/builder</code>, "Try This Design" on recommendation cards</td></tr>
-          <tr><td>Outputs</td><td>Stats grid (total orders, in production, completed), orders table with status badges, recommendation cards with images</td></tr>
-          <tr><td>Validation</td><td>Authentication check: redirects to <code>/login</code> if not logged in</td></tr>
-          <tr><td>Navigation</td><td>Links to <code>/builder</code>, <code>/profile</code>, <code>/recommendations</code>, <code>/admin</code> (if admin)</td></tr>
-          <tr><td>Data Sent</td><td>None</td></tr>
-          <tr><td>Data Received</td><td>User object, Order list, Measurement object, Recommendations list</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>3.5 Design Studio (<code>builder.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>Customize outfit with design options with live SVG preview</td></tr>
-          <tr><td>Inputs</td><td>Silhouette (select), Neckline (select), Sleeve (select), Fabric (select), Color (color picker), Embroidery (select)</td></tr>
-          <tr><td>Buttons</td><td>"Authorize Configuration &amp; Add Order", quick preset chips</td></tr>
-          <tr><td>Outputs</td><td>Live SVG preview with dynamic silhouette, neckline, sleeves, fabric color; design summary; total price</td></tr>
-          <tr><td>Validation</td><td>All fields required via HTML5 required attribute</td></tr>
-          <tr><td>Navigation</td><td>Form submits to <code>/submit_order</code></td></tr>
-          <tr><td>Data Sent</td><td>POST: silhouette, neckline, sleeve, fabric, color, embroidery</td></tr>
-          <tr><td>Data Received</td><td>Inventory data for fabric availability</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>3.6 Profile/Measurements (<code>profile.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>Record body measurements for custom fitting</td></tr>
-          <tr><td>Inputs</td><td>Bust, Waist, Hips, Height, Shoulder, Sleeve Length (all optional floats)</td></tr>
-          <tr><td>Buttons</td><td>"Commit Biometric Specification"</td></tr>
-          <tr><td>Outputs</td><td>Flash message on success</td></tr>
-          <tr><td>Validation</td><td>Converts empty values to None (optional fields)</td></tr>
-          <tr><td>Navigation</td><td>"Back to Dashboard"</td></tr>
-          <tr><td>Data Sent</td><td>POST: bust, waist, hips, height, shoulder, sleeve_length</td></tr>
-          <tr><td>Data Received</td><td>Existing measurements (if any)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>3.7 Admin Panel (<code>admin.html</code>)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Purpose</td><td>Manage all orders and inventory</td></tr>
-          <tr><td>Inputs</td><td>Status select, handler select, quantity input</td></tr>
-          <tr><td>Buttons</td><td>"Update" status, "Commit Scale" inventory, "Purge Trace" orders</td></tr>
-          <tr><td>Outputs</td><td>Stats cards, orders table with controls, inventory table with controls</td></tr>
-          <tr><td>Validation</td><td>Checks <code>current_user.email == 'admin@admin.com'</code></td></tr>
-          <tr><td>Navigation</td><td>Accessible only via navbar for admin users</td></tr>
-          <tr><td>Data Sent</td><td>Form POST to <code>/update_status/<id></code> and <code>/update_inventory/<id></code></td></tr>
-          <tr><td>Data Received</td><td>All orders with joined user names, all inventory items</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 4: Database Design                                    -->
-  <!-- ============================================================ -->
-  <section id="database">
-    <h2>4. Database Design</h2>
-    <p>This section details the database architecture of the Custom Couture Web Application.</p>
-
-    <h3>4.1 Database Relationships</h3>
-    <h4>User to Orders Relationship</h4>
-    <div class="flow">
-      <div class="flow-step">User</div>
-      <div class="flow-arrow" style="font-size:1.2rem;">1 : N</div>
-      <div class="flow-step">Order</div>
-    </div>
-    <p><em>Explanation:</em> A User can place multiple Orders. Each Order belongs to exactly one User. This is a one-to-many (1:N) relationship.</p>
-
-    <h4>User to Measurements Relationship</h4>
-    <div class="flow">
-      <div class="flow-step">User</div>
-      <div class="flow-arrow" style="font-size:1.2rem;">1 : 1</div>
-      <div class="flow-step">Measurement</div>
-    </div>
-    <p><em>Explanation:</em> Each User has exactly one Measurement record. The <code>UNIQUE</code> constraint on <code>user_id</code> enforces this one-to-one (1:1) relationship.</p>
-
-    <h4>Complete Entity Flow</h4>
-    <div class="flow">
-      <div class="flow-step">User</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Order</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Measurement</div>
-    </div>
-    <p><em>Explanation:</em> The complete flow shows that a User has Orders (one-to-many) and Measurements (one-to-one). The <code>UNIQUE</code> constraint on <code>user_id</code> in the Measurements table ensures each user has only one measurement record.</p>
-
-    <h3>4.2 Table Schemas</h3>
-    <h4>User Table (<code>users</code>)</h4>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>id</code></td><td>Integer</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Unique user identifier</td></tr>
-          <tr><td><code>name</code></td><td>String(100)</td><td>NOT NULL</td><td>User's full name</td></tr>
-          <tr><td><code>email</code></td><td>String(100)</td><td>UNIQUE, NOT NULL</td><td>Login credential, contact</td></tr>
-          <tr><td><code>password</code></td><td>String(100)</td><td>NOT NULL</td><td>Authentication credential</td></tr>
-          <tr><td><code>phone</code></td><td>String(20)</td><td>Optional</td><td>Contact number</td></tr>
-          <tr><td><code>created_at</code></td><td>DateTime</td><td>DEFAULT datetime.utcnow</td><td>Account creation timestamp</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>Order Table (<code>orders</code>)</h4>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>id</code></td><td>Integer</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Unique order identifier</td></tr>
-          <tr><td><code>user_id</code></td><td>Integer</td><td>FOREIGN KEY → <code>users.id</code>, NOT NULL</td><td>Links order to customer</td></tr>
-          <tr><td><code>silhouette</code></td><td>String(50)</td><td>Optional</td><td>Dress silhouette type</td></tr>
-          <tr><td><code>neckline</code></td><td>String(50)</td><td>Optional</td><td>Neckline style</td></tr>
-          <tr><td><code>sleeve</code></td><td>String(50)</td><td>Optional</td><td>Sleeve style</td></tr>
-          <tr><td><code>fabric</code></td><td>String(50)</td><td>Optional</td><td>Fabric type</td></tr>
-          <tr><td><code>color</code></td><td>String(50)</td><td>Optional</td><td>Color hex or name</td></tr>
-          <tr><td><code>embroidery</code></td><td>String(50)</td><td>Optional</td><td>Embroidery style</td></tr>
-          <tr><td><code>total_price</code></td><td>Float</td><td>Optional</td><td>Calculated total cost</td></tr>
-          <tr><td><code>status</code></td><td>String(50)</td><td>DEFAULT 'Pending'</td><td>Order status lifecycle</td></tr>
-          <tr><td><code>priority</code></td><td>Integer</td><td>DEFAULT 0</td><td>0=Normal, 1=VIP/Urgent</td></tr>
-          <tr><td><code>handler</code></td><td>String(100)</td><td>DEFAULT 'Unassigned'</td><td>Assigned tailor</td></tr>
-          <tr><td><code>created_at</code></td><td>DateTime</td><td>DEFAULT datetime.utcnow</td><td>Order timestamp</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>Measurement Table (<code>measurements</code>)</h4>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>id</code></td><td>Integer</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Unique measurement record</td></tr>
-          <tr><td><code>user_id</code></td><td>Integer</td><td>FOREIGN KEY → <code>users.id</code>, NOT NULL, UNIQUE</td><td>Links to user (one-to-one)</td></tr>
-          <tr><td><code>bust</code></td><td>Float</td><td>Optional</td><td>Bust measurement in inches</td></tr>
-          <tr><td><code>waist</code></td><td>Float</td><td>Optional</td><td>Waist measurement in inches</td></tr>
-          <tr><td><code>hips</code></td><td>Float</td><td>Optional</td><td>Hip measurement in inches</td></tr>
-          <tr><td><code>shoulder</code></td><td>Float</td><td>Optional</td><td>Shoulder width in inches</td></tr>
-          <tr><td><code>sleeve_length</code></td><td>Float</td><td>Optional</td><td>Sleeve length in inches</td></tr>
-          <tr><td><code>height</code></td><td>Float</td><td>Optional</td><td>Height in inches</td></tr>
-          <tr><td><code>updated_at</code></td><td>DateTime</td><td>DEFAULT datetime.utcnow, ON UPDATE</td><td>Last update timestamp</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>Inventory Table (<code>inventory</code>)</h4>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>id</code></td><td>Integer</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Unique inventory item</td></tr>
-          <tr><td><code>fabric_name</code></td><td>String(50)</td><td>UNIQUE, NOT NULL</td><td>Fabric type identifier</td></tr>
-          <tr><td><code>quantity</code></td><td>Integer</td><td>DEFAULT 10</td><td>Stock level</td></tr>
-          <tr><td><code>availability</code></td><td>Boolean</td><td>DEFAULT True</td><td>Whether fabric is in stock</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>Recommendation Table (<code>recommendations</code>)</h4>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>id</code></td><td>Integer</td><td>PRIMARY KEY, AUTO_INCREMENT</td><td>Unique recommendation</td></tr>
-          <tr><td><code>name</code></td><td>String(100)</td><td>Optional</td><td>Display name</td></tr>
-          <tr><td><code>silhouette</code></td><td>String(50)</td><td>Optional</td><td>Suggested silhouette</td></tr>
-          <tr><td><code>neckline</code></td><td>String(50)</td><td>Optional</td><td>Suggested neckline</td></tr>
-          <tr><td><code>sleeve</code></td><td>String(50)</td><td>Optional</td><td>Suggested sleeve</td></tr>
-          <tr><td><code>fabric</code></td><td>String(50)</td><td>Optional</td><td>Suggested fabric</td></tr>
-          <tr><td><code>color</code></td><td>String(50)</td><td>Optional</td><td>Suggested color</td></tr>
-          <tr><td><code>embroidery</code></td><td>String(50)</td><td>Optional</td><td>Suggested embroidery</td></tr>
-          <tr><td><code>image_icon</code></td><td>String(20)</td><td>DEFAULT '👗'</td><td>Emoji icon for display</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>4.3 Design Decisions</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Decision</th><th>Reasoning</th></tr></thead>
-        <tbody>
-          <tr><td>SQLite vs MySQL</td><td>SQLite was chosen because this is a development/demonstration application. It requires no separate server installation, uses a single file for storage, and provides ACID compliance. For production scaling, migration to PostgreSQL would be recommended.</td></tr>
-          <tr><td>Relational vs NoSQL</td><td>Relational schema is appropriate because data has clear relationships (User → Orders, User → Measurements). Foreign key constraints ensure data integrity. NoSQL would be overkill for this domain model.</td></tr>
-          <tr><td>Why separate <code>models.py</code></td><td>Separating models into their own file improves code organization, makes the schema easier to understand, and allows models to be imported by multiple files without circular imports.</td></tr>
-          <tr><td>Measurement UNIQUE constraint</td><td>Ensures each user has only one measurement record. Prevents duplicate measurements without application-level logic.</td></tr>
-          <tr><td>Status field in Order</td><td>Enables order lifecycle tracking without separate state table. Values: Pending → Processing → Completed.</td></tr>
-          <tr><td>Handler field in Order</td><td>Allows assignment of orders to specific tailors/workshops. Enables workload distribution.</td></tr>
-          <tr><td>Priority field in Order</td><td>Enables VIP/urgent order handling. 0=Normal, 1=VIP/Urgent.</td></tr>
-          <tr><td>Separate Inventory table</td><td>Enables stock tracking independent of orders. Prevents overselling.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 5: Data Flow                                          -->
-  <!-- ============================================================ -->
-  <section id="dataflow">
-    <h2>5. Data Flow</h2>
-    <p>This section shows how data moves through the Custom Couture Web Application. Each diagram follows a simple step-by-step flow.</p>
-
-    <h3>5.1 Order Submission Data Flow</h3>
-    <div class="flow">
-      <div class="flow-step">User selects design options</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">JavaScript calculates price</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Form submitted to server</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Server validates and processes</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Order saved to database</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Confirmation shown to user</div>
-    </div>
-    <p><em>Explanation:</em> When a user submits an order, their design selections are sent from the browser to the server. The server validates the data, calculates the total price, and saves the order to the database. A confirmation message is then shown to the user. This ensures every order is complete and properly stored.</p>
-
-    <h3>5.2 Login Data Flow</h3>
-    <div class="flow">
-      <div class="flow-step">User submits email + password</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Server receives credentials</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Database checks email</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Password verified</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Session created / Error shown</div>
-    </div>
-    <p><em>Explanation:</em> When a user logs in, their email and password are sent to the server. The server checks if the email exists and verifies the password. If valid, a session is created and the user proceeds to the dashboard. If invalid, an error message is shown. This keeps the application secure.</p>
-
-    <h3>5.3 Admin Status Update Data Flow</h3>
-    <div class="flow">
-      <div class="flow-step">Admin selects new status</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Server verifies admin</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Database updates order</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Confirmation shown</div>
-    </div>
-    <p><em>Explanation:</em> An administrator selects a new status for an order. The server verifies the user is an administrator, then updates the order's status in the database. A confirmation message confirms the change. This allows order progress tracking.</p>
-
-    <h3>5.4 Recommendation Generation Data Flow</h3>
-    <div class="flow">
-      <div class="flow-step">User logs in</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Dashboard loads</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Check previous orders</div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step">Generate personalized suggestions or show defaults</div>
-    </div>
-    <p><em>Explanation:</em> When a user views their dashboard, the system checks if they have previous orders. If yes, personalized suggestions are generated. If no, default recommendations are shown instead. This helps users discover new styles.</p>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 6: Algorithms (Pseudocode)                            -->
-  <!-- ============================================================ -->
-  <section id="algorithms">
-    <h2>6. Algorithms (Pseudocode)</h2>
-    <p>This section presents the key algorithms used in the Custom Couture Web Application in structured pseudocode format.</p>
-
-    <h3>6.1 User Registration Algorithm</h3>
-    <pre>
-Algorithm: Register User
-Inputs: name, email, password, phone (optional)
-Outputs: Success – auto-login redirect to dashboard; Failure – redirect to registration with error
-
-Procedure:
-1. IF request.method == 'POST':
-2.   name ← request.form.get('name')
-3.   email ← request.form.get('email')
-4.   password ← request.form.get('password')
-5.   phone ← request.form.get('phone', '')
-6.   Validate required fields:
-7.   IF name, email, or password is empty:
-8.     flash("All fields are required.", "danger")
-9.     RETURN redirect(url_for('register'))
-10.  Check for duplicate email:
-11.  existing ← User.query.filter_by(email = email).first()
-12.  IF existing is not NULL:
-13.    flash("Email already registered.", "danger")
-14.    RETURN redirect(url_for('register'))
-15.  Create user object:
-16.  user ← new User(name=name, email=email, password=password, phone=phone)
-17.  Persist to database:
-18.  db.session.add(user); db.session.commit()
-19.  Auto-login:
-20.  session['user_id'] ← user.id
-21.  flash("Account created!", "success")
-22.  RETURN redirect(url_for('dashboard'))
-23. RETURN render_template('register.html')
-
-Time Complexity: O(1) for email check (indexed), O(1) for insert.
-    </pre>
-
-    <h3>6.2 User Login Algorithm</h3>
-    <pre>
-Algorithm: Authenticate User
-Inputs: email, password
-Outputs: Success – session set, redirect to dashboard; Failure – display error, stay on login
-
-Procedure:
-1. IF request.method == 'POST':
-2.   email ← request.form.get('email')
-3.   password ← request.form.get('password')
-4.   Query database:
-5.   user ← User.query.filter_by(email = email).first()
-6.   Verify credentials:
-7.   IF user is not NULL AND user.password == password:
-8.     session['user_id'] ← user.id
-9.     flash("Login successful!", "success")
-10.    RETURN redirect(url_for('dashboard'))
-11.  ELSE:
-12.    flash("Invalid credentials.", "danger")
-13.    RETURN redirect(url_for('login'))
-14. RETURN render_template('login.html')
-
-Time Complexity: O(1) with email index, O(1) password comparison.
-⚠️ Warning: Password should be hashed using bcrypt/werkzeug for production security.
-    </pre>
-
-    <h3>6.3 Price Calculation Algorithm</h3>
-    <pre>
-Algorithm: Calculate Outfit Price
-Inputs: fabric, sleeve, embroidery
-Outputs: total_price (base + additions)
-
-Procedure:
-1. base_price ← 5000
-2. extras ← 0
-3. Dictionary lookups for pricing:
-4. fabric_prices ← {'Cotton':0, 'Silk':1500, 'Satin':1000, 'Lace':2000, 'Velvet':1800}
-5. sleeve_prices ← {'Sleeveless':0, 'Cap Sleeve':200, 'Short Sleeve':300, 'Elbow Length':400, 'Full Sleeve':500}
-6. embroidery_prices ← {'None':0, 'Floral':1500, 'Beadwork':2500, 'Sequin':2000}
-7. extras ← extras + fabric_prices.get(fabric, 0)
-8. extras ← extras + sleeve_prices.get(sleeve, 0)
-9. extras ← extras + embroidery_prices.get(embroidery, 0)
-10. RETURN base_price + extras
-
-Time Complexity: O(1) – constant time dictionary lookups.
-💡 Tip: Dictionary provides O(1) lookups, easily extensible, centralized pricing logic.
-    </pre>
-
-    <h3>6.4 Recommendation Generation Algorithm</h3>
-    <pre>
-Algorithm: Generate Outfit Recommendations
-Inputs: user_id
-Outputs: recommendations (list of 3 recommendation objects)
-
-Procedure:
-1. last_order ← Order.query.filter_by(user_id=user_id).order_by(Order.created_at.desc()).first()
-2. IF last_order is not NULL:
-3.   fabric_map ← {...}  // similar fabric mappings
-4.   silhouette_map ← {...}
-5.   suggested_fabrics ← fabric_map.get(last_order.fabric, ['Silk','Satin'])
-6.   suggested_silhouettes ← silhouette_map.get(last_order.silhouette, ['A-Line','Mermaid'])
-7.   recommendations ← []
-8.   FOR i = 1 TO 3:
-9.     rec ← new Recommendation()
-10.    rec.name ← "Style " + i
-11.    rec.silhouette ← random.choice(suggested_silhouettes)
-12.    rec.neckline ← random.choice(['V-Neck','Sweetheart','Boat Neck'])
-13.    rec.sleeve ← random.choice(['Sleeveless','Cap Sleeve','Full Sleeve'])
-14.    rec.fabric ← random.choice(suggested_fabrics)
-15.    rec.color ← random.choice(['#c9a84c','#e74c3c','#2c3e50','#1abc9c'])
-16.    rec.embroidery ← random.choice(['None','Floral','Beadwork'])
-17.    rec.image_icon ← random.choice(['👗','👘','🧥','👚'])
-18.    recommendations.append(rec)
-19.   RETURN recommendations
-20. ELSE:
-21.   RETURN default recommendations (Elegant A-Line, Bold Mermaid, Classic Sheath)
-
-Time Complexity: O(1) for dictionary lookups, O(3) for generating recommendations.
-Note: Simple rule-based recommendation works without ML; maps provide extensibility.
-    </pre>
-
-    <h3>6.5 Inventory Update Algorithm</h3>
-    <pre>
-Algorithm: Update Inventory After Order
-Inputs: fabric_name, quantity_change (negative for deduction)
-Outputs: success (boolean), updated_quantity
-
-Procedure:
-1. item ← Inventory.query.filter_by(fabric_name = fabric_name).first()
-2. IF item is NULL: RETURN False
-3. item.quantity ← item.quantity + quantity_change
-4. IF item.quantity > 0: item.availability ← True
-5. ELSE: item.availability ← False
-6. db.session.commit()
-7. RETURN True
-
-Time Complexity: O(1) – single database query and update.
-    </pre>
-
-    <h3>6.6 Admin Authorization Algorithm</h3>
-    <pre>
-Algorithm: Authorize Admin Access
-Inputs: user_id (from session)
-Outputs: true (admin), false (redirect to appropriate page)
-
-Procedure:
-1. IF 'user_id' NOT IN session:
-2.   flash("Please login first.", "danger")
-3.   RETURN redirect(url_for('login'))
-4. user ← User.query.get(session['user_id'])
-5. IF user.email != 'admin@admin.com':
-6.   flash("Admin access required.", "danger")
-7.   RETURN redirect(url_for('dashboard'))
-8. RETURN True
-    </pre>
-
-    <h3>6.7 Order Submission Validation</h3>
-    <pre>
-Algorithm: Validate Order Submission
-Inputs: silhouette, neckline, sleeve, fabric
-Outputs: valid (boolean), error_message
-
-Procedure:
-1. IF silhouette is empty OR neckline is empty OR sleeve is empty OR fabric is empty:
-2.   flash("All design fields are required.", "danger")
-3.   RETURN redirect(url_for('builder'))
-4. RETURN True
-
-Time Complexity: O(1)
-    </pre>
-
-    <h3>6.8 Database Retrieval for Dashboard</h3>
-    <pre>
-Algorithm: Get User Dashboard Data
-Inputs: user_id
-Outputs: user, orders, measurement, recommendations
-
-Procedure:
-1. user ← User.query.get(user_id)
-2. orders ← Order.query.filter_by(user_id = user_id).order_by(Order.created_at.desc()).all()
-3. measurement ← Measurement.query.filter_by(user_id = user_id).first()
-4. recommendations ← get_recommendations(user_id)
-5. RETURN user, orders, measurement, recommendations
-
-Time Complexity: O(n) where n = number of orders for user.
-    </pre>
-
-    <h3>6.9 API Price Calculation</h3>
-    <pre>
-Algorithm: API Price Calculation
-Inputs: fabric, sleeve, embroidery (JSON)
-Outputs: price (JSON)
-
-Procedure:
-1. data ← request.get_json()
-2. fabric ← data.get('fabric', 'Silk')
-3. sleeve ← data.get('sleeve', 'Sleeveless')
-4. embroidery ← data.get('embroidery', 'None')
-5. price ← calculate_price(fabric, sleeve, embroidery)
-6. RETURN jsonify({'price': price})
-
-Time Complexity: O(1)
-    </pre>
-
-    <h3>6.10 Order Status Update</h3>
-    <pre>
-Algorithm: Update Order Status
-Inputs: order_id, new_status
-Outputs: Success – status updated; Failure – invalid status
-
-Procedure:
-1. valid_statuses ← ['Pending', 'Production', 'Ready', 'Delivered']
-2. order ← Order.query.get_or_404(order_id)
-3. IF new_status NOT IN valid_statuses:
-4.   flash("Invalid status.", "danger")
-5.   RETURN redirect(url_for('admin'))
-6. order.status ← new_status
-7. db.session.commit()
-8. flash("Order #" + order_id + " status updated to " + new_status + ".", "success")
-9. RETURN redirect(url_for('admin'))
-
-Time Complexity: O(1)
-    </pre>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 7: Validation Rules                                   -->
-  <!-- ============================================================ -->
-  <section id="validation">
-    <h2>7. Validation Rules</h2>
-    <p>This section documents all validation rules implemented in the Custom Couture Web Application.</p>
-
-    <h3>7.1 Validation Matrix</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Field</th><th>Validation Rule</th><th>Why</th><th>Implementation Location</th></tr></thead>
-        <tbody>
-          <tr><td>Email (Registration)</td><td>Required, must be valid format, unique</td><td>Prevent duplicate accounts, ensure deliverable address</td><td>HTML5 type="email" + Server check</td></tr>
-          <tr><td>Email (Login)</td><td>Must exist in database</td><td>Prevent unauthorized access</td><td>Server: <code>User.query.filter_by(email=email).first()</code></td></tr>
-          <tr><td>Password</td><td>Required, non-empty, min 4 characters</td><td>Basic security requirement</td><td>HTML5 required, minlength + Server check</td></tr>
-          <tr><td>Name</td><td>Required, non-empty</td><td>Identify user</td><td>HTML5 required</td></tr>
-          <tr><td>Phone</td><td>Optional</td><td>Contact method</td><td>None</td></tr>
-          <tr><td>Duplicate Email</td><td>Must be unique</td><td>Prevent multiple accounts with same email</td><td>Server: <code>User.query.filter_by(email=email).first()</code></td></tr>
-          <tr><td>Measurement Fields</td><td>Optional, numeric</td><td>Users can enter partial measurements</td><td><code>to_float()</code> conversion, HTML5 type="number"</td></tr>
-          <tr><td>Design Options</td><td>All required (silhouette, neckline, sleeve, fabric)</td><td>Complete order specification</td><td>Server check in <code>submit_order()</code></td></tr>
-          <tr><td>Color</td><td>Defaults to <code>#c9a84c</code></td><td>Visual consistency</td><td>Default value in form</td></tr>
-          <tr><td>Embroidery</td><td>Defaults to 'None'</td><td>No embroidery is a valid choice</td><td>Default value in form</td></tr>
-          <tr><td>Order Status</td><td>Must be in ['Pending', 'Production', 'Ready', 'Delivered']</td><td>Prevent invalid status updates</td><td>Server validation in <code>update_status()</code></td></tr>
-          <tr><td>Inventory Quantity</td><td>Must be non-negative integer</td><td>Prevent negative stock</td><td>Server: <code>int(quantity)</code> with qty < 0 check</td></tr>
-          <tr><td>Admin Access</td><td>Email == 'admin@admin.com'</td><td>Limit sensitive operations</td><td>Server check in <code>/admin</code>, <code>/update_status</code>, <code>/update_inventory</code></td></tr>
-          <tr><td>Authentication</td><td>Session contains <code>user_id</code></td><td>Protect all private routes</td><td>Check if <code>'user_id'</code> not in session on all protected routes</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>7.2 Why Each Validation Exists</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Validation</th><th>Rationale</th></tr></thead>
-        <tbody>
-          <tr><td>Email format</td><td>Prevents malformed email addresses that would break communication</td></tr>
-          <tr><td>Required fields</td><td>Ensures complete data capture, prevents partial orders</td></tr>
-          <tr><td>Unique email</td><td>Prevents account confusion, each user has unique identifier</td></tr>
-          <tr><td>Password length</td><td>Basic security measure to prevent weak passwords</td></tr>
-          <tr><td>Session check</td><td>Protects private data from unauthorized access</td></tr>
-          <tr><td>Admin check</td><td>Separates administrative functions from customer functions</td></tr>
-          <tr><td>Measurement ranges</td><td>(Future) Prevents impossible measurements that would break manufacturing</td></tr>
-          <tr><td>Numeric measurement</td><td>Ensures consistent data type for price calculations</td></tr>
-          <tr><td>Status validation</td><td>Prevents invalid status transitions (e.g., "Delivered" → "Pending")</td></tr>
-          <tr><td>Inventory non-negative</td><td>Prevents negative stock values that would break availability logic</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 8: Classes                                            -->
-  <!-- ============================================================ -->
-  <section id="classes">
-    <h2>8. Classes</h2>
-    <p>This section documents all Python classes used in the Custom Couture Web Application.</p>
-
-    <h3>8.1 User Class (<code>models.py</code>)</h3>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Represents a customer account, stores authentication and contact information.<br>
-      <strong>Inheritance:</strong> Inherits from <code>db.Model</code> (SQLAlchemy declarative base)<br>
-      <strong>Table:</strong> <code>users</code></p>
-      <p><strong>Attributes:</strong></p>
-      <ul>
-        <li><code>id</code> (Integer, PK, auto-increment)</li>
-        <li><code>name</code> (String(100), NOT NULL)</li>
-        <li><code>email</code> (String(100), UNIQUE, NOT NULL)</li>
-        <li><code>password</code> (String(100), NOT NULL) – plain text (should be hashed)</li>
-        <li><code>phone</code> (String(20), optional)</li>
-        <li><code>created_at</code> (DateTime, default now)</li>
-      </ul>
-      <p><strong>Relationships:</strong></p>
-      <ul>
-        <li><code>orders</code> → Order (One-to-Many, backref from Order.user)</li>
-        <li><code>measurements</code> → Measurement (One-to-One, backref from Measurement.user)</li>
-      </ul>
-      <p><strong>Used By:</strong> <code>login()</code>, <code>register()</code>, <code>dashboard()</code>, <code>profile()</code>, <code>admin()</code>, <code>update_status()</code>, <code>update_inventory()</code></p>
-    </div>
-
-    <h3>8.2 Order Class (<code>models.py</code>)</h3>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Stores a custom outfit order with all design parameters.<br>
-      <strong>Inheritance:</strong> Inherits from <code>db.Model</code><br>
-      <strong>Table:</strong> <code>orders</code></p>
-      <p><strong>Attributes:</strong></p>
-      <ul>
-        <li><code>id</code> (Integer, PK)</li>
-        <li><code>user_id</code> (Integer, FK to <code>users.id</code>, NOT NULL)</li>
-        <li><code>silhouette</code>, <code>neckline</code>, <code>sleeve</code>, <code>fabric</code>, <code>color</code>, <code>embroidery</code> (String(50), optional)</li>
-        <li><code>total_price</code> (Float, optional)</li>
-        <li><code>status</code> (String(50), default 'Pending')</li>
-        <li><code>priority</code> (Integer, default 0; 0=Normal, 1=VIP/Urgent)</li>
-        <li><code>handler</code> (String(100), default 'Unassigned')</li>
-        <li><code>created_at</code> (DateTime, default now)</li>
-      </ul>
-      <p><strong>Relationships:</strong></p>
-      <ul>
-        <li><code>user</code> → User (Many-to-One, backref: orders)</li>
-      </ul>
-      <p><strong>Used By:</strong> <code>submit_order()</code>, <code>dashboard()</code>, <code>admin()</code>, <code>update_status()</code>, <code>get_recommendations()</code></p>
-    </div>
-
-    <h3>8.3 Measurement Class (<code>models.py</code>)</h3>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Stores user's body measurements for custom fitting.<br>
-      <strong>Inheritance:</strong> Inherits from <code>db.Model</code><br>
-      <strong>Table:</strong> <code>measurements</code></p>
-      <p><strong>Attributes:</strong></p>
-      <ul>
-        <li><code>id</code> (Integer, PK)</li>
-        <li><code>user_id</code> (Integer, FK to <code>users.id</code>, NOT NULL, UNIQUE)</li>
-        <li><code>bust</code>, <code>waist</code>, <code>hips</code>, <code>shoulder</code>, <code>sleeve_length</code>, <code>height</code> (Float, optional)</li>
-        <li><code>updated_at</code> (DateTime, on update)</li>
-      </ul>
-      <p><strong>Relationships:</strong></p>
-      <ul>
-        <li><code>user</code> → User (One-to-One, backref: measurements)</li>
-      </ul>
-      <p><strong>Used By:</strong> <code>profile()</code>, <code>dashboard()</code></p>
-    </div>
-
-    <h3>8.4 Inventory Class (<code>models.py</code>)</h3>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Tracks fabric stock levels.<br>
-      <strong>Inheritance:</strong> Inherits from <code>db.Model</code><br>
-      <strong>Table:</strong> <code>inventory</code></p>
-      <p><strong>Attributes:</strong></p>
-      <ul>
-        <li><code>id</code> (Integer, PK)</li>
-        <li><code>fabric_name</code> (String(50), UNIQUE, NOT NULL)</li>
-        <li><code>quantity</code> (Integer, default 10)</li>
-        <li><code>availability</code> (Boolean, default True)</li>
-      </ul>
-      <p><strong>Used By:</strong> <code>admin()</code>, <code>update_inventory()</code>, <code>create_db.py</code>, <code>utils.update_inventory()</code></p>
-    </div>
-
-    <h3>8.5 Recommendation Class (<code>models.py</code>)</h3>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Pre-defined outfit recommendations for users.<br>
-      <strong>Inheritance:</strong> Inherits from <code>db.Model</code><br>
-      <strong>Table:</strong> <code>recommendations</code></p>
-      <p><strong>Attributes:</strong></p>
-      <ul>
-        <li><code>id</code> (Integer, PK)</li>
-        <li><code>name</code>, <code>silhouette</code>, <code>neckline</code>, <code>sleeve</code>, <code>fabric</code>, <code>color</code>, <code>embroidery</code> (String, optional)</li>
-        <li><code>image_icon</code> (String(20), default '👗')</li>
-      </ul>
-      <p><strong>Used By:</strong> <code>get_recommendations()</code>, <code>recommendations_page()</code>, <code>dashboard()</code></p>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 9: Flask Routes                                       -->
-  <!-- ============================================================ -->
-  <section id="routes">
-    <h2>9. Flask Routes</h2>
-    <p>This section documents all Flask routes in the Custom Couture Web Application.</p>
-
-    <h3>9.1 Main Routes (HTML)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>URL</th><th>Methods</th><th>Purpose</th><th>Input</th><th>Output</th><th>Database</th><th>Template/Redirect</th></tr></thead>
-        <tbody>
-          <tr><td><code>/</code></td><td>GET</td><td>Landing page</td><td>None</td><td>HTML page</td><td>None</td><td><code>index.html</code></td></tr>
-          <tr><td><code>/home</code></td><td>GET</td><td>Redirect to index</td><td>None</td><td>Redirect</td><td>None</td><td><code>/</code></td></tr>
-          <tr><td><code>/login</code></td><td>GET, POST</td><td>User authentication</td><td>email, password</td><td>Flash, redirect</td><td>User (SELECT)</td><td><code>login.html</code> /dashboard on success</td></tr>
-          <tr><td><code>/register</code></td><td>GET, POST</td><td>Create account</td><td>name, email, password, phone</td><td>Flash, auto-login, redirect</td><td>User (INSERT)</td><td><code>register.html</code> /dashboard on success</td></tr>
-          <tr><td><code>/logout</code></td><td>GET</td><td>Destroy session</td><td>None</td><td>Flash, redirect</td><td>None</td><td><code>/</code></td></tr>
-          <tr><td><code>/dashboard</code></td><td>GET</td><td>User dashboard</td><td>Session user_id</td><td>HTML page</td><td>User, Order, Measurement (SELECT)</td><td><code>dashboard.html</code> /login if not logged in</td></tr>
-          <tr><td><code>/builder</code></td><td>GET</td><td>Design studio</td><td>Session user_id</td><td>HTML page</td><td>Inventory (SELECT)</td><td><code>builder.html</code></td></tr>
-          <tr><td><code>/profile</code></td><td>GET, POST</td><td>Measurements</td><td>Session user_id, measurement form data</td><td>Flash, redirect</td><td>User, Measurement (SELECT/UPDATE/INSERT)</td><td><code>profile.html</code> /profile (refresh)</td></tr>
-          <tr><td><code>/submit_order</code></td><td>POST</td><td>Create order</td><td>All design form fields</td><td>Flash, redirect</td><td>Order (INSERT)</td><td><code>/dashboard</code></td></tr>
-          <tr><td><code>/admin</code></td><td>GET</td><td>Admin panel</td><td>Session user_id</td><td>HTML page</td><td>Order, User, Inventory (SELECT with JOIN)</td><td><code>admin.html</code> /login or /dashboard if not admin</td></tr>
-          <tr><td><code>/recommendations</code></td><td>GET</td><td>Recommendations</td><td>Session user_id</td><td>HTML page</td><td>User, Order, Recommendation</td><td><code>recommendations.html</code> /login if not logged in</td></tr>
-          <tr><td><code>/update_status/<order_id></code></td><td>POST</td><td>Update order status</td><td>Session, status</td><td>Flash, redirect</td><td>Order (UPDATE)</td><td><code>/admin</code></td></tr>
-          <tr><td><code>/update_inventory/<item_id></code></td><td>POST</td><td>Update inventory</td><td>Session, quantity</td><td>Flash, redirect</td><td>Inventory (UPDATE)</td><td><code>/admin</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>9.2 API Routes (JSON)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>URL</th><th>Methods</th><th>Purpose</th><th>Input</th><th>Output</th><th>Authentication</th></tr></thead>
-        <tbody>
-          <tr><td><code>/api/login</code></td><td>POST</td><td>API login</td><td>JSON: username, password</td><td>JSON: success/message</td><td>None</td></tr>
-          <tr><td><code>/api/logout</code></td><td>POST</td><td>API logout</td><td>None</td><td>JSON: success</td><td>Session</td></tr>
-          <tr><td><code>/api/submit_order</code></td><td>POST</td><td>API order creation</td><td>JSON form fields</td><td>JSON: success/message</td><td>Session</td></tr>
-          <tr><td><code>/api/update_status</code></td><td>POST</td><td>API status update</td><td>JSON: orderId, status</td><td>JSON: success/message</td><td>Session + Admin</td></tr>
-          <tr><td><code>/api/measurements</code></td><td>POST</td><td>API measurement save</td><td>JSON: measurements</td><td>JSON: success/message</td><td>Session</td></tr>
-          <tr><td><code>/api/admin_data</code></td><td>GET</td><td>API admin data</td><td>None</td><td>JSON: orders, inventory</td><td>Session + Admin</td></tr>
-          <tr><td><code>/api/reassign</code></td><td>POST</td><td>API reassign handler</td><td>JSON: orderId, handler</td><td>JSON: success/message</td><td>Session + Admin</td></tr>
-          <tr><td><code>/api/delete_order</code></td><td>POST</td><td>API delete order</td><td>JSON: orderId</td><td>JSON: success/message</td><td>Session + Admin</td></tr>
-          <tr><td><code>/api/update_inventory</code></td><td>POST</td><td>API inventory update</td><td>JSON: itemId, quantity</td><td>JSON: success/message</td><td>Session + Admin</td></tr>
-          <tr><td><code>/api/calculate_price</code></td><td>POST</td><td>API price calculation</td><td>JSON: fabric, sleeve, embroidery</td><td>JSON: price</td><td>None</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 10: Database Queries                                  -->
-  <!-- ============================================================ -->
-  <section id="queries">
-    <h2>10. Database Queries</h2>
-    <p>This section documents all database queries used in the Custom Couture Web Application.</p>
-
-    <h3>10.1 SELECT Queries</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Query</th><th>Purpose</th><th>Tables</th><th>Filter</th></tr></thead>
-        <tbody>
-          <tr><td><code>User.query.filter_by(email=email).first()</code></td><td>Find user by email for login</td><td><code>users</code></td><td>email = ?</td></tr>
-          <tr><td><code>User.query.filter_by(email=email).first()</code></td><td>Check duplicate email during registration</td><td><code>users</code></td><td>email = ?</td></tr>
-          <tr><td><code>User.query.get(session['user_id'])</code></td><td>Get current user by ID</td><td><code>users</code></td><td>id = ?</td></tr>
-          <tr><td><code>User.query.filter_by(email='admin@admin.com').first()</code></td><td>Check admin existence during setup</td><td><code>users</code></td><td>email = ?</td></tr>
-          <tr><td><code>Order.query.filter_by(user_id=user.id).all()</code></td><td>Get user's order history</td><td><code>orders</code></td><td>user_id = ?</td></tr>
-          <tr><td><code>Order.query.filter_by(user_id=user_id).order_by(Order.created_at.desc()).first()</code></td><td>Get user's last order (for recommendations)</td><td><code>orders</code></td><td>user_id = ?</td></tr>
-          <tr><td><code>Measurement.query.filter_by(user_id=user.id).first()</code></td><td>Get user's measurements</td><td><code>measurements</code></td><td>user_id = ?</td></tr>
-          <tr><td><code>Order.query.all()</code></td><td>Get all orders (admin)</td><td><code>orders</code></td><td>None</td></tr>
-          <tr><td><code>Inventory.query.all()</code></td><td>Get all inventory (admin)</td><td><code>inventory</code></td><td>None</td></tr>
-          <tr><td><code>Inventory.query.filter_by(fabric_name=fabric_name).first()</code></td><td>Get specific inventory item</td><td><code>inventory</code></td><td>fabric_name = ?</td></tr>
-          <tr><td><code>Inventory.query.count()</code></td><td>Count inventory items</td><td><code>inventory</code></td><td>None</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>10.2 INSERT Queries</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Query</th><th>Purpose</th><th>Table</th><th>Values</th></tr></thead>
-        <tbody>
-          <tr><td><code>db.session.add(user); db.session.commit()</code></td><td>Create new user</td><td><code>users</code></td><td>name, email, password, phone</td></tr>
-          <tr><td><code>db.session.add(order); db.session.commit()</code></td><td>Create new order</td><td><code>orders</code></td><td>user_id, silhouette, neckline, sleeve, fabric, color, embroidery, total_price, status, handler</td></tr>
-          <tr><td><code>db.session.add(measurement); db.session.commit()</code></td><td>Create new measurement record</td><td><code>measurements</code></td><td>user_id, bust, waist, hips, shoulder, sleeve_length, height</td></tr>
-          <tr><td><code>db.session.add(inventory); db.session.commit()</code></td><td>Create inventory item (seeding)</td><td><code>inventory</code></td><td>fabric_name, quantity, availability</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>10.3 UPDATE Queries</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Query</th><th>Purpose</th><th>Table</th><th>Conditions</th></tr></thead>
-        <tbody>
-          <tr><td><code>measurement.bust = value; db.session.commit()</code></td><td>Update measurements</td><td><code>measurements</code></td><td>user_id = ?</td></tr>
-          <tr><td><code>order.status = status; db.session.commit()</code></td><td>Update order status</td><td><code>orders</code></td><td>id = ?</td></tr>
-          <tr><td><code>item.quantity = qty; item.availability = qty > 0; db.session.commit()</code></td><td>Update inventory</td><td><code>inventory</code></td><td>id = ?</td></tr>
-          <tr><td><code>order.handler = handler; db.session.commit()</code></td><td>Reassign order handler</td><td><code>orders</code></td><td>id = ?</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>10.4 DELETE Queries</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Query</th><th>Purpose</th><th>Table</th><th>Conditions</th></tr></thead>
-        <tbody>
-          <tr><td><code>db.session.delete(order); db.session.commit()</code></td><td>Delete order (admin purge)</td><td><code>orders</code></td><td>id = ?</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>10.5 JOIN Query (Admin)</h3>
-    <pre><code>orders = Order.query.all()
-# In template: {{ order.user.name if order.user else 'Unknown' }}</code></pre>
-    <p>SQLAlchemy automatically joins via the relationship defined in <code>Order.user</code> backref.</p>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 11: Important Code Sections                           -->
-  <!-- ============================================================ -->
-  <section id="code-sections">
-    <h2>11. Important Code Sections</h2>
-    <p>This section highlights the most important code snippets from the Custom Couture Web Application.</p>
-
-    <h3>11.1 Authentication Check (Protected Routes)</h3>
-    <pre><code>@app.route('/dashboard')
-def dashboard():
-    if 'user_id' not in session:
-        flash('Please login first.', 'danger')
-        return redirect(url_for('login'))
-    # ... rest of route</code></pre>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Protect private routes from unauthorized access.<br>
-      <strong>Inputs:</strong> Session dictionary.<br>
-      <strong>Outputs:</strong> Redirect to login if not authenticated.<br>
-      <strong>Why this approach:</strong> Simple session-based auth.<br>
-      <strong>Alternatives:</strong> Flask-Login, JWT tokens.</p>
-    </div>
-
-    <h3>11.2 Context Processor for User Injection</h3>
-    <pre><code>@app.context_processor
-def inject_user():
-    user = None
-    if 'user_id' in session:
-        user = User.query.get(session['user_id'])
-    return dict(current_user=user)</code></pre>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Make user object available in all templates.<br>
-      <strong>Why:</strong> Avoids repeating user lookup in every route.</p>
-    </div>
-
-    <h3>11.3 Measurement Save with Optional Fields</h3>
-    <pre><code>def to_float(val):
-    return float(val) if val else None
-
-if not measurements:
-    measurements = Measurement(user_id=user.id)
-    db.session.add(measurements)
-measurements.bust = to_float(request.form.get('bust'))
-# ... all fields
-db.session.commit()</code></pre>
-    <div class="section-card">
-      <p><strong>Purpose:</strong> Save measurements with optional fields.<br>
-      <strong>Why:</strong> Allows partial measurement entry.</p>
-    </div>
-
-    <h3>11.4 Price Calculation with Dictionary Lookups</h3>
-    <pre><code>def calculate_price(fabric, sleeve, embroidery):
-    base_price = 5000
-    extras = 0
-    fabric_prices = {'Cotton':0, 'Silk':1500, 'Satin':1000, 'Lace':2000, 'Velvet':1800}
-    sleeve_prices = {'Sleeveless':0, 'Cap Sleeve':200, 'Short Sleeve':300, 'Elbow Length':400, 'Full Sleeve':500}
-    emb_prices = {'None':0, 'Floral':1500, 'Beadwork':2500, 'Sequin':2000}
-    extras += fabric_prices.get(fabric, 0)
-    extras += sleeve_prices.get(sleeve, 0)
-    extras += emb_prices.get(embroidery, 0)
-    return base_price + extras</code></pre>
-
-    <h3>11.5 Session Management</h3>
-    <pre><code>app.secret_key = 'your-secret-key-change-this'
-# Login:
-session['user_id'] = user.id
-# Logout:
-session.pop('user_id', None)</code></pre>
-
-    <h3>11.6 Admin Authorization</h3>
-    <pre><code>user = User.query.get(session['user_id'])
-if user.email != 'admin@admin.com':
-    flash('Admin access required.', 'danger')
-    return redirect(url_for('dashboard'))</code></pre>
-
-    <h3>11.7 Database Table Creation and Seeding</h3>
-    <pre><code>with app.app_context():
-    db.create_all()
-    if Inventory.query.count() == 0:
-        for name in ['Silk','Satin','Velvet','Cotton','Lace']:
-            db.session.add(Inventory(fabric_name=name, quantity=50))
-        db.session.commit()
-    if not User.query.filter_by(email='admin@admin.com').first():
-        db.session.add(User(name='Admin', email='admin@admin.com', password='admin123'))
-        db.session.commit()</code></pre>
-
-    <h3>11.8 Order Status Update with Validation</h3>
-    <pre><code>@app.route('/update_status/<int:order_id>', methods=['POST'])
-def update_status(order_id):
-    # ... admin check
-    order = Order.query.get_or_404(order_id)
-    status = request.form.get('status')
-    if status in ['Pending', 'Production', 'Ready', 'Delivered']:
-        order.status = status
-        db.session.commit()
-        flash(f'Order #{order_id} status updated to {status}.', 'success')
-    else:
-        flash('Invalid status.', 'danger')
-    return redirect(url_for('admin'))</code></pre>
-
-    <h3>11.9 Recommendation Engine</h3>
-    <pre><code>def get_recommendations(user_id):
-    last_order = Order.query.filter_by(user_id=user_id).order_by(Order.created_at.desc()).first()
-    if last_order:
-        # Use fabric_map and silhouette_map to generate personalized recommendations
-        # ...
-    else:
-        # Return defaults
-        # ...</code></pre>
-
-    <h3>11.10 API Route for Price Calculation</h3>
-    <pre><code>@app.route('/api/calculate_price', methods=['POST'])
-def api_calculate_price():
-    data = request.get_json()
-    fabric = data.get('fabric', 'Silk')
-    sleeve = data.get('sleeve', 'Sleeveless')
-    embroidery = data.get('embroidery', 'None')
-    price = calculate_price(fabric, sleeve, embroidery)
-    return jsonify({'price': price})</code></pre>
-
-    <h3>11.11 Database Initialization Script (create_db.py)</h3>
-    <pre><code>from app import app, db
-with app.app_context():
-    db.drop_all()
-    db.create_all()
-    if Inventory.query.count() == 0:
-        items = [Inventory(fabric_name='Silk', quantity=45, availability=True), ...]
-        for item in items:
-            db.session.add(item)
-        db.session.commit()
-    if not User.query.filter_by(email='admin@admin.com').first():
-        admin = User(name='Admin', email='admin@admin.com', password='admin123')
-        db.session.add(admin)
-        db.session.commit()</code></pre>
-
-    <h3>11.12 Custom Jinja Filter (Number Formatting)</h3>
-    <pre><code>@app.template_filter('toLocaleString')
-def to_locale_string(value):
-    """Format a number with thousand separators (e.g., 5000 -> 5,000)."""
-    if value is None:
-        return "0"
-    try:
-        return f"{int(value):,}"
-    except (ValueError, TypeError):
-        return str(value)</code></pre>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 12: Libraries                                         -->
-  <!-- ============================================================ -->
-  <section id="libraries">
-    <h2>12. Libraries</h2>
-    <p>This section documents all third-party libraries used in the Custom Couture Web Application.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Library</th><th>Purpose</th><th>Why Selected</th><th>Benefits</th></tr></thead>
-        <tbody>
-          <tr><td>Flask</td><td>Web framework</td><td>Lightweight, Python native</td><td>Simplicity, extensions, community</td></tr>
-          <tr><td>Flask-SQLAlchemy</td><td>ORM</td><td>Abstracts database operations</td><td>Write Python instead of SQL, relationships</td></tr>
-          <tr><td>SQLite3</td><td>Database engine</td><td>No server setup, single file</td><td>Zero-configuration, demo-ready</td></tr>
-          <tr><td>Werkzeug</td><td>WSGI utilities</td><td>Flask dependency</td><td>Session signing, password hashing</td></tr>
-          <tr><td>Jinja2</td><td>Template engine</td><td>Flask default</td><td>Template inheritance, filters, auto-escaping</td></tr>
-          <tr><td>Font Awesome</td><td>Icon library</td><td>Used for icons throughout the UI</td><td>Professional icons without custom SVGs</td></tr>
-          <tr><td>Google Fonts</td><td>Typography</td><td>Inter and Playfair Display fonts</td><td>High-quality fonts, improved aesthetics</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>12.1 Why Flask was selected over alternatives</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Alternative</th><th>Why Not Used</th></tr></thead>
-        <tbody>
-          <tr><td>Django</td><td>Heavier, more opinionated, overkill</td></tr>
-          <tr><td>FastAPI</td><td>Asynchronous, more complex, newer ecosystem</td></tr>
-          <tr><td>Node.js/Express</td><td>Would require JavaScript throughout, not Python IA</td></tr>
-          <tr><td>PHP</td><td>Not suitable for Python-based IA</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>12.2 Why SQLite was selected</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Alternative</th><th>Why Not Used</th></tr></thead>
-        <tbody>
-          <tr><td>PostgreSQL</td><td>Requires server setup, overkill for development</td></tr>
-          <tr><td>MySQL</td><td>Requires server installation, not zero-config</td></tr>
-          <tr><td>MongoDB</td><td>Document store doesn't fit relational data model</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>12.3 Why utils.py was created</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Separation of Concerns</td><td>Business logic separated from route handling</td></tr>
-          <tr><td>Reusability</td><td>Price calculation used in both main routes and API</td></tr>
-          <tr><td>Maintainability</td><td>One place to update pricing logic</td></tr>
-          <tr><td>Testability</td><td>Utility functions can be tested independently</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 13: Security                                          -->
-  <!-- ============================================================ -->
-  <section id="security">
-    <h2>13. Security</h2>
-    <p>This section documents the security measures implemented in the Custom Couture Web Application.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Security Area</th><th>Implementation</th><th>Severity</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Password Storage</td><td>Plain text</td><td>CRITICAL</td><td>Must implement bcrypt/werkzeug security</td></tr>
-          <tr><td>SQL Injection</td><td>SQLAlchemy ORM with parameterized queries</td><td>PROTECTED</td><td>All queries use ORM, which escapes inputs</td></tr>
-          <tr><td>Session Management</td><td>Flask signed cookies</td><td>PROTECTED</td><td><code>app.secret_key</code> signs session cookies</td></tr>
-          <tr><td>Authentication</td><td>Session-based <code>user_id</code></td><td>PROTECTED</td><td>Routes check <code>'user_id'</code> in session</td></tr>
-          <tr><td>Authorization</td><td>Email-based admin check</td><td>PARTIAL</td><td>Admin check only checks email string</td></tr>
-          <tr><td>Input Sanitization</td><td>Minimal</td><td>LIMITED</td><td>Form data used directly; HTML auto-escaped by Jinja2</td></tr>
-          <tr><td>CSRF</td><td>Not implemented</td><td>VULNERABLE</td><td>Forms should have CSRF tokens (Flask-WTF)</td></tr>
-          <tr><td>File Upload</td><td>Not implemented</td><td>N/A</td><td>No file upload functionality</td></tr>
-          <tr><td>HTTPS</td><td>Not enforced</td><td>VULNERABLE</td><td>Should use <code>SESSION_COOKIE_SECURE = True</code></td></tr>
-          <tr><td>XSS Protection</td><td>Jinja2 auto-escaping</td><td>PROTECTED</td><td>All template variables auto-escaped</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>13.1 Critical Security Recommendations</h3>
-    <h4>1. Password Hashing (bcrypt/werkzeug.security)</h4>
-    <pre><code>from werkzeug.security import generate_password_hash, check_password_hash
-# Registration:
-user.password = generate_password_hash(password)
-# Login:
-if check_password_hash(user.password, submitted_password):
-    # Log in</code></pre>
-
-    <h4>2. CSRF Protection (Flask-WTF)</h4>
-    <pre><code>from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, FloatField
-from wtforms.validators import DataRequired, Email
-
-class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])</code></pre>
-
-    <h4>3. Session Security</h4>
-    <pre><code>app.config.update(
-    SESSION_COOKIE_SECURE=True,
-    SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE='Lax',
-    PERMANENT_SESSION_LIFETIME=timedelta(hours=2)
-)</code></pre>
-
-    <h3>13.2 SQL Injection Protection Analysis</h3>
-    <p><strong>Vulnerable pattern (NOT USED):</strong></p>
-    <pre><code># DANGEROUS - String concatenation
-cursor.execute(f"SELECT * FROM user WHERE email = '{email}'")</code></pre>
-    <p><strong>Protected pattern (USED):</strong></p>
-    <pre><code># SAFE - SQLAlchemy ORM
-User.query.filter_by(email=email).first()</code></pre>
-    <p>SQLAlchemy uses parameterized queries, automatically escaping all user input. This prevents SQL injection attacks.</p>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 14: Error Handling                                    -->
-  <!-- ============================================================ -->
-  <section id="error-handling">
-    <h2>14. Error Handling</h2>
-    <p>This section documents how errors are handled in the Custom Couture Web Application.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Error Type</th><th>Try/Except</th><th>User Experience</th><th>Implementation</th></tr></thead>
-        <tbody>
-          <tr><td>Invalid Login</td><td>No exception</td><td>Flash message, stay on login page</td><td><code>if not user or user.password != password: flash("Invalid credentials."); return redirect(url_for('login'))</code></td></tr>
-          <tr><td>Duplicate Registration</td><td>No exception</td><td>Flash message, stay on register page</td><td><code>if User.query.filter_by(email=email).first(): flash("Email already registered."); return redirect(url_for('register'))</code></td></tr>
-          <tr><td>Missing Authentication</td><td>No exception</td><td>Redirect to login with flash</td><td><code>if 'user_id' not in session: flash("Please login first."); return redirect(url_for('login'))</code></td></tr>
-          <tr><td>Database Errors</td><td>Not implemented</td><td>App would crash</td><td>Should wrap all DB operations in try/except</td></tr>
-          <tr><td>Admin Access Denied</td><td>No exception</td><td>Redirect to dashboard with flash</td><td><code>if user.email != 'admin@admin.com': flash("Admin access required."); return redirect(url_for('dashboard'))</code></td></tr>
-          <tr><td>Missing Pages (404)</td><td><code>get_or_404()</code></td><td>Flask default 404</td><td><code>Order.query.get_or_404(order_id)</code></td></tr>
-          <tr><td>Invalid Form Data</td><td>No exception</td><td>Form submission fails gracefully</td><td>HTML5 validation prevents most issues</td></tr>
-          <tr><td>Session Errors</td><td>No exception</td><td>Redirect to login</td><td>Session keys checked before use</td></tr>
-          <tr><td>Invalid Status Update</td><td>No exception</td><td>Flash error, redirect</td><td><code>if status in valid_statuses: ... else: flash('Invalid status.')</code></td></tr>
-          <tr><td>Invalid Inventory Quantity</td><td>try/except ValueError</td><td>Flash error, redirect</td><td><code>try: qty = int(quantity); if qty < 0: flash('Cannot be negative')</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>14.1 Recommended Error Handling Pattern</h3>
-    <pre><code>try:
-    db.session.add(order)
-    db.session.commit()
-except IntegrityError as e:
-    db.session.rollback()
-    flash('Database error: ' + str(e), 'danger')
-    return redirect(url_for('builder'))
-except Exception as e:
-    db.session.rollback()
-    flash('An error occurred. Please try again.', 'danger')
-    return redirect(url_for('builder'))</code></pre>
-
-    <h3>14.2 Flash Message Categories</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Category</th><th>Styling</th><th>Use Case</th></tr></thead>
-        <tbody>
-          <tr><td><code>success</code></td><td>Green border</td><td>Login success, order placed, measurements saved</td></tr>
-          <tr><td><code>danger</code></td><td>Red/orange border</td><td>Invalid login, duplicate email, admin denial, invalid status</td></tr>
-          <tr><td><code>info</code></td><td>Gold border</td><td>Logout, informational messages</td></tr>
-          <tr><td><code>warning</code></td><td>Amber border</td><td>Warnings (not currently used)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 15: Folder Structure (Detailed)                       -->
-  <!-- ============================================================ -->
-  <section id="folder-structure">
-    <h2>15. Folder Structure (Detailed)</h2>
-    <pre>
-Project/
-│
-├── app.py                        # Main application file
-│   ├── Flask app initialization
-│   ├── SQLAlchemy configuration
-│   ├── Custom Jinja filter (toLocaleString)
-│   ├── Model imports
-│   ├── Utility imports (calculate_price, get_recommendations)
-│   ├── Database creation and seeding
-│   ├── Context processor
-│   ├── Main routes (15+ routes including API)
-│   └── Database initialization
-│
-├── models.py                     # Database models (5 classes)
-│   ├── User
-│   ├── Order
-│   ├── Measurement
-│   ├── Inventory
-│   └── Recommendation
-│
-├── utils.py                      # Helper functions
-│   ├── calculate_price()
-│   ├── get_recommendations()
-│   └── update_inventory()
-│
-├── create_db.py                  # Database creation and seeding
-│   ├── db.drop_all()
-│   ├── db.create_all()
-│   ├── Seed inventory
-│   └── Create admin user
-│
-├── database.db                   # SQLite database (auto-generated)
-│   └── Contains tables: users, orders, measurements, inventory, recommendations
-│
-├── requirements.txt              # Python dependencies
-│   ├── Flask
-│   ├── Flask-SQLAlchemy
-│   └── (other dependencies)
-│
-├── templates/                    # Jinja2 HTML templates
-│   ├── base.html                 # Parent template with layout
-│   ├── index.html                # Landing page
-│   ├── login.html                # Authentication page
-│   ├── register.html             # Account creation page
-│   ├── dashboard.html            # User dashboard
-│   ├── builder.html              # Design studio
-│   ├── profile.html              # Measurements page
-│   ├── admin.html                # Admin panel
-│   └── recommendations.html      # AI suggestions
-│
-├── static/                       # Static assets
-│   ├── css/
-│   │   └── style.css             # Complete styling (840+ lines)
-│   │       ├── Design tokens (CSS variables)
-│   │       ├── Global reset
-│   │       ├── Header & navigation
-│   │       ├── Hero section
-│   │       ├── Features grid
-│   │       ├── Dashboard styles
-│   │       ├── Builder styles
-│   │       ├── Auth pages
-│   │       ├── Forms
-│   │       ├── Tables
-│   │       ├── Footer
-│   │       ├── Animations
-│   │       └── Responsive breakpoints
-│   └── js/
-│       ├── script.js             # Main JavaScript
-│       │   ├── Mobile nav toggle
-│       │   ├── Flash message auto-dismiss
-│       │   ├── Scroll reveal animations
-│       │   ├── applyPreset() function
-│       │   └── navigateTo() helper
-│       └── script copy.js        # Legacy/backup file
-│
-├── instance/                     # Instance-specific files
-│   └── (auto-generated by Flask)
-│
-├── .gitignore                    # Git ignore file
-├── README.md                     # Project documentation
-└── test.html                     # Standalone HTML test file (used for development)
-    </pre>
-
-    <h3>15.1 Folder Purpose Explanation</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Folder</th><th>Purpose</th><th>Why This Structure</th></tr></thead>
-        <tbody>
-          <tr><td><code>templates/</code></td><td>All HTML templates using Jinja2</td><td>Flask convention; separates presentation from logic</td></tr>
-          <tr><td><code>static/</code></td><td>CSS, JS, images</td><td>Flask convention; CDN-ready assets</td></tr>
-          <tr><td><code>static/css/</code></td><td>All stylesheets</td><td>Organized by file type</td></tr>
-          <tr><td><code>static/js/</code></td><td>All JavaScript</td><td>Organized by file type</td></tr>
-          <tr><td><code>instance/</code></td><td>Runtime files</td><td>Flask convention for non-versioned files</td></tr>
-          <tr><td><code>database.db</code></td><td>SQLite database</td><td>Single file for entire database; easy backup</td></tr>
-          <tr><td><code>models.py</code></td><td>Database models</td><td>Separates schema from application logic</td></tr>
-          <tr><td><code>utils.py</code></td><td>Helper functions</td><td>Centralizes reusable business logic</td></tr>
-          <tr><td><code>create_db.py</code></td><td>Database setup script</td><td>One-time setup; not part of main application flow</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 16: Design Decisions – "Why" Explanations             -->
-  <!-- ============================================================ -->
-  <section id="design-decisions">
-    <h2>16. Design Decisions – "Why" Explanations</h2>
-    <p>This section explains the reasoning behind key design decisions made during the development of the Custom Couture Web Application.</p>
-
-    <h3>16.1 Why Flask?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Simplicity</td><td>Flask is minimal and explicit, making it easier to understand for an IA project</td></tr>
-          <tr><td>Python</td><td>Matches the programming language requirement for the IA</td></tr>
-          <tr><td>Flexibility</td><td>Can structure the application however we want (unlike Django's "batteries-included" approach)</td></tr>
-          <tr><td>Lightweight</td><td>No unnecessary overhead; application stays small and focused</td></tr>
-          <tr><td>Extensibility</td><td>Can add extensions (SQLAlchemy, WTForms, etc.) as needed</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.2 Why SQLite?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Zero Configuration</td><td>No separate server process to run</td></tr>
-          <tr><td>Single File</td><td>Entire database in one file – easy to backup, share, and version</td></tr>
-          <tr><td>Built-in</td><td>Comes with Python standard library</td></tr>
-          <tr><td>ACID Compliant</td><td>Transaction safety is built-in</td></tr>
-          <tr><td>Sufficient Scale</td><td>Handles the expected user base for a demonstration application</td></tr>
-          <tr><td>No Network Overhead</td><td>Local database access is faster than remote</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.3 Why Jinja2 Templates?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Inheritance</td><td><code>base.html</code> provides consistent layout across all pages</td></tr>
-          <tr><td>Filters</td><td>Custom <code>toLocaleString</code> filter for number formatting</td></tr>
-          <tr><td>Auto-escaping</td><td>Prevents XSS attacks by escaping user input in HTML</td></tr>
-          <tr><td>Integration</td><td>Deeply integrated with Flask; <code>render_template()</code> is straightforward</td></tr>
-          <tr><td>Logic Separation</td><td>Keeps business logic in Python, presentation in templates</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.4 Why Sessions?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Stateful</td><td>Maintains user identity across HTTP requests</td></tr>
-          <tr><td>Stateless Protocol</td><td>HTTP is stateless; sessions add state</td></tr>
-          <tr><td>Security</td><td>Flask signs session cookies with <code>app.secret_key</code></td></tr>
-          <tr><td>Simplicity</td><td>No need for JWT tokens, OAuth, or complex authentication flows</td></tr>
-          <tr><td>User Experience</td><td>Users stay logged in across page visits</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.5 Why MVC-like Architecture?</h3>
-    <pre>Model (M) → View (V) → Controller (C)
-           ↑
-           │
-    User Action</pre>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Separation of Concerns</td><td>Models handle data, Views handle presentation, Controllers handle logic</td></tr>
-          <tr><td>Maintainability</td><td>Changes to one layer don't affect others</td></tr>
-          <tr><td>Testability</td><td>Each layer can be tested independently</td></tr>
-          <tr><td>Pattern Familiarity</td><td>Common pattern in web development; easy to explain in IA</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>In this application: Models = classes in <code>models.py</code>; Views = HTML templates; Controllers = Flask routes; Business Logic = <code>utils.py</code>.</p>
-
-    <h3>16.6 Why Separate Routes?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Single Responsibility</td><td>Each route handles one specific action</td></tr>
-          <tr><td>Code Organization</td><td>Related routes are grouped together</td></tr>
-          <tr><td>Ease of Maintenance</td><td>Adding a new route doesn't affect existing ones</td></tr>
-          <tr><td>Clear URL Structure</td><td><code>/login</code>, <code>/dashboard</code>, <code>/profile</code> are self-explanatory</td></tr>
-          <tr><td>RESTful Design</td><td>Each URL represents a resource or action</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.7 Why Multiple Tables?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Normalization</td><td>Reduces data redundancy</td></tr>
-          <tr><td>Integrity</td><td>Foreign keys maintain referential integrity</td></tr>
-          <tr><td>Query Efficiency</td><td>Can query orders without loading user data</td></tr>
-          <tr><td>Scalability</td><td>Can add new tables (e.g., Inventory, Categories) without restructuring</td></tr>
-          <tr><td>Relational Model</td><td>Data has clear relationships (one-to-many, one-to-one)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.8 Why Dictionaries for Pricing?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>O(1) Lookup</td><td>Faster than if-else chains or switch statements</td></tr>
-          <tr><td>Extensibility</td><td>Add new fabric/sleeve/embroidery options by updating the dictionary</td></tr>
-          <tr><td>Readability</td><td>Clear mapping of option to price</td></tr>
-          <tr><td>Centralized Logic</td><td>Price calculation in one place (<code>utils.py</code>) used by both server and API</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.9 Why Separate utils.py?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Separation of Concerns</td><td>Business logic separated from route handling</td></tr>
-          <tr><td>Reusability</td><td><code>calculate_price()</code> used in both <code>submit_order()</code> and <code>/api/calculate_price</code></td></tr>
-          <tr><td>Maintainability</td><td>One place to update pricing logic</td></tr>
-          <tr><td>Testability</td><td>Utility functions can be tested independently</td></tr>
-          <tr><td>Avoids Circular Imports</td><td>Models imported by utils; app imports both</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.10 Why Classes (Models) in Separate File?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Organization</td><td>All database schema definitions in one place</td></tr>
-          <tr><td>Reusability</td><td>Models can be imported by <code>app.py</code>, <code>utils.py</code>, <code>create_db.py</code></td></tr>
-          <tr><td>Avoids Circular Imports</td><td>Models defined before app imports them</td></tr>
-          <tr><td>Clear Documentation</td><td>Schema documentation in one file</td></tr>
-          <tr><td>Maintainability</td><td>Adding a new model doesn't clutter <code>app.py</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.11 Why API Routes?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>JavaScript Integration</td><td>Enables client-side real-time features (price preview)</td></tr>
-          <tr><td>Future Mobile App</td><td>RESTful API ready for mobile app development</td></tr>
-          <tr><td>Decoupling</td><td>Frontend can be separated from backend</td></tr>
-          <tr><td>Standardization</td><td>JSON responses follow REST conventions</td></tr>
-          <tr><td>Testability</td><td>API endpoints can be tested with tools like Postman</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.12 Why a Separate create_db.py?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Separation of Setup</td><td>Database creation is a one-time operation, not part of app flow</td></tr>
-          <tr><td>Fresh Start</td><td><code>db.drop_all()</code> enables clean slate for development</td></tr>
-          <tr><td>Seeding</td><td>Populates database with initial data (inventory, admin user)</td></tr>
-          <tr><td>Documentation</td><td>Shows the expected database structure</td></tr>
-          <tr><td>Reproducibility</td><td>Anyone can run the script to set up the database</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.13 Why Flask-SQLAlchemy over Raw SQL?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Abstraction</td><td>Write Python instead of SQL</td></tr>
-          <tr><td>Relationship Management</td><td><code>db.relationship()</code> manages joins automatically</td></tr>
-          <tr><td>Security</td><td>Parameterized queries prevent SQL injection</td></tr>
-          <tr><td>Productivity</td><td>Faster development with migrations and schema management</td></tr>
-          <tr><td>Database Agnostic</td><td>Can switch to PostgreSQL/MySQL with minimal changes</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.14 Why Email-Based Admin Check?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Simplicity</td><td>No role table needed for this demonstration</td></tr>
-          <tr><td>Single Admin</td><td>Only one admin user required</td></tr>
-          <tr><td>Easy Setup</td><td>Admin created during database seeding</td></tr>
-          <tr><td>Sufficient</td><td>For IA project, this is adequate</td></tr>
-          <tr><td>Future Enhancement</td><td>Can migrate to RBAC with <code>User.role</code> field</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.15 Why Client-Side SVG Preview?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Real-Time Feedback</td><td>Users see changes instantly without page refresh</td></tr>
-          <tr><td>Reduced Server Load</td><td>No server requests for each preview update</td></tr>
-          <tr><td>Better UX</td><td>Smooth, responsive design experience</td></tr>
-          <tr><td>Visual Appeal</td><td>Interactive SVG demonstrates technical sophistication</td></tr>
-          <tr><td>Educational</td><td>Shows understanding of frontend-backend integration</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.16 Why the Recommendation System Approach?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Rule-Based Simplicity</td><td>No ML infrastructure needed</td></tr>
-          <tr><td>Personalization</td><td>Based on user's last order</td></tr>
-          <tr><td>Extensible Maps</td><td>Easy to add more fabric/silhouette mappings</td></tr>
-          <tr><td>Fallback Defaults</td><td>New users see suggestions too</td></tr>
-          <tr><td>Demonstrates Logic</td><td>Shows algorithmic thinking without complex ML</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.17 Why the Order Status Lifecycle?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Realistic Workflow</td><td>Mirrors real boutique order processing</td></tr>
-          <tr><td>Trackable Progress</td><td>Customers can see where their order is</td></tr>
-          <tr><td>Admin Control</td><td>Boutique owners can update status</td></tr>
-          <tr><td>Extensible</td><td>Can add more statuses (e.g., "Shipped", "Cancelled")</td></tr>
-          <tr><td>Validated</td><td>Prevents invalid status transitions</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.18 Why Separate Handler Field?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Workload Distribution</td><td>Orders can be assigned to different tailors</td></tr>
-          <tr><td>Accountability</td><td>Tracks who is responsible for each order</td></tr>
-          <tr><td>Scalability</td><td>Multiple tailors can handle orders</td></tr>
-          <tr><td>Realistic</td><td>Boutiques have multiple artisans</td></tr>
-          <tr><td>Future Enhancement</td><td>Can add tailor profiles and schedules</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.19 Why Inventory System?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Realistic Boutique Operation</td><td>Fabric stock is a real concern</td></tr>
-          <tr><td>Prevents Overselling</td><td>Know when stock is depleted</td></tr>
-          <tr><td>Admin Control</td><td>Can update stock levels</td></tr>
-          <tr><td>Future Enhancement</td><td>Can auto-deduct inventory when orders are placed</td></tr>
-          <tr><td>Demonstrates Business Logic</td><td>Shows understanding of inventory management</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>16.20 Why the Custom Jinja Filter?</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Aspect</th><th>Explanation</th></tr></thead>
-        <tbody>
-          <tr><td>Consistent Formatting</td><td>All numbers displayed with thousand separators</td></tr>
-          <tr><td>DRY Principle</td><td>Centralized formatting logic</td></tr>
-          <tr><td>Template Cleanliness</td><td>Keeps formatting out of route logic</td></tr>
-          <tr><td>Reusable</td><td>Can be used anywhere in templates</td></tr>
-          <tr><td>Professional</td><td>Currency display matches e-commerce standards</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 17: Images Required – Descriptions                    -->
-  <!-- ============================================================ -->
-  <section id="images">
-    <h2>17. Images Required – Descriptions</h2>
-    <p>This section provides textual descriptions of all diagrams and images referenced in the documentation.</p>
-
-    <h3>17.1 Folder Structure</h3>
-    <pre>Project/
-├── app.py
-├── models.py
-├── utils.py
-├── create_db.py
-├── database.db
-├── requirements.txt
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── builder.html
-│   ├── profile.html
-│   ├── admin.html
-│   └── recommendations.html
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       ├── script.js
-│       └── script copy.js
-└── instance/</pre>
-
-    <h3>17.2 Database Schema (ERD)</h3>
-    <pre>┌──────────────┐     ┌──────────────────────────┐
-│     User     │     │        Order             │
-├──────────────┤     ├──────────────────────────┤
-│ id (PK)      │◄────│ user_id (FK)             │
-│ name         │     │ id (PK)                  │
-│ email (U)    │     │ silhouette               │
-│ password     │     │ neckline                 │
-│ phone        │     │ sleeve                   │
-│ created_at   │     │ fabric                   │
-└──────────────┘     │ color                    │
-       │             │ embroidery               │
-       │ 1           │ total_price              │
-       ▼             │ status                   │
-┌──────────────┐     │ priority                 │
-│ Measurement  │     │ handler                  │
-├──────────────┤     │ created_at               │
-│ id (PK)      │     └──────────────────────────┘
-│ user_id (FK) │
-│ bust         │     ┌──────────────────────────┐
-│ waist        │     │       Inventory          │
-│ hips         │     ├──────────────────────────┤
-│ shoulder     │     │ id (PK)                  │
-│ sleeve_length│     │ fabric_name (U)          │
-│ height       │     │ quantity                 │
-│ updated_at   │     │ availability             │
-└──────────────┘     └──────────────────────────┘</pre>
-
-    <h3>17.3 Navigation Flow</h3>
-    <pre>User opens application
-        ↓
-Landing Page (/)
-        ↓
-Login (/login)
-        ↓
-Dashboard (/dashboard)
-        ↓
-┌───────────────────────┐
-│                       │
-▼                       ▼
-Builder (/builder)      Profile (/profile)
-        ↓
-Submit Order (/submit_order)
-        ↓
-Dashboard (updated)</pre>
-
-    <h3>17.4 Data Flow Diagram</h3>
-    <pre>┌─────────┐    ┌─────────┐    ┌──────────┐
-│ Browser │───▶│ Flask   │───▶│ Database │
-│ (HTML/  │◀───│ (app.py)│◀───│ (SQLite) │
-│  JS)    │    │         │    │          │
-└─────────┘    └─────────┘    └──────────┘
-                    │
-                    ▼
-              ┌──────────┐
-              │ utils.py │
-              │ (Price,  │
-              │  Recs)   │
-              └──────────┘</pre>
-
-    <h3>17.5 Class Diagram</h3>
-    <pre>┌─────────────────────────────────────────────────────────────┐
-│                          User                               │
-├─────────────────────────────────────────────────────────────┤
-│ - id: int                                                   │
-│ - name: str                                                 │
-│ - email: str                                                │
-│ - password: str                                             │
-│ - phone: str                                                │
-│ - created_at: datetime                                      │
-├─────────────────────────────────────────────────────────────┤
-│ + orders: relationship                                      │
-│ + measurements: relationship                                │
-└─────────────────────────────────────────────────────────────┘
-       │                                   │
-       │ 1                                 │ 1
-       ▼                                   ▼
-┌─────────────────────┐     ┌─────────────────────────────┐
-│       Order         │     │       Measurement           │
-├─────────────────────┤     ├─────────────────────────────┤
-│ - id: int           │     │ - id: int                   │
-│ - user_id: int      │     │ - user_id: int              │
-│ - silhouette: str   │     │ - bust: float               │
-│ - neckline: str     │     │ - waist: float              │
-│ - sleeve: str       │     │ - hips: float               │
-│ - fabric: str       │     │ - shoulder: float           │
-│ - color: str        │     │ - sleeve_length: float      │
-│ - embroidery: str   │     │ - height: float             │
-│ - total_price: float│     │ - updated_at: datetime      │
-│ - status: str       │     └─────────────────────────────┘
-│ - priority: int     │
-│ - handler: str      │     ┌─────────────────────────────┐
-│ - created_at: date  │     │        Inventory            │
-├─────────────────────┤     ├─────────────────────────────┤
-│ + user: relationship│     │ - id: int                   │
-└─────────────────────┘     │ - fabric_name: str          │
-                            │ - quantity: int             │
-                            │ - availability: bool        │
-                            └─────────────────────────────┘</pre>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- SECTION 18: Pseudocode Summary                                -->
-  <!-- ============================================================ -->
-  <section id="pseudocode-summary">
-    <h2>18. Pseudocode Summary</h2>
-    <p>This section provides a quick-reference summary of all algorithms presented in this documentation.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Algorithm</th><th>Location</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td>User Registration</td><td><code>app.py → register()</code></td><td>Create new user account with validation</td></tr>
-          <tr><td>User Login</td><td><code>app.py → login()</code></td><td>Authenticate user and establish session</td></tr>
-          <tr><td>Price Calculation</td><td><code>utils.py → calculate_price()</code></td><td>Compute total cost from options</td></tr>
-          <tr><td>Recommendation Generation</td><td><code>utils.py → get_recommendations()</code></td><td>Generate personalized outfit suggestions</td></tr>
-          <tr><td>Inventory Update</td><td><code>utils.py → update_inventory()</code></td><td>Update stock levels after orders</td></tr>
-          <tr><td>Order Submission</td><td><code>app.py → submit_order()</code></td><td>Create order with validation</td></tr>
-          <tr><td>Order Status Update</td><td><code>app.py → update_status()</code></td><td>Transition order through lifecycle</td></tr>
-          <tr><td>Admin Authorization</td><td><code>app.py → admin()</code></td><td>Verify admin access</td></tr>
-          <tr><td>API Price Calculation</td><td><code>app.py → api_calculate_price()</code></td><td>Real-time price preview API</td></tr>
-          <tr><td>Measurement Save</td><td><code>app.py → profile()</code></td><td>Save user body measurements</td></tr>
-          <tr><td>Dashboard Data Retrieval</td><td><code>app.py → dashboard()</code></td><td>Aggregate user data for display</td></tr>
-          <tr><td>Search (Future)</td><td>–</td><td>Filter and search orders</td></tr>
-          <tr><td>Database Storage</td><td>SQLAlchemy ORM</td><td>Persist all data to SQLite</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer style="border-top:1px solid #eaeef2; padding:32px 0 16px; margin-top:48px; color:#64748b; font-size:0.9rem;">
-    <p style="margin:0;">Custom Couture Web Application – Criterion C: System Overview &bull; Built with Flask &amp; SQLite</p>
-  </footer>
-
-</div>
-
-<script>
-  (function() {
-    // ---- Scroll Reveal (Fade-up) ----
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-    fadeElements.forEach(el => observer.observe(el));
-
-    // ---- Add fade-up class to section cards and some elements ----
-    document.querySelectorAll('.section-card, .flow, .table-wrap, pre').forEach((el, i) => {
-      el.classList.add('fade-up');
-      el.style.transitionDelay = (i % 10 * 0.05) + 's';
-      observer.observe(el);
-    });
-
-    // ---- Smooth scroll for internal links (optional) ----
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // ---- Simple flow animation: pulse arrows ----
-    const arrows = document.querySelectorAll('.flow-arrow');
-    arrows.forEach((arrow, idx) => {
-      arrow.style.transition = 'opacity 0.3s';
-      setInterval(() => {
-        arrow.style.opacity = arrow.style.opacity === '0.4' ? '1' : '0.4';
-      }, 1200 + idx * 200);
-    });
-  })();
-</script>
-
+    <!-- Floating Gear -->
+    <div class="floating-gear">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+        <span>TOP</span>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <a href="mailto:support@gmail.com"><i class="fas fa-envelope"></i> support@gmail.com</a>
+                <a href="tel:6543217654"><i class="fas fa-phone"></i> (654) 321-7654</a>
+            </div>
+            <div class="top-links">
+                <a href="#"><i class="fas fa-user"></i> Login</a>
+                <a href="#"><i class="fas fa-sign-in-alt"></i> Register</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Logo Area -->
+    <header class="header-logo">
+        <div class="logo-wrap">
+            <div class="logo-icon">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+            </div>
+            <div class="logo-text">BUILD</div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="nav-left">
+                <div class="nav-icon-box">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="nav-cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">4</span>
+                </div>
+            </div>
+
+            <ul class="desktop-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <div class="nav-toggle">
+                Toggle navigation
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="hero">
+        <div class="container hero-content text-center reveal active">
+            <h1 class="hero-title"><span class="text-primary">WE BUILD</span> YOUR DREAM</h1>
+            <p class="hero-text mx-auto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer.</p>
+            <button class="btn">READ MORE -</button>
+        </div>
+        <div class="hero-arrows">
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </section>
+
+    <!-- Comb Divider -->
+    <div class="comb-divider"></div>
+
+    <!-- Services Section -->
+    <section class="section-padding reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR SERVICES</h2>
+                <div class="title-divider">
+                    <div class="square"></div>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Shopping Mall" class="service-img">
+                    <div class="service-nav prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="service-content">
+                        <h3 class="service-title">Shopping Mall</h3>
+                        <p>Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius .</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1545459720-aac8509eb02c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hospital Building" class="service-img">
+                    <div class="service-nav next"><i class="fas fa-chevron-right"></i></div>
+                    <div class="service-content">
+                        <h3 class="service-title">Hospital Building</h3>
+                        <p>Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius .</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comb Divider -->
+    <div class="comb-divider"></div>
+
+    <!-- Why Choose Us Section -->
+    <section class="section-padding bg-light-section reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>WHY CHOOSE US</h2>
+                <div class="title-divider">
+                    <div class="square"></div>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="20" r="12" fill="#f6b211"/><path d="M20 32v20h24V32" stroke="#1a1a1a"/><path d="M12 52h40v8H12z" fill="#f6b211" stroke="#1a1a1a"/></svg>
+                    </div>
+                    <h3 class="feature-title">BEST QUALITY</h3>
+                    <p class="feature-text">Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 10a14 14 0 00-14 14c0 7 6 10 6 16v4h16v-4c0-6 6-9 6-16a14 14 0 00-14-14z" fill="#f6b211"/><path d="M26 48h12v4H26zM28 56h8v4h-8z" stroke="#1a1a1a"/></svg>
+                    </div>
+                    <h3 class="feature-title">INTEGRITY</h3>
+                    <p class="feature-text">Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 12l16 32H16z" fill="#f6b211"/><circle cx="32" cy="12" r="4" stroke="#1a1a1a"/></svg>
+                    </div>
+                    <h3 class="feature-title">STRATEGY</h3>
+                    <p class="feature-text">Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 12l20 20-20 20L12 32z" fill="#f6b211"/><path d="M22 32h20M32 22v20" stroke="#1a1a1a"/></svg>
+                    </div>
+                    <h3 class="feature-title">SUSTAINABILITY</h3>
+                    <p class="feature-text">Lorem Ipsum is simply dummy text of the printing and typesg indtrysum has been the Ipsum dummy of the printing indus .</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-area reveal" id="statsSection">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <h3><span class="count-num" data-target="1000">0</span>+</h3>
+                        <p>PROJECT COMPLETED</p>
+                    </div>
+                    <div class="stat-icon"><i class="fas fa-building"></i></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <h3><span class="count-num" data-target="1500">0</span>+</h3>
+                        <p>HAPPY CLIENTS</p>
+                    </div>
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <h3><span class="count-num" data-target="4500">0</span></h3>
+                        <p>WORKERS EMPLOYED</p>
+                    </div>
+                    <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <h3><span class="count-num" data-target="260">0</span>+</h3>
+                        <p>AWARDS WON</p>
+                    </div>
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comb Divider -->
+    <div class="comb-divider"></div>
+
+    <!-- Latest Projects Section -->
+    <section class="section-padding reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>LATEST PROJECTS</h2>
+                <div class="title-divider">
+                    <div class="square"></div>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+
+            <div class="portfolio-filter">
+                <button class="active">ALL</button> /
+                <button>HOUSE</button> /
+                <button>BUILDING</button> /
+                <button>OFFICE</button> /
+                <button>GARDEN</button> /
+                <button>INTERIOR</button>
+            </div>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 1"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1545459720-aac8509eb02c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 2"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 3"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1579547945413-497e1b99dac0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 4"></div>
+        </div>
+    </section>
+
+    <!-- About Company Section -->
+    <section class="section-padding reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>ABOUT COMPANY</h2>
+                <div class="title-divider">
+                    <div class="square"></div>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="About Worker">
+            </div>
+
+            <div class="feature-card" style="max-width: 500px; margin: 0 auto;">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 60V20l16-12 16 12v40H16z" fill="#f6b211" stroke="#1a1a1a"/><path d="M28 60V44h8v16" stroke="#1a1a1a"/><rect x="22" y="28" width="6" height="6" fill="#fff" stroke="#1a1a1a"/><rect x="36" y="28" width="6" height="6" fill="#fff" stroke="#1a1a1a"/></svg>
+                </div>
+                <h3 class="feature-title">BUILDING</h3>
+                <p class="feature-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod .</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Construction Section -->
+    <section class="dark-section reveal">
+        <div class="container dark-content">
+            <!-- FAQ Accordion -->
+            <div class="faq-area">
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <span><i class="far fa-question-circle"></i> WHEN WAS THE CONSTITUTION ADOPTED?</span>
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Web design lorem Ipsum is simply dummy text of the printing and typesetting and industry. lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer took a galley of type and scrambled it to is make a type is specimen book. It has survived not only five centuries, but also leap into and electronic typesetting, remaining essentially unchanged. It was popularised sheets containing lorem Ipsum passages.popularised sheets containing lorem Ipsum passages.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><i class="far fa-image"></i> WHAT IS THE NECESSITY OF THE PREAMBLE?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Web design lorem Ipsum is simply dummy text of the printing and typesetting and industry...</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><i class="fas fa-cog"></i> WHEN DID THE CONSTITUTION COME INTO FORCE?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Web design lorem Ipsum is simply dummy text of the printing and typesetting and industry...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Construction Detail -->
+            <div class="construction-info">
+                <h2>CONSTRUCTION</h2>
+                <h3>WHAT ARE YOU LOOKING FOR?</h3>
+                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <ul class="check-list">
+                    <li><i class="fas fa-check"></i> Simply dummy text of the Lorem Ipsum is printing and type setting.</li>
+                    <li><i class="fas fa-check"></i> Dummy text of the printing and typesetting industry. Text of the printing</li>
+                    <li><i class="fas fa-check"></i> And typesetting industry Lorem Ipsum has been. Ipsum has been the</li>
+                    <li><i class="fas fa-check"></i> Industry's standard dummy since the 1500s,</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="section-padding reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR TEAM</h2>
+                <div class="title-divider">
+                    <div class="square"></div>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            </div>
+
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Richard Wagner" class="team-img">
+                <h3 class="team-name">Richard Wagner</h3>
+                <p class="team-role">Consultant</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog & Approach -->
+    <div class="container reveal">
+        <div class="blog-snippet">
+            <h3>PROFESSIONAL APPROACH</h3>
+            <div class="blog-meta">
+                <span><i class="fas fa-user"></i> By John</span>
+                <span>/</span>
+                <span><i class="fas fa-comments"></i> 0</span>
+            </div>
+            <p>Lorem Ipsum is simply dummy text of printing and typesetting Ipsum has been the industry's dummy</p>
+        </div>
+    </div>
+
+    <!-- Comb Divider -->
+    <div class="comb-divider"></div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonial-area reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>WHAT OUR CLIENT SAY</h2>
+                <div class="title-divider">
+                    <div class="square"></div>
+                </div>
+            </div>
+
+            <div class="testimonial-content">
+                <div class="client-img">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Steve Jobs">
+                </div>
+                <h4 class="client-name">STEVE JOBS / <span>CFO LOOP INC</span></h4>
+                <p class="client-text">Excellent Customer support!.The template itself is very extended. simply dummy text of the printing and industry. Lorem Ipsum has been the industry's standard dummy simply dummy text. Thanks a lot for such great features, pages, shortcodes and home variations. Incredible Job. And the best of all, great introductions Thanks a lot for such great features, pages, shortcodes and home variations. Incredible Job. And the best of all, great introductions</p>
+
+                <div class="dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & Logos -->
+    <section class="cta-logos reveal">
+        <div class="container">
+            <div class="logos-wrap">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Envato_logo.svg/512px-Envato_logo.svg.png" style="filter: brightness(0) invert(1);" alt="Envato">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Envato_logo.svg/512px-Envato_logo.svg.png" style="filter: brightness(0) invert(1);" alt="Themeforest">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Envato_logo.svg/512px-Envato_logo.svg.png" style="filter: brightness(0) invert(1);" alt="Photodune">
+            </div>
+            <div class="cta-text">
+                <h2>WE ARE READY TO BUILD YOUR DREAM TELL US MORE ABOUT YOUR PROJECT</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra mauris eget tortor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+
+            <div class="footer-widget reveal">
+                <h3 class="footer-title">ABOUT COMPANY</h3>
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <div class="bar bar-1"></div>
+                        <div class="bar bar-2"></div>
+                        <div class="bar bar-3"></div>
+                    </div>
+                    <div class="logo-text" style="margin-left: 10px;">BUILD</div>
+                </div>
+                <p>Thewebmax ipsum dolor sit amet, interior adipiscing elit, sed diam nonummy nibh is euismod tincidunt ut laoreet dolore agna aliquam erat . wisi enim ad minim veniam, quis tation. sit amet, consec tetuer. ipsum dolor sit amet, consectetuer adipiscing. ipsum dolor sit .</p>
+            </div>
+
+            <div class="footer-widget reveal">
+                <h3 class="footer-title">RESENT POST</h3>
+                <div class="recent-post-list">
+                    <div class="recent-post-item">
+                        <div class="post-date">20<span>MAR</span></div>
+                        <div class="post-info">
+                            <h4>Blog title first</h4>
+                            <div class="post-meta">
+                                <span><i class="fas fa-user"></i> By Admin</span>
+                                <span>/</span>
+                                <span><i class="fas fa-comments"></i> 28</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-post-item">
+                        <div class="post-date">30<span>MAR</span></div>
+                        <div class="post-info">
+                            <h4>Blog title first</h4>
+                            <div class="post-meta">
+                                <span><i class="fas fa-user"></i> By Admin</span>
+                                <span>/</span>
+                                <span><i class="fas fa-comments"></i> 29</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-post-item">
+                        <div class="post-date">31<span>MAR</span></div>
+                        <div class="post-info">
+                            <h4>Blog title first</h4>
+                            <div class="post-meta">
+                                <span><i class="fas fa-user"></i> By Admin</span>
+                                <span>/</span>
+                                <span><i class="fas fa-comments"></i> 30</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-widget reveal">
+                <h3 class="footer-title">USEFUL LINKS</h3>
+                <ul class="useful-links">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Gallery</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Accordion Logic
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const isActive = item.classList.contains('active');
+
+                    document.querySelectorAll('.accordion-item').forEach(accItem => {
+                        accItem.classList.remove('active');
+                        const icon = accItem.querySelector('.accordion-header i:last-child');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-plus');
+                        }
+                    });
+
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const icon = this.querySelector('i:last-child');
+                        if (icon) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-times');
+                        }
+                    }
+                });
+            });
+
+            // Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+
+                revealElements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        el.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // Back to Top Button
+            const backToTopBtn = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Portfolio Filter (Visual only)
+            const filterBtns = document.querySelectorAll('.portfolio-filter button');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // -------- COUNT ANIMATION --------
+            const counters = document.querySelectorAll('.count-num');
+            let counted = false;
+
+            const animateCounters = () => {
+                if (counted) return;
+
+                const statsSection = document.getElementById('statsSection');
+                if (!statsSection) return;
+
+                const rect = statsSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Trigger when stats section enters viewport
+                if (rect.top < windowHeight - 80 && rect.bottom > 0) {
+                    counted = true;
+
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        let current = 0;
+                        const increment = Math.ceil(target / 80); // 80 steps
+                        const duration = 2000; // 2 seconds
+                        const stepTime = Math.floor(duration / 80);
+
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                return;
+                            }
+                            counter.textContent = current;
+                            setTimeout(updateCounter, stepTime);
+                        };
+
+                        updateCounter();
+                    });
+                }
+            };
+
+            // Check on scroll and on load
+            window.addEventListener('scroll', animateCounters);
+            window.addEventListener('resize', animateCounters);
+            // Small delay to ensure layout is settled
+            setTimeout(animateCounters, 300);
+            animateCounters();
+
+        });
+    </script>
 </body>
 </html>
