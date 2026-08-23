@@ -412,6 +412,7 @@
             min-height: 400px;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
         .hero::before {
             content: '';
@@ -426,6 +427,7 @@
             position: relative;
             z-index: 2;
             padding: 0 15px;
+            text-align: center;
         }
         .hero-title {
             font-size: 32px;
@@ -448,10 +450,10 @@
         }
         .hero-text {
             color: #ddd;
-            font-size: 12px;
-            max-width: 500px;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 14px;
+            max-width: 550px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
         }
         .btn {
             display: inline-block;
@@ -909,9 +911,27 @@
             margin: 0 5px;
         }
 
+        /* Testimonial Carousel */
         .testimonial-area {
             text-align: center;
             padding: 60px 15px;
+            overflow: hidden;
+        }
+        .testimonial-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .testimonial-slide {
+            display: none;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        .testimonial-slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0.4; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .client-img {
             width: 100px;
@@ -949,12 +969,16 @@
             display: flex;
             justify-content: center;
             gap: 8px;
+            margin-top: 20px;
         }
         .dot {
             width: 12px;
             height: 12px;
-            background: var(--secondary);
+            background: #ccc;
+            border-radius: 50%;
             cursor: pointer;
+            transition: 0.3s;
+            border: none;
         }
         .dot.active {
             background: var(--primary);
@@ -1132,8 +1156,8 @@
                 font-size: 58px;
             }
             .hero-text {
-                font-size: 14px;
-                max-width: 550px;
+                font-size: 16px;
+                max-width: 600px;
             }
 
             .section-title h2 {
@@ -1212,7 +1236,6 @@
             }
         }
 
-        /* Fix for laptop screens where content might be too cramped or spaced out */
         @media (min-width: 992px) and (max-width: 1199px) {
             .container {
                 max-width: 960px;
@@ -1264,7 +1287,6 @@
             }
         }
 
-        /* Fix for smaller laptops / 13-inch screens */
         @media (min-width: 992px) and (max-width: 1099px) {
             .hero-title {
                 font-size: 36px;
@@ -1283,6 +1305,25 @@
             .stat-item {
                 gap: 12px;
                 padding: 8px 6px;
+            }
+        }
+
+        /* Hero responsiveness fine-tune */
+        @media (max-width: 767px) {
+            .hero {
+                padding: 60px 0;
+                min-height: 320px;
+            }
+            .hero-title {
+                font-size: 28px;
+            }
+            .hero-text {
+                font-size: 13px;
+                padding: 0 10px;
+            }
+            .btn {
+                padding: 8px 16px;
+                font-size: 11px;
             }
         }
     </style>
@@ -1357,9 +1398,9 @@
 
     <!-- Hero Slider -->
     <section class="hero">
-        <div class="container hero-content text-center reveal active">
+        <div class="container hero-content reveal active">
             <h1 class="hero-title"><span class="text-primary">WE BUILD</span> YOUR DREAM</h1>
-            <p class="hero-text mx-auto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer.</p>
+            <p class="hero-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer.</p>
             <button class="btn">READ MORE -</button>
         </div>
         <div class="hero-arrows">
@@ -1642,7 +1683,7 @@
     <!-- Comb Divider -->
     <div class="comb-divider"></div>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials Section with Auto-Scroll Carousel -->
     <section class="testimonial-area reveal">
         <div class="container">
             <div class="section-title">
@@ -1652,17 +1693,36 @@
                 </div>
             </div>
 
-            <div class="testimonial-content">
-                <div class="client-img">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Steve Jobs">
+            <div class="testimonial-wrapper">
+                <!-- Slide 1 -->
+                <div class="testimonial-slide active">
+                    <div class="client-img">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Steve Jobs">
+                    </div>
+                    <h4 class="client-name">STEVE JOBS / <span>CFO LOOP INC</span></h4>
+                    <p class="client-text">Excellent Customer support!.The template itself is very extended. simply dummy text of the printing and industry. Lorem Ipsum has been the industry's standard dummy simply dummy text. Thanks a lot for such great features, pages, shortcodes and home variations. Incredible Job. And the best of all, great introductions Thanks a lot for such great features, pages, shortcodes and home variations. Incredible Job. And the best of all, great introductions</p>
                 </div>
-                <h4 class="client-name">STEVE JOBS / <span>CFO LOOP INC</span></h4>
-                <p class="client-text">Excellent Customer support!.The template itself is very extended. simply dummy text of the printing and industry. Lorem Ipsum has been the industry's standard dummy simply dummy text. Thanks a lot for such great features, pages, shortcodes and home variations. Incredible Job. And the best of all, great introductions Thanks a lot for such great features, pages, shortcodes and home variations. Incredible Job. And the best of all, great introductions</p>
+                <!-- Slide 2 -->
+                <div class="testimonial-slide">
+                    <div class="client-img">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="John Doe">
+                    </div>
+                    <h4 class="client-name">JOHN DOE / <span>CEO BUILDTECH</span></h4>
+                    <p class="client-text">Amazing quality and attention to detail. The team was professional and delivered ahead of schedule. I highly recommend their services for any construction project. The communication was seamless and the final result exceeded our expectations.</p>
+                </div>
+                <!-- Slide 3 -->
+                <div class="testimonial-slide">
+                    <div class="client-img">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Jane Smith">
+                    </div>
+                    <h4 class="client-name">JANE SMITH / <span>PROJECT MANAGER</span></h4>
+                    <p class="client-text">Working with this company was a pleasure. They transformed our vision into reality with precision and care. The project was completed on time and within budget. I will definitely use their services again for future developments.</p>
+                </div>
 
                 <div class="dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
                 </div>
             </div>
         </div>
@@ -1844,16 +1904,14 @@
                 const rect = statsSection.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
 
-                // Trigger when stats section enters viewport
                 if (rect.top < windowHeight - 80 && rect.bottom > 0) {
                     counted = true;
 
                     counters.forEach(counter => {
                         const target = parseInt(counter.getAttribute('data-target'));
                         let current = 0;
-                        const increment = Math.ceil(target / 80); // 80 steps
-                        const duration = 2000; // 2 seconds
-                        const stepTime = Math.floor(duration / 80);
+                        const increment = Math.ceil(target / 80);
+                        const stepTime = 2000 / 80;
 
                         const updateCounter = () => {
                             current += increment;
@@ -1870,12 +1928,60 @@
                 }
             };
 
-            // Check on scroll and on load
             window.addEventListener('scroll', animateCounters);
             window.addEventListener('resize', animateCounters);
-            // Small delay to ensure layout is settled
             setTimeout(animateCounters, 300);
             animateCounters();
+
+            // -------- TESTIMONIAL AUTO-SCROLL CAROUSEL --------
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.dot');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function goToSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                const next = (currentSlide + 1) % slides.length;
+                goToSlide(next);
+            }
+
+            function startAutoSlide() {
+                if (slideInterval) clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000); // change every 5 seconds
+            }
+
+            function stopAutoSlide() {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                    slideInterval = null;
+                }
+            }
+
+            // Dot click handler
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    stopAutoSlide();
+                    goToSlide(index);
+                    startAutoSlide(); // restart auto after manual click
+                });
+            });
+
+            // Pause on hover (optional)
+            const wrapper = document.querySelector('.testimonial-wrapper');
+            wrapper.addEventListener('mouseenter', stopAutoSlide);
+            wrapper.addEventListener('mouseleave', startAutoSlide);
+
+            // Start auto-slide
+            startAutoSlide();
 
         });
     </script>
