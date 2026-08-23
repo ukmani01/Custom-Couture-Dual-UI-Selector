@@ -232,38 +232,71 @@
             transform: translateY(0);
         }
 
-        /* Top Bar */
+        /* Top Bar – fully responsive mobile */
         .top-bar {
             background-color: var(--primary);
-            padding: 10px 0;
+            padding: 8px 0;
             font-size: 13px;
             color: var(--white);
         }
         .top-bar-content {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            gap: 6px;
         }
         .top-info,
         .top-links {
             display: flex;
             align-items: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
         }
         .top-bar a {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 13px;
+            white-space: nowrap;
         }
         .top-bar i {
             background: rgba(255, 255, 255, 0.2);
-            padding: 5px;
+            padding: 4px 6px;
             border-radius: 3px;
+            font-size: 12px;
         }
-        @media (min-width: 768px) {
+
+        @media (min-width: 576px) {
             .top-bar-content {
                 flex-direction: row;
                 justify-content: space-between;
+                gap: 10px;
+            }
+            .top-info,
+            .top-links {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .top-bar {
+                padding: 6px 0;
+                font-size: 12px;
+            }
+            .top-bar a {
+                font-size: 12px;
+                gap: 4px;
+            }
+            .top-bar i {
+                padding: 3px 5px;
+                font-size: 11px;
+            }
+            .top-info {
+                gap: 8px;
+            }
+            .top-links {
+                gap: 10px;
             }
         }
 
@@ -1341,7 +1374,7 @@
         <span>TOP</span>
     </div>
 
-    <!-- Top Bar -->
+    <!-- Top Bar – now fully responsive on mobile -->
     <div class="top-bar">
         <div class="container top-bar-content">
             <div class="top-info">
@@ -1956,7 +1989,7 @@
 
             function startAutoSlide() {
                 if (slideInterval) clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000); // change every 5 seconds
+                slideInterval = setInterval(nextSlide, 5000);
             }
 
             function stopAutoSlide() {
@@ -1966,21 +1999,18 @@
                 }
             }
 
-            // Dot click handler
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', function() {
                     stopAutoSlide();
                     goToSlide(index);
-                    startAutoSlide(); // restart auto after manual click
+                    startAutoSlide();
                 });
             });
 
-            // Pause on hover (optional)
             const wrapper = document.querySelector('.testimonial-wrapper');
             wrapper.addEventListener('mouseenter', stopAutoSlide);
             wrapper.addEventListener('mouseleave', startAutoSlide);
 
-            // Start auto-slide
             startAutoSlide();
 
         });
