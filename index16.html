@@ -1,1067 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riva Architecture &amp; Construction — Quiet Luxury &amp; Precision Spaces</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-warm: #FBF9F5;
-            --bg-stone: #F2EFE9;
-            --bg-white: #FFFFFF;
-            --bg-dark: #141414;
-            --text-main: #1C1C1C;
-            --text-muted: #6B6863;
-            --accent: #A38042;
-            --accent-light: #E8DFD1;
-            --border-color: #E2DFD7;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --container-width: 1280px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-warm);
-            color: var(--text-main);
-            line-height: 1.7;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4, .serif-font {
-            font-family: 'Playfair Display', serif;
-            font-weight: 500;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .container {
-            width: 100%;
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        /* ANIMATION UTILITIES */
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .reveal-up.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* BUTTONS WITH MICRO-INTERACTIONS */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px 32px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 0px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background-color: var(--text-main);
-            color: var(--bg-white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline-dark {
-            background-color: transparent;
-            color: var(--text-main);
-            border-color: var(--text-main);
-        }
-
-        .btn-outline-dark:hover {
-            background-color: var(--text-main);
-            color: var(--bg-white);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline-light {
-            background-color: transparent;
-            color: var(--bg-white);
-            border-color: rgba(255,255,255,0.4);
-        }
-
-        .btn-outline-light:hover {
-            border-color: var(--bg-white);
-            background-color: rgba(255,255,255,0.08);
-            transform: translateY(-2px);
-        }
-
-        /* HEADER / NAVBAR */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(251, 249, 245, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background: rgba(251, 249, 245, 0.96);
-            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
-            padding: 0;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 96px;
-            transition: var(--transition);
-        }
-
-        header.scrolled .nav-container {
-            height: 78px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: var(--text-main);
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--text-main);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            position: relative;
-            padding-top: 180px;
-            padding-bottom: 120px;
-            background-color: var(--bg-warm);
-            overflow: hidden;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .small-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            color: var(--accent);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 4.5vw, 4.5rem);
-            line-height: 1.1;
-            font-weight: 500;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .hero-desc {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 500px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .hero-image-wrap {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        .hero-image-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: saturate(0.95);
-            transform: scale(1.08);
-            transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-image-wrap.loaded img {
-            transform: scale(1);
-        }
-
-        /* ABOUT SECTION */
-        .about-section {
-            padding: 140px 0;
-            background-color: var(--bg-stone);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bg-typography {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 16vw;
-            font-weight: 700;
-            color: rgba(0,0,0,0.025);
-            white-space: nowrap;
-            z-index: 0;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .about-content-wrapper {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-statement {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 3vw, 2.8rem);
-            line-height: 1.3;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 60px;
-            line-height: 1.8;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            padding-top: 60px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .stat-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-
-        .stat-item p {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        /* SERVICES SECTION */
-        .services-section {
-            padding: 140px 0;
-            background-color: var(--bg-white);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-            font-weight: 400;
-            letter-spacing: -0.5px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .service-card {
-            background-color: var(--bg-warm);
-            padding: 48px 36px;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 380px;
-        }
-
-        .service-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.04);
-        }
-
-        .service-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* PROJECTS SECTION */
-        .projects-section {
-            padding: 140px 0;
-            background-color: var(--bg-stone);
-        }
-
-        .projects-intro {
-            max-width: 650px;
-            margin-bottom: 80px;
-        }
-
-        .project-showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .project-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-            transform: translateY(-6px);
-        }
-
-        .project-img-wrapper {
-            width: 100%;
-            height: 440px;
-            overflow: hidden;
-        }
-
-        .project-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .project-card:hover .project-img-wrapper img {
-            transform: scale(1.06);
-        }
-
-        .project-details {
-            padding: 36px;
-        }
-
-        .project-meta {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .project-details h3 {
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-            font-weight: 400;
-        }
-
-        .project-details p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 28px;
-        }
-
-        .text-link {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-main);
-            transition: var(--transition);
-        }
-
-        .text-link:hover {
-            color: var(--accent);
-            gap: 16px;
-        }
-
-        /* LARGE EDITORIAL FEATURE */
-        .editorial-feature {
-            padding: 0 0 140px 0;
-            background-color: var(--bg-stone);
-        }
-
-        .editorial-banner {
-            position: relative;
-            width: 100%;
-            height: 700px;
-            overflow: hidden;
-        }
-
-        .editorial-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .editorial-banner:hover img {
-            transform: scale(1.03);
-        }
-
-        .editorial-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 60px;
-            background: linear-gradient(to top, rgba(20,20,20,0.85) 0%, transparent 100%);
-            color: var(--bg-white);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .editorial-overlay h2 {
-            font-size: 2.8rem;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
-
-        .editorial-overlay p {
-            color: rgba(255,255,255,0.75);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* PROCESS SECTION */
-        .process-section {
-            padding: 140px 0;
-            background-color: var(--bg-white);
-        }
-
-        .process-timeline {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 60px;
-            position: relative;
-        }
-
-        .process-step {
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .process-step:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .process-step span {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--accent);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 16px;
-        }
-
-        .process-step h4 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .process-step p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* DARK PREMIUM SECTION */
-        .dark-cta-section {
-            padding: 160px 0;
-            background-color: var(--bg-dark);
-            color: var(--bg-white);
-            text-align: center;
-        }
-
-        .dark-cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .dark-cta-content h2 {
-            font-size: clamp(2.8rem, 4.5vw, 4rem);
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-
-        .dark-cta-content p {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.65);
-            margin-bottom: 48px;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: var(--bg-dark);
-            color: rgba(255,255,255,0.7);
-            padding: 100px 0 40px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--bg-white);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .footer-col p {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 24px;
-        }
-
-        .footer-col h4 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--bg-white);
-            margin-bottom: 24px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 600;
-        }
-
-        .footer-links li {
-            margin-bottom: 14px;
-        }
-
-        .footer-links a {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--bg-white);
-            padding-left: 4px;
-        }
-
-        .footer-bottom {
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.4);
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1200px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px;
-            }
-            .process-timeline {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-grid, .project-showcase-grid, .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 96px;
-                left: 0;
-                width: 100%;
-                background: var(--bg-warm);
-                flex-direction: column;
-                padding: 40px;
-                border-bottom: 1px solid var(--border-color);
-                gap: 24px;
-                text-align: center;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .mobile-toggle {
-                display: block;
-            }
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 24px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .services-grid, .process-timeline {
-                grid-template-columns: 1fr;
-            }
-            .editorial-overlay {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-                padding: 30px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MongoDB + Node.js + Mongoose - Complete Lab Guide</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}
+  header{background:#172033;color:white;padding:40px 20px;text-align:center}
+  header h1{margin:0 0 10px;font-size:32px}
+  header p{margin:0;color:#dbe4f2}
+  main{max-width:1100px;margin:auto;padding:24px}
+  section{background:white;margin:20px 0;padding:25px;border-radius:16px;box-shadow:0 4px 18px #00000012}
+  h2{margin-top:0;color:#173b68}
+  h3{color:#245b8f}
+  .step{border-left:5px solid #245b8f;padding:12px 18px;margin:16px 0;background:#f7faff}
+  .note{padding:14px 18px;border-radius:10px;background:#fff7df;border-left:5px solid #e5a400}
+  .success{padding:14px 18px;border-radius:10px;background:#eaf8ef;border-left:5px solid #299653}
+  .danger{padding:14px 18px;border-radius:10px;background:#fff0f0;border-left:5px solid #d33}
+  code{background:#eef2f7;padding:2px 6px;border-radius:5px}
+  pre{background:#101827;color:#e9eef7;padding:18px;border-radius:12px;overflow:auto}
+  a{color:#1769aa;font-weight:bold}
+  table{width:100%;border-collapse:collapse;margin:15px 0}
+  th,td{border:1px solid #d8dee8;padding:10px;text-align:left}
+  th{background:#edf3f9}
+  .flow{font-size:18px;background:#edf6ff;padding:18px;border-radius:12px;text-align:center}
+  .small{font-size:14px;color:#5b6678}
+</style>
 </head>
+
 <body>
+<header>
+  <h1>MongoDB + Node.js + Mongoose</h1>
+  <p>Complete Beginner Lab Guide: MongoDB → Compass → Mongoose → Node.js → Chrome</p>
+</header>
 
-    <!-- HEADER -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="#" class="logo">Riva Architecture</a>
-            <nav class="nav-links" id="navLinks">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#process">Process</a>
-                <a href="#contact" class="btn btn-primary" style="padding: 10px 24px; margin-top: 0;">Start a Project</a>
-            </nav>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">&#9776;</button>
-        </div>
-    </header>
+<main>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content reveal-up">
-                    <span class="small-label">EST. 2012 · ARCHITECTURE &amp; CONSTRUCTION</span>
-                    <h1 class="hero-title">BUILDING SPACES THAT DEFINE GENERATIONS.</h1>
-                    <p class="hero-desc">Designing and delivering refined architectural spaces with precision, uncompromising craftsmanship and enduring purpose.</p>
-                    <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">View Our Projects</a>
-                        <a href="#contact" class="btn btn-outline-dark">Start a Conversation</a>
-                    </div>
-                </div>
-                <div class="hero-image-wrap reveal-up" id="heroImageWrap" style="transition-delay: 0.2s;">
-                    <!-- Unsplash Free-to-use Architectural Photography -->
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85" alt="Luxury Architectural Villa by Riva">
-                </div>
-            </div>
-        </div>
-    </section>
+<section>
+<h2>🎯 What We Are Going to Build</h2>
+<p>இந்த lab-ல் MongoDB Compass-ல் இருக்கும் existing student data-வை Mongoose மூலம் Node.js-க்கு கொண்டு வந்து, Basic Node.js HTTP server பயன்படுத்தி Chrome browser-ல் HTML ஆக காட்டப் போகிறோம்.</p>
+<div class="flow">
+MongoDB Server → Compass → Mongoose → Node.js HTTP Server → Chrome
+</div>
+</section>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section" id="about">
-        <div class="bg-typography">ARCH</div>
-        <div class="container about-content-wrapper">
-            <span class="small-label reveal-up">BUILT WITH PURPOSE</span>
-            <h2 class="about-statement reveal-up">We combine architecture, engineering and pristine craftsmanship to create spaces that remain relevant for generations.</h2>
-            <p class="about-text reveal-up">Operating at the intersection of structural rigor and elegant design, Riva transforms raw land and architectural concepts into high-value residential villas and bespoke commercial landmarks across India.</p>
-            
-            <div class="stats-grid reveal-up">
-                <div class="stat-item">
-                    <h3>15+</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="stat-item">
-                    <h3>120+</h3>
-                    <p>Projects Completed</p>
-                </div>
-                <div class="stat-item">
-                    <h3>35+</h3>
-                    <p>Cities Served</p>
-                </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Client Satisfaction</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section>
+<h2>⚠️ First: Server vs Compass</h2>
+<table>
+<tr><th>Tool</th><th>Purpose</th></tr>
+<tr><td>MongoDB Community Server</td><td>Actual database server. Node.js இதனுடன் connect ஆகும்.</td></tr>
+<tr><td>MongoDB Compass</td><td>MongoDB-ஐ GUI மூலம் பார்க்கவும் documents insert/manage செய்யவும் பயன்படும்.</td></tr>
+<tr><td>mongosh</td><td>MongoDB command-line shell.</td></tr>
+<tr><td>Mongoose</td><td>Node.js-ல் MongoDB-ஐ easy-ஆ work செய்ய உதவும் ODM.</td></tr>
+<tr><td>Node.js HTTP</td><td>Browser request-க்கு response அனுப்பும் server.</td></tr>
+</table>
+<div class="note">
+<b>Important:</b> Compass மட்டும் install செய்தால் Node.js local database connection உருவாகாது. MongoDB Server running-ஆ இருக்க வேண்டும்.
+</div>
+</section>
 
-    <!-- SERVICES SECTION -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <div>
-                    <span class="small-label">DISCIPLINES</span>
-                    <h2 class="section-title">Comprehensive Capabilities</h2>
-                </div>
-                <p style="max-width: 400px; color: var(--text-muted); font-size: 0.95rem;">Executing complex construction pipelines with meticulous internal oversight and strict material standards.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card reveal-up">
-                    <div class="service-number">01</div>
-                    <div>
-                        <h3>Architecture</h3>
-                        <p>Conceptualizing bespoke spatial layouts, structural blueprints, and elevation profiles suited to high-end contexts.</p>
-                    </div>
-                </div>
-                <div class="service-card reveal-up" style="transition-delay: 0.1s;">
-                    <div class="service-number">02</div>
-                    <div>
-                        <h3>Construction</h3>
-                        <p>Rigorous on-site engineering, footing execution, and quality control from foundation to final roof assembly.</p>
-                    </div>
-                </div>
-                <div class="service-card reveal-up" style="transition-delay: 0.2s;">
-                    <div class="service-number">03</div>
-                    <div>
-                        <h3>Interior Design</h3>
-                        <p>Harmonizing interior materiality, custom millwork, lighting systems, and tactile finishes for seamless luxury living.</p>
-                    </div>
-                </div>
-                <div class="service-card reveal-up" style="transition-delay: 0.3s;">
-                    <div class="service-number">04</div>
-                    <div>
-                        <h3>Project Management</h3>
-                        <p>End-to-end scheduling, financial transparency, regulatory compliance, and milestone management.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section>
+<h2>1. Download Links</h2>
+<h3>MongoDB Community Server</h3>
+<p>
+<a href="https://www.mongodb.com/try/download/community-edition" target="_blank">Official MongoDB Community Edition Download</a>
+</p>
+<p class="small">Select the version/platform/package that matches the lab machine. Current MongoDB 8.x Community documentation supports 64-bit Windows 11 and Windows Server editions, not Windows 10. Therefore, for an old Windows 10 lab, do not blindly install the newest MongoDB Server; verify the supported version/OS combination first.</p>
 
-    <!-- PROJECTS SHOWCASE -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <div class="projects-intro reveal-up">
-                <span class="small-label">SELECTED WORKS</span>
-                <h2 class="section-title">Architectural Showcases</h2>
-            </div>
-            <div class="project-showcase-grid">
-                <div class="project-card reveal-up">
-                    <div class="project-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85" alt="The Villa 01">
-                    </div>
-                    <div class="project-details">
-                        <span class="project-meta">Chennai · Residential</span>
-                        <h3>The Villa 01</h3>
-                        <p>A minimalist concrete and glass residence designed around an open-air central courtyard and sustainable passive cooling.</p>
-                        <a href="#contact" class="text-link">View Project &rarr;</a>
-                    </div>
-                </div>
-                <div class="project-card reveal-up" style="transition-delay: 0.15s;">
-                    <div class="project-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=85" alt="The Cliffside Estate">
-                    </div>
-                    <div class="project-details">
-                        <span class="project-meta">Coimbatore · Residential</span>
-                        <h3>The Cliffside Estate</h3>
-                        <p>Expansive multi-level hillside construction combining rugged natural stone foundations with refined contemporary interiors.</p>
-                        <a href="#contact" class="text-link">View Project &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<h3>MongoDB Compass</h3>
+<p>
+<a href="https://www.mongodb.com/try/download/compass" target="_blank">Official MongoDB Compass Download</a>
+</p>
+<p>Compass is a GUI tool. The current download page offers Windows 64-bit (10+) for Compass.</p>
 
-    <!-- LARGE EDITORIAL FEATURE -->
-    <section class="editorial-feature">
-        <div class="container">
-            <div class="editorial-banner reveal-up">
-                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1400&q=85" alt="The Courtyard House">
-                <div class="editorial-overlay">
-                    <div>
-                        <h2>The Courtyard House</h2>
-                        <p>Chennai, Tamil Nadu &nbsp;&middot;&nbsp; 2026 &nbsp;&middot;&nbsp; Residential Flagship</p>
-                    </div>
-                    <a href="#contact" class="btn btn-outline-light" style="border-radius: 0;">Explore Feature</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<h3>Node.js</h3>
+<p>
+<a href="https://nodejs.org/en/download" target="_blank">Official Node.js Download</a>
+</p>
 
-    <!-- PROCESS SECTION -->
-    <section class="process-section" id="process">
-        <div class="container">
-            <span class="small-label reveal-up">METHODOLOGY</span>
-            <h2 class="section-title reveal-up">Our Staged Precision Flow</h2>
-            <div class="process-timeline">
-                <div class="process-step reveal-up">
-                    <span>01</span>
-                    <h4>Discover</h4>
-                    <p>Deep-dive requirement gathering, land feasibility evaluation, and financial budgeting.</p>
-                </div>
-                <div class="process-step reveal-up" style="transition-delay: 0.1s;">
-                    <span>02</span>
-                    <h4>Design</h4>
-                    <p>Architectural drafting, 3D spatial simulation, and material sample approvals.</p>
-                </div>
-                <div class="process-step reveal-up" style="transition-delay: 0.2s;">
-                    <span>03</span>
-                    <h4>Build</h4>
-                    <p>Systematic structural construction backed by stringent weekly engineering audits.</p>
-                </div>
-                <div class="process-step reveal-up" style="transition-delay: 0.3s;">
-                    <span>04</span>
-                    <h4>Deliver</h4>
-                    <p>Immaculate finish inspections, key handover, and long-term structural warranty.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<h3>Mongoose Documentation</h3>
+<p>
+<a href="https://mongoosejs.com/docs/" target="_blank">Official Mongoose Documentation</a>
+</p>
+</section>
 
-    <!-- DARK PREMIUM SECTION -->
-    <section class="dark-cta-section" id="contact">
-        <div class="container">
-            <div class="dark-cta-content reveal-up">
-                <span class="small-label" style="color: var(--accent);">LET'S COLLABORATE</span>
-                <h2>BUILD SOMETHING TIMELESS.</h2>
-                <p>Ready to discuss your next architectural property or premium commercial workspace? Our team is available for private consultation.</p>
-                <a href="mailto:websolutionsriva@gemail.com" class="btn btn-primary" style="background-color: var(--bg-white); color: var(--bg-dark);">Start Your Project &rarr;</a>
-            </div>
-        </div>
-    </section>
+<section>
+<h2>2. Check the Lab PC Before Installation</h2>
+<div class="step">
+<b>Check 64-bit:</b>
+<p>CMD →</p>
+<pre>systeminfo | findstr /B /C:"System Type"</pre>
+<p><code>x64-based PC</code> வந்தால் 64-bit. <code>x86-based PC</code> என்றால் current MongoDB Community Server versions generally won't be suitable.</p>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="#" class="footer-logo">Riva Architecture</a>
-                    <p>Delivering premier architecture, high-end construction management, and timeless structural execution across India.</p>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.4);">Inquiries: websolutionsriva@gemail.com</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navigation</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#process">Process</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Disciplines</h4>
-                    <ul class="footer-links">
-                        <li><a href="#services">Architecture</a></li>
-                        <li><a href="#services">Construction</a></li>
-                        <li><a href="#services">Interior Design</a></li>
-                        <li><a href="#services">Management</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Studio</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Tiruchirappalli, Tamil Nadu</a></li>
-                        <li><a href="#">Chennai &amp; Coimbatore</a></li>
-                        <li><a href="#">Mon — Sat: 9:00 — 18:00</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Riva Architecture &amp; Construction. All Rights Reserved.</p>
-                <p>Quiet Luxury Editorial System</p>
-            </div>
-        </div>
-    </footer>
+<div class="step">
+<b>Check Windows version:</b>
+<pre>winver</pre>
+</div>
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
+<div class="step">
+<b>Check Node.js:</b>
+<pre>node -v
+npm -v</pre>
+</div>
+</section>
 
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+<section>
+<h2>3. Install MongoDB Community Server</h2>
+<ol>
+<li>Official Community Edition download page open செய்யவும்.</li>
+<li>Lab PC-க்கு compatible Windows x64 release தேர்வு செய்யவும்.</li>
+<li>Windows MSI installer download செய்யவும்.</li>
+<li>Installer run செய்யவும்.</li>
+<li>MongoDB Server as a Windows Service option available என்றால் service installation தேர்வு செய்யலாம்.</li>
+<li>Installation முடிந்த பிறகு MongoDB service running-ஆ இருக்கிறதா check செய்யவும்.</li>
+</ol>
+<pre>net start MongoDB</pre>
+<div class="success">Service already running என்ற message வந்தால் MongoDB server ready.</div>
+</section>
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+<section>
+<h2>4. Check MongoDB Server</h2>
+<p>CMD-ல்:</p>
+<pre>mongosh</pre>
+<p>MongoDB shell open ஆனால் local MongoDB server-ஐ reach செய்ய முடிகிறது.</p>
+<p>MongoDB normally uses port <code>27017</code> for the local connection in this lab.</p>
+</section>
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 40) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+<section>
+<h2>5. Open MongoDB Compass</h2>
+<p>Start Menu → <b>MongoDB Compass</b> open செய்யவும்.</p>
+<p>Connection string:</p>
+<pre>mongodb://127.0.0.1:27017</pre>
+<p><b>Connect</b> click செய்யவும்.</p>
+</section>
 
-        // Cinematic Hero Load Animation trigger
-        window.addEventListener('load', () => {
-            const heroImgWrap = document.getElementById('heroImageWrap');
-            if (heroImgWrap) {
-                setTimeout(() => {
-                    heroImgWrap.classList.add('loaded');
-                }, 100);
-            }
-        });
+<section>
+<h2>6. Create Database and Collection</h2>
+<p>இந்த lab-ல்:</p>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>Database</td><td><code>ccc</code></td></tr>
+<tr><td>Collection</td><td><code>student</code></td></tr>
+</table>
+<p>Compass → Create Database → Database Name: <code>ccc</code> → Collection Name: <code>student</code>.</p>
+</section>
 
-        // Intersection Observer for Smooth Scroll Reveal Animations (Respecting prefers-reduced-motion)
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<section>
+<h2>7. Insert Student Data</h2>
+<p><b>student</b> collection → Add Data → Insert Document.</p>
+<p>Insert these documents one by one:</p>
 
-        if (prefersReducedMotion) {
-            document.querySelectorAll('.reveal-up').forEach(el => {
-                el.classList.add('active');
-            });
-        } else {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -80px 0px',
-                threshold: 0.15
-            };
+<pre>{
+  "name": "Arun Kumar",
+  "age": 20,
+  "department": "Computer Science",
+  "year": 2,
+  "email": "arun@example.com",
+  "marks": 85
+}</pre>
 
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+<pre>{
+  "name": "Priya",
+  "age": 19,
+  "department": "Information Technology",
+  "year": 2,
+  "email": "priya@example.com",
+  "marks": 91
+}</pre>
 
-            document.querySelectorAll('.reveal-up').forEach(el => {
-                revealObserver.observe(el);
-            });
-        }
-    </script>
+<pre>{
+  "name": "Karthik",
+  "age": 21,
+  "department": "Computer Science",
+  "year": 3,
+  "email": "karthik@example.com",
+  "marks": 78
+}</pre>
+
+<pre>{
+  "name": "Divya",
+  "age": 20,
+  "department": "Artificial Intelligence",
+  "year": 2,
+  "email": "divya@example.com",
+  "marks": 88
+}</pre>
+
+<div class="success">Compass automatically creates an <code>_id</code> for every document. Do not manually add it for this beginner exercise.</div>
+</section>
+
+<section>
+<h2>8. Create Node.js Project</h2>
+<p>ஒரு folder create செய்யவும்:</p>
+<pre>mongodb-node-lab</pre>
+
+<p>CMD-ல் அந்த folder-க்கு சென்று:</p>
+<pre>npm init -y
+npm install mongoose</pre>
+
+<p>Because our code uses <code>import</code>, open <code>package.json</code> and add:</p>
+
+<pre>{
+  "type": "module"
+}</pre>
+
+<p>If package.json already contains other properties, add only the <code>"type": "module"</code> property without deleting the existing properties.</p>
+</section>
+
+<section>
+<h2>9. Create app.js</h2>
+<p>இந்த complete code-ஐ <code>app.js</code> file-ல் paste செய்யவும்.</p>
+
+<pre>import mongoose from "mongoose"
+import http from "http"
+
+// Connect MongoDB
+mongoose.connect("mongodb://127.0.0.1:27017/ccc")
+  .then(() =&gt; {
+    console.log("MongoDB Connected!");
+  })
+  .catch((error) =&gt; {
+    console.log("Connection Error:", error);
+  })
+
+// Schema
+const studentSchema = new mongoose.Schema(
+  {
+    name: String,
+    age: Number,
+    department: String,
+    year: Number,
+    email: String,
+    marks: Number
+  },
+  {
+    collection: "student"
+  }
+)
+
+// Model
+const Student = mongoose.model("Student", studentSchema)
+
+
+// Server
+const server = http.createServer(async (req, res) =&gt; {
+
+  try {
+    const students = await Student.find()
+
+    let html = `
+      &lt;html&gt;
+      &lt;head&gt;
+        &lt;title&gt;Student Data&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Student Details&lt;/h1&gt;
+    `
+
+    students.forEach(stu =&gt; {
+      html += `
+        &lt;h2&gt;${stu.name}&lt;/h2&gt;
+        &lt;p&gt;Age: ${stu.age}&lt;/p&gt;
+        &lt;p&gt;Department: ${stu.department}&lt;/p&gt;
+        &lt;p&gt;Year: ${stu.year}&lt;/p&gt;
+        &lt;p&gt;Email: ${stu.email}&lt;/p&gt;
+        &lt;p&gt;Marks: ${stu.marks}&lt;/p&gt;
+        &lt;hr&gt;
+      `
+    })
+
+    html += `
+      &lt;/body&gt;
+      &lt;/html&gt;
+    `
+
+    res.writeHead(200, { "Content-Type": "text/html" })
+    res.end(html)
+
+  } catch (error) {
+
+    console.log(error)
+
+    res.writeHead(500, { "Content-Type": "text/plain" })
+    res.end("Database Error")
+
+  }
+
+})
+
+server.listen(3000, () =&gt; {
+  console.log("Port running on 3000")
+})</pre>
+</section>
+
+<section>
+<h2>10. Run the Project</h2>
+<p>CMD:</p>
+<pre>node app.js</pre>
+
+<p>Expected console:</p>
+<pre>MongoDB Connected!
+Port running on 3000</pre>
+
+<p>Then open Chrome:</p>
+<pre>http://localhost:3000</pre>
+
+<div class="success">
+<b>Final Result:</b> Compass-ல் இருக்கும் <code>ccc → student</code> documents Node.js + Mongoose மூலம் fetch செய்யப்பட்டு Chrome-ல் HTML ஆக display ஆகும்.
+</div>
+</section>
+
+<section>
+<h2>11. Understand the Code</h2>
+
+<h3>1. Import</h3>
+<pre>import mongoose from "mongoose"
+import http from "http"</pre>
+<p><b>mongoose</b> → MongoDB connection and database operations.<br>
+<b>http</b> → Basic Node.js HTTP server.</p>
+
+<h3>2. MongoDB Connection</h3>
+<pre>mongoose.connect("mongodb://127.0.0.1:27017/ccc")</pre>
+<p><code>127.0.0.1</code> → this computer.<br>
+<code>27017</code> → MongoDB port.<br>
+<code>ccc</code> → database name.</p>
+
+<h3>3. Schema</h3>
+<pre>const studentSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  department: String,
+  year: Number,
+  email: String,
+  marks: Number
+}, {
+  collection: "student"
+})</pre>
+<p>Schema describes the student document structure.</p>
+
+<h3>4. Model</h3>
+<pre>const Student = mongoose.model("Student", studentSchema)</pre>
+<p>Model is used to perform MongoDB operations such as <code>find()</code>.</p>
+
+<h3>5. Request and Response</h3>
+<pre>http.createServer(async (req, res) =&gt; {
+  ...
+})</pre>
+<p>Browser sends a request → Node.js receives it → Node.js reads MongoDB → Node.js sends HTML response.</p>
+
+<h3>6. Read Data</h3>
+<pre>const students = await Student.find()</pre>
+<p>This reads existing documents from the <code>student</code> collection.</p>
+
+<h3>7. HTML Response</h3>
+<pre>res.writeHead(200, { "Content-Type": "text/html" })
+res.end(html)</pre>
+<p><code>200</code> means successful HTTP response. <code>text/html</code> tells Chrome that the response contains HTML. <code>res.end()</code> sends the response and finishes it.</p>
+</section>
+
+<section>
+<h2>12. Very Important Connection Flow</h2>
+<div class="flow">
+Browser<br>
+↓ Request<br>
+Node.js HTTP Server<br>
+↓<br>
+Mongoose<br>
+↓<br>
+MongoDB Server<br>
+↓<br>
+ccc → student<br>
+↓ Data<br>
+Node.js creates HTML<br>
+↓ Response<br>
+Chrome displays HTML
+</div>
+</section>
+
+<section>
+<h2>13. Common Errors</h2>
+
+<h3>Error: Client must be connected before running operations</h3>
+<p>Usually the MongoDB connection was closed or the query ran before the connection was ready.</p>
+<p>For this lab, do <b>not</b> call:</p>
+<pre>mongoose.connection.close()</pre>
+
+<h3>Error: ECONNREFUSED 127.0.0.1:27017</h3>
+<p>MongoDB Server is probably not running.</p>
+<pre>net start MongoDB</pre>
+
+<h3>Error: Cannot use import statement outside a module</h3>
+<p>Make sure <code>package.json</code> contains:</p>
+<pre>"type": "module"</pre>
+
+<h3>Error: Cannot find package 'mongoose'</h3>
+<pre>npm install mongoose</pre>
+
+<h3>Error: Cannot find collection/data</h3>
+<p>Check Compass carefully:</p>
+<pre>Database: ccc
+Collection: student</pre>
+</section>
+
+<section>
+<h2>14. Student Practice Task</h2>
+<p>Students can add two more documents:</p>
+<pre>{
+  "name": "Rahul",
+  "age": 21,
+  "department": "Information Technology",
+  "year": 3,
+  "email": "rahul@example.com",
+  "marks": 74
+}</pre>
+
+<pre>{
+  "name": "Meena",
+  "age": 20,
+  "department": "Computer Science",
+  "year": 2,
+  "email": "meena@example.com",
+  "marks": 93
+}</pre>
+
+<p>Refresh Chrome. The new students should automatically appear because the Node.js server reads the collection again for the browser request.</p>
+</section>
+
+<section>
+<h2>15. One-Minute Teaching Explanation</h2>
+<p><b>Teacher:</b> "First, MongoDB Server stores our data. Compass is only the GUI through which we can see and insert that data. We create a database called <code>ccc</code> and a collection called <code>student</code>. Then Node.js connects to the local MongoDB server using Mongoose. When we open <code>localhost:3000</code>, Chrome sends a request to our Node.js HTTP server. The server uses <code>Student.find()</code> to get the existing data. Then we create HTML and send it back using <code>res.writeHead(200)</code> and <code>res.end()</code>. Chrome displays that HTML."</p>
+</section>
+
+<section>
+<h2>16. Final Checklist</h2>
+<table>
+<tr><th>Check</th><th>Expected</th></tr>
+<tr><td>Windows</td><td>64-bit compatible system</td></tr>
+<tr><td>MongoDB Server</td><td>Installed and running</td></tr>
+<tr><td>Compass</td><td>Installed and connected</td></tr>
+<tr><td>Database</td><td><code>ccc</code></td></tr>
+<tr><td>Collection</td><td><code>student</code></td></tr>
+<tr><td>Node.js</td><td><code>node -v</code> works</td></tr>
+<tr><td>Mongoose</td><td><code>npm install mongoose</code></td></tr>
+<tr><td>Project</td><td><code>package.json</code> has <code>"type":"module"</code></td></tr>
+<tr><td>Server</td><td><code>node app.js</code></td></tr>
+<tr><td>Browser</td><td><code>http://localhost:3000</code></td></tr>
+</table>
+</section>
+
+<section>
+<h2>Official References</h2>
+<ul>
+<li><a href="https://www.mongodb.com/docs/v8.0/tutorial/install-mongodb-on-windows/" target="_blank">MongoDB Community Windows Installation</a></li>
+<li><a href="https://www.mongodb.com/try/download/community-edition" target="_blank">MongoDB Community Download</a></li>
+<li><a href="https://www.mongodb.com/try/download/compass" target="_blank">MongoDB Compass Download</a></li>
+<li><a href="https://www.mongodb.com/docs/community-platform-support/" target="_blank">MongoDB Supported Platforms</a></li>
+<li><a href="https://mongoosejs.com/docs/" target="_blank">Mongoose Documentation</a></li>
+</ul>
+</section>
+
+</main>
 </body>
 </html>
-
