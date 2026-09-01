@@ -32,6 +32,11 @@
             box-sizing: border-box;
         }
 
+        /* Added smooth scrolling for navigation links */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-body);
             color: var(--text-gray);
@@ -180,9 +185,19 @@
             cursor: pointer;
             border-radius: 0 4px 4px 0;
         }
+
+        /* Continuous Smooth Rotation for the Gear */
+        @keyframes gearSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         .floating-gear i {
             color: var(--secondary);
             font-size: 20px;
+            display: inline-block; /* Required for rotation */
+            animation: gearSpin 4s linear infinite; /* Smooth continuous animation */
+            transform-origin: center center;
         }
 
         .back-to-top {
@@ -232,7 +247,7 @@
             transform: translateY(0);
         }
 
-        /* Top Bar – fully responsive mobile */
+        /* Top Bar */
         .top-bar {
             background-color: var(--primary);
             padding: 8px 0;
@@ -406,9 +421,43 @@
             color: var(--white);
             font-size: 24px;
         }
-        .desktop-menu {
-            display: none;
+
+        /* Mobile Menu Setup */
+        @media (max-width: 991px) {
+            .desktop-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                z-index: 1000;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            }
+            .desktop-menu.active {
+                display: flex;
+            }
+            .desktop-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .desktop-menu a {
+                display: block;
+                padding: 15px 20px;
+                color: var(--white);
+                font-family: var(--font-heading);
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+                text-align: center;
+            }
+            .desktop-menu a:hover {
+                color: var(--primary);
+                background-color: rgba(255,255,255,0.05);
+            }
         }
+
         @media (min-width: 992px) {
             .nav-toggle {
                 display: none;
@@ -556,6 +605,14 @@
         .service-card {
             position: relative;
         }
+        
+        /* Added Wrapper to Fix Responsive Image Navigation Arrows */
+        .service-media {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
         .service-img {
             width: 100%;
             height: 200px;
@@ -573,6 +630,8 @@
             font-size: 14px;
             line-height: 1.6;
         }
+
+        /* Arrows are now positioned perfectly against the inner media wrapper container */
         .service-nav {
             position: absolute;
             top: 50%;
@@ -585,12 +644,18 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
         }
         .service-nav.prev {
             left: 0;
         }
         .service-nav.next {
             right: 0;
+        }
+        .service-nav:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
         }
 
         /* Why Choose Us */
@@ -1201,7 +1266,7 @@
                 max-width: 900px;
                 gap: 40px;
             }
-            .service-card .service-img {
+            .service-img {
                 height: 240px;
             }
 
@@ -1253,7 +1318,7 @@
                 max-width: 1000px;
                 gap: 50px;
             }
-            .service-card .service-img {
+            .service-img {
                 height: 280px;
             }
 
@@ -1287,7 +1352,7 @@
                 max-width: 750px;
                 gap: 30px;
             }
-            .service-card .service-img {
+            .service-img {
                 height: 200px;
             }
 
@@ -1363,7 +1428,7 @@
 </head>
 <body>
 
-    <!-- Floating Gear -->
+    <!-- Floating Gear (Red Element) - Added Smooth Spin Animation -->
     <div class="floating-gear">
         <i class="fas fa-cog"></i>
     </div>
@@ -1374,7 +1439,7 @@
         <span>TOP</span>
     </div>
 
-    <!-- Top Bar – now fully responsive on mobile -->
+    <!-- Top Bar -->
     <div class="top-bar">
         <div class="container top-bar-content">
             <div class="top-info">
@@ -1413,13 +1478,14 @@
                 </div>
             </div>
 
+            <!-- Task 1: Navigation IDs Added for internal scrolling -->
             <ul class="desktop-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
 
             <div class="nav-toggle">
@@ -1430,7 +1496,7 @@
     </nav>
 
     <!-- Hero Slider -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container hero-content reveal active">
             <h1 class="hero-title"><span class="text-primary">WE BUILD</span> YOUR DREAM</h1>
             <p class="hero-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer.</p>
@@ -1446,7 +1512,7 @@
     <div class="comb-divider"></div>
 
     <!-- Services Section -->
-    <section class="section-padding reveal">
+    <section class="section-padding reveal" id="services">
         <div class="container">
             <div class="section-title">
                 <h2>OUR SERVICES</h2>
@@ -1457,19 +1523,23 @@
             </div>
 
             <div class="services-grid">
-                <!-- Card 1 -->
+                <!-- Card 1 (Blue Element responsiveness fixed via wrapper) -->
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Shopping Mall" class="service-img">
-                    <div class="service-nav prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="service-media">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Shopping Mall" class="service-img">
+                        <div class="service-nav prev"><i class="fas fa-chevron-left"></i></div>
+                    </div>
                     <div class="service-content">
                         <h3 class="service-title">Shopping Mall</h3>
                         <p>Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius .</p>
                     </div>
                 </div>
-                <!-- Card 2 -->
+                <!-- Card 2 (Blue Element responsiveness fixed via wrapper) -->
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1545459720-aac8509eb02c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hospital Building" class="service-img">
-                    <div class="service-nav next"><i class="fas fa-chevron-right"></i></div>
+                    <div class="service-media">
+                        <img src="https://images.unsplash.com/photo-1545459720-aac8509eb02c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hospital Building" class="service-img">
+                        <div class="service-nav next"><i class="fas fa-chevron-right"></i></div>
+                    </div>
                     <div class="service-content">
                         <h3 class="service-title">Hospital Building</h3>
                         <p>Lorem ipsum dolor consectetur adipiscing Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius .</p>
@@ -1570,7 +1640,7 @@
     <div class="comb-divider"></div>
 
     <!-- Latest Projects Section -->
-    <section class="section-padding reveal">
+    <section class="section-padding reveal" id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>LATEST PROJECTS</h2>
@@ -1593,13 +1663,14 @@
         <div class="portfolio-grid">
             <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 1"></div>
             <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1545459720-aac8509eb02c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 2"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 3"></div>
+            <!-- Task 4: Replaced previously broken Project 3 image with a working construction image -->
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1541888081622-15f16be7a010?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 3"></div>
             <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1579547945413-497e1b99dac0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 4"></div>
         </div>
     </section>
 
     <!-- About Company Section -->
-    <section class="section-padding reveal">
+    <section class="section-padding reveal" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>ABOUT COMPANY</h2>
@@ -1610,7 +1681,8 @@
             </div>
 
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1504307651254-35680f356f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="About Worker">
+                <!-- Task 4: Replaced previously broken Project 3 base image with a working construction image to ensure rendering -->
+                <img src="https://images.unsplash.com/photo-1541888081622-15f16be7a010?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="About Worker">
             </div>
 
             <div class="feature-card" style="max-width: 500px; margin: 0 auto;">
@@ -1701,7 +1773,7 @@
     </section>
 
     <!-- Blog & Approach -->
-    <div class="container reveal">
+    <div class="container reveal" id="blog">
         <div class="blog-snippet">
             <h3>PROFESSIONAL APPROACH</h3>
             <div class="blog-meta">
@@ -1777,7 +1849,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container footer-grid">
 
             <div class="footer-widget reveal">
@@ -1850,6 +1922,27 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Task 1: Navigation Logic Fix (Mobile Toggle Menu and Smooth Closing)
+            const navToggle = document.querySelector('.nav-toggle');
+            const desktopMenu = document.querySelector('.desktop-menu');
+
+            if (navToggle && desktopMenu) {
+                // Open/Close menu via hamburger icon
+                navToggle.addEventListener('click', () => {
+                    desktopMenu.classList.toggle('active');
+                });
+
+                // Auto-close mobile menu when a navigation link is clicked
+                const navLinks = desktopMenu.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 992) {
+                            desktopMenu.classList.remove('active');
+                        }
+                    });
+                });
+            }
 
             // Accordion Logic
             const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -2008,8 +2101,10 @@
             });
 
             const wrapper = document.querySelector('.testimonial-wrapper');
-            wrapper.addEventListener('mouseenter', stopAutoSlide);
-            wrapper.addEventListener('mouseleave', startAutoSlide);
+            if (wrapper) {
+                wrapper.addEventListener('mouseenter', stopAutoSlide);
+                wrapper.addEventListener('mouseleave', startAutoSlide);
+            }
 
             startAutoSlide();
 
