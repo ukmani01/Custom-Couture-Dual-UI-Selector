@@ -1,1851 +1,1042 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GlobalPath - Study Abroad Consultancy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 03: Client-Side Scripting using JavaScript</title>
     <style>
         /* ==========================================================================
-           1. CSS Variables & Reset
+           DESIGN SYSTEM & VARIABLES (American SaaS / Minimalist)
            ========================================================================== */
         :root {
-            --primary-dark: #0b1c3d;
-            --primary-blue: #102a4d;
-            --accent-blue: #1d4ed8;
-            --accent-blue-hover: #1e40af;
-            --orange-accent: #f59e0b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --text-dark: #0f172a;
+            --bg-color: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-main: #0f172a;
             --text-muted: #64748b;
-            --text-light: #94a3b8;
-            --border-light: #e2e8f0;
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --accent-primary: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+            --code-bg: #0f172a;
+            --code-text: #f8fafc;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --teacher-bg: #fdfae8;
+            --teacher-border: #fef08a;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-code: 'Menlo', 'Monaco', 'Courier New', monospace;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --transition: all 0.2s ease-in-out;
+            --max-width: 1200px;
         }
+
+        /* Classroom Mode Overrides */
+        body.classroom-mode {
+            --font-size-base: 18px;
+            --font-size-lg: 24px;
+        }
+        body.classroom-mode .sidebar { display: none; }
+        body.classroom-mode .main-content { margin-left: 0; padding: 2rem 5%; }
+        body.classroom-mode .code-editor textarea { font-size: 1.1rem; }
 
         /* ==========================================================================
-           2. Reset & Base
+           RESET & TYPOGRAPHY
            ========================================================================== */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: var(--font-family);
-            color: var(--text-dark);
-            background-color: var(--bg-white);
+            font-family: var(--font-main);
+            color: var(--text-main);
+            background-color: var(--bg-color);
             line-height: 1.6;
+            font-size: 16px;
             overflow-x: hidden;
         }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-        ul {
-            list-style: none;
-        }
-        img {
-            max-width: 100%;
-            display: block;
-            object-fit: cover;
-        }
-
+        h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; color: var(--text-main); }
+        h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--text-muted); }
+        a { color: var(--accent-primary); text-decoration: none; cursor: pointer; transition: var(--transition); }
+        a:hover { color: var(--accent-hover); }
+        
         /* ==========================================================================
-           3. Tailwind-style Utilities
+           LAYOUT
            ========================================================================== */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Flex */
-        .flex {
-            display: flex;
-        }
-        .flex-col {
-            flex-direction: column;
-        }
-        .flex-wrap {
-            flex-wrap: wrap;
-        }
-        .items-center {
-            align-items: center;
-        }
-        .items-start {
-            align-items: flex-start;
-        }
-        .items-end {
-            align-items: flex-end;
-        }
-        .justify-center {
-            justify-content: center;
-        }
-        .justify-between {
-            justify-content: space-between;
-        }
-        .justify-end {
-            justify-content: flex-end;
-        }
-        .gap-1 {
-            gap: 0.25rem;
-        }
-        .gap-2 {
-            gap: 0.5rem;
-        }
-        .gap-3 {
-            gap: 0.75rem;
-        }
-        .gap-4 {
-            gap: 1rem;
-        }
-        .gap-6 {
-            gap: 1.5rem;
-        }
-        .gap-8 {
-            gap: 2rem;
-        }
-        .gap-12 {
-            gap: 3rem;
-        }
-
-        /* Grid */
-        .grid {
-            display: grid;
-        }
-        .grid-cols-1 {
-            grid-template-columns: 1fr;
-        }
-        .grid-cols-2 {
-            grid-template-columns: 1fr 1fr;
-        }
-        .grid-cols-3 {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-        .grid-cols-4 {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-        .grid-cols-5 {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        }
-
-        /* Spacing */
-        .p-1 {
-            padding: 0.25rem;
-        }
-        .p-2 {
-            padding: 0.5rem;
-        }
-        .p-4 {
-            padding: 1rem;
-        }
-        .p-6 {
-            padding: 1.5rem;
-        }
-        .p-8 {
-            padding: 2rem;
-        }
-        .p-12 {
-            padding: 3rem;
-        }
-        .px-2 {
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-        }
-        .px-4 {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-        .px-6 {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-        .px-8 {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-        .py-2 {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-        .py-4 {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-        .py-6 {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        .py-8 {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-        }
-        .py-12 {
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-        .py-16 {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-        }
-
-        .m-0 {
-            margin: 0;
-        }
-        .mt-2 {
-            margin-top: 0.5rem;
-        }
-        .mt-4 {
-            margin-top: 1rem;
-        }
-        .mt-6 {
-            margin-top: 1.5rem;
-        }
-        .mt-8 {
-            margin-top: 2rem;
-        }
-        .mt-12 {
-            margin-top: 3rem;
-        }
-        .mb-2 {
-            margin-bottom: 0.5rem;
-        }
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-        .mb-6 {
-            margin-bottom: 1.5rem;
-        }
-        .mb-8 {
-            margin-bottom: 2rem;
-        }
-        .mb-12 {
-            margin-bottom: 3rem;
-        }
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Typography */
-        .text-center {
-            text-align: center;
-        }
-        .text-left {
-            text-align: left;
-        }
-        .text-right {
-            text-align: right;
-        }
-        .text-xs {
-            font-size: 0.75rem;
-        }
-        .text-sm {
-            font-size: 0.875rem;
-        }
-        .text-base {
-            font-size: 1rem;
-        }
-        .text-lg {
-            font-size: 1.125rem;
-        }
-        .text-xl {
-            font-size: 1.25rem;
-        }
-        .text-2xl {
-            font-size: 1.5rem;
-        }
-        .text-3xl {
-            font-size: 1.875rem;
-        }
-        .text-4xl {
-            font-size: 2.25rem;
-        }
-        .text-5xl {
-            font-size: 3rem;
-        }
-        .text-6xl {
-            font-size: 3.75rem;
-        }
-        .font-normal {
-            font-weight: 400;
-        }
-        .font-medium {
-            font-weight: 500;
-        }
-        .font-semibold {
-            font-weight: 600;
-        }
-        .font-bold {
-            font-weight: 700;
-        }
-        .font-extrabold {
-            font-weight: 800;
-        }
-        .leading-tight {
-            line-height: 1.25;
-        }
-        .leading-relaxed {
-            line-height: 1.625;
-        }
-        .text-white {
-            color: #fff;
-        }
-        .text-dark {
-            color: var(--text-dark);
-        }
-        .text-muted {
-            color: var(--text-muted);
-        }
-        .text-light {
-            color: var(--text-light);
-        }
-        .text-blue {
-            color: var(--accent-blue);
-        }
-        .text-orange {
-            color: var(--orange-accent);
-        }
-
-        /* Backgrounds */
-        .bg-white {
-            background-color: var(--bg-white);
-        }
-        .bg-light {
-            background-color: var(--bg-light);
-        }
-        .bg-dark {
-            background-color: var(--primary-dark);
-        }
-        .bg-blue {
-            background-color: var(--accent-blue);
-        }
-        .bg-blue-hover:hover {
-            background-color: var(--accent-blue-hover);
-        }
-
-        /* Borders & Radius */
-        .rounded {
-            border-radius: var(--radius-md);
-        }
-        .rounded-lg {
-            border-radius: var(--radius-lg);
-        }
-        .rounded-xl {
-            border-radius: var(--radius-xl);
-        }
-        .rounded-full {
-            border-radius: 9999px;
-        }
-        .border {
-            border: 1px solid var(--border-light);
-        }
-        .border-0 {
-            border: 0;
-        }
-        .shadow-sm {
-            box-shadow: var(--shadow-sm);
-        }
-        .shadow-md {
-            box-shadow: var(--shadow-md);
-        }
-        .shadow-lg {
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
-            font-size: 0.875rem;
-            line-height: 1.25;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: #fff;
-        }
-        .btn-primary:hover {
-            background-color: var(--accent-blue-hover);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-        .btn-outline {
-            background-color: transparent;
-            color: var(--accent-blue);
-            border: 2px solid var(--accent-blue);
-        }
-        .btn-outline:hover {
-            background-color: var(--accent-blue);
-            color: #fff;
-        }
-        .btn-dark {
-            background-color: var(--primary-dark);
-            color: #fff;
-        }
-        .btn-dark:hover {
-            background-color: #1a2d53;
-            box-shadow: var(--shadow-md);
-        }
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-        }
-        .btn-lg {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-        }
-        .btn-block {
-            width: 100%;
-        }
-        .btn-ghost {
-            background: transparent;
-            color: var(--accent-blue);
-        }
-        .btn-ghost:hover {
-            background: rgba(29, 78, 216, 0.05);
-        }
-
-        /* Forms */
-        .form-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            font-family: inherit;
-            font-size: 0.875rem;
-            transition: var(--transition);
-            background: #fff;
-            color: var(--text-dark);
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-        }
-        .form-label {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        select.form-input {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.5rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
-
-        /* Hide/Show pages */
-        .page-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        .page-section.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ==========================================================================
-           4. Components & Layouts
-           ========================================================================== */
-
-        /* Navigation */
         .navbar {
-            background: #fff;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            position: fixed; top: 0; width: 100%; height: 60px; background: var(--bg-color);
+            border-bottom: 1px solid var(--border-color); z-index: 100;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 2rem;
         }
-        .navbar .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .navbar .logo svg {
-            width: 32px;
-            height: 32px;
-            fill: var(--accent-blue);
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        .nav-links a {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            position: relative;
-            cursor: pointer;
-        }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-dark);
-        }
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-blue);
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 5px;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
+        .nav-brand { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-brand span { background: var(--accent-primary); color: white; padding: 2px 8px; border-radius: var(--radius-sm); font-size: 0.8rem; }
+        .nav-controls { display: flex; align-items: center; gap: 1.5rem; }
+        
+        .progress-container { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; color: var(--text-muted); font-weight: 500;}
+        .progress-bar-bg { width: 100px; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--success-color); width: 0%; transition: width 0.3s ease; }
 
-        /* Hero */
-        .hero-section {
-            padding: 4rem 0;
+        .app-container { display: flex; margin-top: 60px; min-height: calc(100vh - 60px); }
+        
+        .sidebar {
+            width: 280px; background: var(--bg-secondary); border-right: 1px solid var(--border-color);
+            position: fixed; height: calc(100vh - 60px); overflow-y: auto; padding: 1.5rem; transition: var(--transition);
         }
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
+        .search-box {
+            width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem; font-family: var(--font-main); outline: none;
         }
-        .hero-content p {
-            color: var(--text-muted);
-            font-size: 1.125rem;
-            max-width: 540px;
-            margin-bottom: 2rem;
+        .search-box:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .topic-link {
+            display: block; padding: 0.75rem 1rem; margin-bottom: 0.5rem; border-radius: var(--radius-sm);
+            color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: var(--transition);
         }
-        .hero-image img {
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
+        .topic-link:hover { background: var(--bg-color); color: var(--text-main); }
+        .topic-link.active { background: var(--bg-color); color: var(--accent-primary); box-shadow: var(--shadow-sm); font-weight: 600; border-left: 3px solid var(--accent-primary); }
+        .topic-link.completed::after { content: ' ✓'; color: var(--success-color); float: right; }
 
-        /* Stats */
-        .stats-container {
-            background: #fff;
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-item .number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .stat-item .label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-        .stat-item .icon {
-            margin-bottom: 0.5rem;
-            color: var(--accent-blue);
-        }
-
-        /* Section Headers */
-        .section-header h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .section-header p {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Logos / Partners */
-        .partner-logos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem 3rem;
-            padding: 2rem 0;
-        }
-        .partner-logo {
-            opacity: 0.7;
-            filter: grayscale(100%);
-            transition: var(--transition);
-            height: 40px;
-            object-fit: contain;
-        }
-        .partner-logo:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        /* Service Cards */
-        .service-card {
-            background: #fff;
-            padding: 2rem 1.5rem;
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-light);
-            text-align: center;
-            transition: var(--transition);
-        }
-        .service-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
-        }
-        .service-card .icon-wrapper {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: rgba(29, 78, 216, 0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-blue);
-        }
-        .service-card h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .service-card p {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Journey Steps */
-        .journey-step {
-            text-align: center;
-            padding: 1rem;
-            position: relative;
-        }
-        .journey-step .step-number {
-            width: 48px;
-            height: 48px;
-            background: var(--bg-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.125rem;
-            color: var(--accent-blue);
-            margin: 0 auto 1rem;
-            border: 2px solid var(--border-light);
-        }
-        .journey-step h4 {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-        .journey-step p {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Testimonials */
-        .testimonial-card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-        }
-        .testimonial-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-        .testimonial-card .stars {
-            color: var(--orange-accent);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-        .testimonial-card .quote {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        .testimonial-card .author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .testimonial-card .author img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .testimonial-card .author h4 {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .testimonial-card .author span {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        /* CTA Banner */
-        .cta-banner {
-            background: var(--primary-dark);
-            border-radius: var(--radius-xl);
-            padding: 3rem 4rem;
-            position: relative;
-            overflow: hidden;
-            color: #fff;
-            margin: 4rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .cta-banner .cta-text h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .cta-banner .cta-text p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
-        }
-        .cta-banner .cta-img {
-            max-width: 300px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-        }
-        .cta-banner .btn {
-            background: #fff;
-            color: var(--primary-dark);
-        }
-        .cta-banner .btn:hover {
-            background: var(--bg-light);
-        }
-
-        /* Universities List */
-        .uni-card {
-            display: flex;
-            background: #fff;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: var(--transition);
-            margin-bottom: 1rem;
-        }
-        .uni-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-        .uni-card img {
-            width: 220px;
-            min-height: 160px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .uni-card .content {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-        .uni-card .content .top h3 {
-            font-weight: 700;
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
-        .uni-card .content .top span {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        .uni-card .content .bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .uni-card .content .bottom .rank {
-            font-weight: 600;
-            color: var(--accent-blue);
-        }
-        .uni-card .content .bottom .tuition {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        .uni-card .content .bottom .tuition span {
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        /* Contact Form */
-        .contact-form-wrapper {
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
-        }
-        .contact-form-wrapper h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Offices */
-        .office-card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-light);
-            text-align: center;
-            transition: var(--transition);
-        }
-        .office-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-        .office-card .icon {
-            color: var(--accent-blue);
-            margin-bottom: 0.5rem;
-        }
-        .office-card h4 {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        .office-card span {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Map */
-        .map-container {
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            height: 350px;
-            width: 100%;
-        }
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* FAQ Accordion */
-        .accordion-item {
-            border-bottom: 1px solid var(--border-light);
-        }
-        .accordion-item:last-child {
-            border-bottom: 0;
-        }
-        .accordion-header {
-            padding: 1.25rem 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        .accordion-header:hover {
-            color: var(--accent-blue);
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 0;
-        }
-        .accordion-content p {
-            color: var(--text-muted);
-            padding-bottom: 1.25rem;
-            font-size: 0.95rem;
-        }
-        .accordion-item.active .accordion-content {
-            max-height: 200px;
-            /* Arbitrary large height */;
-        }
-        .accordion-icon {
-            font-size: 1.5rem;
-            line-height: 1;
-            transition: var(--transition);
-        }
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        /* Countries */
-        .country-card {
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            transition: var(--transition);
-            background: #fff;
-        }
-        .country-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
-        }
-        .country-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-        .country-card .info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .country-card .info h4 {
-            font-weight: 700;
-            font-size: 1.125rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--primary-dark);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-        }
-        .footer h4 {
-            color: #fff;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
-            font-size: 1rem;
-        }
-        .footer ul li {
-            margin-bottom: 0.75rem;
-        }
-        .footer ul li a {
-            font-size: 0.875rem;
-        }
-        .footer ul li a:hover {
-            color: #fff;
-        }
-        .footer .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .footer .social-icons a {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .footer .social-icons a:hover {
-            color: #fff;
-        }
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 3rem;
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.5);
+        .main-content {
+            margin-left: 280px; flex: 1; padding: 3rem 4rem; max-width: 1000px; padding-bottom: 6rem;
         }
 
         /* ==========================================================================
-           5. Responsive Breakpoints
+           UI COMPONENTS (Buttons, Cards, Labels)
            ========================================================================== */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.6rem 1.2rem; font-weight: 500; border-radius: var(--radius-sm); cursor: pointer;
+            border: 1px solid transparent; transition: var(--transition); font-family: var(--font-main); font-size: 0.95rem;
+        }
+        .btn-primary { background: var(--accent-primary); color: white; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+        .btn-secondary { background: white; color: var(--text-main); border-color: var(--border-color); }
+        .btn-secondary:hover { background: var(--bg-secondary); border-color: #cbd5e1; }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); }
+        .btn-outline:hover { background: var(--bg-secondary); color: var(--text-main); }
 
-        /* Laptop / Medium */
+        .card { background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
+        
+        .label { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .label-blue { background: #eff6ff; color: #1d4ed8; }
+        .label-green { background: #ecfdf5; color: #047857; }
+        .label-yellow { background: #fffbeb; color: #b45309; }
+
+        .tamil-note { background: #f8fafc; border-left: 4px solid #94a3b8; padding: 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 1rem 0; font-size: 0.95rem; color: #475569; }
+        .tamil-note strong { color: #334155; }
+        
+        .teacher-tip { background: var(--teacher-bg); border: 1px solid var(--teacher-border); border-radius: var(--radius-md); padding: 1.5rem; margin: 2rem 0; position: relative; }
+        .teacher-tip::before { content: '👨‍🏫 Teacher Tip'; position: absolute; top: -12px; left: 1.5rem; background: var(--teacher-bg); padding: 0 10px; font-weight: 600; font-size: 0.85rem; color: #854d0e; border: 1px solid var(--teacher-border); border-radius: 12px; }
+
+        /* ==========================================================================
+           VISUAL EXPLANATIONS & DIAGRAMS
+           ========================================================================== */
+        .visual-diagram {
+            display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;
+            padding: 2rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-color); margin: 1.5rem 0;
+        }
+        .visual-box { background: white; border: 1px solid var(--border-color); padding: 1rem 1.5rem; border-radius: var(--radius-sm); text-align: center; box-shadow: var(--shadow-sm); font-weight: 500; min-width: 120px; }
+        .visual-arrow { color: var(--text-muted); font-size: 1.5rem; }
+        
+        /* ==========================================================================
+           CODE PLAYGROUND
+           ========================================================================== */
+        .playground { margin: 2rem 0; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; background: white; box-shadow: var(--shadow-sm); }
+        .playground-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.5rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); font-weight: 600; font-size: 0.9rem; }
+        .playground-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-color); }
+        .editor-col { display: flex; flex-direction: column; background: var(--code-bg); }
+        .editor-label { font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; padding: 0.5rem 1rem; background: #1e293b; border-bottom: 1px solid #334155; }
+        .code-input {
+            width: 100%; height: 200px; background: var(--code-bg); color: var(--code-text);
+            font-family: var(--font-code); font-size: 0.9rem; padding: 1rem; border: none; resize: none; outline: none;
+        }
+        .preview-col { background: white; display: flex; flex-direction: column; }
+        .preview-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 1rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); }
+        .preview-frame { width: 100%; height: 100%; border: none; min-height: 200px; background: white; }
+        
+        .code-actions { padding: 0.75rem 1.5rem; background: var(--bg-secondary); border-top: 1px solid var(--border-color); display: flex; gap: 0.75rem; justify-content: flex-end; }
+        
+        /* Syntax block for non-editable code */
+        .syntax-block { background: var(--code-bg); color: var(--code-text); padding: 1.25rem; border-radius: var(--radius-md); font-family: var(--font-code); font-size: 0.95rem; overflow-x: auto; margin: 1rem 0; line-height: 1.5;}
+        
+        /* ==========================================================================
+           QUIZ & MISTAKES
+           ========================================================================== */
+        .mistake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .mistake-box { padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .mistake-wrong { background: #fef2f2; border-color: #fca5a5; }
+        .mistake-correct { background: #ecfdf5; border-color: #6ee7b7; }
+        .mistake-title { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        
+        .quiz-card { background: white; padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin: 2rem 0; text-align: center; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 1.5rem auto 0; }
+        .quiz-btn { padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: white; cursor: pointer; transition: var(--transition); font-size: 1rem; }
+        .quiz-btn:hover { background: var(--bg-secondary); border-color: var(--accent-primary); }
+        .quiz-btn.correct { background: var(--success-color); color: white; border-color: var(--success-color); }
+        .quiz-btn.wrong { background: #ef4444; color: white; border-color: #ef4444; }
+
+        /* ==========================================================================
+           PAGES (Hero & Grid)
+           ========================================================================== */
+        .hero { text-align: center; padding: 4rem 0; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .topic-card { padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); transition: var(--transition); cursor: pointer; background: white; display: flex; flex-direction: column;}
+        .topic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent-primary); }
+        .topic-num { font-size: 2rem; font-weight: 800; color: #e2e8f0; line-height: 1; margin-bottom: 0.5rem; }
+        .topic-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main); }
+        .topic-desc { font-size: 0.9rem; color: var(--text-muted); flex-grow: 1; }
+        .topic-action { margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--accent-primary); display: flex; align-items: center; gap: 5px; }
+
+        .lesson-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+
+        /* ==========================================================================
+           RESPONSIVE
+           ========================================================================== */
         @media (max-width: 1024px) {
-            .grid-cols-5 {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-            }
-            .grid-cols-4 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .grid-cols-3 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-content h1 {
-                font-size: 2.75rem;
-            }
-            .cta-banner {
-                padding: 2rem 2rem;
-            }
-            .cta-banner .cta-text h2 {
-                font-size: 2rem;
-            }
-            .uni-card img {
-                width: 160px;
-            }
+            .playground-body { grid-template-columns: 1fr; }
+            .preview-frame { min-height: 150px; }
         }
-
-        /* Tablet */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #fff;
-                padding: 1.5rem;
-                box-shadow: var(--shadow-lg);
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .hamburger {
-                display: flex;
-            }
-
-            .grid-cols-2 {
-                grid-template-columns: 1fr;
-            }
-            .grid-cols-4 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .grid-cols-5 {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-            .grid-cols-3 {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-section {
-                padding: 2rem 0;
-            }
-            .hero-content h1 {
-                font-size: 2.25rem;
-            }
-            .hero-image {
-                margin-top: 2rem;
-            }
-            .hero-image img {
-                max-height: 300px;
-                width: 100%;
-                object-fit: cover;
-            }
-
-            .stat-item .number {
-                font-size: 1.75rem;
-            }
-
-            .cta-banner {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem;
-            }
-            .cta-banner .cta-img {
-                max-width: 100%;
-                margin-top: 1rem;
-            }
-            .cta-banner .cta-text h2 {
-                font-size: 1.75rem;
-            }
-
-            .uni-card {
-                flex-direction: column;
-            }
-            .uni-card img {
-                width: 100%;
-                height: 180px;
-            }
-
-            .contact-form-wrapper {
-                padding: 1.5rem;
-            }
-            .map-container {
-                height: 250px;
-            }
-
-            .footer .grid-cols-4 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
+            .sidebar { transform: translateX(-100%); z-index: 90; }
+            .sidebar.mobile-open { transform: translateX(0); width: 100%; height: calc(100vh - 60px); }
+            .main-content { margin-left: 0; padding: 1.5rem; }
+            .hero h1 { font-size: 2rem; }
+            .mistake-grid { grid-template-columns: 1fr; }
+            .mobile-toggle { display: block !important; }
+            .classroom-toggle { display: none; }
         }
-
-        /* Mobile */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            .grid-cols-5 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .grid-cols-4 {
-                grid-template-columns: 1fr;
-            }
-            .grid-cols-2 {
-                grid-template-columns: 1fr;
-            }
-            .grid-cols-3 {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content h1 {
-                font-size: 1.75rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .cta-banner .cta-text h2 {
-                font-size: 1.5rem;
-            }
-
-            .partner-logos {
-                gap: 1rem;
-            }
-            .partner-logo {
-                height: 30px;
-            }
-
-            .stat-item .number {
-                font-size: 1.5rem;
-            }
-            .stat-item .label {
-                font-size: 0.75rem;
-            }
-
-            .footer .grid-cols-4 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Ultra-wide */
-        @media (min-width: 1536px) {
-            .container {
-                max-width: 1400px;
-            }
-            .hero-content h1 {
-                font-size: 4.5rem;
-            }
-        }
+        .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================================================
-    NAVIGATION
-    ========================================================================== -->
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="container flex items-center justify-between">
-            <a href="#" class="logo" onclick="switchPage('home')">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                GlobalPath
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a onclick="switchPage('home')" id="nav-home" class="active">Home</a></li>
-                <li><a onclick="switchPage('universities')" id="nav-universities">Universities</a></li>
-                <li><a onclick="switchPage('countries')" id="nav-countries">Destinations</a></li>
-                <li><a onclick="switchPage('contact')" id="nav-contact">Contact</a></li>
-                <li><button class="btn btn-primary btn-sm" onclick="switchPage('contact')">Book Free Consultation</button></li>
-            </ul>
-            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-                <span></span><span></span><span></span>
+        <div class="nav-brand">
+            <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+            JS <span>UNIT 03</span>
+        </div>
+        <div class="nav-controls">
+            <div class="progress-container" id="progress-container" style="display: none;">
+                <span id="progress-text">0%</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
             </div>
+            <button class="btn btn-outline classroom-toggle" onclick="toggleClassroomMode()" id="classroom-btn">
+                🎓 Classroom Demo
+            </button>
         </div>
     </nav>
 
-    <!-- ==========================================================================
-    MAIN CONTENT (SPA Pages)
-    ========================================================================== -->
-    <main>
-
-        <!-- ==========================================
-        PAGE: HOME
-        ========================================== -->
-        <section id="page-home" class="page-section active">
-
-            <!-- Hero -->
-            <div class="container hero-section">
-                <div class="grid grid-cols-2 gap-12 items-center">
-                    <div class="hero-content">
-                        <h1>Study Abroad.<br />Build a Global Future.</h1>
-                        <p>Personalized guidance for your global education journey. Expert support for admissions, visas, and scholarships.</p>
-                        <div class="flex gap-4 flex-wrap">
-                            <button class="btn btn-primary btn-lg" onclick="switchPage('contact')">Book Free Consultation</button>
-                            <button class="btn btn-outline btn-lg">Read More</button>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Students studying abroad" loading="lazy" />
-                    </div>
-                </div>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <input type="text" class="search-box" placeholder="Search Unit 3..." onkeyup="filterTopics(this.value)">
+            <div id="nav-links">
+                <!-- Populated by JS -->
             </div>
+        </aside>
 
-            <!-- Stats -->
-            <div class="stats-container">
-                <div class="container">
-                    <div class="grid grid-cols-4 gap-4">
-                        <div class="stat-item">
-                            <div class="icon"><svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-                            <div class="number"><span data-count="10">0</span>+</div>
-                            <div class="label">Years of Excellence</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="icon"><svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-                            <div class="number"><span data-count="25000">0</span>+</div>
-                            <div class="label">Students Placed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="icon"><svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-                            <div class="number"><span data-count="500">0</span>+</div>
-                            <div class="label">Partner Universities</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="icon"><svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-                            <div class="number"><span data-count="95">0</span>%</div>
-                            <div class="label">Visa Success Rate</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="main-content">
+            <!-- Dynamic Content Injected Here -->
+        </main>
+    </div>
 
-            <!-- Top Universities -->
-            <div class="container py-12">
-                <div class="section-header text-center mb-8">
-                    <h2>Top Universities We Work With</h2>
-                    <p>Exclusive partnerships with world-class institutions across the globe.</p>
-                </div>
-                <div class="partner-logos">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/MIT_logo.svg/512px-MIT_logo.svg.png" alt="MIT" class="partner-logo" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Stanford_University_logo.svg/512px-Stanford_University_logo.svg.png" alt="Stanford" class="partner-logo" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/UC_Berkeley_Logo.svg/512px-UC_Berkeley_Logo.svg.png" alt="UC Berkeley" class="partner-logo" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/University_of_Melbourne_Logo.svg/512px-University_of_Melbourne_Logo.svg.png" alt="Melbourne" class="partner-logo" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/NUS_logo.svg/512px-NUS_logo.svg.png" alt="NUS" class="partner-logo" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/University_of_Sydney_logo.svg/512px-University_of_Sydney_logo.svg.png" alt="Sydney" class="partner-logo" loading="lazy" />
-                </div>
-            </div>
-
-            <!-- Services -->
-            <div class="container py-12">
-                <div class="section-header text-center mb-8">
-                    <h2>Our Services</h2>
-                    <p>Comprehensive support tailored to your study abroad ambitions.</p>
-                </div>
-                <div class="grid grid-cols-5 gap-6">
-                    <div class="service-card">
-                        <div class="icon-wrapper"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 17.5l-4-4 1.41-1.41L8 14.67l9.59-9.59L19 6.5 8 17.5z"/></svg></div>
-                        <h3>University Shortlisting</h3>
-                        <p>Expert guidance to match your profile with the best universities.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-wrapper"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
-                        <h3>Application Support</h3>
-                        <p>End-to-end assistance with applications, essays, and LORs.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-wrapper"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
-                        <h3>Visa Assistance</h3>
-                        <p>Streamlined visa processing with a 95% success rate.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-wrapper"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-                        <h3>Scholarship Guidance</h3>
-                        <p>Access to scholarships and financial aid opportunities.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon-wrapper"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-                        <h3>Pre-Departure Support</h3>
-                        <p>Cultural training and guidance for a smooth transition.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Journey -->
-            <div class="container py-12">
-                <div class="section-header text-center mb-8">
-                    <h2>Your Journey, Simplified</h2>
-                    <p>A step-by-step roadmap to your dream university.</p>
-                </div>
-                <div class="grid grid-cols-4 gap-4">
-                    <div class="journey-step">
-                        <div class="step-number">1</div>
-                        <h4>Research</h4>
-                        <p>Explore global universities and programs that match your goals.</p>
-                    </div>
-                    <div class="journey-step">
-                        <div class="step-number">2</div>
-                        <h4>Apply</h4>
-                        <p>We guide you through applications, deadlines, and documentation.</p>
-                    </div>
-                    <div class="journey-step">
-                        <div class="step-number">3</div>
-                        <h4>Secure Visa</h4>
-                        <p>Expert support for your student visa interview and process.</p>
-                    </div>
-                    <div class="journey-step">
-                        <div class="step-number">4</div>
-                        <h4>Depart</h4>
-                        <p>Arrive prepared with our pre-departure briefings.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonials -->
-            <div class="container py-12">
-                <div class="section-header text-center mb-8">
-                    <h2>What Students Say</h2>
-                    <p>Real stories from students who transformed their futures.</p>
-                </div>
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="quote">"GlobalPath made my dream of studying in the US a reality. Their support with the application process was phenomenal!"</p>
-                        <div class="author">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Ethan" loading="lazy" />
-                            <div>
-                                <h4>Ethan Mitchell</h4>
-                                <span>University of Texas, USA</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="quote">"The visa assistance team was incredible. They prepared me perfectly for my interview, and I got my visa in 5 days!"</p>
-                        <div class="author">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Priya" loading="lazy" />
-                            <div>
-                                <h4>Priya Sharma</h4>
-                                <span>University of Sydney, Australia</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="quote">"They helped me secure a scholarship that covered 70% of my tuition. I couldn't have done it without them."</p>
-                        <div class="author">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Liam" loading="lazy" />
-                            <div>
-                                <h4>Liam O'Brien</h4>
-                                <span>University of Melbourne, Australia</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA Banner -->
-            <div class="container">
-                <div class="cta-banner">
-                    <div class="cta-text">
-                        <h2>Ready to Start Your Journey?</h2>
-                        <p>Book a free consultation with our expert counselors today.</p>
-                        <button class="btn btn-lg" onclick="switchPage('contact')">Book Free Consultation</button>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Students" class="cta-img" loading="lazy" />
-                </div>
-            </div>
-
-        </section>
-
-        <!-- ==========================================
-        PAGE: UNIVERSITIES
-        ========================================== -->
-        <section id="page-universities" class="page-section">
-            <div class="container py-12">
-                <h1 class="text-4xl font-bold mb-8">Find Your Dream University</h1>
-
-                <!-- Filters -->
-                <div class="flex flex-wrap items-center gap-4 mb-8 bg-light p-4 rounded-lg border border-light">
-                    <input type="text" class="form-input" placeholder="Search by university name..." style="flex: 1; min-width: 150px;" />
-                    <select class="form-input" style="width: auto; min-width: 120px;">
-                        <option>Country</option>
-                        <option>USA</option>
-                        <option>UK</option>
-                        <option>Canada</option>
-                    </select>
-                    <select class="form-input" style="width: auto; min-width: 120px;">
-                        <option>QS Ranking</option>
-                        <option>Top 50</option>
-                        <option>Top 100</option>
-                    </select>
-                    <select class="form-input" style="width: auto; min-width: 120px;">
-                        <option>Tuition Range</option>
-                        <option>$0 - $20k</option>
-                        <option>$20k - $40k</option>
-                    </select>
-                    <select class="form-input" style="width: auto; min-width: 120px;">
-                        <option>More Filters</option>
-                    </select>
-                    <a href="#" class="text-sm font-medium text-blue hover:underline ml-auto">Clear All</a>
-                </div>
-
-                <!-- University List -->
-                <div class="flex flex-col gap-4">
-                    <div class="uni-card">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" alt="MIT" loading="lazy" />
-                        <div class="content">
-                            <div class="top">
-                                <h3>Massachusetts Institute of Technology</h3>
-                                <span>Cambridge, USA</span>
-                            </div>
-                            <div class="bottom">
-                                <span class="rank">#1 QS World University Rankings</span>
-                                <span class="tuition">$61,800 <span>/year</span></span>
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uni-card">
-                        <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=400&q=80" alt="Stanford" loading="lazy" />
-                        <div class="content">
-                            <div class="top">
-                                <h3>Stanford University</h3>
-                                <span>Stanford, USA</span>
-                            </div>
-                            <div class="bottom">
-                                <span class="rank">#3 QS World University Rankings</span>
-                                <span class="tuition">$58,484 <span>/year</span></span>
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uni-card">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" alt="Oxford" loading="lazy" />
-                        <div class="content">
-                            <div class="top">
-                                <h3>University of Oxford</h3>
-                                <span>Oxford, UK</span>
-                            </div>
-                            <div class="bottom">
-                                <span class="rank">#4 QS World University Rankings</span>
-                                <span class="tuition">$41,000 <span>/year</span></span>
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uni-card">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" alt="Melbourne" loading="lazy" />
-                        <div class="content">
-                            <div class="top">
-                                <h3>The University of Melbourne</h3>
-                                <span>Melbourne, Australia</span>
-                            </div>
-                            <div class="bottom">
-                                <span class="rank">#14 QS World University Rankings</span>
-                                <span class="tuition">$38,400 <span>/year</span></span>
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uni-card">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" alt="NUS" loading="lazy" />
-                        <div class="content">
-                            <div class="top">
-                                <h3>National University of Singapore</h3>
-                                <span>Singapore</span>
-                            </div>
-                            <div class="bottom">
-                                <span class="rank">#8 QS World University Rankings</span>
-                                <span class="tuition">$31,600 <span>/year</span></span>
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uni-card">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" alt="Toronto" loading="lazy" />
-                        <div class="content">
-                            <div class="top">
-                                <h3>University of Toronto</h3>
-                                <span>Toronto, Canada</span>
-                            </div>
-                            <div class="bottom">
-                                <span class="rank">#21 QS World University Rankings</span>
-                                <span class="tuition">$30,714 <span>/year</span></span>
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-        PAGE: CONTACT
-        ========================================== -->
-        <section id="page-contact" class="page-section">
-            <div class="container py-12">
-                <h1 class="text-4xl font-bold mb-8">Get In Touch</h1>
-
-                <div class="grid grid-cols-2 gap-8 mb-12">
-                    <!-- Form -->
-                    <div class="contact-form-wrapper">
-                        <h2>Send Us a Message</h2>
-                        <form onsubmit="event.preventDefault(); alert('Message sent successfully!');">
-                            <div class="form-group">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" class="form-input" placeholder="Enter your full name" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-input" placeholder="Enter your email" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-input" placeholder="Enter your phone number" />
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Preferred Destination</label>
-                                <select class="form-input">
-                                    <option>Select Destination</option>
-                                    <option>USA</option>
-                                    <option>UK</option>
-                                    <option>Canada</option>
-                                    <option>Australia</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Message</label>
-                                <textarea class="form-input" rows="4" placeholder="Write your message here..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
-                        </form>
-                    </div>
-
-                    <!-- Offices -->
-                    <div>
-                        <h2 class="text-2xl font-bold mb-6">Our Offices</h2>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="office-card">
-                                <div class="icon"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                                <h4>New York</h4>
-                                <span>1800+ students placed</span>
-                            </div>
-                            <div class="office-card">
-                                <div class="icon"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                                <h4>London</h4>
-                                <span>1500+ students placed</span>
-                            </div>
-                            <div class="office-card">
-                                <div class="icon"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                                <h4>Sydney</h4>
-                                <span>1200+ students placed</span>
-                            </div>
-                            <div class="office-card">
-                                <div class="icon"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                                <h4>Toronto</h4>
-                                <span>1000+ students placed</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Map -->
-                <div class="map-container mb-12">
-                    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0060%2C40.7128%2C-73.9352%2C40.7614&amp;layer=mapnik" allowfullscreen loading="lazy"></iframe>
-                </div>
-
-                <!-- FAQ -->
-                <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-                <div class="border border-light rounded-xl overflow-hidden">
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <span>What services does GlobalPath provide?</span>
-                            <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="accordion-content"><p>We provide comprehensive study abroad services including university shortlisting, application support, visa assistance, scholarship guidance, and pre-departure orientation.</p></div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <span>How long does the visa process take?</span>
-                            <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="accordion-content"><p>Visa processing times vary by country and embassy. Generally, it takes 2-4 weeks for most countries. Our team ensures your documentation is complete to avoid delays.</p></div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <span>How much does your service cost?</span>
-                            <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="accordion-content"><p>Our service fees depend on the country and university packages. We offer competitive pricing and flexible payment plans. Contact us for a personalized quote.</p></div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <span>Do you offer scholarships?</span>
-                            <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="accordion-content"><p>Yes, we provide guidance on various scholarship opportunities and financial aid programs to help fund your education abroad.</p></div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <span>Can you help with accommodation?</span>
-                            <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="accordion-content"><p>We offer pre-departure support including assistance with finding safe and affordable accommodation near your university campus.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-        PAGE: COUNTRIES
-        ========================================== -->
-        <section id="page-countries" class="page-section">
-            <div class="container py-12">
-                <h1 class="text-4xl font-bold mb-8">Explore Top Study Destinations</h1>
-                <p class="text-muted mb-8 text-lg">Discover world-class education, diverse cultures, and endless opportunities.</p>
-
-                <div class="grid grid-cols-5 gap-6">
-                    <div class="country-card">
-                        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=400&q=80" alt="USA" loading="lazy" />
-                        <div class="info">
-                            <h4>USA</h4>
-                        </div>
-                    </div>
-                    <div class="country-card">
-                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=400&q=80" alt="Canada" loading="lazy" />
-                        <div class="info">
-                            <h4>Canada</h4>
-                        </div>
-                    </div>
-                    <div class="country-card">
-                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=400&q=80" alt="UK" loading="lazy" />
-                        <div class="info">
-                            <h4>UK</h4>
-                        </div>
-                    </div>
-                    <div class="country-card">
-                        <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=400&q=80" alt="Australia" loading="lazy" />
-                        <div class="info">
-                            <h4>Australia</h4>
-                        </div>
-                    </div>
-                    <div class="country-card">
-                        <img src="https://images.unsplash.com/photo-1499696010180-025ef6e1d3b9?auto=format&fit=crop&w=400&q=80" alt="Germany" loading="lazy" />
-                        <div class="info">
-                            <h4>Germany</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ==========================================================================
-    FOOTER
-    ========================================================================== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="grid grid-cols-4 gap-8">
-                <div>
-                    <h4>GlobalPath</h4>
-                    <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-bottom: 1rem;">Empowering students to build global futures through world-class education guidance.</p>
-                    <div class="social-icons">
-                        <a href="#"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                        <a href="#"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                        <a href="#"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                        <a href="#"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
-                    </div>
-                </div>
-                <div>
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#" onclick="switchPage('home')">Home</a></li>
-                        <li><a href="#" onclick="switchPage('universities')">Universities</a></li>
-                        <li><a href="#" onclick="switchPage('countries')">Destinations</a></li>
-                        <li><a href="#" onclick="switchPage('contact')">Contact Us</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Popular Destinations</h4>
-                    <ul>
-                        <li><a href="#" onclick="switchPage('countries')">USA</a></li>
-                        <li><a href="#" onclick="switchPage('countries')">UK</a></li>
-                        <li><a href="#" onclick="switchPage('countries')">Canada</a></li>
-                        <li><a href="#" onclick="switchPage('countries')">Australia</a></li>
-                        <li><a href="#" onclick="switchPage('countries')">Germany</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Contact Us</h4>
-                    <ul>
-                        <li><a href="#">📞 +1 (800) 123-4567</a></li>
-                        <li><a href="#">📧 info@globalpath.com</a></li>
-                        <li><a href="#">📍 123 Education Lane, NYC</a></li>
-                        <li><a href="#">🕐 Mon-Fri: 9AM - 6PM</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 GlobalPath. All rights reserved.</span>
-                <span>
-                    <a href="#" class="text-muted hover:text-white transition-colors">Privacy Policy</a>
-                    <span class="mx-2">|</span>
-                    <a href="#" class="text-muted hover:text-white transition-colors">Terms & Conditions</a>
-                </span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ==========================================================================
-    JAVASCRIPT
-    ========================================================================== -->
+    <!-- JAVASCRIPT APPLICATION LOGIC & CONTENT -->
     <script>
-        // 1. SPA Page Switching
-        function switchPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            // Show target page
-            const target = document.getElementById('page-' + pageId);
-            if (target) target.classList.add('active');
+        /* ==========================================================================
+           1. DATA STRUCTURE (The Source of Truth based on Syllabus)
+           ========================================================================== */
+        const syllabusData = [
+            {
+                id: 1,
+                title: "Introduction to JavaScript",
+                description: "Understand what JavaScript is, why we need it, and how it controls the browser.",
+                content: `
+                    <span class="label label-blue">Topic 01</span>
+                    <h1>JavaScript Introduction</h1>
+                    <p><strong>JavaScript is a programming language used to make web pages interactive.</strong></p>
+                    
+                    <p>Without JavaScript, a website is just a static page (like a poster). With JavaScript, the website can respond to user actions, validate data, and change dynamically.</p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> HTML page-ஐ உருவாக்கும் (Structure). CSS அதை அழகாக மாற்றும் (Style). JavaScript அதுக்கு action கொடுக்கும் (Behaviour).
+                    </div>
 
-            // Update nav active state
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            const navLink = document.getElementById('nav-' + pageId);
-            if (navLink) navLink.classList.add('active');
+                    <h2>Why Do We Need It?</h2>
+                    <div class="visual-diagram">
+                        <div class="visual-box"><strong>HTML</strong><br><small>Car Body</small></div>
+                        <div class="visual-arrow">+</div>
+                        <div class="visual-box"><strong>CSS</strong><br><small>Paint & Design</small></div>
+                        <div class="visual-arrow">+</div>
+                        <div class="visual-box" style="border-color:var(--accent-primary);"><strong>JavaScript</strong><br><small>Engine & Steering</small></div>
+                    </div>
 
-            // Close mobile menu
-            document.getElementById('navLinks').classList.remove('open');
+                    <h2>Real-Life Example</h2>
+                    <p>Think of an ATM machine. The screen and buttons are HTML/CSS. But when you press "Withdraw", the process that checks your balance and dispenses cash is like JavaScript.</p>
 
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                    <div class="teacher-tip">
+                        Ask Students: "When you click 'Login' on Instagram, what checks if your password is correct?"<br>
+                        Explain: "HTML just creates the button. JavaScript actually performs the action."
+                    </div>
 
-            // Trigger count-up if home page is loaded
-            if (pageId === 'home') {
-                setTimeout(animateCounters, 500);
-            }
-        }
+                    <h2>External JavaScript</h2>
+                    <p>Instead of writing JS inside the HTML file, we write it in a separate <code>.js</code> file to keep our code clean.</p>
+                    <div class="syntax-block">
+&lt;!-- Inside index.html --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+                    </div>
 
-        // 2. Mobile Menu Toggle
-        function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('open');
-        }
-
-        // 3. Count-up Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('[data-count]');
-            const speed = 100;
-
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-count');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                // Reset to 0 first if it has already been animated
-                if (parseInt(counter.innerText) === parseInt(counter.getAttribute('data-count'))) return;
-                counter.innerText = '0';
-                updateCount();
-            });
-        }
-
-        // Intersection Observer for Count-up (triggers when stats section is visible)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
+                    <div class="card" style="margin-top:2rem;">
+                        <h3>Interview Point</h3>
+                        <p><strong>Q: What is the difference between HTML, CSS, and JS?</strong><br>
+                        A: HTML is for structure, CSS is for presentation, and JavaScript is for behavior.</p>
+                    </div>
+                `,
+                quiz: {
+                    question: "Which language makes a webpage interactive?",
+                    options: ["HTML", "CSS", "JavaScript", "SQL"],
+                    answer: 2
                 }
-            });
-        }, { threshold: 0.5 });
+            },
+            {
+                id: 2,
+                title: "Variables & Identifiers",
+                description: "Learn how to store data in JavaScript using variables like let and const.",
+                content: `
+                    <span class="label label-blue">Topic 02</span>
+                    <h1>Variables & Identifiers</h1>
+                    <p><strong>A variable is a named storage location used to store data.</strong></p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> Variable-ஐ ஒரு பெயர் வைத்த box மாதிரி நினைச்சுக்கலாம். அந்த box-க்குள்ள value store பண்ணலாம்.
+                    </div>
 
-        // Wait for DOM to load
-        document.addEventListener('DOMContentLoaded', () => {
-            const statsSection = document.querySelector('.stats-container');
-            if (statsSection) {
-                observer.observe(statsSection);
+                    <h2>How to Create Variables (let, const, var)</h2>
+                    <ul>
+                        <li><code>let</code> : Value can be changed later.</li>
+                        <li><code>const</code> : Value cannot be changed (Constant).</li>
+                        <li><code>var</code> : Old style (Avoid using it in modern JS).</li>
+                    </ul>
+
+                    <div class="syntax-block">
+let name = "Arun";  // Creating a variable
+let age = 20;       // Storing a number
+
+age = 21;           // Changing the value (Allowed for let)
+                    </div>
+
+                    <h2>Real-Life Example</h2>
+                    <p>In a supermarket shopping cart:</p>
+                    <ul>
+                        <li><code>let totalAmount = 500;</code> (Total changes as you add items)</li>
+                        <li><code>const shopName = "SuperMart";</code> (Shop name never changes)</li>
+                    </ul>
+
+                    <h2>Identifiers (Naming Rules)</h2>
+                    <p>An identifier is the name given to a variable. Good names: <code>studentName</code>, <code>totalMark</code>.</p>
+                    
+                    <div class="mistake-grid">
+                        <div class="mistake-box mistake-wrong">
+                            <div class="mistake-title">❌ Bad Names</div>
+                            <code>1student</code> (Starts with number)<br>
+                            <code>student name</code> (Has space)
+                        </div>
+                        <div class="mistake-box mistake-correct">
+                            <div class="mistake-title">✅ Good Names</div>
+                            <code>student1</code><br>
+                            <code>studentName</code> (CamelCase)
+                        </div>
+                    </div>
+
+                    <h2>Live Code Lab: Assignment</h2>
+                    <p>Use the <code>=</code> assignment operator to give values to variables.</p>
+                `,
+                codeSnippet: {
+                    html: `<div id="output">Result will appear here</div>`,
+                    js: `let price = 500;
+let quantity = 2;
+let total = price * quantity;
+
+// Displaying in HTML
+document.getElementById("output").innerHTML = "Total Amount: ₹" + total;`
+                },
+                practice: "Change the price to 1000 and quantity to 3. Run the code to see the new total.",
+                quiz: {
+                    question: "Which keyword is used to create a variable that CANNOT be changed?",
+                    options: ["let", "var", "const", "def"],
+                    answer: 2
+                }
+            },
+            {
+                id: 3,
+                title: "Functions",
+                description: "Group code together to perform specific tasks whenever needed.",
+                content: `
+                    <span class="label label-blue">Topic 03</span>
+                    <h1>Functions</h1>
+                    <p><strong>A function is a block of code designed to perform a specific task.</strong></p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> ஒரு குறிப்பிட்ட வேலையை செய்ய எழுதி வைத்த code block தான் function. அதை எப்போ வேணாலும் கூப்பிட்டு (call) பயன்படுத்தலாம்.
+                    </div>
+
+                    <h2>Real-Life Example</h2>
+                    <p>Think of a school bell button. The specific job is to "Ring the Bell". The principal presses the button only when needed.</p>
+
+                    <div class="syntax-block">
+// 1. Create the function
+function greetStudent() {
+    alert("Welcome to JavaScript!");
+}
+
+// 2. Call the function (Execute it)
+greetStudent();
+                    </div>
+
+                    <h2>Live Code Lab</h2>
+                `,
+                codeSnippet: {
+                    html: `<!-- We connect the button to the function using onclick -->
+<button onclick="calculateTotal()">Calculate 50 + 30</button>
+<p id="result"></p>`,
+                    js: `function calculateTotal() {
+    let sum = 50 + 30;
+    document.getElementById("result").innerHTML = "The total is: " + sum;
+}`
+                },
+                teacherTip: "Show the students that without clicking the button, the function inside JavaScript is sleeping. It only runs when called.",
+                practice: "Change the numbers inside the function to 100 + 200 and click Run.",
+                quiz: {
+                    question: "How do you call a function named 'myFunction'?",
+                    options: ["call myFunction", "myFunction()", "function.myFunction", "run myFunction"],
+                    answer: 1
+                }
+            },
+            {
+                id: 4,
+                title: "Objects & JSON",
+                description: "Store related data together using Objects, and learn how APIs use JSON.",
+                content: `
+                    <span class="label label-blue">Topic 04</span>
+                    <h1>Objects</h1>
+                    <p><strong>An object stores related data using properties and values.</strong></p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> ஒரு student-க்கு Name, Age, Deptனு பல details இருக்கும். இது எல்லாத்தையும் ஒண்ணா சேர்த்து வைக்கிறது தான் Object.
+                    </div>
+
+                    <div class="syntax-block">
+let student = {
+    name: "Arun",
+    age: 20,
+    department: "IT"
+};
+
+// Accessing the data
+console.log(student.name); // Outputs: Arun
+                    </div>
+
+                    <h2>What is JSON?</h2>
+                    <p><strong>JSON (JavaScript Object Notation)</strong> is a text format used to store and exchange data (usually between a frontend website and backend server).</p>
+                    <p>It looks exactly like a JavaScript Object, but keys are wrapped in double quotes.</p>
+
+                    <div class="syntax-block">
+{
+    "name": "Arun",
+    "age": 20,
+    "department": "IT"
+}
+                    </div>
+
+                    <div class="card" style="margin-top:2rem;">
+                        <h3>Interview Point</h3>
+                        <p><strong>Q: What is JSON used for?</strong><br>
+                        A: JSON is primarily used to transmit data between a server and a web application.</p>
+                    </div>
+                `,
+                quiz: {
+                    question: "How do you access the 'age' property of a 'user' object?",
+                    options: ["user[age]", "user.age", "user->age", "user:age"],
+                    answer: 1
+                }
+            },
+            {
+                id: 5,
+                title: "DOM & getElementById",
+                description: "Learn how JavaScript interacts with the HTML Document Object Model.",
+                content: `
+                    <span class="label label-blue">Topic 05</span>
+                    <h1>DOM (Document Object Model)</h1>
+                    <p><strong>The DOM is how the browser represents your HTML page as a tree structure of objects.</strong></p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> TV-ஐ control பண்ண Remote யூஸ் பண்ணுவோம். அதே மாதிரி, HTML-ஐ control பண்ண JavaScript பயன்படுத்தும் remote தான் DOM.
+                    </div>
+
+                    <div class="visual-diagram">
+                        <div class="visual-box"><strong>Document</strong></div>
+                        <div class="visual-arrow">↓</div>
+                        <div class="visual-box"><strong>HTML</strong></div>
+                        <div class="visual-arrow">↓</div>
+                        <div class="visual-box"><strong>Body</strong></div>
+                        <div class="visual-arrow">↓</div>
+                        <div class="visual-box"><strong>h1 (or) p</strong></div>
+                    </div>
+
+                    <h2>getElementById()</h2>
+                    <p>This is the most common DOM method. It finds an HTML element using its unique <code>id</code>.</p>
+                    
+                    <div class="syntax-block">
+let heading = document.getElementById("title");
+heading.innerHTML = "New Title";
+                    </div>
+
+                    <h2>Live Code Lab</h2>
+                `,
+                codeSnippet: {
+                    html: `<h2 id="main-title">Hello Students</h2>
+<button onclick="changeText()">Change Text</button>`,
+                    js: `function changeText() {
+    // Find the element with id "main-title"
+    let el = document.getElementById("main-title");
+    
+    // Change its content
+    el.innerHTML = "Welcome to DOM Manipulation!";
+}`
+                },
+                teacherTip: "Emphasize that the ID in HTML must EXACTLY match the ID inside quotes in JavaScript.",
+                practice: "Change 'Welcome to DOM Manipulation!' to your own name."
+            },
+            {
+                id: 6,
+                title: "Forms & Validation",
+                description: "Handle form inputs, check for empty values, focus elements, and reset forms.",
+                content: `
+                    <span class="label label-blue">Topic 06</span>
+                    <h1>Forms & Validation</h1>
+                    <p><strong>Forms collect user input. Validation ensures the user enters correct data before submitting.</strong></p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> Form submit பண்ணும் போது Name இல்லாமலோ, Email தப்பாவோ இருந்தா "Please enter name" னு சொல்லணும். அது தான் Validation.
+                    </div>
+
+                    <h2>Important Form Concepts</h2>
+                    <ul>
+                        <li><code>.value</code> : Gets what the user typed in the input box.</li>
+                        <li><code>.focus()</code> : Places the blinking cursor inside the input box.</li>
+                        <li><code>.reset()</code> : Clears all fields in the form.</li>
+                    </ul>
+
+                    <h2>Live Code Lab: Login Validation</h2>
+                    <p>Try clicking login without typing anything. Then try with text.</p>
+                `,
+                codeSnippet: {
+                    html: `<form id="loginForm">
+    <label>Name:</label>
+    <input type="text" id="username" placeholder="Enter name">
+    <br><br>
+    <button type="button" onclick="validateForm()">Login</button>
+    <button type="button" onclick="document.getElementById('loginForm').reset()">Reset Form</button>
+</form>
+<p id="msg" style="color:red; font-weight:bold; margin-top:10px;"></p>`,
+                    js: `function validateForm() {
+    // Get the value typed by user
+    let user = document.getElementById("username").value;
+    let msgBox = document.getElementById("msg");
+
+    if (user === "") {
+        msgBox.innerHTML = "Error: Please enter your name!";
+        // Put cursor back in input
+        document.getElementById("username").focus();
+    } else {
+        msgBox.style.color = "green";
+        msgBox.innerHTML = "Success! Welcome " + user;
+    }
+}`
+                },
+                practice: "Add an alert box instead of showing the error message in the paragraph.",
+                quiz: {
+                    question: "Which property gets the text typed inside an <input> element?",
+                    options: [".text", ".content", ".value", ".innerHTML"],
+                    answer: 2
+                }
+            },
+            {
+                id: 7,
+                title: "Events & Event Handlers",
+                description: "Make the webpage react to clicks, typing, and mouse movements.",
+                content: `
+                    <span class="label label-blue">Topic 07</span>
+                    <h1>Events</h1>
+                    <p><strong>An event is an action performed by the user or the browser.</strong></p>
+                    <p>The code that responds to an event is called an <strong>Event Handler</strong>.</p>
+                    
+                    <div class="tamil-note">
+                        <strong>Tamil:</strong> User click பண்ணுவது, mouse-ஐ நகர்த்துவது, keyboard-ல் type செய்வது எல்லாமே Events தான்.
+                    </div>
+
+                    <div class="visual-diagram">
+                        <div class="visual-box"><strong>Action</strong><br><small>User clicks button</small></div>
+                        <div class="visual-arrow">→</div>
+                        <div class="visual-box"><strong>Event Handler</strong><br><small>onclick</small></div>
+                        <div class="visual-arrow">→</div>
+                        <div class="visual-box"><strong>JavaScript</strong><br><small>Runs Function</small></div>
+                    </div>
+
+                    <h2>Common Events</h2>
+                    <ul>
+                        <li><code>onclick</code> : When clicked.</li>
+                        <li><code>ondblclick</code> : When double clicked.</li>
+                        <li><code>onmouseover</code> : When mouse moves over an element.</li>
+                        <li><code>onchange</code> : When input value changes.</li>
+                        <li><code>onload</code> : When page finishes loading.</li>
+                    </ul>
+
+                    <h2>Live Code Lab</h2>
+                `,
+                codeSnippet: {
+                    html: `<div id="box" 
+     onmouseover="makeBig()" 
+     onmouseout="makeNormal()"
+     style="width:150px; height:100px; background:blue; color:white; padding:10px; transition:0.3s;">
+    Hover over me!
+</div>`,
+                    js: `function makeBig() {
+    let box = document.getElementById("box");
+    box.style.width = "200px";
+    box.style.background = "green";
+    box.innerHTML = "Mouse is here!";
+}
+
+function makeNormal() {
+    let box = document.getElementById("box");
+    box.style.width = "150px";
+    box.style.background = "blue";
+    box.innerHTML = "Hover over me!";
+}`
+                },
+                practice: "Change the background color to 'red' when the mouse leaves the box (makeNormal function)."
+            },
+            {
+                id: 8,
+                title: "CSS Manipulation & z-index",
+                description: "Change CSS styles dynamically and control overlapping elements.",
+                content: `
+                    <span class="label label-blue">Topic 08</span>
+                    <h1>CSS Manipulation</h1>
+                    <p>JavaScript can dynamically change the CSS styles of HTML elements.</p>
+                    
+                    <div class="syntax-block">
+let element = document.getElementById("text");
+// Use camelCase for CSS properties in JS
+element.style.backgroundColor = "yellow";
+element.style.fontSize = "30px";
+                    </div>
+
+                    <h2>z-index</h2>
+                    <p>When elements overlap, <code>z-index</code> decides which element stays on top. Higher number = closer to the front.</p>
+
+                    <h2>Live Code Lab: Theme Switcher</h2>
+                `,
+                codeSnippet: {
+                    html: `<div id="screen" style="padding:20px; border:1px solid #ccc; text-align:center;">
+    <h3 id="text">Current Theme</h3>
+    <button onclick="setDarkMode()">Dark Mode</button>
+    <button onclick="setLightMode()">Light Mode</button>
+</div>`,
+                    js: `function setDarkMode() {
+    let screen = document.getElementById("screen");
+    let text = document.getElementById("text");
+    
+    screen.style.backgroundColor = "#111827";
+    text.style.color = "white";
+}
+
+function setLightMode() {
+    let screen = document.getElementById("screen");
+    let text = document.getElementById("text");
+    
+    screen.style.backgroundColor = "white";
+    text.style.color = "black";
+}`
+                }
+            },
+            {
+                id: 9,
+                title: "Textarea, Dropdowns & jQuery Basics",
+                description: "Handle multi-line text, select menus, and get introduced to jQuery.",
+                content: `
+                    <span class="label label-blue">Topic 09</span>
+                    <h1>Textarea & Dropdown Menu</h1>
+                    
+                    <h2>Textarea</h2>
+                    <p>Used for multi-line inputs like feedback or address.</p>
+                    <div class="syntax-block">
+&lt;textarea id="feedback" rows="4" cols="30"&gt;&lt;/textarea&gt;
+                    </div>
+
+                    <h2>Dropdown (Pull-Down Menu)</h2>
+                    <p>Used to select one option from a list using <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code>.</p>
+                    
+                    <h2>What is jQuery?</h2>
+                    <p><strong>jQuery is a JavaScript library that makes JavaScript tasks easier.</strong></p>
+                    <p>Instead of writing long lines of code, jQuery uses shortcuts.</p>
+                    <div class="mistake-grid">
+                        <div class="mistake-box">
+                            <div class="mistake-title">Standard JavaScript</div>
+                            <code>document.getElementById("title")</code>
+                        </div>
+                        <div class="mistake-box" style="background:#eff6ff;">
+                            <div class="mistake-title">jQuery Shortcut</div>
+                            <code>$("#title")</code>
+                        </div>
+                    </div>
+
+                    <h2>Live Code Lab: Department Selector</h2>
+                `,
+                codeSnippet: {
+                    html: `<select id="department" onchange="showDept()">
+    <option value="">Select Dept</option>
+    <option value="IT">IT</option>
+    <option value="CSE">CSE</option>
+</select>
+<br><br>
+<textarea id="outputBox" rows="3" cols="25" placeholder="Output will show here..."></textarea>`,
+                    js: `function showDept() {
+    // Get dropdown value
+    let dept = document.getElementById("department").value;
+    
+    // Set textarea value
+    if(dept !== "") {
+        document.getElementById("outputBox").value = "You selected: " + dept;
+    } else {
+        document.getElementById("outputBox").value = "";
+    }
+}`
+                },
+                teacherTip: "Explain that .value works for both <select> tags and <textarea> tags exactly like it works for text inputs."
             }
-        });
+        ];
 
-        // 4. FAQ Accordion
-        function toggleAccordion(header) {
-            const item = header.parentElement;
-            const isActive = item.classList.contains('active');
+        /* ==========================================================================
+           2. STATE MANAGEMENT & APP INITIALIZATION
+           ========================================================================== */
+        let completedTopics = JSON.parse(localStorage.getItem('jsUnit3Progress')) || [];
+        let isClassroomMode = false;
 
-            // Close all accordions
-            document.querySelectorAll('.accordion-item').forEach(acc => {
-                acc.classList.remove('active');
-            });
-
-            // Toggle current
-            if (!isActive) {
-                item.classList.add('active');
+        function initApp() {
+            renderSidebar();
+            updateProgress();
+            
+            // Check hash for direct linking
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#topic-')) {
+                const id = parseInt(hash.replace('#topic-', ''));
+                renderLesson(id);
+            } else {
+                renderHome();
             }
         }
 
-        // 5. Handle initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set default page (Home)
-            switchPage('home');
-        });
+        /* ==========================================================================
+           3. UI RENDERING
+           ========================================================================== */
+        function renderSidebar(filterText = '') {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.innerHTML = '';
+            
+            const homeLink = document.createElement('a');
+            homeLink.className = 'topic-link';
+            homeLink.innerText = '🏠 Unit Overview';
+            homeLink.onclick = renderHome;
+            navLinks.appendChild(homeLink);
+
+            syllabusData.forEach(topic => {
+                if (filterText && !topic.title.toLowerCase().includes(filterText.toLowerCase())) return;
+                
+                const link = document.createElement('a');
+                link.className = `topic-link ${completedTopics.includes(topic.id) ? 'completed' : ''}`;
+                link.id = `nav-link-${topic.id}`;
+                link.innerText = `${topic.id < 10 ? '0'+topic.id : topic.id}. ${topic.title}`;
+                link.onclick = () => renderLesson(topic.id);
+                navLinks.appendChild(link);
+            });
+        }
+
+        function filterTopics(text) {
+            renderSidebar(text);
+        }
+
+        function setActiveNav(id) {
+            document.querySelectorAll('.topic-link').forEach(link => link.classList.remove('active'));
+            if(id) {
+                const active = document.getElementById(`nav-link-${id}`);
+                if(active) active.classList.add('active');
+            }
+        }
+
+        function renderHome() {
+            window.location.hash = '';
+            setActiveNav(null);
+            if(window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('mobile-open');
+
+            let gridHtml = '';
+            syllabusData.forEach(topic => {
+                const isDone = completedTopics.includes(topic.id);
+                gridHtml += `
+                    <div class="topic-card" onclick="renderLesson(${topic.id})" style="${isDone ? 'border-color: var(--success-color);' : ''}">
+                        <div class="topic-num">${topic.id < 10 ? '0'+topic.id : topic.id}</div>
+                        <div class="topic-title">${topic.title} ${isDone ? '✓' : ''}</div>
+                        <div class="topic-desc">${topic.description}</div>
+                        <div class="topic-action">Explore →</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('main-content').innerHTML = `
+                <div class="hero">
+                    <span class="label label-blue">UNIT 03</span>
+                    <h1>Client-Side Scripting using JavaScript</h1>
+                    <p>Learn JavaScript through simple explanations, visual examples, real-world scenarios, and hands-on coding.</p>
+                    <button class="btn btn-primary" onclick="renderLesson(1)">Start Learning</button>
+                </div>
+                <h2>What You'll Learn</h2>
+                <div class="topic-grid">
+                    ${gridHtml}
+                </div>
+            `;
+        }
+
+        function renderLesson(id) {
+            window.location.hash = `#topic-${id}`;
+            setActiveNav(id);
+            if(window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('mobile-open');
+            window.scrollTo(0,0);
+
+            const topic = syllabusData.find(t => t.id === id);
+            if (!topic) return;
+
+            const nextTopic = syllabusData.find(t => t.id === id + 1);
+            const prevTopic = syllabusData.find(t => t.id === id - 1);
+
+            let html = topic.content;
+
+            if (topic.codeSnippet) {
+                html += generatePlayground(topic.id, topic.codeSnippet);
+            }
+
+            if (topic.practice) {
+                html += `
+                    <div class="card" style="border-left: 4px solid var(--warning-color);">
+                        <h3>Try It Yourself ✍️</h3>
+                        <p>${topic.practice}</p>
+                    </div>
+                `;
+            }
+
+            if (topic.teacherTip) {
+                html += `<div class="teacher-tip">${topic.teacherTip}</div>`;
+            }
+
+            if (topic.quiz) {
+                html += generateQuiz(topic.id, topic.quiz);
+            }
+
+            // Footer Navigation
+            const isCompleted = completedTopics.includes(topic.id);
+            html += `
+                <div class="lesson-footer">
+                    <div>
+                        ${prevTopic ? `<button class="btn btn-outline" onclick="renderLesson(${prevTopic.id})">← Previous</button>` : ''}
+                    </div>
+                    <div style="text-align:center;">
+                        <button class="btn ${isCompleted ? 'btn-outline' : 'btn-primary'}" onclick="markTopicComplete(${topic.id})" id="complete-btn-${topic.id}">
+                            ${isCompleted ? '✓ Completed' : 'Mark as Complete'}
+                        </button>
+                    </div>
+                    <div>
+                        ${nextTopic ? `<button class="btn btn-outline" onclick="renderLesson(${nextTopic.id})">Next Topic →</button>` : '<button class="btn btn-primary" onclick="renderHome()">Finish Unit 🏆</button>'}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('main-content').innerHTML = html;
+            
+            // Auto run code snippet if exists to show initial state
+            if(topic.codeSnippet) {
+                setTimeout(() => runCode(topic.id), 100);
+            }
+        }
+
+        /* ==========================================================================
+           4. INTERACTIVE PLAYGROUND LOGIC
+           ========================================================================== */
+        function generatePlayground(id, codeObj) {
+            return `
+                <div class="playground" id="pg-${id}">
+                    <div class="playground-header">
+                        Live Code Lab
+                    </div>
+                    <div class="playground-body">
+                        <div class="editor-col">
+                            <div class="editor-label">HTML (Body Structure)</div>
+                            <textarea id="html-${id}" class="code-input" spellcheck="false">${codeObj.html}</textarea>
+                            <div class="editor-label" style="border-top:1px solid #334155;">JavaScript</div>
+                            <textarea id="js-${id}" class="code-input" spellcheck="false">${codeObj.js}</textarea>
+                            <div class="code-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="copyCode(${id})" id="copy-${id}">📋 Copy</button>
+                                <button class="btn btn-primary btn-sm" onclick="runCode(${id})">▶ Run Code</button>
+                            </div>
+                        </div>
+                        <div class="preview-col">
+                            <div class="preview-label">Live Output Preview</div>
+                            <iframe id="frame-${id}" class="preview-frame"></iframe>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function runCode(id) {
+            const html = document.getElementById(`html-${id}`).value;
+            const js = document.getElementById(`js-${id}`).value;
+            const iframe = document.getElementById(`frame-${id}`);
+            const doc = iframe.contentWindow.document;
+            
+            // Build sandbox HTML
+            const sandbox = `
+                <html>
+                <head>
+                    <style>
+                        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; color: #1e293b; }
+                        button { padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; }
+                        button:hover { background: #1d4ed8; }
+                        input, select, textarea { padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; margin-bottom: 10px;}
+                    </style>
+                </head>
+                <body>
+                    ${html}
+                    <script>
+                        try {
+                            ${js}
+                        } catch(err) {
+                            document.body.innerHTML += '<div style="color:red; margin-top:20px; font-weight:bold;">Error: ' + err.message + '</div>';
+                        }
+                    <\/script>
+                </body>
+                </html>
+            `;
+            
+            doc.open();
+            doc.write(sandbox);
+            doc.close();
+        }
+
+        function copyCode(id) {
+            const html = document.getElementById(`html-${id}`).value;
+            const js = document.getElementById(`js-${id}`).value;
+            const text = `<!-- HTML -->\n${html}\n\n// JavaScript\n${js}`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById(`copy-${id}`);
+                btn.innerText = "✓ Copied";
+                setTimeout(() => btn.innerText = "📋 Copy", 2000);
+            });
+        }
+
+        /* ==========================================================================
+           5. QUIZ LOGIC
+           ========================================================================== */
+        function generateQuiz(topicId, quizObj) {
+            let optionsHtml = '';
+            quizObj.options.forEach((opt, index) => {
+                optionsHtml += `<button class="quiz-btn" onclick="checkQuiz(${topicId}, ${index}, ${quizObj.answer}, this)">${opt}</button>`;
+            });
+            
+            return `
+                <div class="quiz-card">
+                    <h3>Quick Check</h3>
+                    <p>${quizObj.question}</p>
+                    <div class="quiz-options" id="quiz-opts-${topicId}">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkQuiz(topicId, selectedIndex, correctIndex, btnElement) {
+            const container = document.getElementById(`quiz-opts-${topicId}`);
+            const buttons = container.querySelectorAll('button');
+            
+            // Reset colors
+            buttons.forEach(b => { b.classList.remove('correct', 'wrong'); b.disabled = true; });
+            
+            if (selectedIndex === correctIndex) {
+                btnElement.classList.add('correct');
+                btnElement.innerText += ' ✓ Correct';
+            } else {
+                btnElement.classList.add('wrong');
+                buttons[correctIndex].classList.add('correct');
+                buttons[correctIndex].innerText += ' (Correct Answer)';
+            }
+        }
+
+        /* ==========================================================================
+           6. PROGRESS & CLASSROOM MODE
+           ========================================================================== */
+        function markTopicComplete(id) {
+            if (!completedTopics.includes(id)) {
+                completedTopics.push(id);
+                localStorage.setItem('jsUnit3Progress', JSON.stringify(completedTopics));
+                updateProgress();
+                renderSidebar();
+                
+                const btn = document.getElementById(`complete-btn-${id}`);
+                btn.className = "btn btn-outline";
+                btn.innerText = "✓ Completed";
+            }
+        }
+
+        function updateProgress() {
+            const container = document.getElementById('progress-container');
+            if (syllabusData.length > 0) {
+                container.style.display = "flex";
+                const percentage = Math.round((completedTopics.length / syllabusData.length) * 100);
+                document.getElementById('progress-text').innerText = `${percentage}%`;
+                document.getElementById('progress-fill').style.width = `${percentage}%`;
+            }
+        }
+
+        function toggleClassroomMode() {
+            isClassroomMode = !isClassroomMode;
+            if (isClassroomMode) {
+                document.body.classList.add('classroom-mode');
+                document.getElementById('classroom-btn').innerText = "❌ Exit Demo Mode";
+                document.getElementById('classroom-btn').classList.add('btn-primary');
+                document.getElementById('classroom-btn').classList.remove('btn-outline');
+            } else {
+                document.body.classList.remove('classroom-mode');
+                document.getElementById('classroom-btn').innerText = "🎓 Classroom Demo";
+                document.getElementById('classroom-btn').classList.remove('btn-primary');
+                document.getElementById('classroom-btn').classList.add('btn-outline');
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+
+        // Boot the App
+        window.onload = initApp;
+
     </script>
 </body>
 </html>
