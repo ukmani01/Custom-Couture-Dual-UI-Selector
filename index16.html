@@ -461,6 +461,741 @@ Collection: student</pre>
 </ul>
 </section>
 
+<div class="mongodb-guide">
+
+  <style>
+    .mongodb-guide {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      color: #222;
+      background: #f7f9fc;
+      border-radius: 16px;
+      box-sizing: border-box;
+    }
+
+    .mongodb-guide * {
+      box-sizing: border-box;
+    }
+
+    .mongodb-guide h1 {
+      margin-top: 0;
+      font-size: 32px;
+      color: #1f2937;
+    }
+
+    .mongodb-guide h2 {
+      margin-top: 30px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+      color: #374151;
+    }
+
+    .mongodb-guide h3 {
+      color: #374151;
+      margin-top: 22px;
+    }
+
+    .mongodb-guide p {
+      font-size: 16px;
+    }
+
+    .mongodb-guide .intro {
+      background: #eaf4ff;
+      padding: 20px;
+      border-left: 5px solid #2563eb;
+      border-radius: 10px;
+    }
+
+    .mongodb-guide .box {
+      background: white;
+      padding: 20px;
+      margin: 18px 0;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .mongodb-guide .important {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+    }
+
+    .mongodb-guide .success {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981;
+    }
+
+    .mongodb-guide .flow {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: monospace;
+      white-space: pre-line;
+    }
+
+    .mongodb-guide code {
+      background: #eef2f7;
+      padding: 3px 7px;
+      border-radius: 5px;
+      font-family: Consolas, monospace;
+    }
+
+    .mongodb-guide pre {
+      background: #111827;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .mongodb-guide .step {
+      margin: 20px 0;
+    }
+
+    .mongodb-guide .step-number {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .mongodb-guide ul {
+      padding-left: 22px;
+    }
+
+    .mongodb-guide li {
+      margin: 7px 0;
+    }
+
+    .mongodb-guide .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+    }
+
+    .mongodb-guide .mini-table th,
+    .mongodb-guide .mini-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .mongodb-guide .mini-table th {
+      background: #f1f5f9;
+    }
+
+    @media (max-width: 600px) {
+      .mongodb-guide {
+        margin: 10px;
+        padding: 18px;
+      }
+
+      .mongodb-guide h1 {
+        font-size: 25px;
+      }
+
+      .mongodb-guide h2 {
+        font-size: 21px;
+      }
+    }
+  </style>
+
+
+  <h1>MongoDB Complete Beginner Guide</h1>
+
+  <div class="intro">
+    <p>
+      MongoDB is a database system. We use MongoDB to store application data.
+      In this guide, we will learn how to install MongoDB Community Server,
+      check the version, use MongoDB Shell, insert data, view data in Compass,
+      and finally connect MongoDB with Node.js using Mongoose.
+    </p>
+  </div>
+
+
+  <h2>1. Our Main Goal</h2>
+
+  <div class="flow">
+Windows Computer
+      ↓
+MongoDB Community Server
+      ↓
+MongoDB Server (mongod)
+      ↓
+MongoDB Shell (mongosh) / MongoDB Compass
+      ↓
+Database + Collections + Documents
+      ↓
+Node.js + Express + Mongoose
+      ↓
+Our Website
+  </div>
+
+
+  <h2>2. What Do We Need?</h2>
+
+  <div class="box">
+    <ul>
+      <li><strong>Windows 10/11</strong> computer</li>
+      <li><strong>MongoDB Community Server</strong> – Database server</li>
+      <li><strong>MongoDB Compass</strong> – GUI tool</li>
+      <li><strong>MongoDB Shell (mongosh)</strong> – Command-line tool</li>
+      <li><strong>Node.js</strong> – Backend JavaScript runtime</li>
+      <li><strong>Mongoose</strong> – Connect Node.js with MongoDB</li>
+      <li><strong>VS Code</strong> – Code editor</li>
+    </ul>
+  </div>
+
+
+  <h2>3. MongoDB Community Server</h2>
+
+  <div class="box">
+    <p>
+      MongoDB Community Server is the main database server.
+      It stores our data and handles database requests.
+    </p>
+
+    <p>
+      During installation, MongoDB files are automatically installed
+      inside the Program Files folder.
+    </p>
+
+    <pre>C:\Program Files\MongoDB\Server\8.0\bin</pre>
+
+    <p>
+      We do not need to manually copy and paste MongoDB files.
+      The installer does this automatically.
+    </p>
+  </div>
+
+
+  <h2>4. What is Environment Variable?</h2>
+
+  <div class="box">
+    <p>
+      Environment Variable PATH tells Windows where the MongoDB program files
+      are located.
+    </p>
+
+    <p>Example:</p>
+
+    <pre>C:\Program Files\MongoDB\Server\8.0\bin</pre>
+
+    <p>
+      If this path is added to PATH, we can run MongoDB commands directly
+      from CMD.
+    </p>
+
+    <pre>mongod --version</pre>
+
+    <p>
+      We do not use Environment Variables to install MongoDB.
+      MongoDB is already installed. PATH simply helps Windows find the
+      MongoDB commands.
+    </p>
+  </div>
+
+
+  <div class="box important">
+    <h3>Important</h3>
+
+    <p>
+      MongoDB installation and Environment Variable PATH are two different things.
+    </p>
+
+    <ul>
+      <li>MongoDB Installation → Installs MongoDB files.</li>
+      <li>PATH → Helps CMD find MongoDB commands.</li>
+    </ul>
+  </div>
+
+
+  <h2>5. Check MongoDB Server Version</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 1</span>
+
+    <p>Open CMD.</p>
+
+    <p>Run:</p>
+
+    <pre>mongod --version</pre>
+
+    <p>Example output:</p>
+
+    <pre>db version v8.0.13</pre>
+
+    <p>
+      This means MongoDB Server version <strong>8.0.13</strong> is installed.
+    </p>
+
+  </div>
+
+
+  <h2>6. What is mongod?</h2>
+
+  <div class="box">
+
+    <p>
+      <code>mongod</code> means MongoDB Server process.
+    </p>
+
+    <p>
+      It is responsible for running the MongoDB database server.
+    </p>
+
+    <pre>mongod</pre>
+
+    <p>
+      However, if MongoDB was installed as a Windows Service and the service
+      is already running, we do not need to manually start <code>mongod</code>
+      every time.
+    </p>
+
+  </div>
+
+
+  <h2>7. Check MongoDB Windows Service</h2>
+
+  <div class="box">
+
+    <p>Run this command in CMD:</p>
+
+    <pre>net start MongoDB</pre>
+
+    <p>
+      If the service is already running, Windows may show that the MongoDB
+      service is already running.
+    </p>
+
+    <p>
+      If it is not running, this command can start the MongoDB service
+      when MongoDB was installed as a Windows service.
+    </p>
+
+  </div>
+
+
+  <h2>8. What is mongosh?</h2>
+
+  <div class="box">
+
+    <p>
+      <code>mongosh</code> means MongoDB Shell.
+    </p>
+
+    <p>
+      It is a command-line tool used to connect to a running MongoDB Server
+      and execute MongoDB commands.
+    </p>
+
+    <pre>mongosh</pre>
+
+    <p>
+      Important: <code>mongosh</code> is not the MongoDB Server.
+    </p>
+
+  </div>
+
+
+  <div class="box important">
+
+    <h3>Remember This</h3>
+
+    <table class="mini-table">
+
+      <tr>
+        <th>Tool</th>
+        <th>Purpose</th>
+      </tr>
+
+      <tr>
+        <td><code>mongod</code></td>
+        <td>Runs the MongoDB Server</td>
+      </tr>
+
+      <tr>
+        <td><code>mongosh</code></td>
+        <td>Command-line tool to interact with MongoDB</td>
+      </tr>
+
+      <tr>
+        <td>MongoDB Compass</td>
+        <td>GUI tool to view and manage MongoDB</td>
+      </tr>
+
+    </table>
+
+  </div>
+
+
+  <h2>9. Open MongoDB Shell</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step</span>
+
+    <p>Open CMD and run:</p>
+
+    <pre>mongosh</pre>
+
+    <p>
+      If it connects successfully, you can start using MongoDB commands.
+    </p>
+
+  </div>
+
+
+  <h2>10. Select a Database</h2>
+
+  <div class="box">
+
+    <p>Run:</p>
+
+    <pre>use college</pre>
+
+    <p>
+      This selects the <strong>college</strong> database.
+    </p>
+
+    <p>
+      MongoDB creates the database when we store the first document.
+    </p>
+
+  </div>
+
+
+  <h2>11. Create a Collection</h2>
+
+  <div class="box">
+
+    <p>Example:</p>
+
+    <pre>db.createCollection("students")</pre>
+
+    <p>
+      This creates a collection called <strong>students</strong>.
+    </p>
+
+  </div>
+
+
+  <h2>12. CRUD Operations</h2>
+
+  <div class="box">
+
+    <p>
+      CRUD means four basic database operations:
+    </p>
+
+    <table class="mini-table">
+
+      <tr>
+        <th>Operation</th>
+        <th>Meaning</th>
+        <th>MongoDB Command</th>
+      </tr>
+
+      <tr>
+        <td>Create</td>
+        <td>Add data</td>
+        <td>insertOne()</td>
+      </tr>
+
+      <tr>
+        <td>Read</td>
+        <td>Get data</td>
+        <td>find()</td>
+      </tr>
+
+      <tr>
+        <td>Update</td>
+        <td>Change data</td>
+        <td>updateOne()</td>
+      </tr>
+
+      <tr>
+        <td>Delete</td>
+        <td>Remove data</td>
+        <td>deleteOne()</td>
+      </tr>
+
+    </table>
+
+  </div>
+
+
+  <h2>13. CREATE – Insert Data</h2>
+
+  <div class="box">
+
+    <p>Insert one student:</p>
+
+    <pre>db.students.insertOne({
+  name: "Mani",
+  age: 25,
+  course: "MERN"
+})</pre>
+
+    <p>
+      This stores one document inside the students collection.
+    </p>
+
+  </div>
+
+
+  <h2>14. READ – View Data</h2>
+
+  <div class="box">
+
+    <p>View all students:</p>
+
+    <pre>db.students.find()</pre>
+
+    <p>Find a specific student:</p>
+
+    <pre>db.students.find({
+  name: "Mani"
+})</pre>
+
+  </div>
+
+
+  <h2>15. UPDATE – Change Data</h2>
+
+  <div class="box">
+
+    <pre>db.students.updateOne(
+  { name: "Mani" },
+  { $set: { age: 26 } }
+)</pre>
+
+    <p>
+      This changes Mani's age from 25 to 26.
+    </p>
+
+  </div>
+
+
+  <h2>16. DELETE – Remove Data</h2>
+
+  <div class="box">
+
+    <pre>db.students.deleteOne({
+  name: "Mani"
+})</pre>
+
+    <p>
+      This removes the matching document.
+    </p>
+
+  </div>
+
+
+  <h2>17. Useful MongoDB Commands</h2>
+
+  <div class="box">
+
+    <p>Show all databases:</p>
+
+    <pre>show dbs</pre>
+
+    <p>Show current database:</p>
+
+    <pre>db</pre>
+
+    <p>Show collections:</p>
+
+    <pre>show collections</pre>
+
+    <p>Count documents:</p>
+
+    <pre>db.students.countDocuments()</pre>
+
+  </div>
+
+
+  <h2>18. MongoDB Compass</h2>
+
+  <div class="box">
+
+    <p>
+      MongoDB Compass is a graphical user interface for MongoDB.
+      Instead of using only CMD commands, we can visually see databases,
+      collections and documents.
+    </p>
+
+    <p>Open MongoDB Compass and use:</p>
+
+    <pre>mongodb://127.0.0.1:27017</pre>
+
+    <p>
+      Click <strong>Connect</strong>.
+    </p>
+
+    <p>Then we can see:</p>
+
+    <pre>college
+   ↓
+students
+   ↓
+Documents
+   ↓
+name: Mani
+age: 25
+course: MERN</pre>
+
+  </div>
+
+
+  <h2>19. Do We Need mongosh for Node.js?</h2>
+
+  <div class="box important">
+
+    <p>
+      No. <code>mongosh</code> is not required for Node.js to connect to MongoDB.
+    </p>
+
+    <p>
+      Node.js can connect directly to MongoDB using Mongoose.
+    </p>
+
+    <pre>Node.js
+   ↓
+Mongoose
+   ↓
+MongoDB Server</pre>
+
+    <p>
+      <code>mongosh</code> is mainly useful when we want to manually work
+      with MongoDB through the command line.
+    </p>
+
+  </div>
+
+
+  <h2>20. Connect Node.js with MongoDB</h2>
+
+  <div class="box">
+
+    <p>First install Mongoose:</p>
+
+    <pre>npm install mongoose</pre>
+
+    <p>Then connect:</p>
+
+    <pre>const mongoose = require("mongoose");
+
+mongoose.connect(
+  "mongodb://127.0.0.1:27017/college"
+)
+.then(() => {
+  console.log("MongoDB Connected Successfully");
+})
+.catch((error) => {
+  console.log(error);
+});</pre>
+
+  </div>
+
+
+  <h2>21. Complete Connection Flow</h2>
+
+  <div class="flow">
+
+Website
+   ↓
+Node.js
+   ↓
+Express API
+   ↓
+Mongoose
+   ↓
+MongoDB Server
+   ↓
+Database
+   ↓
+MongoDB Compass
+  </div>
+
+
+  <h2>22. Final Checklist</h2>
+
+  <div class="box success">
+
+    <ul>
+      <li>☐ MongoDB Community Server installed</li>
+      <li>☐ MongoDB Server version checked using <code>mongod --version</code></li>
+      <li>☐ MongoDB Service checked</li>
+      <li>☐ MongoDB Shell installed and <code>mongosh</code> working</li>
+      <li>☐ Database selected using <code>use college</code></li>
+      <li>☐ Collection created</li>
+      <li>☐ Data inserted</li>
+      <li>☐ Data read using <code>find()</code></li>
+      <li>☐ CRUD operations practiced</li>
+      <li>☐ MongoDB Compass connected</li>
+      <li>☐ Data visible in Compass</li>
+      <li>☐ Node.js installed</li>
+      <li>☐ Mongoose installed</li>
+      <li>☐ Node.js connected with MongoDB</li>
+    </ul>
+
+  </div>
+
+
+  <h2>23. Most Important Difference</h2>
+
+  <div class="box important">
+
+    <p>
+      <strong>MongoDB Community Server</strong> → Runs and stores the database.
+    </p>
+
+    <p>
+      <strong>mongod</strong> → MongoDB Server process.
+    </p>
+
+    <p>
+      <strong>mongosh</strong> → Command-line tool to work with MongoDB.
+    </p>
+
+    <p>
+      <strong>MongoDB Compass</strong> → GUI tool to visually manage MongoDB.
+    </p>
+
+    <p>
+      <strong>Mongoose</strong> → Helps Node.js applications communicate with MongoDB.
+    </p>
+
+  </div>
+
+
+  <div class="intro">
+
+    <h3>Simple Memory Trick</h3>
+
+    <p>
+      <strong>Server stores → Shell commands → Compass shows → Mongoose connects Node.js.</strong>
+    </p>
+
+  </div>
+
+</div>
+
+
+
+
 </main>
 </body>
 </html>
