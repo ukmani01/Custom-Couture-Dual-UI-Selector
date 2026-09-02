@@ -1192,6 +1192,714 @@ MongoDB Compass
   </div>
 
 </div>
+<div class="mongosh-only-guide">
+
+  <style>
+    .mongosh-only-guide {
+      max-width: 950px;
+      margin: 30px auto;
+      padding: 28px;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      color: #1f2937;
+      background: #f8fafc;
+      border-radius: 16px;
+    }
+
+    .mongosh-only-guide * {
+      box-sizing: border-box;
+    }
+
+    .mongosh-only-guide h1 {
+      font-size: 30px;
+      margin-top: 0;
+    }
+
+    .mongosh-only-guide h2 {
+      margin-top: 30px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .mongosh-only-guide .box {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    .mongosh-only-guide .info {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    .mongosh-only-guide .warning {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    .mongosh-only-guide .success {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    .mongosh-only-guide pre {
+      background: #111827;
+      color: #f9fafb;
+      padding: 17px;
+      border-radius: 9px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .mongosh-only-guide code {
+      background: #eef2f7;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+
+    .mongosh-only-guide .step {
+      margin: 25px 0;
+    }
+
+    .mongosh-only-guide .step-number {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .mongosh-only-guide table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    .mongosh-only-guide th,
+    .mongosh-only-guide td {
+      border: 1px solid #d1d5db;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .mongosh-only-guide th {
+      background: #f1f5f9;
+    }
+
+    @media (max-width: 600px) {
+      .mongosh-only-guide {
+        margin: 10px;
+        padding: 18px;
+      }
+
+      .mongosh-only-guide h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+
+
+  <h1>MongoDB Shell (mongosh) – Complete CMD Guide</h1>
+
+
+  <div class="info">
+    <strong>What are we learning?</strong>
+
+    <p>
+      MongoDB Shell is called <strong>mongosh</strong>.
+      It allows us to communicate with MongoDB from the command line.
+    </p>
+
+    <p>
+      We will install mongosh, configure PATH, check the installation,
+      connect to MongoDB, and practice basic database commands.
+    </p>
+  </div>
+
+
+  <h2>1. What is mongosh?</h2>
+
+  <div class="box">
+
+    <p>
+      <code>mongosh</code> means <strong>MongoDB Shell</strong>.
+    </p>
+
+    <p>
+      It is a command-line interface for MongoDB.
+      We can use it to run MongoDB commands from CMD or Terminal.
+    </p>
+
+    <p>For example:</p>
+
+    <pre>mongosh</pre>
+
+    <p>
+      After opening mongosh, we can execute commands such as:
+    </p>
+
+    <pre>show dbs
+use college
+show collections</pre>
+
+  </div>
+
+
+  <h2>2. Is mongosh the MongoDB Server?</h2>
+
+  <div class="warning">
+
+    <p><strong>No.</strong></p>
+
+    <p>
+      mongosh is NOT the MongoDB Server.
+    </p>
+
+    <table>
+
+      <tr>
+        <th>Component</th>
+        <th>Purpose</th>
+      </tr>
+
+      <tr>
+        <td>MongoDB Server</td>
+        <td>Runs and stores the database</td>
+      </tr>
+
+      <tr>
+        <td>mongosh</td>
+        <td>Command-line tool to communicate with the server</td>
+      </tr>
+
+    </table>
+
+  </div>
+
+
+  <h2>3. Download MongoDB Shell</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 1</span>
+
+    <p>
+      Download MongoDB Shell for Windows from the official MongoDB website.
+    </p>
+
+    <p>Choose the Windows version suitable for your computer.</p>
+
+    <p>
+      For most modern Windows computers, choose the Windows x64 version.
+    </p>
+
+  </div>
+
+
+  <h2>4. Install MongoDB Shell</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 2</span>
+
+    <p>
+      Open the downloaded installer.
+    </p>
+
+    <p>
+      Follow the installation steps and complete the installation.
+    </p>
+
+    <p>
+      The installer will place the <code>mongosh.exe</code> file
+      in its installation folder.
+    </p>
+
+  </div>
+
+
+  <h2>5. Find mongosh.exe</h2>
+
+  <div class="box">
+
+    <p>
+      After installation, find the folder that contains:
+    </p>
+
+    <pre>mongosh.exe</pre>
+
+    <p>
+      The exact installation location can be different depending on
+      the version and installation method.
+    </p>
+
+    <p>
+      The important thing is:
+      <strong>Find the folder containing mongosh.exe.</strong>
+    </p>
+
+  </div>
+
+
+  <h2>6. Add mongosh to Environment Variable PATH</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 3</span>
+
+    <p>
+      We add the folder containing <code>mongosh.exe</code>
+      to the Windows PATH.
+    </p>
+
+    <p>Open Windows Search and type:</p>
+
+    <pre>Environment Variables</pre>
+
+    <p>Then open:</p>
+
+    <pre>Edit the system environment variables</pre>
+
+    <p>Click:</p>
+
+    <pre>Environment Variables
+        ↓
+Path
+        ↓
+Edit
+        ↓
+New</pre>
+
+    <p>
+      Paste the folder path that contains <code>mongosh.exe</code>.
+    </p>
+
+  </div>
+
+
+  <div class="info">
+
+    <strong>Why do we add PATH?</strong>
+
+    <p>
+      PATH tells Windows where to find <code>mongosh.exe</code>.
+    </p>
+
+    <p>
+      After PATH is configured, we can simply type:
+    </p>
+
+    <pre>mongosh</pre>
+
+    <p>
+      from any CMD location.
+    </p>
+
+  </div>
+
+
+  <h2>7. Restart CMD</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 4</span>
+
+    <p>
+      Close all existing CMD windows.
+    </p>
+
+    <p>
+      Open a new CMD window.
+    </p>
+
+    <p>
+      This is important because the new PATH value may not be available
+      in an already-open CMD window.
+    </p>
+
+  </div>
+
+
+  <h2>8. Check mongosh Version</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 5</span>
+
+    <p>Run:</p>
+
+    <pre>mongosh --version</pre>
+
+    <p>Example:</p>
+
+    <pre>2.x.x</pre>
+
+    <p>
+      If a version number appears, mongosh is correctly installed
+      and available from CMD.
+    </p>
+
+  </div>
+
+
+  <h2>9. If "mongosh is not recognized" Appears</h2>
+
+  <div class="warning">
+
+    <p>
+      If you see:
+    </p>
+
+    <pre>'mongosh' is not recognized as an internal or external command</pre>
+
+    <p>
+      It usually means Windows cannot find <code>mongosh.exe</code>.
+    </p>
+
+    <p>Check these:</p>
+
+    <ol>
+      <li>Is MongoDB Shell actually installed?</li>
+      <li>Does <code>mongosh.exe</code> exist?</li>
+      <li>Did you add the correct folder to PATH?</li>
+      <li>Did you open a new CMD after changing PATH?</li>
+    </ol>
+
+  </div>
+
+
+  <h2>10. Find mongosh Using CMD</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 6</span>
+
+    <p>Run:</p>
+
+    <pre>where mongosh</pre>
+
+    <p>
+      If PATH is correctly configured, CMD can show the location
+      of <code>mongosh.exe</code>.
+    </p>
+
+  </div>
+
+
+  <h2>11. Start MongoDB Shell</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 7</span>
+
+    <p>Run:</p>
+
+    <pre>mongosh</pre>
+
+    <p>
+      mongosh will try to connect to the local MongoDB Server.
+    </p>
+
+    <p>
+      If the server is running, you can start executing MongoDB commands.
+    </p>
+
+  </div>
+
+
+  <h2>12. Check Connection</h2>
+
+  <div class="box">
+
+    <p>
+      After running:
+    </p>
+
+    <pre>mongosh</pre>
+
+    <p>
+      You may see a prompt such as:
+    </p>
+
+    <pre>test></pre>
+
+    <p>
+      This means you are inside the MongoDB Shell.
+    </p>
+
+  </div>
+
+
+  <h2>13. Connect to a Specific MongoDB Server</h2>
+
+  <div class="step">
+
+    <p>
+      You can also provide a MongoDB connection string:
+    </p>
+
+    <pre>mongosh "mongodb://127.0.0.1:27017"</pre>
+
+    <p>
+      This tells mongosh to connect to the MongoDB server
+      running on the local computer.
+    </p>
+
+  </div>
+
+
+  <h2>14. Show Databases</h2>
+
+  <div class="step">
+
+    <span class="step-number">Step 8</span>
+
+    <pre>show dbs</pre>
+
+    <p>
+      This displays the databases available on the server.
+    </p>
+
+  </div>
+
+
+  <h2>15. Select a Database</h2>
+
+  <div class="step">
+
+    <pre>use college</pre>
+
+    <p>
+      Now the current database is <strong>college</strong>.
+    </p>
+
+  </div>
+
+
+  <h2>16. Show Current Database</h2>
+
+  <div class="step">
+
+    <pre>db</pre>
+
+    <p>
+      This shows the current database.
+    </p>
+
+  </div>
+
+
+  <h2>17. Create a Collection</h2>
+
+  <div class="step">
+
+    <pre>db.createCollection("students")</pre>
+
+    <p>
+      This creates a collection called <strong>students</strong>.
+    </p>
+
+  </div>
+
+
+  <h2>18. Insert Data</h2>
+
+  <div class="step">
+
+    <span class="step-number">CREATE</span>
+
+    <pre>db.students.insertOne({
+  name: "Mani",
+  age: 25,
+  course: "MERN"
+})</pre>
+
+    <p>
+      This inserts one document into the students collection.
+    </p>
+
+  </div>
+
+
+  <h2>19. Read Data</h2>
+
+  <div class="step">
+
+    <span class="step-number">READ</span>
+
+    <pre>db.students.find()</pre>
+
+    <p>
+      This displays the documents in the collection.
+    </p>
+
+  </div>
+
+
+  <h2>20. Update Data</h2>
+
+  <div class="step">
+
+    <span class="step-number">UPDATE</span>
+
+    <pre>db.students.updateOne(
+  { name: "Mani" },
+  { $set: { age: 26 } }
+)</pre>
+
+    <p>
+      This changes the age of Mani to 26.
+    </p>
+
+  </div>
+
+
+  <h2>21. Delete Data</h2>
+
+  <div class="step">
+
+    <span class="step-number">DELETE</span>
+
+    <pre>db.students.deleteOne({
+  name: "Mani"
+})</pre>
+
+    <p>
+      This removes the matching document.
+    </p>
+
+  </div>
+
+
+  <h2>22. Exit mongosh</h2>
+
+  <div class="step">
+
+    <pre>exit</pre>
+
+    <p>
+      This closes the MongoDB Shell and returns you to normal CMD.
+    </p>
+
+  </div>
+
+
+  <h2>23. Complete mongosh Practice</h2>
+
+  <div class="success">
+
+    <p>Practice this complete sequence:</p>
+
+    <pre>mongosh
+
+show dbs
+
+use college
+
+db.createCollection("students")
+
+db.students.insertOne({
+  name: "Mani",
+  age: 25,
+  course: "MERN"
+})
+
+db.students.find()
+
+db.students.updateOne(
+  { name: "Mani" },
+  { $set: { age: 26 } }
+)
+
+db.students.find()
+
+db.students.deleteOne({
+  name: "Mani"
+})
+
+db.students.find()
+
+exit</pre>
+
+  </div>
+
+
+  <h2>24. Important Understanding</h2>
+
+  <div class="info">
+
+    <p>
+      <strong>mongosh does not store the database by itself.</strong>
+    </p>
+
+    <p>
+      mongosh sends commands to the MongoDB Server.
+    </p>
+
+    <div class="flow">
+CMD
+  ↓
+mongosh
+  ↓
+MongoDB Server
+  ↓
+Database
+  </div>
+
+  </div>
+
+
+  <h2>25. Final mongosh Checklist</h2>
+
+  <div class="box">
+
+    <ul>
+      <li>☐ Install MongoDB Shell</li>
+      <li>☐ Find <code>mongosh.exe</code></li>
+      <li>☐ Add its folder to PATH</li>
+      <li>☐ Open a new CMD</li>
+      <li>☐ Run <code>mongosh --version</code></li>
+      <li>☐ Run <code>mongosh</code></li>
+      <li>☐ Connect to MongoDB Server</li>
+      <li>☐ Run <code>show dbs</code></li>
+      <li>☐ Use a database</li>
+      <li>☐ Create a collection</li>
+      <li>☐ Insert data</li>
+      <li>☐ Read data</li>
+      <li>☐ Update data</li>
+      <li>☐ Delete data</li>
+      <li>☐ Exit using <code>exit</code></li>
+    </ul>
+
+  </div>
+
+
+  <div class="success">
+
+    <h3>Easy Memory Trick</h3>
+
+    <p>
+      <strong>Install → PATH → Check → mongosh → Connect → CRUD → Exit</strong>
+    </p>
+
+  </div>
+
+</div>
 
 
 
