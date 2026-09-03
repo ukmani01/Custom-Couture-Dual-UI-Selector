@@ -1058,5 +1058,230 @@ function setLightMode() {
         window.onload = initApp;
 
     </script>
+
+
+<div>
+
+    <style>
+        div {
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            background: #222;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .section {
+            padding: 25px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        button,
+        input,
+        select {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>JavaScript Events</h1>
+        <p>Learn Common Events</p>
+    </div>
+
+
+    <!-- INTRO -->
+    <div class="section">
+        <h2>What is an Event?</h2>
+
+        <p>
+            An event is an action that happens on a webpage.
+        </p>
+
+        <p>
+            Example: Click, Double Click, Mouse Over and Value Change.
+        </p>
+    </div>
+
+
+    <!-- ONCLICK -->
+    <div class="section">
+
+        <h2>1. onclick</h2>
+
+        <p>When an element is clicked.</p>
+
+        <button onclick="clickExample()">
+            Click Me
+        </button>
+
+        <p id="clickOutput"></p>
+
+    </div>
+
+
+    <!-- ONDBLCLICK -->
+    <div class="section">
+
+        <h2>2. ondblclick</h2>
+
+        <p>When an element is double clicked.</p>
+
+        <button ondblclick="doubleClickExample()">
+            Double Click Me
+        </button>
+
+        <p id="doubleOutput"></p>
+
+    </div>
+
+
+    <!-- ONMOUSEOVER -->
+    <div class="section">
+
+        <h2>3. onmouseover</h2>
+
+        <p>When mouse moves over an element.</p>
+
+        <button onmouseover="mouseExample()">
+            Move Mouse Here
+        </button>
+
+        <p id="mouseOutput"></p>
+
+    </div>
+
+
+    <!-- ONCHANGE -->
+    <div class="section">
+
+        <h2>4. onchange</h2>
+
+        <p>When value changes.</p>
+
+        <select id="course" onchange="changeExample()">
+
+            <option value="">Select Course</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JavaScript">JavaScript</option>
+
+        </select>
+
+        <p id="changeOutput"></p>
+
+    </div>
+
+
+    <!-- FORM + VALIDATION -->
+    <div class="section">
+
+        <h2>5. Form Event</h2>
+
+        <form onsubmit="checkInput(event)">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+            >
+
+            <button type="submit">
+                Submit
+            </button>
+
+            <p id="output" class="error"></p>
+
+        </form>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+    <div class="section">
+
+        <h2>Quick Summary</h2>
+
+        <p>onclick → Click</p>
+        <p>ondblclick → Double Click</p>
+        <p>onmouseover → Mouse Over</p>
+        <p>onchange → Value Change</p>
+        <p>onload → Page Load</p>
+        <p>onsubmit → Form Submit</p>
+
+    </div>
+
+
+    <script>
+
+        function clickExample() {
+            document.getElementById("clickOutput").textContent =
+                "Button Clicked!";
+        }
+
+
+        function doubleClickExample() {
+            document.getElementById("doubleOutput").textContent =
+                "Double Clicked!";
+        }
+
+
+        function mouseExample() {
+            document.getElementById("mouseOutput").textContent =
+                "Mouse is here!";
+        }
+
+
+        function changeExample() {
+
+            let course =
+                document.getElementById("course").value;
+
+            document.getElementById("changeOutput").textContent =
+                "You selected " + course;
+        }
+
+
+        function checkInput(event) {
+
+            event.preventDefault();
+
+            let input =
+                document.getElementById("name");
+
+            let output =
+                document.getElementById("output");
+
+            if (input.value == "") {
+
+                input.style.border = "2px solid red";
+
+                output.textContent =
+                    "Please enter your name";
+
+            } else {
+
+                input.style.border = "2px solid green";
+
+                output.textContent =
+                    "Hello " + input.value;
+            }
+        }
+
+    </script>
+
+</div>
 </body>
 </html>
