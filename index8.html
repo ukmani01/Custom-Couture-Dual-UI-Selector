@@ -248,7 +248,27 @@
             <!-- Dynamic Content Injected Here -->
         </main>
     </div>
+<div><pre><form onsubmit="showName(event)">
 
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <button type="submit">Submit</button>
+
+    <p id="output"></p>
+
+</form>
+
+<script>
+function showName(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+
+    document.getElementById("output").textContent =
+        "Hello " + name;
+}
+</script> </pre>
+</div>
     <!-- JAVASCRIPT APPLICATION LOGIC & CONTENT -->
     <script>
         /* ==========================================================================
