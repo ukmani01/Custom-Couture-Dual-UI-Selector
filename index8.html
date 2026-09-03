@@ -1059,12 +1059,15 @@ function setLightMode() {
 
     </script>
 
-
 <div>
 
     <style>
-        div {
+        .event-class {
             font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
         }
 
         .hero {
@@ -1073,153 +1076,543 @@ function setLightMode() {
             padding: 40px;
             text-align: center;
             border-radius: 12px;
+            margin-bottom: 25px;
         }
 
         .section {
-            padding: 25px;
-            margin-top: 20px;
             border: 1px solid #ddd;
+            padding: 25px;
+            margin-bottom: 20px;
             border-radius: 10px;
         }
 
-        button,
-        input,
-        select {
-            padding: 10px;
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .code pre {
+            margin: 0;
+        }
+
+        .example {
+            background: #f8fbff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .example input,
+        .example select,
+        .example button {
+            padding: 8px;
             margin: 5px 0;
         }
 
         .error {
             color: red;
         }
+
+        .note {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+        }
     </style>
 
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>JavaScript Events</h1>
-        <p>Learn Common Events</p>
-    </div>
+    <div class="event-class">
+
+        <!-- HERO -->
+        <div class="hero">
+
+            <h1>JavaScript Events</h1>
+
+            <p>
+                Learn Common Events with Simple Examples
+            </p>
+
+            <p>
+                Action → Event → Function → Output
+            </p>
+
+        </div>
 
 
-    <!-- INTRO -->
-    <div class="section">
-        <h2>What is an Event?</h2>
+        <!-- WHAT IS EVENT -->
+        <div class="section">
 
-        <p>
-            An event is an action that happens on a webpage.
-        </p>
+            <h2>What is an Event?</h2>
 
-        <p>
-            Example: Click, Double Click, Mouse Over and Value Change.
-        </p>
-    </div>
+            <p>
+                An <b>Event</b> is an action or happening on a webpage.
+            </p>
 
+            <p>
+                When the user performs an action, JavaScript can
+                run a function.
+            </p>
 
-    <!-- ONCLICK -->
-    <div class="section">
+            <div class="note">
 
-        <h2>1. onclick</h2>
+                <b>Example:</b>
 
-        <p>When an element is clicked.</p>
+                <p>
+                    User clicks a button
+                    → onclick event happens
+                    → function runs
+                    → output is displayed.
+                </p>
 
-        <button onclick="clickExample()">
-            Click Me
-        </button>
+            </div>
 
-        <p id="clickOutput"></p>
-
-    </div>
-
-
-    <!-- ONDBLCLICK -->
-    <div class="section">
-
-        <h2>2. ondblclick</h2>
-
-        <p>When an element is double clicked.</p>
-
-        <button ondblclick="doubleClickExample()">
-            Double Click Me
-        </button>
-
-        <p id="doubleOutput"></p>
-
-    </div>
+        </div>
 
 
-    <!-- ONMOUSEOVER -->
-    <div class="section">
+        <!-- EVENT FLOW -->
+        <div class="section">
 
-        <h2>3. onmouseover</h2>
+            <h2>How Event Works?</h2>
 
-        <p>When mouse moves over an element.</p>
+            <div class="code">
+                <pre>
+User Action
+     ↓
+Event
+     ↓
+Function
+     ↓
+Output
+                </pre>
+            </div>
 
-        <button onmouseover="mouseExample()">
-            Move Mouse Here
-        </button>
+            <p>
+                <b>Example:</b>
+                Click Button → onclick → showMessage() → Hello
+            </p>
 
-        <p id="mouseOutput"></p>
-
-    </div>
-
-
-    <!-- ONCHANGE -->
-    <div class="section">
-
-        <h2>4. onchange</h2>
-
-        <p>When value changes.</p>
-
-        <select id="course" onchange="changeExample()">
-
-            <option value="">Select Course</option>
-            <option value="HTML">HTML</option>
-            <option value="CSS">CSS</option>
-            <option value="JavaScript">JavaScript</option>
-
-        </select>
-
-        <p id="changeOutput"></p>
-
-    </div>
+        </div>
 
 
-    <!-- FORM + VALIDATION -->
-    <div class="section">
+        <!-- ONCLICK -->
+        <div class="section">
 
-        <h2>5. Form Event</h2>
+            <h2>1. onclick</h2>
 
-        <form onsubmit="checkInput(event)">
+            <p>
+                <b>Meaning:</b>
+                onclick is used when an element is clicked.
+            </p>
 
-            <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-            >
+            <h3>Syntax</h3>
 
-            <button type="submit">
-                Submit
-            </button>
+            <div class="code">
+                <pre>
+&lt;button onclick="functionName()"&gt;
+    Click
+&lt;/button&gt;
+                </pre>
+            </div>
 
-            <p id="output" class="error"></p>
+            <h3>Example Code</h3>
 
-        </form>
+            <div class="code">
+                <pre>
+&lt;button onclick="showMessage()"&gt;
+    Click Me
+&lt;/button&gt;
 
-    </div>
+&lt;p id="output"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function showMessage() {
+
+    document.getElementById("output").textContent =
+        "Button Clicked!";
+}
+&lt;/script&gt;
+                </pre>
+            </div>
+
+            <h3>Try It</h3>
+
+            <div class="example">
+
+                <button onclick="clickExample()">
+                    Click Me
+                </button>
+
+                <p id="clickOutput"></p>
+
+            </div>
+
+            <p>
+                <b>Remember:</b>
+                Button click → onclick → function → output
+            </p>
+
+        </div>
 
 
-    <!-- SUMMARY -->
-    <div class="section">
+        <!-- ONDBLCLICK -->
+        <div class="section">
 
-        <h2>Quick Summary</h2>
+            <h2>2. ondblclick</h2>
 
-        <p>onclick → Click</p>
-        <p>ondblclick → Double Click</p>
-        <p>onmouseover → Mouse Over</p>
-        <p>onchange → Value Change</p>
-        <p>onload → Page Load</p>
-        <p>onsubmit → Form Submit</p>
+            <p>
+                <b>Meaning:</b>
+                ondblclick is used when an element is double clicked.
+            </p>
+
+            <h3>Example Code</h3>
+
+            <div class="code">
+                <pre>
+&lt;button ondblclick="showMessage()"&gt;
+    Double Click
+&lt;/button&gt;
+
+&lt;script&gt;
+function showMessage() {
+
+    document.getElementById("output").textContent =
+        "Double Clicked!";
+}
+&lt;/script&gt;
+                </pre>
+            </div>
+
+            <h3>Try It</h3>
+
+            <div class="example">
+
+                <button ondblclick="doubleClickExample()">
+                    Double Click Me
+                </button>
+
+                <p id="doubleOutput"></p>
+
+            </div>
+
+            <p>
+                <b>Remember:</b>
+                Two clicks → ondblclick → function
+            </p>
+
+        </div>
+
+
+        <!-- ONMOUSEOVER -->
+        <div class="section">
+
+            <h2>3. onmouseover</h2>
+
+            <p>
+                <b>Meaning:</b>
+                onmouseover works when the mouse moves over an element.
+            </p>
+
+            <h3>Example Code</h3>
+
+            <div class="code">
+                <pre>
+&lt;button onmouseover="showMessage()"&gt;
+    Move Mouse Here
+&lt;/button&gt;
+                </pre>
+            </div>
+
+            <h3>Try It</h3>
+
+            <div class="example">
+
+                <button onmouseover="mouseExample()">
+                    Move Mouse Here
+                </button>
+
+                <p id="mouseOutput"></p>
+
+            </div>
+
+            <p>
+                <b>Remember:</b>
+                Mouse over → onmouseover → function
+            </p>
+
+        </div>
+
+
+        <!-- ONCHANGE -->
+        <div class="section">
+
+            <h2>4. onchange</h2>
+
+            <p>
+                <b>Meaning:</b>
+                onchange works when an input or select value changes.
+            </p>
+
+            <h3>Example Code</h3>
+
+            <div class="code">
+                <pre>
+&lt;select onchange="showCourse()"&gt;
+
+    &lt;option&gt;HTML&lt;/option&gt;
+    &lt;option&gt;CSS&lt;/option&gt;
+
+&lt;/select&gt;
+
+&lt;script&gt;
+function showCourse() {
+
+    let course =
+        document.getElementById("course").value;
+
+    document.getElementById("output").textContent =
+        course;
+}
+&lt;/script&gt;
+                </pre>
+            </div>
+
+            <h3>Try It</h3>
+
+            <div class="example">
+
+                <select id="course" onchange="changeExample()">
+
+                    <option value="">
+                        Select Course
+                    </option>
+
+                    <option value="HTML">
+                        HTML
+                    </option>
+
+                    <option value="CSS">
+                        CSS
+                    </option>
+
+                    <option value="JavaScript">
+                        JavaScript
+                    </option>
+
+                </select>
+
+                <p id="changeOutput"></p>
+
+            </div>
+
+            <p>
+                <b>Remember:</b>
+                Value change → onchange → function
+            </p>
+
+        </div>
+
+
+        <!-- ONLOAD -->
+        <div class="section">
+
+            <h2>5. onload</h2>
+
+            <p>
+                <b>Meaning:</b>
+                onload works when the webpage finishes loading.
+            </p>
+
+            <h3>Example</h3>
+
+            <div class="code">
+                <pre>
+&lt;body onload="pageLoaded()"&gt;
+
+&lt;script&gt;
+function pageLoaded() {
+
+    alert("Page Loaded!");
+}
+&lt;/script&gt;
+                </pre>
+            </div>
+
+            <p>
+                When the page is completely loaded,
+                the function will run.
+            </p>
+
+        </div>
+
+
+        <!-- FORM EVENT -->
+        <div class="section">
+
+            <h2>6. onsubmit</h2>
+
+            <p>
+                <b>Meaning:</b>
+                onsubmit works when a form is submitted.
+            </p>
+
+            <h3>Basic Example</h3>
+
+            <div class="code">
+                <pre>
+&lt;form onsubmit="showName(event)"&gt;
+
+    &lt;input type="text" id="name"&gt;
+
+    &lt;button type="submit"&gt;
+        Submit
+    &lt;/button&gt;
+
+    &lt;p id="output"&gt;&lt;/p&gt;
+
+&lt;/form&gt;
+
+&lt;script&gt;
+function showName(event) {
+
+    event.preventDefault();
+
+    let name =
+        document.getElementById("name").value;
+
+    document.getElementById("output").textContent =
+        "Hello " + name;
+}
+&lt;/script&gt;
+                </pre>
+            </div>
+
+            <h3>Try It</h3>
+
+            <div class="example">
+
+                <form onsubmit="showName(event)">
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                    >
+
+                    <br>
+
+                    <button type="submit">
+                        Submit
+                    </button>
+
+                    <p id="nameOutput"></p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- INPUT VALIDATION -->
+        <div class="section">
+
+            <h2>7. Check Empty Input</h2>
+
+            <p>
+                If the input is empty, we can use an
+                <b>if condition</b>.
+            </p>
+
+            <p>
+                Empty input → Border becomes red →
+                "Please enter" message appears.
+            </p>
+
+            <h3>Example Code</h3>
+
+            <div class="code">
+                <pre>
+let input =
+    document.getElementById("name");
+
+if (input.value == "") {
+
+    input.style.border = "2px solid red";
+
+    output.textContent =
+        "Please enter your name";
+}
+                </pre>
+            </div>
+
+            <h3>Try It</h3>
+
+            <div class="example">
+
+                <form onsubmit="checkInput(event)">
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your name"
+                    >
+
+                    <br>
+
+                    <button type="submit">
+                        Check
+                    </button>
+
+                    <p id="error" class="error"></p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- ALL EVENTS -->
+        <div class="section">
+
+            <h2>Common Events - Quick Revision</h2>
+
+            <div class="code">
+                <pre>
+onclick      → When clicked
+
+ondblclick   → When double clicked
+
+onmouseover  → When mouse moves over
+
+onchange     → When value changes
+
+onload       → When page finishes loading
+
+onsubmit     → When form is submitted
+                </pre>
+            </div>
+
+        </div>
+
+
+        <!-- FINAL CONCEPT -->
+        <div class="hero">
+
+            <h2>Remember This!</h2>
+
+            <p>
+                Action → Event → Function → Output
+            </p>
+
+            <p>
+                Example:
+                Click → onclick → function → Result
+            </p>
+
+        </div>
 
     </div>
 
@@ -1227,18 +1620,21 @@ function setLightMode() {
     <script>
 
         function clickExample() {
+
             document.getElementById("clickOutput").textContent =
                 "Button Clicked!";
         }
 
 
         function doubleClickExample() {
+
             document.getElementById("doubleOutput").textContent =
                 "Double Clicked!";
         }
 
 
         function mouseExample() {
+
             document.getElementById("mouseOutput").textContent =
                 "Mouse is here!";
         }
@@ -1254,28 +1650,42 @@ function setLightMode() {
         }
 
 
+        function showName(event) {
+
+            event.preventDefault();
+
+            let name =
+                document.getElementById("name").value;
+
+            document.getElementById("nameOutput").textContent =
+                "Hello " + name;
+        }
+
+
         function checkInput(event) {
 
             event.preventDefault();
 
             let input =
-                document.getElementById("name");
+                document.getElementById("studentName");
 
-            let output =
-                document.getElementById("output");
+            let error =
+                document.getElementById("error");
 
             if (input.value == "") {
 
-                input.style.border = "2px solid red";
+                input.style.border =
+                    "2px solid red";
 
-                output.textContent =
+                error.textContent =
                     "Please enter your name";
 
             } else {
 
-                input.style.border = "2px solid green";
+                input.style.border =
+                    "2px solid green";
 
-                output.textContent =
+                error.textContent =
                     "Hello " + input.value;
             }
         }
