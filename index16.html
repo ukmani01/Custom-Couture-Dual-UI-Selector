@@ -1042,6 +1042,95 @@ Collection: student</pre></div></div>
   </div>
 </section>
 
+<div>
+<h1> full crud code </h1>
+<pre>
+  <code>
+   import mongoose from "mongoose"
+import http from "http"
+
+mongoose.connect("mongodb://127.0.0.1:27017/ccc")
+  .then(() => { console.log("MongoDB Connected!") })
+  .catch((error) => { console.log("Connection Error:", error) })
+
+const studentSchema = new mongoose.Schema(
+  { name: String, age: Number, department: String, year: Number, email: String, marks: Number },
+  { collection: "student" }
+)
+
+const Student = mongoose.model("Student", studentSchema)
+
+const server = http.createServer(async (req, res) => {
+
+  if (req.url == "/add" && req.method == "POST") {
+
+    console.log("request received for create")
+
+    await Student.create({
+      name:       "maariyappan",
+      age:        56,
+      department: "cse",
+      year:       2008,
+      email:      "mm@gmail.com",
+      marks:      123
+    })
+
+    res.writeHead(200, { "Content-Type": "text/plain" })
+    res.end("successfully added")
+
+  } else if (req.url == "/" && req.method == "GET") {
+
+    const students = await Student.find()
+
+    let html = `<html><head><title>Student Data</title></head><body><h1>Student Details</h1>`
+
+    students.forEach(stu => {
+      html += `
+        <h1>${stu.name}</h1>
+        <p>Age: ${stu.age}</p>
+        <p>Department: ${stu.department}</p>
+        <p>Year: ${stu.year}</p>
+        <p>Email: ${stu.email}</p>
+        <p>Marks: ${stu.marks}</p>
+        <hr>
+      `
+    })
+
+    html += `</body></html>`
+
+    res.writeHead(200, { "Content-Type": "text/html" })
+    res.end(html)
+
+  } else if (req.url == "/update" && req.method == "PUT") {
+
+    await Student.updateOne(
+      { name: "maariyappan" },
+      { $set: { marks: 150 } }
+    )
+
+    res.writeHead(200, { "Content-Type": "text/plain" })
+    res.end("successfully updated")
+
+  } else if (req.url == "/delete" && req.method == "DELETE") {
+
+    await Student.deleteOne(
+      { name: "maariyappan" }
+    )
+
+    res.writeHead(200, { "Content-Type": "text/plain" })
+    res.end("successfully deleted")
+
+  }
+
+})
+
+server.listen(3000, () => {
+  console.log("Port running on 3000")
+})
+  </code>
+</pre>
+</div>
+
 <!-- ── Footer ── -->
 <footer>
   <div class="footer-inner">
