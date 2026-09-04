@@ -895,6 +895,92 @@
         }
 
         /* ============================================================
+           DSA GUIDE — new section
+           ============================================================ */
+        .dsa-guide {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #fff;
+            border-radius: var(--mdb-radius);
+            border: 1px solid var(--mdb-border);
+            box-shadow: var(--mdb-shadow);
+        }
+        .dsa-guide h2 {
+            font-family: var(--font-heading);
+            color: var(--mdb-dark);
+            border-bottom: 2px solid var(--mdb-green);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .dsa-guide h3 {
+            font-family: var(--font-heading);
+            color: var(--mdb-green);
+            margin-top: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .dsa-guide h4 {
+            font-family: var(--font-heading);
+            color: var(--mdb-dark);
+            margin-top: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        .dsa-guide ul,
+        .dsa-guide ol {
+            padding-left: 1.5rem;
+            color: var(--mdb-muted);
+            line-height: 1.8;
+        }
+        .dsa-guide li {
+            margin-bottom: 0.2rem;
+        }
+        .dsa-guide code {
+            background: var(--mdb-bg);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--mdb-green);
+        }
+        .dsa-guide .example-box {
+            background: var(--mdb-bg);
+            border-left: 4px solid var(--mdb-green);
+            padding: 1rem 1.5rem;
+            border-radius: 0 var(--mdb-radius-sm) var(--mdb-radius-sm) 0;
+            margin: 1rem 0;
+        }
+        .dsa-guide .example-box code {
+            background: #0F1815;
+            color: #E8F5EF;
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--mdb-radius-sm);
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            overflow-x: auto;
+        }
+        .dsa-guide .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        .dsa-guide .two-col > div {
+            padding: 1.2rem;
+            border-radius: var(--mdb-radius-sm);
+            border: 1px solid var(--mdb-border);
+            background: var(--mdb-bg);
+        }
+        .dsa-guide .two-col > div h4 {
+            margin-top: 0;
+            color: var(--mdb-green);
+        }
+
+        @media (max-width: 768px) {
+            .dsa-guide .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================================
            FOOTER
            ============================================================ */
         .site-footer {
@@ -1396,6 +1482,283 @@ onsubmit     → When form is submitted</pre></div>
             }
         }
     </script>
+
+    <!-- ============================================================
+    DSA + JAVASCRIPT LEARNING GUIDE (NEW SECTION)
+    ============================================================ -->
+    <div class="dsa-guide" style="max-width:1200px;margin:2rem auto;">
+
+        <h2>🧠 DSA & JavaScript — Complete Learning Guide</h2>
+
+        <div style="margin-bottom:1.5rem;padding:1.5rem;background:var(--mdb-green-subtle);border-radius:var(--mdb-radius);border:1px solid var(--mdb-green);">
+            <p style="font-size:1.1rem;color:var(--mdb-dark);margin:0;">
+                <strong>🎯 Goal:</strong> This guide is for absolute beginners. It explains what DSA and LeetCode are,
+                and gives a clear, step-by-step learning path — from your very first line of JavaScript to building real projects.
+            </p>
+        </div>
+
+        <!-- SECTION 1: What is DSA? -->
+        <h3>🧠 What is DSA?</h3>
+        <p><strong>DSA = Data Structures + Algorithms</strong></p>
+        <p>
+            It is about <strong>how to store data efficiently</strong> and
+            <strong>how to solve problems using minimal time and memory</strong>.
+        </p>
+
+        <div class="example-box">
+            <strong>Example:</strong> You have an array <code>[10, 20, 30, 40, 50]</code>.
+            You want to find if <strong>40</strong> exists.
+            <ul style="margin:0.5rem 0 0 1.2rem;">
+                <li><strong>Linear Search:</strong> Check each element one by one → 10 ❌ 20 ❌ 30 ❌ 40 ✅</li>
+                <li>This is a <strong>DSA concept</strong> — how you search matters!</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 2: What is LeetCode? -->
+        <h3>💻 What is LeetCode?</h3>
+        <p>
+            <strong>LeetCode</strong> is a platform where you get programming problems.
+            You can solve them using JavaScript, Python, Java, C++, etc.
+        </p>
+        <div class="example-box">
+            <strong>Example Problem:</strong><br>
+            Given an array of numbers, find two numbers whose sum equals a target.<br>
+            <code>const nums = [2, 7, 11, 15]; const target = 9;</code><br>
+            Answer: <strong>2 + 7 = 9</strong>
+            <p style="margin-top:0.5rem;">This uses DSA concepts like <strong>Arrays, Hashing, Time Complexity</strong>.</p>
+        </div>
+
+        <!-- SECTION 3: DSA vs LeetCode -->
+        <h3>🔥 DSA vs LeetCode</h3>
+        <div class="two-col">
+            <div>
+                <h4>📘 DSA</h4>
+                <ul>
+                    <li>A concept / subject</li>
+                    <li>Data Structures</li>
+                    <li>Algorithms</li>
+                    <li>Big O</li>
+                    <li>Arrays, Stacks, Trees, Graphs</li>
+                </ul>
+            </div>
+            <div>
+                <h4>💻 LeetCode</h4>
+                <ul>
+                    <li>Practice platform</li>
+                    <li>Problems</li>
+                    <li>Coding challenges</li>
+                    <li>Test cases</li>
+                    <li>Array problems, Stack problems, etc.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="example-box" style="background:var(--mdb-bg);border-left-color:var(--mdb-green-light);">
+            <strong>🎯 Simple way to understand:</strong><br>
+            <strong>Learn DSA</strong> → Understand how HashMap works.<br>
+            <strong>Practice on LeetCode</strong> → Solve a problem using HashMap.
+            <br><br>
+            <strong>Order:</strong> Learn DSA → Understand concept → Solve LeetCode problems → Improve problem-solving.
+        </div>
+
+        <!-- SECTION 4: JavaScript + DSA Learning Roadmap -->
+        <h3>🧭 JavaScript + DSA Learning Roadmap</h3>
+        <p>This is the <strong>exact order</strong> that works best for beginners.</p>
+
+        <h4>🟢 Level 1 — Programming Basics</h4>
+        <ul>
+            <li>What is Programming? • What is JavaScript?</li>
+            <li>console.log() • Comments</li>
+            <li>Variables — let, const</li>
+            <li>Data Types: String, Number, Boolean, Undefined, Null</li>
+            <li>Operators: Arithmetic, Assignment, Comparison, Logical</li>
+        </ul>
+
+        <h4>🟢 Level 2 — Build Programming Logic</h4>
+        <ul>
+            <li>if, else, else if, Nested conditions, Ternary operator, switch</li>
+            <li>Loops: for, while, do...while, break, continue</li>
+            <li>Basic problems: Even/Odd, Positive/Negative, Largest number, Grade calculator</li>
+            <li>Sum of numbers, Multiplication table, Factorial, Prime, Palindrome, Fibonacci</li>
+        </ul>
+
+        <h4>🟢 Level 3 — Functions ⭐</h4>
+        <ul>
+            <li>Function declaration, Parameters, Arguments, return</li>
+            <li>Function expressions, Arrow functions</li>
+            <li>Scope — Local vs Global variables</li>
+        </ul>
+
+        <h4>🟢 Level 4 — Arrays ⭐</h4>
+        <ul>
+            <li>Create, Access, Update, Loop through Array</li>
+            <li>Add/Remove: push, pop, shift, unshift</li>
+            <li>Important methods: slice, splice, includes, indexOf, find, filter, map, reduce, forEach, sort</li>
+        </ul>
+
+        <h4>🟢 Level 5 — Strings</h4>
+        <ul>
+            <li>String basics, indexing, length</li>
+            <li>Methods: toUpperCase, toLowerCase, includes, startsWith, endsWith, slice, substring, split, replace</li>
+            <li>Template literals</li>
+            <li>Practice: Reverse string, Count characters, Palindrome, Find duplicate characters, Anagram</li>
+        </ul>
+
+        <h4>🟢 Level 6 — Objects ⭐</h4>
+        <ul>
+            <li>What is an Object? Properties, Values</li>
+            <li>Access, Modify, Add, Delete properties</li>
+            <li>Nested Objects, Objects inside Arrays</li>
+            <li>Object destructuring, Object.keys, Object.values, Object.entries</li>
+        </ul>
+
+        <h4>🟡 Level 7 — Modern JavaScript (ES6+)</h4>
+        <ul>
+            <li>let / const, Arrow functions, Template literals</li>
+            <li>Destructuring, Spread operator ..., Rest operator ...</li>
+            <li>Default parameters, Optional chaining ?., Nullish coalescing ??</li>
+            <li>Modules — import / export</li>
+        </ul>
+
+        <h4>🟡 Level 8 — Important JavaScript Concepts</h4>
+        <ul>
+            <li>Scope, Hoisting, Execution context (basic), Closures (basic)</li>
+            <li>this, Callbacks, Higher-order functions</li>
+        </ul>
+
+        <h4>🟡 Level 9 — DOM & Browser JavaScript</h4>
+        <ul>
+            <li>What is DOM? getElementById, querySelector, querySelectorAll</li>
+            <li>Changing text, HTML, CSS, Creating/Removing elements</li>
+            <li>Events: click, input, submit, Event listeners</li>
+            <li>Forms, Form validation</li>
+        </ul>
+
+        <h4>🟠 Level 10 — Asynchronous JavaScript</h4>
+        <ul>
+            <li>Synchronous vs Asynchronous, Call Stack (basic)</li>
+            <li>Callback, setTimeout, setInterval</li>
+            <li>Promises: .then, .catch, async, await, try...catch</li>
+            <li>Fetch API, JSON</li>
+        </ul>
+
+        <h4>🔴 Level 11 — JavaScript for Real Projects</h4>
+        <ul>
+            <li>API calls: GET / POST / PUT / DELETE</li>
+            <li>Local Storage, Session Storage</li>
+            <li>JSON handling, Modules, Error handling</li>
+            <li>Environment variables (basic), npm basics</li>
+            <li>Debugging — Browser DevTools</li>
+        </ul>
+
+        <!-- SECTION 5: Recommended Order -->
+        <h3>🎯 Recommended Learning Order</h3>
+        <div style="padding:1.5rem;background:var(--mdb-bg);border-radius:var(--mdb-radius);margin:1rem 0;">
+            <ol style="font-weight:500;line-height:2;">
+                <li>JavaScript Basics</li>
+                <li>Variables & Data Types</li>
+                <li>Operators</li>
+                <li>Conditions</li>
+                <li>Loops</li>
+                <li>Functions</li>
+                <li>Arrays</li>
+                <li>Strings</li>
+                <li>Objects</li>
+                <li>ES6+</li>
+                <li>DOM</li>
+                <li>Events</li>
+                <li>Async JavaScript</li>
+                <li>Promises</li>
+                <li>Async/Await</li>
+                <li>Fetch API</li>
+                <li>Small Projects</li>
+                <li>DSA</li>
+                <li>LeetCode</li>
+                <li>React / Node.js</li>
+            </ol>
+        </div>
+
+        <!-- SECTION 6: DSA Detailed Roadmap -->
+        <h3>🧭 DSA Detailed Roadmap (Practical)</h3>
+        <p>After you are comfortable with JavaScript basics, follow this DSA order:</p>
+        <ol>
+            <li><strong>Programming Logic</strong> — Variables, Conditions, Loops, Functions, Arrays, Objects, Strings, Basic problem solving</li>
+            <li><strong>Time & Space Complexity</strong> — Big O: O(1), O(n), O(n²), O(log n)</li>
+            <li><strong>Arrays ⭐</strong> — Traversing, Insert/Delete, Search, Reverse, Sorting, Find min/max, Frequency counting, Two Sum, Duplicate detection, Two Pointer, Sliding Window</li>
+            <li><strong>Strings</strong> — Reverse, Palindrome, Character frequency, Anagram, String searching</li>
+            <li><strong>Objects / Hashing ⭐</strong> — Object as Hash Map, Map, Set, Frequency counter, Fast lookup</li>
+            <li><strong>Recursion</strong> — Base case, Recursive case, Call stack, Factorial, Fibonacci</li>
+            <li><strong>Searching</strong> — Linear Search, Binary Search</li>
+            <li><strong>Sorting</strong> — Bubble, Selection, Insertion, Merge, Quick, JavaScript .sort()</li>
+            <li><strong>Stack</strong> — LIFO, Push/Pop, Parentheses matching, Undo/Redo</li>
+            <li><strong>Queue</strong> — FIFO, Enqueue/Dequeue</li>
+            <li><strong>Linked List</strong> — Node, Head, Traversal, Insert, Delete</li>
+            <li><strong>Trees</strong> — Binary Tree, BST, Traversals (Inorder, Preorder, Postorder)</li>
+            <li><strong>Heap / Priority Queue</strong> — Min Heap, Max Heap</li>
+            <li><strong>Graphs</strong> — Vertex/Edge, BFS, DFS</li>
+            <li><strong>Problem-Solving Techniques ⭐</strong> — Two Pointers, Sliding Window, Hashing, Prefix Sum, Recursion, Backtracking, Greedy, Divide & Conquer, DP basics</li>
+        </ol>
+
+        <!-- SECTION 7: How Much DSA is Enough? -->
+        <h3>🎯 How Much DSA Do You Need?</h3>
+        <div style="padding:1.2rem;background:var(--mdb-green-subtle);border-radius:var(--mdb-radius);border-left:4px solid var(--mdb-green);">
+            <p style="margin:0;font-weight:500;">
+                If your goal is <strong>JavaScript → React → Node.js → MERN → Real-time projects</strong>, then you need:
+            </p>
+            <ul style="margin:0.5rem 0 0 1.2rem;">
+                <li>Programming Logic</li>
+                <li>Big O</li>
+                <li>Arrays, Strings, Objects/Map/Set</li>
+                <li>Recursion, Searching, Sorting</li>
+                <li>Stack, Queue</li>
+                <li>Linked List, Trees, Graph basics</li>
+                <li>Problem-solving patterns (Two Pointers, Sliding Window, etc.)</li>
+            </ul>
+            <p style="margin-top:0.5rem;color:var(--mdb-muted);">
+                <strong>You do NOT need</strong> advanced DP, segment trees, tries, or complex graph algorithms at the start.
+            </p>
+        </div>
+
+        <!-- SECTION 8: Example: Why DSA? -->
+        <h3>💡 Why DSA Matters — A Real Example</h3>
+        <div class="example-box">
+            <strong>Problem:</strong> Does an array contain duplicate values?
+            <br><br>
+            <strong>Basic solution (O(n²)):</strong>
+            <code>for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i] === arr[j]) return true;
+    }
+}</code>
+            <br><br>
+            <strong>Better solution using Set (O(n)):</strong>
+            <code>const seen = new Set();
+for (const value of arr) {
+    if (seen.has(value)) return true;
+    seen.add(value);
+}</code>
+            <p style="margin-top:0.5rem;">
+                This is <strong>DSA in action</strong> — using the right data structure makes your code faster and cleaner.
+            </p>
+        </div>
+
+        <!-- SECTION 9: Final Important Note -->
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--mdb-dark);border-radius:var(--mdb-radius);color:#fff;">
+            <h3 style="color:var(--mdb-green-light);margin-top:0;">⭐ Most Important Thing</h3>
+            <p style="color:#C1CDC6;">
+                <strong>Don't start DSA before you understand JavaScript basics.</strong>
+                <br><br>
+                First, learn to <strong>think in JavaScript</strong> — how to solve a problem using variables, loops, functions, arrays, and objects.
+                <br><br>
+                Then, learn <strong>DSA to make those solutions faster and more efficient</strong>.
+                <br><br>
+                Then, practice on <strong>LeetCode</strong> to build confidence.
+                <br><br>
+                This sequence is smooth, beginner-friendly, and prepares you for real-world projects and interviews.
+            </p>
+        </div>
+
+    </div>
 
     <!-- ============================================================
     10-DAY ROADMAP (preserved content, restyled container)
