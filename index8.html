@@ -1,3 +1,8 @@
+I have corrected your HTML page by removing duplicate roadmap sections, polishing the UI/UX, and adding the Node.js + DSA roadmap you provided. The page now has a professional hero section, a clean single roadmap with clear next steps, and a comprehensive "Full Explanation" at the end. All interactive features (lessons, code playground, quizzes) remain intact and functional.
+
+Below is the complete, ready-to-use HTML code. Simply copy and paste it into your `index.html` file and open it in your browser.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -248,28 +253,1066 @@
             <!-- Dynamic Content Injected Here -->
         </main>
     </div>
-<div><pre><form onsubmit="showName(event)">
 
-    <input type="text" id="name" placeholder="Enter your name">
-
-    <button type="submit">Submit</button>
-
-    <p id="output"></p>
-
-</form>
-
-<script>
+    <!-- =========================================================
+         EXTRA EVENTS SECTION (from original)
+         ========================================================= -->
+    <div>
+        <style>
+            .event-class {
+                font-family: Arial, sans-serif;
+                max-width: 900px;
+                margin: auto;
+                padding: 20px;
+                line-height: 1.6;
+            }
+            .event-class .hero {
+                background: #222;
+                color: white;
+                padding: 40px;
+                text-align: center;
+                border-radius: 12px;
+                margin-bottom: 25px;
+            }
+            .event-class .section {
+                border: 1px solid #ddd;
+                padding: 25px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+            }
+            .event-class .code {
+                background: #f4f4f4;
+                padding: 15px;
+                border-radius: 8px;
+                overflow-x: auto;
+            }
+            .event-class .code pre { margin: 0; }
+            .event-class .example {
+                background: #f8fbff;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 15px;
+            }
+            .event-class .example input,
+            .event-class .example select,
+            .event-class .example button {
+                padding: 8px;
+                margin: 5px 0;
+            }
+            .event-class .error { color: red; }
+            .event-class .note {
+                background: #fff8e1;
+                padding: 15px;
+                border-radius: 8px;
+            }
+        </style>
+        <div class="event-class">
+            <!-- HERO -->
+            <div class="hero">
+                <h1>JavaScript Events</h1>
+                <p>Learn Common Events with Simple Examples</p>
+                <p>Action → Event → Function → Output</p>
+            </div>
+            <!-- What is Event -->
+            <div class="section">
+                <h2>What is an Event?</h2>
+                <p>An <b>Event</b> is an action or happening on a webpage.</p>
+                <p>When the user performs an action, JavaScript can run a function.</p>
+                <div class="note">
+                    <b>Example:</b>
+                    <p>User clicks a button → onclick event happens → function runs → output is displayed.</p>
+                </div>
+            </div>
+            <!-- Event Flow -->
+            <div class="section">
+                <h2>How Event Works?</h2>
+                <div class="code"><pre>User Action
+     ↓
+Event
+     ↓
+Function
+     ↓
+Output</pre></div>
+                <p><b>Example:</b> Click Button → onclick → showMessage() → Hello</p>
+            </div>
+            <!-- onclick -->
+            <div class="section">
+                <h2>1. onclick</h2>
+                <p><b>Meaning:</b> onclick is used when an element is clicked.</p>
+                <h3>Syntax</h3>
+                <div class="code"><pre>&lt;button onclick="functionName()"&gt; Click &lt;/button&gt;</pre></div>
+                <h3>Example Code</h3>
+                <div class="code"><pre>&lt;button onclick="showMessage()"&gt;Click Me&lt;/button&gt;
+&lt;p id="output"&gt;&lt;/p&gt;
+&lt;script&gt;
+function showMessage() {
+    document.getElementById("output").textContent = "Button Clicked!";
+}
+&lt;/script&gt;</pre></div>
+                <h3>Try It</h3>
+                <div class="example">
+                    <button onclick="clickExample()">Click Me</button>
+                    <p id="clickOutput"></p>
+                </div>
+                <p><b>Remember:</b> Button click → onclick → function → output</p>
+            </div>
+            <!-- ondblclick -->
+            <div class="section">
+                <h2>2. ondblclick</h2>
+                <p><b>Meaning:</b> ondblclick is used when an element is double clicked.</p>
+                <h3>Example Code</h3>
+                <div class="code"><pre>&lt;button ondblclick="showMessage()"&gt;Double Click&lt;/button&gt;
+&lt;script&gt;function showMessage() { document.getElementById("output").textContent = "Double Clicked!"; }&lt;/script&gt;</pre></div>
+                <h3>Try It</h3>
+                <div class="example">
+                    <button ondblclick="doubleClickExample()">Double Click Me</button>
+                    <p id="doubleOutput"></p>
+                </div>
+                <p><b>Remember:</b> Two clicks → ondblclick → function</p>
+            </div>
+            <!-- onmouseover -->
+            <div class="section">
+                <h2>3. onmouseover</h2>
+                <p><b>Meaning:</b> onmouseover works when the mouse moves over an element.</p>
+                <h3>Example Code</h3>
+                <div class="code"><pre>&lt;button onmouseover="showMessage()"&gt;Move Mouse Here&lt;/button&gt;</pre></div>
+                <h3>Try It</h3>
+                <div class="example">
+                    <button onmouseover="mouseExample()">Move Mouse Here</button>
+                    <p id="mouseOutput"></p>
+                </div>
+                <p><b>Remember:</b> Mouse over → onmouseover → function</p>
+            </div>
+            <!-- onchange -->
+            <div class="section">
+                <h2>4. onchange</h2>
+                <p><b>Meaning:</b> onchange works when an input or select value changes.</p>
+                <h3>Example Code</h3>
+                <div class="code"><pre>&lt;select onchange="showCourse()"&gt;
+    &lt;option&gt;HTML&lt;/option&gt;
+    &lt;option&gt;CSS&lt;/option&gt;
+&lt;/select&gt;
+&lt;script&gt;
+function showCourse() {
+    let course = document.getElementById("course").value;
+    document.getElementById("output").textContent = course;
+}
+&lt;/script&gt;</pre></div>
+                <h3>Try It</h3>
+                <div class="example">
+                    <select id="course" onchange="changeExample()">
+                        <option value="">Select Course</option>
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScript">JavaScript</option>
+                    </select>
+                    <p id="changeOutput"></p>
+                </div>
+                <p><b>Remember:</b> Value change → onchange → function</p>
+            </div>
+            <!-- onload -->
+            <div class="section">
+                <h2>5. onload</h2>
+                <p><b>Meaning:</b> onload works when the webpage finishes loading.</p>
+                <h3>Example</h3>
+                <div class="code"><pre>&lt;body onload="pageLoaded()"&gt;
+&lt;script&gt;function pageLoaded() { alert("Page Loaded!"); }&lt;/script&gt;</pre></div>
+                <p>When the page is completely loaded, the function will run.</p>
+            </div>
+            <!-- onsubmit -->
+            <div class="section">
+                <h2>6. onsubmit</h2>
+                <p><b>Meaning:</b> onsubmit works when a form is submitted.</p>
+                <h3>Basic Example</h3>
+                <div class="code"><pre>&lt;form onsubmit="showName(event)"&gt;
+    &lt;input type="text" id="name"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;p id="output"&gt;&lt;/p&gt;
+&lt;/form&gt;
+&lt;script&gt;
 function showName(event) {
     event.preventDefault();
-
     let name = document.getElementById("name").value;
-
-    document.getElementById("output").textContent =
-        "Hello " + name;
+    document.getElementById("output").textContent = "Hello " + name;
 }
-</script> </pre>
-</div>
-    <!-- JAVASCRIPT APPLICATION LOGIC & CONTENT -->
+&lt;/script&gt;</pre></div>
+                <h3>Try It</h3>
+                <div class="example">
+                    <form onsubmit="showName(event)">
+                        <input type="text" id="name" placeholder="Enter your name">
+                        <br>
+                        <button type="submit">Submit</button>
+                        <p id="nameOutput"></p>
+                    </form>
+                </div>
+            </div>
+            <!-- Check Empty Input -->
+            <div class="section">
+                <h2>7. Check Empty Input</h2>
+                <p>If the input is empty, we can use an <b>if condition</b>.</p>
+                <p>Empty input → Border becomes red → "Please enter" message appears.</p>
+                <h3>Example Code</h3>
+                <div class="code"><pre>let input = document.getElementById("name");
+if (input.value == "") {
+    input.style.border = "2px solid red";
+    output.textContent = "Please enter your name";
+}</pre></div>
+                <h3>Try It</h3>
+                <div class="example">
+                    <form onsubmit="checkInput(event)">
+                        <input type="text" id="studentName" placeholder="Enter your name">
+                        <br>
+                        <button type="submit">Check</button>
+                        <p id="error" class="error"></p>
+                    </form>
+                </div>
+            </div>
+            <!-- All Events -->
+            <div class="section">
+                <h2>Common Events - Quick Revision</h2>
+                <div class="code"><pre>onclick      → When clicked
+ondblclick   → When double clicked
+onmouseover  → When mouse moves over
+onchange     → When value changes
+onload       → When page finishes loading
+onsubmit     → When form is submitted</pre></div>
+            </div>
+            <!-- Final Concept -->
+            <div class="hero">
+                <h2>Remember This!</h2>
+                <p>Action → Event → Function → Output</p>
+                <p>Example: Click → onclick → function → Result</p>
+            </div>
+        </div>
+        <script>
+            function clickExample() {
+                document.getElementById("clickOutput").textContent = "Button Clicked!";
+            }
+            function doubleClickExample() {
+                document.getElementById("doubleOutput").textContent = "Double Clicked!";
+            }
+            function mouseExample() {
+                document.getElementById("mouseOutput").textContent = "Mouse is here!";
+            }
+            function changeExample() {
+                let course = document.getElementById("course").value;
+                document.getElementById("changeOutput").textContent = "You selected " + course;
+            }
+            function showName(event) {
+                event.preventDefault();
+                let name = document.getElementById("name").value;
+                document.getElementById("nameOutput").textContent = "Hello " + name;
+            }
+            function checkInput(event) {
+                event.preventDefault();
+                let input = document.getElementById("studentName");
+                let error = document.getElementById("error");
+                if (input.value == "") {
+                    input.style.border = "2px solid red";
+                    error.textContent = "Please enter your name";
+                } else {
+                    input.style.border = "2px solid green";
+                    error.textContent = "Hello " + input.value;
+                }
+            }
+        </script>
+    </div>
+
+    <!-- =========================================================
+         SINGLE 10-DAY JAVASCRIPT + PRACTICAL DSA ROADMAP
+         (Corrected – duplicates removed, polished as real map)
+         ========================================================= -->
+    <div style="width:100%; font-family:Arial,sans-serif; background:#f8fafc; color:#0f172a; padding:20px 0;">
+        <!-- HERO for Roadmap -->
+        <div style="padding:60px 20px; background:linear-gradient(135deg,#111827,#1e293b); border-radius:28px; text-align:center; max-width:1200px; margin:auto;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                 alt="JavaScript Logo"
+                 style="width:95px;height:95px;display:block;margin:0 auto 25px;">
+            <div style="display:inline-block;padding:8px 14px;border-radius:50px;background:rgba(255,255,255,.08);color:#facc15;font-size:12px;font-weight:bold;margin-bottom:18px;">
+                BEGINNER FRIENDLY • PRACTICAL • MERN READY
+            </div>
+            <h1 style="margin:0 auto 18px;max-width:850px;color:white;font-size:clamp(32px,7vw,60px);line-height:1.08;">
+                10-Day JavaScript + Practical DSA Roadmap
+            </h1>
+            <p style="max-width:700px;margin:0 auto 25px;color:#cbd5e1;font-size:17px;line-height:1.7;">
+                Absolute Beginner → JavaScript Logic → DSA → React + Node.js + MERN Readiness
+            </p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:25px;">
+                <span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">⏰ 4.5–5.5 Hours / Day</span>
+                <span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">🧠 Logic First</span>
+                <span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">🏗️ Build While Learning</span>
+            </div>
+            <div style="max-width:720px;margin:auto;padding:18px;background:rgba(255,255,255,.06);border-radius:15px;color:#cbd5e1;line-height:1.7;font-size:14px;">
+                <strong style="color:white;">Main Principle:</strong>
+                Learn → Type → Practice → Solve → Build → Revise
+                <br>
+                This roadmap focuses on practical JavaScript, programming logic,
+                DSA and real MERN development — not competitive programming.
+            </div>
+        </div>
+
+        <!-- Roadmap Title -->
+        <div style="text-align:center;padding:45px 20px 25px;">
+            <p style="margin:0 0 8px;color:#2563eb;font-size:13px;font-weight:bold;">LEARNING JOURNEY</p>
+            <h2 style="margin:0;font-size:clamp(28px,6vw,42px);">10 Days. One Strong Foundation.</h2>
+        </div>
+
+        <!-- DAY 1 -->
+        <details open style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🚀 DAY 1 — JavaScript Basics + Programming Logic</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>What is JavaScript? • Where JavaScript is used • How JavaScript runs • let • const • var • Data Types • typeof • Arithmetic Operators • Assignment Operators • Comparison Operators • Logical Operators • Template Literals • if • else • else if • Ternary</p>
+                <h3 style="color:#2563eb;">🧠 Simple Explanation</h3>
+                <p>Programming is like giving instructions to a person. JavaScript lets us give those instructions to a computer.</p>
+                <div style="padding:16px;background:#f1f5f9;border-radius:12px;">
+                    <strong>Variable = Labelled Box</strong><br><br>
+                    <code>let name = "Mani";<br>let age = 25;</code>
+                </div>
+                <h3 style="color:#2563eb;">💻 Example</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const name = "Arun";
+const mark = 75;
+if (mark >= 50) {
+    console.log(`${name} passed`);
+} else {
+    console.log(`${name} failed`);
+}</code></pre>
+                <h3 style="color:#2563eb;">🏋️ Practice</h3>
+                <p>Store name and age • Add two numbers • Subtract two numbers • Rectangle area • Even/Odd • Positive/Negative • Pass/Fail • Voting eligibility • Largest of two • Largest of three</p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Even or Odd • Largest of Two • Sum of Numbers</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>React → Variables and conditions control UI.<br>Node.js → Request data is stored in variables.<br>MongoDB → Database results are processed using variables.</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>Build a <strong>Student Result Checker</strong>. Display Student Name, Mark and Result.</p>
+                <div style="padding:15px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;">✅ Goal: Create variables, understand data types, perform calculations and make simple decisions.</div>
+            </div>
+        </details>
+
+        <!-- DAY 2 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">📦 DAY 2 — Arrays + Strings + Loops</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Arrays • Index • length • Accessing Elements • Updating Elements • push() • pop() • shift() • unshift() • Strings • for • while • do...while • for...of • for...in</p>
+                <h3 style="color:#2563eb;">🧠 Simple Explanation</h3>
+                <p>Array = a row of boxes.</p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const marks = [70, 80, 90, 60];
+Index:  0   1   2   3
+Value: 70  80  90  60</code></pre>
+                <h3 style="color:#2563eb;">💻 Traversing</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const marks = [70, 80, 90, 60];
+for (let mark of marks) {
+    console.log(mark);
+}</code></pre>
+                <h3 style="color:#2563eb;">🏋️ Practice</h3>
+                <p>Print 1–10 • Print 10–1 • Multiplication Table • Sum Numbers • Count Even • Count Odd • Largest • Smallest • Reverse Number • Count Characters</p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Find Maximum • Find Minimum • Reverse String • Count Even Numbers</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>React → products.map()<br>Node.js → Process arrays of users/data<br>MongoDB → Multiple documents are commonly processed as arrays</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p><strong>Marks Analyzer:</strong> Calculate Total, Average, Highest, Lowest and Passed Students.</p>
+            </div>
+        </details>
+
+        <!-- DAY 3 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🧱 DAY 3 — Objects + Array of Objects + Array Methods</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Objects • Properties • Accessing • Updating • Adding • Deleting • Nested Objects • Array of Objects</p>
+                <p><strong>Methods:</strong> forEach() • map() • filter() • find() • findIndex() • includes() • indexOf() • some() • every() • reduce() • sort()</p>
+                <h3 style="color:#2563eb;">🧠 Object</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const student = {
+    name: "Arun",
+    age: 20,
+    mark: 85
+};
+console.log(student.name);</code></pre>
+                <h3 style="color:#2563eb;">⭐ Important Methods</h3>
+                <p><strong>map()</strong> → Changes every item.<br><strong>filter()</strong> → Keeps matching items.<br><strong>find()</strong> → Finds one item.<br><strong>reduce()</strong> → Combines values into one.</p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const numbers = [1, 2, 3];
+const result = numbers.map(number => number * 2);
+console.log(result);</code></pre>
+                <h3 style="color:#2563eb;">🏋️ Practice</h3>
+                <p>Display students • Find passed students • Highest mark • Find Arun • Average • Check 100 • Check everyone passed • Sort students by mark</p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Maximum • Duplicate Values • Remove Duplicates • Second Largest • Count Occurrences • Common Elements</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>React → Objects become props/state.<br>Express → req.body contains object-like data.<br>MongoDB → Documents look similar to JavaScript objects.</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Project</h3>
+                <p>🎓 <strong>Student Marks Manager</strong><br>Add Student • Display Students • Highest Mark • Average • Passed Students • Search Student</p>
+            </div>
+        </details>
+
+        <!-- DAY 4 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">⚙️ DAY 4 — Functions + Callbacks + Modern JavaScript</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Function Declaration • Parameters • Arguments • Return • Function Expression • Arrow Functions • Default Parameters • Callbacks • Destructuring • Spread • Rest • Optional Chaining • Nullish Coalescing • Modules • import • export</p>
+                <h3 style="color:#2563eb;">🧠 Function = Reusable Machine</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function add(a, b) {
+    return a + b;
+}
+console.log(add(10, 20));</code></pre>
+                <h3 style="color:#2563eb;">📌 Callback</h3>
+                <p>A callback is a function given to another function so that it can be used later.</p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function greet(name, callback) {
+    console.log("Hello " + name);
+    callback();
+}
+greet("Arun", () => {
+    console.log("Welcome!");
+});</code></pre>
+                <h3 style="color:#2563eb;">🏋️ Practice</h3>
+                <p>add() • subtract() • multiply() • calculateTotal() • findLargest() • isPrime() • isPalindrome() • Destructuring • Spread • Rest</p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Prime • Palindrome • Reverse String • Character Count • Largest using Function</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>React → Components and props use functions/destructuring.<br>Node.js → Controllers, Services and Utilities are functions.<br>Express → Middleware uses callback functions.</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>Create Student Utility Library: addStudent() • calculateAverage() • findHighest() • findPassedStudents() • findStudent()</p>
+            </div>
+        </details>
+
+        <!-- DAY 5 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">⚡ DAY 5 — JSON + Async JavaScript + Promise + async/await</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Synchronous • Asynchronous • setTimeout() • Callback • Promise • .then() • .catch() • async/await • try/catch • JSON</p>
+                <div style="padding:18px;background:#f1f5f9;border-radius:12px;">
+                    <strong>Flow:</strong><br><br>
+                    Synchronous → Asynchronous → setTimeout() → Callback → Promise → .then() → .catch() → async/await
+                </div>
+                <h3 style="color:#2563eb;">🧠 Simple Example</h3>
+                <p>Think about ordering food. You don't wait inside the kitchen. You continue doing other work while your food is prepared.</p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>console.log("Start");
+setTimeout(() => {
+    console.log("Food ready");
+}, 2000);
+console.log("Continue");</code></pre>
+                <h3 style="color:#2563eb;">📦 Promise</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const promise = new Promise((resolve, reject) => {
+    const success = true;
+    if (success) {
+        resolve("Success");
+    } else {
+        reject("Failed");
+    }
+});</code></pre>
+                <h3 style="color:#2563eb;">🌐 JSON</h3>
+                <p>JSON is commonly used to send data between frontend and backend.</p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>JSON.stringify(student);
+JSON.parse(data);</code></pre>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Factorial • Fibonacci • Prime • Palindrome • Reverse String</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>React → fetch() + await<br>Node.js → Database operations<br>Express → Async Controllers<br>Mongoose → await User.find()</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>Create Fake Async Student Service: getStudents() → Promise → async/await → try/catch → Display Students</p>
+            </div>
+        </details>
+
+        <!-- DAY 6 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🌐 DAY 6 — Fetch API + REST API + Classes + Basic OOP</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Fetch API • Request • Response • HTTP Basics • GET • POST • PUT/PATCH • DELETE • REST API • try/catch • throw • Error • Classes • Constructor • this • Methods • extends • super</p>
+                <h3 style="color:#2563eb;">🌐 API in Simple Language</h3>
+                <div style="padding:20px;background:#f1f5f9;border-radius:12px;text-align:center;">React<br>↓<br>Request<br>↓<br>Backend<br>↓<br>Database<br>↓<br>Response<br>↓<br>React</div>
+                <h3 style="color:#2563eb;">💻 Fetch</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>async function getUsers() {
+    try {
+        const response = await fetch("/api/users");
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}</code></pre>
+                <h3 style="color:#2563eb;">📡 REST Operations</h3>
+                <p>GET → Get data<br>POST → Create data<br>PUT/PATCH → Update data<br>DELETE → Delete data</p>
+                <h3 style="color:#2563eb;">🧱 Classes</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>class Student {
+    constructor(name, mark) {
+        this.name = name;
+        this.mark = mark;
+    }
+    display() {
+        console.log(this.name, this.mark);
+    }
+}
+const student = new Student("Arun", 80);
+student.display();</code></pre>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Linear Search • Search Student by Name • Highest Mark • Duplicate Values • Reverse Array</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>Student Management API Logic: GET /students • POST /students • PUT /students/:id • DELETE /students/:id</p>
+                <div style="padding:15px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;">React → fetch() → Express Route → Controller → Mongoose → MongoDB</div>
+            </div>
+        </details>
+
+        <!-- DAY 7 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🧠 DAY 7 — DSA Fundamentals + Big-O + Searching</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>What is DSA? • Data Structures • Algorithms • DSA vs Competitive Programming • Big-O • Linear Search • Binary Search</p>
+                <h3 style="color:#2563eb;">🧠 DSA</h3>
+                <p><strong>Data Structure:</strong> How we organize data.<br><strong>Algorithm:</strong> Steps used to solve a problem.</p>
+                <h3 style="color:#2563eb;">⏱️ Big-O</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
+                    <div style="padding:16px;background:#f1f5f9;border-radius:12px;"><strong>O(1)</strong><br>Direct Access</div>
+                    <div style="padding:16px;background:#f1f5f9;border-radius:12px;"><strong>O(n)</strong><br>One Loop</div>
+                    <div style="padding:16px;background:#f1f5f9;border-radius:12px;"><strong>O(n²)</strong><br>Nested Loops</div>
+                    <div style="padding:16px;background:#f1f5f9;border-radius:12px;"><strong>O(log n)</strong><br>Binary Search</div>
+                </div>
+                <h3 style="color:#2563eb;">🔎 Linear Search</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function linearSearch(numbers, target) {
+    for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] === target) {
+            return i;
+        }
+    }
+    return -1;
+}</code></pre>
+                <h3 style="color:#2563eb;">🔍 Binary Search</h3>
+                <p>Binary Search works on a sorted array. Each step reduces the search area.</p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Linear Search • Maximum • Minimum • Count Target • Binary Search • Search Student by ID • Search Product by ID</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>🛍️ Product Search System → Create searchProduct(id)</p>
+            </div>
+        </details>
+
+        <!-- DAY 8 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🔄 DAY 8 — Sorting + Recursion + Array/String DSA</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Sorting • Bubble Sort • Selection Sort • Insertion Sort • Recursion • Base Condition</p>
+                <h3 style="color:#2563eb;">🫧 Bubble Sort</h3>
+                <p>Compare neighboring values and swap them when needed.</p>
+                <div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">20 &nbsp; 10<br>↓<br>10 &nbsp; 20</div>
+                <h3 style="color:#2563eb;">♻️ Recursion</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function countdown(number) {
+    if (number === 0) {
+        return;
+    }
+    console.log(number);
+    countdown(number - 1);
+}</code></pre>
+                <p><strong>Base Condition → Stops Recursion</strong></p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Reverse Array • Remove Duplicates • Second Largest • Missing Number • Search Value • Reverse String • Palindrome • Character Frequency • Anagram • First Non-Repeating Character</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>🛍️ Product Sorting → Create sortByPrice()</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>Products by price • Students by marks • Orders by date • Users alphabetically</p>
+            </div>
+        </details>
+
+        <!-- DAY 9 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🗂️ DAY 9 — Map + Set + Frequency + Stack + Queue</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Map • Set • Frequency Counting • Two Sum • Common Elements • Stack • Queue</p>
+                <h3 style="color:#2563eb;">🗺️ Map</h3>
+                <p>Think of Map as <strong>KEY → VALUE</strong></p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const map = new Map();
+map.set("Arun", 80);
+map.set("Bala", 90);
+console.log(map.get("Arun"));</code></pre>
+                <h3 style="color:#2563eb;">🟢 Set</h3>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const numbers = [1, 2, 2, 3, 3, 4];
+const unique = new Set(numbers);
+console.log(unique);</code></pre>
+                <h3 style="color:#2563eb;">🔢 Frequency Counter</h3>
+                <p>[a,b,a,c,a] → a:3 • b:1 • c:1</p>
+                <h3 style="color:#2563eb;">➕ Two Sum</h3>
+                <p>[2,7,11,15], Target = 9<br>2 + 7 = 9</p>
+                <h3 style="color:#2563eb;">🥞 Stack</h3>
+                <p><strong>LIFO — Last In, First Out</strong></p>
+                <pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const stack = [];
+stack.push(10);
+stack.push(20);
+stack.push(30);
+stack.pop();</code></pre>
+                <h3 style="color:#2563eb;">🚶 Queue</h3>
+                <p><strong>FIFO — First In, First Out</strong><br>Like people waiting at a ticket counter.</p>
+                <h3 style="color:#2563eb;">🧩 DSA Practice</h3>
+                <p>Frequency Counter • Duplicate Detection • Remove Duplicates • Two Sum • Common Elements • First Unique Character • Anagram • Valid Parentheses • Stack • Queue</p>
+                <h3 style="color:#2563eb;">🌐 MERN Connection</h3>
+                <p>Map/Set → Unique IDs, deduplication, lookup and grouping.<br>Stack → Browser history, undo/redo.<br>Queue → Background jobs, email queues and task processing.</p>
+                <h3 style="color:#2563eb;">🛠️ Mini Task</h3>
+                <p>🛍️ Duplicate Product Detector<br>[101, 102, 103, 102, 104, 101]</p>
+            </div>
+        </details>
+
+        <!-- DAY 10 -->
+        <details style="max-width:1000px;margin:15px auto;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
+            <summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">🎯 DAY 10 — Two Pointers + Sliding Window + Final Project</summary>
+            <div style="padding:0 20px 25px;line-height:1.7;">
+                <h3 style="color:#2563eb;">🎯 Learn</h3>
+                <p>Two Pointers • Sliding Window • Mixed DSA • Revision • MERN Connection</p>
+                <h3 style="color:#2563eb;">👈👉 Two Pointers</h3>
+                <p>Use two positions to work through an array.</p>
+                <div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">[1, 2, 3, 4, 5]<br><br>↑ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↑<br>left &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right</div>
+                <h3 style="color:#2563eb;">🪟 Sliding Window</h3>
+                <p>Think of looking through a small section of an array. The window moves through the data.</p>
+                <div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">[1,2,3] 4 5 6<br>1 [2,3,4] 5 6<br>1 2 [3,4,5] 6</div>
+                <h3 style="color:#2563eb;">🧩 Final DSA Practice</h3>
+                <p><strong>Easy:</strong><br>Even/Odd • Largest • Reverse String • Palindrome • Linear Search • Frequency Counter • Remove Duplicates</p>
+                <p><strong>Medium-Beginner:</strong><br>Two Sum • Anagram • First Unique Character • Valid Parentheses • Two Pointers • Basic Sliding Window</p>
+                <div style="padding:18px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;">
+                    <strong>Problem Solving Method</strong><br><br>
+                    Understand → Input → Output → Example → Plain English Logic → JavaScript → Test → Edge Cases → Big-O
+                </div>
+            </div>
+        </details>
+
+        <!-- FINAL MINI PROJECT -->
+        <div style="max-width:1000px;margin:30px auto;padding:30px 20px;background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #bfdbfe;border-radius:22px;">
+            <div style="display:inline-block;padding:7px 12px;border-radius:50px;background:#dbeafe;color:#1d4ed8;font-size:12px;font-weight:bold;">FINAL MINI PROJECT</div>
+            <h2 style="font-size:32px;margin:15px 0;">🎓 Student Management System</h2>
+            <p style="line-height:1.7;color:#475569;">Build a JavaScript-based student management application using everything learned during the 10 days.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>1. Add Student</strong><br>Name • Age • Mark • Course</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>2. Display</strong><br>Use map()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>3. Search</strong><br>Use find()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>4. Filter</strong><br>Use filter()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>5. Average</strong><br>Use reduce()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>6. Highest Mark</strong><br>sort() or loop</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>7. Remove</strong><br>Use filter()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>8. Update</strong><br>Use map()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>9. JSON</strong><br>JSON.stringify()</div>
+                <div style="padding:16px;background:white;border-radius:12px;"><strong>10. Simulate API</strong><br>Promise • async/await • try/catch</div>
+            </div>
+        </div>
+
+        <!-- MERN CONNECTION -->
+        <div style="max-width:1000px;margin:25px auto;padding:30px 20px;background:#0f172a;color:white;border-radius:22px;text-align:center;">
+            <p style="color:#facc15;font-size:13px;font-weight:bold;">🔥 FINAL MERN VERSION</p>
+            <h2 style="font-size:32px;margin:10px 0 25px;">JavaScript → React → Node.js → MongoDB</h2>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;">
+                <span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">JavaScript</span>
+                <span>→</span>
+                <span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">React</span>
+                <span>→</span>
+                <span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">fetch()</span>
+                <span>→</span>
+                <span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">Express</span>
+                <span>→</span>
+                <span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">Mongoose</span>
+                <span>→</span>
+                <span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">MongoDB</span>
+            </div>
+        </div>
+
+        <!-- DAILY ROUTINE -->
+        <div style="max-width:1000px;margin:25px auto;padding:25px 20px;background:white;border:1px solid #e2e8f0;border-radius:22px;">
+            <h2>⏰ Daily 4.5–5.5 Hour Routine</h2>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;min-width:550px;border-collapse:collapse;">
+                    <tr><th style="padding:13px;text-align:left;background:#f1f5f9;">Time</th><th style="padding:13px;text-align:left;background:#f1f5f9;">Activity</th></tr>
+                    <tr><td style="padding:13px;border-bottom:1px solid #e2e8f0;">1 Hour</td><td style="padding:13px;border-bottom:1px solid #e2e8f0;">Learn Concept</td></tr>
+                    <tr><td style="padding:13px;border-bottom:1px solid #e2e8f0;">1.5 Hours</td><td style="padding:13px;border-bottom:1px solid #e2e8f0;">Type Examples Yourself</td></tr>
+                    <tr><td style="padding:13px;border-bottom:1px solid #e2e8f0;">1.5 Hours</td><td style="padding:13px;border-bottom:1px solid #e2e8f0;">DSA Practice</td></tr>
+                    <tr><td style="padding:13px;border-bottom:1px solid #e2e8f0;">1 Hour</td><td style="padding:13px;border-bottom:1px solid #e2e8f0;">Real-World Task / Project</td></tr>
+                    <tr><td style="padding:13px;">30 Minutes</td><td style="padding:13px;">Revision + Mistakes</td></tr>
+                </table>
+            </div>
+            <div style="margin-top:20px;padding:17px;background:#fefce8;border:1px solid #fde68a;border-radius:12px;line-height:1.7;">
+                ⭐ <strong>Golden Rule:</strong><br>
+                Don't spend 5 hours watching tutorials.<br>
+                <strong>20–30% Learning + 70–80% Writing + Thinking + Building</strong>
+            </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div style="max-width:1000px;margin:25px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;">
+            <div style="padding:25px;background:white;border:1px solid #e2e8f0;border-radius:20px;">
+                <h2>📚 JavaScript Checklist</h2>
+                <p style="line-height:2;">☑ Variables<br>☑ Data Types<br>☑ Conditions<br>☑ Loops<br>☑ Functions<br>☑ Arrays<br>☑ Strings<br>☑ Objects<br>☑ Array Methods<br>☑ Destructuring<br>☑ Spread / Rest<br>☑ JSON<br>☑ Callback<br>☑ Promise<br>☑ async/await<br>☑ try/catch<br>☑ Error Handling<br>☑ Fetch API<br>☑ Modules<br>☑ Classes</p>
+            </div>
+            <div style="padding:25px;background:white;border:1px solid #e2e8f0;border-radius:20px;">
+                <h2>🧩 DSA Checklist</h2>
+                <p style="line-height:2;">☑ Programming Logic<br>☑ Array Traversal<br>☑ Linear Search<br>☑ Binary Search<br>☑ Sorting<br>☑ Strings<br>☑ Frequency Counter<br>☑ Map<br>☑ Set<br>☑ Two Sum<br>☑ Stack<br>☑ Queue<br>☑ Recursion Basics<br>☑ Two Pointers<br>☑ Sliding Window<br>☑ Basic Big-O</p>
+            </div>
+        </div>
+
+        <!-- FINAL MESSAGE -->
+        <div style="max-width:1000px;margin:30px auto;padding:35px 20px;background:linear-gradient(135deg,#111827,#1e293b);border-radius:22px;text-align:center;color:white;">
+            <div style="font-size:40px;">🎯</div>
+            <h2 style="font-size:32px;">What the Learner Should Feel After 10 Days</h2>
+            <p style="max-width:750px;margin:auto;color:#cbd5e1;line-height:1.8;">
+                "I understand what JavaScript is doing."<br>
+                "I can create variables, functions, arrays and objects."<br>
+                "I can process real data using map, filter, find and reduce."<br>
+                "I can solve basic programming problems."<br>
+                "I understand Promise and async/await."<br>
+                "I understand API request and response."<br>
+                "I can read basic React code."<br>
+                "I understand Node.js and Express."<br>
+                "I understand JavaScript with MongoDB/Mongoose."<br><br>
+                <strong style="color:#facc15;">I am ready to start learning React and building small MERN applications.</strong>
+            </p>
+        </div>
+
+        <!-- MOST IMPORTANT RULE -->
+        <div style="max-width:1000px;margin:30px auto;padding:25px 20px;background:#fff7ed;border:1px solid #fed7aa;border-radius:20px;text-align:center;">
+            <h2>⭐ Most Important Rule</h2>
+            <p style="color:#7c2d12;line-height:1.8;">Don't rush through the 10 days just because the roadmap says 10 days. If the learner doesn't understand a topic, spend extra practice time on it.</p>
+            <div style="font-weight:bold;line-height:2;">Variables ↓ Conditions ↓ Loops ↓ Functions ↓ Arrays ↓ Objects ↓ Async JavaScript ↓ DSA ↓ React + Node.js</div>
+            <p style="color:#7c2d12;line-height:1.7;">If the foundation is strong, React, Node.js, Express and MERN become much easier to understand.</p>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         NODE.JS + JAVASCRIPT + PRACTICAL DSA ROADMAP (from second file)
+         ========================================================= -->
+    <div id="js-node-roadmap"
+         style="width:100%;max-width:1200px;margin:40px auto;font-family:Inter,Segoe UI,Arial,sans-serif;color:#e8eef5;background:#07110d;border:1px solid rgba(255,255,255,.09);border-radius:28px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,.35);line-height:1.6;">
+        <!-- HERO -->
+        <section style="position:relative;padding:70px 28px 60px;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(65,180,110,.20),transparent 40%),linear-gradient(145deg,#07110d,#0b1711 55%,#07110d);border-bottom:1px solid rgba(255,255,255,.08);">
+            <div style="display:inline-flex;align-items:center;gap:12px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:13px;color:#a9b7b0;margin-bottom:25px;">
+                <span style="width:8px;height:8px;border-radius:50%;background:#83cd29;box-shadow:0 0 15px #83cd29;"></span>
+                Beginner → MERN Ready
+            </div>
+            <div style="width:100px;height:100px;margin:0 auto 25px;border-radius:25px;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:0 15px 45px rgba(0,0,0,.3);overflow:hidden;">
+                <img src="https://nodejs.org/static/images/logo.svg" alt="Official Node.js Logo" style="width:82px;height:82px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div style="display:none;align-items:center;justify-content:center;font-size:35px;font-weight:900;color:#333;">JS</div>
+            </div>
+            <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#83cd29;font-weight:700;margin-bottom:10px;">JavaScript Foundation</div>
+            <h1 style="font-size:clamp(32px,6vw,64px);line-height:1.05;margin:0;font-weight:850;letter-spacing:-2px;">JavaScript + Practical DSA</h1>
+            <p style="max-width:760px;margin:22px auto 0;font-size:clamp(15px,2vw,19px);color:#aebbb5;">Absolute Beginner → JavaScript Logic → DSA → React + Node.js → MERN Readiness</p>
+            <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:28px;">
+                <span style="padding:8px 14px;border-radius:10px;background:rgba(131,205,41,.10);border:1px solid rgba(131,205,41,.20);font-size:13px;">10 Days</span>
+                <span style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:13px;">4.5–5.5 Hours / Day</span>
+                <span style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:13px;">Beginner Friendly</span>
+                <span style="padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:13px;">Practical DSA</span>
+            </div>
+        </section>
+
+        <!-- Node Installation -->
+        <section style="padding:35px 22px;">
+            <div style="max-width:1000px;margin:auto;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+                    <div style="width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#83cd29;color:#07110d;font-weight:900;font-size:20px;">1</div>
+                    <div><h2 style="margin:0;font-size:25px;">First: Install Node.js</h2><p style="margin:3px 0 0;color:#8f9d96;font-size:14px;">Windows Setup — From Absolute Zero</p></div>
+                </div>
+                <div style="padding:20px;border-radius:18px;background:rgba(131,205,41,.07);border:1px solid rgba(131,205,41,.18);margin-bottom:20px;">
+                    <h3 style="margin-top:0;color:#b8e87e;">What is Node.js?</h3>
+                    <p><strong>Node.js is a JavaScript runtime.</strong> It allows us to run JavaScript outside the browser.</p>
+                    <p style="color:#aebbb5;">Normally JavaScript runs inside Chrome. Node.js lets us run JavaScript directly on our computer/server.</p>
+                    <div style="margin-top:15px;padding:14px;border-radius:12px;background:#050a07;font-family:Consolas,monospace;font-size:14px;color:#d7e5dc;">
+                        Browser → JavaScript → UI<br>Node.js → JavaScript → Backend / Server / Tools
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+                    <div style="padding:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:16px;">
+                        <strong style="color:#83cd29;">STEP 01</strong>
+                        <h3 style="margin:8px 0;">Open Official Website</h3>
+                        <p style="font-size:14px;color:#aebbb5;">Go to the official Node.js website and open the Download section.</p>
+                        <a href="https://nodejs.org/en/download" target="_blank" style="display:inline-block;margin-top:5px;padding:9px 13px;border-radius:9px;background:#83cd29;color:#07110d;text-decoration:none;font-weight:700;font-size:13px;">Official Download</a>
+                    </div>
+                    <div style="padding:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:16px;">
+                        <strong style="color:#83cd29;">STEP 02</strong>
+                        <h3 style="margin:8px 0;">Choose LTS</h3>
+                        <p style="font-size:14px;color:#aebbb5;">For beginners, choose the <strong>LTS</strong> release. It is the better default for learning and production projects.</p>
+                    </div>
+                    <div style="padding:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:16px;">
+                        <strong style="color:#83cd29;">STEP 03</strong>
+                        <h3 style="margin:8px 0;">Windows Installer</h3>
+                        <p style="font-size:14px;color:#aebbb5;">Download the Windows installer (.msi) that matches your system architecture.</p>
+                    </div>
+                    <div style="padding:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:16px;">
+                        <strong style="color:#83cd29;">STEP 04</strong>
+                        <h3 style="margin:8px 0;">Install</h3>
+                        <p style="font-size:14px;color:#aebbb5;">Open the installer → Next → Accept → Next → Install. Default options are enough for a beginner.</p>
+                    </div>
+                </div>
+                <div style="margin-top:25px;padding:22px;border-radius:18px;background:#050a07;border:1px solid rgba(255,255,255,.08);">
+                    <h3 style="margin-top:0;">Check Installation</h3>
+                    <p style="color:#aebbb5;">Open <strong>Command Prompt</strong> or <strong>PowerShell</strong>. Then run:</p>
+                    <div style="position:relative;margin:12px 0;">
+                        <pre style="margin:0;padding:17px;padding-right:55px;overflow:auto;border-radius:12px;background:#000;color:#d8f5ca;font-family:Consolas,monospace;font-size:14px;">node -v
+npm -v</pre>
+                        <button onclick="copyRoadmapCode(this, 'node -v\nnpm -v')" style="position:absolute;right:10px;top:10px;border:0;border-radius:8px;padding:7px 9px;background:#83cd29;color:#07110d;cursor:pointer;font-weight:700;">Copy</button>
+                    </div>
+                    <p style="font-size:14px;color:#8f9d96;">If both commands show a version number, Node.js and npm are installed correctly.</p>
+                </div>
+                <div style="margin-top:18px;padding:20px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);">
+                    <h3 style="margin-top:0;">What is npm?</h3>
+                    <p><strong>npm = Node Package Manager.</strong> It helps us install and manage JavaScript packages.</p>
+                    <p style="color:#aebbb5;">Example: Express, Mongoose and many other backend libraries can be installed using npm.</p>
+                    <div style="padding:14px;border-radius:10px;background:#000;font-family:Consolas,monospace;">npm install express</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- First index.js -->
+        <section style="padding:35px 22px;background:rgba(255,255,255,.015);">
+            <div style="max-width:1000px;margin:auto;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+                    <div style="width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#83cd29;color:#07110d;font-weight:900;font-size:20px;">2</div>
+                    <div><h2 style="margin:0;font-size:25px;">Create Your First index.js</h2><p style="margin:3px 0 0;color:#8f9d96;font-size:14px;">Don't jump directly into Express. First understand plain JavaScript.</p></div>
+                </div>
+                <div style="padding:20px;border-radius:18px;background:#0c1510;border:1px solid rgba(255,255,255,.07);">
+                    <h3>Step 1 — Create a folder</h3>
+                    <p style="color:#aebbb5;">Create a folder anywhere. For example:</p>
+                    <div style="padding:14px;background:#000;border-radius:10px;font-family:Consolas,monospace;">javascript-practice</div>
+                    <h3 style="margin-top:25px;">Step 2 — Open the folder in VS Code</h3>
+                    <p style="color:#aebbb5;">Open the folder in VS Code. Then create a file named:</p>
+                    <div style="padding:14px;background:#000;border-radius:10px;font-family:Consolas,monospace;color:#b8e87e;">index.js</div>
+                    <h3 style="margin-top:25px;">Step 3 — Write your first JavaScript</h3>
+                    <div style="position:relative;">
+                        <pre style="margin:0;padding:18px;padding-right:60px;overflow:auto;background:#000;border-radius:12px;font-family:Consolas,monospace;font-size:14px;color:#e0ece4;">console.log("Hello JavaScript");</pre>
+                        <button onclick="copyRoadmapCode(this, 'console.log(\"Hello JavaScript\");')" style="position:absolute;right:10px;top:10px;border:0;border-radius:8px;padding:7px 9px;background:#83cd29;color:#07110d;cursor:pointer;font-weight:700;">Copy</button>
+                    </div>
+                    <h3 style="margin-top:25px;">Step 4 — Run it</h3>
+                    <div style="position:relative;">
+                        <pre style="margin:0;padding:18px;padding-right:60px;overflow:auto;background:#000;border-radius:12px;font-family:Consolas,monospace;font-size:14px;color:#d8f5ca;">node index.js</pre>
+                        <button onclick="copyRoadmapCode(this, 'node index.js')" style="position:absolute;right:10px;top:10px;border:0;border-radius:8px;padding:7px 9px;background:#83cd29;color:#07110d;cursor:pointer;font-weight:700;">Copy</button>
+                    </div>
+                    <div style="margin-top:18px;padding:15px;border-left:3px solid #83cd29;background:rgba(131,205,41,.06);color:#b8c6bf;">
+                        <strong>Remember:</strong><br>
+                        index.js is just a normal JavaScript file.<br>
+                        <strong>node index.js</strong> tells Node.js to execute that file.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Node -->
+        <section style="padding:35px 22px;">
+            <div style="max-width:1000px;margin:auto;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+                    <div style="width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#83cd29;color:#07110d;font-weight:900;font-size:20px;">3</div>
+                    <h2 style="margin:0;font-size:25px;">Why Do We Use Node.js?</h2>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+                    <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);"><div style="font-size:25px;">🌐</div><h3>Backend</h3><p style="font-size:14px;color:#aebbb5;">Node.js can run JavaScript on the server.</p></div>
+                    <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);"><div style="font-size:25px;">⚡</div><h3>APIs</h3><p style="font-size:14px;color:#aebbb5;">We can build REST APIs using Node.js and Express.</p></div>
+                    <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);"><div style="font-size:25px;">📦</div><h3>Packages</h3><p style="font-size:14px;color:#aebbb5;">npm lets us use thousands of JavaScript packages.</p></div>
+                    <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);"><div style="font-size:25px;">🛠️</div><h3>Tools</h3><p style="font-size:14px;color:#aebbb5;">Node.js is also used for scripts, automation and development tools.</p></div>
+                </div>
+                <div style="margin-top:22px;padding:20px;border-radius:16px;background:#050a07;border:1px solid rgba(255,255,255,.08);">
+                    <h3 style="margin-top:0;">Interview Answer 🎯</h3>
+                    <p style="margin:0;color:#c1cdc6;"><strong>“Node.js is a JavaScript runtime built on the V8 engine. It allows us to run JavaScript outside the browser and is commonly used to build backend applications, APIs, command-line tools and server-side systems.”</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Life -->
+        <section style="padding:35px 22px;background:rgba(255,255,255,.015);">
+            <div style="max-width:1000px;margin:auto;">
+                <h2 style="font-size:25px;">🌍 Node.js — Real-Life Examples</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:20px;">
+                    <div style="padding:20px;border-radius:16px;background:#0c1510;border:1px solid rgba(255,255,255,.07);"><h3>🛒 E-Commerce</h3><p style="font-size:14px;color:#aebbb5;">React sends product request → Node.js API → Database → Response.</p></div>
+                    <div style="padding:20px;border-radius:16px;background:#0c1510;border:1px solid rgba(255,255,255,.07);"><h3>🏦 Banking</h3><p style="font-size:14px;color:#aebbb5;">Backend can process authentication, transactions and account APIs.</p></div>
+                    <div style="padding:20px;border-radius:16px;background:#0c1510;border:1px solid rgba(255,255,255,.07);"><h3>💬 Chat App</h3><p style="font-size:14px;color:#aebbb5;">Node.js can handle server-side communication for real-time applications.</p></div>
+                    <div style="padding:20px;border-radius:16px;background:#0c1510;border:1px solid rgba(255,255,255,.07);"><h3>🎓 Student System</h3><p style="font-size:14px;color:#aebbb5;">Frontend → API → Node.js → Database → Student information.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic JS Practice -->
+        <section style="padding:35px 22px;">
+            <div style="max-width:1000px;margin:auto;">
+                <h2 style="font-size:25px;">🧪 First JavaScript Practice</h2>
+                <p style="color:#aebbb5;">Before DSA, become comfortable writing small JavaScript programs.</p>
+                <div style="position:relative;margin-top:20px;">
+                    <pre style="margin:0;padding:20px;overflow:auto;background:#000;border-radius:14px;font-family:Consolas,monospace;font-size:14px;color:#e0ece4;">const name = "Arun";
+const mark = 78;
+
+console.log("Student:", name);
+console.log("Mark:", mark);
+
+if (mark >= 50) {
+    console.log("Result: Pass");
+} else {
+    console.log("Result: Fail");
+}</pre>
+                    <button onclick="copyRoadmapCode(this, `const name = \"Arun\";\nconst mark = 78;\n\nconsole.log(\"Student:\", name);\nconsole.log(\"Mark:\", mark);\n\nif (mark >= 50) {\n    console.log(\"Result: Pass\");\n} else {\n    console.log(\"Result: Fail\");\n}`)" style="position:absolute;right:10px;top:10px;border:0;border-radius:8px;padding:7px 9px;background:#83cd29;color:#07110d;cursor:pointer;font-weight:700;">Copy</button>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:18px;">
+                    <div style="padding:15px;border-radius:12px;background:rgba(255,255,255,.04);"><strong>Variables</strong><br><span style="color:#96a49d;font-size:13px;">Store information.</span></div>
+                    <div style="padding:15px;border-radius:12px;background:rgba(255,255,255,.04);"><strong>if / else</strong><br><span style="color:#96a49d;font-size:13px;">Make decisions.</span></div>
+                    <div style="padding:15px;border-radius:12px;background:rgba(255,255,255,.04);"><strong>Loops</strong><br><span style="color:#96a49d;font-size:13px;">Repeat work.</span></div>
+                    <div style="padding:15px;border-radius:12px;background:rgba(255,255,255,.04);"><strong>Functions</strong><br><span style="color:#96a49d;font-size:13px;">Reuse logic.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Header (Node.js version – shortened, but we already have the main roadmap above, so we can skip or keep as summary) -->
+        <!-- The second file had a detailed 10-day roadmap again, but we already have one. We'll keep only the Node.js specific parts (installation, first index, why Node, etc.) and the connection maps. -->
+        <!-- So after the basic JS practice, we can add the connection maps from the second file. -->
+
+        <!-- React Connection Map -->
+        <section style="padding:45px 22px;background:rgba(255,255,255,.015);">
+            <div style="max-width:1000px;margin:auto;">
+                <h2>⚛️ React Connection Map</h2>
+                <div style="overflow:auto;margin-top:18px;">
+                    <table style="width:100%;border-collapse:collapse;min-width:600px;font-size:14px;">
+                        <thead><tr><th style="text-align:left;padding:13px;border-bottom:1px solid rgba(255,255,255,.08);">JavaScript</th><th style="text-align:left;padding:13px;border-bottom:1px solid rgba(255,255,255,.08);">React Usage</th></tr></thead>
+                        <tbody>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Variables</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Component data</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Conditions</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Conditional UI</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Arrays</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Lists</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">map()</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Render lists</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">filter()</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Product filtering</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">find()</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Find selected item</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">reduce()</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Cart totals</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Objects</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Props / State</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Destructuring</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Props</td></tr>
+                            <tr><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">Spread</td><td style="padding:13px;border-bottom:1px solid rgba(255,255,255,.05);">State updates</td></tr>
+                            <tr><td style="padding:13px;">async/await</td><td style="padding:13px;">API calls</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Node.js / Express Connection -->
+        <section style="padding:40px 22px;">
+            <div style="max-width:1000px;margin:auto;">
+                <h2>🟢 Node.js / Express Connection</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:18px;">
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>Functions</strong><br><span style="color:#98a59e;font-size:13px;">Controllers / Services</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>Objects</strong><br><span style="color:#98a59e;font-size:13px;">Request / Response data</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>Arrays</strong><br><span style="color:#98a59e;font-size:13px;">Process results</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>map()</strong><br><span style="color:#98a59e;font-size:13px;">Transform data</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>filter()</strong><br><span style="color:#98a59e;font-size:13px;">Filter data</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>Promise</strong><br><span style="color:#98a59e;font-size:13px;">Async operations</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>async/await</strong><br><span style="color:#98a59e;font-size:13px;">DB / API operations</span></div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;"><strong>try/catch</strong><br><span style="color:#98a59e;font-size:13px;">Error handling</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MongoDB / Mongoose Connection -->
+        <section style="padding:40px 22px;background:rgba(255,255,255,.015);">
+            <div style="max-width:1000px;margin:auto;">
+                <h2>🍃 MongoDB / Mongoose Connection</h2>
+                <div style="padding:20px;background:#050a07;border-radius:16px;font-family:Consolas,monospace;font-size:14px;line-height:2;overflow:auto;">
+                    MongoDB Document<br>↓<br>JavaScript-like Object<br><br>Many Documents<br>↓<br>Array of Objects<br><br>Mongoose Query<br>↓<br>Promise<br>↓<br>async/await<br><br>Database Error<br>↓<br>try/catch
+                </div>
+                <pre style="margin-top:18px;padding:18px;background:#000;border-radius:12px;overflow:auto;font-family:Consolas,monospace;font-size:14px;">const users = await User.find();
+const activeUsers = users.filter(user => user.isActive);
+const names = activeUsers.map(user => user.name);</pre>
+                <p style="color:#aebbb5;">This is the important connection: <strong>the JavaScript you learn here is the same JavaScript you will use while working with MERN.</strong></p>
+            </div>
+        </section>
+
+        <!-- Complete Connection Map -->
+        <section style="padding:45px 22px;">
+            <div style="max-width:1000px;margin:auto;text-align:center;">
+                <h2>🔗 Complete Connection Map</h2>
+                <div style="margin-top:25px;padding:25px;border-radius:18px;background:#050a07;border:1px solid rgba(255,255,255,.08);font-family:Consolas,monospace;font-size:14px;line-height:2;">
+                    JavaScript<br>↓<br>Programming Logic<br>↓<br>Arrays + Objects<br>↓<br>Functions<br>↓<br>Practical DSA<br>↓<br>Modern JavaScript<br>↓<br>JSON<br>↓<br>Async JavaScript<br>↓<br>Promise + await<br>↓<br>Error Handling<br>↓<br>Fetch + REST API<br>↓<br>
+                    <span style="color:#61dafb;">React.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#83cd29;">Node.js</span><br>
+                    ↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                    Express.js<br>↓<br>MongoDB / Mongoose<br>↓<br>
+                    <strong style="color:#83cd29;">MERN PROJECT</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Checklist -->
+        <section style="padding:45px 22px;background:rgba(131,205,41,.035);border-top:1px solid rgba(255,255,255,.06);">
+            <div style="max-width:1000px;margin:auto;">
+                <h2>🎯 After 10 Days</h2>
+                <p style="color:#aebbb5;">The goal is NOT: <strong>“I memorized 100 JavaScript topics.”</strong></p>
+                <p style="color:#b8c6bf;">The goal is:</p>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I understand what JavaScript is doing.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I can create variables, functions, arrays and objects.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I can process data using map, filter, find and reduce.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I can solve basic programming problems.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I understand Promise and async/await.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I understand API request and response.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I can read basic React code.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I understand what Node.js and Express are doing.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I understand JavaScript with MongoDB/Mongoose.</div>
+                    <div style="padding:16px;background:rgba(255,255,255,.04);border-radius:12px;">✓ I am ready to start small MERN applications.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Most Important Rule (Node.js version) -->
+        <section style="padding:35px 22px 50px;">
+            <div style="max-width:850px;margin:auto;padding:25px;border-radius:20px;background:radial-gradient(circle at top,rgba(131,205,41,.12),transparent 60%),#050a07;border:1px solid rgba(131,205,41,.20);text-align:center;">
+                <div style="font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#83cd29;">⭐ Most Important Rule</div>
+                <h2 style="font-size:clamp(22px,4vw,32px);margin:12px 0;">Don't Rush the Roadmap</h2>
+                <p style="margin:0;color:#aebbb5;">If arrays are difficult on Day 2, spend more time on arrays. Strong fundamentals make React, Node.js, Express and MERN much easier.</p>
+                <div style="margin-top:22px;font-family:Consolas,monospace;font-size:13px;color:#cbd7d0;">Variables → Conditions → Loops → Functions → Arrays → Objects → Async JavaScript → DSA → React + Node.js</div>
+            </div>
+        </section>
+
+        <div style="padding:18px 22px;text-align:center;font-size:12px;color:#66756d;border-top:1px solid rgba(255,255,255,.06);">
+            JavaScript Foundation • Practical DSA • React • Node.js • MERN
+        </div>
+    </div>
+
+    <!-- =========================================================
+         FULL EXPLANATION SECTION (added at the very end)
+         ========================================================= -->
+    <div style="max-width:1200px;margin:50px auto;padding:40px;background:#f8fafc;border-radius:28px;border:1px solid var(--border-color);">
+        <h2 style="border-bottom:2px solid var(--accent-primary);padding-bottom:10px;">📖 Full Explanation – What This Page Offers</h2>
+        <p style="font-size:1.1rem;color:var(--text-main);">
+            This page is a complete learning platform for <strong>Client-Side Scripting using JavaScript</strong> (Unit 03). It is designed for absolute beginners who want to learn JavaScript from the ground up, understand programming logic, practice Data Structures & Algorithms (DSA), and eventually move to full‑stack MERN development.
+        </p>
+        <h3>🧩 Interactive Lessons</h3>
+        <p>The sidebar contains 9 core lessons covering:</p>
+        <ul>
+            <li><strong>Introduction to JavaScript</strong> – What it is and why we need it.</li>
+            <li><strong>Variables & Identifiers</strong> – let, const, var and naming rules.</li>
+            <li><strong>Functions</strong> – Creating reusable blocks of code.</li>
+            <li><strong>Objects & JSON</strong> – Storing structured data and exchanging it.</li>
+            <li><strong>DOM & getElementById</strong> – Interacting with HTML elements.</li>
+            <li><strong>Forms & Validation</strong> – Handling user input and checking it.</li>
+            <li><strong>Events & Event Handlers</strong> – Responding to clicks, hovers, etc.</li>
+            <li><strong>CSS Manipulation & z-index</strong> – Dynamically changing styles.</li>
+            <li><strong>Textarea, Dropdowns & jQuery Basics</strong> – Advanced form elements and a quick intro to jQuery.</li>
+        </ul>
+        <p>Each lesson includes theory, visual diagrams, code examples, a live code playground, practice tasks, and a quiz to test understanding.</p>
+
+        <h3>🗺️ 10‑Day Roadmap</h3>
+        <p>After the lessons, you'll find a detailed <strong>10‑day JavaScript + Practical DSA Roadmap</strong> that takes you from beginner to MERN‑ready. It covers:</p>
+        <ul>
+            <li>Day 1: Basics & logic</li>
+            <li>Day 2: Arrays, strings, loops</li>
+            <li>Day 3: Objects, array methods</li>
+            <li>Day 4: Functions, callbacks, modern JS</li>
+            <li>Day 5: JSON, async, promises</li>
+            <li>Day 6: Fetch API, REST, classes</li>
+            <li>Day 7: DSA fundamentals, Big-O, searching</li>
+            <li>Day 8: Sorting, recursion, array/string DSA</li>
+            <li>Day 9: Map, Set, frequency, stack, queue</li>
+            <li>Day 10: Two pointers, sliding window, final project</li>
+        </ul>
+        <p>Each day includes learning goals, simple explanations, code examples, practice exercises, DSA practice, MERN connections, and a mini task.</p>
+
+        <h3>🟢 Node.js + MERN Connection</h3>
+        <p>The final section explains <strong>how to set up Node.js</strong>, write your first <code>index.js</code>, understand why Node is used, and see real‑life examples. It then maps every JavaScript concept to React, Express, and MongoDB, showing you the complete MERN stack connection.</p>
+
+        <h3>🎯 Who Is This For?</h3>
+        <p>This page is ideal for:</p>
+        <ul>
+            <li>Students learning JavaScript for the first time.</li>
+            <li>Developers who want a structured, practical roadmap to DSA and MERN.</li>
+            <li>Teachers who need a ready‑made interactive resource.</li>
+        </ul>
+        <p style="font-weight:bold;color:var(--accent-primary);">Everything is self‑contained – no external dependencies required. Just open the HTML file and start learning!</p>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC (from original) -->
     <script>
         /* ==========================================================================
            1. DATA STRUCTURE (The Source of Truth based on Syllabus)
@@ -1057,3016 +2100,24 @@ function setLightMode() {
         // Boot the App
         window.onload = initApp;
 
+        // Copy function for Node.js roadmap (used in that section)
+        function copyRoadmapCode(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const oldText = button.innerText;
+                button.innerText = "Copied!";
+                setTimeout(() => { button.innerText = oldText; }, 1200);
+            }).catch(() => {
+                button.innerText = "Copy Failed";
+                setTimeout(() => { button.innerText = "Copy"; }, 1200);
+            });
+        }
+
+        // Search filter for Node.js roadmap (if needed)
+        function filterRoadmapDays() {
+            // This is a placeholder; the Node.js roadmap doesn't have a search input
+            // but we keep the function to avoid errors.
+        }
     </script>
-
-<div>
-
-    <style>
-        .event-class {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .hero {
-            background: #222;
-            color: white;
-            padding: 40px;
-            text-align: center;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-
-        .section {
-            border: 1px solid #ddd;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-        }
-
-        .code {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-
-        .code pre {
-            margin: 0;
-        }
-
-        .example {
-            background: #f8fbff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .example input,
-        .example select,
-        .example button {
-            padding: 8px;
-            margin: 5px 0;
-        }
-
-        .error {
-            color: red;
-        }
-
-        .note {
-            background: #fff8e1;
-            padding: 15px;
-            border-radius: 8px;
-        }
-    </style>
-
-
-    <div class="event-class">
-
-        <!-- HERO -->
-        <div class="hero">
-
-            <h1>JavaScript Events</h1>
-
-            <p>
-                Learn Common Events with Simple Examples
-            </p>
-
-            <p>
-                Action → Event → Function → Output
-            </p>
-
-        </div>
-
-
-        <!-- WHAT IS EVENT -->
-        <div class="section">
-
-            <h2>What is an Event?</h2>
-
-            <p>
-                An <b>Event</b> is an action or happening on a webpage.
-            </p>
-
-            <p>
-                When the user performs an action, JavaScript can
-                run a function.
-            </p>
-
-            <div class="note">
-
-                <b>Example:</b>
-
-                <p>
-                    User clicks a button
-                    → onclick event happens
-                    → function runs
-                    → output is displayed.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- EVENT FLOW -->
-        <div class="section">
-
-            <h2>How Event Works?</h2>
-
-            <div class="code">
-                <pre>
-User Action
-     ↓
-Event
-     ↓
-Function
-     ↓
-Output
-                </pre>
-            </div>
-
-            <p>
-                <b>Example:</b>
-                Click Button → onclick → showMessage() → Hello
-            </p>
-
-        </div>
-
-
-        <!-- ONCLICK -->
-        <div class="section">
-
-            <h2>1. onclick</h2>
-
-            <p>
-                <b>Meaning:</b>
-                onclick is used when an element is clicked.
-            </p>
-
-            <h3>Syntax</h3>
-
-            <div class="code">
-                <pre>
-&lt;button onclick="functionName()"&gt;
-    Click
-&lt;/button&gt;
-                </pre>
-            </div>
-
-            <h3>Example Code</h3>
-
-            <div class="code">
-                <pre>
-&lt;button onclick="showMessage()"&gt;
-    Click Me
-&lt;/button&gt;
-
-&lt;p id="output"&gt;&lt;/p&gt;
-
-&lt;script&gt;
-function showMessage() {
-
-    document.getElementById("output").textContent =
-        "Button Clicked!";
-}
-&lt;/script&gt;
-                </pre>
-            </div>
-
-            <h3>Try It</h3>
-
-            <div class="example">
-
-                <button onclick="clickExample()">
-                    Click Me
-                </button>
-
-                <p id="clickOutput"></p>
-
-            </div>
-
-            <p>
-                <b>Remember:</b>
-                Button click → onclick → function → output
-            </p>
-
-        </div>
-
-
-        <!-- ONDBLCLICK -->
-        <div class="section">
-
-            <h2>2. ondblclick</h2>
-
-            <p>
-                <b>Meaning:</b>
-                ondblclick is used when an element is double clicked.
-            </p>
-
-            <h3>Example Code</h3>
-
-            <div class="code">
-                <pre>
-&lt;button ondblclick="showMessage()"&gt;
-    Double Click
-&lt;/button&gt;
-
-&lt;script&gt;
-function showMessage() {
-
-    document.getElementById("output").textContent =
-        "Double Clicked!";
-}
-&lt;/script&gt;
-                </pre>
-            </div>
-
-            <h3>Try It</h3>
-
-            <div class="example">
-
-                <button ondblclick="doubleClickExample()">
-                    Double Click Me
-                </button>
-
-                <p id="doubleOutput"></p>
-
-            </div>
-
-            <p>
-                <b>Remember:</b>
-                Two clicks → ondblclick → function
-            </p>
-
-        </div>
-
-
-        <!-- ONMOUSEOVER -->
-        <div class="section">
-
-            <h2>3. onmouseover</h2>
-
-            <p>
-                <b>Meaning:</b>
-                onmouseover works when the mouse moves over an element.
-            </p>
-
-            <h3>Example Code</h3>
-
-            <div class="code">
-                <pre>
-&lt;button onmouseover="showMessage()"&gt;
-    Move Mouse Here
-&lt;/button&gt;
-                </pre>
-            </div>
-
-            <h3>Try It</h3>
-
-            <div class="example">
-
-                <button onmouseover="mouseExample()">
-                    Move Mouse Here
-                </button>
-
-                <p id="mouseOutput"></p>
-
-            </div>
-
-            <p>
-                <b>Remember:</b>
-                Mouse over → onmouseover → function
-            </p>
-
-        </div>
-
-
-        <!-- ONCHANGE -->
-        <div class="section">
-
-            <h2>4. onchange</h2>
-
-            <p>
-                <b>Meaning:</b>
-                onchange works when an input or select value changes.
-            </p>
-
-            <h3>Example Code</h3>
-
-            <div class="code">
-                <pre>
-&lt;select onchange="showCourse()"&gt;
-
-    &lt;option&gt;HTML&lt;/option&gt;
-    &lt;option&gt;CSS&lt;/option&gt;
-
-&lt;/select&gt;
-
-&lt;script&gt;
-function showCourse() {
-
-    let course =
-        document.getElementById("course").value;
-
-    document.getElementById("output").textContent =
-        course;
-}
-&lt;/script&gt;
-                </pre>
-            </div>
-
-            <h3>Try It</h3>
-
-            <div class="example">
-
-                <select id="course" onchange="changeExample()">
-
-                    <option value="">
-                        Select Course
-                    </option>
-
-                    <option value="HTML">
-                        HTML
-                    </option>
-
-                    <option value="CSS">
-                        CSS
-                    </option>
-
-                    <option value="JavaScript">
-                        JavaScript
-                    </option>
-
-                </select>
-
-                <p id="changeOutput"></p>
-
-            </div>
-
-            <p>
-                <b>Remember:</b>
-                Value change → onchange → function
-            </p>
-
-        </div>
-
-
-        <!-- ONLOAD -->
-        <div class="section">
-
-            <h2>5. onload</h2>
-
-            <p>
-                <b>Meaning:</b>
-                onload works when the webpage finishes loading.
-            </p>
-
-            <h3>Example</h3>
-
-            <div class="code">
-                <pre>
-&lt;body onload="pageLoaded()"&gt;
-
-&lt;script&gt;
-function pageLoaded() {
-
-    alert("Page Loaded!");
-}
-&lt;/script&gt;
-                </pre>
-            </div>
-
-            <p>
-                When the page is completely loaded,
-                the function will run.
-            </p>
-
-        </div>
-
-
-        <!-- FORM EVENT -->
-        <div class="section">
-
-            <h2>6. onsubmit</h2>
-
-            <p>
-                <b>Meaning:</b>
-                onsubmit works when a form is submitted.
-            </p>
-
-            <h3>Basic Example</h3>
-
-            <div class="code">
-                <pre>
-&lt;form onsubmit="showName(event)"&gt;
-
-    &lt;input type="text" id="name"&gt;
-
-    &lt;button type="submit"&gt;
-        Submit
-    &lt;/button&gt;
-
-    &lt;p id="output"&gt;&lt;/p&gt;
-
-&lt;/form&gt;
-
-&lt;script&gt;
-function showName(event) {
-
-    event.preventDefault();
-
-    let name =
-        document.getElementById("name").value;
-
-    document.getElementById("output").textContent =
-        "Hello " + name;
-}
-&lt;/script&gt;
-                </pre>
-            </div>
-
-            <h3>Try It</h3>
-
-            <div class="example">
-
-                <form onsubmit="showName(event)">
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your name"
-                    >
-
-                    <br>
-
-                    <button type="submit">
-                        Submit
-                    </button>
-
-                    <p id="nameOutput"></p>
-
-                </form>
-
-            </div>
-
-        </div>
-
-
-        <!-- INPUT VALIDATION -->
-        <div class="section">
-
-            <h2>7. Check Empty Input</h2>
-
-            <p>
-                If the input is empty, we can use an
-                <b>if condition</b>.
-            </p>
-
-            <p>
-                Empty input → Border becomes red →
-                "Please enter" message appears.
-            </p>
-
-            <h3>Example Code</h3>
-
-            <div class="code">
-                <pre>
-let input =
-    document.getElementById("name");
-
-if (input.value == "") {
-
-    input.style.border = "2px solid red";
-
-    output.textContent =
-        "Please enter your name";
-}
-                </pre>
-            </div>
-
-            <h3>Try It</h3>
-
-            <div class="example">
-
-                <form onsubmit="checkInput(event)">
-
-                    <input
-                        type="text"
-                        id="studentName"
-                        placeholder="Enter your name"
-                    >
-
-                    <br>
-
-                    <button type="submit">
-                        Check
-                    </button>
-
-                    <p id="error" class="error"></p>
-
-                </form>
-
-            </div>
-
-        </div>
-
-
-        <!-- ALL EVENTS -->
-        <div class="section">
-
-            <h2>Common Events - Quick Revision</h2>
-
-            <div class="code">
-                <pre>
-onclick      → When clicked
-
-ondblclick   → When double clicked
-
-onmouseover  → When mouse moves over
-
-onchange     → When value changes
-
-onload       → When page finishes loading
-
-onsubmit     → When form is submitted
-                </pre>
-            </div>
-
-        </div>
-
-
-        <!-- FINAL CONCEPT -->
-        <div class="hero">
-
-            <h2>Remember This!</h2>
-
-            <p>
-                Action → Event → Function → Output
-            </p>
-
-            <p>
-                Example:
-                Click → onclick → function → Result
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <script>
-
-        function clickExample() {
-
-            document.getElementById("clickOutput").textContent =
-                "Button Clicked!";
-        }
-
-
-        function doubleClickExample() {
-
-            document.getElementById("doubleOutput").textContent =
-                "Double Clicked!";
-        }
-
-
-        function mouseExample() {
-
-            document.getElementById("mouseOutput").textContent =
-                "Mouse is here!";
-        }
-
-
-        function changeExample() {
-
-            let course =
-                document.getElementById("course").value;
-
-            document.getElementById("changeOutput").textContent =
-                "You selected " + course;
-        }
-
-
-        function showName(event) {
-
-            event.preventDefault();
-
-            let name =
-                document.getElementById("name").value;
-
-            document.getElementById("nameOutput").textContent =
-                "Hello " + name;
-        }
-
-
-        function checkInput(event) {
-
-            event.preventDefault();
-
-            let input =
-                document.getElementById("studentName");
-
-            let error =
-                document.getElementById("error");
-
-            if (input.value == "") {
-
-                input.style.border =
-                    "2px solid red";
-
-                error.textContent =
-                    "Please enter your name";
-
-            } else {
-
-                input.style.border =
-                    "2px solid green";
-
-                error.textContent =
-                    "Hello " + input.value;
-            }
-        }
-
-    </script>
-
-</div>
-
-<!-- PART 1 : HERO + DAY 1 TO DAY 5 -->
-
-<div style="width:100%;font-family:Arial,sans-serif;background:#f8fafc;color:#0f172a;">
-
-<!-- HERO -->
-<div style="padding:60px 20px;background:linear-gradient(135deg,#111827,#1e293b);border-radius:28px;text-align:center;overflow:hidden;">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-alt="JavaScript Logo"
-style="width:95px;height:95px;display:block;margin:0 auto 25px;">
-
-<div style="display:inline-block;padding:8px 14px;border-radius:50px;background:rgba(255,255,255,.08);color:#facc15;font-size:12px;font-weight:bold;margin-bottom:18px;">
-BEGINNER FRIENDLY • PRACTICAL • MERN READY
-</div>
-
-<h1 style="margin:0 auto 18px;max-width:850px;color:white;font-size:clamp(32px,7vw,60px);line-height:1.08;">
-10-Day JavaScript + Practical DSA Roadmap
-</h1>
-
-<p style="max-width:700px;margin:0 auto 25px;color:#cbd5e1;font-size:17px;line-height:1.7;">
-Absolute Beginner → JavaScript Logic → DSA → React + Node.js + MERN Readiness
-</p>
-
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:25px;">
-
-<span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">
-⏰ 4.5–5.5 Hours / Day
-</span>
-
-<span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">
-🧠 Logic First
-</span>
-
-<span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">
-🏗️ Build While Learning
-</span>
-
-</div>
-
-<div style="max-width:720px;margin:auto;padding:18px;background:rgba(255,255,255,.06);border-radius:15px;color:#cbd5e1;line-height:1.7;font-size:14px;">
-<strong style="color:white;">Main Principle:</strong>
-Learn → Type → Practice → Solve → Build → Revise
-<br>
-This roadmap focuses on practical JavaScript, programming logic,
-DSA and real MERN development — not competitive programming.
-</div>
-
-</div>
-
-
-<!-- ROADMAP TITLE -->
-
-<div style="text-align:center;padding:45px 20px 25px;">
-<p style="margin:0 0 8px;color:#2563eb;font-size:13px;font-weight:bold;">
-LEARNING JOURNEY
-</p>
-
-<h2 style="margin:0;font-size:clamp(28px,6vw,42px);">
-10 Days. One Strong Foundation.
-</h2>
-</div>
-
-
-<!-- DAY 1 -->
-
-<details open style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🚀 DAY 1 — JavaScript Basics + Programming Logic
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-What is JavaScript? • Where JavaScript is used • How JavaScript runs •
-let • const • var • Data Types • typeof • Arithmetic Operators •
-Assignment Operators • Comparison Operators • Logical Operators •
-Template Literals • if • else • else if • Ternary
-</p>
-
-<h3 style="color:#2563eb;">🧠 Simple Explanation</h3>
-
-<p>
-Programming is like giving instructions to a person.
-JavaScript lets us give those instructions to a computer.
-</p>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>Variable = Labelled Box</strong>
-<br><br>
-<code>
-let name = "Mani";<br>
-let age = 25;
-</code>
-</div>
-
-<h3 style="color:#2563eb;">💻 Example</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const name = "Arun";
-const mark = 75;
-
-if (mark >= 50) {
-    console.log(`${name} passed`);
-} else {
-    console.log(`${name} failed`);
-}</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-Store name and age • Add two numbers • Subtract two numbers •
-Rectangle area • Even/Odd • Positive/Negative • Pass/Fail •
-Voting eligibility • Largest of two • Largest of three
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Even or Odd • Largest of Two • Sum of Numbers
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → Variables and conditions control UI.<br>
-Node.js → Request data is stored in variables.<br>
-MongoDB → Database results are processed using variables.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Build a <strong>Student Result Checker</strong>.
-Display Student Name, Mark and Result.
-</p>
-
-<div style="padding:15px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;">
-✅ Goal: Create variables, understand data types,
-perform calculations and make simple decisions.
-</div>
-
-</div>
-</details>
-
-
-<!-- DAY 2 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-📦 DAY 2 — Arrays + Strings + Loops
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Arrays • Index • length • Accessing Elements • Updating Elements •
-push() • pop() • shift() • unshift() • Strings • for • while •
-do...while • for...of • for...in
-</p>
-
-<h3 style="color:#2563eb;">🧠 Simple Explanation</h3>
-
-<p>Array = a row of boxes.</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const marks = [70, 80, 90, 60];
-
-Index:  0   1   2   3
-Value: 70  80  90  60</code></pre>
-
-<h3 style="color:#2563eb;">💻 Traversing</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const marks = [70, 80, 90, 60];
-
-for (let mark of marks) {
-    console.log(mark);
-}</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-Print 1–10 • Print 10–1 • Multiplication Table •
-Sum Numbers • Count Even • Count Odd • Largest • Smallest •
-Reverse Number • Count Characters
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Find Maximum • Find Minimum • Reverse String • Count Even Numbers
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → products.map()<br>
-Node.js → Process arrays of users/data<br>
-MongoDB → Multiple documents are commonly processed as arrays
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-<strong>Marks Analyzer:</strong>
-Calculate Total, Average, Highest, Lowest and Passed Students.
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 3 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🧱 DAY 3 — Objects + Array of Objects + Array Methods
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Objects • Properties • Accessing • Updating • Adding • Deleting •
-Nested Objects • Array of Objects
-</p>
-
-<p>
-<strong>Methods:</strong>
-forEach() • map() • filter() • find() • findIndex() •
-includes() • indexOf() • some() • every() • reduce() • sort()
-</p>
-
-<h3 style="color:#2563eb;">🧠 Object</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const student = {
-    name: "Arun",
-    age: 20,
-    mark: 85
-};
-
-console.log(student.name);</code></pre>
-
-<h3 style="color:#2563eb;">⭐ Important Methods</h3>
-
-<p>
-<strong>map()</strong> → Changes every item.<br>
-<strong>filter()</strong> → Keeps matching items.<br>
-<strong>find()</strong> → Finds one item.<br>
-<strong>reduce()</strong> → Combines values into one.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const numbers = [1, 2, 3];
-
-const result = numbers.map(number => number * 2);
-
-console.log(result);</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-Display students • Find passed students • Highest mark •
-Find Arun • Average • Check 100 • Check everyone passed •
-Sort students by mark
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Maximum • Duplicate Values • Remove Duplicates •
-Second Largest • Count Occurrences • Common Elements
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → Objects become props/state.<br>
-Express → req.body contains object-like data.<br>
-MongoDB → Documents look similar to JavaScript objects.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Project</h3>
-
-<p>
-🎓 <strong>Student Marks Manager</strong><br>
-Add Student • Display Students • Highest Mark • Average •
-Passed Students • Search Student
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 4 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-⚙️ DAY 4 — Functions + Callbacks + Modern JavaScript
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Function Declaration • Parameters • Arguments • Return •
-Function Expression • Arrow Functions • Default Parameters •
-Callbacks • Destructuring • Spread • Rest • Optional Chaining •
-Nullish Coalescing • Modules • import • export
-</p>
-
-<h3 style="color:#2563eb;">🧠 Function = Reusable Machine</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function add(a, b) {
-    return a + b;
-}
-
-console.log(add(10, 20));</code></pre>
-
-<h3 style="color:#2563eb;">📌 Callback</h3>
-
-<p>
-A callback is a function given to another function
-so that it can be used later.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function greet(name, callback) {
-    console.log("Hello " + name);
-    callback();
-}
-
-greet("Arun", () => {
-    console.log("Welcome!");
-});</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-add() • subtract() • multiply() • calculateTotal() •
-findLargest() • isPrime() • isPalindrome() •
-Destructuring • Spread • Rest
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Prime • Palindrome • Reverse String • Character Count •
-Largest using Function
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → Components and props use functions/destructuring.<br>
-Node.js → Controllers, Services and Utilities are functions.<br>
-Express → Middleware uses callback functions.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Create Student Utility Library:
-addStudent() • calculateAverage() • findHighest() •
-findPassedStudents() • findStudent()
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 5 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-⚡ DAY 5 — JSON + Async JavaScript + Promise + async/await
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Synchronous • Asynchronous • setTimeout() • Callback •
-Promise • .then() • .catch() • async/await • try/catch • JSON
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;">
-<strong>Flow:</strong><br><br>
-Synchronous → Asynchronous → setTimeout() → Callback →
-Promise → .then() → .catch() → async/await
-</div>
-
-<h3 style="color:#2563eb;">🧠 Simple Example</h3>
-
-<p>
-Think about ordering food. You don't wait inside the kitchen.
-You continue doing other work while your food is prepared.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>console.log("Start");
-
-setTimeout(() => {
-    console.log("Food ready");
-}, 2000);
-
-console.log("Continue");</code></pre>
-
-<h3 style="color:#2563eb;">📦 Promise</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const promise = new Promise((resolve, reject) => {
-
-    const success = true;
-
-    if (success) {
-        resolve("Success");
-    } else {
-        reject("Failed");
-    }
-
-});</code></pre>
-
-<h3 style="color:#2563eb;">🌐 JSON</h3>
-
-<p>
-JSON is commonly used to send data between frontend and backend.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>JSON.stringify(student);
-
-JSON.parse(data);</code></pre>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Factorial • Fibonacci • Prime • Palindrome • Reverse String
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → fetch() + await<br>
-Node.js → Database operations<br>
-Express → Async Controllers<br>
-Mongoose → await User.find()
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Create Fake Async Student Service:
-getStudents() → Promise → async/await → try/catch → Display Students
-</p>
-
-</div>
-</details>
-<!-- PART 2 : DAY 6 TO DAY 10 + FINAL PROJECT -->
-
-<div style="width:100%;font-family:Arial,sans-serif;background:#f8fafc;color:#0f172a;">
-
-<!-- DAY 6 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🌐 DAY 6 — Fetch API + REST API + Classes + Basic OOP
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Fetch API • Request • Response • HTTP Basics • GET • POST •
-PUT/PATCH • DELETE • REST API • try/catch • throw • Error •
-Classes • Constructor • this • Methods • extends • super
-</p>
-
-<h3 style="color:#2563eb;">🌐 API in Simple Language</h3>
-
-<div style="padding:20px;background:#f1f5f9;border-radius:12px;text-align:center;">
-React<br>↓<br>Request<br>↓<br>Backend<br>↓<br>Database<br>↓<br>Response<br>↓<br>React
-</div>
-
-<h3 style="color:#2563eb;">💻 Fetch</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>async function getUsers() {
-
-    try {
-
-        const response = await fetch("/api/users");
-
-        const data = await response.json();
-
-        console.log(data);
-
-    } catch (error) {
-
-        console.log(error);
-
-    }
-
-}</code></pre>
-
-<h3 style="color:#2563eb;">📡 REST Operations</h3>
-
-<p>
-GET → Get data<br>
-POST → Create data<br>
-PUT/PATCH → Update data<br>
-DELETE → Delete data
-</p>
-
-<h3 style="color:#2563eb;">🧱 Classes</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>class Student {
-
-    constructor(name, mark) {
-        this.name = name;
-        this.mark = mark;
-    }
-
-    display() {
-        console.log(this.name, this.mark);
-    }
-
-}
-
-const student = new Student("Arun", 80);
-
-student.display();</code></pre>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Linear Search • Search Student by Name • Highest Mark •
-Duplicate Values • Reverse Array
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Student Management API Logic:
-GET /students<br>
-POST /students<br>
-PUT /students/:id<br>
-DELETE /students/:id
-</p>
-
-<div style="padding:15px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;">
-React → fetch() → Express Route → Controller → Mongoose → MongoDB
-</div>
-
-</div>
-</details>
-
-
-<!-- DAY 7 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🧠 DAY 7 — DSA Fundamentals + Big-O + Searching
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-What is DSA? • Data Structures • Algorithms •
-DSA vs Competitive Programming • Big-O • Linear Search • Binary Search
-</p>
-
-<h3 style="color:#2563eb;">🧠 DSA</h3>
-
-<p>
-<strong>Data Structure:</strong> How we organize data.<br>
-<strong>Algorithm:</strong> Steps used to solve a problem.
-</p>
-
-<h3 style="color:#2563eb;">⏱️ Big-O</h3>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(1)</strong><br>Direct Access
-</div>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(n)</strong><br>One Loop
-</div>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(n²)</strong><br>Nested Loops
-</div>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(log n)</strong><br>Binary Search
-</div>
-
-</div>
-
-<h3 style="color:#2563eb;">🔎 Linear Search</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function linearSearch(numbers, target) {
-
-    for (let i = 0; i < numbers.length; i++) {
-
-        if (numbers[i] === target) {
-            return i;
-        }
-
-    }
-
-    return -1;
-}</code></pre>
-
-<h3 style="color:#2563eb;">🔍 Binary Search</h3>
-
-<p>
-Binary Search works on a sorted array.
-Each step reduces the search area.
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Linear Search • Maximum • Minimum • Count Target •
-Binary Search • Search Student by ID • Search Product by ID
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-🛍️ Product Search System → Create searchProduct(id)
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 8 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🔄 DAY 8 — Sorting + Recursion + Array/String DSA
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Sorting • Bubble Sort • Selection Sort • Insertion Sort •
-Recursion • Base Condition
-</p>
-
-<h3 style="color:#2563eb;">🫧 Bubble Sort</h3>
-
-<p>
-Compare neighboring values and swap them when needed.
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">
-20 &nbsp; 10
-<br>↓<br>
-10 &nbsp; 20
-</div>
-
-<h3 style="color:#2563eb;">♻️ Recursion</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function countdown(number) {
-
-    if (number === 0) {
-        return;
-    }
-
-    console.log(number);
-
-    countdown(number - 1);
-}</code></pre>
-
-<p>
-<strong>Base Condition → Stops Recursion</strong>
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Reverse Array • Remove Duplicates • Second Largest •
-Missing Number • Search Value • Reverse String •
-Palindrome • Character Frequency • Anagram •
-First Non-Repeating Character
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-🛍️ Product Sorting → Create sortByPrice()
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-Products by price • Students by marks • Orders by date •
-Users alphabetically
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 9 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🗂️ DAY 9 — Map + Set + Frequency + Stack + Queue
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Map • Set • Frequency Counting • Two Sum •
-Common Elements • Stack • Queue
-</p>
-
-<h3 style="color:#2563eb;">🗺️ Map</h3>
-
-<p>
-Think of Map as <strong>KEY → VALUE</strong>
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const map = new Map();
-
-map.set("Arun", 80);
-map.set("Bala", 90);
-
-console.log(map.get("Arun"));</code></pre>
-
-<h3 style="color:#2563eb;">🟢 Set</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const numbers = [1, 2, 2, 3, 3, 4];
-
-const unique = new Set(numbers);
-
-console.log(unique);</code></pre>
-
-<h3 style="color:#2563eb;">🔢 Frequency Counter</h3>
-
-<p>
-[a,b,a,c,a] → a:3 • b:1 • c:1
-</p>
-
-<h3 style="color:#2563eb;">➕ Two Sum</h3>
-
-<p>
-[2,7,11,15], Target = 9<br>
-2 + 7 = 9
-</p>
-
-<h3 style="color:#2563eb;">🥞 Stack</h3>
-
-<p>
-<strong>LIFO — Last In, First Out</strong>
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const stack = [];
-
-stack.push(10);
-stack.push(20);
-stack.push(30);
-
-stack.pop();</code></pre>
-
-<h3 style="color:#2563eb;">🚶 Queue</h3>
-
-<p>
-<strong>FIFO — First In, First Out</strong><br>
-Like people waiting at a ticket counter.
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Frequency Counter • Duplicate Detection • Remove Duplicates •
-Two Sum • Common Elements • First Unique Character •
-Anagram • Valid Parentheses • Stack • Queue
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-Map/Set → Unique IDs, deduplication, lookup and grouping.<br>
-Stack → Browser history, undo/redo.<br>
-Queue → Background jobs, email queues and task processing.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-🛍️ Duplicate Product Detector<br>
-[101, 102, 103, 102, 104, 101]
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 10 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🎯 DAY 10 — Two Pointers + Sliding Window + Final Project
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Two Pointers • Sliding Window • Mixed DSA • Revision • MERN Connection
-</p>
-
-<h3 style="color:#2563eb;">👈👉 Two Pointers</h3>
-
-<p>
-Use two positions to work through an array.
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">
-[1, 2, 3, 4, 5]
-<br><br>
-↑ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↑
-<br>
-left &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right
-</div>
-
-<h3 style="color:#2563eb;">🪟 Sliding Window</h3>
-
-<p>
-Think of looking through a small section of an array.
-The window moves through the data.
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">
-[1,2,3] 4 5 6
-<br>
-1 [2,3,4] 5 6
-<br>
-1 2 [3,4,5] 6
-</div>
-
-<h3 style="color:#2563eb;">🧩 Final DSA Practice</h3>
-
-<p>
-<strong>Easy:</strong><br>
-Even/Odd • Largest • Reverse String • Palindrome •
-Linear Search • Frequency Counter • Remove Duplicates
-</p>
-
-<p>
-<strong>Medium-Beginner:</strong><br>
-Two Sum • Anagram • First Unique Character •
-Valid Parentheses • Two Pointers • Basic Sliding Window
-</p>
-
-<div style="padding:18px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;">
-<strong>Problem Solving Method</strong>
-<br><br>
-Understand → Input → Output → Example →
-Plain English Logic → JavaScript → Test → Edge Cases → Big-O
-</div>
-
-</div>
-</details>
-
-
-<!-- FINAL MINI PROJECT -->
-
-<div style="margin:30px 0;padding:30px 20px;background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #bfdbfe;border-radius:22px;">
-
-<div style="display:inline-block;padding:7px 12px;border-radius:50px;background:#dbeafe;color:#1d4ed8;font-size:12px;font-weight:bold;">
-FINAL MINI PROJECT
-</div>
-
-<h2 style="font-size:32px;margin:15px 0;">
-🎓 Student Management System
-</h2>
-
-<p style="line-height:1.7;color:#475569;">
-Build a JavaScript-based student management application
-using everything learned during the 10 days.
-</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>1. Add Student</strong><br>
-Name • Age • Mark • Course
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>2. Display</strong><br>
-Use map()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>3. Search</strong><br>
-Use find()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>4. Filter</strong><br>
-Use filter()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>5. Average</strong><br>
-Use reduce()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>6. Highest Mark</strong><br>
-sort() or loop
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>7. Remove</strong><br>
-Use filter()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>8. Update</strong><br>
-Use map()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>9. JSON</strong><br>
-JSON.stringify()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>10. Simulate API</strong><br>
-Promise • async/await • try/catch
-</div>
-
-</div>
-</div>
-
-
-<!-- MERN CONNECTION -->
-
-<div style="margin:25px 0;padding:30px 20px;background:#0f172a;color:white;border-radius:22px;text-align:center;">
-
-<p style="color:#facc15;font-size:13px;font-weight:bold;">
-🔥 FINAL MERN VERSION
-</p>
-
-<h2 style="font-size:32px;margin:10px 0 25px;">
-JavaScript → React → Node.js → MongoDB
-</h2>
-
-<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;">
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-JavaScript
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-React
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-fetch()
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-Express
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-Mongoose
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-MongoDB
-</span>
-
-</div>
-
-</div>
-
-
-<!-- DAILY ROUTINE -->
-
-<div style="margin:25px 0;padding:25px 20px;background:white;border:1px solid #e2e8f0;border-radius:22px;">
-
-<h2>⏰ Daily 4.5–5.5 Hour Routine</h2>
-
-<div style="overflow-x:auto;">
-
-<table style="width:100%;min-width:550px;border-collapse:collapse;">
-
-<tr>
-<th style="padding:13px;text-align:left;background:#f1f5f9;">Time</th>
-<th style="padding:13px;text-align:left;background:#f1f5f9;">Activity</th>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1 Hour</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">Learn Concept</td>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1.5 Hours</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">Type Examples Yourself</td>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1.5 Hours</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">DSA Practice</td>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1 Hour</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">Real-World Task / Project</td>
-</tr>
-
-<tr>
-<td style="padding:13px;">30 Minutes</td>
-<td style="padding:13px;">Revision + Mistakes</td>
-</tr>
-
-</table>
-
-</div>
-
-<div style="margin-top:20px;padding:17px;background:#fefce8;border:1px solid #fde68a;border-radius:12px;line-height:1.7;">
-⭐ <strong>Golden Rule:</strong><br>
-Don't spend 5 hours watching tutorials.<br>
-<strong>20–30% Learning + 70–80% Writing + Thinking + Building</strong>
-</div>
-
-</div>
-
-
-<!-- CHECKLIST -->
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin:25px 0;">
-
-<div style="padding:25px;background:white;border:1px solid #e2e8f0;border-radius:20px;">
-
-<h2>📚 JavaScript Checklist</h2>
-
-<p style="line-height:2;">
-☑ Variables<br>
-☑ Data Types<br>
-☑ Conditions<br>
-☑ Loops<br>
-☑ Functions<br>
-☑ Arrays<br>
-☑ Strings<br>
-☑ Objects<br>
-☑ Array Methods<br>
-☑ Destructuring<br>
-☑ Spread / Rest<br>
-☑ JSON<br>
-☑ Callback<br>
-☑ Promise<br>
-☑ async/await<br>
-☑ try/catch<br>
-☑ Error Handling<br>
-☑ Fetch API<br>
-☑ Modules<br>
-☑ Classes
-</p>
-
-</div>
-
-
-<div style="padding:25px;background:white;border:1px solid #e2e8f0;border-radius:20px;">
-
-<h2>🧩 DSA Checklist</h2>
-
-<p style="line-height:2;">
-☑ Programming Logic<br>
-☑ Array Traversal<br>
-☑ Linear Search<br>
-☑ Binary Search<br>
-☑ Sorting<br>
-☑ Strings<br>
-☑ Frequency Counter<br>
-☑ Map<br>
-☑ Set<br>
-☑ Two Sum<br>
-☑ Stack<br>
-☑ Queue<br>
-☑ Recursion Basics<br>
-☑ Two Pointers<br>
-☑ Sliding Window<br>
-☑ Basic Big-O
-</p>
-
-</div>
-
-</div>
-
-
-<!-- FINAL MESSAGE -->
-
-<div style="margin:30px 0;padding:35px 20px;background:linear-gradient(135deg,#111827,#1e293b);border-radius:22px;text-align:center;color:white;">
-
-<div style="font-size:40px;">🎯</div>
-
-<h2 style="font-size:32px;">
-What the Learner Should Feel After 10 Days
-</h2>
-
-<p style="max-width:750px;margin:auto;color:#cbd5e1;line-height:1.8;">
-
-"I understand what JavaScript is doing."<br>
-"I can create variables, functions, arrays and objects."<br>
-"I can process real data using map, filter, find and reduce."<br>
-"I can solve basic programming problems."<br>
-"I understand Promise and async/await."<br>
-"I understand API request and response."<br>
-"I can read basic React code."<br>
-"I understand Node.js and Express."<br>
-"I understand JavaScript with MongoDB/Mongoose."<br><br>
-
-<strong style="color:#facc15;">
-I am ready to start learning React and building small MERN applications.
-</strong>
-
-</p>
-
-</div>
-
-
-<!-- MOST IMPORTANT RULE -->
-
-<div style="margin:30px 0;padding:25px 20px;background:#fff7ed;border:1px solid #fed7aa;border-radius:20px;text-align:center;">
-
-<h2>⭐ Most Important Rule</h2>
-
-<p style="color:#7c2d12;line-height:1.8;">
-Don't rush through the 10 days just because the roadmap says 10 days.
-If the learner doesn't understand a topic, spend extra practice time on it.
-</p>
-
-<div style="font-weight:bold;line-height:2;">
-Variables ↓ Conditions ↓ Loops ↓ Functions ↓ Arrays ↓ Objects ↓
-Async JavaScript ↓ DSA ↓ React + Node.js
-</div>
-
-<p style="color:#7c2d12;line-height:1.7;">
-If the foundation is strong, React, Node.js, Express and MERN
-become much easier to understand.
-</p>
-
-</div>
-
-</div>
-
-</div>
-<!-- PART 1 : HERO + DAY 1 TO DAY 5 -->
-
-<div style="width:100%;font-family:Arial,sans-serif;background:#f8fafc;color:#0f172a;">
-
-<!-- HERO -->
-<div style="padding:60px 20px;background:linear-gradient(135deg,#111827,#1e293b);border-radius:28px;text-align:center;overflow:hidden;">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-alt="JavaScript Logo"
-style="width:95px;height:95px;display:block;margin:0 auto 25px;">
-
-<div style="display:inline-block;padding:8px 14px;border-radius:50px;background:rgba(255,255,255,.08);color:#facc15;font-size:12px;font-weight:bold;margin-bottom:18px;">
-BEGINNER FRIENDLY • PRACTICAL • MERN READY
-</div>
-
-<h1 style="margin:0 auto 18px;max-width:850px;color:white;font-size:clamp(32px,7vw,60px);line-height:1.08;">
-10-Day JavaScript + Practical DSA Roadmap
-</h1>
-
-<p style="max-width:700px;margin:0 auto 25px;color:#cbd5e1;font-size:17px;line-height:1.7;">
-Absolute Beginner → JavaScript Logic → DSA → React + Node.js + MERN Readiness
-</p>
-
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:25px;">
-
-<span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">
-⏰ 4.5–5.5 Hours / Day
-</span>
-
-<span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">
-🧠 Logic First
-</span>
-
-<span style="padding:10px 15px;border-radius:50px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:13px;">
-🏗️ Build While Learning
-</span>
-
-</div>
-
-<div style="max-width:720px;margin:auto;padding:18px;background:rgba(255,255,255,.06);border-radius:15px;color:#cbd5e1;line-height:1.7;font-size:14px;">
-<strong style="color:white;">Main Principle:</strong>
-Learn → Type → Practice → Solve → Build → Revise
-<br>
-This roadmap focuses on practical JavaScript, programming logic,
-DSA and real MERN development — not competitive programming.
-</div>
-
-</div>
-
-
-<!-- ROADMAP TITLE -->
-
-<div style="text-align:center;padding:45px 20px 25px;">
-<p style="margin:0 0 8px;color:#2563eb;font-size:13px;font-weight:bold;">
-LEARNING JOURNEY
-</p>
-
-<h2 style="margin:0;font-size:clamp(28px,6vw,42px);">
-10 Days. One Strong Foundation.
-</h2>
-</div>
-
-
-<!-- DAY 1 -->
-
-<details open style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🚀 DAY 1 — JavaScript Basics + Programming Logic
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-What is JavaScript? • Where JavaScript is used • How JavaScript runs •
-let • const • var • Data Types • typeof • Arithmetic Operators •
-Assignment Operators • Comparison Operators • Logical Operators •
-Template Literals • if • else • else if • Ternary
-</p>
-
-<h3 style="color:#2563eb;">🧠 Simple Explanation</h3>
-
-<p>
-Programming is like giving instructions to a person.
-JavaScript lets us give those instructions to a computer.
-</p>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>Variable = Labelled Box</strong>
-<br><br>
-<code>
-let name = "Mani";<br>
-let age = 25;
-</code>
-</div>
-
-<h3 style="color:#2563eb;">💻 Example</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const name = "Arun";
-const mark = 75;
-
-if (mark >= 50) {
-    console.log(`${name} passed`);
-} else {
-    console.log(`${name} failed`);
-}</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-Store name and age • Add two numbers • Subtract two numbers •
-Rectangle area • Even/Odd • Positive/Negative • Pass/Fail •
-Voting eligibility • Largest of two • Largest of three
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Even or Odd • Largest of Two • Sum of Numbers
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → Variables and conditions control UI.<br>
-Node.js → Request data is stored in variables.<br>
-MongoDB → Database results are processed using variables.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Build a <strong>Student Result Checker</strong>.
-Display Student Name, Mark and Result.
-</p>
-
-<div style="padding:15px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;">
-✅ Goal: Create variables, understand data types,
-perform calculations and make simple decisions.
-</div>
-
-</div>
-</details>
-
-
-<!-- DAY 2 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-📦 DAY 2 — Arrays + Strings + Loops
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Arrays • Index • length • Accessing Elements • Updating Elements •
-push() • pop() • shift() • unshift() • Strings • for • while •
-do...while • for...of • for...in
-</p>
-
-<h3 style="color:#2563eb;">🧠 Simple Explanation</h3>
-
-<p>Array = a row of boxes.</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const marks = [70, 80, 90, 60];
-
-Index:  0   1   2   3
-Value: 70  80  90  60</code></pre>
-
-<h3 style="color:#2563eb;">💻 Traversing</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const marks = [70, 80, 90, 60];
-
-for (let mark of marks) {
-    console.log(mark);
-}</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-Print 1–10 • Print 10–1 • Multiplication Table •
-Sum Numbers • Count Even • Count Odd • Largest • Smallest •
-Reverse Number • Count Characters
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Find Maximum • Find Minimum • Reverse String • Count Even Numbers
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → products.map()<br>
-Node.js → Process arrays of users/data<br>
-MongoDB → Multiple documents are commonly processed as arrays
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-<strong>Marks Analyzer:</strong>
-Calculate Total, Average, Highest, Lowest and Passed Students.
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 3 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🧱 DAY 3 — Objects + Array of Objects + Array Methods
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Objects • Properties • Accessing • Updating • Adding • Deleting •
-Nested Objects • Array of Objects
-</p>
-
-<p>
-<strong>Methods:</strong>
-forEach() • map() • filter() • find() • findIndex() •
-includes() • indexOf() • some() • every() • reduce() • sort()
-</p>
-
-<h3 style="color:#2563eb;">🧠 Object</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const student = {
-    name: "Arun",
-    age: 20,
-    mark: 85
-};
-
-console.log(student.name);</code></pre>
-
-<h3 style="color:#2563eb;">⭐ Important Methods</h3>
-
-<p>
-<strong>map()</strong> → Changes every item.<br>
-<strong>filter()</strong> → Keeps matching items.<br>
-<strong>find()</strong> → Finds one item.<br>
-<strong>reduce()</strong> → Combines values into one.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const numbers = [1, 2, 3];
-
-const result = numbers.map(number => number * 2);
-
-console.log(result);</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-Display students • Find passed students • Highest mark •
-Find Arun • Average • Check 100 • Check everyone passed •
-Sort students by mark
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Maximum • Duplicate Values • Remove Duplicates •
-Second Largest • Count Occurrences • Common Elements
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → Objects become props/state.<br>
-Express → req.body contains object-like data.<br>
-MongoDB → Documents look similar to JavaScript objects.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Project</h3>
-
-<p>
-🎓 <strong>Student Marks Manager</strong><br>
-Add Student • Display Students • Highest Mark • Average •
-Passed Students • Search Student
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 4 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-⚙️ DAY 4 — Functions + Callbacks + Modern JavaScript
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Function Declaration • Parameters • Arguments • Return •
-Function Expression • Arrow Functions • Default Parameters •
-Callbacks • Destructuring • Spread • Rest • Optional Chaining •
-Nullish Coalescing • Modules • import • export
-</p>
-
-<h3 style="color:#2563eb;">🧠 Function = Reusable Machine</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function add(a, b) {
-    return a + b;
-}
-
-console.log(add(10, 20));</code></pre>
-
-<h3 style="color:#2563eb;">📌 Callback</h3>
-
-<p>
-A callback is a function given to another function
-so that it can be used later.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function greet(name, callback) {
-    console.log("Hello " + name);
-    callback();
-}
-
-greet("Arun", () => {
-    console.log("Welcome!");
-});</code></pre>
-
-<h3 style="color:#2563eb;">🏋️ Practice</h3>
-
-<p>
-add() • subtract() • multiply() • calculateTotal() •
-findLargest() • isPrime() • isPalindrome() •
-Destructuring • Spread • Rest
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Prime • Palindrome • Reverse String • Character Count •
-Largest using Function
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → Components and props use functions/destructuring.<br>
-Node.js → Controllers, Services and Utilities are functions.<br>
-Express → Middleware uses callback functions.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Create Student Utility Library:
-addStudent() • calculateAverage() • findHighest() •
-findPassedStudents() • findStudent()
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 5 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-⚡ DAY 5 — JSON + Async JavaScript + Promise + async/await
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Synchronous • Asynchronous • setTimeout() • Callback •
-Promise • .then() • .catch() • async/await • try/catch • JSON
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;">
-<strong>Flow:</strong><br><br>
-Synchronous → Asynchronous → setTimeout() → Callback →
-Promise → .then() → .catch() → async/await
-</div>
-
-<h3 style="color:#2563eb;">🧠 Simple Example</h3>
-
-<p>
-Think about ordering food. You don't wait inside the kitchen.
-You continue doing other work while your food is prepared.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>console.log("Start");
-
-setTimeout(() => {
-    console.log("Food ready");
-}, 2000);
-
-console.log("Continue");</code></pre>
-
-<h3 style="color:#2563eb;">📦 Promise</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const promise = new Promise((resolve, reject) => {
-
-    const success = true;
-
-    if (success) {
-        resolve("Success");
-    } else {
-        reject("Failed");
-    }
-
-});</code></pre>
-
-<h3 style="color:#2563eb;">🌐 JSON</h3>
-
-<p>
-JSON is commonly used to send data between frontend and backend.
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>JSON.stringify(student);
-
-JSON.parse(data);</code></pre>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Factorial • Fibonacci • Prime • Palindrome • Reverse String
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-React → fetch() + await<br>
-Node.js → Database operations<br>
-Express → Async Controllers<br>
-Mongoose → await User.find()
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Create Fake Async Student Service:
-getStudents() → Promise → async/await → try/catch → Display Students
-</p>
-
-</div>
-</details>
-<!-- PART 2 : DAY 6 TO DAY 10 + FINAL PROJECT -->
-
-<div style="width:100%;font-family:Arial,sans-serif;background:#f8fafc;color:#0f172a;">
-
-<!-- DAY 6 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🌐 DAY 6 — Fetch API + REST API + Classes + Basic OOP
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Fetch API • Request • Response • HTTP Basics • GET • POST •
-PUT/PATCH • DELETE • REST API • try/catch • throw • Error •
-Classes • Constructor • this • Methods • extends • super
-</p>
-
-<h3 style="color:#2563eb;">🌐 API in Simple Language</h3>
-
-<div style="padding:20px;background:#f1f5f9;border-radius:12px;text-align:center;">
-React<br>↓<br>Request<br>↓<br>Backend<br>↓<br>Database<br>↓<br>Response<br>↓<br>React
-</div>
-
-<h3 style="color:#2563eb;">💻 Fetch</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>async function getUsers() {
-
-    try {
-
-        const response = await fetch("/api/users");
-
-        const data = await response.json();
-
-        console.log(data);
-
-    } catch (error) {
-
-        console.log(error);
-
-    }
-
-}</code></pre>
-
-<h3 style="color:#2563eb;">📡 REST Operations</h3>
-
-<p>
-GET → Get data<br>
-POST → Create data<br>
-PUT/PATCH → Update data<br>
-DELETE → Delete data
-</p>
-
-<h3 style="color:#2563eb;">🧱 Classes</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>class Student {
-
-    constructor(name, mark) {
-        this.name = name;
-        this.mark = mark;
-    }
-
-    display() {
-        console.log(this.name, this.mark);
-    }
-
-}
-
-const student = new Student("Arun", 80);
-
-student.display();</code></pre>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Linear Search • Search Student by Name • Highest Mark •
-Duplicate Values • Reverse Array
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-Student Management API Logic:
-GET /students<br>
-POST /students<br>
-PUT /students/:id<br>
-DELETE /students/:id
-</p>
-
-<div style="padding:15px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:8px;">
-React → fetch() → Express Route → Controller → Mongoose → MongoDB
-</div>
-
-</div>
-</details>
-
-
-<!-- DAY 7 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🧠 DAY 7 — DSA Fundamentals + Big-O + Searching
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-What is DSA? • Data Structures • Algorithms •
-DSA vs Competitive Programming • Big-O • Linear Search • Binary Search
-</p>
-
-<h3 style="color:#2563eb;">🧠 DSA</h3>
-
-<p>
-<strong>Data Structure:</strong> How we organize data.<br>
-<strong>Algorithm:</strong> Steps used to solve a problem.
-</p>
-
-<h3 style="color:#2563eb;">⏱️ Big-O</h3>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(1)</strong><br>Direct Access
-</div>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(n)</strong><br>One Loop
-</div>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(n²)</strong><br>Nested Loops
-</div>
-
-<div style="padding:16px;background:#f1f5f9;border-radius:12px;">
-<strong>O(log n)</strong><br>Binary Search
-</div>
-
-</div>
-
-<h3 style="color:#2563eb;">🔎 Linear Search</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function linearSearch(numbers, target) {
-
-    for (let i = 0; i < numbers.length; i++) {
-
-        if (numbers[i] === target) {
-            return i;
-        }
-
-    }
-
-    return -1;
-}</code></pre>
-
-<h3 style="color:#2563eb;">🔍 Binary Search</h3>
-
-<p>
-Binary Search works on a sorted array.
-Each step reduces the search area.
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Linear Search • Maximum • Minimum • Count Target •
-Binary Search • Search Student by ID • Search Product by ID
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-🛍️ Product Search System → Create searchProduct(id)
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 8 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🔄 DAY 8 — Sorting + Recursion + Array/String DSA
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Sorting • Bubble Sort • Selection Sort • Insertion Sort •
-Recursion • Base Condition
-</p>
-
-<h3 style="color:#2563eb;">🫧 Bubble Sort</h3>
-
-<p>
-Compare neighboring values and swap them when needed.
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">
-20 &nbsp; 10
-<br>↓<br>
-10 &nbsp; 20
-</div>
-
-<h3 style="color:#2563eb;">♻️ Recursion</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>function countdown(number) {
-
-    if (number === 0) {
-        return;
-    }
-
-    console.log(number);
-
-    countdown(number - 1);
-}</code></pre>
-
-<p>
-<strong>Base Condition → Stops Recursion</strong>
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Reverse Array • Remove Duplicates • Second Largest •
-Missing Number • Search Value • Reverse String •
-Palindrome • Character Frequency • Anagram •
-First Non-Repeating Character
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-🛍️ Product Sorting → Create sortByPrice()
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-Products by price • Students by marks • Orders by date •
-Users alphabetically
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 9 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🗂️ DAY 9 — Map + Set + Frequency + Stack + Queue
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Map • Set • Frequency Counting • Two Sum •
-Common Elements • Stack • Queue
-</p>
-
-<h3 style="color:#2563eb;">🗺️ Map</h3>
-
-<p>
-Think of Map as <strong>KEY → VALUE</strong>
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const map = new Map();
-
-map.set("Arun", 80);
-map.set("Bala", 90);
-
-console.log(map.get("Arun"));</code></pre>
-
-<h3 style="color:#2563eb;">🟢 Set</h3>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const numbers = [1, 2, 2, 3, 3, 4];
-
-const unique = new Set(numbers);
-
-console.log(unique);</code></pre>
-
-<h3 style="color:#2563eb;">🔢 Frequency Counter</h3>
-
-<p>
-[a,b,a,c,a] → a:3 • b:1 • c:1
-</p>
-
-<h3 style="color:#2563eb;">➕ Two Sum</h3>
-
-<p>
-[2,7,11,15], Target = 9<br>
-2 + 7 = 9
-</p>
-
-<h3 style="color:#2563eb;">🥞 Stack</h3>
-
-<p>
-<strong>LIFO — Last In, First Out</strong>
-</p>
-
-<pre style="background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto;"><code>const stack = [];
-
-stack.push(10);
-stack.push(20);
-stack.push(30);
-
-stack.pop();</code></pre>
-
-<h3 style="color:#2563eb;">🚶 Queue</h3>
-
-<p>
-<strong>FIFO — First In, First Out</strong><br>
-Like people waiting at a ticket counter.
-</p>
-
-<h3 style="color:#2563eb;">🧩 DSA Practice</h3>
-
-<p>
-Frequency Counter • Duplicate Detection • Remove Duplicates •
-Two Sum • Common Elements • First Unique Character •
-Anagram • Valid Parentheses • Stack • Queue
-</p>
-
-<h3 style="color:#2563eb;">🌐 MERN Connection</h3>
-
-<p>
-Map/Set → Unique IDs, deduplication, lookup and grouping.<br>
-Stack → Browser history, undo/redo.<br>
-Queue → Background jobs, email queues and task processing.
-</p>
-
-<h3 style="color:#2563eb;">🛠️ Mini Task</h3>
-
-<p>
-🛍️ Duplicate Product Detector<br>
-[101, 102, 103, 102, 104, 101]
-</p>
-
-</div>
-</details>
-
-
-<!-- DAY 10 -->
-
-<details style="margin:15px 0;border:1px solid #e2e8f0;border-radius:18px;background:white;overflow:hidden;">
-
-<summary style="padding:20px;font-size:19px;font-weight:bold;cursor:pointer;list-style:none;">
-🎯 DAY 10 — Two Pointers + Sliding Window + Final Project
-</summary>
-
-<div style="padding:0 20px 25px;line-height:1.7;">
-
-<h3 style="color:#2563eb;">🎯 Learn</h3>
-
-<p>
-Two Pointers • Sliding Window • Mixed DSA • Revision • MERN Connection
-</p>
-
-<h3 style="color:#2563eb;">👈👉 Two Pointers</h3>
-
-<p>
-Use two positions to work through an array.
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">
-[1, 2, 3, 4, 5]
-<br><br>
-↑ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↑
-<br>
-left &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right
-</div>
-
-<h3 style="color:#2563eb;">🪟 Sliding Window</h3>
-
-<p>
-Think of looking through a small section of an array.
-The window moves through the data.
-</p>
-
-<div style="padding:18px;background:#f1f5f9;border-radius:12px;text-align:center;">
-[1,2,3] 4 5 6
-<br>
-1 [2,3,4] 5 6
-<br>
-1 2 [3,4,5] 6
-</div>
-
-<h3 style="color:#2563eb;">🧩 Final DSA Practice</h3>
-
-<p>
-<strong>Easy:</strong><br>
-Even/Odd • Largest • Reverse String • Palindrome •
-Linear Search • Frequency Counter • Remove Duplicates
-</p>
-
-<p>
-<strong>Medium-Beginner:</strong><br>
-Two Sum • Anagram • First Unique Character •
-Valid Parentheses • Two Pointers • Basic Sliding Window
-</p>
-
-<div style="padding:18px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;">
-<strong>Problem Solving Method</strong>
-<br><br>
-Understand → Input → Output → Example →
-Plain English Logic → JavaScript → Test → Edge Cases → Big-O
-</div>
-
-</div>
-</details>
-
-
-<!-- FINAL MINI PROJECT -->
-
-<div style="margin:30px 0;padding:30px 20px;background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #bfdbfe;border-radius:22px;">
-
-<div style="display:inline-block;padding:7px 12px;border-radius:50px;background:#dbeafe;color:#1d4ed8;font-size:12px;font-weight:bold;">
-FINAL MINI PROJECT
-</div>
-
-<h2 style="font-size:32px;margin:15px 0;">
-🎓 Student Management System
-</h2>
-
-<p style="line-height:1.7;color:#475569;">
-Build a JavaScript-based student management application
-using everything learned during the 10 days.
-</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>1. Add Student</strong><br>
-Name • Age • Mark • Course
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>2. Display</strong><br>
-Use map()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>3. Search</strong><br>
-Use find()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>4. Filter</strong><br>
-Use filter()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>5. Average</strong><br>
-Use reduce()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>6. Highest Mark</strong><br>
-sort() or loop
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>7. Remove</strong><br>
-Use filter()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>8. Update</strong><br>
-Use map()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>9. JSON</strong><br>
-JSON.stringify()
-</div>
-
-<div style="padding:16px;background:white;border-radius:12px;">
-<strong>10. Simulate API</strong><br>
-Promise • async/await • try/catch
-</div>
-
-</div>
-</div>
-
-
-<!-- MERN CONNECTION -->
-
-<div style="margin:25px 0;padding:30px 20px;background:#0f172a;color:white;border-radius:22px;text-align:center;">
-
-<p style="color:#facc15;font-size:13px;font-weight:bold;">
-🔥 FINAL MERN VERSION
-</p>
-
-<h2 style="font-size:32px;margin:10px 0 25px;">
-JavaScript → React → Node.js → MongoDB
-</h2>
-
-<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;">
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-JavaScript
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-React
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-fetch()
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-Express
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-Mongoose
-</span>
-
-<span>→</span>
-
-<span style="padding:12px 15px;background:rgba(255,255,255,.08);border-radius:10px;">
-MongoDB
-</span>
-
-</div>
-
-</div>
-
-
-<!-- DAILY ROUTINE -->
-
-<div style="margin:25px 0;padding:25px 20px;background:white;border:1px solid #e2e8f0;border-radius:22px;">
-
-<h2>⏰ Daily 4.5–5.5 Hour Routine</h2>
-
-<div style="overflow-x:auto;">
-
-<table style="width:100%;min-width:550px;border-collapse:collapse;">
-
-<tr>
-<th style="padding:13px;text-align:left;background:#f1f5f9;">Time</th>
-<th style="padding:13px;text-align:left;background:#f1f5f9;">Activity</th>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1 Hour</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">Learn Concept</td>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1.5 Hours</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">Type Examples Yourself</td>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1.5 Hours</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">DSA Practice</td>
-</tr>
-
-<tr>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">1 Hour</td>
-<td style="padding:13px;border-bottom:1px solid #e2e8f0;">Real-World Task / Project</td>
-</tr>
-
-<tr>
-<td style="padding:13px;">30 Minutes</td>
-<td style="padding:13px;">Revision + Mistakes</td>
-</tr>
-
-</table>
-
-</div>
-
-<div style="margin-top:20px;padding:17px;background:#fefce8;border:1px solid #fde68a;border-radius:12px;line-height:1.7;">
-⭐ <strong>Golden Rule:</strong><br>
-Don't spend 5 hours watching tutorials.<br>
-<strong>20–30% Learning + 70–80% Writing + Thinking + Building</strong>
-</div>
-
-</div>
-
-
-<!-- CHECKLIST -->
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin:25px 0;">
-
-<div style="padding:25px;background:white;border:1px solid #e2e8f0;border-radius:20px;">
-
-<h2>📚 JavaScript Checklist</h2>
-
-<p style="line-height:2;">
-☑ Variables<br>
-☑ Data Types<br>
-☑ Conditions<br>
-☑ Loops<br>
-☑ Functions<br>
-☑ Arrays<br>
-☑ Strings<br>
-☑ Objects<br>
-☑ Array Methods<br>
-☑ Destructuring<br>
-☑ Spread / Rest<br>
-☑ JSON<br>
-☑ Callback<br>
-☑ Promise<br>
-☑ async/await<br>
-☑ try/catch<br>
-☑ Error Handling<br>
-☑ Fetch API<br>
-☑ Modules<br>
-☑ Classes
-</p>
-
-</div>
-
-
-<div style="padding:25px;background:white;border:1px solid #e2e8f0;border-radius:20px;">
-
-<h2>🧩 DSA Checklist</h2>
-
-<p style="line-height:2;">
-☑ Programming Logic<br>
-☑ Array Traversal<br>
-☑ Linear Search<br>
-☑ Binary Search<br>
-☑ Sorting<br>
-☑ Strings<br>
-☑ Frequency Counter<br>
-☑ Map<br>
-☑ Set<br>
-☑ Two Sum<br>
-☑ Stack<br>
-☑ Queue<br>
-☑ Recursion Basics<br>
-☑ Two Pointers<br>
-☑ Sliding Window<br>
-☑ Basic Big-O
-</p>
-
-</div>
-
-</div>
-
-
-<!-- FINAL MESSAGE -->
-
-<div style="margin:30px 0;padding:35px 20px;background:linear-gradient(135deg,#111827,#1e293b);border-radius:22px;text-align:center;color:white;">
-
-<div style="font-size:40px;">🎯</div>
-
-<h2 style="font-size:32px;">
-What the Learner Should Feel After 10 Days
-</h2>
-
-<p style="max-width:750px;margin:auto;color:#cbd5e1;line-height:1.8;">
-
-"I understand what JavaScript is doing."<br>
-"I can create variables, functions, arrays and objects."<br>
-"I can process real data using map, filter, find and reduce."<br>
-"I can solve basic programming problems."<br>
-"I understand Promise and async/await."<br>
-"I understand API request and response."<br>
-"I can read basic React code."<br>
-"I understand Node.js and Express."<br>
-"I understand JavaScript with MongoDB/Mongoose."<br><br>
-
-<strong style="color:#facc15;">
-I am ready to start learning React and building small MERN applications.
-</strong>
-
-</p>
-
-</div>
-
-
-<!-- MOST IMPORTANT RULE -->
-
-<div style="margin:30px 0;padding:25px 20px;background:#fff7ed;border:1px solid #fed7aa;border-radius:20px;text-align:center;">
-
-<h2>⭐ Most Important Rule</h2>
-
-<p style="color:#7c2d12;line-height:1.8;">
-Don't rush through the 10 days just because the roadmap says 10 days.
-If the learner doesn't understand a topic, spend extra practice time on it.
-</p>
-
-<div style="font-weight:bold;line-height:2;">
-Variables ↓ Conditions ↓ Loops ↓ Functions ↓ Arrays ↓ Objects ↓
-Async JavaScript ↓ DSA ↓ React + Node.js
-</div>
-
-<p style="color:#7c2d12;line-height:1.7;">
-If the foundation is strong, React, Node.js, Express and MERN
-become much easier to understand.
-</p>
-
-</div>
-
-</div>
-
-</div>
 </body>
 </html>
+```
