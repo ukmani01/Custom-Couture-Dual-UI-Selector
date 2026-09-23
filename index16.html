@@ -1041,288 +1041,199 @@ Collection: student</pre></div></div>
     </ul>
   </div>
 </section>
+<div style="--bg: #f7f8fa; --surface: #fff; --surface-2: #f1f3f6; --text: #111827; --muted: #667085; --line: #e5e7eb; --accent: #111827; --accent-2: #2563eb; --code: #0b1220; --code-text: #e5edf7; --shadow: 0 10px 30px rgba(15,23,42,.06); --radius: 18px; box-sizing: border-box; margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7;">
+  <div style="display: grid; grid-template-columns: 290px minmax(0,1fr); min-height: 100vh;">
+    <aside style="position: sticky; top: 0; height: 100vh; border-right: 1px solid var(--line); background: rgba(255,255,255,.92); backdrop-filter: blur(18px); padding: 22px 16px; overflow: auto;" id="sidebar">
+      <div style="display: flex; gap: 12px; align-items: center; padding: 8px 10px 18px;">
+        <div style="width: 42px; height: 42px; border-radius: 13px; background: #111827; color: white; display: grid; place-items: center; font-weight: 800;">AI</div>
+        <div><strong style="display: block; font-size: 14px; line-height: 1.2;">Full-Stack Learning</strong><span style="font-size: 12px; color: var(--muted);">Student Learning Hub</span></div>
+      </div>
+      <div style="position: sticky; top: 0; background: rgba(255,255,255,.92); padding: 8px 0 14px; z-index: 2;">
+        <input style="width: 100%; border: 1px solid var(--line); background: var(--surface-2); border-radius: 12px; padding: 10px 12px; outline: none; font: inherit;" id="search" type="search" placeholder="Search the lesson...">
+      </div>
+      <nav style="display: grid; gap: 4px;" id="toc"></nav>
+    </aside>
 
-  <div style="font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; box-sizing: border-box;">
-
-    <!-- Header -->
-    <header style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px;">
-            <div style="font-weight: 800; font-size: 1.35rem; color: #0f172a; display: flex; align-items: center; gap: 8px;">
-                DevForge<span style="color: #2563eb;">AI</span>
-            </div>
-            <nav style="display: flex; gap: 32px; font-size: 0.95rem; font-weight: 500; color: #64748b;">
-                <a href="#philosophy" style="text-decoration: none; color: inherit;">Core Method</a>
-                <a href="#roadmap" style="text-decoration: none; color: inherit;">Learning Roadmap</a>
-                <a href="#architecture" style="text-decoration: none; color: inherit;">Architecture</a>
-                <a href="#story" style="text-decoration: none; color: inherit;">Real-Life Story</a>
-                <a href="#prompt" style="text-decoration: none; color: inherit;">AI Prompt Guide</a>
-            </nav>
-            <a href="#roadmap" style="background-color: #2563eb; color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Start Learning</a>
-            <button style="display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #0f172a;" aria-label="Toggle menu">☰</button>
+    <main style="min-width: 0;">
+      <header style="position: sticky; top: 0; z-index: 10; height: 68px; border-bottom: 1px solid var(--line); background: rgba(247,248,250,.88); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; padding: 0 28px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button style="border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 8px 11px; font-size: 12px; color: #344054; font: inherit; cursor: pointer; display: none;" class="mobile-menu" id="menuBtn">☰</button>
+          <div><h1 style="font-size: 15px; margin: 0; line-height: 1.18; letter-spacing: -0.025em;">AI-Assisted Full-Stack Development</h1><p style="margin: 0; color: var(--muted); font-size: 12px;">Learn → Build → Test → Debug → Understand</p></div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section style="padding: 80px 0; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
-            <div class="hero-content">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">AI-Assisted Full-Stack Engineering</span>
-                <h1 style="font-size: 3rem; font-weight: 800; line-height: 1.15; color: #0f172a; margin-bottom: 20px;">Master Full-Stack Development <span style="color: #2563eb;">With AI Precision.</span></h1>
-                <p style="font-size: 1.15rem; color: #64748b; margin-bottom: 32px; line-height: 1.7;">Stop blindly copying generated code. Learn how to combine programming fundamentals, robust backend architecture, and AI coding assistants (ChatGPT, Claude, Gemini, DeepSeek) to build, debug, and ship real-world applications like a professional engineer.</p>
-                <div style="display: flex; gap: 16px; margin-bottom: 40px;">
-                    <a href="#roadmap" style="background-color: #2563eb; color: white; padding: 14px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);">Explore Learning Path</a>
-                    <a href="#architecture" style="background-color: #f1f5f9; color: #0f172a; padding: 14px 28px; border-radius: 8px; font-weight: 600; border: 1px solid #e2e8f0; text-decoration: none;">View Architecture</a>
-                </div>
-                <div style="display: flex; gap: 24px; font-size: 0.9rem; color: #64748b; font-weight: 500;">
-                    <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: 700;">✓</span> Express & Mongoose</div>
-                    <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: 700;">✓</span> MVC Architecture</div>
-                    <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: 700;">✓</span> AI Prompt Strategy</div>
-                </div>
-            </div>
-            <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0;">
-                    <div style="display: flex; gap: 6px;">
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #ef4444; display: inline-block;"></span>
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #f59e0b; display: inline-block;"></span>
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #10b981; display: inline-block;"></span>
-                    </div>
-                    <div style="font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #64748b;">server.js &bull; Express + Mongoose</div>
-                </div>
-                <pre style="background-color: #0f172a; color: #e2e8f0; padding: 20px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.85rem; overflow-x: auto; line-height: 1.5; margin: 0;"><code style="font-family: inherit;"><span style="color: #93c5fd;">import</span> express <span style="color: #93c5fd;">from</span> <span style="color: #86efac;">"express"</span>;
-<span style="color: #93c5fd;">import</span> mongoose <span style="color: #93c5fd;">from</span> <span style="color: #86efac;">"mongoose"</span>;
-
-<span style="color: #93c5fd;">let</span> app = express();
-app.use(express.json());
-
-<span style="color: #64748b; font-style: italic;">// Connect to persistent MongoDB database</span>
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log(<span style="color: #86efac;">"MongoDB Connected"</span>));
-
-app.listen(3003, () => {
-  console.log(<span style="color: #86efac;">"Server running on port 3003"</span>);
-});</code></pre>
-            </div>
+        <div style="display: flex; gap: 8px;">
+          <button style="border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 8px 11px; font-size: 12px; color: #344054; font: inherit; cursor: pointer;" class="btn" id="sourceBtn">Full source</button>
+          <button style="border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 8px 11px; font-size: 12px; color: #344054; font: inherit; cursor: pointer;" class="btn" id="topBtn">Top</button>
         </div>
-    </section>
+        <div style="height: 3px; background: transparent; position: absolute; left: 0; right: 0; bottom: -1px;"><i style="display: block; height: 100%; width: 0; background: #111827; transition: width .1s;" id="progress"></i></div>
+      </header>
 
-    <!-- Core Philosophy Section -->
-    <section id="philosophy" style="padding: 80px 0; border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Developer Mindset</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 16px;">The Paradigm Shift: AI Assistant vs. AI Generator</h2>
-                <p style="font-size: 1.05rem; color: #64748b;">Understanding the vital difference between treating AI as a magic code generator versus an expert development assistant.</p>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-left: 4px solid #ef4444;">
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #0f172a; display: flex; align-items: center; gap: 10px;">The Wrong Approach (Blind Copying)</h3>
-                    <p style="color: #64748b; margin-bottom: 20px; font-size: 0.95rem;">Asking AI to generate an entire complex application in one massive prompt without understanding underlying architecture.</p>
-                    <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 0.95rem; list-style: none; padding: 0; margin: 0;">
-                        <li style="color: #64748b;"><span style="color: #ef4444; font-weight: bold;">✕ </span>Generates 100+ unmanageable files at once</li>
-                        <li style="color: #64748b;"><span style="color: #ef4444; font-weight: bold;">✕ </span>Creates silent bugs and broken connections</li>
-                        <li style="color: #64748b;"><span style="color: #ef4444; font-weight: bold;">✕ </span>Leaves developer clueless during debugging</li>
-                        <li style="color: #64748b;"><span style="color: #ef4444; font-weight: bold;">✕ </span>Zero mastery over database schemas or routing</li>
-                    </ul>
-                </div>
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-left: 4px solid #10b981;">
-                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #0f172a; display: flex; align-items: center; gap: 10px;">The DevForge AI Method</h3>
-                    <p style="color: #64748b; margin-bottom: 20px; font-size: 0.95rem;">Taking complete architectural ownership while leveraging AI for feature-by-feature implementation and targeted debugging.</p>
-                    <ul style="display: flex; flex-direction: column; gap: 10px; font-size: 0.95rem; list-style: none; padding: 0; margin: 0;">
-                        <li style="color: #64748b;"><span style="color: #10b981; font-weight: bold;">✓ </span>Define business logic and database design first</li>
-                        <li style="color: #64748b;"><span style="color: #10b981; font-weight: bold;">✓ </span>Feed precise project context and folder structure</li>
-                        <li style="color: #64748b;"><span style="color: #10b981; font-weight: bold;">✓ </span>Build sequentially: One feature, one prompt, one test</li>
-                        <li style="color: #64748b;"><span style="color: #10b981; font-weight: bold;">✓ </span>Understand every single line of code generated</li>
-                    </ul>
-                </div>
-            </div>
+      <section style="max-width: 980px; margin: 0 auto; padding: 54px 28px 100px;" class="content">
+        <div style="padding: 10px 0 38px;" class="hero">
+          <div style="font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #2563eb;" class="eyebrow">Beginner → Real-world → AI-powered</div>
+          <h2 style="font-size: clamp(32px,5vw,58px); line-height: 1.04; letter-spacing: -.04em; margin: 12px 0;">Build with AI.<br>Understand every step.</h2>
+          <p style="max-width: 720px; color: #667085; font-size: 17px; margin: 10px 0;">Complete student-focused learning material covering Express, Routing, CRUD, MongoDB, Mongoose, MVC, security, business logic, AI-assisted development, project architecture, prompting, debugging and progressive project building.</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0;" class="meta">
+            <span style="padding: 5px 9px; background: #eef2f6; border-radius: 999px; color: #475467; font-size: 11px;" class="pill">Single HTML</span><span style="padding: 5px 9px; background: #eef2f6; border-radius: 999px; color: #475467; font-size: 11px;" class="pill">CSS + JavaScript</span><span style="padding: 5px 9px; background: #eef2f6; border-radius: 999px; color: #475467; font-size: 11px;" class="pill">No external library</span><span style="padding: 5px 9px; background: #eef2f6; border-radius: 999px; color: #475467; font-size: 11px;" class="pill">Original content preserved</span>
+          </div>
         </div>
-    </section>
+        <div id="rendered"></div>
+      </section>
+    </main>
+  </div>
 
-    <!-- Learning Roadmap Section -->
-    <section id="roadmap" style="padding: 80px 0; border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Structured Curriculum</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 16px;">The 21-Step Full-Stack & AI Learning Journey</h2>
-                <p style="font-size: 1.05rem; color: #64748b;">A carefully ordered pathway designed to take absolute beginners to confident full-stack engineers utilizing AI efficiently.</p>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 16px;">01</div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">Node & Express Basics</h3>
-                    <p style="font-size: 0.9rem; color: #64748b; margin: 0;">Master server initialization, environment setup, middleware integration (`express.json()`), and port configuration.</p>
-                </div>
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 16px;">02</div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">Routing & HTTP Methods</h3>
-                    <p style="font-size: 0.9rem; color: #64748b; margin: 0;">Understand URL routing formulas (`app.METHOD`), request handling (`req.params`, `req.query`, `req.body`), and HTTP status codes (200, 201, 404, 500).</p>
-                </div>
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 16px;">03</div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">Array CRUD & Methods</h3>
-                    <p style="font-size: 0.9rem; color: #64748b; margin: 0;">Build core CRUD logic using JavaScript arrays and methods like `push()`, `find()`, `filter()`, `map()`, and `findIndex()`.</p>
-                </div>
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 16px;">04</div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">MongoDB & Mongoose</h3>
-                    <p style="font-size: 0.9rem; color: #64748b; margin: 0;">Transition from temporary RAM memory to persistent storage using MongoDB connection strings, schemas, and models.</p>
-                </div>
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 16px;">05</div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">MVC Architecture</h3>
-                    <p style="font-size: 0.9rem; color: #64748b; margin: 0;">Organize projects cleanly into config, models, controllers, routes, and middleware to prevent monolithic codebase chaos.</p>
-                </div>
-                <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px;">
-                    <div style="font-size: 2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 16px;">06</div>
-                    <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">AI-Assisted Development</h3>
-                    <p style="font-size: 0.9rem; color: #64748b; margin: 0;">Learn prompt engineering for developers: passing database contexts, schemas, business rules, and building feature-by-feature.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div style="display: none; position: fixed; inset: 0; background: rgba(2,6,23,.55); z-index: 100; padding: 30px;" class="source-panel" id="sourcePanel">
+    <div style="height: 100%; background: #fff; border-radius: 18px; display: flex; flex-direction: column; overflow: hidden;" class="source-box">
+      <div style="padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;" class="source-head"><strong style="color: var(--text);">Original full learning material</strong><button style="border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 8px 11px; font-size: 12px; color: #344054; font: inherit; cursor: pointer;" class="btn" id="closeSource">Close</button></div>
+      <textarea style="flex: 1; width: 100%; resize: none; border: 0; outline: 0; padding: 20px; font: 13px/1.6 'SFMono-Regular',Consolas,monospace; background: #0b1220; color: #e5edf7;" id="sourceText" readonly></textarea>
+    </div>
+  </div>
 
-    <!-- Architecture Section -->
-    <section id="architecture" style="padding: 80px 0; border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">System Design</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 16px;">Project Architecture & Request Flow</h2>
-                <p style="font-size: 1.05rem; color: #64748b;">Visualizing how data travels securely from the browser user interface through Express routes, controllers, and MongoDB models.</p>
-            </div>
-            <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 40px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);">
-                <div style="display: flex; flex-direction: column; gap: 16px; max-width: 700px; margin: 0 auto;">
-                    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #0f172a;">
-                        Client / Browser / Postman <span style="font-size: 0.85rem; color: #64748b; font-weight: 400;">HTTP Request (GET, POST, PUT, DELETE)</span>
-                    </div>
-                    <div style="text-align: center; color: #2563eb; font-size: 1.25rem;">↓</div>
-                    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #0f172a;">
-                        Express.js Server & Routing <span style="font-size: 0.85rem; color: #64748b; font-weight: 400;">Matches URL path and HTTP method</span>
-                    </div>
-                    <div style="text-align: center; color: #2563eb; font-size: 1.25rem;">↓</div>
-                    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #0f172a;">
-                        Middleware & Validation <span style="font-size: 0.85rem; color: #64748b; font-weight: 400;">Parses JSON body, checks authentication</span>
-                    </div>
-                    <div style="text-align: center; color: #2563eb; font-size: 1.25rem;">↓</div>
-                    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #0f172a;">
-                        Controller Business Logic <span style="font-size: 0.85rem; color: #64748b; font-weight: 400;">Executes core application rules</span>
-                    </div>
-                    <div style="text-align: center; color: #2563eb; font-size: 1.25rem;">↓</div>
-                    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #0f172a;">
-                        Mongoose Models & MongoDB <span style="font-size: 0.85rem; color: #64748b; font-weight: 400;">Persistent database operations (`async/await`)</span>
-                    </div>
-                    <div style="text-align: center; color: #2563eb; font-size: 1.25rem;">↓</div>
-                    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #0f172a;">
-                        JSON Response Sent to Client <span style="font-size: 0.85rem; color: #64748b; font-weight: 400;">Status codes (200 OK, 201 Created, 404 Not Found)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+  const SOURCE_B64 = "4K6G4K6u4K+NLiDgrqjgr4Dgrpngr43grpXgrrPgr40g4K6V4K+H4K6f4K+N4K6q4K6k4K+BIOCukuCusOCvgSAqKkJlZ2lubmVyIOKGkiBSZWFsLXdvcmxkIEJhY2tlbmQg4oaSIEFJIEZ1bGwtU3RhY2sqKiBsZWFybmluZyBtYXRlcmlhbCDgrq7grr7grqTgrr/grrDgrr8g4K6H4K6w4K+B4K6V4K+N4K6V4K6/4K6x4K6k4K+BLiDgrofgrqTgr4gg4K6S4K6w4K+HIGNvZGUt4K6G4K6VIOCuruCun+CvjeCun+CvgeCuruCvjSDgrpXgr4rgrp/gr4HgrpXgr43grpXgrr7grq7grrLgr40sICoqRXhwcmVzcyBjb25jZXB0cyDihpIgUm91dGluZyDihpIgQ1JVRCDihpIgQXJyYXkgbWV0aG9kcyDihpIgTW9uZ29EQiDihpIgTW9uZ29vc2Ug4oaSIFBvc3RtYW4vQ2hyb21lIOKGkiBQcm9qZWN0IHN0cnVjdHVyZSDihpIgU2VjdXJpdHkg4oaSIEJ1c2luZXNzIGxvZ2ljIOKGkiBBSSBhcHBsaWNhdGlvbiBhcmNoaXRlY3R1cmUqKiDgro7grqngr43grrHgr4Egc3RlcC1ieS1zdGVwIOCuteCviOCupOCvjeCupOCuvuCusuCvjSBzdHVkZW50cy3grpXgr43grpXgr4Hgrq7gr40g4K6J4K6Z4K+N4K6V4K6z4K+B4K6V4K+N4K6V4K+B4K6u4K+NIHRlYWNoaW5nLeCuleCvjeCuleCvgSB1c2VmdWwg4K6G4K6VIOCuh+CusOCvgeCuleCvjeCuleCvgeCuruCvjS4KCuCuruCvgeCupOCusuCuv+CusuCvjSDgrpLgrrDgr4Eg4K6u4K+B4K6V4K+N4K6V4K6/4K6vIGRpc3RpbmN0aW9uOgoKPiAqKlJvdXRpbmcgY29uY2VwdC3grpAg4K6k4K6p4K6/4K6v4K6+4K6VIOCukuCusOCvgSB0b3BpYy3grobgrpUg4K614K+I4K6k4K+N4K6k4K+B4K6V4K+N4K6V4K+K4K6z4K+N4K6z4K+B4K6Z4K+N4K6V4K6z4K+NLioqCj4KPiDgroXgrqTgrrHgr43grpXgr4Hgrqrgr40g4K6q4K6/4K6x4K6V4K+BIENSVUQuCj4KPiDgroXgrqTgrqngr40g4K6q4K6/4K6x4K6V4K+BIE1vbmdvREIgKyBNb25nb29zZS4KPgo+IOCuheCupOCuqeCvjSDgrqrgrr/grrHgrpXgr4EgTVZDIC8gUm91dGVzIC8gQ29udHJvbGxlcnMgLyBNb2RlbHMsCj4KPiDgrofgrrHgr4HgrqTgrr/grq/grr/grrLgr40gQUkgYXBwbGljYXRpb24gYXJjaGl0ZWN0dXJlgoKতীতCgojIEJhY2tlbmQgRGV2ZWxvcG1lbnQg4oCUIEJlZ2lubmVyIENvbXpletJvbnxlcmluZyBTdHJ1Y3R1cmUgcHJv";
 
-    <!-- Real-Life Story Section -->
-    <section id="story" style="padding: 80px 0; border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Intuitive Learning</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 16px;">Learn It Through a Real-Life Story</h2>
-                <p style="font-size: 1.05rem; color: #64748b;">Demystifying backend architecture using a familiar real-world restaurant analogy.</p>
-            </div>
-            <div style="background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; border-radius: 12px; padding: 40px;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-                    <div>
-                        <h3 style="font-size: 1.5rem; font-weight: 700; color: #0f172a; margin-bottom: 16px;">The Restaurant Analogy</h3>
-                        <p style="color: #334155; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.7;">Imagine you walk into a restaurant. You don't walk straight into the kitchen and start cooking. Instead, you interact with a waiter who takes your order.</p>
-                        <p style="color: #334155; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.7;">The waiter delivers the order ticket to the kitchen manager (Express routing and controller), who prepares the meal using ingredients from the storage room pantry (MongoDB database). Once ready, the waiter brings the food back to your table.</p>
-                        <p style="color: #334155; margin: 0; font-size: 0.95rem; line-height: 1.7;">In web development, the client is the customer, the frontend is the waiter, the backend server is the kitchen, and the database is the pantry storage!</p>
-                    </div>
-                    <div style="background-color: #ffffff; border: 1px solid #bae6fd; border-radius: 8px; padding: 24px;">
-                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem;">
-                            <span style="font-weight: 700; color: #0f172a;">Customer</span>
-                            <span style="color: #2563eb; font-weight: 600;">Client / Browser / React App</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem;">
-                            <span style="font-weight: 700; color: #0f172a;">Waiter</span>
-                            <span style="color: #2563eb; font-weight: 600;">Express Routing & Request Handler</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem;">
-                            <span style="font-weight: 700; color: #0f172a;">Kitchen Manager</span>
-                            <span style="color: #2563eb; font-weight: 600;">Business Logic / Controller</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 0.9rem;">
-                            <span style="font-weight: 700; color: #0f172a;">Storage Pantry</span>
-                            <span style="color: #2563eb; font-weight: 600;">MongoDB Database & Mongoose Models</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  function decodeBase64UTF8(b64){
+    try {
+      const bin = atob(b64);
+      const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+      return new TextDecoder("utf-8").decode(bytes);
+    } catch(e) {
+      return "Error loading content";
+    }
+  }
+  const source = decodeBase64UTF8(SOURCE_B64);
+  const sourceTextEl = document.getElementById("sourceText");
+  if(sourceTextEl) sourceTextEl.value = source;
 
-    <!-- AI Prompt Template Section -->
-    <section id="prompt" style="padding: 80px 0; border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Practical Tooling</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 16px;">Master Developer Prompt Template</h2>
-                <p style="font-size: 1.05rem; color: #64748b;">Copy and adapt this professional prompt structure when working with ChatGPT, Claude, or Gemini to build robust backend features.</p>
-            </div>
-            <div style="background-color: #0f172a; border-radius: 12px; padding: 32px; color: #e2e8f0;">
-                <h3 style="color: white; font-size: 1.25rem; margin-bottom: 16px; margin-top: 0;">PROJECT CONTEXT & SPECIFICATION PROMPT</h3>
-                <div style="font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; white-space: pre-wrap;">PROJECT: AI E-Commerce Platform
-TECH STACK: Node.js, Express, MongoDB, Mongoose, ES Modules
-DATABASE NAME: ecommerceDB
+  function esc(s){
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function inline(s){
+    let x=esc(s);
+    x=x.replace(/`([^`]+)`/g,"<code>$1</code>");
+    x=x.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+    x=x.replace(/__([^_]+)__/g,"<strong>$1</strong>");
+    x=x.replace(/\*([^*]+)\*/g,"<em>$1</em>");
+    x=x.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return x;
+  }
 
-USER ROLES: Customer, Admin
-FEATURES REQUIRED:
-1. Product CRUD (Create, Read, Update, Delete)
-2. Cart Management
-3. Secure Order Placement
+  function parseMarkdown(md){
+    const lines=md.replace(/\r\n/g,"\n").split("\n");
+    let out="", i=0, inCode=false, code=[], codeLang="";
+    let listOpen=false, listType="";
+    function closeList(){ if(listOpen){out+=`</${listType}>`;listOpen=false;} }
+    while(i<lines.length){
+      const raw=lines[i], t=raw.trim();
+      if(t.startsWith("```")){
+        if(!inCode){ closeList(); inCode=true; code=[]; codeLang=t.slice(3).trim(); }
+        else{
+          inCode=false;
+          const txt=esc(code.join("\n"));
+          out+=`<pre style="background: var(--code); color: var(--code-text); padding: 18px; border-radius: 14px; overflow: auto; border: 1px solid #1d2939; position: relative; font-size: 13px; line-height: 1.65; margin: 16px 0;"><button style="position: absolute; top: 9px; right: 9px; border: 1px solid #344054; background: #111827; color: #e5e7eb; border-radius: 8px; padding: 5px 8px; font-size: 11px; cursor: pointer;" class="copy-code" data-copy="${encodeURIComponent(code.join("\n"))}">Copy</button><code style="font-family: 'SFMono-Regular',Consolas,'Liberation Mono',monospace;">${txt}</code></pre>`;
+        }
+        i++; continue;
+      }
+      if(inCode){code.push(raw);i++;continue}
+      if(!t){closeList();i++;continue}
+      if(/^---+$/.test(t)){closeList();out+="<hr style=\"border:0;border-top:1px solid var(--line);margin:38px 0\">";i++;continue}
+      let m=t.match(/^(#{1,4})\s+(.*)$/);
+      if(m){closeList();const level=m[1].length;const title=m[2];const id="sec-"+i+"-"+title.toLowerCase().replace(/[^a-z0-9\u0B80-\u0BFF]+/g,"-").replace(/^-|-$/g,"");out+=`<h${level} id="${id}" style="scroll-margin-top:90px;line-height:1.18;letter-spacing:-.025em;${level===1?'font-size:34px;margin:52px 0 18px':level===2?'font-size:26px;margin:42px 0 15px':level===3?'font-size:20px;margin:30px 0 12px':'font-size:17px;margin:24px 0 10px'}">${inline(title)}</h${level}>`;i++;continue}
+      if(t.startsWith(">")){closeList();let q=[];while(i<lines.length&&lines[i].trim().startsWith(">")){q.push(lines[i].trim().replace(/^>\s?/,""));i++;}out+=`<blockquote style="margin:18px 0;padding:14px 18px;border-left:3px solid #111827;background:#fff;border-radius:0 12px 12px 0;box-shadow:var(--shadow);color:#344054">${q.map(inline).join("<br>")}</blockquote>`;continue}
+      if(t.startsWith("|")){
+        closeList();let rows=[];while(i<lines.length&&lines[i].trim().startsWith("|")){rows.push(lines[i].trim());i++}
+        if(rows.length){let cells=r=>r.replace(/^\||\|$/g,"").split("|").map(x=>x.trim());let header=cells(rows[0]);let start=1;if(rows[1]&&/^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$/.test(rows[1]))start=2;out+=`<table style="width:100%;border-collapse:collapse;margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:block;overflow-x:auto"><thead><tr>`+header.map(c=>`<th style="padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;background:#f8fafc;font-size:12px">${inline(c)}</th>`).join("")+`</tr></thead><tbody>`;for(let r=start;r<rows.length;r++){let c=cells(rows[r]);out+=`<tr>`+header.map((_,j)=>`<td style="padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap">${inline(c[j]||"")}</td>`).join("")+`</tr>`}out+=`</tbody></table>`;}
+        continue;
+      }
+      m=t.match(/^[-*]\s+(.*)$/);
+      if(m){if(!listOpen||listType!=="ul"){closeList();out+=`<ul style="margin:10px 0 16px;padding-left:24px;" class="list">`;listOpen=true;listType="ul"}out+=`<li style="margin:5px 0;color:#344054">${inline(m[1])}</li>`;i++;continue}
+      m=t.match(/^\d+\.\s+(.*)$/);
+      if(m){if(!listOpen||listType!=="ol"){closeList();out+=`<ol style="margin:10px 0 16px;padding-left:24px;" class="list">`;listOpen=true;listType="ol"}out+=`<li style="margin:5px 0;color:#344054">${inline(m[1])}</li>`;i++;continue}
+      let para=[t];i++;
+      while(i<lines.length){
+        const z=lines[i].trim();
+        if(!z||z.startsWith("#")||z.startsWith(">")||z.startsWith("```")||z.startsWith("|")||/^[-*]\s+/.test(z)||/^\d+\.\s+/.test(z)||/^---+$/.test(z))break;
+        para.push(z);i++;
+      }
+      closeList();
+      out+=`<p style="margin:10px 0;color:#344054">${para.map(inline).join("<br>")}</p>`;
+    }
+    closeList();
+    if(inCode){out+=`<pre style="background:var(--code);color:var(--code-text);padding:18px;border-radius:14px;overflow:auto;"><code style="font-family:'SFMono-Regular',Consolas,monospace;">${esc(code.join("\n"))}</code></pre>`}
+    return out;
+  }
 
-CONSTRAINTS & RULES:
-- Use MVC folder structure (models, controllers, routes).
-- Use async/await with strict try/catch error handling.
-- Keep database connection credentials in .env using dotenv.
-- Generate code ONE feature at a time. Explain code before outputting.</div>
-            </div>
-        </div>
-    </section>
+  const rendered=document.getElementById("rendered");
+  if(rendered) rendered.innerHTML=parseMarkdown(source);
 
-    <!-- FAQ Accordion Section -->
-    <section style="padding: 80px 0; border-bottom: 1px solid #e2e8f0;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto 56px;">
-                <span style="display: inline-block; background-color: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Student Guidance</span>
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 16px;">Frequently Asked Questions</h2>
-                <p style="font-size: 1.05rem; color: #64748b;">Clear answers to common beginner roadblocks in backend and AI-assisted development.</p>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;">
-                <div class="accordion-item" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-                    <div class="accordion-header" style="padding: 20px 24px; font-weight: 700; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                        Why do we use async/await with MongoDB operations?
-                    </div>
-                    <div class="accordion-content" style="padding: 0 24px 20px; color: #64748b; font-size: 0.95rem; display: none;">
-                        Database queries take time to execute across a network or disk storage. Unlike synchronous array methods in RAM, `async/await` ensures our Express server pauses execution of that specific function until MongoDB returns the data, preventing undefined variable crashes.
-                    </div>
-                </div>
-                <div class="accordion-item" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-                    <div class="accordion-header" style="padding: 20px 24px; font-weight: 700; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                        Should I keep my MongoDB connection string and API keys in source code?
-                    </div>
-                    <div class="accordion-content" style="padding: 0 24px 20px; color: #64748b; font-size: 0.95rem; display: none;">
-                        Never! Sensitive credentials, database URIs, and AI provider API keys must always be stored inside an environment variable file (`.env`) and accessed securely via `process.env`. Also, ensure `.env` is added to your `.gitignore` file before pushing code to GitHub.
-                    </div>
-                </div>
-                <div class="accordion-item" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-                    <div class="accordion-header" style="padding: 20px 24px; font-weight: 700; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                        How can I test POST, PUT, and DELETE routes if Chrome address bar only supports GET?
-                    </div>
-                    <div class="accordion-content" style="padding: 0 24px 20px; color: #64748b; font-size: 0.95rem; display: none;">
-                        While Chrome address bars are limited to GET requests, backend APIs that accept JSON payloads, creation, updates, or deletions must be tested using API clients like Postman, Thunder Client, or directly via your frontend JavaScript `fetch()` calls.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  const headings=rendered ? [...rendered.querySelectorAll("h1,h2,h3")] : [];
+  const toc=document.getElementById("toc");
+  headings.forEach((h,idx)=>{
+    if(!toc) return;
+    const b=document.createElement("button");
+    b.textContent=h.textContent;
+    b.title=h.textContent;
+    b.style.cssText=`border:0;background:transparent;text-align:left;padding:8px 10px;border-radius:9px;color:#475467;font-size:12px;width:100%;cursor:pointer;padding-left:${10+(parseInt(h.tagName.slice(1))-1)*12}px;`;
+    b.addEventListener("click",()=>{h.scrollIntoView({behavior:"smooth",block:"start"});const sb=document.getElementById("sidebar");if(sb)sb.classList.remove("open")});
+    toc.appendChild(b);
+  });
+
+  document.querySelectorAll(".copy-code").forEach(btn=>{
+    btn.addEventListener("click",async()=>{
+      const value=decodeURIComponent(btn.dataset.copy);
+      try{await navigator.clipboard.writeText(value);btn.textContent="Copied";setTimeout(()=>btn.textContent="Copy",1200)}
+      catch{btn.textContent="Select manually"}
+    });
+  });
+
+  const search=document.getElementById("search");
+  if(search && toc){
+    search.addEventListener("input",()=>{
+      const q=search.value.toLowerCase().trim();
+      [...toc.children].forEach((b)=>{
+        b.style.display=(!q||b.textContent.toLowerCase().includes(q))?"block":"none";
+      });
+      if(q){
+        const hit=headings.find(h=>h.textContent.toLowerCase().includes(q));
+        if(hit) hit.scrollIntoView({behavior:"smooth",block:"center"});
+      }
+    });
+  }
+
+  window.addEventListener("scroll",()=>{
+    const d=document.documentElement;
+    const pct=d.scrollTop/(d.scrollHeight-d.clientHeight)*100;
+    const prog=document.getElementById("progress");
+    if(prog) prog.style.width=Math.max(0,Math.min(100,pct))+"%";
+  });
+
+  const topBtn = document.getElementById("topBtn");
+  if(topBtn) topBtn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+  
+  const menuBtn = document.getElementById("menuBtn");
+  if(menuBtn) menuBtn.onclick=()=> { const sb = document.getElementById("sidebar"); if(sb) sb.classList.toggle("open"); };
+  
+  const sourceBtn = document.getElementById("sourceBtn");
+  if(sourceBtn) sourceBtn.onclick=()=> { const sp = document.getElementById("sourcePanel"); if(sp) sp.classList.add("open"); };
+  
+  const closeSource = document.getElementById("closeSource");
+  if(closeSource) closeSource.onclick=()=> { const sp = document.getElementById("sourcePanel"); if(sp) sp.classList.remove("open"); };
+  
+  const sourcePanel = document.getElementById("sourcePanel");
+  if(sourcePanel) sourcePanel.addEventListener("click",e=>{if(e.target.id==="sourcePanel")e.currentTarget.classList.remove("open")});
+
+  const tocButtons=toc ? [...toc.children] : [];
+  const observer=new IntersectionObserver(entries=>{
+    entries.forAll?(entries.forAll()):entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const idx=headings.indexOf(entry.target);
+        tocButtons.forEach(x=>x.classList.remove("active"));
+        if(tocButtons[idx]) tocButtons[idx].classList.add("active");
+      }
+    });
+  },{rootMargin:"-100px 0px -70% 0px"});
+  headings.forAll?null:headings.forEach(h=>observer.observe(h));
+  </script>
+</div>
 
     <!-- Footer -->
     <footer style="background-color: #0f172a; color: white; padding: 60px 0 40px; text-align: center;">
