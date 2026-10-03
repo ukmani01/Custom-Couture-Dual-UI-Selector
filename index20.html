@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurelia Care — Multi-Specialty Hospital & Research Institute</title>
+  <meta name="description" content="Aurelia Care integrates internationally recognized medical faculty, advanced surgical robotics, and dedicated patient navigators for seamless healing." />
+
+  <!-- Fonts & Icons (Google Fonts + Lucide Icons) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================
+       1. DESIGN TOKENS & CSS VARIABLES
+       ========================================== */
+    :root {
+      --canvas-primary: #FAF9F6;
+      --canvas-card: #FFFFFF;
+      --canvas-subtle: #F1F4F2;
+      --canvas-dark: #0A1C2A;
+      --canvas-dark-card: #12283A;
+      
+      --text-primary: #101E2E;
+      --text-muted: #536474;
+      --text-dim: #8496A6;
+      --text-on-dark: #F5F8FA;
+
+      --brand-teal: #0D5C63;
+      --brand-teal-hover: #09474D;
+      --brand-teal-light: #EBF4F5;
+      --brand-accent: #C49A45;
+
+      --color-emergency: #C92A2A;
+      --color-emergency-hover: #B02525;
+      --color-emergency-bg: #FFF5F5;
+      --color-success: #1B794B;
+      --color-success-bg: #EDFDF2;
+
+      --border-subtle: #E2E8F0;
+      --border-dark: #1E3345;
+      
+      --shadow-sm: 0 1px 3px rgba(16, 30, 46, 0.06);
+      --shadow-card: 0 4px 20px -2px rgba(16, 30, 46, 0.05);
+      --shadow-xl: 0 20px 35px -5px rgba(16, 30, 46, 0.15);
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================
+       2. GLOBAL RESET & BASE STYLES
+       ========================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--canvas-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .font-serif { font-family: var(--font-serif); }
+    .text-teal { color: var(--brand-teal); }
+    .bg-teal { background-color: var(--brand-teal); }
+    
+    /* ==========================================
+       3. ATOMIC UI COMPONENTS & BUTTONS
+       ========================================== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-teal { background: var(--brand-teal-light); color: var(--brand-teal); }
+    .badge-danger { background: var(--color-emergency); color: #FFF; }
+    .badge-success { background: var(--color-success-bg); color: var(--color-success); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition-smooth);
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--brand-teal);
+      outline-offset: 2px;
+    }
+    .btn-primary { background: var(--brand-teal); color: #FFF; }
+    .btn-primary:hover { background: var(--brand-teal-hover); }
+    .btn-outline { border-color: var(--border-subtle); background: var(--canvas-card); color: var(--text-primary); }
+    .btn-outline:hover { background: #F8FAFC; border-color: var(--text-muted); }
+    .btn-danger { background: var(--color-emergency); color: #FFF; }
+    .btn-danger:hover { background: var(--color-emergency-hover); }
+    .btn-ghost { background: transparent; color: var(--brand-teal); }
+    .btn-ghost:hover { background: var(--brand-teal-light); }
+
+    /* ==========================================
+       4. TOP EMERGENCY & HEADER NAVIGATION
+       ========================================== */
+    .emergency-bar {
+      background: var(--canvas-dark);
+      color: var(--text-on-dark);
+      padding: 0.625rem 0;
+      font-size: 0.8125rem;
+      border-bottom: 1px solid var(--border-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .emergency-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .emergency-contact-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .emergency-link {
+      color: #34D399;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .emergency-link:hover { text-decoration: underline; }
+
+    header.main-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 38px;
+      z-index: 90;
+      transition: var(--transition-smooth);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.75rem;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-icon-box {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-md);
+      background: var(--brand-teal);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .brand-tagline {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      font-weight: 600;
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .nav-menu a:hover { color: var(--brand-teal); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* ==========================================
+       5. HERO SECTION
+       ========================================== */
+    .hero-section {
+      padding: 4rem 0 5rem;
+      background: linear-gradient(180deg, var(--canvas-primary) 0%, #F0F4F3 100%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1.15;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin: 1.25rem 0 1rem;
+    }
+    .hero-desc {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 35rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .hero-visual {
+      position: relative;
+    }
+    .hero-image-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      position: relative;
+      aspect-ratio: 4/5;
+      background: #E2E8F0;
+    }
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-image-overlay {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      background: rgba(10, 28, 42, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* ==========================================
+       6. DOCTOR DIRECTORY & MULTI-FILTER SECTION
+       ========================================== */
+    .section-spacing { padding: 5rem 0; }
+    .section-header { margin-bottom: 2.5rem; }
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      max-width: 40rem;
+      margin-top: 0.5rem;
+      font-size: 0.9375rem;
+    }
+
+    .filter-panel {
+      background: var(--canvas-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1.5fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+    .search-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-wrap i {
+      position: absolute;
+      left: 1rem;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+    .input-styled, .select-styled {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.6rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      background: var(--canvas-card);
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+    .select-styled {
+      padding-left: 1rem;
+    }
+    .input-styled:focus, .select-styled:focus {
+      border-color: var(--brand-teal);
+      box-shadow: 0 0 0 3px var(--brand-teal-light);
+    }
+    .mode-toggle {
+      display: flex;
+      background: var(--canvas-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+    .mode-btn {
+      padding: 0.45rem 0.85rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .mode-btn.active {
+      background: #FFF;
+      color: var(--brand-teal);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+    .doctor-card {
+      background: var(--canvas-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+    }
+    .doctor-card:hover {
+      box-shadow: var(--shadow-card);
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+    }
+    .doctor-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: #CBD5E1;
+      overflow: hidden;
+    }
+    .doctor-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .doctor-slot-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--brand-teal);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .doctor-body {
+      padding: 1.25rem;
+      flex-grow: 1;
+    }
+    .doctor-dept {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--brand-teal);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .doctor-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .doctor-qual {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 0.85rem;
+    }
+    .doctor-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .doctor-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .doctor-bio {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .doctor-foot {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      background: #FAFBFB;
+    }
+
+    /* ==========================================
+       7. CENTERS OF EXCELLENCE (DEPARTMENTS)
+       ========================================== */
+    .bg-white { background: var(--canvas-card); }
+    .dept-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .dept-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .dept-tab-btn {
+      text-align: left;
+      padding: 1.15rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--canvas-primary);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .dept-tab-btn.active {
+      background: var(--brand-teal);
+      border-color: var(--brand-teal);
+      color: #FFF;
+      box-shadow: var(--shadow-sm);
+    }
+    .dept-tab-btn h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .dept-tab-btn p {
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      opacity: 0.8;
+    }
+    .dept-content-panel {
+      background: var(--canvas-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+    }
+    .caps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .cap-item {
+      background: var(--canvas-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ==========================================
+       8. PREVENTIVE HEALTH PACKAGES
+       ========================================== */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .package-card {
+      background: var(--canvas-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+    .package-card:hover {
+      border-color: var(--brand-teal);
+      box-shadow: var(--shadow-card);
+    }
+    .package-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+    .package-price {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* ==========================================
+       9. EMERGENCY & DISPATCH SECTION
+       ========================================== */
+    .emergency-section {
+      background: var(--canvas-dark);
+      color: var(--text-on-dark);
+      padding: 5rem 0;
+    }
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .dispatch-box {
+      background: var(--canvas-dark-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    /* ==========================================
+       10. MODALS (BOOKING & PORTAL)
+       ========================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 28, 42, 0.65);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-dialog {
+      background: var(--canvas-card);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 580px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+      transform: scale(0.96);
+      transition: transform 0.25s ease;
+    }
+    .modal-backdrop.open .modal-dialog {
+      transform: scale(1);
+    }
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--canvas-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+    .modal-footer {
+      padding: 1.25rem 1.5rem;
+      background: #F8FAFC;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .slot-pill {
+      padding: 0.6rem;
+      font-size: 0.75rem;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      background: var(--canvas-card);
+      font-weight: 500;
+      transition: var(--transition-smooth);
+    }
+    .slot-pill.active {
+      background: var(--brand-teal);
+      border-color: var(--brand-teal);
+      color: #FFF;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--canvas-dark);
+      color: #FFF;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-xl);
+      font-size: 0.875rem;
+      z-index: 300;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================
+       11. RESPONSIVE MEDIA QUERIES
+       ========================================== */
+    @media (max-width: 992px) {
+      .hero-grid, .dept-layout, .emergency-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.75rem; }
+      .filter-grid { grid-template-columns: 1fr 1fr; }
+      .nav-menu { display: none; }
+    }
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.25rem; }
+      .hero-stats { grid-template-columns: 1fr; gap: 1rem; }
+      .filter-grid { grid-template-columns: 1fr; }
+      .caps-grid { grid-template-columns: 1fr; }
+      .slots-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. TOP EMERGENCY BANNER -->
+  <aside class="emergency-bar" aria-label="Urgent Medical Notice">
+    <div class="container emergency-bar-inner">
+      <div class="emergency-contact-group">
+        <span class="badge badge-danger">Emergency 24/7</span>
+        <span>Tertiary Trauma & Stroke Response:</span>
+        <a href="tel:+18005550911" class="emergency-link">
+          <i data-lucide="phone-call" style="width:14px;height:14px;"></i> +1 (800) 555-0911
+        </a>
+        <span style="opacity: 0.4;">|</span>
+        <span style="color: var(--text-dim);">Gate 1 Ambulance Bay, Aurelia Campus</span>
+      </div>
+      <div>
+        <a href="#emergency-guide" style="color: var(--text-dim); text-decoration: underline;">Emergency Protocols</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. PRIMARY NAVIGATION -->
+  <header class="main-nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon-box">
+          <i data-lucide="heart-pulse" style="width:24px;height:24px;"></i>
+        </div>
+        <div>
+          <span class="brand-name font-serif">AURELIA CARE</span>
+          <span class="brand-tagline">Hospital & Research Institute</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#find-doctor">Find a Doctor</a>
+        <a href="#departments">Departments</a>
+        <a href="#packages">Health Packages</a>
+        <a href="#emergency-guide">Emergency Care</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-ghost" onclick="openPortalModal()">
+          <i data-lucide="user" style="width:16px;height:16px;"></i> Patient Portal
+        </button>
+        <a href="#find-doctor" class="btn btn-primary">
+          <i data-lucide="calendar" style="width:16px;height:16px;"></i> Book Appointment
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge badge-teal">
+          <i data-lucide="shield-check" style="width:14px;height:14px;"></i> JCI & NABH Accredited Multi-Specialty
+        </div>
+        <h1 class="hero-title font-serif">
+          Clinical precision with <br />
+          <span style="font-style: italic; color: var(--brand-teal);">compassionate</span> human care.
+        </h1>
+        <p class="hero-desc">
+          Aurelia Care integrates internationally recognized medical faculty, advanced surgical robotics, and dedicated patient navigators for seamless healing.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#find-doctor" class="btn btn-primary" style="padding: 0.85rem 1.5rem; font-size: 1rem;">
+            Find Specialist & Schedule <i data-lucide="chevron-right" style="width:16px;height:16px;"></i>
+          </a>
+          <a href="#emergency-guide" class="btn btn-outline" style="padding: 0.85rem 1.5rem; font-size: 1rem;">
+            <i data-lucide="alert-circle" style="width:16px;height:16px; color: var(--color-emergency);"></i>
+            Emergency Protocols
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-number">180+</div>
+            <div class="stat-label">Specialist Doctors</div>
+          </div>
+          <div>
+            <div class="stat-number">99.4%</div>
+            <div class="stat-label">Clinical Safety Record</div>
+          </div>
+          <div>
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Tertiary Emergency</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-card">
+          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Modern Operating Theatre and Staff" />
+          <div class="hero-image-overlay">
+            <span style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: #34D399; font-weight: 700;">Active Standby</span>
+            <p style="font-size: 0.875rem; margin-top: 0.2rem; font-weight: 500;">Smart ICUs & Negative Pressure Isolation Suites</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DOCTOR DIRECTORY & MULTI-FILTER SECTION -->
+  <section id="find-doctor" class="section-spacing container">
+    <div class="section-header">
+      <div class="badge badge-teal">Physician Directory</div>
+      <h2 class="section-title font-serif">Consult With Our Leading Specialists</h2>
+      <p class="section-subtitle">Search verified medical consultants by specialty, consultation mode, or immediate availability.</p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-panel">
+      <div class="filter-grid">
+        <div class="search-input-wrap">
+          <i data-lucide="search" style="width:18px;height:18px;"></i>
+          <input type="text" id="doctor-search-input" class="input-styled" placeholder="Search doctor by name, specialty, or credentials..." />
+        </div>
+
+        <div>
+          <select id="department-select" class="select-styled">
+            <option value="All">All Departments</option>
+            <option value="Cardiovascular Sciences">Cardiovascular Sciences</option>
+            <option value="Neurology & Neurosurgery">Neurology & Neurosurgery</option>
+            <option value="Orthopedics & Joint Replacement">Orthopedics & Joint Replacement</option>
+            <option value="Comprehensive Oncology Institute">Comprehensive Oncology Institute</option>
+          </select>
+        </div>
+
+        <div class="mode-toggle">
+          <button class="mode-btn active" data-mode="All">All Modes</button>
+          <button class="mode-btn" data-mode="In-Person">In-Person</button>
+          <button class="mode-btn" data-mode="Video">Video</button>
+        </div>
+
+        <button class="btn btn-outline" id="reset-filters-btn" style="padding: 0.65rem 1rem;">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Doctor Grid Container -->
+    <div id="doctors-container" class="doctors-grid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- 5. CENTERS OF EXCELLENCE (DEPARTMENTS) -->
+  <section id="departments" class="section-spacing bg-white" style="border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge badge-teal">Clinical Departments</div>
+        <h2 class="section-title font-serif">Centers of Clinical Excellence</h2>
+        <p class="section-subtitle">Specialized tertiary suites adhering to verified international pathways.</p>
+      </div>
+
+      <div class="dept-layout">
+        <div class="dept-tabs" id="dept-tabs-container">
+          <!-- Injected via JS -->
+        </div>
+        <div class="dept-content-panel" id="dept-content-container">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PREVENTIVE HEALTH PACKAGES -->
+  <section id="packages" class="section-spacing container">
+    <div class="section-header" style="text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <div class="badge badge-teal">Preventive Care</div>
+      <h2 class="section-title font-serif">Evidence-Based Health Audits</h2>
+      <p class="section-subtitle">Tailored screening protocols designed to detect metabolic, vascular, and oncological flags early.</p>
+    </div>
+
+    <div class="packages-grid">
+      <div class="package-card">
+        <div>
+          <div class="package-head">
+            <span class="badge badge-teal">4 Hours • Same Day</span>
+            <span class="package-price font-serif">$380</span>
+          </div>
+          <h3 class="font-serif" style="font-size: 1.35rem; font-weight: 600; margin-bottom: 0.5rem;">Executive Wellness Screen</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1.25rem;">For adults 35–65 requiring comprehensive cardio-metabolic mapping.</p>
+          <div style="font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.5rem;">Includes 42 Diagnostic Investigations:</div>
+          <ul style="list-style: none; font-size: 0.8125rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>✓ Full 2D Echo Doppler & TMT Stress Test</li>
+            <li>✓ Low-Dose High-Resolution Chest CT</li>
+            <li>✓ Liver, Kidney & Complete Lipid Panel</li>
+            <li>✓ Consultant Physician & Diet Review</li>
+          </ul>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+          <button class="btn btn-outline" style="width: 100%;" onclick="showToast('Selected Executive Wellness Screen. Coordinator will call within 1 hour.')">Book Health Package</button>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <div>
+          <div class="package-head">
+            <span class="badge badge-teal">2.5 Hours</span>
+            <span class="package-price font-serif">$260</span>
+          </div>
+          <h3 class="font-serif" style="font-size: 1.35rem; font-weight: 600; margin-bottom: 0.5rem;">Cardiac Vascular Focus</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1.25rem;">Specialized screen for individuals with hypertension or family history.</p>
+          <div style="font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.5rem;">Includes 24 Core Investigations:</div>
+          <ul style="list-style: none; font-size: 0.8125rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>✓ Treadmill Cardiac Exercise Stress Test</li>
+            <li>✓ Carotid Intima-Media Thickness Scan</li>
+            <li>✓ High-Sensitivity C-Reactive Protein (hs-CRP)</li>
+            <li>✓ Senior Cardiologist Evaluation</li>
+          </ul>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+          <button class="btn btn-outline" style="width: 100%;" onclick="showToast('Selected Cardiac Vascular Focus. Coordinator will call within 1 hour.')">Book Health Package</button>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <div>
+          <div class="package-head">
+            <span class="badge badge-teal">3.5 Hours</span>
+            <span class="package-price font-serif">$320</span>
+          </div>
+          <h3 class="font-serif" style="font-size: 1.35rem; font-weight: 600; margin-bottom: 0.5rem;">Senior Comprehensive Care</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1.25rem;">Tailored for seniors 65+ targeting bone density, joint, and renal health.</p>
+          <div style="font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.5rem;">Includes 36 Core Investigations:</div>
+          <ul style="list-style: none; font-size: 0.8125rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>✓ DEXA Bone Mineral Density Scan</li>
+            <li>✓ Complete Metabolic & Electrolyte Panel</li>
+            <li>✓ Audiometry & Vision Acuity Screen</li>
+            <li>✓ Geriatric Specialist Comprehensive Review</li>
+          </ul>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+          <button class="btn btn-outline" style="width: 100%;" onclick="showToast('Selected Senior Comprehensive Care. Coordinator will call within 1 hour.')">Book Health Package</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. EMERGENCY & PROTOCOLS SECTION -->
+  <section id="emergency-guide" class="emergency-section">
+    <div class="container emergency-grid">
+      <div>
+        <div class="badge badge-danger">Emergency Guidance</div>
+        <h2 class="font-serif" style="font-size: 2.25rem; margin: 0.75rem 0 1rem;">Immediate Trauma & Stroke Care</h2>
+        <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">
+          Our Level-1 emergency bay is equipped with direct catheterization labs, zero-wait stroke thrombolysis teams, and certified emergency physicians on active 24-hour shifts.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="check-circle" style="width:16px;height:16px; color:#34D399;"></i>
+            <span>Door-to-Balloon Angioplasty Window &lt; 45 Minutes</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="check-circle" style="width:16px;height:16px; color:#34D399;"></i>
+            <span>Dedicated Acute Neuro-Vascular Thrombolytic Protocol</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dispatch-box">
+        <h3 class="font-serif" style="font-size: 1.25rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="alert-circle" style="width:18px;height:18px; color: var(--color-emergency);"></i> Direct Trauma Dispatch
+        </h3>
+        <p style="font-size: 0.8125rem; color: var(--text-dim); margin-bottom: 1.25rem;">
+          In case of acute chest tightness, facial drooping, acute breathlessness, or major trauma:
+        </p>
+        <a href="tel:+18005550911" class="btn btn-danger" style="width: 100%; padding: 0.85rem; font-size: 1rem; font-weight: 700;">
+          Call Trauma Bay: +1 (800) 555-0911
+        </a>
+        <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; color: var(--text-dim); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-dark);">
+          <span>Live GPS Fleet Coordination</span>
+          <span>Location: Aurelia North Gate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FOOTER -->
+  <footer style="background: #07131D; color: var(--text-dim); padding: 4rem 0 2rem; font-size: 0.8125rem; border-top: 1px solid #142839;">
+    <div class="container" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.5rem; color: #FFF; font-size: 1.25rem; font-weight: 700;" class="font-serif">
+          <i data-lucide="heart-pulse" style="width:20px;height:20px; color: var(--brand-teal);"></i> AURELIA CARE
+        </div>
+        <p style="margin-top: 0.75rem; line-height: 1.6; max-width: 320px;">
+          An academic and research tertiary medical system dedicated to transparent clinical excellence, robotic surgeries, and patient-first recovery.
+        </p>
+      </div>
+      <div>
+        <h4 style="color: #FFF; margin-bottom: 0.75rem; font-weight: 600;">Specialties</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.4rem;">
+          <li><a href="#departments">Cardiovascular</a></li>
+          <li><a href="#departments">Neurosciences</a></li>
+          <li><a href="#departments">Joint Replacement</a></li>
+          <li><a href="#departments">Medical Oncology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: #FFF; margin-bottom: 0.75rem; font-weight: 600;">Patient Portal</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.4rem;">
+          <li><a href="javascript:void(0)" onclick="openPortalModal()">View Lab Results</a></li>
+          <li><a href="javascript:void(0)" onclick="openPortalModal()">Prescription History</a></li>
+          <li><a href="#packages">Health Packages</a></li>
+          <li><a href="#find-doctor">Doctor Search</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: #FFF; margin-bottom: 0.75rem; font-weight: 600;">Campus</h4>
+        <p style="line-height: 1.5;">742 Aurelia Medical Parkway,<br />Medical District, Wing A<br />Phone: +1 (800) 555-CARE</p>
+      </div>
+    </div>
+    <div class="container" style="border-top: 1px solid #142839; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <p>© 2026 Aurelia Care Healthcare System. All rights reserved.</p>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="#">Privacy & HIPAA Notice</a>
+        <a href="#">Patient Rights Charter</a>
+        <a href="#">Clinical Governance</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 9. APPOINTMENT BOOKING MODAL (3-STEP PROGRESSIVE DISCLOSURE) -->
+  <div id="booking-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-teal" id="booking-step-badge">Step 1 of 3 • Mode & Time</span>
+          <h3 class="font-serif" id="booking-doc-name" style="font-size: 1.25rem; font-weight: 600; margin-top: 0.25rem;">Doctor Name</h3>
+        </div>
+        <button class="btn btn-ghost" onclick="closeBookingModal()" style="padding: 0.4rem;" aria-label="Close Modal">
+          <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Step 1: Mode & Date -->
+        <div id="step-1-content">
+          <div class="form-group">
+            <label class="form-label">Consultation Format</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="slot-pill active" id="mode-opt-inperson" onclick="selectConsultType('In-Person')">In-Person Consultation</div>
+              <div class="slot-pill" id="mode-opt-video" onclick="selectConsultType('Video')">Tele-Consult (Video)</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Select Date</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;" id="date-selection-grid">
+              <div class="slot-pill active" onclick="selectDatePill(this, 'Tomorrow (Tue, Aug 11)')">Tomorrow (Tue, Aug 11)</div>
+              <div class="slot-pill" onclick="selectDatePill(this, 'Wed, Aug 12')">Wed, Aug 12</div>
+              <div class="slot-pill" onclick="selectDatePill(this, 'Thu, Aug 13')">Thu, Aug 13</div>
+              <div class="slot-pill" onclick="selectDatePill(this, 'Fri, Aug 14')">Fri, Aug 14</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Available Time Slots</label>
+            <div class="slots-grid" id="time-selection-grid">
+              <div class="slot-pill active" onclick="selectTimePill(this, '09:30 AM')">09:30 AM</div>
+              <div class="slot-pill" onclick="selectTimePill(this, '10:30 AM')">10:30 AM</div>
+              <div class="slot-pill" onclick="selectTimePill(this, '02:00 PM')">02:00 PM</div>
+              <div class="slot-pill" onclick="selectTimePill(this, '03:30 PM')">03:30 PM</div>
+              <div class="slot-pill" onclick="selectTimePill(this, '04:15 PM')">04:15 PM</div>
+              <div class="slot-pill" onclick="selectTimePill(this, '05:00 PM')">05:00 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Patient Info -->
+        <div id="step-2-content" style="display: none;">
+          <div id="form-error-box" style="display: none; background: #FEF2F2; border: 1px solid #FCA5A5; color: #991B1B; padding: 0.65rem; border-radius: var(--radius-md); font-size: 0.8125rem; margin-bottom: 1rem;"></div>
+          
+          <div class="form-group">
+            <label class="form-label">Full Legal Name *</label>
+            <input type="text" id="patient-name-input" class="input-styled" style="padding-left: 1rem;" placeholder="e.g. Eleanor Vance" />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label class="form-label">Mobile Phone *</label>
+              <input type="tel" id="patient-phone-input" class="input-styled" style="padding-left: 1rem;" placeholder="+1 (555) 000-0000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="patient-email-input" class="input-styled" style="padding-left: 1rem;" placeholder="patient@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Symptoms / Visit Reason</label>
+            <textarea id="patient-symptoms-input" class="input-styled" style="padding-left: 1rem; height: 80px;" placeholder="Briefly describe symptoms or recent diagnostic findings..."></textarea>
+          </div>
+        </div>
+
+        <!-- Step 3: Review & Summary -->
+        <div id="step-3-content" style="display: none;">
+          <div style="background: var(--canvas-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem; font-size: 0.8125rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.35rem;">
+              <span style="color: var(--text-dim);">Specialist:</span>
+              <span id="summary-doc-name" style="font-weight: 700;">-</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.35rem;">
+              <span style="color: var(--text-dim);">Schedule:</span>
+              <span id="summary-datetime" style="font-weight: 600; color: var(--brand-teal);">-</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.35rem;">
+              <span style="color: var(--text-dim);">Patient:</span>
+              <span id="summary-patient">-</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-dim);">Consultation Fee:</span>
+              <span id="summary-fee" style="font-weight: 700;">-</span>
+            </div>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem; line-height: 1.4;">
+            A confirmation SMS will be dispatched immediately. Rescheduling or cancellation is free of charge up to 2 hours prior to the slot.
+          </p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="modal-back-btn" class="btn btn-outline" style="display: none;" onclick="prevBookingStep()">Back</button>
+        <div id="modal-spacer"></div>
+        <button id="modal-next-btn" class="btn btn-primary" onclick="nextBookingStep()">Continue to Patient Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. PATIENT PORTAL MODAL PREVIEW -->
+  <div id="portal-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header" style="background: var(--canvas-dark); color: #FFF;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 2rem; height: 2rem; border-radius: 50%; background: var(--brand-teal); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;">
+            EV
+          </div>
+          <div>
+            <h4 class="font-serif" style="font-size: 1.1rem; font-weight: 600;">Patient Portal Gateway</h4>
+            <span style="font-size: 0.6875rem; color: var(--text-dim);">MRN: #AUR-98014 • Eleanor Vance</span>
+          </div>
+        </div>
+        <button class="btn btn-ghost" onclick="closePortalModal()" style="color: var(--text-dim);" aria-label="Close Portal">
+          <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size: 0.8125rem;">
+        <h5 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); font-weight: 700; margin-bottom: 0.75rem;">Recent Verified Diagnostic Reports</h5>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem;">
+          <div style="padding: 0.85rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="file-text" style="width:16px;height:16px; color: var(--brand-teal);"></i>
+              <div>
+                <div style="font-weight: 600;">Comprehensive Metabolic Panel (CMP-14)</div>
+                <div style="font-size: 0.6875rem; color: var(--text-dim);">Pathology Laboratory • Released Aug 04, 2026</div>
+              </div>
+            </div>
+            <span class="badge badge-success">Normal</span>
+          </div>
+
+          <div style="padding: 0.85rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="activity" style="width:16px;height:16px; color: var(--brand-teal);"></i>
+              <div>
+                <div style="font-weight: 600;">2D Echocardiography Doppler Report</div>
+                <div style="font-size: 0.6875rem; color: var(--text-dim);">Cardiology Suite • Released Jul 29, 2026</div>
+              </div>
+            </div>
+            <span class="badge badge-teal">Verified</span>
+          </div>
+        </div>
+
+        <div style="padding: 0.85rem; background: var(--canvas-primary); border-radius: var(--radius-md); font-size: 0.75rem; color: var(--text-muted);">
+          🔒 Active 256-bit Encrypted Session. Connected to Aurelia Clinical Core.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" style="width:100%;" onclick="closePortalModal()">Close Patient Portal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. TOAST NOTIFICATION CONTAINER -->
+  <div id="system-toast" class="toast">
+    <i data-lucide="check-circle" style="width:18px;height:18px; color: #34D399;"></i>
+    <span id="toast-text">Notification text</span>
+  </div>
+
+  <!-- ==========================================
+       12. JAVASCRIPT LOGIC & STATE MANAGEMENT
+       ========================================== -->
+  <script>
+    // --- Data Definitions ---
+    const DEPARTMENTS = [
+      {
+        id: 'cardio',
+        name: 'Cardiovascular Sciences',
+        director: 'Dr. Arthur Vance, FRCP',
+        volume: '12,400+ Consultations / Year',
+        desc: 'Comprehensive non-invasive cardiology, hybrid catheterization laboratories, and dedicated cardiothoracic intensive care units.',
+        caps: ['Coronary Angioplasty', 'Electrophysiology Study', 'Heart Failure Program', 'TAVR Valve Repair']
+      },
+      {
+        id: 'neuro',
+        name: 'Neurology & Neurosurgery',
+        director: 'Dr. Elena Rostova, MD, PhD',
+        volume: '8,900+ Procedures / Year',
+        desc: 'Tertiary stroke management, stereotactic radiosurgery, awake craniotomy navigation, and comprehensive spinal reconstruction.',
+        caps: ['Stroke Thrombectomy', 'Deep Brain Stimulation', 'Neuro-Oncology Nav', 'Minimally Invasive Spine']
+      },
+      {
+        id: 'ortho',
+        name: 'Orthopedics & Joint Replacement',
+        director: 'Dr. Julian Bennett, MS Ortho',
+        volume: '9,200+ Surgeries / Year',
+        desc: 'Precision robotic-assisted joint replacement, sports injury rehabilitation protocols, and complex pelvic trauma reconstructive care.',
+        caps: ['Robotic Knee Arthroplasty', 'Shoulder Arthroscopy', 'Sports Ligament Repair', 'Spinal Decompression']
+      },
+      {
+        id: 'oncology',
+        name: 'Comprehensive Oncology Institute',
+        director: 'Dr. Samantha Wu, MD',
+        volume: '6,700+ Treatments / Year',
+        desc: 'Multidisciplinary tumor boards, targeted molecular immunotherapy infusions, and linear accelerator stereotactic radiation therapy.',
+        caps: ['Targeted Immunotherapy', 'Surgical Oncology Suite', 'Genomic Tumor Profile', 'Palliative Rehabilitation']
+      }
+    ];
+
+    const DOCTORS = [
+      {
+        id: 'doc-1',
+        name: 'Dr. Arthur Vance',
+        department: 'Cardiovascular Sciences',
+        qual: 'MD, DM (Cardiology), FRCP (London)',
+        exp: '22 Years Experience',
+        loc: 'Central Pavilion, Level 3',
+        avail: 'Today, 03:30 PM',
+        modes: ['In-Person', 'Video'],
+        fee: '$180',
+        bio: 'Specialized in transcatheter aortic valve replacement (TAVR) and complex percutaneous coronary interventions with 6,000+ clinical cases.',
+        image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop'
+      },
+      {
+        id: 'doc-2',
+        name: 'Dr. Elena Rostova',
+        department: 'Neurology & Neurosurgery',
+        qual: 'MD (Johns Hopkins), PhD (Neurobiology)',
+        exp: '18 Years Experience',
+        loc: 'Pavilion North, Wing B',
+        avail: 'Tomorrow, 10:00 AM',
+        modes: ['In-Person', 'Video'],
+        fee: '$220',
+        bio: 'Pioneered micro-neurosurgical resections for intrinsic brain lesions with intraoperative awake neuromonitoring protocols.',
+        image: 'https://images.unsplash.com/photo-1594824813587-c584c3c3a9d9?q=80&w=600&auto=format&fit=crop'
+      },
+      {
+        id: 'doc-3',
+        name: 'Dr. Julian Bennett',
+        department: 'Orthopedics & Joint Replacement',
+        qual: 'MBBS, MS (Orthopedics), MCh (UK)',
+        exp: '16 Years Experience',
+        loc: 'Ambulatory Center, Rm 104',
+        avail: 'Today, 05:15 PM',
+        modes: ['In-Person'],
+        fee: '$160',
+        bio: 'Specialist in custom 3D patient-matched robotic joint replacement and minimally invasive revision hip surgeries.',
+        image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600&auto=format&fit=crop'
+      },
+      {
+        id: 'doc-4',
+        name: 'Dr. Samantha Wu',
+        department: 'Comprehensive Oncology Institute',
+        qual: 'MD, Board Certified in Hematology & Oncology',
+        exp: '14 Years Experience',
+        loc: 'Cancer Pavilion, Suite 402',
+        avail: 'Thu, Aug 13',
+        modes: ['In-Person', 'Video'],
+        fee: '$200',
+        bio: 'Focuses on precision gene profiling, targeted systemic molecular therapies, and clinical trial immunotherapy cohorts.',
+        image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop'
+      }
+    ];
+
+    // --- State Variables ---
+    let activeDeptId = 'cardio';
+    let filterQuery = '';
+    let filterDept = 'All';
+    let filterMode = 'All';
+
+    let currentBookingDoctor = null;
+    let bookingStep = 1;
+    let selectedBookingMode = 'In-Person';
+    let selectedBookingDate = 'Tomorrow (Tue, Aug 11)';
+    let selectedBookingTime = '09:30 AM';
+
+    // --- Initialize App ---
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderDoctors();
+      renderDepartments();
+      setupEventListeners();
+    });
+
+    function setupEventListeners() {
+      const searchInput = document.getElementById('doctor-search-input');
+      const deptSelect = document.getElementById('department-select');
+      const resetBtn = document.getElementById('reset-filters-btn');
+      const modeButtons = document.querySelectorAll('.mode-btn');
+
+      searchInput.addEventListener('input', (e) => {
+        filterQuery = e.target.value;
+        renderDoctors();
+      });
+
+      deptSelect.addEventListener('change', (e) => {
+        filterDept = e.target.value;
+        renderDoctors();
+      });
+
+      modeButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          modeButtons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          filterMode = btn.getAttribute('data-mode');
+          renderDoctors();
+        });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        filterQuery = '';
+        filterDept = 'All';
+        filterMode = 'All';
+        searchInput.value = '';
+        deptSelect.value = 'All';
+        modeButtons.forEach((b) => b.classList.remove('active'));
+        document.querySelector('.mode-btn[data-mode="All"]').classList.add('active');
+        renderDoctors();
+      });
+    }
+
+    // --- Render Doctor Cards ---
+    function renderDoctors() {
+      const container = document.getElementById('doctors-container');
+      const filtered = DOCTORS.filter((doc) => {
+        const matchesQuery = doc.name.toLowerCase().includes(filterQuery.toLowerCase()) ||
+                             doc.department.toLowerCase().includes(filterQuery.toLowerCase()) ||
+                             doc.qual.toLowerCase().includes(filterQuery.toLowerCase());
+        const matchesDept = filterDept === 'All' || doc.department === filterDept;
+        const matchesMode = filterMode === 'All' || doc.modes.includes(filterMode);
+        return matchesQuery && matchesDept && matchesMode;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; background: #FFF; padding: 3rem; text-align: center; border-radius: var(--radius-lg); border: 1px dashed var(--border-subtle);">
+            <i data-lucide="help-circle" style="width:36px;height:36px; color: var(--text-dim); margin-bottom: 0.5rem;"></i>
+            <h4 class="font-serif" style="font-size: 1.15rem; font-weight: 600;">No Specialists Found</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem;">Try modifying your search or resetting active filters.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map((doc) => `
+        <div class="doctor-card">
+          <div>
+            <div class="doctor-thumb">
+              <img src="${doc.image}" alt="${doc.name}" loading="lazy" />
+              <div class="doctor-slot-badge">
+                <i data-lucide="clock" style="width:12px;height:12px;"></i> ${doc.avail}
+              </div>
+            </div>
+            <div class="doctor-body">
+              <span class="doctor-dept">${doc.department}</span>
+              <h3 class="doctor-name font-serif">${doc.name}</h3>
+              <p class="doctor-qual">${doc.qual}</p>
+              
+              <div class="doctor-meta">
+                <div class="doctor-meta-row">
+                  <i data-lucide="award" style="width:14px;height:14px; color: var(--text-dim);"></i>
+                  <span>${doc.exp}</span>
+                </div>
+                <div class="doctor-meta-row">
+                  <i data-lucide="map-pin" style="width:14px;height:14px; color: var(--text-dim);"></i>
+                  <span>${doc.loc}</span>
+                </div>
+              </div>
+
+              <p class="doctor-bio">${doc.bio}</p>
+            </div>
+          </div>
+
+          <div class="doctor-foot">
+            <div>
+              <div style="font-size: 0.6875rem; color: var(--text-dim);">Consultation</div>
+              <div style="font-weight: 700; font-size: 0.9375rem;">${doc.fee}</div>
+            </div>
+            <button class="btn btn-primary" style="padding: 0.5rem 0.85rem; font-size: 0.75rem;" onclick="openBookingModal('${doc.id}')">
+              <i data-lucide="calendar" style="width:14px;height:14px;"></i> Schedule
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // --- Render Departments Tabs & Content ---
+    function renderDepartments() {
+      const tabsContainer = document.getElementById('dept-tabs-container');
+      const contentContainer = document.getElementById('dept-content-container');
+
+      tabsContainer.innerHTML = DEPARTMENTS.map((dept) => `
+        <button class="dept-tab-btn ${dept.id === activeDeptId ? 'active' : ''}" onclick="switchDepartment('${dept.id}')">
+          <h4>${dept.name}</h4>
+          <p>Director: ${dept.director}</p>
+        </button>
+      `).join('');
+
+      const activeDept = DEPARTMENTS.find((d) => d.id === activeDeptId);
+      contentContainer.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; margin-bottom: 1rem;">
+          <div>
+            <h3 class="font-serif" style="font-size: 1.5rem; font-weight: 600;">${activeDept.name}</h3>
+            <span style="font-size: 0.75rem; color: var(--brand-teal); font-weight: 700;">Clinical Activity: ${activeDept.volume}</span>
+          </div>
+          <i data-lucide="stethoscope" style="width:28px;height:28px; color: var(--brand-teal);"></i>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">${activeDept.desc}</p>
+        
+        <h5 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-top: 1.5rem;">Core Clinical Capabilities</h5>
+        <div class="caps-grid">
+          ${activeDept.caps.map((cap) => `
+            <div class="cap-item">
+              <i data-lucide="check-circle-2" style="width:14px;height:14px; color: #16A34A;"></i>
+              <span>${cap}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <button class="btn btn-ghost" style="padding-left: 0;" onclick="filterByDeptDirect('${activeDept.name}')">
+          View Specialists in ${activeDept.name} →
+        </button>
+      `;
+
+      lucide.createIcons();
+    }
+
+    function switchDepartment(id) {
+      activeDeptId = id;
+      renderDepartments();
+    }
+
+    function filterByDeptDirect(deptName) {
+      filterDept = deptName;
+      document.getElementById('department-select').value = deptName;
+      renderDoctors();
+      document.getElementById('find-doctor').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- Booking Modal 3-Step Flow ---
+    function openBookingModal(doctorId) {
+      currentBookingDoctor = DOCTORS.find((d) => d.id === doctorId);
+      bookingStep = 1;
+      updateBookingModalUI();
+      document.getElementById('booking-modal').classList.add('open');
+    }
+
+    function closeBookingModal() {
+      document.getElementById('booking-modal').classList.remove('open');
+    }
+
+    function selectConsultType(mode) {
+      selectedBookingMode = mode;
+      document.getElementById('mode-opt-inperson').classList.toggle('active', mode === 'In-Person');
+      document.getElementById('mode-opt-video').classList.toggle('active', mode === 'Video');
+    }
+
+    function selectDatePill(elem, dateStr) {
+      document.querySelectorAll('#date-selection-grid .slot-pill').forEach((p) => p.classList.remove('active'));
+      elem.classList.add('active');
+      selectedBookingDate = dateStr;
+    }
+
+    function selectTimePill(elem, timeStr) {
+      document.querySelectorAll('#time-selection-grid .slot-pill').forEach((p) => p.classList.remove('active'));
+      elem.classList.add('active');
+      selectedBookingTime = timeStr;
+    }
+
+    function updateBookingModalUI() {
+      document.getElementById('booking-doc-name').textContent = currentBookingDoctor.name;
+      const stepBadge = document.getElementById('booking-step-badge');
+      const step1 = document.getElementById('step-1-content');
+      const step2 = document.getElementById('step-2-content');
+      const step3 = document.getElementById('step-3-content');
+      const backBtn = document.getElementById('modal-back-btn');
+      const nextBtn = document.getElementById('modal-next-btn');
+
+      step1.style.display = bookingStep === 1 ? 'block' : 'none';
+      step2.style.display = bookingStep === 2 ? 'block' : 'none';
+      step3.style.display = bookingStep === 3 ? 'block' : 'none';
+      backBtn.style.display = bookingStep > 1 ? 'inline-flex' : 'none';
+
+      if (bookingStep === 1) {
+        stepBadge.textContent = 'Step 1 of 3 • Consultation Slot';
+        nextBtn.textContent = 'Continue to Patient Details';
+      } else if (bookingStep === 2) {
+        stepBadge.textContent = 'Step 2 of 3 • Patient Profile';
+        nextBtn.textContent = 'Review & Verify Schedule';
+      } else if (bookingStep === 3) {
+        stepBadge.textContent = 'Step 3 of 3 • Final Review';
+        nextBtn.textContent = 'Confirm Consultation';
+        
+        // Populate Summary
+        const nameVal = document.getElementById('patient-name-input').value.trim();
+        const phoneVal = document.getElementById('patient-phone-input').value.trim();
+        document.getElementById('summary-doc-name').textContent = `${currentBookingDoctor.name} (${currentBookingDoctor.department})`;
+        document.getElementById('summary-datetime').textContent = `${selectedBookingDate} at ${selectedBookingTime} [${selectedBookingMode}]`;
+        document.getElementById('summary-patient').textContent = `${nameVal} • ${phoneVal}`;
+        document.getElementById('summary-fee').textContent = `${currentBookingDoctor.fee} (Payable at desk / insurance)`;
+      }
+    }
+
+    function nextBookingStep() {
+      if (bookingStep === 1) {
+        bookingStep = 2;
+        updateBookingModalUI();
+      } else if (bookingStep === 2) {
+        const name = document.getElementById('patient-name-input').value.trim();
+        const phone = document.getElementById('patient-phone-input').value.trim();
+        const errorBox = document.getElementById('form-error-box');
+
+        if (!name || !phone) {
+          errorBox.style.display = 'block';
+          errorBox.textContent = 'Please provide both full legal name and reachable mobile phone number.';
+          return;
+        }
+        errorBox.style.display = 'none';
+        bookingStep = 3;
+        updateBookingModalUI();
+      } else if (bookingStep === 3) {
+        closeBookingModal();
+        showToast(`Confirmed appointment with ${currentBookingDoctor.name} on ${selectedBookingDate} at ${selectedBookingTime}.`);
+      }
+    }
+
+    function prevBookingStep() {
+      if (bookingStep > 1) {
+        bookingStep--;
+        updateBookingModalUI();
+      }
+    }
+
+    // --- Portal Modal Preview ---
+    function openPortalModal() {
+      document.getElementById('portal-modal').classList.add('open');
+    }
+    function closePortalModal() {
+      document.getElementById('portal-modal').classList.remove('open');
+    }
+
+    // --- Toast System ---
+    function showToast(text) {
+      const toast = document.getElementById('system-toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4500);
+    }
+  </script>
+</body>
+</html>
